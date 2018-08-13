@@ -41,9 +41,9 @@
     <h2 class="author">豪快二突撃スル</h2>
     <h3 class="description">javaer</h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>113</strong><br>文章</div></a>
-      <a href="/categories"><div><strong>39</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>72</strong><br>标签</div></a>
+      <a href="/archives"><div><strong>112</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>38</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>71</strong><br>标签</div></a>
     </div>
     <ul class="blog-link">
      
@@ -68,73 +68,6 @@
 </div>
 
         <section id="main">
-  
-    <article id="post-J2EE HttpServletRequest request 相关方法 得到路径" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/03/03/J2EE HttpServletRequest request 相关方法 得到路径/" class="article-date">
-  <time class="post-time" datetime="2014-03-03T09:46:00.000Z" itemprop="datePublished">
-    <span class="post-month">3月</span><br/>
-    <span class="post-day">03</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/03/03/J2EE HttpServletRequest request 相关方法 得到路径/">J2EE HttpServletRequest request 相关方法 得到路径</a>
-    </h1>
-  
-
-        <div>
-          
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
-  </div>
-
-          
-              
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/2014/03/03/J2EE HttpServletRequest request 相关方法 得到路径/" class="leancloud_visitors" data-flag-title="J2EE HttpServletRequest request 相关方法 得到路径">
-      &nbsp;阅读次数<span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1）POST"><a href="#1）POST" class="headerlink" title="1）POST"></a>1）POST</h3><p>url：<a href="http://192.168.1.211:8080/demo/index.jsp" target="_blank" rel="noopener">http://192.168.1.211:8080/demo/index.jsp</a></p>
-<p>FORM表单：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">username = qqqq</span><br><span class="line">password = wwww</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">request.getContextPath() = /demo</span><br><span class="line"></span><br><span class="line">request.getMethod() = POST</span><br><span class="line"></span><br><span class="line">request.getRequestURI() = /demo/reg</span><br><span class="line"></span><br><span class="line">request.getRequestURL() = http:<span class="comment">//192.168.1.211:8080/demo/reg</span></span><br><span class="line"></span><br><span class="line">request.getServletPath() = /reg</span><br></pre></td></tr></table></figure>
-<h3 id="2）GET"><a href="#2）GET" class="headerlink" title="2）GET"></a>2）GET</h3><p>url：<a href="http://192.168.1.211:8080/demo/index.jsp?username=1&amp;password=1&amp;email=1" target="_blank" rel="noopener">http://192.168.1.211:8080/demo/index.jsp?username=1&amp;password=1&amp;email=1</a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">request.getContextPath() = /demo</span><br><span class="line"></span><br><span class="line">request.getMethod() = GET</span><br><span class="line"></span><br><span class="line">request.getQueryString() = username=<span class="number">1</span>&amp;password=<span class="number">1</span>&amp;email=<span class="number">1</span></span><br><span class="line"></span><br><span class="line">request.getRequestURI() = /demo/index.jsp</span><br><span class="line"></span><br><span class="line">request.getRequestURL() = http:<span class="comment">//192.168.1.211:8080/demo/index.jsp</span></span><br><span class="line"></span><br><span class="line">request.getServletPath() = /index.jsp</span><br></pre></td></tr></table></figure></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://www.tidyko.com/2014/03/03/J2EE HttpServletRequest request 相关方法 得到路径/" data-id="cjksbxni20030ojqp7ffjwvdc" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
   
     <article id="post-Java date 到 Oracle date 精确到时分秒" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -187,7 +120,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.tidyko.com/2014/03/03/Java date 到 Oracle date 精确到时分秒/" data-id="cjksbxnjy005kojqpqcsyd5lz" class="article-share-link">分享</a>
+      <a data-url="http://www.tidyko.com/2014/03/03/Java date 到 Oracle date 精确到时分秒/" data-id="cjksc70vh004wrbqp9zte4feo" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Oracle/">Oracle</a></li></ul>
@@ -255,7 +188,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.tidyko.com/2014/02/25/Eclipse 配置pom.xml错误/" data-id="cjksbxngd001qojqpbwkck3y1" class="article-share-link">分享</a>
+      <a data-url="http://www.tidyko.com/2014/02/25/Eclipse 配置pom.xml错误/" data-id="cjksc70sl001trbqp3ypvbaum" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Maven/">Maven</a></li></ul>
@@ -321,7 +254,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.tidyko.com/2014/02/24/J2EE 异常处理/" data-id="cjksbxniu003xojqp2vpg5vf6" class="article-share-link">分享</a>
+      <a data-url="http://www.tidyko.com/2014/02/24/J2EE 异常处理/" data-id="cjksc70ug003drbqpdhpji7yh" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
@@ -386,7 +319,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.tidyko.com/2014/02/19/Java throw和throws的区别和用法/" data-id="cjksbxnk0005nojqprw18v4ie" class="article-share-link">分享</a>
+      <a data-url="http://www.tidyko.com/2014/02/19/Java throw和throws的区别和用法/" data-id="cjksc70vl0053rbqp3guzngow" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
@@ -455,7 +388,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.tidyko.com/2014/02/12/Eclipse Failed to load the JNI shared library/" data-id="cjksbxnep000hojqp74zvauzj" class="article-share-link">分享</a>
+      <a data-url="http://www.tidyko.com/2014/02/12/Eclipse Failed to load the JNI shared library/" data-id="cjksc70rb000nrbqpbmymhhpk" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jdk/">Jdk</a></li></ul>
@@ -520,7 +453,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.tidyko.com/2014/02/12/Eclipse Failed to load JavaHL Library/" data-id="cjksbxnf2000qojqpj97k59t2" class="article-share-link">分享</a>
+      <a data-url="http://www.tidyko.com/2014/02/12/Eclipse Failed to load JavaHL Library/" data-id="cjksc70r8000lrbqpoeu01lfr" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Svn/">Svn</a></li></ul>
@@ -588,7 +521,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.tidyko.com/2014/02/12/Eclipse SonarQube启动报错/" data-id="cjksbxneu000kojqpg8py8q5h" class="article-share-link">分享</a>
+      <a data-url="http://www.tidyko.com/2014/02/12/Eclipse SonarQube启动报错/" data-id="cjksc70rl000vrbqp2tqgrsb7" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SonarQube/">SonarQube</a></li></ul>
@@ -653,7 +586,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.tidyko.com/2014/02/11/Eclipse Tomcat一直处于starting状态，项目却已成功启动/" data-id="cjksbxnfb000wojqp8jhwwsv2" class="article-share-link">分享</a>
+      <a data-url="http://www.tidyko.com/2014/02/11/Eclipse Tomcat一直处于starting状态，项目却已成功启动/" data-id="cjksc70rn000yrbqp1dcu2ioz" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tomcat/">Tomcat</a></li></ul>
@@ -719,10 +652,75 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.tidyko.com/2014/02/11/Eclipse 改变Tomcat发布路径/" data-id="cjksbxng5001iojqpdqq4b7p6" class="article-share-link">分享</a>
+      <a data-url="http://www.tidyko.com/2014/02/11/Eclipse 改变Tomcat发布路径/" data-id="cjksc70sd001mrbqpoaxrvyov" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tomcat/">Tomcat</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-Eclipse 离线插件安装" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/02/11/Eclipse 离线插件安装/" class="article-date">
+  <time class="post-time" datetime="2014-02-11T09:32:00.000Z" itemprop="datePublished">
+    <span class="post-month">2月</span><br/>
+    <span class="post-day">11</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/02/11/Eclipse 离线插件安装/">Eclipse 离线插件安装</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/开发调试工具/">开发调试工具</a>,<a class="article-category-link" href="/categories/开发调试工具/Eclipse/">Eclipse</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/2014/02/11/Eclipse 离线插件安装/" class="leancloud_visitors" data-flag-title="Eclipse 离线插件安装">
+      &nbsp;阅读次数<span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1）"><a href="#1）" class="headerlink" title="1）"></a>1）</h3><p>在eclipse里根目录里，dropins里建一个目录，名字叫sonar(这个名字随便)，再在svn下面建一个目录eclipse.在根目录里建一个目录links目录，并建一个sonar.link文件，在里边写上path = dropins/sonar。</p>
+<h3 id="2）"><a href="#2）" class="headerlink" title="2）"></a>2）</h3><p>解压下载的SVN包，把feature和plugins两个文件夹考进刚才建的sonar/eclipse目录里。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.tidyko.com/2014/02/11/Eclipse 离线插件安装/" data-id="cjksc70sf001orbqpq4ptsiu0" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li></ul>
 
     </footer>
   </div>
@@ -779,9 +777,9 @@
     <h2 class="author">豪快二突撃スル</h2>
     <h3 class="description">javaer</h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>113</strong><br>文章</div></a>
-      <a href="/categories"><div><strong>39</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>72</strong><br>标签</div></a>
+      <a href="/archives"><div><strong>112</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>38</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>71</strong><br>标签</div></a>
     </div>
 
 

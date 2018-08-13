@@ -41,9 +41,9 @@
     <h2 class="author">豪快二突撃スル</h2>
     <h3 class="description">javaer</h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>113</strong><br>文章</div></a>
-      <a href="/categories"><div><strong>39</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>72</strong><br>标签</div></a>
+      <a href="/archives"><div><strong>112</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>38</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>71</strong><br>标签</div></a>
     </div>
     <ul class="blog-link">
      
@@ -68,74 +68,6 @@
 </div>
 
         <section id="main">
-  
-    <article id="post-Hibernate 双向多对多Set查询" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/12/15/Hibernate 双向多对多Set查询/" class="article-date">
-  <time class="post-time" datetime="2014-12-15T03:56:00.000Z" itemprop="datePublished">
-    <span class="post-month">12月</span><br/>
-    <span class="post-day">15</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/12/15/Hibernate 双向多对多Set查询/">Hibernate 双向多对多Set查询</a>
-    </h1>
-  
-
-        <div>
-          
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
-  </div>
-
-          
-              
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/2014/12/15/Hibernate 双向多对多Set查询/" class="leancloud_visitors" data-flag-title="Hibernate 双向多对多Set查询">
-      &nbsp;阅读次数<span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>一个计划对于多个竞价，一个竞价对应多个计划。</p>
-<h3 id="1）实体"><a href="#1）实体" class="headerlink" title="1）实体"></a>1）实体</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Tidy</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span> 计划</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EbgStockPlanContent</span> <span class="keyword">extends</span> <span class="title">Model</span> </span>&#123;</span><br><span class="line">　　<span class="comment">/***省略***/</span></span><br><span class="line">　　<span class="keyword">private</span> Set&lt;EbgBidding&gt; biddingSet = <span class="keyword">new</span> HashSet&lt;EbgBidding&gt;();</span><br><span class="line">　　<span class="comment">/***省略getset***/</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Tidy</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span> 竞价</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EbgStockPlanContent</span> <span class="keyword">extends</span> <span class="title">Model</span> </span>&#123;</span><br><span class="line">　　<span class="comment">/***省略***/</span></span><br><span class="line">　　<span class="keyword">private</span> Set&lt;EbgStockPlanContent&gt; planSet = <span class="keyword">new</span> HashSet&lt;EbgStockPlanContent&gt;();</span><br><span class="line">　　<span class="comment">/***省略getset***/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="2）多对多配置（xml方式）"><a href="#2）多对多配置（xml方式）" class="headerlink" title="2）多对多配置（xml方式）"></a>2）多对多配置（xml方式）</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">set</span> <span class="attr">name</span>=<span class="string">"biddingSet"</span> <span class="attr">table</span>=<span class="string">"T_EB_BIDDING_PLAN_COMPOSE"</span> <span class="attr">cascade</span>=<span class="string">"none"</span> <span class="attr">inverse</span>=<span class="string">"false"</span> <span class="attr">lazy</span>=<span class="string">"true"</span>&gt;</span></span><br><span class="line">　　<span class="tag">&lt;<span class="name">key</span> <span class="attr">column</span>=<span class="string">"PLAN_CONTENT_ID"</span>&gt;</span><span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">　　<span class="tag">&lt;<span class="name">many-to-many</span> <span class="attr">class</span>=<span class="string">"gdgpes.ebg.model.bid.EbgBidding"</span> <span class="attr">column</span>=<span class="string">"BIDDING_ID"</span>&gt;</span><span class="tag">&lt;/<span class="name">many-to-many</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">set</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">set</span> <span class="attr">name</span>=<span class="string">"planSet"</span> <span class="attr">table</span>=<span class="string">"T_EB_BIDDING_PLAN_COMPOSE"</span> <span class="attr">cascade</span>=<span class="string">"none"</span> <span class="attr">inverse</span>=<span class="string">"false"</span> <span class="attr">lazy</span>=<span class="string">"true"</span>&gt;</span></span><br><span class="line">　　<span class="tag">&lt;<span class="name">key</span> <span class="attr">column</span>=<span class="string">"BIDDING_ID"</span>&gt;</span><span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">　　<span class="tag">&lt;<span class="name">many-to-many</span> <span class="attr">class</span>=<span class="string">"gdgpes.ebg.model.plan.EbgStockPlanContent"</span> <span class="attr">column</span>=<span class="string">"PLAN_CONTENT_ID"</span>&gt;</span><span class="tag">&lt;/<span class="name">many-to-many</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">set</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="3）测试"><a href="#3）测试" class="headerlink" title="3）测试"></a>3）测试</h3><h3 id="4）elements-操作set集合"><a href="#4）elements-操作set集合" class="headerlink" title="4）elements()操作set集合"></a>4）elements()操作set集合</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//remark</span></span><br><span class="line">hql.append(<span class="string">" and mo.id not in ("</span>).append(<span class="string">"select elements(planSet) from EbgBidding t1 where t1.type = 1"</span>).append(<span class="string">")  and mo.price=5 "</span>);</span><br><span class="line"><span class="comment">//1.直接查询set记录</span></span><br><span class="line"><span class="function">select <span class="title">elements</span><span class="params">(planSet)</span> from EbgBidding t1 where t1.type </span>= <span class="number">1</span></span><br><span class="line"><span class="comment">//2.in set记录</span></span><br><span class="line">and mo.<span class="function">id not in <span class="title">elements</span><span class="params">(mo.biddingSet)</span></span></span><br></pre></td></tr></table></figure>
-<p>上例1.对应生成的sql<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> planset2_.PLAN_CONTENT_ID</span><br><span class="line"><span class="keyword">from</span> T_EB_BIDDING ebgbidding1_,</span><br><span class="line">     T_EB_BIDDING_PLAN_COMPOSE planset2_</span><br><span class="line"> <span class="keyword">where</span> ebgbidding1_.ID = planset2_.BIDDING_ID</span><br><span class="line">   <span class="keyword">and</span> ebgbidding1_.TYPE = <span class="number">1</span></span><br></pre></td></tr></table></figure></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://www.tidyko.com/2014/12/15/Hibernate 双向多对多Set查询/" data-id="cjksbxnh9002hojqpqntunex1" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hibernate/">Hibernate</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
   
     <article id="post-Hibernate set排序" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -190,7 +122,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.tidyko.com/2014/12/01/Hibernate set排序/" data-id="cjksbxnh6002dojqpsieoo9mk" class="article-share-link">分享</a>
+      <a data-url="http://www.tidyko.com/2014/12/01/Hibernate set排序/" data-id="cjksc70t8002crbqph961ch8m" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hibernate/">Hibernate</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
@@ -342,7 +274,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.tidyko.com/2014/10/17/Redis Windows版安装及使用/" data-id="cjksbxnlw008iojqpcxspv7sq" class="article-share-link">分享</a>
+      <a data-url="http://www.tidyko.com/2014/10/17/Redis Windows版安装及使用/" data-id="cjksc70yl008frbqp9ybnbmo8" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Redis/">Redis</a></li></ul>
@@ -422,7 +354,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.tidyko.com/2014/10/17/Tomcat 本地域名访问设置/" data-id="cjksbxnmj0095ojqp6zofomrr" class="article-share-link">分享</a>
+      <a data-url="http://www.tidyko.com/2014/10/17/Tomcat 本地域名访问设置/" data-id="cjksc70zb0091rbqpet7iepod" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tomcat/">Tomcat</a></li></ul>
@@ -488,7 +420,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.tidyko.com/2014/10/14/Hibernate 无外键多表查询/" data-id="cjksbxnhd002kojqpaxvpcc6n" class="article-share-link">分享</a>
+      <a data-url="http://www.tidyko.com/2014/10/14/Hibernate 无外键多表查询/" data-id="cjksc70te002hrbqpyz056sal" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hibernate/">Hibernate</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
@@ -557,7 +489,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.tidyko.com/2014/10/13/NGROK 快速实现本地Web服务到外网的映射/" data-id="cjksbxnla007lojqpwwab92dk" class="article-share-link">分享</a>
+      <a data-url="http://www.tidyko.com/2014/10/13/NGROK 快速实现本地Web服务到外网的映射/" data-id="cjksc70xd006zrbqp4707degx" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NGROK/">NGROK</a></li></ul>
@@ -621,7 +553,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.tidyko.com/2014/10/10/Eclipse SVN is out of date/" data-id="cjksbxnfj0013ojqp5d17b9lb" class="article-share-link">分享</a>
+      <a data-url="http://www.tidyko.com/2014/10/10/Eclipse SVN is out of date/" data-id="cjksc70ri000rrbqpj06tagft" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SVN/">SVN</a></li></ul>
@@ -706,7 +638,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.tidyko.com/2014/09/26/Tomcat java.lang.OutOfMemoryError/" data-id="cjksbxnm4008vojqpp1q908cm" class="article-share-link">分享</a>
+      <a data-url="http://www.tidyko.com/2014/09/26/Tomcat java.lang.OutOfMemoryError/" data-id="cjksc70ys008lrbqpexltlkok" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tomcat/">Tomcat</a></li></ul>
@@ -775,7 +707,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.tidyko.com/2014/09/17/Hibernate Illegal attempt to associate a collection with two open sessions/" data-id="cjksbxngs001zojqpukfo2454" class="article-share-link">分享</a>
+      <a data-url="http://www.tidyko.com/2014/09/17/Hibernate Illegal attempt to associate a collection with two open sessions/" data-id="cjksc70t20026rbqpcp781g9s" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hibernate/">Hibernate</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
@@ -842,10 +774,91 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.tidyko.com/2014/09/16/IE trim()方法失效/" data-id="cjksbxnhg002nojqpig5qx9w6" class="article-share-link">分享</a>
+      <a data-url="http://www.tidyko.com/2014/09/16/IE trim()方法失效/" data-id="cjksc70tj002mrbqpzrl8ges2" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IE/">IE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-IE 浏览器模式与文档模式及其开发中处理方式" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/09/11/IE 浏览器模式与文档模式及其开发中处理方式/" class="article-date">
+  <time class="post-time" datetime="2014-09-11T01:57:00.000Z" itemprop="datePublished">
+    <span class="post-month">9月</span><br/>
+    <span class="post-day">11</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/11/IE 浏览器模式与文档模式及其开发中处理方式/">IE 浏览器模式与文档模式及其开发中处理方式</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/浏览器/">浏览器</a>,<a class="article-category-link" href="/categories/浏览器/IE/">IE</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/2014/09/11/IE 浏览器模式与文档模式及其开发中处理方式/" class="leancloud_visitors" data-flag-title="IE 浏览器模式与文档模式及其开发中处理方式">
+      &nbsp;阅读次数<span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="原文："><a href="#原文：" class="headerlink" title="原文："></a>原文：</h2><p><a href="http://blog.csdn.net/neo_liu0000/article/details/7589731" target="_blank" rel="noopener">http://blog.csdn.net/neo_liu0000/article/details/7589731</a></p>
+<h3 id="1）什么是浏览器模式和文本模式？"><a href="#1）什么是浏览器模式和文本模式？" class="headerlink" title="1）什么是浏览器模式和文本模式？"></a>1）什么是浏览器模式和文本模式？</h3><p>经常使用IE开发者工具的同学，肯定见过浏览器模式和文本模式，对于这两个名词，综合相关文档解释如下：</p>
+<p>浏览器模式（Browser Mode），用于切换IE针对该网页的默认文本模式、对不同版本浏览器的条件注释解析、决定请求头里userAgent的值。它在浏览器发出请求之前就已经确定，网站没有办法修改这个值。它代表的是用户以何种浏览器访问网站。</p>
+<p>文本模式（Document Mode），其实就是经常说的文档模式。不同的文本模式对应不同的排版引擎，不同的JS引擎。上面提到，每一种浏览器模式对应一种默认的文本模式，网站还可以通过一些手段来更改文本模式，它代表的是浏览器以何种模式呈现页面。</p>
+<h3 id="2）浏览器模式和文本模式有什么用？"><a href="#2）浏览器模式和文本模式有什么用？" class="headerlink" title="2）浏览器模式和文本模式有什么用？"></a>2）浏览器模式和文本模式有什么用？</h3><p>用来解决IE各版本带来的兼容性问题。根据微软描述的IE兼容性策略，在IE8+访问一个页面要经过这样的流程：</p>
+<h4 id="2-1）"><a href="#2-1）" class="headerlink" title="2.1）"></a>2.1）</h4><p>首先，浏览器要确定浏览器模式。上面说过，浏览器模式是在请求发送之前就必须确定，默认取最新（IE9为IE9标准，IE8为IE8标准），有两种方式可以更改它：</p>
+<p>通过开发者工具选择（可选项见上表）；<br>通过点击兼容性视图按钮；<br>命中兼容性视图列表（微软维护的需要采用兼容性视图的列表。IE8+默认对这个列表和局域网的网址都会采用相应的兼容性模式）；</p>
+<h4 id="2-2）"><a href="#2-2）" class="headerlink" title="2.2）"></a>2.2）</h4><p>浏览器通过请求头里userAgent的值，告诉服务器当前是何种浏览器模式；</p>
+<h4 id="2-3）"><a href="#2-3）" class="headerlink" title="2.3）"></a>2.3）</h4><p>服务器可以通过下面方式改变浏览器文本模式：</p>
+<p>doctype；<br>X-UA-Compatible Meta或对应的响应头</p>
+<p>浏览器模式决定：1）发送给服务端的UA；2）默认的文本模式；3）如何解析条件注释。它在请求发送前就已经确定，且不受服务端控制。文本模式决 定：1）排版引擎；2）JS引擎。它在浏览器得到响应后最终确定，服务端可通过doctype或X-UA-Compatible来控制。</p>
+<h5 id="测试一"><a href="#测试一" class="headerlink" title="测试一"></a>测试一</h5><p>根据前文，如果用户浏览器没有激活兼容性视图；没有开启IE开发者工具。那么IE9的浏览器模式默认为IE9，默认对应的文本模式应该是IE9标准（对于IE8来说，是类似的），我们通过下列代码将它改到IE7标准：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"IE=7"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h5 id="测试二"><a href="#测试二" class="headerlink" title="测试二"></a>测试二</h5><p>那如果把测试地址加到兼容性列表呢？根据前文，这种情况浏览器模式应该是IE9/IE8兼容性，对应的文本模式依然是IE7标准。</p>
+<h5 id="测试三"><a href="#测试三" class="headerlink" title="测试三"></a>测试三</h5><p>如果把X-UA-Compatible改成IE=edge，继续使用兼容性模式测试呢？</p>
+<p>这个结论其实跟测试一是一致的：X-UA-Compatible为IE=edge，意味着文本模式会使用最新可用的版本，然而文本模式的更改，又把浏览器模式从IE9/IE8兼容性变成IE9/IE8。IE9会按照新的浏览器模式来设置JS的navigator.userAgent，IE8下JS的UA不变。</p>
+<h5 id="测试四"><a href="#测试四" class="headerlink" title="测试四"></a>测试四</h5><p>那如果通过开发者工具人为设置浏览器模式和文本模式呢？经过测试，这样测试都是符合预期的。例如IE9下，设置浏览器模式为IE8，文本模式为IE7标准，请求头UA、JS的UA、条件注释都表明浏览器模式是IE8，documentMode和JS引擎都表明文本模式是IE7标准。因为，IE开发者工具的优先级最高，设置了这个，其他条件统统无视！</p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>IE8/9中X-UA-Compatible对文本模式的改变会导致浏览器模式的改变，也就是说服务端可以间接控制浏览器模式。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.tidyko.com/2014/09/11/IE 浏览器模式与文档模式及其开发中处理方式/" data-id="cjksc70tx002rrbqp2qmrmu48" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IE/">IE</a></li></ul>
 
     </footer>
   </div>
@@ -902,9 +915,9 @@
     <h2 class="author">豪快二突撃スル</h2>
     <h3 class="description">javaer</h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>113</strong><br>文章</div></a>
-      <a href="/categories"><div><strong>39</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>72</strong><br>标签</div></a>
+      <a href="/archives"><div><strong>112</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>38</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>71</strong><br>标签</div></a>
     </div>
 
 
