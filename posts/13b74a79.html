@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>HTML 设置event.cancelBubble，使触发子元素的onclick不同时触发父元素的onclick | TIDY的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="由于HTML中的对象都是层次结构，比如一个Table包含了多个TR，一个TR包含了多个TD。 Bubble就是一个事件可以从子节点向父节点传递，比如鼠标点击了一个TD，当前的event.srcElement就是这个TD，但是这种冒 泡机制使你可以从TR或者Table处截获这个点击事件，但是如果你event.cancelBubble，则就不能上传事件。  例子：1234567891011121314">
+<meta name="keywords" content="HTML">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTML 设置event.cancelBubble，使触发子元素的onclick不同时触发父元素的onclick">
+<meta property="og:url" content="http://www.tidyko.com/posts/13b74a79.html">
+<meta property="og:site_name" content="TIDY的个人博客">
+<meta property="og:description" content="由于HTML中的对象都是层次结构，比如一个Table包含了多个TR，一个TR包含了多个TD。 Bubble就是一个事件可以从子节点向父节点传递，比如鼠标点击了一个TD，当前的event.srcElement就是这个TD，但是这种冒 泡机制使你可以从TR或者Table处截获这个点击事件，但是如果你event.cancelBubble，则就不能上传事件。  例子：1234567891011121314">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-08-10T06:55:56.094Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HTML 设置event.cancelBubble，使触发子元素的onclick不同时触发父元素的onclick">
+<meta name="twitter:description" content="由于HTML中的对象都是层次结构，比如一个Table包含了多个TR，一个TR包含了多个TD。 Bubble就是一个事件可以从子节点向父节点传递，比如鼠标点击了一个TD，当前的event.srcElement就是这个TD，但是这种冒 泡机制使你可以从TR或者Table处截获这个点击事件，但是如果你event.cancelBubble，则就不能上传事件。  例子：1234567891011121314">
+  
+    <link rel="alternate" href="/atom.xml" title="TIDY的个人博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="http://img.tidyko.com/favicon.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <!-- <link rel="stylesheet" href="/plugin/bganimation/bg.css"> -->
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <div class="widget-wrap mobile-header">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="http://img.tidyko.com/avatar.jpg">
+    <h2 class="author">豪快二突撃スル</h2>
+    <h3 class="description">javaer</h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>112</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>38</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>73</strong><br>标签</div></a>
+    </div>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+        <section id="main"><article id="post-HTML 设置event.cancelBubble，使触发子元素的onclick不同时触发父元素的onclick" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/13b74a79.html" class="article-date">
+  <time class="post-time" datetime="2016-05-12T03:14:00.000Z" itemprop="datePublished">
+    <span class="post-month">5月</span><br/>
+    <span class="post-day">12</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      HTML 设置event.cancelBubble，使触发子元素的onclick不同时触发父元素的onclick
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/HTML/">HTML</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/13b74a79.html" class="leancloud_visitors" data-flag-title="HTML 设置event.cancelBubble，使触发子元素的onclick不同时触发父元素的onclick">
+      &nbsp;阅读次数<span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>由于HTML中的对象都是层次结构，比如一个Table包含了多个TR，一个TR包含了多个TD。</p>
+<p>Bubble就是一个事件可以从子节点向父节点传递，比如鼠标点击了一个TD，当前的event.srcElement就是这个TD，但是这种冒 泡机制使你可以从TR或者Table处截获这个点击事件，但是如果你event.cancelBubble，则就不能上传事件。 </p>
+<p>例子：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">table</span> <span class="attr">border</span>=<span class="string">"1"</span> <span class="attr">width</span>=<span class="string">"26%"</span> <span class="attr">id</span>=<span class="string">"tableA"</span> <span class="attr">onclick</span>=<span class="string">"alert('tableA')"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">tr</span> <span class="attr">onclick</span>=<span class="string">"tableA_rowA_click()"</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">td</span> <span class="attr">width</span>=<span class="string">"106"</span>&gt;</span>一般<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">tr</span> <span class="attr">onclick</span>=<span class="string">"tableA_rowB_click()"</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">td</span> <span class="attr">width</span>=<span class="string">"106"</span>&gt;</span>阻止消息上传<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span> 　<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--   --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">language</span>=<span class="string">"javascript"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">&lt;!--</span></span><br><span class="line"><span class="undefined">function tableA_rowA_click()&#123;</span></span><br><span class="line"><span class="undefined">alert('tableA_rowA');</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">function tableA_rowB_click()&#123;</span></span><br><span class="line"><span class="undefined">alert('tableA_rowB');</span></span><br><span class="line"><span class="undefined">event.cancelBubble=true;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined">//--&gt;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="event-cancelBubble阻止事件冒泡"><a href="#event-cancelBubble阻止事件冒泡" class="headerlink" title="event.cancelBubble阻止事件冒泡"></a>event.cancelBubble阻止事件冒泡</h3><p>event.cancelBubble=true; </p>
+<p>取消事件冒泡，在 IE 的事件机制中，触发事件会从子元素向父元素逐级上传，就是说，如果子元素触发了单击事件，那么也会触发父元素的单击事件；<code>event.cancelBubble=true;</code>可以停止事件继续上传补充一点，Ie的事件传递是从下到上的： </p>
+<p><code>事件来源对象</code> -&gt; <code>上级对象</code> -&gt; <code>上上级对象</code> -&gt; ….. -&gt; <code>body</code> -&gt; <code>document</code> -&gt; <code>window</code></p>
+<p>NS的事件传递是从上到下： </p>
+<p><code>window</code> -&gt; <code>document</code> -&gt; <code>body</code> -&gt; …. -&gt; <code>事件来源对象实例</code></p>
+<p>源码如下：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"Content-Type"</span> <span class="attr">content</span>=<span class="string">"text/html; charset=gb2312"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>event.cancelBubble<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">&lt;!--</span></span><br><span class="line"><span class="undefined">* &#123;font:menu&#125;</span></span><br><span class="line"><span class="undefined">--&gt;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">onclick</span>=<span class="string">alert(</span>"你好")&gt;</span>点我 <span class="tag">&lt;<span class="name">span</span>&gt;</span>再点我<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">onclick</span>=<span class="string">alert(</span>"你好")&gt;</span>点我 <span class="tag">&lt;<span class="name">span</span> <span class="attr">onclick</span>=<span class="string">event.cancelBubble</span>=<span class="string">true;</span>&gt;</span>再点我<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br><span class="line">实例2：</span><br><span class="line"></span><br><span class="line"><span class="meta">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"</span></span><br><span class="line"><span class="meta">"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">xmlns</span>=<span class="string">"http://www.w3.org/1999/xhtml"</span> <span class="attr">lang</span>=<span class="string">"zh"</span> <span class="attr">xml:lang</span>=<span class="string">"zh"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"Content-Type"</span> <span class="attr">content</span>=<span class="string">"text/html; charset=UTF-8"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"developer"</span> <span class="attr">content</span>=<span class="string">"Realazy"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>Bubble in JavaScript DOM--JavaScript 的事件冒泡 demo　<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span> <span class="attr">media</span>=<span class="string">"screen"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">div * &#123;display:block; margin:4px; padding:4px; border:1px solid white;&#125;</span></span><br><span class="line"><span class="undefined">textarea &#123;width:20em; height:2em;&#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">      //&lt;![CDATA[</span></span><br><span class="line"><span class="undefined">      function init()&#123;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">    var log = document.getElementsByTagName('textarea')[0];</span></span><br><span class="line"><span class="undefined">    var all = document.getElementsByTagName('div')[0].getElementsByTagName('*');</span></span><br><span class="line"><span class="undefined">    for (var i = 0, n = all.length; i &lt; n; ++i)&#123;</span></span><br><span class="line"><span class="undefined">     all[i].onmouseover = function(e)&#123;</span></span><br><span class="line"><span class="undefined">      this.style.border = '1px solid red';</span></span><br><span class="line"><span class="undefined">      log.value = '鼠标现在进入的是： ' + this.nodeName;</span></span><br><span class="line"><span class="undefined">     &#125;;</span></span><br><span class="line"><span class="undefined">     all[i].onmouseout = function(e)&#123;</span></span><br><span class="line"><span class="undefined">      this.style.border = '1px solid white';</span></span><br><span class="line"><span class="undefined">     &#125;;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">    var all2 = document.getElementsByTagName('div')[1].getElementsByTagName('*');</span></span><br><span class="line"><span class="undefined">    for (var i = 0, n = all2.length; i &lt; n; ++i)&#123;</span></span><br><span class="line"><span class="undefined"> </span></span><br><span class="line"><span class="undefined">       all2[i].onmouseover = function(e)&#123;</span></span><br><span class="line"><span class="undefined">      this.style.border = '1px solid red';</span></span><br><span class="line"><span class="undefined">      if (e) //停止事件冒泡</span></span><br><span class="line"><span class="undefined">       e.stopPropagation();</span></span><br><span class="line"><span class="undefined">      else</span></span><br><span class="line"><span class="undefined">       window.event.cancelBubble = true;</span></span><br><span class="line"><span class="undefined">      log.value = '鼠标现在进入的是： ' + this.nodeName;</span></span><br><span class="line"><span class="undefined">     &#125;;</span></span><br><span class="line"><span class="undefined">  </span></span><br><span class="line"><span class="undefined">  </span></span><br><span class="line"><span class="undefined">     all2[i].onmouseout = function(e)&#123;</span></span><br><span class="line"><span class="undefined">      this.style.border = '1px solid white';&#125;;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">     &#125;</span></span><br><span class="line"><span class="undefined">  </span></span><br><span class="line"><span class="undefined"> </span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">window.onload = init;</span></span><br><span class="line"><span class="undefined">      //]]&gt;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Bubble in JavaScript DOM<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>DOM树的结构是：<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">pre</span>&gt;</span><span class="tag">&lt;<span class="name">code</span>&gt;</span></span><br><span class="line">UL</span><br><span class="line">    - LI</span><br><span class="line">       - A</span><br><span class="line">     - SPAN</span><br><span class="line"><span class="tag">&lt;/<span class="name">code</span>&gt;</span><span class="tag">&lt;/<span class="name">pre</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span>Bubbllllllllllllllle<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span>Bubbllllllllllllllle<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">textarea</span>&gt;</span><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span> 鼠标进入UL的任何一个子元素，如果不停止冒泡，我们从UL到SPAN都定义了鼠标悬停 （<span class="tag">&lt;<span class="name">code</span>&gt;</span>mouseover<span class="tag">&lt;/<span class="name">code</span>&gt;</span>）事件，这个事件会上升了UL，从而从鼠标所进入的元素到UL元素都会有红色的 边。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span>Bubbllllllllllllllle<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span>Bubbllllllllllllllle<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>如果停止冒泡，事件不会上升，我们就可以获取精确的鼠标进入元素。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.tidyko.com/posts/13b74a79.html" data-id="cjksezeiu0020uzqpj2g4ndt4" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML/">HTML</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/posts/c70f76d0.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          Java Unsupported major.minor version 52.0
+        
+      </div>
+    </a>
+  
+  
+    <a href="/posts/f6190ed2.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Tomcat 使用Eclipse运行Tomcat7源码</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+<!-- 来必力City版安装代码 -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zODczOC8xNTI2Ng==">
+	<script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+	</script>
+<noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+<!-- City版安装代码已完成 -->
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <h1 class="blog-title">TIDY的个人博客</h1>
+    <h2 class="blog-subtitle">マジにならなきゃ、勝てねぇよ！</h2>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="http://img.tidyko.com/avatar.jpg">
+    <h2 class="author">豪快二突撃スル</h2>
+    <h3 class="description">javaer</h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>112</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>38</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>73</strong><br>标签</div></a>
+    </div>
+
+
+
+    <div class="social-link">
+      
+        <a class="hvr-bounce-in" href="https://github.com/tidyko" target="_blank" title="Github">
+          Github
+        </a>
+      
+    </div>
+
+    <div class="friend-link">
+      <h2>友情链接</h2>
+      
+        <a class="hvr-bounce-in" href="http://www.cnblogs.com/zengweiming" target="_blank" title="tidyko-博客园">
+          tidyko-博客园
+        </a>
+      
+    </div>
+  </div>
+</div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy;2017 - 2018 豪快二突撃スル<br>
+      <!-- 由<a href="http://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
+      主题-<a href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a> -->
+      
+        <br>
+        <!-- <script src="https://s19.cnzz.com/z_stat.php?id=1274390271&web_id=1274390271" language="JavaScript" rel="noreferrer"></script>       -->
+        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1274390271'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1274390271%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));</script>
+      
+    </div>
+  </div>
+</footer>
+    </div>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/wow/0.1.6/wow.min.js"></script>
+<script>
+new WOW().init();
+</script>   
+
+
+  <link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+  <script src="/plugin/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+  <!-- <section class="hidden-xs"> 
+  <ul class="cb-slideshow"> 
+    <li><span>苟利</span></li> 
+    <li><span>国家</span></li> 
+    <li><span>生死以</span></li> 
+    <li><span>岂能</span></li> 
+    <li><span>祸福</span></li> 
+    <li><span>趋避之</span></li> 
+  </ul>
+</section> -->
+<script src="/js/script.js"></script>
+
+
+
+
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("DpQHavrF6hdX8C8q7ONib5Qv-gzGzoHsz", "CFNVYUb4rtTjkji3Erv4ROA7");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.article-title').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+
+
+  </div>
+</body>
+</html>

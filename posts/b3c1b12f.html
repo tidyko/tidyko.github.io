@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>VirtualBox Linux虚拟网络配置 | TIDY的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="环境Host OS : Windows 10Guest OS : CentOS 6.8VirtualBox：5.1.18网络连接方式: NAT 1）CentOS中使用DHCP123456789101112131415[root@goukaiHost opt]# cat /etc/sysconfig/network-scripts/ifcfg-eth0DEVICE=eth0HWADDR=08:00:">
+<meta name="keywords" content="Linux,虚拟机,VirtualBox,网络配置">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VirtualBox Linux虚拟网络配置">
+<meta property="og:url" content="http://www.tidyko.com/posts/b3c1b12f.html">
+<meta property="og:site_name" content="TIDY的个人博客">
+<meta property="og:description" content="环境Host OS : Windows 10Guest OS : CentOS 6.8VirtualBox：5.1.18网络连接方式: NAT 1）CentOS中使用DHCP123456789101112131415[root@goukaiHost opt]# cat /etc/sysconfig/network-scripts/ifcfg-eth0DEVICE=eth0HWADDR=08:00:">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://img.tidyko.com/blog/virtualbox-linux-net_1.png">
+<meta property="og:image" content="http://img.tidyko.com/blog/virtualbox-linux-net_2.png">
+<meta property="og:updated_time" content="2018-08-10T07:47:40.698Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="VirtualBox Linux虚拟网络配置">
+<meta name="twitter:description" content="环境Host OS : Windows 10Guest OS : CentOS 6.8VirtualBox：5.1.18网络连接方式: NAT 1）CentOS中使用DHCP123456789101112131415[root@goukaiHost opt]# cat /etc/sysconfig/network-scripts/ifcfg-eth0DEVICE=eth0HWADDR=08:00:">
+<meta name="twitter:image" content="http://img.tidyko.com/blog/virtualbox-linux-net_1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="TIDY的个人博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="http://img.tidyko.com/favicon.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <!-- <link rel="stylesheet" href="/plugin/bganimation/bg.css"> -->
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <div class="widget-wrap mobile-header">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="http://img.tidyko.com/avatar.jpg">
+    <h2 class="author">豪快二突撃スル</h2>
+    <h3 class="description">javaer</h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>112</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>38</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>73</strong><br>标签</div></a>
+    </div>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+        <section id="main"><article id="post-VirtualBox Linux虚拟网络配置" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/b3c1b12f.html" class="article-date">
+  <time class="post-time" datetime="2017-03-22T06:33:00.000Z" itemprop="datePublished">
+    <span class="post-month">3月</span><br/>
+    <span class="post-day">22</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      VirtualBox Linux虚拟网络配置
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/开发调试工具/">开发调试工具</a>,<a class="article-category-link" href="/categories/开发调试工具/VirtualBox/">VirtualBox</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/b3c1b12f.html" class="leancloud_visitors" data-flag-title="VirtualBox Linux虚拟网络配置">
+      &nbsp;阅读次数<span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><p>Host OS : Windows 10<br>Guest OS : CentOS 6.8<br>VirtualBox：5.1.18<br>网络连接方式: NAT</p>
+<h3 id="1）CentOS中使用DHCP"><a href="#1）CentOS中使用DHCP" class="headerlink" title="1）CentOS中使用DHCP"></a>1）CentOS中使用DHCP</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[root@goukaiHost opt]# cat /etc/sysconfig/network-scripts/ifcfg-eth0</span><br><span class="line">DEVICE=eth0</span><br><span class="line">HWADDR=08:00:27:74:E9:14</span><br><span class="line">TYPE=Ethernet</span><br><span class="line">UUID=aa2112e6-21b6-4a14-89e7-a2b769f212b8</span><br><span class="line">ONBOOT=yes</span><br><span class="line">NM_CONTROLLED=yes</span><br><span class="line">BOOTPROTO=dhcp</span><br><span class="line"></span><br><span class="line">DEFROUTE=yes</span><br><span class="line">PEERDNS=yes</span><br><span class="line">PEERROUTES=yes</span><br><span class="line">IPV4_FAILURE_FATAL=yes</span><br><span class="line">IPV6INIT=no</span><br><span class="line">NAME="System eth0"</span><br></pre></td></tr></table></figure>
+<h3 id="2）查看inet-addr（NAT端口转发时的子系统IP）"><a href="#2）查看inet-addr（NAT端口转发时的子系统IP）" class="headerlink" title="2）查看inet addr（NAT端口转发时的子系统IP）"></a>2）查看inet addr（NAT端口转发时的子系统IP）</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@goukaiHost opt]# ifconfig eth0</span><br><span class="line">eth0      Link encap:Ethernet  HWaddr 08:00:27:74:E9:14  </span><br><span class="line">          inet addr:10.0.2.15  Bcast:10.0.2.255  Mask:255.255.255.0</span><br><span class="line">          inet6 addr: fe80::a00:27ff:fe74:e914/64 Scope:Link</span><br><span class="line">          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1</span><br><span class="line">          RX packets:357 errors:0 dropped:0 overruns:0 frame:0</span><br><span class="line">          TX packets:273 errors:0 dropped:0 overruns:0 carrier:0</span><br><span class="line">          collisions:0 txqueuelen:1000 </span><br><span class="line">          RX bytes:34617 (33.8 KiB)  TX bytes:31373 (30.6 KiB)</span><br></pre></td></tr></table></figure>
+<h3 id="3）在VirtualBox中设置NAT端口转发"><a href="#3）在VirtualBox中设置NAT端口转发" class="headerlink" title="3）在VirtualBox中设置NAT端口转发"></a>3）在VirtualBox中设置NAT端口转发</h3><h4 id="3-1）"><a href="#3-1）" class="headerlink" title="3.1）"></a>3.1）</h4><p><code>管理</code> -&gt; <code>全局设定</code> -&gt; <code>网络</code> -&gt; <code>VirtualBox Host-Only Ethernet Adapter</code> -&gt; <code>编辑</code><br>查看主机虚拟网络界面 IPv4地址192.168.56.1 这就是NAT端口转发时的主机IP。</p>
+<h4 id="3-2）"><a href="#3-2）" class="headerlink" title="3.2）"></a>3.2）</h4><p><code>设备</code> -&gt; <code>更改网络连接</code> -&gt; <code>网卡1</code> -&gt; <code>连接方式（NAT）</code> -&gt; <code>端口转发</code></p>
+<p>端口转发规则，填写名称，协议TCP,主机IP就是a中主机虚拟网络界面里 IPv4地址192.168.56.1，主机端口22 子系统IP是CentOS中的inet addr:10.0.2.15,子系统端口：22<br><img src="http://img.tidyko.com/blog/virtualbox-linux-net_1.png" alt="VirtualBox Linux虚拟网络配置-图例1"></p>
+<h3 id="4）然后就可以用xshell客户端进行登录了"><a href="#4）然后就可以用xshell客户端进行登录了" class="headerlink" title="4）然后就可以用xshell客户端进行登录了"></a>4）然后就可以用xshell客户端进行登录了</h3><p><img src="http://img.tidyko.com/blog/virtualbox-linux-net_2.png" alt="VirtualBox Linux虚拟网络配置-图例2"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.tidyko.com/posts/b3c1b12f.html" data-id="cjksezeoh008yuzqplyj2tch9" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VirtualBox/">VirtualBox</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络配置/">网络配置</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/虚拟机/">虚拟机</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/posts/6966e243.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          Linux wget command not found的两种解决方法
+        
+      </div>
+    </a>
+  
+  
+    <a href="/posts/20e9a4b.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Linux SHELL 使用crontab定时检测服务状态脚本</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+<!-- 来必力City版安装代码 -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zODczOC8xNTI2Ng==">
+	<script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+	</script>
+<noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+<!-- City版安装代码已完成 -->
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <h1 class="blog-title">TIDY的个人博客</h1>
+    <h2 class="blog-subtitle">マジにならなきゃ、勝てねぇよ！</h2>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="http://img.tidyko.com/avatar.jpg">
+    <h2 class="author">豪快二突撃スル</h2>
+    <h3 class="description">javaer</h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>112</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>38</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>73</strong><br>标签</div></a>
+    </div>
+
+
+
+    <div class="social-link">
+      
+        <a class="hvr-bounce-in" href="https://github.com/tidyko" target="_blank" title="Github">
+          Github
+        </a>
+      
+    </div>
+
+    <div class="friend-link">
+      <h2>友情链接</h2>
+      
+        <a class="hvr-bounce-in" href="http://www.cnblogs.com/zengweiming" target="_blank" title="tidyko-博客园">
+          tidyko-博客园
+        </a>
+      
+    </div>
+  </div>
+</div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy;2017 - 2018 豪快二突撃スル<br>
+      <!-- 由<a href="http://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
+      主题-<a href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a> -->
+      
+        <br>
+        <!-- <script src="https://s19.cnzz.com/z_stat.php?id=1274390271&web_id=1274390271" language="JavaScript" rel="noreferrer"></script>       -->
+        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1274390271'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1274390271%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));</script>
+      
+    </div>
+  </div>
+</footer>
+    </div>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/wow/0.1.6/wow.min.js"></script>
+<script>
+new WOW().init();
+</script>   
+
+
+  <link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+  <script src="/plugin/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+  <!-- <section class="hidden-xs"> 
+  <ul class="cb-slideshow"> 
+    <li><span>苟利</span></li> 
+    <li><span>国家</span></li> 
+    <li><span>生死以</span></li> 
+    <li><span>岂能</span></li> 
+    <li><span>祸福</span></li> 
+    <li><span>趋避之</span></li> 
+  </ul>
+</section> -->
+<script src="/js/script.js"></script>
+
+
+
+
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("DpQHavrF6hdX8C8q7ONib5Qv-gzGzoHsz", "CFNVYUb4rtTjkji3Erv4ROA7");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.article-title').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+
+
+  </div>
+</body>
+</html>
