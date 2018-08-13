@@ -43,7 +43,7 @@
     <div class="count-box">
       <a href="/archives"><div><strong>112</strong><br>文章</div></a>
       <a href="/categories"><div><strong>38</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>71</strong><br>标签</div></a>
+      <a href="/tags"><div><strong>73</strong><br>标签</div></a>
     </div>
     <ul class="blog-link">
      
@@ -69,10 +69,10 @@
 
         <section id="main">
   
-    <article id="post-hello-world" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-建站 HEXO发布到github时出现卡顿" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/08/13/hello-world/" class="article-date">
-  <time class="post-time" datetime="2018-08-13T13:36:36.066Z" itemprop="datePublished">
+    <a href="/2018/08/13/建站 HEXO发布到github时出现卡顿/" class="article-date">
+  <time class="post-time" datetime="2018-08-13T13:58:00.000Z" itemprop="datePublished">
     <span class="post-month">8月</span><br/>
     <span class="post-day">13</span>
   </time>
@@ -86,17 +86,21 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/13/hello-world/">Hello World</a>
+      <a class="article-title" href="/2018/08/13/建站 HEXO发布到github时出现卡顿/">HEXO 发布到github的是出现卡顿</a>
     </h1>
   
 
         <div>
           
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/建站/">建站</a>
+  </div>
+
           
               
   &nbsp; | &nbsp;
   <div class="view-box">
-    <span id="/2018/08/13/hello-world/" class="leancloud_visitors" data-flag-title="Hello World">
+    <span id="/2018/08/13/建站 HEXO发布到github时出现卡顿/" class="leancloud_visitors" data-flag-title="HEXO 发布到github的是出现卡顿">
       &nbsp;阅读次数<span class="leancloud-visitors-count"></span>
     </span>
   </div>
@@ -108,22 +112,22 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+        <p>使用以下命令构建发布时，一直循环出现该错误，导致发布不了。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> hexo clean &amp;&amp; hexo g &amp;&amp; hexo d -debug</span></span><br><span class="line"></span><br><span class="line">INFO  Deleted database.</span><br><span class="line">INFO  Deleted public folder.</span><br><span class="line">INFO  Start processing</span><br><span class="line">INFO  Files loaded in 1.63 s</span><br><span class="line">INFO  Generated: index.html</span><br><span class="line">...</span><br><span class="line">INFO  359 files generated in 5.06 s</span><br><span class="line">INFO  Start processing</span><br><span class="line">INFO  Files loaded in 826 ms</span><br><span class="line">INFO  0 files generated in 3.65 s</span><br><span class="line">INFO  Start processing</span><br><span class="line">INFO  Files loaded in 339 ms</span><br><span class="line">INFO  0 files generated in 3.59 s</span><br><span class="line">INFO  Start processing</span><br><span class="line">INFO  Files loaded in 295 ms</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<p>无奈之下，只能重新构建一个项目，将源码拷贝到新的项目进行重新构建。</p>
+<p>发现就可以了。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hexo init hexoblog</span><br><span class="line"></span><br><span class="line">cd hexoblog</span><br><span class="line"></span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
+<p>然后复制老项目现有的_config.yml到新项目路径下，</p>
+<p>再复制 <code>hexoblog/source</code> 下面的 <code>categories</code>、<code>tags</code>、<code>CNAME</code>到新项目底下，</p>
+<p>然后复制 `themes/shana’ 到新项目的themes底下，重新执行发布命令即可。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.tidyko.com/2018/08/13/hello-world/" data-id="cjksc8x590095shqp0etqhd30" class="article-share-link">分享</a>
+      <a data-url="http://www.tidyko.com/2018/08/13/建站 HEXO发布到github时出现卡顿/" data-id="cjkscvvot009mxjqp04o67y07" class="article-share-link">分享</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HEXO/">HEXO</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li></ul>
+
     </footer>
   </div>
   
@@ -188,7 +192,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.tidyko.com/2018/07/27/Linux 机器之间 zssh, rz, sz互相传输/" data-id="cjksc8x2p006fshqp830ooldp" class="article-share-link">分享</a>
+      <a data-url="http://www.tidyko.com/2018/07/27/Linux 机器之间 zssh, rz, sz互相传输/" data-id="cjkscvvm2006cxjqp3q2jmmdc" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
@@ -251,7 +255,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.tidyko.com/2018/07/25/Java ApacheHttpClient设置http1.0短链接/" data-id="cjksc8x0s004cshqpip45wigq" class="article-share-link">分享</a>
+      <a data-url="http://www.tidyko.com/2018/07/25/Java ApacheHttpClient设置http1.0短链接/" data-id="cjkscvvkd0049xjqpxldrcx8c" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Apache-HttpClient/">Apache HttpClient</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
@@ -467,7 +471,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.tidyko.com/2018/07/12/Dubbo 内核SPI源码学习/" data-id="cjksc8wx3000nshqpjkb78c4a" class="article-share-link">分享</a>
+      <a data-url="http://www.tidyko.com/2018/07/12/Dubbo 内核SPI源码学习/" data-id="cjkscvvga000qxjqpay5zz70z" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Dubbo/">Dubbo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/源码/">源码</a></li></ul>
@@ -533,7 +537,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.tidyko.com/2018/06/14/Java Mac配置java环境变量/" data-id="cjksc8x11004oshqpq5u2cpqs" class="article-share-link">分享</a>
+      <a data-url="http://www.tidyko.com/2018/06/14/Java Mac配置java环境变量/" data-id="cjkscvvkn004lxjqpa4td5w5s" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mac/">Mac</a></li></ul>
@@ -613,7 +617,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.tidyko.com/2018/06/14/IDEA 热部署插件Jrebel破解安装/" data-id="cjksc8wzd002jshqphpruge1z" class="article-share-link">分享</a>
+      <a data-url="http://www.tidyko.com/2018/06/14/IDEA 热部署插件Jrebel破解安装/" data-id="cjkscvvia002jxjqphdk80tc1" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IDEA/">IDEA</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jrebel/">Jrebel</a></li></ul>
@@ -679,7 +683,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.tidyko.com/2018/06/04/J2EE CXF使用SpringBoot与xml配置的差别所导致的问题/" data-id="cjksc8wzo002vshqpnyr5lpbp" class="article-share-link">分享</a>
+      <a data-url="http://www.tidyko.com/2018/06/04/J2EE CXF使用SpringBoot与xml配置的差别所导致的问题/" data-id="cjkscvviw002vxjqpfdzoyxwe" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CXF/">CXF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringBoot/">SpringBoot</a></li></ul>
@@ -752,7 +756,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.tidyko.com/2018/05/22/Jenkins 服务器与svn服务器时间不一致出现的问题/" data-id="cjksc8x1r005gshqpxdn3xfnr" class="article-share-link">分享</a>
+      <a data-url="http://www.tidyko.com/2018/05/22/Jenkins 服务器与svn服务器时间不一致出现的问题/" data-id="cjkscvvlb005dxjqp8qkc6vm1" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jenkins/">Jenkins</a></li></ul>
@@ -816,7 +820,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.tidyko.com/2018/04/25/分布式 服务追踪/" data-id="cjksc8x5h009gshqpdkdobs74" class="article-share-link">分享</a>
+      <a data-url="http://www.tidyko.com/2018/04/25/分布式 服务追踪/" data-id="cjkscvvof0096xjqpuxls6lpf" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/分布式/">分布式</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/调用链跟踪/">调用链跟踪</a></li></ul>
@@ -899,7 +903,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.tidyko.com/2018/04/25/Java JVM常用工具/" data-id="cjksc8x0x004kshqpr90laews" class="article-share-link">分享</a>
+      <a data-url="http://www.tidyko.com/2018/04/25/Java JVM常用工具/" data-id="cjkscvvkk004hxjqp10rj5vbi" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JVM/">JVM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
@@ -961,7 +965,7 @@
     <div class="count-box">
       <a href="/archives"><div><strong>112</strong><br>文章</div></a>
       <a href="/categories"><div><strong>38</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>71</strong><br>标签</div></a>
+      <a href="/tags"><div><strong>73</strong><br>标签</div></a>
     </div>
 
 
