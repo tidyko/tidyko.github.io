@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>TIDY的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="javaer">
+<meta property="og:type" content="website">
+<meta property="og:title" content="TIDY的个人博客">
+<meta property="og:url" content="http://www.tidyko.com/page/6/index.html">
+<meta property="og:site_name" content="TIDY的个人博客">
+<meta property="og:description" content="javaer">
+<meta property="og:locale" content="zh-CN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="TIDY的个人博客">
+<meta name="twitter:description" content="javaer">
+  
+    <link rel="alternate" href="/atom.xml" title="TIDY的个人博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="https://img.tidyko.com/favicon.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <!-- <link rel="stylesheet" href="/plugin/bganimation/bg.css"> -->
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <div class="widget-wrap mobile-header">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="http://img.tidyko.com/avatar.jpg">
+    <h2 class="author">豪快二突撃スル</h2>
+    <h3 class="description">javaer</h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>112</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>38</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>73</strong><br>标签</div></a>
+    </div>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+        <section id="main">
+  
+    <article id="post-Hibernate set排序" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/4a47fe35.html" class="article-date">
+  <time class="post-time" datetime="2014-12-01T03:46:00.000Z" itemprop="datePublished">
+    <span class="post-month">12月</span><br/>
+    <span class="post-day">01</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/4a47fe35.html">Hibernate set排序</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/4a47fe35.html" class="leancloud_visitors" data-flag-title="Hibernate set排序">
+      &nbsp;阅读次数<span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>使用hibernate进行一对多操作的时候，普遍使用HashSet进行操作。但是HashSet是无序集合，对此可以使用TreeSet进行排序。</p>
+<h3 id="1）将HashSet改为TreeSet"><a href="#1）将HashSet改为TreeSet" class="headerlink" title="1）将HashSet改为TreeSet"></a>1）将HashSet改为TreeSet</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> Set&lt;EbgRequmentItem&gt; items = <span class="keyword">new</span> HashSet&lt;EbgRequmentItem&gt;();</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> Set&lt;EbgRequmentItem&gt; items = <span class="keyword">new</span> TreeSet&lt;EbgRequmentItem&gt;(<span class="keyword">new</span> Comparator&lt;EbgRequmentItem&gt;()&#123;</span><br><span class="line">         <span class="meta">@Override</span></span><br><span class="line">         <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(EbgRequmentItem o1, EbgRequmentItem o2)</span> </span>&#123;</span><br><span class="line">              <span class="comment">//默认如果是比较结果为0的话，会认为重复，默认去掉，这里可以做下处理</span></span><br><span class="line">              <span class="keyword">if</span>( o1.getName().compareTo(o2.getName()) == <span class="number">0</span>)&#123;</span><br><span class="line">                  <span class="comment">//返回-1不会去重</span></span><br><span class="line">                  <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">              &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                  <span class="comment">//降序</span></span><br><span class="line">                  <span class="comment">//return o2.getName().compareTo(o1.getName()); </span></span><br><span class="line">                  <span class="comment">//升序</span></span><br><span class="line">                  <span class="keyword">return</span> o1.getName().compareTo(o2.getName()); </span><br><span class="line">              &#125;</span><br><span class="line">         &#125;</span><br><span class="line"> &#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="2）新增TreeSet排序比较器对象"><a href="#2）新增TreeSet排序比较器对象" class="headerlink" title="2）新增TreeSet排序比较器对象"></a>2）新增TreeSet排序比较器对象</h3> <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">package</span> ？？？？？.comparator;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> ？？？？？.EbgRequmentItem;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Comparator;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 采购产品需求项排序比较器</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Tidy</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EbgRequimentItemComparator</span> <span class="keyword">implements</span> <span class="title">Comparator</span>&lt;<span class="title">EbgRequmentItem</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(EbgRequmentItem o1, EbgRequmentItem o2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> o1.getName().compareTo(o2.getName()); </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3）在hbm-xml文件中添加sort属性"><a href="#3）在hbm-xml文件中添加sort属性" class="headerlink" title="3）在hbm.xml文件中添加sort属性"></a>3）在hbm.xml文件中添加sort属性</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">set</span> <span class="attr">name</span>=<span class="string">"items"</span> <span class="attr">cascade</span>=<span class="string">"delete-orphan"</span> <span class="attr">inverse</span>=<span class="string">"true"</span> <span class="attr">lazy</span>=<span class="string">"true"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">key</span> <span class="attr">column</span>=<span class="string">"PRODUCT_REQ_ID"</span>&gt;</span><span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">one-to-many</span> <span class="attr">class</span>=<span class="string">"EbgRequmentItem"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">set</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">set</span> <span class="attr">name</span>=<span class="string">"items"</span> <span class="attr">cascade</span>=<span class="string">"delete-orphan"</span> <span class="attr">inverse</span>=<span class="string">"true"</span> <span class="attr">lazy</span>=<span class="string">"true"</span> <span class="attr">sort</span>=<span class="string">"？？？？？？.comparator.EbgRequimentItemComparator"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">key</span> <span class="attr">column</span>=<span class="string">"PRODUCT_REQ_ID"</span>&gt;</span><span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">one-to-many</span> <span class="attr">class</span>=<span class="string">"EbgRequmentItem"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">set</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="4）重启服务进行测试就可以了"><a href="#4）重启服务进行测试就可以了" class="headerlink" title="4）重启服务进行测试就可以了"></a>4）重启服务进行测试就可以了</h3>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.tidyko.com/posts/4a47fe35.html" data-id="cjkt1bwa90028fbyk84k44d1g" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hibernate/">Hibernate</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-Redis Windows版安装及使用" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/85796e0a.html" class="article-date">
+  <time class="post-time" datetime="2014-10-17T03:25:00.000Z" itemprop="datePublished">
+    <span class="post-month">10月</span><br/>
+    <span class="post-day">17</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/85796e0a.html">Redis Windows版安装及使用</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/中间件/">中间件</a>,<a class="article-category-link" href="/categories/中间件/Redis/">Redis</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/85796e0a.html" class="leancloud_visitors" data-flag-title="Redis Windows版安装及使用">
+      &nbsp;阅读次数<span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>官方网站：<a href="http://www.redis.io" target="_blank" rel="noopener">http://www.redis.io</a><br>百度百科：<a href="http://baike.baidu.com/view/4595959.htm?fr=aladdin" target="_blank" rel="noopener">http://baike.baidu.com/view/4595959.htm?fr=aladdin</a></p>
+<h2 id="Windows下安装redis"><a href="#Windows下安装redis" class="headerlink" title="Windows下安装redis"></a>Windows下安装redis</h2><p>下载地址：<a href="https://github.com/dmajkic/redis/downloads" target="_blank" rel="noopener">https://github.com/dmajkic/redis/downloads</a></p>
+<p>选择一个版本下载，里面包含32bit和64bit的，选择和自己系统符合的文件夹，将里面的文件拷到安装路径里面。<br>比如：<code>E:\Program Files\redis-2.4.5</code></p>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><h4 id="1）使用命令行进入解压路径"><a href="#1）使用命令行进入解压路径" class="headerlink" title="1）使用命令行进入解压路径"></a>1）使用命令行进入解压路径</h4><p>运行：<code>redis-server.exe redis.conf</code>，运行后界面如下：<br><img src="http://img.tidyko.com/blog/redis-windows_1.png" alt="Redis Windows版安装及使用-图例1"></p>
+<h4 id="2）再打开一个新的命令行"><a href="#2）再打开一个新的命令行" class="headerlink" title="2）再打开一个新的命令行"></a>2）再打开一个新的命令行</h4><p>运行：<code>redis-cli.exe -h 127.0.0.1 -p 6379</code>，<code>127.0.0.1</code>是本地ip，<code>6379</code>是redis服务端的默认端口，运行后界面如下,则redis运行成功了。<br><img src="http://img.tidyko.com/blog/redis-windows_2.png" alt="Redis Windows版安装及使用-图例2"></p>
+<h4 id="3）测试"><a href="#3）测试" class="headerlink" title="3）测试"></a>3）测试</h4><p>存储一个key为name，value为tidyko的字符串，然后获取key值。<br><img src="http://img.tidyko.com/blog/redis-windows_3.png" alt="Redis Windows版安装及使用-图例3"></p>
+<h4 id="4）"><a href="#4）" class="headerlink" title="4）"></a>4）</h4><p>结果如预期输出一致。</p>
+<h3 id="redis命令"><a href="#redis命令" class="headerlink" title="redis命令"></a>redis命令</h3><h4 id="连接控制"><a href="#连接控制" class="headerlink" title="连接控制"></a>连接控制</h4><p>QUIT 关闭连接<br>AUTH (仅限启用时)简单的密码验证</p>
+<h4 id="适合全体类型的命令"><a href="#适合全体类型的命令" class="headerlink" title="适合全体类型的命令"></a>适合全体类型的命令</h4><p><code>EXISTS key</code> 判断一个键是否存在;存在返回 1;否则返回0;</p>
+<p><code>DEL key</code> 删除某个key,或是一系列key;DEL key1 key2 key3 key4</p>
+<p><code>TYPE key</code> 返回某个key元素的数据类型 ( none:不存在,string:字符,list,set,zset,hash)</p>
+<p><code>KEYS pattern</code> 返回匹配的key列表 (KEYS foo*:查找foo开头的keys)</p>
+<p><code>RANDOMKEY</code> 随机获得一个已经存在的key，如果当前数据库为空，则返回空字符串</p>
+<p><code>RENAME oldname newname</code> 更改key的名字，新键如果存在将被覆盖</p>
+<p><code>RENAMENX oldname newname</code> 更改key的名字，如果名字存在则更改失败</p>
+<p><code>DBSIZE</code> 返回当前数据库的key的总数</p>
+<p><code>EXPIRE</code> 设置某个key的过期时间（秒）,(EXPIRE bruce 1000：设置bruce这个key1000秒后系统自动删除)注意：如果在还没有过期的时候，对值进行了改变，那么那个值会被清除。</p>
+<p><code>TTL</code> 查找某个key还有多长时间过期,返回时间秒</p>
+<p><code>SELECT index</code> 选择数据库</p>
+<p><code>MOVE key dbindex</code> 将指定键从当前数据库移到目标数据库 dbindex。成功返回 1;否则返回0（源数据库不存在key或目标数据库已存在同名key）;</p>
+<p><code>FLUSHDB</code> 清空当前数据库中的所有键</p>
+<p><code>FLUSHALL</code> 清空所有数据库中的所有键</p>
+<h4 id="处理字符串的命令"><a href="#处理字符串的命令" class="headerlink" title="处理字符串的命令"></a>处理字符串的命令</h4><p><code>SET key value</code> 给一个键设置字符串值。SET keyname datalength data (SET bruce 10 paitoubing:保存key为burce,字符串长度为10的一个字符串paitoubing到数据库)，data最大不可超过1G。</p>
+<p><code>GET key</code> 获取某个key 的value值。如key不存在，则返回字符串“nil”；如key的值不为字符串类型，则返回一个错误。</p>
+<p><code>GETSET key value</code> 可以理解成获得的key的值然后SET这个值，更加方便的操作 (SET bruce 10 paitoubing,这个时候需要修改bruce变成1234567890并获取这个以前的数据paitoubing,GETSET bruce 10 1234567890)</p>
+<p><code>MGET key1 key2 … keyN</code> 一次性返回多个键的值</p>
+<p><code>SETNX key value SETNX</code> 与SET的区别是SET可以创建与更新key的value，而SETNX是如果key不存在，则创建key与value数据</p>
+<p><code>MSET key1 value1 key2 value2 … keyN valueN</code> 在一次原子操作下一次性设置多个键和值</p>
+<p><code>MSETNX key1 value1 key2 value2 … keyN valueN</code> 在一次原子操作下一次性设置多个键和值（目标键不存在情况下，如果有一个以上的key已存在，则失败）</p>
+<p><code>INCR key</code> 自增键值</p>
+<p><code>INCRBY key integer</code> 令键值自增指定数值</p>
+<p><code>DECR key</code> 自减键值</p>
+<p><code>DECRBY key integer</code> 令键值自减指定数值</p>
+<h4 id="处理-lists-的命令"><a href="#处理-lists-的命令" class="headerlink" title="处理 lists 的命令"></a>处理 lists 的命令</h4><p><code>RPUSH key value</code> 从 List 尾部添加一个元素（如序列不存在，则先创建，如已存在同名Key而非序列，则返回错误）</p>
+<p><code>LPUSH key value</code> 从 List 头部添加一个元素</p>
+<p><code>LLEN key</code> 返回一个 List 的长度</p>
+<p><code>LRANGE key start end</code> 从自定的范围内返回序列的元素 (LRANGE testlist 0 2;返回序列testlist前0 1 2元素)</p>
+<p><code>LTRIM key start end</code> 修剪某个范围之外的数据 (LTRIM testlist 0 2;保留0 1 2元素，其余的删除)</p>
+<p><code>LINDEX key index</code> 返回某个位置的序列值(LINDEX testlist 0;返回序列testlist位置为0的元素)</p>
+<p><code>LSET key index value</code> 更新某个位置元素的值</p>
+<p><code>LREM key count value</code> 从 List 的头部（count正数）或尾部（count负数）删除一定数量（count）匹配value的元素，返回删除的元素数量。</p>
+<p><code>LPOP key</code> 弹出 List 的第一个元素</p>
+<p><code>RPOP key</code> 弹出 List 的最后一个元素</p>
+<p><code>RPOPLPUSH srckey dstkey</code> 弹出 <em>srckey</em> 中最后一个元素并将其压入 <em>dstkey</em>头部，key不存在或序列为空则返回“nil”</p>
+<h4 id="处理集合-sets-的命令（有索引无序序列）"><a href="#处理集合-sets-的命令（有索引无序序列）" class="headerlink" title="处理集合(sets)的命令（有索引无序序列）"></a>处理集合(sets)的命令（有索引无序序列）</h4><p><code>SADD key member</code> 增加元素到SETS序列,如果元素（membe）不存在则添加成功 1，否则失败 0;(SADD testlist 3 \n one)</p>
+<p><code>SREM key member</code> 删除SETS序列的某个元素，如果元素不存在则失败0，否则成功 1(SREM testlist 3 \N one)</p>
+<p><code>SPOP key</code> 从集合中随机弹出一个成员</p>
+<p><code>SMOVE srckey dstkey member</code> 把一个SETS序列的某个元素 移动到 另外一个SETS序列 (SMOVE testlist test 3\n two;从序列testlist移动元素two到 test中，testlist中将不存在two元素)</p>
+<p><code>SCARD key</code> 统计某个SETS的序列的元素数量</p>
+<p><code>SISMEMBER key member</code> 获知指定成员是否存在于集合中</p>
+<p><code>SINTER key1 key2 … keyN</code> 返回 key1, key2, …, keyN 中的交集</p>
+<p><code>SINTERSTORE dstkey key1 key2 … keyN</code> 将 key1, key2, …, keyN 中的交集存入 dstkey</p>
+<p><code>SUNION key1 key2 … keyN</code> 返回 key1, key2, …, keyN 的并集</p>
+<p><code>SUNIONSTORE dstkey key1 key2 … keyN</code> 将 key1, key2, …, keyN 的并集存入 dstkey</p>
+<p><code>SDIFF key1 key2 … keyN 依据 key2, …, keyN</code> 求 key1 的差集。官方例子：</p>
+<p>key1 = x,a,b,c</p>
+<p>key2 = c</p>
+<p>key3 = a,d</p>
+<p>SDIFF key1,key2,key3 =&gt; x,b</p>
+<p><code>SDIFFSTORE dstkey key1 key2 … keyN</code> 依据 key2, …, keyN 求 key1 的差集并存入 dstkey</p>
+<p><code>SMEMBERS key</code> 返回某个序列的所有元素</p>
+<p><code>SRANDMEMBER key</code> 随机返回某个序列的元素</p>
+<h4 id="处理有序集合-sorted-sets-的命令-zsets"><a href="#处理有序集合-sorted-sets-的命令-zsets" class="headerlink" title="处理有序集合(sorted sets)的命令 (zsets)"></a>处理有序集合(sorted sets)的命令 (zsets)</h4><p><code>ZADD key score member</code> 添加指定成员到有序集合中，如果目标存在则更新score（分值，排序用）</p>
+<p><code>ZREM key member</code> 从有序集合删除指定成员</p>
+<p><code>ZINCRBY key increment member</code> 如果成员存在则将其增加<em>increment</em>，否则将设置一个score为<em>increment</em>的成员</p>
+<p><code>ZRANGE key start end</code> 返回升序排序后的指定范围的成员</p>
+<p><code>ZREVRANGE key start end</code>返回降序排序后的指定范围的成员</p>
+<p><code>ZRANGEBYSCORE key min max</code> 返回所有符合score &gt;= min和score &lt;= max的成员 ZCARD key 返回有序集合的元素数量 ZSCORE key element 返回指定成员的SCORE值 ZREMRANGEBYSCORE key min max 删除符合 score &gt;= min 和 score &lt;= max 条件的所有成员</p>
+<h4 id="排序（List-Set-Sorted-Set）"><a href="#排序（List-Set-Sorted-Set）" class="headerlink" title="排序（List, Set, Sorted Set）"></a>排序（List, Set, Sorted Set）</h4><p><code>SORT key BY pattern LIMIT start end GET pattern ASC|DESC ALPHA</code> 按照指定模式排序集合或List</p>
+<p>SORT mylist</p>
+<p>默认升序 ASC</p>
+<p>SORT mylist DESC</p>
+<p>SORT mylist LIMIT 0 10</p>
+<p>从序号0开始，取10条</p>
+<p>SORT mylist LIMIT 0 10 ALPHA DESC</p>
+<p>按首字符排序</p>
+<p>SORT mylist BY weight_*</p>
+<p>SORT mylist BY weight_<em> GET object_</em></p>
+<p>SORT mylist BY weight_<em> GET object_</em> GET #</p>
+<p>SORT mylist BY weight_* STORE resultkey</p>
+<p>将返回的结果存放于resultkey序列（List）</p>
+<h4 id="持久控制"><a href="#持久控制" class="headerlink" title="持久控制"></a>持久控制</h4><p><code>SAVE</code> 同步保存数据到磁盘</p>
+<p><code>BGSAVE</code> 异步保存数据到磁盘</p>
+<p><code>LASTSAVE</code> 返回上次成功保存到磁盘的Unix时间戳</p>
+<p><code>SHUTDOWN</code> 同步保存到服务器并关闭 Redis 服务器（SAVE+QUIT）</p>
+<p><code>BGREWRITEAOF</code> 当日志文件过长时重写日志文件</p>
+<h4 id="远程控制命令"><a href="#远程控制命令" class="headerlink" title="远程控制命令"></a>远程控制命令</h4><p><code>INFO</code> 提供服务器的信息和统计信息</p>
+<p><code>MONITOR</code> 实时输出所有收到的请求</p>
+<p><code>SLAVEOF</code> 修改复制选项 </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.tidyko.com/posts/85796e0a.html" data-id="cjkt1bwfp0086fbyki1eb7px1" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Redis/">Redis</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-Tomcat 本地域名访问设置" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/74b62430.html" class="article-date">
+  <time class="post-time" datetime="2014-10-17T02:44:00.000Z" itemprop="datePublished">
+    <span class="post-month">10月</span><br/>
+    <span class="post-day">17</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/74b62430.html">Tomcat 本地域名访问设置</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/服务容器/">服务容器</a>,<a class="article-category-link" href="/categories/服务容器/Tomcat/">Tomcat</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/74b62430.html" class="leancloud_visitors" data-flag-title="Tomcat 本地域名访问设置">
+      &nbsp;阅读次数<span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>原路径：localhost:8080/tidyko</p>
+<h2 id="1）去掉8080端口"><a href="#1）去掉8080端口" class="headerlink" title="1）去掉8080端口"></a>1）去掉8080端口</h2><p>打开%TOMCAT_HOME%/conf/server.xml</p>
+<p>修改里面的<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Connector</span> <span class="attr">connectionTimeout</span>=<span class="string">"20000"</span> <span class="attr">port</span>=<span class="string">"8080"</span> <span class="attr">protocol</span>=<span class="string">"HTTP/1.1"</span> <span class="attr">redirectPort</span>=<span class="string">"8443"</span>/&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>为<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Connector</span> <span class="attr">connectionTimeout</span>=<span class="string">"20000"</span> <span class="attr">port</span>=<span class="string">"80"</span> <span class="attr">protocol</span>=<span class="string">"HTTP/1.1"</span> <span class="attr">redirectPort</span>=<span class="string">"8443"</span>/&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>现在就可以使用localhost/tidyko访问项目了。</p>
+<h2 id="2）使用域名-项目访问"><a href="#2）使用域名-项目访问" class="headerlink" title="2）使用域名/项目访问"></a>2）使用域名/项目访问</h2><p>打开 <code>%TOMCAT_HOME%/conf/server.xml</code></p>
+<p>修改里面的<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Engine</span> <span class="attr">defaultHost</span>=<span class="string">"localhost"</span> <span class="attr">name</span>=<span class="string">"Catalina"</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>为<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Engine</span> <span class="attr">defaultHost</span>=<span class="string">"www.tidy.me"</span> <span class="attr">name</span>=<span class="string">"Catalina"</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>修改里面的<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Host</span> <span class="attr">appBase</span>=<span class="string">"webapps"</span> <span class="attr">autoDeploy</span>=<span class="string">"true"</span> <span class="attr">name</span>=<span class="string">"localhost"</span> <span class="attr">unpackWARs</span>=<span class="string">"true"</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>为<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Host</span> <span class="attr">appBase</span>=<span class="string">"webapps"</span> <span class="attr">autoDeploy</span>=<span class="string">"true"</span> <span class="attr">name</span>=<span class="string">"www.tidy.me"</span> <span class="attr">unpackWARs</span>=<span class="string">"true"</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>打开 <code>C:/Windows/System32/drivers/etc/HOSTS</code></p>
+<p>修改里面的<br><code>127.0.0.1       localhost</code><br>为<br><code>127.0.0.1       www.tidy.me</code></p>
+<p>现在就可以使用 <a href="http://www.tidy.me/tidyko" target="_blank" rel="noopener">www.tidy.me/tidyko</a> 访问项目了。</p>
+<h2 id="3）使用域名访问项目"><a href="#3）使用域名访问项目" class="headerlink" title="3）使用域名访问项目"></a>3）使用域名访问项目</h2><p>打开 <code>%TOMCAT_HOME%/conf/server.xml</code></p>
+<p>修改里面的<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Context</span> <span class="attr">docBase</span>=<span class="string">"tidy"</span> <span class="attr">path</span>=<span class="string">"/tidy"</span> <span class="attr">reloadable</span>=<span class="string">"true"</span> <span class="attr">source</span>=<span class="string">"org.eclipse.jst.jee.server:tidy"</span>/&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>为<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Context</span> <span class="attr">docBase</span>=<span class="string">"tidy"</span> <span class="attr">path</span>=<span class="string">""</span> <span class="attr">reloadable</span>=<span class="string">"true"</span> <span class="attr">source</span>=<span class="string">"org.eclipse.jst.jee.server:tidy"</span>/&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>完成，现在可以使用 <a href="http://www.tidy.me" target="_blank" rel="noopener">www.tidy.me</a> 访问项目了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.tidyko.com/posts/74b62430.html" data-id="cjkt1bwg3008lfbykgeurz1yw" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tomcat/">Tomcat</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-Hibernate 无外键多表查询" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/284eedd0.html" class="article-date">
+  <time class="post-time" datetime="2014-10-13T17:54:00.000Z" itemprop="datePublished">
+    <span class="post-month">10月</span><br/>
+    <span class="post-day">14</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/284eedd0.html">Hibernate 无外键多表查询</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/284eedd0.html" class="leancloud_visitors" data-flag-title="Hibernate 无外键多表查询">
+      &nbsp;阅读次数<span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>无外键多表查询时编写hql，直接使用逗号分隔表，where作为联合查询条件进行查询。</p>
+<p>查询出来的结果可为两种，List&lt;List<object>&gt;或者List&lt;Map&lt;String,Object&gt;&gt;。</object></p>
+<p>这时候需要使用下面语句限定查询返回结果类型。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//List&lt;Map&lt;String,Object&gt;&gt;</span></span><br><span class="line">Query query = getSessionFactory().openSession().createHQLQuery(queryString).setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP);</span><br><span class="line"></span><br><span class="line">List&lt;Map&lt;String,Object&gt;&gt; tmp = query.list();</span><br><span class="line"></span><br><span class="line">Map&lt;String,Object&gt; result = tmp.get(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">String str = result.get(<span class="string">'1'</span>);</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//List&lt;List&lt;Object&gt;&gt;</span></span><br><span class="line">Query query = getSessionFactory().openSession().createHQLQuery(queryString).setResultTransformer(Transformers.TO_LIST);</span><br><span class="line"></span><br><span class="line">List&lt;List&lt;Object&gt;&gt; tmp = query.list();</span><br><span class="line"></span><br><span class="line">List&lt;Object&gt; result = tmp.get(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">String str = result.get(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.tidyko.com/posts/284eedd0.html" data-id="cjkt1bwaf002ffbykw2lkw4va" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hibernate/">Hibernate</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-NGROK 快速实现本地Web服务到外网的映射" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/865591b1.html" class="article-date">
+  <time class="post-time" datetime="2014-10-13T03:45:00.000Z" itemprop="datePublished">
+    <span class="post-month">10月</span><br/>
+    <span class="post-day">13</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/865591b1.html">NGROK 快速实现本地Web服务到外网的映射</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/服务器/">服务器</a>,<a class="article-category-link" href="/categories/服务器/映射/">映射</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/865591b1.html" class="leancloud_visitors" data-flag-title="NGROK 快速实现本地Web服务到外网的映射">
+      &nbsp;阅读次数<span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>NGROK官网：<a href="https://ngrok.com" target="_blank" rel="noopener">https://ngrok.com</a><br>NGROK百科：<a href="http://baike.baidu.com/view/13085941.htm?fr=aladdin" target="_blank" rel="noopener">http://baike.baidu.com/view/13085941.htm?fr=aladdin</a></p>
+<h2 id="1）下载"><a href="#1）下载" class="headerlink" title="1）下载"></a>1）下载</h2><p>ngrok(Windows):<a href="http://files.cnblogs.com/files/zengweiming/ngrok.rar" target="_blank" rel="noopener">下载地址 v2.0</a></p>
+<h2 id="2）使用"><a href="#2）使用" class="headerlink" title="2）使用"></a>2）使用</h2><p>解压ngrok.zip，例如：E:\mysoft\ngrok</p>
+<p>使用命令行进入解压路径，运行：ngrok http 8080（web服务器端口号）</p>
+<p>然后ngrok会解析，生成外网映射路径。</p>
+<p>复制ngrok生成的映射域名链接 <a href="http://b5e38c97.ngrok.io/项目名" target="_blank" rel="noopener">http://b5e38c97.ngrok.io/项目名</a> 到浏览器就可以访问到你本地的项目了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.tidyko.com/posts/865591b1.html" data-id="cjkt1bweb006mfbykws1sxs2v" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NGROK/">NGROK</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-Eclipse SVN is out of date" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/bb413124.html" class="article-date">
+  <time class="post-time" datetime="2014-10-10T04:36:00.000Z" itemprop="datePublished">
+    <span class="post-month">10月</span><br/>
+    <span class="post-day">10</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/bb413124.html">Eclipse SVN is out of date</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/开发调试工具/">开发调试工具</a>,<a class="article-category-link" href="/categories/开发调试工具/Eclipse/">Eclipse</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/bb413124.html" class="leancloud_visitors" data-flag-title="Eclipse SVN is out of date">
+      &nbsp;阅读次数<span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>右击项目（<code>team</code> -&gt; <code>update</code> 或者 <code>team</code> -&gt; <code>freash/cleanup</code> ），再操作，提交就可以了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.tidyko.com/posts/bb413124.html" data-id="cjkt1bw7o000rfbykl19kiprq" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SVN/">SVN</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-Tomcat java.lang.OutOfMemoryError" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/2e6dc29d.html" class="article-date">
+  <time class="post-time" datetime="2014-09-26T01:56:00.000Z" itemprop="datePublished">
+    <span class="post-month">9月</span><br/>
+    <span class="post-day">26</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/2e6dc29d.html">Tomcat java.lang.OutOfMemoryError</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/2e6dc29d.html" class="leancloud_visitors" data-flag-title="Tomcat java.lang.OutOfMemoryError">
+      &nbsp;阅读次数<span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1）Java-heap-space-Heap-size"><a href="#1）Java-heap-space-Heap-size" class="headerlink" title="1）Java heap space Heap size"></a>1）Java heap space Heap size</h2><p>昨天在服务器上面部署项目，之前服务器上面已经有一个项目的了。</p>
+<p>然后我再部署一个，上去跑了之后，居然内存溢出了。</p>
+<p>好吧，内存溢出就调一下，调了之后发现还是那样，点不到几下就挂了。</p>
+<p>后面折腾了一下午，因为我机子上面本地跑的是多少个都没问题的，</p>
+<p>我想了下，会不会是tomcat版本的问题，果断换了个tomcat上去，一换果然行了。</p>
+<p>郁闷，记录一下吧。</p>
+<p>下面是版本号：<br><code>apache-tomcat-7.0.55</code>:这个是出现内存溢出，修改内存还解决不了问题的版本。</p>
+<p><code>apache-tomcat-7.0.11</code>:这个是不会内存溢出的版本。</p>
+<h2 id="2）PermGen-space"><a href="#2）PermGen-space" class="headerlink" title="2）PermGen space"></a>2）PermGen space</h2><p>PermGen space的全称是Permanent Generation space,是指内存的永久保存区域，</p>
+<p>这块内存主要是被JVM存放Class和Meta信息的,</p>
+<p>Class在被Loader时就会被放到PermGen space中，</p>
+<p>它和存放类实例(Instance)的Heap区域不同,</p>
+<p>GC(Garbage Collection)不会在主程序运行期对PermGen space进行清理，</p>
+<p>所以如果你的应用中有很CLASS的话,就很可能出现PermGen space错误，</p>
+<p>这种错误常见在web服务器对JSP进行pre compile的时候。</p>
+<p>如果你的WEB APP下都用了大量的第三方jar, </p>
+<p>其大小超过了jvm默认的大小(4M)那么就会产生此错误信息了。</p>
+<p>解决方法：</p>
+<h3 id="2-1）-手动设置MaxPermSize大小"><a href="#2-1）-手动设置MaxPermSize大小" class="headerlink" title="2.1） 手动设置MaxPermSize大小"></a>2.1） 手动设置MaxPermSize大小</h3><p>修改TOMCAT_HOME/bin/catalina.bat（Linux下为catalina.sh），</p>
+<p>在<code>“echo &quot;Using CATALINA_BASE:$CATALINA_BASE&quot;”</code>上面加入以下行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> JAVA_OPTS=%JAVA_OPTS% -server -XX:PermSize=128M -XX:MaxPermSize=512m</span><br></pre></td></tr></table></figure>
+<p>catalina.sh下为：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">JAVA_OPTS=<span class="string">"<span class="variable">$JAVA_OPTS</span> -server -XX:PermSize=128M -XX:MaxPermSize=512m"</span></span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.tidyko.com/posts/2e6dc29d.html" data-id="cjkt1bwfs008afbykm2h3zeqi" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tomcat/">Tomcat</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-Hibernate Illegal attempt to associate a collection with two open sessions" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/cd870320.html" class="article-date">
+  <time class="post-time" datetime="2014-09-17T10:29:00.000Z" itemprop="datePublished">
+    <span class="post-month">9月</span><br/>
+    <span class="post-day">17</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/cd870320.html">Hibernate Illegal attempt to associate a collection with two open sessions</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/cd870320.html" class="leancloud_visitors" data-flag-title="Hibernate Illegal attempt to associate a collection with two open sessions">
+      &nbsp;阅读次数<span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今天在用Hibernate对对象进行修改操作的时候报了这个错。</p>
+<p>之前一直没什么错误，但是今天修改了一下表结构，增加了一个OneToMany的映射。</p>
+<p>所以在我获取对象，重新set一个变量之后就报了这个错误了。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Illegal attempt to associate a collection with two open sessions; nested exception is org.hibernate.HibernateException: Illegal attempt to associate a collection with two open sessions</span><br></pre></td></tr></table></figure></p>
+<p>网上查了一下，说是不同session直接对象的操作造成的，原因还有待查明。</p>
+<p>目前暂时采用了下面的方法</p>
+<p>在修改完对象值之后，给对象的OneToMany的List设置null值就可以了。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Dao&lt;Resources&gt; resourcesDao=TitanContext.getDaoProxy(Resources.class);</span><br><span class="line">Resources resource = resourcesDao.find(id);</span><br><span class="line">resource.setClickCount(resource.getClickCount()+<span class="number">1</span>);</span><br><span class="line">resource.setResourcePeriod(<span class="keyword">null</span>);    </span><br><span class="line">resourcesDao.update(resource);</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.tidyko.com/posts/cd870320.html" data-id="cjkt1bwa40025fbykdahk8m35" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hibernate/">Hibernate</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-IE trim()方法失效" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/b93984a5.html" class="article-date">
+  <time class="post-time" datetime="2014-09-16T02:26:00.000Z" itemprop="datePublished">
+    <span class="post-month">9月</span><br/>
+    <span class="post-day">16</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/b93984a5.html">IE trim()方法失效</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/JavaScript/">JavaScript</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/b93984a5.html" class="leancloud_visitors" data-flag-title="IE trim()方法失效">
+      &nbsp;阅读次数<span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今天用了$.ajax异步提交，结果在ie8里面报错了，说不支持此对象，找了半天没找到什么问题。</p>
+<h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><p>后来发现是我data里面的参数传递，里面有个参数用到了trim()方法，这个方法在ie8里面是失效的。</p>
+<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><p>换成$trim(str)就可以了。</p>
+<p>如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">--失效方法</span><br><span class="line"><span class="string">"periodName"</span>:$(<span class="string">"#period"</span>).find(<span class="string">'option:selected'</span>).text().trim(),</span><br><span class="line"><span class="string">"buyType"</span>:$(<span class="string">"#type"</span>).text().trim()</span><br><span class="line">--有效方法</span><br><span class="line"><span class="string">"periodName"</span>:$.trim($(<span class="string">"#period"</span>).find(<span class="string">'option:selected'</span>).text()),</span><br><span class="line"><span class="string">"buyType"</span>:$.trim($(<span class="string">"#type"</span>).text())</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.tidyko.com/posts/b93984a5.html" data-id="cjkt1bwal002lfbykytgo15gu" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IE/">IE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-IE 浏览器模式与文档模式及其开发中处理方式" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/810bd9aa.html" class="article-date">
+  <time class="post-time" datetime="2014-09-11T01:57:00.000Z" itemprop="datePublished">
+    <span class="post-month">9月</span><br/>
+    <span class="post-day">11</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/810bd9aa.html">IE 浏览器模式与文档模式及其开发中处理方式</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/浏览器/">浏览器</a>,<a class="article-category-link" href="/categories/浏览器/IE/">IE</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/810bd9aa.html" class="leancloud_visitors" data-flag-title="IE 浏览器模式与文档模式及其开发中处理方式">
+      &nbsp;阅读次数<span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="原文："><a href="#原文：" class="headerlink" title="原文："></a>原文：</h2><p><a href="http://blog.csdn.net/neo_liu0000/article/details/7589731" target="_blank" rel="noopener">http://blog.csdn.net/neo_liu0000/article/details/7589731</a></p>
+<h3 id="1）什么是浏览器模式和文本模式？"><a href="#1）什么是浏览器模式和文本模式？" class="headerlink" title="1）什么是浏览器模式和文本模式？"></a>1）什么是浏览器模式和文本模式？</h3><p>经常使用IE开发者工具的同学，肯定见过浏览器模式和文本模式，对于这两个名词，综合相关文档解释如下：</p>
+<p>浏览器模式（Browser Mode），用于切换IE针对该网页的默认文本模式、对不同版本浏览器的条件注释解析、决定请求头里userAgent的值。它在浏览器发出请求之前就已经确定，网站没有办法修改这个值。它代表的是用户以何种浏览器访问网站。</p>
+<p>文本模式（Document Mode），其实就是经常说的文档模式。不同的文本模式对应不同的排版引擎，不同的JS引擎。上面提到，每一种浏览器模式对应一种默认的文本模式，网站还可以通过一些手段来更改文本模式，它代表的是浏览器以何种模式呈现页面。</p>
+<h3 id="2）浏览器模式和文本模式有什么用？"><a href="#2）浏览器模式和文本模式有什么用？" class="headerlink" title="2）浏览器模式和文本模式有什么用？"></a>2）浏览器模式和文本模式有什么用？</h3><p>用来解决IE各版本带来的兼容性问题。根据微软描述的IE兼容性策略，在IE8+访问一个页面要经过这样的流程：</p>
+<h4 id="2-1）"><a href="#2-1）" class="headerlink" title="2.1）"></a>2.1）</h4><p>首先，浏览器要确定浏览器模式。上面说过，浏览器模式是在请求发送之前就必须确定，默认取最新（IE9为IE9标准，IE8为IE8标准），有两种方式可以更改它：</p>
+<p>通过开发者工具选择（可选项见上表）；<br>通过点击兼容性视图按钮；<br>命中兼容性视图列表（微软维护的需要采用兼容性视图的列表。IE8+默认对这个列表和局域网的网址都会采用相应的兼容性模式）；</p>
+<h4 id="2-2）"><a href="#2-2）" class="headerlink" title="2.2）"></a>2.2）</h4><p>浏览器通过请求头里userAgent的值，告诉服务器当前是何种浏览器模式；</p>
+<h4 id="2-3）"><a href="#2-3）" class="headerlink" title="2.3）"></a>2.3）</h4><p>服务器可以通过下面方式改变浏览器文本模式：</p>
+<p>doctype；<br>X-UA-Compatible Meta或对应的响应头</p>
+<p>浏览器模式决定：1）发送给服务端的UA；2）默认的文本模式；3）如何解析条件注释。它在请求发送前就已经确定，且不受服务端控制。文本模式决 定：1）排版引擎；2）JS引擎。它在浏览器得到响应后最终确定，服务端可通过doctype或X-UA-Compatible来控制。</p>
+<h5 id="测试一"><a href="#测试一" class="headerlink" title="测试一"></a>测试一</h5><p>根据前文，如果用户浏览器没有激活兼容性视图；没有开启IE开发者工具。那么IE9的浏览器模式默认为IE9，默认对应的文本模式应该是IE9标准（对于IE8来说，是类似的），我们通过下列代码将它改到IE7标准：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"IE=7"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h5 id="测试二"><a href="#测试二" class="headerlink" title="测试二"></a>测试二</h5><p>那如果把测试地址加到兼容性列表呢？根据前文，这种情况浏览器模式应该是IE9/IE8兼容性，对应的文本模式依然是IE7标准。</p>
+<h5 id="测试三"><a href="#测试三" class="headerlink" title="测试三"></a>测试三</h5><p>如果把X-UA-Compatible改成IE=edge，继续使用兼容性模式测试呢？</p>
+<p>这个结论其实跟测试一是一致的：X-UA-Compatible为IE=edge，意味着文本模式会使用最新可用的版本，然而文本模式的更改，又把浏览器模式从IE9/IE8兼容性变成IE9/IE8。IE9会按照新的浏览器模式来设置JS的navigator.userAgent，IE8下JS的UA不变。</p>
+<h5 id="测试四"><a href="#测试四" class="headerlink" title="测试四"></a>测试四</h5><p>那如果通过开发者工具人为设置浏览器模式和文本模式呢？经过测试，这样测试都是符合预期的。例如IE9下，设置浏览器模式为IE8，文本模式为IE7标准，请求头UA、JS的UA、条件注释都表明浏览器模式是IE8，documentMode和JS引擎都表明文本模式是IE7标准。因为，IE开发者工具的优先级最高，设置了这个，其他条件统统无视！</p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>IE8/9中X-UA-Compatible对文本模式的改变会导致浏览器模式的改变，也就是说服务端可以间接控制浏览器模式。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.tidyko.com/posts/810bd9aa.html" data-id="cjkt1bwan002nfbykv4ppbgud" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IE/">IE</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+
+
+  <nav id="page-nav">
+    <a class="extend prev" rel="prev" href="/page/5/">&laquo; pre</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/7/">next &raquo;</a>
+  </nav>
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <h1 class="blog-title">TIDY的个人博客</h1>
+    <h2 class="blog-subtitle">マジにならなきゃ、勝てねぇよ！</h2>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="http://img.tidyko.com/avatar.jpg">
+    <h2 class="author">豪快二突撃スル</h2>
+    <h3 class="description">javaer</h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>112</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>38</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>73</strong><br>标签</div></a>
+    </div>
+
+
+
+    <div class="social-link">
+      
+        <a class="hvr-bounce-in" href="https://github.com/tidyko" target="_blank" title="Github">
+          Github
+        </a>
+      
+    </div>
+
+    <div class="friend-link">
+      <h2>友情链接</h2>
+      
+    </div>
+  </div>
+</div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy;2017 - 2018 豪快二突撃スル<br>
+      <!-- 由<a href="http://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
+      主题-<a href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a> -->
+      
+        <br>
+        <!-- <script src="https://s19.cnzz.com/z_stat.php?id=1274390271&web_id=1274390271" language="JavaScript" rel="noreferrer"></script>       -->
+        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1274390271'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1274390271%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));</script>
+      
+    </div>
+  </div>
+</footer>
+    </div>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/wow/0.1.6/wow.min.js"></script>
+<script>
+new WOW().init();
+</script>   
+
+
+  <link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+  <script src="/plugin/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+  <!-- <section class="hidden-xs"> 
+  <ul class="cb-slideshow"> 
+    <li><span>苟利</span></li> 
+    <li><span>国家</span></li> 
+    <li><span>生死以</span></li> 
+    <li><span>岂能</span></li> 
+    <li><span>祸福</span></li> 
+    <li><span>趋避之</span></li> 
+  </ul>
+</section> -->
+<script src="/js/script.js"></script>
+
+
+
+
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("DpQHavrF6hdX8C8q7ONib5Qv-gzGzoHsz", "CFNVYUb4rtTjkji3Erv4ROA7");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.article-title').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+
+
+  </div>
+</body>
+</html>
