@@ -13,13 +13,13 @@
 <meta property="og:site_name" content="TIDY的个人博客">
 <meta property="og:description" content="1）初步理解理解事务之前，先讲一个你日常生活中最常干的事：转账。 1.1）场景设定   用户名 余额     A 1000   B 1000    1.2）操作A通过支付宝给B转账200块，做这件事情会进行两个操作。1：A账号-2002：B账号+200 1.3）结果1.3.1）所以如果成功进行了一次转账操作的话，得到的数据应该是如下：    用户名 余额     A 800   B 1200">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://img.tidyko.com/blog/spring-tranz_1.png">
-<meta property="og:image" content="http://img.tidyko.com/blog/spring-tranz_2.png">
-<meta property="og:updated_time" content="2018-08-13T15:09:44.472Z">
+<meta property="og:image" content="https://img.tidyko.com/blog/spring-tranz_1.png">
+<meta property="og:image" content="https://img.tidyko.com/blog/spring-tranz_2.png">
+<meta property="og:updated_time" content="2018-08-23T11:58:53.247Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="J2EE Spring 事务的实现方式">
 <meta name="twitter:description" content="1）初步理解理解事务之前，先讲一个你日常生活中最常干的事：转账。 1.1）场景设定   用户名 余额     A 1000   B 1000    1.2）操作A通过支付宝给B转账200块，做这件事情会进行两个操作。1：A账号-2002：B账号+200 1.3）结果1.3.1）所以如果成功进行了一次转账操作的话，得到的数据应该是如下：    用户名 余额     A 800   B 1200">
-<meta name="twitter:image" content="http://img.tidyko.com/blog/spring-tranz_1.png">
+<meta name="twitter:image" content="https://img.tidyko.com/blog/spring-tranz_1.png">
   
     <link rel="alternate" href="/atom.xml" title="TIDY的个人博客" type="application/atom+xml">
   
@@ -202,7 +202,7 @@
 <p><code>隔离性（Isolation）</code>：可能有许多事务会同时处理相同的数据，因此每个事务都应该与其他事务隔离开来，防止数据损坏，避免出现脏读，幻读，不可重复读的状况。比如多笔转账同时进行了操作，每笔转账的事务应该是隔离的。</p>
 <p><code>持久性（Durability）</code>：一旦事务完成，无论发生什么系统错误，它的结果都不应该受到影响，这样就能从任何系统崩溃中恢复过来。通常情况下，事务的结果被写到持久化存储器中。</p>
 <h1 id="核心接口"><a href="#核心接口" class="headerlink" title="核心接口"></a>核心接口</h1><p>Spring事务管理的实现有许多细节，如果对整个接口框架有个大体了解会非常有利于我们理解事务，下面通过讲解Spring的事务接口来了解Spring实现事务的具体策略。 </p>
-<p>Spring事务管理涉及的接口的联系如下：<br><img src="http://img.tidyko.com/blog/spring-tranz_1.png" alt="Spring 事务的实现方式-图例1"></p>
+<p>Spring事务管理涉及的接口的联系如下：<br><img src="https://img.tidyko.com/blog/spring-tranz_1.png" alt="Spring 事务的实现方式-图例1"></p>
 <h2 id="2-1）平台事务管理器（PlatformTransactionManager）"><a href="#2-1）平台事务管理器（PlatformTransactionManager）" class="headerlink" title="2.1）平台事务管理器（PlatformTransactionManager）"></a>2.1）平台事务管理器（PlatformTransactionManager）</h2><p>Spring并不直接管理事务，而是提供了多种事务管理器，他们将事务管理的职责委托给Hibernate或者JTA等持久化机制所提供的相关平台框架的事务来实现。 </p>
 <p>Spring事务管理器的接口是<code>org.springframework.transaction.PlatformTransactionManager</code>，<br>通过这个接口，Spring为各个平台如JDBC、Hibernate等都提供了对应的事务管理器，但是具体的实现就是各个平台自己的事情了。</p>
 <p>PlatformTransactionManager接口的内容如上图：</p>
@@ -212,7 +212,7 @@
 <p><code>HibernateTransactionManager</code> : 使用hibernate进行操作时，对事务进行管理。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"transactionManager"</span> <span class="attr">class</span>=<span class="string">"org.springframework.orm.hibernate3.HibernateTransactionManager"</span>&gt;</span> <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"sessionFactory"</span> <span class="attr">ref</span>=<span class="string">"sessionFactory"</span> /&gt;</span> <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 <h2 id="2-2）基础事务属性定义（TransactionDefinition）"><a href="#2-2）基础事务属性定义（TransactionDefinition）" class="headerlink" title="2.2）基础事务属性定义（TransactionDefinition）"></a>2.2）基础事务属性定义（TransactionDefinition）</h2><p>上面讲到的事务管理器接口PlatformTransactionManager通过getTransaction(TransactionDefinition definition)方法传入事务属性定义来得到事务，这个方法里面的参数是TransactionDefinition类，这个类就定义了一些基本的事务属性。</p>
 <p>那么什么是事务属性呢？</p>
-<p>事务属性可以理解成事务的一些基本配置，描述了事务策略如何应用到方法上。<br>事务属性包含了5个方面，如图所示：<br><img src="http://img.tidyko.com/blog/spring-tranz_2.png" alt="Spring 事务的实现方式-图例2"><br>TransactionDefinition接口的内容如上图：</p>
+<p>事务属性可以理解成事务的一些基本配置，描述了事务策略如何应用到方法上。<br>事务属性包含了5个方面，如图所示：<br><img src="https://img.tidyko.com/blog/spring-tranz_2.png" alt="Spring 事务的实现方式-图例2"><br>TransactionDefinition接口的内容如上图：</p>
 <p>主要定义了：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取事务传播行为</span></span><br><span class="line">getPropagationBehavior() </span><br><span class="line"><span class="comment">//获取事务隔离级别</span></span><br><span class="line">getIsolationLevel() </span><br><span class="line"><span class="comment">//获取超时时间</span></span><br><span class="line">getTimeout() </span><br><span class="line"><span class="comment">//事务是否只读</span></span><br><span class="line">isReadOnly()</span><br></pre></td></tr></table></figure></p>
 <p>我们可以发现TransactionDefinition正好用来定义事务属性，下面详细介绍一下各个事务属性。</p>
 <h3 id="2-2-1）传播行为"><a href="#2-2-1）传播行为" class="headerlink" title="2.2.1）传播行为"></a>2.2.1）传播行为</h3><table>
@@ -304,7 +304,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.tidyko.com/posts/c87c55c4.html" data-id="cjl6iegyt003mwrykuiyh25fs" class="article-share-link">分享</a>
+      <a data-url="http://www.tidyko.com/posts/c87c55c4.html" data-id="cjl6im9zc00341vykkdszehsi" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/">Spring</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/事务/">事务</a></li></ul>

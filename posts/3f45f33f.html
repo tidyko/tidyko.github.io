@@ -13,12 +13,12 @@
 <meta property="og:site_name" content="TIDY的个人博客">
 <meta property="og:description" content="1）运行环境（博主本地）JDK：jdk1.6Tomcat:tomcat7OS:Windows10 2）下载点击下载 3）安装运行3.1）解压将probe文件夹复制放进tomcat里面的webapp目录 3.2）修改tomcat的管理用户配置打开 CATALINA_HOME/conf/tomcat-users.xml ，在里面添加以下代码1234567&amp;lt;tomcat-users&amp;gt;">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://img.tidyko.com/blog/probe_1.png">
-<meta property="og:updated_time" content="2018-08-13T15:09:44.552Z">
+<meta property="og:image" content="https://img.tidyko.com/blog/probe_1.png">
+<meta property="og:updated_time" content="2018-08-23T11:59:50.326Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Tomcat 使用probe对tomcat服务进行监控">
 <meta name="twitter:description" content="1）运行环境（博主本地）JDK：jdk1.6Tomcat:tomcat7OS:Windows10 2）下载点击下载 3）安装运行3.1）解压将probe文件夹复制放进tomcat里面的webapp目录 3.2）修改tomcat的管理用户配置打开 CATALINA_HOME/conf/tomcat-users.xml ，在里面添加以下代码1234567&amp;lt;tomcat-users&amp;gt;">
-<meta name="twitter:image" content="http://img.tidyko.com/blog/probe_1.png">
+<meta name="twitter:image" content="https://img.tidyko.com/blog/probe_1.png">
   
     <link rel="alternate" href="/atom.xml" title="TIDY的个人博客" type="application/atom+xml">
   
@@ -118,12 +118,12 @@
 <h2 id="2）下载"><a href="#2）下载" class="headerlink" title="2）下载"></a>2）下载</h2><p><a href="http://files.cnblogs.com/files/zengweiming/PSI-probe-2.3.3%E4%B8%AD%E6%96%87%E7%89%88%E5%8F%8A%E5%AE%89%E8%A3%85%E8%AF%A6%E8%A7%A3.rar" target="_blank" rel="noopener">点击下载</a></p>
 <h2 id="3）安装运行"><a href="#3）安装运行" class="headerlink" title="3）安装运行"></a>3）安装运行</h2><h3 id="3-1）解压"><a href="#3-1）解压" class="headerlink" title="3.1）解压"></a>3.1）解压</h3><p>将probe文件夹复制放进tomcat里面的webapp目录</p>
 <h3 id="3-2）修改tomcat的管理用户配置"><a href="#3-2）修改tomcat的管理用户配置" class="headerlink" title="3.2）修改tomcat的管理用户配置"></a>3.2）修改tomcat的管理用户配置</h3><p>打开 <code>CATALINA_HOME/conf/tomcat-users.xml</code> ，在里面添加以下代码<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">tomcat-users</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">role</span> <span class="attr">rolename</span>=<span class="string">"probeuser"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">role</span> <span class="attr">rolename</span>=<span class="string">"poweruser"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">role</span> <span class="attr">rolename</span>=<span class="string">"poweruserplus"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">role</span> <span class="attr">rolename</span>=<span class="string">"manager"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">user</span> <span class="attr">username</span>=<span class="string">"admin"</span> <span class="attr">password</span>=<span class="string">"admin"</span> <span class="attr">roles</span>=<span class="string">"manager"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">tomcat-users</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<h2 id="4）启动tomcat"><a href="#4）启动tomcat" class="headerlink" title="4）启动tomcat"></a>4）启动tomcat</h2><p>输入 localhost:8080/probe ，输入用户密码 <code>admin</code> <code>admin</code>，进行访问,首页如下就说明已经运行监控成功啦。<br><img src="http://img.tidyko.com/blog/probe_1.png" alt="Tomcat 使用probe对tomcat服务进行监控-图例1"></p>
+<h2 id="4）启动tomcat"><a href="#4）启动tomcat" class="headerlink" title="4）启动tomcat"></a>4）启动tomcat</h2><p>输入 localhost:8080/probe ，输入用户密码 <code>admin</code> <code>admin</code>，进行访问,首页如下就说明已经运行监控成功啦。<br><img src="https://img.tidyko.com/blog/probe_1.png" alt="Tomcat 使用probe对tomcat服务进行监控-图例1"></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.tidyko.com/posts/3f45f33f.html" data-id="cjl6ieh3h008ywrykbkos1io9" class="article-share-link">分享</a>
+      <a data-url="http://www.tidyko.com/posts/3f45f33f.html" data-id="cjl6ima32008s1vykcl0q8uzv" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tomcat/">Tomcat</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/probe/">probe</a></li></ul>

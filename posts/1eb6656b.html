@@ -13,15 +13,15 @@
 <meta property="og:site_name" content="TIDY的个人博客">
 <meta property="og:description" content="官方网站：http://people.apache.org/~pmuellr/weinre-docs/latest/ windows下安装以及使用：1）安装nodejs1.下载nodejs引擎，32bit version或者64bit version2.下载最新版的npm  zip格式压缩包：http://nodejs.org/dist/npm/3.在硬盘某个位置，如D盘下建立一个文件nodejs">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://img.tidyko.com/blog/weinre_1.jpg">
-<meta property="og:image" content="http://img.tidyko.com/blog/weinre_2.jpg">
-<meta property="og:image" content="http://img.tidyko.com/blog/weinre_3.jpg">
-<meta property="og:image" content="http://img.tidyko.com/blog/weinre_4.jpg">
-<meta property="og:updated_time" content="2018-08-13T15:09:44.556Z">
+<meta property="og:image" content="https://img.tidyko.com/blog/weinre_1.jpg">
+<meta property="og:image" content="https://img.tidyko.com/blog/weinre_2.jpg">
+<meta property="og:image" content="https://img.tidyko.com/blog/weinre_3.jpg">
+<meta property="og:image" content="https://img.tidyko.com/blog/weinre_4.jpg">
+<meta property="og:updated_time" content="2018-08-23T12:00:03.784Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="weinre 使用weinre对手机、微信浏览器页面调试">
 <meta name="twitter:description" content="官方网站：http://people.apache.org/~pmuellr/weinre-docs/latest/ windows下安装以及使用：1）安装nodejs1.下载nodejs引擎，32bit version或者64bit version2.下载最新版的npm  zip格式压缩包：http://nodejs.org/dist/npm/3.在硬盘某个位置，如D盘下建立一个文件nodejs">
-<meta name="twitter:image" content="http://img.tidyko.com/blog/weinre_1.jpg">
+<meta name="twitter:image" content="https://img.tidyko.com/blog/weinre_1.jpg">
   
     <link rel="alternate" href="/atom.xml" title="TIDY的个人博客" type="application/atom+xml">
   
@@ -118,15 +118,15 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>官方网站：<a href="http://people.apache.org/~pmuellr/weinre-docs/latest/" target="_blank" rel="noopener">http://people.apache.org/~pmuellr/weinre-docs/latest/</a></p>
-<h2 id="windows下安装以及使用："><a href="#windows下安装以及使用：" class="headerlink" title="windows下安装以及使用："></a>windows下安装以及使用：</h2><h3 id="1）安装nodejs"><a href="#1）安装nodejs" class="headerlink" title="1）安装nodejs"></a>1）安装nodejs</h3><p>1.下载nodejs引擎，32bit version或者64bit version<br>2.下载最新版的npm  zip格式压缩包：<a href="http://nodejs.org/dist/npm/" target="_blank" rel="noopener">http://nodejs.org/dist/npm/</a><br>3.在硬盘某个位置，如D盘下建立一个文件nodejs，把上面两个下载的东西都放在这里，npm要解压。<br>4.配置两个环境变量：<br>一个是PATH上增加node.exe的目录D:\nodejs<br>一个是增加环境变量NODE_PATH,值为D:\nodejs\node_modules<br>5.安装express：打开cmd命令行，键入指令npm install express[安装express至相对路径]或npm install express -g[安装express至绝对路径]<br>6.最后cmd分别执行node -v和npm -v如果看到nodejs和npm的版本号就算安装成功了。如下图：<br><img src="http://img.tidyko.com/blog/weinre_1.jpg" alt="weinre 使用weinre对手机、微信浏览器页面调试-图例1"></p>
-<h3 id="2）使用npm安装weinre并启动"><a href="#2）使用npm安装weinre并启动" class="headerlink" title="2）使用npm安装weinre并启动"></a>2）使用npm安装weinre并启动</h3><p>1.cmd执行 <code>npm install weinre</code> 安装 weinre<br>2.cmd执行 <code>weinre --boundHost -all-  --httpPort 8081</code> 看到提示启动成功即可。如下图：<br><img src="http://img.tidyko.com/blog/weinre_2.jpg" alt="weinre 使用weinre对手机、微信浏览器页面调试-图例2"></p>
-<h3 id="3）使用weinre对远程端页面进行调试"><a href="#3）使用weinre对远程端页面进行调试" class="headerlink" title="3）使用weinre对远程端页面进行调试"></a>3）使用weinre对远程端页面进行调试</h3><p>1.在浏览器输入 <a href="http://localhost:8081" target="_blank" rel="noopener">http://localhost:8081</a> ，进入weinre的主页。如下图：<br><img src="http://img.tidyko.com/blog/weinre_3.jpg" alt="weinre 使用weinre对手机、微信浏览器页面调试-图例3"><br>2.将上图中 <code>Target Script</code> 部分的js地址加入到你要调试的目标页面内。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=<span class="string">"http://localhost:8081/target/target-script-min.js#anonymous"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure></p>
-<p>3.最后，在移动设备打开添加过这个脚本的网页，这时候你在本地浏览器打开    <a href="http://localhost:8081/client/#anonymous" target="_blank" rel="noopener">http://localhost:8081/client/#anonymous</a> 就能看到对应网页与对其进行调试了，如下图：<br><img src="http://img.tidyko.com/blog/weinre_4.jpg" alt="weinre 使用weinre对手机、微信浏览器页面调试-图例4"></p>
+<h2 id="windows下安装以及使用："><a href="#windows下安装以及使用：" class="headerlink" title="windows下安装以及使用："></a>windows下安装以及使用：</h2><h3 id="1）安装nodejs"><a href="#1）安装nodejs" class="headerlink" title="1）安装nodejs"></a>1）安装nodejs</h3><p>1.下载nodejs引擎，32bit version或者64bit version<br>2.下载最新版的npm  zip格式压缩包：<a href="http://nodejs.org/dist/npm/" target="_blank" rel="noopener">http://nodejs.org/dist/npm/</a><br>3.在硬盘某个位置，如D盘下建立一个文件nodejs，把上面两个下载的东西都放在这里，npm要解压。<br>4.配置两个环境变量：<br>一个是PATH上增加node.exe的目录D:\nodejs<br>一个是增加环境变量NODE_PATH,值为D:\nodejs\node_modules<br>5.安装express：打开cmd命令行，键入指令npm install express[安装express至相对路径]或npm install express -g[安装express至绝对路径]<br>6.最后cmd分别执行node -v和npm -v如果看到nodejs和npm的版本号就算安装成功了。如下图：<br><img src="https://img.tidyko.com/blog/weinre_1.jpg" alt="weinre 使用weinre对手机、微信浏览器页面调试-图例1"></p>
+<h3 id="2）使用npm安装weinre并启动"><a href="#2）使用npm安装weinre并启动" class="headerlink" title="2）使用npm安装weinre并启动"></a>2）使用npm安装weinre并启动</h3><p>1.cmd执行 <code>npm install weinre</code> 安装 weinre<br>2.cmd执行 <code>weinre --boundHost -all-  --httpPort 8081</code> 看到提示启动成功即可。如下图：<br><img src="https://img.tidyko.com/blog/weinre_2.jpg" alt="weinre 使用weinre对手机、微信浏览器页面调试-图例2"></p>
+<h3 id="3）使用weinre对远程端页面进行调试"><a href="#3）使用weinre对远程端页面进行调试" class="headerlink" title="3）使用weinre对远程端页面进行调试"></a>3）使用weinre对远程端页面进行调试</h3><p>1.在浏览器输入 <a href="http://localhost:8081" target="_blank" rel="noopener">http://localhost:8081</a> ，进入weinre的主页。如下图：<br><img src="https://img.tidyko.com/blog/weinre_3.jpg" alt="weinre 使用weinre对手机、微信浏览器页面调试-图例3"><br>2.将上图中 <code>Target Script</code> 部分的js地址加入到你要调试的目标页面内。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=<span class="string">"http://localhost:8081/target/target-script-min.js#anonymous"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure></p>
+<p>3.最后，在移动设备打开添加过这个脚本的网页，这时候你在本地浏览器打开    <a href="http://localhost:8081/client/#anonymous" target="_blank" rel="noopener">http://localhost:8081/client/#anonymous</a> 就能看到对应网页与对其进行调试了，如下图：<br><img src="https://img.tidyko.com/blog/weinre_4.jpg" alt="weinre 使用weinre对手机、微信浏览器页面调试-图例4"></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.tidyko.com/posts/1eb6656b.html" data-id="cjl6ieh3x0099wryk585iuacg" class="article-share-link">分享</a>
+      <a data-url="http://www.tidyko.com/posts/1eb6656b.html" data-id="cjl6ima3900931vykw39mqk7o" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/weinre/">weinre</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/微信公众号/">微信公众号</a></li></ul>
