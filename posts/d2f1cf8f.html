@@ -13,14 +13,14 @@
 <meta property="og:site_name" content="TIDY的个人博客">
 <meta property="og:description" content="1）问题描述svn提交了一次更新包，到了jenkins提交更新的时候，第一次代码没有生效，然后重新提交了一次，第二次才生效。 2）问题排查2.1）首先第一反应比对了下两次更新的包文件是否一致，然后发现大小不一。由此看出问题应该是出在jenkins，继续排查。 2.2）比对了下第一次jenkins的提交时间与svn提交的时间 由此可看出，svn提交的时间是5：07，但是我jenkins提交的时间却为">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://img.tidyko.com/blog/jenkins_time_1.jpg">
-<meta property="og:image" content="https://img.tidyko.com/blog/jenkins_time_2.jpg">
-<meta property="og:image" content="https://img.tidyko.com/blog/jenkins_time_3.jpg">
-<meta property="og:updated_time" content="2018-08-23T11:57:58.850Z">
+<meta property="og:image" content="http://img.tidyko.com/blog/jenkins_time_1.jpg">
+<meta property="og:image" content="http://img.tidyko.com/blog/jenkins_time_2.jpg">
+<meta property="og:image" content="http://img.tidyko.com/blog/jenkins_time_3.jpg">
+<meta property="og:updated_time" content="2018-08-23T13:40:26.344Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Jenkins 服务器与svn服务器时间不一致出现的问题">
 <meta name="twitter:description" content="1）问题描述svn提交了一次更新包，到了jenkins提交更新的时候，第一次代码没有生效，然后重新提交了一次，第二次才生效。 2）问题排查2.1）首先第一反应比对了下两次更新的包文件是否一致，然后发现大小不一。由此看出问题应该是出在jenkins，继续排查。 2.2）比对了下第一次jenkins的提交时间与svn提交的时间 由此可看出，svn提交的时间是5：07，但是我jenkins提交的时间却为">
-<meta name="twitter:image" content="https://img.tidyko.com/blog/jenkins_time_1.jpg">
+<meta name="twitter:image" content="http://img.tidyko.com/blog/jenkins_time_1.jpg">
   
     <link rel="alternate" href="/atom.xml" title="TIDY的个人博客" type="application/atom+xml">
   
@@ -117,8 +117,8 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="1）问题描述"><a href="#1）问题描述" class="headerlink" title="1）问题描述"></a>1）问题描述</h2><p>svn提交了一次更新包，到了jenkins提交更新的时候，第一次代码没有生效，然后重新提交了一次，第二次才生效。</p>
-<h2 id="2）问题排查"><a href="#2）问题排查" class="headerlink" title="2）问题排查"></a>2）问题排查</h2><h3 id="2-1）"><a href="#2-1）" class="headerlink" title="2.1）"></a>2.1）</h3><p>首先第一反应比对了下两次更新的包文件是否一致，然后发现大小不一。<br>由此看出问题应该是出在jenkins，继续排查。<br><img src="https://img.tidyko.com/blog/jenkins_time_1.jpg" alt="Jenkins 服务器与svn服务器时间不一致出现的问题-图例1"></p>
-<h3 id="2-2）"><a href="#2-2）" class="headerlink" title="2.2）"></a>2.2）</h3><p>比对了下第一次jenkins的提交时间与svn提交的时间<br><img src="https://img.tidyko.com/blog/jenkins_time_2.jpg" alt="Jenkins 服务器与svn服务器时间不一致出现的问题-图例2"><br><img src="https://img.tidyko.com/blog/jenkins_time_3.jpg" alt="Jenkins 服务器与svn服务器时间不一致出现的问题-图例3"></p>
+<h2 id="2）问题排查"><a href="#2）问题排查" class="headerlink" title="2）问题排查"></a>2）问题排查</h2><h3 id="2-1）"><a href="#2-1）" class="headerlink" title="2.1）"></a>2.1）</h3><p>首先第一反应比对了下两次更新的包文件是否一致，然后发现大小不一。<br>由此看出问题应该是出在jenkins，继续排查。<br><img src="http://img.tidyko.com/blog/jenkins_time_1.jpg" alt="Jenkins 服务器与svn服务器时间不一致出现的问题-图例1"></p>
+<h3 id="2-2）"><a href="#2-2）" class="headerlink" title="2.2）"></a>2.2）</h3><p>比对了下第一次jenkins的提交时间与svn提交的时间<br><img src="http://img.tidyko.com/blog/jenkins_time_2.jpg" alt="Jenkins 服务器与svn服务器时间不一致出现的问题-图例2"><br><img src="http://img.tidyko.com/blog/jenkins_time_3.jpg" alt="Jenkins 服务器与svn服务器时间不一致出现的问题-图例3"></p>
 <p>由此可看出，svn提交的时间是5：07，但是我jenkins提交的时间却为5：06，显然顺序不对，</p>
 <p>但是我操作的时候确实是先提交了svn，再提交了jenkins的。</p>
 <p>由此可以确认，应该是jenkins服务器时间比svn的慢了，导致jenkins在06分的时间段认为svn上面没有最新的更新包，</p>
@@ -130,7 +130,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/d2f1cf8f.html" data-id="cjl6m326c005hbgykn0vmsz71" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/d2f1cf8f.html" data-id="cjl6m8ve5005fekyk83u23eol" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jenkins/">Jenkins</a></li></ul>
