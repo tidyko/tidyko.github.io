@@ -5,18 +5,18 @@
   
   <title>ElasticSearch 基础命令 | TIDY的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="ElasticSearch 基础命令记录，分es和kibana两种。 一个代码块分为三块，上面一行为es中间一行为kibana最后行为执行结果。 索引操作创建一个索引weather123456789curl -X PUT &apos;localhost:9200/weather&apos;put weather&amp;#123;  &quot;acknowledged&quot;: true,  &quot;shards_acknowledged&quot;:">
+  <meta name="description" content="mac使用brew安装，使用默认端口。 启动命令：1elasticsearch ElasticSearch 基础命令记录，分es和kibana两种。 一个代码块分为三块，上面一行为es中间一行为kibana最后行为执行结果。 索引操作创建一个索引weather123456789curl -X PUT &apos;localhost:9200/weather&apos;put weather&amp;#123;  &quot;ackno">
 <meta name="keywords" content="ELK,ElasticSearch">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ElasticSearch 基础命令">
 <meta property="og:url" content="https://www.tidyko.com/posts/3e9aef58.html">
 <meta property="og:site_name" content="TIDY的个人博客">
-<meta property="og:description" content="ElasticSearch 基础命令记录，分es和kibana两种。 一个代码块分为三块，上面一行为es中间一行为kibana最后行为执行结果。 索引操作创建一个索引weather123456789curl -X PUT &apos;localhost:9200/weather&apos;put weather&amp;#123;  &quot;acknowledged&quot;: true,  &quot;shards_acknowledged&quot;:">
+<meta property="og:description" content="mac使用brew安装，使用默认端口。 启动命令：1elasticsearch ElasticSearch 基础命令记录，分es和kibana两种。 一个代码块分为三块，上面一行为es中间一行为kibana最后行为执行结果。 索引操作创建一个索引weather123456789curl -X PUT &apos;localhost:9200/weather&apos;put weather&amp;#123;  &quot;ackno">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-30T03:52:32.337Z">
+<meta property="og:updated_time" content="2018-08-30T08:36:22.188Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ElasticSearch 基础命令">
-<meta name="twitter:description" content="ElasticSearch 基础命令记录，分es和kibana两种。 一个代码块分为三块，上面一行为es中间一行为kibana最后行为执行结果。 索引操作创建一个索引weather123456789curl -X PUT &apos;localhost:9200/weather&apos;put weather&amp;#123;  &quot;acknowledged&quot;: true,  &quot;shards_acknowledged&quot;:">
+<meta name="twitter:description" content="mac使用brew安装，使用默认端口。 启动命令：1elasticsearch ElasticSearch 基础命令记录，分es和kibana两种。 一个代码块分为三块，上面一行为es中间一行为kibana最后行为执行结果。 索引操作创建一个索引weather123456789curl -X PUT &apos;localhost:9200/weather&apos;put weather&amp;#123;  &quot;ackno">
   
     <link rel="alternate" href="/atom.xml" title="TIDY的个人博客" type="application/atom+xml">
   
@@ -43,9 +43,9 @@
     <h2 class="author">豪快二突撃スル</h2>
     <h3 class="description">javaer</h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>114</strong><br>文章</div></a>
-      <a href="/categories"><div><strong>39</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>76</strong><br>标签</div></a>
+      <a href="/archives"><div><strong>115</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>40</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>77</strong><br>标签</div></a>
     </div>
     <ul class="blog-link">
      
@@ -109,7 +109,7 @@
 
   &nbsp; | &nbsp;
   <div class="view-box">
-    <span>字数 1,583</span>
+    <span>字数 1,600</span>
   </div>
   &nbsp; | &nbsp;
   <div class="view-box">
@@ -122,7 +122,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>ElasticSearch 基础命令记录，分es和kibana两种。</p>
+        <p>mac使用brew安装，使用默认端口。</p>
+<p>启动命令：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">elasticsearch</span><br></pre></td></tr></table></figure></p>
+<p>ElasticSearch 基础命令记录，分es和kibana两种。</p>
 <p>一个代码块分为三块，上面一行为es中间一行为kibana最后行为执行结果。</p>
 <h3 id="索引操作"><a href="#索引操作" class="headerlink" title="索引操作"></a>索引操作</h3><h4 id="创建一个索引weather"><a href="#创建一个索引weather" class="headerlink" title="创建一个索引weather"></a>创建一个索引weather</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">curl -X PUT 'localhost:9200/weather'</span><br><span class="line"></span><br><span class="line">put weather</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  "acknowledged": true,</span><br><span class="line">  "shards_acknowledged": true,</span><br><span class="line">  "index": "weather"</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="删除一个索引weather"><a href="#删除一个索引weather" class="headerlink" title="删除一个索引weather"></a>删除一个索引weather</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">curl -X DELETE 'localhost:9200/weather'</span><br><span class="line"></span><br><span class="line">delete weather</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  "acknowledged": true</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -145,7 +147,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3e9aef58.html" data-id="cjlg1a55l001psbyk9vlaokf1" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/3e9aef58.html" data-id="cjlgbfv620021wkykym08miqe" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ELK/">ELK</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ElasticSearch/">ElasticSearch</a></li></ul>
@@ -155,6 +157,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/posts/3d5c725a.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          LogStash 基础配置
+        
+      </div>
+    </a>
   
   
     <a href="/posts/d0e6a555.html" id="article-nav-older" class="article-nav-link-wrap">
@@ -229,9 +240,9 @@
     <h2 class="author">豪快二突撃スル</h2>
     <h3 class="description">javaer</h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>114</strong><br>文章</div></a>
-      <a href="/categories"><div><strong>39</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>76</strong><br>标签</div></a>
+      <a href="/archives"><div><strong>115</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>40</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>77</strong><br>标签</div></a>
     </div>
 
 
