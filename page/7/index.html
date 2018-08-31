@@ -41,7 +41,7 @@
     <h2 class="author">豪快二突撃スル</h2>
     <h3 class="description">javaer</h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>115</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>116</strong><br>文章</div></a>
       <a href="/categories"><div><strong>40</strong><br>分类</div></a>
       <a href="/tags"><div><strong>77</strong><br>标签</div></a>
     </div>
@@ -68,6 +68,101 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-Tomcat java.lang.OutOfMemoryError" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/2e6dc29d.html" class="article-date">
+  <time class="post-time" datetime="2014-09-26T01:56:00.000Z" itemprop="datePublished">
+    <span class="post-month">9月</span><br/>
+    <span class="post-day">26</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/2e6dc29d.html">Tomcat java.lang.OutOfMemoryError</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/2e6dc29d.html" class="leancloud_visitors" data-flag-title="Tomcat java.lang.OutOfMemoryError">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 421</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 2 分钟</span>
+  </div>
+ 
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1）Java-heap-space-Heap-size"><a href="#1）Java-heap-space-Heap-size" class="headerlink" title="1）Java heap space Heap size"></a>1）Java heap space Heap size</h2><p>昨天在服务器上面部署项目，之前服务器上面已经有一个项目的了。</p>
+<p>然后我再部署一个，上去跑了之后，居然内存溢出了。</p>
+<p>好吧，内存溢出就调一下，调了之后发现还是那样，点不到几下就挂了。</p>
+<p>后面折腾了一下午，因为我机子上面本地跑的是多少个都没问题的，</p>
+<p>我想了下，会不会是tomcat版本的问题，果断换了个tomcat上去，一换果然行了。</p>
+<p>郁闷，记录一下吧。</p>
+<p>下面是版本号：<br><code>apache-tomcat-7.0.55</code>:这个是出现内存溢出，修改内存还解决不了问题的版本。</p>
+<p><code>apache-tomcat-7.0.11</code>:这个是不会内存溢出的版本。</p>
+<h2 id="2）PermGen-space"><a href="#2）PermGen-space" class="headerlink" title="2）PermGen space"></a>2）PermGen space</h2><p>PermGen space的全称是Permanent Generation space,是指内存的永久保存区域，</p>
+<p>这块内存主要是被JVM存放Class和Meta信息的,</p>
+<p>Class在被Loader时就会被放到PermGen space中，</p>
+<p>它和存放类实例(Instance)的Heap区域不同,</p>
+<p>GC(Garbage Collection)不会在主程序运行期对PermGen space进行清理，</p>
+<p>所以如果你的应用中有很CLASS的话,就很可能出现PermGen space错误，</p>
+<p>这种错误常见在web服务器对JSP进行pre compile的时候。</p>
+<p>如果你的WEB APP下都用了大量的第三方jar, </p>
+<p>其大小超过了jvm默认的大小(4M)那么就会产生此错误信息了。</p>
+<p>解决方法：</p>
+<h3 id="2-1）-手动设置MaxPermSize大小"><a href="#2-1）-手动设置MaxPermSize大小" class="headerlink" title="2.1） 手动设置MaxPermSize大小"></a>2.1） 手动设置MaxPermSize大小</h3><p>修改TOMCAT_HOME/bin/catalina.bat（Linux下为catalina.sh），</p>
+<p>在<code>“echo &quot;Using CATALINA_BASE:$CATALINA_BASE&quot;”</code>上面加入以下行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> JAVA_OPTS=%JAVA_OPTS% -server -XX:PermSize=128M -XX:MaxPermSize=512m</span><br></pre></td></tr></table></figure>
+<p>catalina.sh下为：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">JAVA_OPTS=<span class="string">"<span class="variable">$JAVA_OPTS</span> -server -XX:PermSize=128M -XX:MaxPermSize=512m"</span></span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/2e6dc29d.html" data-id="cjlhdrp4p009av9yk6xcno32n" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tomcat/">Tomcat</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
   
     <article id="post-Hibernate Illegal attempt to associate a collection with two open sessions" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -132,7 +227,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/cd870320.html" data-id="cjlgdep8g0025kbyk4y87ork3" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/cd870320.html" data-id="cjlhdrowu001zv9ykvnrtqdc8" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hibernate/">Hibernate</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
@@ -209,7 +304,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/b93984a5.html" data-id="cjlgdep8u002mkbykxbzf8ehc" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/b93984a5.html" data-id="cjlhdroxk002pv9yk2m2il9kl" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IE/">IE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
@@ -300,7 +395,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/810bd9aa.html" data-id="cjlgdep8x002pkbyki6lrf1v3" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/810bd9aa.html" data-id="cjlhdroxs002wv9ykyjgllb0f" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IE/">IE</a></li></ul>
@@ -387,7 +482,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/e234776b.html" data-id="cjlgdep97002ykbyk5b8hkpcl" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/e234776b.html" data-id="cjlhdroyb003fv9ykatc7ul2t" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DWR/">DWR</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
@@ -470,7 +565,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/dcc50721.html" data-id="cjlgdepdx0083kbykula4lyys" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/dcc50721.html" data-id="cjlhdrp3u008nv9ykk8ja6thw" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Oracle/">Oracle</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PLSQL/">PLSQL</a></li></ul>
@@ -547,7 +642,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3a649dc9.html" data-id="cjlgdepfx00abkbykcep3e7z4" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/3a649dc9.html" data-id="cjlhdrp6m00awv9ykeekmrqgd" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/外语/">外语</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/日语/">日语</a></li></ul>
@@ -624,7 +719,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3194542f.html" data-id="cjlgdepko00o2kbykjs5ka43q" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/3194542f.html" data-id="cjlhdrp6o00azv9yk7djakbwv" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/外语/">外语</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/日语/">日语</a></li></ul>
@@ -698,7 +793,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/8cfd6ae4.html" data-id="cjlgdep7k001ckbykmc3bauj8" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/8cfd6ae4.html" data-id="cjlhdrow6001dv9ykoh4nmgcw" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li></ul>
@@ -772,87 +867,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/c21e42c5.html" data-id="cjlgdep7s001lkbyk5dk2dlwk" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/c21e42c5.html" data-id="cjlhdrow9001iv9ykpkn85giu" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jdk/">Jdk</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-日语 バスの火事" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/3975e50a.html" class="article-date">
-  <time class="post-time" datetime="2014-07-16T06:52:00.000Z" itemprop="datePublished">
-    <span class="post-month">7月</span><br/>
-    <span class="post-day">16</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/3975e50a.html">日语 バスの火事</a>
-    </h1>
-  
-
-        <div>
-          
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/外语/">外语</a>,<a class="article-category-link" href="/categories/外语/日语/">日语</a>
-  </div>
-
-          
-              
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/3975e50a.html" class="leancloud_visitors" data-flag-title="日语 バスの火事">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 116</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 1 分钟</span>
-  </div>
- 
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>昨日の夜に、私は住んでいた市（広州）の３０１バスで大きな火事を起きました。</p>
-<p>新聞でそのことを知った時、私は”本当に？バスに乗っていても危険があるの？”と思いました。<br>本当に、本当に、心からその人達の事を心配しています。<br>全ての人が安全でいればいいな、と思いました。</p>
-<p>その火事の発生の原因は、燃えやすいものを持った人が一人バスに乗ったということです。<br>そして、それが燃えて、火事になりました。<br>この事故では、二人が死にました。三十人ぐらいの人が怪我をしました。</p>
-<p>感想：<br>自分はこの世に生まれて、本当に良かったです。<br>これからは、頑張って自分の夢を追っで行こう。<br>必ず皆さんも交通事故に注意してください。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3975e50a.html" data-id="cjlgdepft00a7kbykbjosbaqp" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/外语/">外语</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/日语/">日语</a></li></ul>
 
     </footer>
   </div>
@@ -909,7 +927,7 @@
     <h2 class="author">豪快二突撃スル</h2>
     <h3 class="description">javaer</h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>115</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>116</strong><br>文章</div></a>
       <a href="/categories"><div><strong>40</strong><br>分类</div></a>
       <a href="/tags"><div><strong>77</strong><br>标签</div></a>
     </div>
