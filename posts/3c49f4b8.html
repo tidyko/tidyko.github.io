@@ -16,7 +16,7 @@
 <meta property="og:image" content="http://img.tidyko.com/blog/Memoryanalysis_27245_1.png">
 <meta property="og:image" content="http://img.tidyko.com/blog/Memoryanalysis_27245_2.png">
 <meta property="og:image" content="http://img.tidyko.com/blog/Memoryanalysis_27245_3.png">
-<meta property="og:updated_time" content="2018-08-31T02:30:29.802Z">
+<meta property="og:updated_time" content="2018-08-31T02:33:05.165Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="J2EE Spring redirect导致内存溢出问题">
 <meta name="twitter:description" content="最近发现线上的一个应用跑一段周期之后就会出现内存溢出问题，需要重启，所以以此分析一下原因并修复。 1.获取内存快照使用jdk自带工具jmap获取内存快照文件，如下：12345jmap -dump:format=b,file=快照保存路径 进程id如：jmap -dump:format=b,file=/opt/27245.hprof 27245 2.使用工具进行分析获取到内存快照文件27245.h">
@@ -130,7 +130,7 @@
 <h2 id="1-获取内存快照"><a href="#1-获取内存快照" class="headerlink" title="1.获取内存快照"></a>1.获取内存快照</h2><p>使用jdk自带工具jmap获取内存快照文件，如下：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">jmap -dump:format=b,file=快照保存路径 进程id</span><br><span class="line"></span><br><span class="line">如：</span><br><span class="line"></span><br><span class="line">jmap -dump:format=b,file=/opt/27245.hprof 27245</span><br></pre></td></tr></table></figure></p>
 <h2 id="2-使用工具进行分析"><a href="#2-使用工具进行分析" class="headerlink" title="2.使用工具进行分析"></a>2.使用工具进行分析</h2><p>获取到内存快照文件27245.hprof后，我们需要对此进行分析，这里使用的分析工具为<code>Eclipse Memory Analyzer Tool</code>，我们使用工具打开27245.hprof文件。</p>
 <h3 id="2-1-Main-View"><a href="#2-1-Main-View" class="headerlink" title="2.1 Main View"></a>2.1 Main View</h3><p>主界面显示有一大块内存占用高达1.3G，基本可以确定是这一块出现了问题。</p>
-<p><img src="http://img.tidyko.com/blog/Memoryanalysis_27245_1.png" alt="J2EE Spring redirect导致内存溢出问题_图例1"></p>
+<p><img src="http://img.tidyko.com/blog/Memoryanalysis_27245_1.png" alt="J2EE Spring redirect导致内存溢出问题_图例1"><br><a id="more"></a></p>
 <h3 id="2-2-Dominator-Tree"><a href="#2-2-Dominator-Tree" class="headerlink" title="2.2 Dominator Tree"></a>2.2 Dominator Tree</h3><p>继续点击主界面下面的<code>Action</code> -&gt; <code>Dominator Tree</code></p>
 <p>Dominator Tree(支配树)是一个对象图, 它将对象的引用关系转换成一种树形的对象图结构. 通过它可以很轻松地看出对象的引用关系以及哪些最大的内存使用块.</p>
 <p>点击打开之后，如下图：</p>
@@ -155,7 +155,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3c49f4b8.html" data-id="cjlhdtsr6003bx7ykci55cv7r" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/3c49f4b8.html" data-id="cjlhdvt2w003iybyk6awbcguw" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/">Spring</a></li></ul>
