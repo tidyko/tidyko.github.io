@@ -23,7 +23,7 @@
 <meta property="og:image" content="http://img.tidyko.com/blog/DockerDesktop_8.png">
 <meta property="og:image" content="http://img.tidyko.com/blog/DockerDesktop_9.png">
 <meta property="og:image" content="http://img.tidyko.com/blog/DockerDesktop_10.png">
-<meta property="og:updated_time" content="2018-09-04T13:53:22.284Z">
+<meta property="og:updated_time" content="2018-09-04T14:17:51.385Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker 搭建ELK环境">
 <meta name="twitter:description" content="Mac使用Docker搭建便捷的ELK环境。 1.获取ELK镜像.1234567891011# tidy @ TidydeMBP in ~ [10:02:28]$ sudo docker pull sebp/elkPassword:Using default tag: latestlatest: Pulling from sebp/elk281a73dee007: Pulling fs layer">
@@ -120,11 +120,11 @@
 
   &nbsp; | &nbsp;
   <div class="view-box">
-    <span>字数 3,763</span>
+    <span>字数 3,775</span>
   </div>
   &nbsp; | &nbsp;
   <div class="view-box">
-    <span>时长 ≈ 20 分钟</span>
+    <span>时长 ≈ 21 分钟</span>
   </div>
  
           
@@ -139,7 +139,7 @@
 <h4 id="2-1-1-使用Docker-Compose"><a href="#2-1-1-使用Docker-Compose" class="headerlink" title="2.1.1.使用Docker Compose"></a>2.1.1.使用Docker Compose</h4><p>编写docker-compose.yml文件<br><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">elk:</span></span><br><span class="line"><span class="attr">  image:</span> <span class="string">sebp/elk</span></span><br><span class="line"><span class="attr">  ports:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">"5601:5601"</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">"9200:9200"</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">"5044:5044"</span></span><br></pre></td></tr></table></figure></p>
 <p>然后运行以下命令：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo docker-compose up elk</span></span><br></pre></td></tr></table></figure></p>
 <h3 id="2-2-使用kiteMatic"><a href="#2-2-使用kiteMatic" class="headerlink" title="2.2.使用kiteMatic"></a>2.2.使用kiteMatic</h3><a id="more"></a>
-<h4 id="2-2-1-创建ELK镜像"><a href="#2-2-1-创建ELK镜像" class="headerlink" title="2.2.1.创建ELK镜像"></a>2.2.1.创建ELK镜像</h4><p>安装<code>Docker Desktop</code>,在里面安装<code>kiteMatic</code>,入下图，点击后根据提示下载安装包拖到/Applications即可。</p>
+<h4 id="2-2-1-创建ELK镜像"><a href="#2-2-1-创建ELK镜像" class="headerlink" title="2.2.1.创建ELK镜像"></a>2.2.1.创建ELK镜像</h4><p>安装<code>Docker Desktop</code>，在里面安装<code>kiteMatic</code>，如下图，点击后根据提示下载安装包拖到/Applications即可。</p>
 <p><img src="http://img.tidyko.com/blog/DockerDesktop_1.png" alt="Docker 搭建ELK环境-图例1"><br>完成之后打开<code>Kitematic</code>，给刚刚拉下来的ELK镜像创建新容器。</p>
 <p>点击<code>new</code>按钮 -&gt; 点击<code>My Images</code> -&gt; 找到<code>elk</code>镜像 -&gt; 点击<code>CREATE</code>创建镜像。</p>
 <p>界面操作如下：<br><img src="http://img.tidyko.com/blog/DockerDesktop_2.png" alt="Docker 搭建ELK环境-图例2"></p>
@@ -193,11 +193,13 @@
 <h2 id="6-配置Kibana的Index-Patterns"><a href="#6-配置Kibana的Index-Patterns" class="headerlink" title="6.配置Kibana的Index Patterns"></a>6.配置Kibana的Index Patterns</h2><p>过滤完的数据顺利存入es之后，我们通过Kibana创建Index Patterns，来查看数据。</p>
 <h3 id="6-1-配置Index-Patterns"><a href="#6-1-配置Index-Patterns" class="headerlink" title="6.1.配置Index Patterns"></a>6.1.配置Index Patterns</h3><p>打开 <a href="http://localhost:5601" target="_blank" rel="noopener">Kibana’s web interface</a> ，然后点击<code>Management</code> -&gt; <code>Kibana Index Patterns</code> -&gt; <code>Create Index Pattern</code> -&gt; 在文本框输入<code>interface-*</code> -&gt; 点击<code>&gt; Next step</code> -&gt; 选择下拉框@timestamp -&gt; 最后点击<code>Create index pattern</code>按钮</p>
 <p>这样就完成了索引模式的创建，最后我们点击<code>Discover</code>就可以看到我们的索引模式了。<br><img src="http://img.tidyko.com/blog/DockerDesktop_10.png" alt="Docker 搭建ELK环境-图例10"></p>
+<h2 id="7-参考"><a href="#7-参考" class="headerlink" title="7.参考"></a>7.参考</h2><p><a href="https://hub.docker.com/r/sebp/elk/" target="_blank" rel="noopener">sebp/elk</a></p>
+<p><a href="https://elk-docker.readthedocs.io/" target="_blank" rel="noopener">Elasticsearch, Logstash, Kibana (ELK) Docker image documentation</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/a5557ea7.html" data-id="cjlnryrr0000f5hyk2uf2xao2" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/a5557ea7.html" data-id="cjlnswuxt000kl1yk087a4cvs" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/">Docker</a></li></ul>
