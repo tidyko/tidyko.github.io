@@ -41,9 +41,9 @@
     <h2 class="author">豪快二突撃スル</h2>
     <h3 class="description">javaer</h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>117</strong><br>文章</div></a>
-      <a href="/categories"><div><strong>41</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>78</strong><br>标签</div></a>
+      <a href="/archives"><div><strong>118</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>42</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>79</strong><br>标签</div></a>
     </div>
     <ul class="blog-link">
      
@@ -68,6 +68,82 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-J2EE Shiro 调用doGetAuthenticationInfo进行认证成功之后，isAuthenticated是false的问题" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/b014d2be.html" class="article-date">
+  <time class="post-time" datetime="2017-10-11T02:11:00.000Z" itemprop="datePublished">
+    <span class="post-month">10月</span><br/>
+    <span class="post-day">11</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/b014d2be.html">J2EE Shiro 调用doGetAuthenticationInfo进行认证成功之后，isAuthenticated是false的问题</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/b014d2be.html" class="leancloud_visitors" data-flag-title="J2EE Shiro 调用doGetAuthenticationInfo进行认证成功之后，isAuthenticated是false的问题">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 335</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 2 分钟</span>
+  </div>
+ 
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>SpringBoot项目使用 <code>@Configuration</code> 配置shiro无状态登录时出现的问题，在subject.login之后当前线程重新绑定了一个假定subject，isAuthenticated。</p>
+<p>这里自定义的访问拦截器的创建需要放在shiroFilter之后，如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  * Shiro 的 Web 过滤器链</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"><span class="meta">@Bean</span>(<span class="string">"shiroFilter"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> ShiroFilterFactoryBean <span class="title">shiroFilter</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    ShiroFilterFactoryBean filter = <span class="keyword">new</span> ShiroFilterFactoryBean();</span><br><span class="line">    filter.setSecurityManager(securityManager());</span><br><span class="line"> </span><br><span class="line">    Map&lt;String, Filter&gt; filters = <span class="keyword">new</span> LinkedHashMap&lt;String, Filter&gt;();</span><br><span class="line">    <span class="comment">// 无状态授权器</span></span><br><span class="line">    filters.put(<span class="string">"statelessAuthc"</span>, statelessAuthcFilter());</span><br><span class="line">    filter.setFilters(filters);</span><br><span class="line"> </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 配置shiro拦截器链</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="comment">// filterChainDefinitionMap 必须是 LinkedHashMap 因为它必须保证有序</span></span><br><span class="line">    Map&lt;String, String&gt; chain = <span class="keyword">new</span> LinkedHashMap&lt;String, String&gt;();</span><br><span class="line">    <span class="comment">// anon-表示可以匿名访问， authc-表示需要认证才可以访问</span></span><br><span class="line">    <span class="comment">// 因为禁用了 Session，所以这里不能使用 authc 了，否则会报 DisabledSessionException 异常</span></span><br><span class="line">    chain.put(<span class="string">"/services/*"</span>, <span class="string">"statelessAuthc"</span>);</span><br><span class="line">    chain.put(<span class="string">"/**"</span>, <span class="string">"anon"</span>);</span><br><span class="line">    filter.setFilterChainDefinitionMap(chain);</span><br><span class="line">    <span class="keyword">return</span> filter;</span><br><span class="line">&#125;</span><br><span class="line">     </span><br><span class="line"><span class="comment">// 访问控制过滤器</span></span><br><span class="line"><span class="comment">// &lt;bean id="authcFilter" class="cn.tisson.upms.client.shiro.filter.StatelessAccessControlFilter"/&gt;</span></span><br><span class="line"> </span><br><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> AccessControlFilter <span class="title">statelessAuthcFilter</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> StatelessAccessControlFilter();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>如果使用xml配置是不需要注意前后位置的。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"statelessAuthcFilter"</span> <span class="attr">class</span>=<span class="string">"cn.tisson.upms.client.shiro.filter.UpmsStatelessAuthcFilter"</span>/&gt;</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">&lt;!-- Shiro的Web过滤器 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"shiroFilter"</span> <span class="attr">class</span>=<span class="string">"org.apache.shiro.spring.web.ShiroFilterFactoryBean"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"securityManager"</span> <span class="attr">ref</span>=<span class="string">"securityManager"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"filters"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">util:map</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">entry</span> <span class="attr">key</span>=<span class="string">"statelessAuthc"</span> <span class="attr">value-ref</span>=<span class="string">"statelessAuthcFilter"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">util:map</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"filterChainDefinitions"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span></span><br><span class="line">            /services/*=statelessAuthc</span><br><span class="line">            /**=anon</span><br><span class="line">        <span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/b014d2be.html" data-id="cjlnryrui003h5hykp6dkmjhk" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Shiro/">Shiro</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringBoot/">SpringBoot</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
   
     <article id="post-Java ExecutorService与quartz搭配出现的问题" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -133,7 +209,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/b0fc798c.html" data-id="cjllzb9ed0053s2ykqe4isfim" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/b0fc798c.html" data-id="cjlnryrwc005c5hykk82o78l4" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/quzrtz/">quzrtz</a></li></ul>
@@ -208,7 +284,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/10937fe4.html" data-id="cjllzb9f6005ys2ykl9cl7fb1" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/10937fe4.html" data-id="cjlnryrwz00605hykjg7egzlw" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jenkins/">Jenkins</a></li></ul>
@@ -288,7 +364,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/ba8658f2.html" data-id="cjllzb9h2007ss2ykdgaloqli" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/ba8658f2.html" data-id="cjlnryryl007t5hyke5hxc26a" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mysql/">Mysql</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Navicat-Premium/">Navicat Premium</a></li></ul>
@@ -368,7 +444,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/95c8a77e.html" data-id="cjllzb9fi0063s2yk59o6ksv5" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/95c8a77e.html" data-id="cjlnryrx200635hykd9zrgma0" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Kafka/">Kafka</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/队列/">队列</a></li></ul>
@@ -455,7 +531,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/a4bec044.html" data-id="cjllzb9g3006ys2yk1uxyiqps" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/a4bec044.html" data-id="cjlnryrxv00725hyk4xd93o75" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
@@ -531,7 +607,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/6966e243.html" data-id="cjllzb9fx006qs2yka0prflqk" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/6966e243.html" data-id="cjlnryrxe006j5hykb4sqru38" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
@@ -611,7 +687,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/b3c1b12f.html" data-id="cjllzb9iz009us2ykwautp7vr" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/b3c1b12f.html" data-id="cjlnrys0r009v5hyk4uzxrme0" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VirtualBox/">VirtualBox</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络配置/">网络配置</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/虚拟机/">虚拟机</a></li></ul>
@@ -692,7 +768,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/20e9a4b.html" data-id="cjllzb9fu006ms2yk2ca47w2s" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/20e9a4b.html" data-id="cjlnryrxq006v5hykhy3o3dhp" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Shell/">Shell</a></li></ul>
@@ -768,85 +844,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/58d69454.html" data-id="cjllzb9g0006us2ykp09wj4mo" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/58d69454.html" data-id="cjlnryrxm006r5hyk87te7r0m" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tomcat/">Tomcat</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-Dubbo 一些应用和实践" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/9f6836b6.html" class="article-date">
-  <time class="post-time" datetime="2017-03-16T07:42:00.000Z" itemprop="datePublished">
-    <span class="post-month">3月</span><br/>
-    <span class="post-day">16</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/9f6836b6.html">Dubbo 一些应用和实践</a>
-    </h1>
-  
-
-        <div>
-          
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
-  </div>
-
-          
-              
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/9f6836b6.html" class="leancloud_visitors" data-flag-title="Dubbo 一些应用和实践">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 73</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 1 分钟</span>
-  </div>
- 
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>使用消费者使用dubbo时需要依赖提供者的jar包，这时候应该使用mvn install将提供者包安装到本地仓库，这样消费者就可以直接使用jar包了。</p>
-<p>子父项目类型结构时，通常直接install父项目即可。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/9f6836b6.html" data-id="cjllzb97k000fs2ykqcsqxkmo" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Dubbo/">Dubbo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Maven/">Maven</a></li></ul>
 
     </footer>
   </div>
@@ -903,9 +904,9 @@
     <h2 class="author">豪快二突撃スル</h2>
     <h3 class="description">javaer</h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>117</strong><br>文章</div></a>
-      <a href="/categories"><div><strong>41</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>78</strong><br>标签</div></a>
+      <a href="/archives"><div><strong>118</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>42</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>79</strong><br>标签</div></a>
     </div>
 
 
