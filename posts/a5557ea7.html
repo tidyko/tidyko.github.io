@@ -27,7 +27,7 @@
 <meta property="og:image" content="http://img.tidyko.com/blog/DockerDesktop_9.png">
 <meta property="og:image" content="http://img.tidyko.com/blog/DockerDesktop_10.png">
 <meta property="og:image" content="http://img.tidyko.com/blog/DockerDesktop_14.png">
-<meta property="og:updated_time" content="2018-09-05T07:18:10.884Z">
+<meta property="og:updated_time" content="2018-09-05T07:35:21.589Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker 搭建ELK环境">
 <meta name="twitter:description" content="Mac使用Docker搭建便捷的ELK环境。 ELK + redis 使用docker搭建，FileBeat由具体应用机进行搭建。 架构如下：  1.获取ELK镜像.1234567891011# tidy @ TidydeMBP in ~ [10:02:28]$ sudo docker pull sebp/elkPassword:Using default tag: latestlatest: P">
@@ -157,8 +157,7 @@
 <p>界面操作如下：<br><img src="http://img.tidyko.com/blog/DockerDesktop_3.png" alt="Docker 搭建ELK环境-图例4"></p>
 <p>修改完之后点击<code>SAVE</code>按钮，保存设置，等待容器重启应用设置。<br>就可以通过默认端口访问对应服务了。</p>
 <p>Kibana web interface: <a href="http://localhost:5601/app/kibana#/home?_g=()" target="_blank" rel="noopener">http://localhost:5601/app/kibana#/home?_g=()</a><br>Elasticsearch JSON interface：<a href="http://localhost:9200/" target="_blank" rel="noopener">http://localhost:9200/</a><br>Logstash Beats interface：<a href="http://localhost:5044" target="_blank" rel="noopener">http://localhost:5044</a></p>
-<p>## 3.创建虚拟日志条目</p>
-<h3 id="3-1-进入容器bash"><a href="#3-1-进入容器bash" class="headerlink" title="3.1.进入容器bash"></a>3.1.进入容器bash</h3><h4 id="3-1-1-使用命令行"><a href="#3-1-1-使用命令行" class="headerlink" title="3.1.1.使用命令行"></a>3.1.1.使用命令行</h4><p>可以使用以下命令获取正在运行的docker容器。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> tidy @ TidydeMBP <span class="keyword">in</span> ~ [14:48:22] C:1</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> docker ps</span></span><br><span class="line">CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                                                                                            NAMES</span><br><span class="line">491409ca8e44        sebp/elk:latest     "/usr/local/bin/st..."   3 hours ago         Up 3 hours          0.0.0.0:5044-&gt;5044/tcp, 0.0.0.0:5601-&gt;5601/tcp, 0.0.0.0:9200-&gt;9200/tcp, 0.0.0.0:9300-&gt;9300/tcp   elk</span><br></pre></td></tr></table></figure></p>
+<h2 id="3-创建虚拟日志条目"><a href="#3-创建虚拟日志条目" class="headerlink" title="3.创建虚拟日志条目"></a>3.创建虚拟日志条目</h2><h3 id="3-1-进入容器bash"><a href="#3-1-进入容器bash" class="headerlink" title="3.1.进入容器bash"></a>3.1.进入容器bash</h3><h4 id="3-1-1-使用命令行"><a href="#3-1-1-使用命令行" class="headerlink" title="3.1.1.使用命令行"></a>3.1.1.使用命令行</h4><p>可以使用以下命令获取正在运行的docker容器。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> tidy @ TidydeMBP <span class="keyword">in</span> ~ [14:48:22] C:1</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> docker ps</span></span><br><span class="line">CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                                                                                            NAMES</span><br><span class="line">491409ca8e44        sebp/elk:latest     "/usr/local/bin/st..."   3 hours ago         Up 3 hours          0.0.0.0:5044-&gt;5044/tcp, 0.0.0.0:5601-&gt;5601/tcp, 0.0.0.0:9200-&gt;9200/tcp, 0.0.0.0:9300-&gt;9300/tcp   elk</span><br></pre></td></tr></table></figure></p>
 <p>然后进入容器bash，格式如下：</p>
 <p>$ docker exec -it <container-name> /bin/bash</container-name></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> tidy @ TidydeMBP <span class="keyword">in</span> ~ [14:56:54]</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> docker <span class="built_in">exec</span> -it elk /bin/bash</span></span><br><span class="line">root@4ae9e2a871fa:/#</span><br></pre></td></tr></table></figure>
@@ -235,7 +234,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/a5557ea7.html" data-id="cjlot9qol000dusykby3w53mm" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/a5557ea7.html" data-id="cjlotvwds000c0yykfro2cu9g" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/">Docker</a></li></ul>
