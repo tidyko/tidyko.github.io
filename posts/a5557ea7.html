@@ -23,7 +23,7 @@
 <meta property="og:image" content="http://img.tidyko.com/blog/DockerDesktop_8.png">
 <meta property="og:image" content="http://img.tidyko.com/blog/DockerDesktop_9.png">
 <meta property="og:image" content="http://img.tidyko.com/blog/DockerDesktop_10.png">
-<meta property="og:updated_time" content="2018-09-04T14:17:51.385Z">
+<meta property="og:updated_time" content="2018-09-05T02:43:21.377Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker 搭建ELK环境">
 <meta name="twitter:description" content="Mac使用Docker搭建便捷的ELK环境。 1.获取ELK镜像.1234567891011# tidy @ TidydeMBP in ~ [10:02:28]$ sudo docker pull sebp/elkPassword:Using default tag: latestlatest: Pulling from sebp/elk281a73dee007: Pulling fs layer">
@@ -120,7 +120,7 @@
 
   &nbsp; | &nbsp;
   <div class="view-box">
-    <span>字数 3,775</span>
+    <span>字数 3,777</span>
   </div>
   &nbsp; | &nbsp;
   <div class="view-box">
@@ -135,9 +135,9 @@
       
         <p>Mac使用Docker搭建便捷的ELK环境。</p>
 <h2 id="1-获取ELK镜像"><a href="#1-获取ELK镜像" class="headerlink" title="1.获取ELK镜像."></a>1.获取ELK镜像.</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> tidy @ TidydeMBP <span class="keyword">in</span> ~ [10:02:28]</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> sudo docker pull sebp/elk</span></span><br><span class="line">Password:</span><br><span class="line">Using default tag: latest</span><br><span class="line">latest: Pulling from sebp/elk</span><br><span class="line">281a73dee007: Pulling fs layer</span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line">Digest: sha256:94c4aa7f9bfe0fe7047f20e1c747ac19538605f8ea0bbe401c7bed923614905e</span><br><span class="line">Status: Downloaded newer image for sebp/elk:latest</span><br></pre></td></tr></table></figure>
-<h2 id="2-创建并运行ELK容器"><a href="#2-创建并运行ELK容器" class="headerlink" title="2.创建并运行ELK容器"></a>2.创建并运行ELK容器</h2><h3 id="2-1-使用命令行"><a href="#2-1-使用命令行" class="headerlink" title="2.1.使用命令行"></a>2.1.使用命令行</h3><h4 id="2-1-1-使用命令行参数"><a href="#2-1-1-使用命令行参数" class="headerlink" title="2.1.1.使用命令行参数"></a>2.1.1.使用命令行参数</h4><p>使用下面命令创建并启动一个elk容器，并映射宿主机端口。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo docker run -p 5601:5601 -p 9200:9200 -p 5044:5044 -it --name elk sebp/elk</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="2-创建并运行ELK容器"><a href="#2-创建并运行ELK容器" class="headerlink" title="2.创建并运行ELK容器"></a>2.创建并运行ELK容器</h2><h3 id="2-1-使用命令行"><a href="#2-1-使用命令行" class="headerlink" title="2.1.使用命令行"></a>2.1.使用命令行</h3><h4 id="2-1-1-使用命令行参数"><a href="#2-1-1-使用命令行参数" class="headerlink" title="2.1.1.使用命令行参数"></a>2.1.1.使用命令行参数</h4><p>使用下面命令创建并启动一个elk容器，并映射宿主机端口。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo docker run -d -p 5601:5601 -p 9200:9200 -p 5044:5044 -it --name elk sebp/elk</span></span><br></pre></td></tr></table></figure></p>
 <h4 id="2-1-1-使用Docker-Compose"><a href="#2-1-1-使用Docker-Compose" class="headerlink" title="2.1.1.使用Docker Compose"></a>2.1.1.使用Docker Compose</h4><p>编写docker-compose.yml文件<br><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">elk:</span></span><br><span class="line"><span class="attr">  image:</span> <span class="string">sebp/elk</span></span><br><span class="line"><span class="attr">  ports:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">"5601:5601"</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">"9200:9200"</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">"5044:5044"</span></span><br></pre></td></tr></table></figure></p>
-<p>然后运行以下命令：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo docker-compose up elk</span></span><br></pre></td></tr></table></figure></p>
+<p>然后运行以下命令：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo docker-compose -d up elk</span></span><br></pre></td></tr></table></figure></p>
 <h3 id="2-2-使用kiteMatic"><a href="#2-2-使用kiteMatic" class="headerlink" title="2.2.使用kiteMatic"></a>2.2.使用kiteMatic</h3><a id="more"></a>
 <h4 id="2-2-1-创建ELK镜像"><a href="#2-2-1-创建ELK镜像" class="headerlink" title="2.2.1.创建ELK镜像"></a>2.2.1.创建ELK镜像</h4><p>安装<code>Docker Desktop</code>，在里面安装<code>kiteMatic</code>，如下图，点击后根据提示下载安装包拖到/Applications即可。</p>
 <p><img src="http://img.tidyko.com/blog/DockerDesktop_1.png" alt="Docker 搭建ELK环境-图例1"><br>完成之后打开<code>Kitematic</code>，给刚刚拉下来的ELK镜像创建新容器。</p>
@@ -199,7 +199,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/a5557ea7.html" data-id="cjlnswuxt000kl1yk087a4cvs" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/a5557ea7.html" data-id="cjlojgc2w000cgryk5cxue96h" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/">Docker</a></li></ul>
