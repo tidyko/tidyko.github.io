@@ -1537,6 +1537,7 @@ a.article-title:hover {
   background-color: rgba(255,255,255,0.9);
   padding: 20px 0px;
   border-radius: 5px;
+  margin: 50px 0;
 }
 #article-nav:before,
 #article-nav:after {
@@ -1547,9 +1548,6 @@ a.article-title:hover {
   clear: both;
 }
 @media screen and (min-width: 980px) {
-  #article-nav {
-    margin: 50px 0;
-  }
   #article-nav:before {
     width: 8px;
     height: 8px;
