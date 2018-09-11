@@ -1591,6 +1591,11 @@ a.article-title:hover {
     padding-right: 20px;
   }
 }
+@media screen and (max-width: 479px) {
+  #article-nav-newer {
+    margin-top: 0;
+  }
+}
 @media screen and (min-width: 980px) {
   #article-nav-older {
     float: right;
