@@ -41,7 +41,7 @@
     <h2 class="author">豪快二突撃スル</h2>
     <h3 class="description">javaer</h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>118</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>119</strong><br>文章</div></a>
       <a href="/categories"><div><strong>42</strong><br>分类</div></a>
       <a href="/tags"><div><strong>79</strong><br>标签</div></a>
     </div>
@@ -68,6 +68,84 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-Redis DENIED Redis is running in protected mode" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/fd3cd277.html" class="article-date">
+  <time class="post-time" datetime="2017-10-17T01:30:00.000Z" itemprop="datePublished">
+    <span class="post-month">10月</span><br/>
+    <span class="post-day">17</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/fd3cd277.html">Redis DENIED Redis is running in protected mode</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/中间件/">中间件</a>,<a class="article-category-link" href="/categories/中间件/Redis/">Redis</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/fd3cd277.html" class="leancloud_visitors" data-flag-title="Redis DENIED Redis is running in protected mode">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 96</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 1 分钟</span>
+  </div>
+ 
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1）修改redis服务器的配置文件"><a href="#1）修改redis服务器的配置文件" class="headerlink" title="1）修改redis服务器的配置文件"></a>1）修改redis服务器的配置文件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vi redis.conf    </span><br><span class="line">  </span><br><span class="line">注释以下绑定的主机地址  </span><br><span class="line"><span class="meta">#</span><span class="bash"> <span class="built_in">bind</span> 127.0.0.1</span></span><br></pre></td></tr></table></figure>
+<h3 id="2）修改redis服务器的参数配置"><a href="#2）修改redis服务器的参数配置" class="headerlink" title="2）修改redis服务器的参数配置"></a>2）修改redis服务器的参数配置</h3><p>修改redis的守护进程为no ，不启用<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; config set daemonize "no"  </span><br><span class="line">OK</span><br></pre></td></tr></table></figure></p>
+<p>修改redis的保护模式为no，不启用<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; config set protected-mode "no"  </span><br><span class="line">OK</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/fd3cd277.html" data-id="cjm0aq5he0093n5ykc37cukr2" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Redis/">Redis</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
   
     <article id="post-J2EE Shiro 调用doGetAuthenticationInfo进行认证成功之后，isAuthenticated是false的问题" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -129,7 +207,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/b014d2be.html" data-id="cjlyjadr1003p1rykx3wyxq5s" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/b014d2be.html" data-id="cjm0aq5bu003ln5yku1khqmq0" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Shiro/">Shiro</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringBoot/">SpringBoot</a></li></ul>
@@ -211,7 +289,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/b0fc798c.html" data-id="cjlyjadsg00541rykq2i20ayn" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/b0fc798c.html" data-id="cjm0aq5dd0058n5ykiz3gfadq" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/quzrtz/">quzrtz</a></li></ul>
@@ -288,7 +366,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/10937fe4.html" data-id="cjlyjadtl00601rykqhobkcpj" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/10937fe4.html" data-id="cjm0aq5eh0061n5ykkp4vn60n" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jenkins/">Jenkins</a></li></ul>
@@ -370,7 +448,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/ba8658f2.html" data-id="cjlyjadv8007l1rykbzhdb512" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/ba8658f2.html" data-id="cjm0aq5g6007un5yk2qypoqdt" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mysql/">Mysql</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Navicat-Premium/">Navicat Premium</a></li></ul>
@@ -452,7 +530,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/95c8a77e.html" data-id="cjlyjadtr00671rykzour8k9m" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/95c8a77e.html" data-id="cjm0aq5eu006hn5ykeouk9j63" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Kafka/">Kafka</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/队列/">队列</a></li></ul>
@@ -541,7 +619,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/a4bec044.html" data-id="cjlyjaduq006z1ryk2hbw4fhr" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/a4bec044.html" data-id="cjm0aq5fq007an5ykcjl071fl" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
@@ -619,7 +697,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/6966e243.html" data-id="cjlyjadu9006r1rykvcf3xkr0" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/6966e243.html" data-id="cjm0aq5f1006on5ykwpyflmj0" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
@@ -701,7 +779,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/b3c1b12f.html" data-id="cjlyjadxf009q1rykx0mtzuv8" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/b3c1b12f.html" data-id="cjm0aq5i800a0n5yk3w20pe7n" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VirtualBox/">VirtualBox</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络配置/">网络配置</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/虚拟机/">虚拟机</a></li></ul>
@@ -784,88 +862,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/20e9a4b.html" data-id="cjlyjadu1006j1rykxskyhb7j" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/20e9a4b.html" data-id="cjm0aq5fg0070n5ykju9aou7o" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Shell/">Shell</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-Linux 启动Tomcat遇到Neither the JAVA_HOME nor the JRE_HOME environment variable is defined" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/58d69454.html" class="article-date">
-  <time class="post-time" datetime="2017-03-21T07:55:00.000Z" itemprop="datePublished">
-    <span class="post-month">3月</span><br/>
-    <span class="post-day">21</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/58d69454.html">Linux 启动Tomcat遇到Neither the JAVA_HOME nor the JRE_HOME environment variable is defined</a>
-    </h1>
-  
-
-        <div>
-          
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/服务器/">服务器</a>,<a class="article-category-link" href="/categories/服务器/Linux/">Linux</a>
-  </div>
-
-          
-              
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/58d69454.html" class="leancloud_visitors" data-flag-title="Linux 启动Tomcat遇到Neither the JAVA_HOME nor the JRE_HOME environment variable is defined">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 56</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 1 分钟</span>
-  </div>
- 
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>找不到JAVA_HOME路径，需要做以下变更：</p>
-<p>找到启动路径所在的目录：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd bin/</span><br><span class="line">vi catalina.sh</span><br></pre></td></tr></table></figure></p>
-<p>加入以下信息：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export  JAVA_HOME=/home/gongzi/http/jdk1.6.0_26</span><br><span class="line">export  JRE_HOME=/home/gongzi/http/jdk1.6.0_26/jre</span><br></pre></td></tr></table></figure></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/58d69454.html" data-id="cjlyjadue006v1rykpdw4foef" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tomcat/">Tomcat</a></li></ul>
 
     </footer>
   </div>
@@ -924,7 +924,7 @@
     <h2 class="author">豪快二突撃スル</h2>
     <h3 class="description">javaer</h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>118</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>119</strong><br>文章</div></a>
       <a href="/categories"><div><strong>42</strong><br>分类</div></a>
       <a href="/tags"><div><strong>79</strong><br>标签</div></a>
     </div>

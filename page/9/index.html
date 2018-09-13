@@ -41,7 +41,7 @@
     <h2 class="author">豪快二突撃スル</h2>
     <h3 class="description">javaer</h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>118</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>119</strong><br>文章</div></a>
       <a href="/categories"><div><strong>42</strong><br>分类</div></a>
       <a href="/tags"><div><strong>79</strong><br>标签</div></a>
     </div>
@@ -68,6 +68,89 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-J2EE CGI与Servlet技术对比" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/2db10ac8.html" class="article-date">
+  <time class="post-time" datetime="2014-05-29T02:23:00.000Z" itemprop="datePublished">
+    <span class="post-month">5月</span><br/>
+    <span class="post-day">29</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/2db10ac8.html">J2EE CGI与Servlet技术对比</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/2db10ac8.html" class="leancloud_visitors" data-flag-title="J2EE CGI与Servlet技术对比">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 794</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 3 分钟</span>
+  </div>
+ 
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>CGI：Common Gateway Interface，通用网关接口。</p>
+<h2 id="1）CGI处理步骤"><a href="#1）CGI处理步骤" class="headerlink" title="1）CGI处理步骤"></a>1）CGI处理步骤</h2><p>首先，客户端（即Web浏览器）根据某资源的URL向Web服务器提出请求；Web服务器的守护进程（HTTP Daemon）将此请求的参数通过标准输入和环境变量传递给指定的CGI程序，并启动此应用程序进行处理，如要存取数据库服务器上数据库的数据，则向数据库服务器发出处理请求，数据库服务器将执行结果返回给CGI程序，CGI程序把处理结果通过标准输出返回给HTTP Daemon进程，再由HTTP Daemon进程返回给客户端，由浏览器解释执行，将最终结果在用户面前显示。</p>
+<h2 id="2）Servlet与CGI的比较"><a href="#2）Servlet与CGI的比较" class="headerlink" title="2）Servlet与CGI的比较"></a>2）Servlet与CGI的比较</h2><p>和CGI程序一样，Servlet可以响应用户的指令(提交一个FORM等等)，也可以象CGI程序一样，收集用户表单的信息并给予动态反馈(简单的注册信息录入和检查错误)。</p>
+<p>然而，Servlet的机制并不仅仅是这样简单的与用户表单进行交互。传统技术中，动态的网页建立和显示都是通过CGI来实现的，但是，有了Servlet,您可以大胆的放弃所有CGI(perl?php?甚至asp!)，利用Servlet代替CGI,进行程序编写。</p>
+<h3 id="对比一："><a href="#对比一：" class="headerlink" title="对比一："></a>对比一：</h3><p>当用户浏览器发出一个Http/CGI的请求，或者说调用一个CGI程序的时候，服务器端就要新启用一个进程(而且是每次都要调用)，调用CGI程序越多(特别是访问量高的时候)，就要消耗系统越多的处理时间，只剩下越来越少的系统资源，对于用户来说，只能是漫长的等待服务器端的返回页面了，这对于电子商务激烈发展的今天来说，不能不说是一种技术上的遗憾。</p>
+<p>而Servlet充分发挥了服务器端的资源并高效的利用。每次调用Servlet时并不是新启用一个进程，而是在一个Web服务器的进程中共享和分离线程，而线程最大的好处在于可以共享一个数据源，使系统资源被有效利用。</p>
+<h3 id="对比二："><a href="#对比二：" class="headerlink" title="对比二："></a>对比二：</h3><p>传统的CGI程序，不具备平台无关性特征，系统环境发生变化，CGI程序就要瘫痪，而Servlet具备Java的平台无关性，在系统开发过程中保持了系统的可扩展性、高效性。</p>
+<h3 id="对比三："><a href="#对比三：" class="headerlink" title="对比三："></a>对比三：</h3><p>传统技术中，一般大都为二层的系统架构，即Web服务器+数据库服务器，导致网站访问量大的时候，无法克服CGI程序与数据库建立连接时速度慢的瓶颈，从而死机、数据库死锁现象频繁发生。而我们的Servlet有连接池的概念，它可以利用多线程的优点，在系统缓存中事先建立好若干与数据库的连接，到时候若想和数据库打交道可以随时跟系统”要”一个连接即可，反应速度可想而知。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/2db10ac8.html" data-id="cjm0aq5b40033n5ykys1v4n1f" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CGI/">CGI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Servlet/">Servlet</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
   
     <article id="post-JS 使用eval()出现missing after property id 错误" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -128,7 +211,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/f7958de1.html" data-id="cjlyjads1004o1rykx6hnpmcw" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/f7958de1.html" data-id="cjm0aq5cz004sn5yk15ehvtbm" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
@@ -208,7 +291,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/6aab53f1.html" data-id="cjlyjadrh00441rykudivqbvb" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/6aab53f1.html" data-id="cjm0aq5cg0044n5ykw2xr0ojv" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
@@ -336,7 +419,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/127fa2a9.html" data-id="cjlyjadwa008r1ryk84kclg5j" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/127fa2a9.html" data-id="cjm0aq5hn009cn5ykbr1thw03" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Oracle/">Oracle</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sql/">Sql</a></li></ul>
@@ -412,7 +495,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/e547806a.html" data-id="cjlyjadvy008h1ryko8fxqwdl" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/e547806a.html" data-id="cjm0aq5gl008dn5yk4xna62pm" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Oracle/">Oracle</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sql/">Sql</a></li></ul>
@@ -488,7 +571,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/52ddf350.html" data-id="cjlyjadrl00481ryk123c0v1t" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/52ddf350.html" data-id="cjm0aq5ct004kn5ykxlv8se4v" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ajax/">Ajax</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JQuery/">JQuery</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
@@ -563,7 +646,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/8e7d3f9d.html" data-id="cjlyjadro004c1rykz4k1au22" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/8e7d3f9d.html" data-id="cjm0aq5cj0049n5ykqh1y5ffx" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
@@ -646,7 +729,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/e175267.html" data-id="cjlyjadpj00271ryk5gimlcgf" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/e175267.html" data-id="cjm0aq5ac0028n5ykh75hd96v" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hibernate/">Hibernate</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
@@ -723,7 +806,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/363cca5c.html" data-id="cjlyjadvk00811rykzvujdjcc" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/363cca5c.html" data-id="cjm0aq5gi008an5ykrguq2i8o" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Oracle/">Oracle</a></li></ul>
@@ -802,86 +885,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/4bb3b075.html" data-id="cjlyjado200121ryk1y5m6qjc" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/4bb3b075.html" data-id="cjm0aq58x0013n5yk1c4rd0gy" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-CSS 标签样式中多出了element.style" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/229e30de.html" class="article-date">
-  <time class="post-time" datetime="2014-03-18T02:37:00.000Z" itemprop="datePublished">
-    <span class="post-month">3月</span><br/>
-    <span class="post-day">18</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/229e30de.html">CSS 标签样式中多出了element.style</a>
-    </h1>
-  
-
-        <div>
-          
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/CSS/">CSS</a>
-  </div>
-
-          
-              
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/229e30de.html" class="leancloud_visitors" data-flag-title="CSS 标签样式中多出了element.style">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 15</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 1 分钟</span>
-  </div>
- 
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>是因为使用了js增加或修改了样式。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/229e30de.html" data-id="cjlyjadmn000b1rykvtmq7y6c" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
 
     </footer>
   </div>
@@ -940,7 +947,7 @@
     <h2 class="author">豪快二突撃スル</h2>
     <h3 class="description">javaer</h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>118</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>119</strong><br>文章</div></a>
       <a href="/categories"><div><strong>42</strong><br>分类</div></a>
       <a href="/tags"><div><strong>79</strong><br>标签</div></a>
     </div>
