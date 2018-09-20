@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="TIDY的个人博客">
 <meta property="og:description" content="假用如下数据演示awk。1234567891011121314151617181920$ cat netstat.txtProto Recv-Q Send-Q Local-Address          Foreign-Address             Statetcp        0      0 0.0.0.0:3306           0.0.0.0:*">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-09-20T08:58:18.250Z">
+<meta property="og:updated_time" content="2018-09-20T09:51:25.750Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux awk">
 <meta name="twitter:description" content="假用如下数据演示awk。1234567891011121314151617181920$ cat netstat.txtProto Recv-Q Send-Q Local-Address          Foreign-Address             Statetcp        0      0 0.0.0.0:3306           0.0.0.0:*">
@@ -109,7 +109,7 @@
 
   &nbsp; | &nbsp;
   <div class="view-box">
-    <span>字数 2,828</span>
+    <span>字数 2,819</span>
   </div>
   &nbsp; | &nbsp;
   <div class="view-box">
@@ -124,12 +124,62 @@
       
         <p>假用如下数据演示awk。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> cat netstat.txt</span></span><br><span class="line">Proto Recv-Q Send-Q Local-Address          Foreign-Address             State</span><br><span class="line">tcp        0      0 0.0.0.0:3306           0.0.0.0:*                   LISTEN</span><br><span class="line">tcp        0      0 0.0.0.0:80             0.0.0.0:*                   LISTEN</span><br><span class="line">tcp        0      0 127.0.0.1:9000         0.0.0.0:*                   LISTEN</span><br><span class="line">tcp        0      0 coolshell.cn:80        124.205.5.146:18245         TIME_WAIT</span><br><span class="line">tcp        0      0 coolshell.cn:80        61.140.101.185:37538        FIN_WAIT2</span><br><span class="line">tcp        0      0 coolshell.cn:80        110.194.134.189:1032        ESTABLISHED</span><br><span class="line">tcp        0      0 coolshell.cn:80        123.169.124.111:49809       ESTABLISHED</span><br><span class="line">tcp        0      0 coolshell.cn:80        116.234.127.77:11502        FIN_WAIT2</span><br><span class="line">tcp        0      0 coolshell.cn:80        123.169.124.111:49829       ESTABLISHED</span><br><span class="line">tcp        0      0 coolshell.cn:80        183.60.215.36:36970         TIME_WAIT</span><br><span class="line">tcp        0   4166 coolshell.cn:80        61.148.242.38:30901         ESTABLISHED</span><br><span class="line">tcp        0      1 coolshell.cn:80        124.152.181.209:26825       FIN_WAIT1</span><br><span class="line">tcp        0      0 coolshell.cn:80        110.194.134.189:4796        ESTABLISHED</span><br><span class="line">tcp        0      0 coolshell.cn:80        183.60.212.163:51082        TIME_WAIT</span><br><span class="line">tcp        0      1 coolshell.cn:80        208.115.113.92:50601        LAST_ACK</span><br><span class="line">tcp        0      0 coolshell.cn:80        123.169.124.111:49840       ESTABLISHED</span><br><span class="line">tcp        0      0 coolshell.cn:80        117.136.20.85:50025         FIN_WAIT2</span><br><span class="line">tcp        0      0 :::22                  :::*                        LISTEN</span><br></pre></td></tr></table></figure></p>
 <h2 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h2><p>过滤第一列与第四列<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> awk <span class="string">'&#123;print $1,$4&#125;'</span> netstat.txt</span></span><br><span class="line">Proto Local-Address</span><br><span class="line">tcp 0.0.0.0:3306</span><br><span class="line">tcp 0.0.0.0:80</span><br><span class="line">tcp 127.0.0.1:9000</span><br><span class="line">tcp coolshell.cn:80</span><br><span class="line">tcp coolshell.cn:80</span><br><span class="line">tcp coolshell.cn:80</span><br><span class="line">tcp coolshell.cn:80</span><br><span class="line">tcp coolshell.cn:80</span><br><span class="line">tcp coolshell.cn:80</span><br><span class="line">tcp coolshell.cn:80</span><br><span class="line">tcp coolshell.cn:80</span><br><span class="line">tcp coolshell.cn:80</span><br><span class="line">tcp coolshell.cn:80</span><br><span class="line">tcp coolshell.cn:80</span><br><span class="line">tcp coolshell.cn:80</span><br><span class="line">tcp coolshell.cn:80</span><br><span class="line">tcp coolshell.cn:80</span><br><span class="line">tcp :::22</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
 <p>按格式输出行<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> awk <span class="string">'&#123;printf "%-8s %-8s %-8s %-18s %-22s %-15s\n",$1,$2,$3,$4,$5,$6&#125;'</span> netstat.txt</span></span><br><span class="line">Proto    Recv-Q   Send-Q   Local-Address      Foreign-Address        State</span><br><span class="line">tcp      0        0        0.0.0.0:3306       0.0.0.0:*              LISTEN</span><br><span class="line">tcp      0        0        0.0.0.0:80         0.0.0.0:*              LISTEN</span><br><span class="line">tcp      0        0        127.0.0.1:9000     0.0.0.0:*              LISTEN</span><br><span class="line">tcp      0        0        coolshell.cn:80    124.205.5.146:18245    TIME_WAIT</span><br><span class="line">tcp      0        0        coolshell.cn:80    61.140.101.185:37538   FIN_WAIT2</span><br><span class="line">tcp      0        0        coolshell.cn:80    110.194.134.189:1032   ESTABLISHED</span><br><span class="line">tcp      0        0        coolshell.cn:80    123.169.124.111:49809  ESTABLISHED</span><br><span class="line">tcp      0        0        coolshell.cn:80    116.234.127.77:11502   FIN_WAIT2</span><br><span class="line">tcp      0        0        coolshell.cn:80    123.169.124.111:49829  ESTABLISHED</span><br><span class="line">tcp      0        0        coolshell.cn:80    183.60.215.36:36970    TIME_WAIT</span><br><span class="line">tcp      0        4166     coolshell.cn:80    61.148.242.38:30901    ESTABLISHED</span><br><span class="line">tcp      0        1        coolshell.cn:80    124.152.181.209:26825  FIN_WAIT1</span><br><span class="line">tcp      0        0        coolshell.cn:80    110.194.134.189:4796   ESTABLISHED</span><br><span class="line">tcp      0        0        coolshell.cn:80    183.60.212.163:51082   TIME_WAIT</span><br><span class="line">tcp      0        1        coolshell.cn:80    208.115.113.92:50601   LAST_ACK</span><br><span class="line">tcp      0        0        coolshell.cn:80    123.169.124.111:49840  ESTABLISHED</span><br><span class="line">tcp      0        0        coolshell.cn:80    117.136.20.85:50025    FIN_WAIT2</span><br><span class="line">tcp      0        0        :::22              :::*                   LISTEN</span><br></pre></td></tr></table></figure></p>
 <h2 id="过滤记录"><a href="#过滤记录" class="headerlink" title="过滤记录"></a>过滤记录</h2><p>过滤第三列为0与第六列为LISTEN的行<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> awk <span class="string">'$3==0 &amp;&amp; $6=="LISTEN"'</span> netstat.txt</span></span><br><span class="line">tcp        0      0 0.0.0.0:3306           0.0.0.0:*                   LISTEN</span><br><span class="line">tcp        0      0 0.0.0.0:80             0.0.0.0:*                   LISTEN</span><br><span class="line">tcp        0      0 127.0.0.1:9000         0.0.0.0:*                   LISTEN</span><br><span class="line">tcp        0      0 :::22                  :::*                        LISTEN</span><br></pre></td></tr></table></figure></p>
 <p>过滤第三列的值大于0的记录，并打印出一整行，$0d代表一整行记录<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> awk <span class="string">' $3&gt;0 &#123;print $0&#125;'</span> netstat.txt</span></span><br><span class="line">Proto Recv-Q Send-Q Local-Address          Foreign-Address             State</span><br><span class="line">tcp        0   4166 coolshell.cn:80        61.148.242.38:30901         ESTABLISHED</span><br><span class="line">tcp        0      1 coolshell.cn:80        124.152.181.209:26825       FIN_WAIT1</span><br><span class="line">tcp        0      1 coolshell.cn:80        208.115.113.92:50601        LAST_ACK</span><br></pre></td></tr></table></figure></p>
 <p>使用内置变量，过滤第三列为0与第六列为LISTEN的行和第一行<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> awk <span class="string">'$3==0 &amp;&amp; $6=="LISTEN" || NR==1 '</span> netstat.txt</span></span><br><span class="line">Proto Recv-Q Send-Q Local-Address          Foreign-Address             State</span><br><span class="line">tcp        0      0 0.0.0.0:3306           0.0.0.0:*                   LISTEN</span><br><span class="line">tcp        0      0 0.0.0.0:80             0.0.0.0:*                   LISTEN</span><br><span class="line">tcp        0      0 127.0.0.1:9000         0.0.0.0:*                   LISTEN</span><br><span class="line">tcp        0      0 :::22                  :::*                        LISTEN</span><br></pre></td></tr></table></figure></p>
 <p>使用内置变量，并格式化输出，过滤第三列为0与第六列为LISTEN的行和第一行<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> awk <span class="string">'$3==0 &amp;&amp; $6=="LISTEN" || NR==1 &#123;printf "%-20s %-20s %s\n",$4,$5,$6&#125;'</span> netstat.txt</span></span><br><span class="line">Local-Address        Foreign-Address      State</span><br><span class="line">0.0.0.0:3306         0.0.0.0:*            LISTEN</span><br><span class="line">0.0.0.0:80           0.0.0.0:*            LISTEN</span><br><span class="line">127.0.0.1:9000       0.0.0.0:*            LISTEN</span><br><span class="line">:::22                :::*                 LISTEN</span><br></pre></td></tr></table></figure></p>
-<h2 id="内置变量"><a href="#内置变量" class="headerlink" title="内置变量"></a>内置变量</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash">0	当前记录（这个变量中存放着整个行的内容）</span></span><br><span class="line"><span class="meta">$</span><span class="bash">1~<span class="variable">$n</span>	当前记录的第n个字段，字段间由FS分隔</span></span><br><span class="line">FS	输入字段分隔符 默认是空格或Tab</span><br><span class="line">NF	当前记录中的字段个数，就是有多少列</span><br><span class="line">NR	已经读出的记录数，就是行号，从1开始，如果有多个文件话，这个值也是不断累加中。</span><br><span class="line">FNR	当前记录数，与NR不同的是，这个值会是各个文件自己的行号</span><br><span class="line">RS	输入的记录分隔符， 默认为换行符</span><br><span class="line">OFS	输出字段分隔符， 默认也是空格</span><br><span class="line">ORS	输出的记录分隔符，默认为换行符</span><br><span class="line">FILENAME	当前输入文件的名字</span><br></pre></td></tr></table></figure>
+<h2 id="内置变量"><a href="#内置变量" class="headerlink" title="内置变量"></a>内置变量</h2><table>
+<thead>
+<tr>
+<th>变量</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$0</td>
+<td>当前记录（这个变量中存放着整个行的内容）</td>
+</tr>
+<tr>
+<td>\$1~$n</td>
+<td>当前记录的第n个字段，字段间由FS分隔</td>
+</tr>
+<tr>
+<td>FS</td>
+<td>输入字段分隔符 默认是空格或Tab</td>
+</tr>
+<tr>
+<td>NF</td>
+<td>当前记录中的字段个数，就是有多少列</td>
+</tr>
+<tr>
+<td>NR</td>
+<td>已经读出的记录数，就是行号，从1开始，如果有多个文件话，这个值也是不断累加中。</td>
+</tr>
+<tr>
+<td>FNR</td>
+<td>当前记录数，与NR不同的是，这个值会是各个文件自己的行号</td>
+</tr>
+<tr>
+<td>RS</td>
+<td>输入的记录分隔符， 默认为换行符</td>
+</tr>
+<tr>
+<td>OFS</td>
+<td>输出字段分隔符， 默认也是空格</td>
+</tr>
+<tr>
+<td>ORS</td>
+<td>输出的记录分隔符，默认为换行符</td>
+</tr>
+<tr>
+<td>FILENAME</td>
+<td>当前输入文件的名字</td>
+</tr>
+</tbody>
+</table>
 <p>输出行号<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> awk <span class="string">'$3==0 &amp;&amp; $6=="ESTABLISHED" || NR==1 &#123;printf "%02s %s %-20s %-20s %s\n",NR, FNR, $4,$5,$6&#125;'</span> netstat.txt</span></span><br><span class="line">01 1 Local-Address        Foreign-Address      State</span><br><span class="line">07 7 coolshell.cn:80      110.194.134.189:1032 ESTABLISHED</span><br><span class="line">08 8 coolshell.cn:80      123.169.124.111:49809 ESTABLISHED</span><br><span class="line">10 10 coolshell.cn:80      123.169.124.111:49829 ESTABLISHED</span><br><span class="line">14 14 coolshell.cn:80      110.194.134.189:4796 ESTABLISHED</span><br><span class="line">17 17 coolshell.cn:80      123.169.124.111:49840 ESTABLISHED</span><br></pre></td></tr></table></figure></p>
 <p>指定分隔符<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> awk  <span class="string">'BEGIN&#123;FS=":"&#125; &#123;print $1,$3,$6&#125;'</span> /etc/passwd</span></span><br><span class="line">nobody -2 /var/empty</span><br><span class="line">root 0 /var/root</span><br><span class="line">daemon 1 /var/root</span><br><span class="line">_uucp 4 /var/spool/uucp</span><br><span class="line">_taskgated 13 /var/empty</span><br><span class="line">_networkd 24 /var/networkd</span><br></pre></td></tr></table></figure></p>
 <p>上面的命令也等价于：（-F的意思就是指定分隔符）<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> awk -F: <span class="string">'&#123;print $1,$3,$6&#125;'</span> /etc/passwd</span></span><br></pre></td></tr></table></figure></p>
@@ -156,7 +206,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/bf60621.html" data-id="cjmae2lqy007bv1yk4egcqnnb" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/bf60621.html" data-id="cjmaeckks006h0rykaqtqybsy" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
