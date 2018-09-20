@@ -41,7 +41,7 @@
     <h2 class="author">豪快二突撃スル</h2>
     <h3 class="description">javaer</h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>119</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>120</strong><br>文章</div></a>
       <a href="/categories"><div><strong>42</strong><br>分类</div></a>
       <a href="/tags"><div><strong>79</strong><br>标签</div></a>
     </div>
@@ -68,6 +68,98 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-Tomcat 本地域名访问设置" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/74b62430.html" class="article-date">
+  <time class="post-time" datetime="2014-10-17T02:44:00.000Z" itemprop="datePublished">
+    <span class="post-month">10月</span><br/>
+    <span class="post-day">17</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/74b62430.html">Tomcat 本地域名访问设置</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/服务容器/">服务容器</a>,<a class="article-category-link" href="/categories/服务容器/Tomcat/">Tomcat</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/74b62430.html" class="leancloud_visitors" data-flag-title="Tomcat 本地域名访问设置">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 233</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 1 分钟</span>
+  </div>
+ 
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>原路径：localhost:8080/tidyko</p>
+<h2 id="1）去掉8080端口"><a href="#1）去掉8080端口" class="headerlink" title="1）去掉8080端口"></a>1）去掉8080端口</h2><p>打开%TOMCAT_HOME%/conf/server.xml</p>
+<p>修改里面的<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Connector</span> <span class="attr">connectionTimeout</span>=<span class="string">"20000"</span> <span class="attr">port</span>=<span class="string">"8080"</span> <span class="attr">protocol</span>=<span class="string">"HTTP/1.1"</span> <span class="attr">redirectPort</span>=<span class="string">"8443"</span>/&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>为<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Connector</span> <span class="attr">connectionTimeout</span>=<span class="string">"20000"</span> <span class="attr">port</span>=<span class="string">"80"</span> <span class="attr">protocol</span>=<span class="string">"HTTP/1.1"</span> <span class="attr">redirectPort</span>=<span class="string">"8443"</span>/&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>现在就可以使用localhost/tidyko访问项目了。</p>
+<h2 id="2）使用域名-项目访问"><a href="#2）使用域名-项目访问" class="headerlink" title="2）使用域名/项目访问"></a>2）使用域名/项目访问</h2><p>打开 <code>%TOMCAT_HOME%/conf/server.xml</code></p>
+<p>修改里面的<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Engine</span> <span class="attr">defaultHost</span>=<span class="string">"localhost"</span> <span class="attr">name</span>=<span class="string">"Catalina"</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>为<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Engine</span> <span class="attr">defaultHost</span>=<span class="string">"www.tidy.me"</span> <span class="attr">name</span>=<span class="string">"Catalina"</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>修改里面的<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Host</span> <span class="attr">appBase</span>=<span class="string">"webapps"</span> <span class="attr">autoDeploy</span>=<span class="string">"true"</span> <span class="attr">name</span>=<span class="string">"localhost"</span> <span class="attr">unpackWARs</span>=<span class="string">"true"</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>为<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Host</span> <span class="attr">appBase</span>=<span class="string">"webapps"</span> <span class="attr">autoDeploy</span>=<span class="string">"true"</span> <span class="attr">name</span>=<span class="string">"www.tidy.me"</span> <span class="attr">unpackWARs</span>=<span class="string">"true"</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>打开 <code>C:/Windows/System32/drivers/etc/HOSTS</code></p>
+<p>修改里面的<br><code>127.0.0.1       localhost</code><br>为<br><code>127.0.0.1       www.tidy.me</code></p>
+<p>现在就可以使用 <a href="http://www.tidy.me/tidyko" target="_blank" rel="noopener">www.tidy.me/tidyko</a> 访问项目了。</p>
+<h2 id="3）使用域名访问项目"><a href="#3）使用域名访问项目" class="headerlink" title="3）使用域名访问项目"></a>3）使用域名访问项目</h2><p>打开 <code>%TOMCAT_HOME%/conf/server.xml</code></p>
+<p>修改里面的<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Context</span> <span class="attr">docBase</span>=<span class="string">"tidy"</span> <span class="attr">path</span>=<span class="string">"/tidy"</span> <span class="attr">reloadable</span>=<span class="string">"true"</span> <span class="attr">source</span>=<span class="string">"org.eclipse.jst.jee.server:tidy"</span>/&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>为<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Context</span> <span class="attr">docBase</span>=<span class="string">"tidy"</span> <span class="attr">path</span>=<span class="string">""</span> <span class="attr">reloadable</span>=<span class="string">"true"</span> <span class="attr">source</span>=<span class="string">"org.eclipse.jst.jee.server:tidy"</span>/&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>完成，现在可以使用 <a href="http://www.tidy.me" target="_blank" rel="noopener">www.tidy.me</a> 访问项目了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/74b62430.html" data-id="cjmae2lt6009kv1ykj46igah2" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tomcat/">Tomcat</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
   
     <article id="post-Hibernate 无外键多表查询" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -129,7 +221,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/284eedd0.html" data-id="cjm0aq5av002tn5yke24llq6j" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/284eedd0.html" data-id="cjmae2lmi002sv1ykuq2aaf1l" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hibernate/">Hibernate</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
@@ -210,7 +302,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/865591b1.html" data-id="cjm0aq5g0007mn5yk27lr95sv" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/865591b1.html" data-id="cjmae2lrf007tv1yk3uaooq1i" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NGROK/">NGROK</a></li></ul>
@@ -286,7 +378,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/bb413124.html" data-id="cjm0aq5900015n5ykf299r8zq" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/bb413124.html" data-id="cjmae2lko0010v1ykn96fmfly" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SVN/">SVN</a></li></ul>
@@ -383,7 +475,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/2e6dc29d.html" data-id="cjm0aq5hk0099n5yktf89t9p9" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/2e6dc29d.html" data-id="cjmae2lsu009gv1ykbc6c26sr" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tomcat/">Tomcat</a></li></ul>
@@ -464,7 +556,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/cd870320.html" data-id="cjm0aq5af002bn5ykye9zkj5p" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/cd870320.html" data-id="cjmae2lm6002ev1yky906s868" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hibernate/">Hibernate</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
@@ -543,7 +635,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/b93984a5.html" data-id="cjm0aq5b10030n5ykxvd4lag3" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/b93984a5.html" data-id="cjmae2lml002wv1yklbtahxhc" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IE/">IE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
@@ -636,7 +728,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/810bd9aa.html" data-id="cjm0aq5b70036n5ykyy8hj1d8" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/810bd9aa.html" data-id="cjmae2lmt0034v1ykovbvv0n6" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IE/">IE</a></li></ul>
@@ -725,7 +817,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/e234776b.html" data-id="cjm0aq5bj003cn5ykesbwl6n2" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/e234776b.html" data-id="cjmae2ln9003ev1yk2besjqxe" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DWR/">DWR</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
@@ -810,89 +902,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/dcc50721.html" data-id="cjm0aq5h4008vn5ykm709rxv4" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/dcc50721.html" data-id="cjmae2ls7008rv1yk359yraij" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Oracle/">Oracle</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PLSQL/">PLSQL</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-日语 古いプロジェクトの再開" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/3a649dc9.html" class="article-date">
-  <time class="post-time" datetime="2014-07-17T16:02:00.000Z" itemprop="datePublished">
-    <span class="post-month">7月</span><br/>
-    <span class="post-day">18</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/3a649dc9.html">日语 古いプロジェクトの再開</a>
-    </h1>
-  
-
-        <div>
-          
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/外语/">外语</a>,<a class="article-category-link" href="/categories/外语/日语/">日语</a>
-  </div>
-
-          
-              
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/3a649dc9.html" class="leancloud_visitors" data-flag-title="日语 古いプロジェクトの再開">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 81</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 1 分钟</span>
-  </div>
- 
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>昨日は部長にお知らせをもらいました。<br>一年ぐらい前の古いプロジェクトを再開したい”と言いました。<br>会社の方針ですから、このプロジェクトに協力すべきです。</p>
-<p>ですから、<br>私はSVNサーバからプログラムをエクスポートしました。<br>自分のパソコンで作業しました。<br>でも、うまくできませんでした。</p>
-<p>少し見て、多分何が原因か分かりました。<br>このプロジェクトは長く凍結されていたので、<br>以前、他のプロジェクトに調達したインタ—フェ—スが全て使えなくなっていました。</p>
-<p>だから、他のプロジェクトの協力が必要です。<br>彼らが全てのインタ—フェ—スを直したら、このプロジェクトをスタートします。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3a649dc9.html" data-id="cjm0aq5jh00b2n5ykytmpi1rc" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/外语/">外语</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/日语/">日语</a></li></ul>
 
     </footer>
   </div>
@@ -951,7 +964,7 @@
     <h2 class="author">豪快二突撃スル</h2>
     <h3 class="description">javaer</h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>119</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>120</strong><br>文章</div></a>
       <a href="/categories"><div><strong>42</strong><br>分类</div></a>
       <a href="/tags"><div><strong>79</strong><br>标签</div></a>
     </div>

@@ -41,7 +41,7 @@
     <h2 class="author">豪快二突撃スル</h2>
     <h3 class="description">javaer</h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>119</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>120</strong><br>文章</div></a>
       <a href="/categories"><div><strong>42</strong><br>分类</div></a>
       <a href="/tags"><div><strong>79</strong><br>标签</div></a>
     </div>
@@ -68,6 +68,85 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-Maven 请使用 -source 8 或更高版本以启用 lambda 表达式" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/a6562b5c.html" class="article-date">
+  <time class="post-time" datetime="2018-01-12T09:59:00.000Z" itemprop="datePublished">
+    <span class="post-month">1月</span><br/>
+    <span class="post-day">12</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/a6562b5c.html">Maven 请使用 -source 8 或更高版本以启用 lambda 表达式</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/包管理器/">包管理器</a>,<a class="article-category-link" href="/categories/包管理器/Maven/">Maven</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/a6562b5c.html" class="leancloud_visitors" data-flag-title="Maven 请使用 -source 8 或更高版本以启用 lambda 表达式">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 213</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 1 分钟</span>
+  </div>
+ 
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在使用mvn install编译maven项目时，报了<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">“ (请使用 -source 8 或更高版本以启用 lambda 表达式)”错误，是因为设置的maven默认jdk编译版本太低的问题。</span><br></pre></td></tr></table></figure></p>
+<h2 id="可使用两种方法解决"><a href="#可使用两种方法解决" class="headerlink" title="可使用两种方法解决"></a>可使用两种方法解决</h2><h3 id="1"><a href="#1" class="headerlink" title="1)"></a>1)</h3><p>在具体项目的pom.xml里面手动指定jdk编译版本。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">"..."</span>&gt;</span></span><br><span class="line">    ...</span><br><span class="line">    <span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-compiler-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">source</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">source</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">target</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">target</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br><span class="line">    ...</span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="2）"><a href="#2）" class="headerlink" title="2）"></a>2）</h3><p>在maven的settings.xml里面指定全局jdk编译版本。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">profiles</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">profile</span>&gt;</span>  </span><br><span class="line">      <span class="tag">&lt;<span class="name">id</span>&gt;</span>jdk-1.8<span class="tag">&lt;/<span class="name">id</span>&gt;</span>  </span><br><span class="line">      <span class="tag">&lt;<span class="name">activation</span>&gt;</span>  </span><br><span class="line">          <span class="tag">&lt;<span class="name">activeByDefault</span>&gt;</span>true<span class="tag">&lt;/<span class="name">activeByDefault</span>&gt;</span>  </span><br><span class="line">          <span class="tag">&lt;<span class="name">jdk</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">jdk</span>&gt;</span>  </span><br><span class="line">      <span class="tag">&lt;/<span class="name">activation</span>&gt;</span>  </span><br><span class="line">      <span class="tag">&lt;<span class="name">properties</span>&gt;</span>  </span><br><span class="line">          <span class="tag">&lt;<span class="name">maven.compiler.source</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">maven.compiler.source</span>&gt;</span>  </span><br><span class="line">          <span class="tag">&lt;<span class="name">maven.compiler.target</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">maven.compiler.target</span>&gt;</span>  </span><br><span class="line">          <span class="tag">&lt;<span class="name">maven.compiler.compilerVersion</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">maven.compiler.compilerVersion</span>&gt;</span>  </span><br><span class="line">      <span class="tag">&lt;/<span class="name">properties</span>&gt;</span>   </span><br><span class="line">  　<span class="tag">&lt;/<span class="name">profile</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">profiles</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>然后，运行mvn命令就可以了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/a6562b5c.html" data-id="cjmae2lr1007ev1ykyrtucqvj" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Maven/">Maven</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
   
     <article id="post-Redis DENIED Redis is running in protected mode" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -129,7 +208,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/fd3cd277.html" data-id="cjm0aq5he0093n5ykc37cukr2" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/fd3cd277.html" data-id="cjmae2lsi0093v1ykr7mqoroo" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Redis/">Redis</a></li></ul>
@@ -207,7 +286,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/b014d2be.html" data-id="cjm0aq5bu003ln5yku1khqmq0" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/b014d2be.html" data-id="cjmae2lnb003iv1ykwbvjdoq2" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Shiro/">Shiro</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringBoot/">SpringBoot</a></li></ul>
@@ -289,7 +368,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/b0fc798c.html" data-id="cjm0aq5dd0058n5ykiz3gfadq" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/b0fc798c.html" data-id="cjmae2loy0056v1ykwy63cg49" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/quzrtz/">quzrtz</a></li></ul>
@@ -366,7 +445,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/10937fe4.html" data-id="cjm0aq5eh0061n5ykkp4vn60n" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/10937fe4.html" data-id="cjmae2lpw0065v1yk6yp2lj7u" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jenkins/">Jenkins</a></li></ul>
@@ -448,7 +527,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/ba8658f2.html" data-id="cjm0aq5g6007un5yk2qypoqdt" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/ba8658f2.html" data-id="cjmae2lrh007wv1ykqvmql7q4" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mysql/">Mysql</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Navicat-Premium/">Navicat Premium</a></li></ul>
@@ -530,7 +609,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/95c8a77e.html" data-id="cjm0aq5eu006hn5ykeouk9j63" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/95c8a77e.html" data-id="cjmae2lq0006av1ykzlh55yjg" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Kafka/">Kafka</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/队列/">队列</a></li></ul>
@@ -619,7 +698,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/a4bec044.html" data-id="cjm0aq5fq007an5ykcjl071fl" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/a4bec044.html" data-id="cjmae2lqv0077v1ykgnko3c24" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
@@ -697,7 +776,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/6966e243.html" data-id="cjm0aq5f1006on5ykwpyflmj0" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/6966e243.html" data-id="cjmae2lqj006wv1ykv9skquaf" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
@@ -779,93 +858,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/b3c1b12f.html" data-id="cjm0aq5i800a0n5yk3w20pe7n" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/b3c1b12f.html" data-id="cjmae2ltm009wv1ykip73bio6" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VirtualBox/">VirtualBox</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络配置/">网络配置</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/虚拟机/">虚拟机</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-Linux SHELL 使用crontab定时检测服务状态脚本" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/20e9a4b.html" class="article-date">
-  <time class="post-time" datetime="2017-03-21T08:32:00.000Z" itemprop="datePublished">
-    <span class="post-month">3月</span><br/>
-    <span class="post-day">21</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/20e9a4b.html">Linux SHELL 使用crontab定时检测服务状态脚本</a>
-    </h1>
-  
-
-        <div>
-          
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/服务器/">服务器</a>,<a class="article-category-link" href="/categories/服务器/Linux/">Linux</a>
-  </div>
-
-          
-              
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/20e9a4b.html" class="leancloud_visitors" data-flag-title="Linux SHELL 使用crontab定时检测服务状态脚本">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 785</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 4 分钟</span>
-  </div>
- 
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>使用脚本：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/sh</span></span><br><span class="line"><span class="meta">#</span><span class="bash">PATH=/bin:/usr/<span class="built_in">local</span>/bin:/usr/bin:/usr/lib/jvm/jre-1.6.0-openjdk.x86_64/bin/java</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> @Author: YL</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> @Date:   2017-01-25 14:50:43</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> @Last Modified by:   Tidy</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> @Last Modified time: 2017-03-21 15:55:58</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> @Description: 新增对同一目录下多tomcat的适配操作</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">#########################################################################################################</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash">                                               crontab使用注意事项</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 如果通过crontab执行</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 1、crontab无法获取jdk变量，要在java命令之前写入jdk绝对路径</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 2、要把路径切换到要执行的sh路径下</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 注意：二者缺一不可</span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">#########################################################################################################</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash">                                                查找jdk路径的方法</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查找jdk安装路径的方法</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 1、$ <span class="built_in">echo</span> <span class="variable">$JAVA_HOME</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> /usr/java/jdk1.6.0_45/bin/java</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 2、</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> $ <span class="built_in">which</span> java</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> /usr/bin/java</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> $ ls -lrt /usr/bin/java <span class="comment">#/usr/bin/java是which java查出来的路径</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> lrwxrwxrwx. 1 root root 22 Sep 16  2015 /usr/bin/java -&gt; /etc/alternatives/java</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> $ ls -lrt /etc/alternatives/java <span class="comment">#/etc/alternatives/java是ls -lrt /usr/bin/java查出来的路径</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> lrwxrwxrwx. 1 root root 46 Sep 16  2015 /etc/alternatives/java -&gt; /usr/lib/jvm/jre-1.6.0-openjdk.x86_64/bin/java</span></span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">#########################################################################################################</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash">                                      使用说明</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Tomcat服务启动、重启可以执行这些shell：sh tomcat.sh或者sh tomcat.sh start interface或者sh tomcat.sh restart interface</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> <span class="built_in">kill</span>掉Tomcat服务的进程：sh tomcat.sh <span class="built_in">kill</span> interface</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> crontab配置定时检测使用：* * * * * /opt/tomcat.sh check interface <span class="comment">#这里tomcat.sh的路径根据自己存放位置修改</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查询crontab定时器配置情况，shell执行：crontab -l</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 编辑crontab定时器，shell执行：crontab -e</span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">#########################################################################################################</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Tomcat服务器路基</span></span><br><span class="line">TS_HOME="/opt/tomcat-$2"</span><br><span class="line"><span class="meta">#</span><span class="bash"> crontab检测日记文件</span></span><br><span class="line">TS_LOG_OPERATE="$TS_HOME/logs/console.out"</span><br><span class="line"><span class="meta">#</span><span class="bash"> 检测Tomcat是否启动（进程ID）</span></span><br><span class="line">TS_PID=`ps -ef | grep $TS_HOME/bin | grep -v grep | awk '&#123;print $2&#125;'`</span><br><span class="line"><span class="meta">#</span><span class="bash"> 执行检测的用户IP地址</span></span><br><span class="line">TS_IP=`who am i | awk '&#123;print $5&#125;' | sed 's/(//g' | sed 's/)//g'`</span><br><span class="line"><span class="meta">#</span><span class="bash"> 检测输出的日记格式</span></span><br><span class="line">TS_PATTERN="[$(date '+%Y-%m-%d %H:%M:%S')]-[$1]-[$TS_IP] $TS_HOME/bin"</span><br><span class="line"></span><br><span class="line">function operate()&#123;</span><br><span class="line">    if [[ "$1" = "kill" ]] ; then</span><br><span class="line">        if [[ "$TS_PID" = "" ]] ; then</span><br><span class="line">            echo "$TS_PATTERN is not alive" | tee -a $TS_LOG_OPERATE</span><br><span class="line">        else</span><br><span class="line">            echo "$TS_PATTERN kill $TS_PID begining" | tee -a $TS_LOG_OPERATE</span><br><span class="line">            kill -9 $TS_PID</span><br><span class="line">            echo "$TS_PATTERN kill $TS_PID success" | tee -a $TS_LOG_OPERATE</span><br><span class="line">        fi</span><br><span class="line">    elif [[ "$1" = "start" ]]; then</span><br><span class="line">        cd $TS_HOME/bin</span><br><span class="line">        sh startup.sh</span><br><span class="line">    else</span><br><span class="line">        echo "$TS_PATTERN is not support $1" | tee -a $TS_LOG_OPERATE</span><br><span class="line">    fi</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 参数1：操作，参数2：具体tomcat名称</span></span><br><span class="line">if [[ "$1" = "" || "$1" = "restart" || "$1" = "start" ]] ; then</span><br><span class="line">    operate kill</span><br><span class="line">    echo "$TS_PATTERN starting" | tee -a $TS_LOG_OPERATE</span><br><span class="line">    operate start</span><br><span class="line">    tail -f $TS_HOME/logs/catalina.out</span><br><span class="line">elif [[ "$1" = "kill" ]] ; then</span><br><span class="line">    operate kill</span><br><span class="line">elif [[ "$1" = "check" ]] ; then</span><br><span class="line">    if [[ "$TS_PID" = "" ]] ; then</span><br><span class="line">        echo "$TS_PATTERN starting" &gt;&gt; $TS_LOG_OPERATE</span><br><span class="line">        operate start</span><br><span class="line">    else</span><br><span class="line">        echo "$TS_PATTERN pid $TS_PID" &gt;&gt; $TS_LOG_OPERATE</span><br><span class="line">    fi</span><br><span class="line">else</span><br><span class="line">    echo "$TS_PATTERN is not support $1" | tee -a $TS_LOG_OPERATE</span><br><span class="line">fi</span><br></pre></td></tr></table></figure></p>
-<p>然后将此脚本放置在tomcat同级目录，改变其运行权限。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod -R 755 tomcat.sh</span><br></pre></td></tr></table></figure></p>
-<p>改完之后，配置crontab表达式<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">crontab -e</span><br><span class="line"></span><br><span class="line">i</span><br></pre></td></tr></table></figure></p>
-<p><code>esc</code> 键退出编辑模式.</p>
-<p>输入<code>：wq</code> 保存文件并退出编辑模式。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">* * * * * /opt/tomcat.sh check interface</span><br><span class="line">* * * * * /opt/tomcat.sh check pz</span><br><span class="line">* * * * * /opt/tomcat.sh check pz2</span><br><span class="line">* * * * * /opt/tomcat.sh check gh</span><br><span class="line">* * * * * /opt/tomcat.sh check itvpz</span><br></pre></td></tr></table></figure></p>
-<p>这里默认为一分钟执行一次检测。</p>
-<p>如果检测出现错误，系统会发送一封邮件，具体看路径，然后进行排查。</p>
-<p>如果是JAVA_HOME未配置请参考上一篇文章。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/20e9a4b.html" data-id="cjm0aq5fg0070n5ykju9aou7o" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Shell/">Shell</a></li></ul>
 
     </footer>
   </div>
@@ -924,7 +920,7 @@
     <h2 class="author">豪快二突撃スル</h2>
     <h3 class="description">javaer</h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>119</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>120</strong><br>文章</div></a>
       <a href="/categories"><div><strong>42</strong><br>分类</div></a>
       <a href="/tags"><div><strong>79</strong><br>标签</div></a>
     </div>
