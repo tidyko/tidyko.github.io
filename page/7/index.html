@@ -41,7 +41,7 @@
     <h2 class="author">豪快二突撃スル</h2>
     <h3 class="description">javaer</h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>120</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>121</strong><br>文章</div></a>
       <a href="/categories"><div><strong>42</strong><br>分类</div></a>
       <a href="/tags"><div><strong>79</strong><br>标签</div></a>
     </div>
@@ -68,6 +68,170 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-Redis Windows版安装及使用" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/85796e0a.html" class="article-date">
+  <time class="post-time" datetime="2014-10-17T03:25:00.000Z" itemprop="datePublished">
+    <span class="post-month">10月</span><br/>
+    <span class="post-day">17</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/85796e0a.html">Redis Windows版安装及使用</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/中间件/">中间件</a>,<a class="article-category-link" href="/categories/中间件/Redis/">Redis</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/85796e0a.html" class="leancloud_visitors" data-flag-title="Redis Windows版安装及使用">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 1,847</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 8 分钟</span>
+  </div>
+ 
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>官方网站：<a href="http://www.redis.io" target="_blank" rel="noopener">http://www.redis.io</a><br>百度百科：<a href="http://baike.baidu.com/view/4595959.htm?fr=aladdin" target="_blank" rel="noopener">http://baike.baidu.com/view/4595959.htm?fr=aladdin</a></p>
+<h2 id="Windows下安装redis"><a href="#Windows下安装redis" class="headerlink" title="Windows下安装redis"></a>Windows下安装redis</h2><p>下载地址：<a href="https://github.com/dmajkic/redis/downloads" target="_blank" rel="noopener">https://github.com/dmajkic/redis/downloads</a></p>
+<p>选择一个版本下载，里面包含32bit和64bit的，选择和自己系统符合的文件夹，将里面的文件拷到安装路径里面。<br>比如：<code>E:\Program Files\redis-2.4.5</code></p>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><h4 id="1）使用命令行进入解压路径"><a href="#1）使用命令行进入解压路径" class="headerlink" title="1）使用命令行进入解压路径"></a>1）使用命令行进入解压路径</h4><p>运行：<code>redis-server.exe redis.conf</code>，运行后界面如下：<br><img src="http://img.tidyko.com/blog/redis-windows_1.png" alt="Redis Windows版安装及使用-图例1"></p>
+<h4 id="2）再打开一个新的命令行"><a href="#2）再打开一个新的命令行" class="headerlink" title="2）再打开一个新的命令行"></a>2）再打开一个新的命令行</h4><p>运行：<code>redis-cli.exe -h 127.0.0.1 -p 6379</code>，<code>127.0.0.1</code>是本地ip，<code>6379</code>是redis服务端的默认端口，运行后界面如下,则redis运行成功了。<br><img src="http://img.tidyko.com/blog/redis-windows_2.png" alt="Redis Windows版安装及使用-图例2"></p>
+<h4 id="3）测试"><a href="#3）测试" class="headerlink" title="3）测试"></a>3）测试</h4><p>存储一个key为name，value为tidyko的字符串，然后获取key值。<br><img src="http://img.tidyko.com/blog/redis-windows_3.png" alt="Redis Windows版安装及使用-图例3"></p>
+<h4 id="4）"><a href="#4）" class="headerlink" title="4）"></a>4）</h4><p>结果如预期输出一致。</p>
+<h3 id="redis命令"><a href="#redis命令" class="headerlink" title="redis命令"></a>redis命令</h3><h4 id="连接控制"><a href="#连接控制" class="headerlink" title="连接控制"></a>连接控制</h4><p>QUIT 关闭连接<br>AUTH (仅限启用时)简单的密码验证</p>
+<h4 id="适合全体类型的命令"><a href="#适合全体类型的命令" class="headerlink" title="适合全体类型的命令"></a>适合全体类型的命令</h4><p><code>EXISTS key</code> 判断一个键是否存在;存在返回 1;否则返回0;</p>
+<p><code>DEL key</code> 删除某个key,或是一系列key;DEL key1 key2 key3 key4</p>
+<p><code>TYPE key</code> 返回某个key元素的数据类型 ( none:不存在,string:字符,list,set,zset,hash)</p>
+<p><code>KEYS pattern</code> 返回匹配的key列表 (KEYS foo*:查找foo开头的keys)</p>
+<p><code>RANDOMKEY</code> 随机获得一个已经存在的key，如果当前数据库为空，则返回空字符串</p>
+<p><code>RENAME oldname newname</code> 更改key的名字，新键如果存在将被覆盖</p>
+<p><code>RENAMENX oldname newname</code> 更改key的名字，如果名字存在则更改失败</p>
+<p><code>DBSIZE</code> 返回当前数据库的key的总数</p>
+<p><code>EXPIRE</code> 设置某个key的过期时间（秒）,(EXPIRE bruce 1000：设置bruce这个key1000秒后系统自动删除)注意：如果在还没有过期的时候，对值进行了改变，那么那个值会被清除。</p>
+<p><code>TTL</code> 查找某个key还有多长时间过期,返回时间秒</p>
+<p><code>SELECT index</code> 选择数据库</p>
+<p><code>MOVE key dbindex</code> 将指定键从当前数据库移到目标数据库 dbindex。成功返回 1;否则返回0（源数据库不存在key或目标数据库已存在同名key）;</p>
+<p><code>FLUSHDB</code> 清空当前数据库中的所有键</p>
+<p><code>FLUSHALL</code> 清空所有数据库中的所有键</p>
+<h4 id="处理字符串的命令"><a href="#处理字符串的命令" class="headerlink" title="处理字符串的命令"></a>处理字符串的命令</h4><p><code>SET key value</code> 给一个键设置字符串值。SET keyname datalength data (SET bruce 10 paitoubing:保存key为burce,字符串长度为10的一个字符串paitoubing到数据库)，data最大不可超过1G。</p>
+<p><code>GET key</code> 获取某个key 的value值。如key不存在，则返回字符串“nil”；如key的值不为字符串类型，则返回一个错误。</p>
+<p><code>GETSET key value</code> 可以理解成获得的key的值然后SET这个值，更加方便的操作 (SET bruce 10 paitoubing,这个时候需要修改bruce变成1234567890并获取这个以前的数据paitoubing,GETSET bruce 10 1234567890)</p>
+<p><code>MGET key1 key2 … keyN</code> 一次性返回多个键的值</p>
+<p><code>SETNX key value SETNX</code> 与SET的区别是SET可以创建与更新key的value，而SETNX是如果key不存在，则创建key与value数据</p>
+<p><code>MSET key1 value1 key2 value2 … keyN valueN</code> 在一次原子操作下一次性设置多个键和值</p>
+<p><code>MSETNX key1 value1 key2 value2 … keyN valueN</code> 在一次原子操作下一次性设置多个键和值（目标键不存在情况下，如果有一个以上的key已存在，则失败）</p>
+<p><code>INCR key</code> 自增键值</p>
+<p><code>INCRBY key integer</code> 令键值自增指定数值</p>
+<p><code>DECR key</code> 自减键值</p>
+<p><code>DECRBY key integer</code> 令键值自减指定数值</p>
+<h4 id="处理-lists-的命令"><a href="#处理-lists-的命令" class="headerlink" title="处理 lists 的命令"></a>处理 lists 的命令</h4><p><code>RPUSH key value</code> 从 List 尾部添加一个元素（如序列不存在，则先创建，如已存在同名Key而非序列，则返回错误）</p>
+<p><code>LPUSH key value</code> 从 List 头部添加一个元素</p>
+<p><code>LLEN key</code> 返回一个 List 的长度</p>
+<p><code>LRANGE key start end</code> 从自定的范围内返回序列的元素 (LRANGE testlist 0 2;返回序列testlist前0 1 2元素)</p>
+<p><code>LTRIM key start end</code> 修剪某个范围之外的数据 (LTRIM testlist 0 2;保留0 1 2元素，其余的删除)</p>
+<p><code>LINDEX key index</code> 返回某个位置的序列值(LINDEX testlist 0;返回序列testlist位置为0的元素)</p>
+<p><code>LSET key index value</code> 更新某个位置元素的值</p>
+<p><code>LREM key count value</code> 从 List 的头部（count正数）或尾部（count负数）删除一定数量（count）匹配value的元素，返回删除的元素数量。</p>
+<p><code>LPOP key</code> 弹出 List 的第一个元素</p>
+<p><code>RPOP key</code> 弹出 List 的最后一个元素</p>
+<p><code>RPOPLPUSH srckey dstkey</code> 弹出 <em>srckey</em> 中最后一个元素并将其压入 <em>dstkey</em>头部，key不存在或序列为空则返回“nil”</p>
+<h4 id="处理集合-sets-的命令（有索引无序序列）"><a href="#处理集合-sets-的命令（有索引无序序列）" class="headerlink" title="处理集合(sets)的命令（有索引无序序列）"></a>处理集合(sets)的命令（有索引无序序列）</h4><p><code>SADD key member</code> 增加元素到SETS序列,如果元素（membe）不存在则添加成功 1，否则失败 0;(SADD testlist 3 \n one)</p>
+<p><code>SREM key member</code> 删除SETS序列的某个元素，如果元素不存在则失败0，否则成功 1(SREM testlist 3 \N one)</p>
+<p><code>SPOP key</code> 从集合中随机弹出一个成员</p>
+<p><code>SMOVE srckey dstkey member</code> 把一个SETS序列的某个元素 移动到 另外一个SETS序列 (SMOVE testlist test 3\n two;从序列testlist移动元素two到 test中，testlist中将不存在two元素)</p>
+<p><code>SCARD key</code> 统计某个SETS的序列的元素数量</p>
+<p><code>SISMEMBER key member</code> 获知指定成员是否存在于集合中</p>
+<p><code>SINTER key1 key2 … keyN</code> 返回 key1, key2, …, keyN 中的交集</p>
+<p><code>SINTERSTORE dstkey key1 key2 … keyN</code> 将 key1, key2, …, keyN 中的交集存入 dstkey</p>
+<p><code>SUNION key1 key2 … keyN</code> 返回 key1, key2, …, keyN 的并集</p>
+<p><code>SUNIONSTORE dstkey key1 key2 … keyN</code> 将 key1, key2, …, keyN 的并集存入 dstkey</p>
+<p><code>SDIFF key1 key2 … keyN 依据 key2, …, keyN</code> 求 key1 的差集。官方例子：</p>
+<p>key1 = x,a,b,c</p>
+<p>key2 = c</p>
+<p>key3 = a,d</p>
+<p>SDIFF key1,key2,key3 =&gt; x,b</p>
+<p><code>SDIFFSTORE dstkey key1 key2 … keyN</code> 依据 key2, …, keyN 求 key1 的差集并存入 dstkey</p>
+<p><code>SMEMBERS key</code> 返回某个序列的所有元素</p>
+<p><code>SRANDMEMBER key</code> 随机返回某个序列的元素</p>
+<h4 id="处理有序集合-sorted-sets-的命令-zsets"><a href="#处理有序集合-sorted-sets-的命令-zsets" class="headerlink" title="处理有序集合(sorted sets)的命令 (zsets)"></a>处理有序集合(sorted sets)的命令 (zsets)</h4><p><code>ZADD key score member</code> 添加指定成员到有序集合中，如果目标存在则更新score（分值，排序用）</p>
+<p><code>ZREM key member</code> 从有序集合删除指定成员</p>
+<p><code>ZINCRBY key increment member</code> 如果成员存在则将其增加<em>increment</em>，否则将设置一个score为<em>increment</em>的成员</p>
+<p><code>ZRANGE key start end</code> 返回升序排序后的指定范围的成员</p>
+<p><code>ZREVRANGE key start end</code>返回降序排序后的指定范围的成员</p>
+<p><code>ZRANGEBYSCORE key min max</code> 返回所有符合score &gt;= min和score &lt;= max的成员 ZCARD key 返回有序集合的元素数量 ZSCORE key element 返回指定成员的SCORE值 ZREMRANGEBYSCORE key min max 删除符合 score &gt;= min 和 score &lt;= max 条件的所有成员</p>
+<h4 id="排序（List-Set-Sorted-Set）"><a href="#排序（List-Set-Sorted-Set）" class="headerlink" title="排序（List, Set, Sorted Set）"></a>排序（List, Set, Sorted Set）</h4><p><code>SORT key BY pattern LIMIT start end GET pattern ASC|DESC ALPHA</code> 按照指定模式排序集合或List</p>
+<p>SORT mylist</p>
+<p>默认升序 ASC</p>
+<p>SORT mylist DESC</p>
+<p>SORT mylist LIMIT 0 10</p>
+<p>从序号0开始，取10条</p>
+<p>SORT mylist LIMIT 0 10 ALPHA DESC</p>
+<p>按首字符排序</p>
+<p>SORT mylist BY weight_*</p>
+<p>SORT mylist BY weight_<em> GET object_</em></p>
+<p>SORT mylist BY weight_<em> GET object_</em> GET #</p>
+<p>SORT mylist BY weight_* STORE resultkey</p>
+<p>将返回的结果存放于resultkey序列（List）</p>
+<h4 id="持久控制"><a href="#持久控制" class="headerlink" title="持久控制"></a>持久控制</h4><p><code>SAVE</code> 同步保存数据到磁盘</p>
+<p><code>BGSAVE</code> 异步保存数据到磁盘</p>
+<p><code>LASTSAVE</code> 返回上次成功保存到磁盘的Unix时间戳</p>
+<p><code>SHUTDOWN</code> 同步保存到服务器并关闭 Redis 服务器（SAVE+QUIT）</p>
+<p><code>BGREWRITEAOF</code> 当日志文件过长时重写日志文件</p>
+<h4 id="远程控制命令"><a href="#远程控制命令" class="headerlink" title="远程控制命令"></a>远程控制命令</h4><p><code>INFO</code> 提供服务器的信息和统计信息</p>
+<p><code>MONITOR</code> 实时输出所有收到的请求</p>
+<p><code>SLAVEOF</code> 修改复制选项 </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/85796e0a.html" data-id="cjmhglz8y009mnryki6ahca9r" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Redis/">Redis</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
   
     <article id="post-Tomcat 本地域名访问设置" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -143,7 +307,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/74b62430.html" data-id="cjmaeckno009g0rykaar2srqy" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/74b62430.html" data-id="cjmhglz94009pnryk1ldbst66" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tomcat/">Tomcat</a></li></ul>
@@ -221,7 +385,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/284eedd0.html" data-id="cjmaeckgn002p0rykqkwyzinp" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/284eedd0.html" data-id="cjmhglz20002znrykr4xci9sn" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hibernate/">Hibernate</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
@@ -302,7 +466,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/865591b1.html" data-id="cjmaecklr007e0rykl168kvxe" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/865591b1.html" data-id="cjmhglz6v007rnrykboclliai" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NGROK/">NGROK</a></li></ul>
@@ -378,7 +542,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/bb413124.html" data-id="cjmaeckep000v0rykxton3zoa" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/bb413124.html" data-id="cjmhglyzw0017nrykw5mlu2x1" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SVN/">SVN</a></li></ul>
@@ -475,7 +639,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/2e6dc29d.html" data-id="cjmaecknc00950rykknbmypc4" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/2e6dc29d.html" data-id="cjmhglz9f00a1nrykt4ajj1iz" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tomcat/">Tomcat</a></li></ul>
@@ -556,7 +720,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/cd870320.html" data-id="cjmaeckge002i0ryktffnsj7a" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/cd870320.html" data-id="cjmhglz1i002hnryk0lxvmslh" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hibernate/">Hibernate</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
@@ -635,7 +799,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/b93984a5.html" data-id="cjmaeckgw002w0ryk39g180qt" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/b93984a5.html" data-id="cjmhglz270037nrykk4du421w" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IE/">IE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
@@ -728,7 +892,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/810bd9aa.html" data-id="cjmaeckh0002y0ryk3hi83mcj" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/810bd9aa.html" data-id="cjmhglz2j003gnryk28ftm3nb" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IE/">IE</a></li></ul>
@@ -817,7 +981,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/e234776b.html" data-id="cjmaeckh800320ryk124ojlrx" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/e234776b.html" data-id="cjmhglz2e003cnrykwcofjiw7" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DWR/">DWR</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
@@ -835,95 +999,10 @@
 
 
   
-    <article id="post-Oracle 不安装Oracle客户端直接用PLSQL连接数据库" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/dcc50721.html" class="article-date">
-  <time class="post-time" datetime="2014-08-15T05:49:00.000Z" itemprop="datePublished">
-    <span class="post-month">8月</span><br/>
-    <span class="post-day">15</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/dcc50721.html">Oracle 不安装Oracle客户端直接用PLSQL连接数据库</a>
-    </h1>
-  
-
-        <div>
-          
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/数据库/">数据库</a>,<a class="article-category-link" href="/categories/数据库/Oracle/">Oracle</a>
-  </div>
-
-          
-              
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/dcc50721.html" class="leancloud_visitors" data-flag-title="Oracle 不安装Oracle客户端直接用PLSQL连接数据库">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 325</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 1 分钟</span>
-  </div>
- 
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1）下载"><a href="#1）下载" class="headerlink" title="1）下载"></a>1）下载</h2><p>instantclient_11_2.zip<br>PL/SQL</p>
-<h2 id="2）"><a href="#2）" class="headerlink" title="2）"></a>2）</h2><p>解压instantclient_11_2.zip到相应文件夹，<br>比如：<code>E:\oracleclient\instantclient_11_2</code></p>
-<p>在该文件夹下面编写sqlnet.ora文件</p>
-<p>内容：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NAMES.DIRECTORY_PATH= (TNSNAMES)</span><br><span class="line">SQLNET.AUTHENTICATION_SERVICES= (NTS)</span><br></pre></td></tr></table></figure></p>
-<p>然后在该目录下面建立network/admin层级文件夹，<br>比如：<code>E:\oracleclient\instantclient_11_2\network\admin</code><br>在该文件夹下面编写tnsnames.ora文件<br>内容格式如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">168=*pl/sql实例名称            </span><br><span class="line">  (DESCRIPTION =</span><br><span class="line">    (ADDRESS_LIST =</span><br><span class="line">      (ADDRESS = (PROTOCOL = TCP)(HOST = 192.168.89.168)(PORT = 1522))*数据库连接+端口</span><br><span class="line">    )</span><br><span class="line">    (CONNECT_DATA =</span><br><span class="line">      (SERVICE_NAME = orcl)*数据库实例名称</span><br><span class="line">    )</span><br><span class="line">  )</span><br></pre></td></tr></table></figure></p>
-<h2 id="3）"><a href="#3）" class="headerlink" title="3）"></a>3）</h2><p>到我的电脑、属性、高级、环境变量中添加一个环境变量，<br>变量名为TNS_ADMIN，值为tnsnames.ora文件所在路径， 例如：<code>E:\oracleclient\instantclient_11_2</code></p>
-<h2 id="4）"><a href="#4）" class="headerlink" title="4）"></a>4）</h2><p>安装完毕PLSQL后，启动，cancel，依次点击:<br><code>Tools</code> -&gt; <code>Preferences</code> -&gt; <code>Connection</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Oracle Home=E:\oracleclient\instantclient_11_2</span><br><span class="line">OCI library=E:\oracleclient\instantclient_11_2\oci.dll</span><br></pre></td></tr></table></figure></p>
-<p>重新启动PLSQL，输入用户名、密码、选择pl/sql实例名，即可进入数据库</p>
-<h2 id="5）"><a href="#5）" class="headerlink" title="5）"></a>5）</h2><p>初次登陆可能存在中文乱码的问题，解决方法如下：<br>到我的电脑、属性、高级、环境变量中添加一个环境变量：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">变量名：NLS_LANG </span><br><span class="line">变量值：AMERICAN_AMERICA.ZHS16GBK</span><br></pre></td></tr></table></figure></p>
-<p>重新连接，即可正常显示中文。<br>如果想转换为UTF8字符集，可以赋予“NLS_LANG”为 “AMERICAN_AMERICA.UTF8，其他编码同上</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/dcc50721.html" data-id="cjmaeckmq008l0rykg374zeuk" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Oracle/">Oracle</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PLSQL/">PLSQL</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-  
 
 
   <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/page/6/">&laquo; pre</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/8/">next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/6/">&laquo; pre</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/8/">next &raquo;</a>
   </nav>
 </section>
         
@@ -964,7 +1043,7 @@
     <h2 class="author">豪快二突撃スル</h2>
     <h3 class="description">javaer</h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>120</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>121</strong><br>文章</div></a>
       <a href="/categories"><div><strong>42</strong><br>分类</div></a>
       <a href="/tags"><div><strong>79</strong><br>标签</div></a>
     </div>
