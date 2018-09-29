@@ -14,7 +14,7 @@
 <meta property="og:description" content="问题描述先看一下上图，我在公号上面输入，，，到公号后端服务，被动响应之前，这个字符会调用一个内部接口，主要是查询答案，然后返回到公号后端，然后后端服务再处理报文后，做被动响应操作。 正常操作结果就是像第一个一样，返回处理后的文字向导。但是输入第二个积分多少的时候，公号就显示出该公众号提供的服务出现故障，请稍后再试，这并不是正常的处理结果。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://img.tidyko.com/blog/wechat_bd1.png">
-<meta property="og:updated_time" content="2018-09-29T03:03:13.167Z">
+<meta property="og:updated_time" content="2018-09-29T03:05:13.710Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="微信公众号 被动回复超时问题">
 <meta name="twitter:description" content="问题描述先看一下上图，我在公号上面输入，，，到公号后端服务，被动响应之前，这个字符会调用一个内部接口，主要是查询答案，然后返回到公号后端，然后后端服务再处理报文后，做被动响应操作。 正常操作结果就是像第一个一样，返回处理后的文字向导。但是输入第二个积分多少的时候，公号就显示出该公众号提供的服务出现故障，请稍后再试，这并不是正常的处理结果。">
@@ -130,8 +130,9 @@
 <ol>
 <li>公号后端服务运行正常。</li>
 <li>排查日志，后端服务就算机器人接口调用不通也会有返回默认响应报文，但是就是出现了故障提示。</li>
-<li>最后排查发现，是后端服务httpclient与公众号被动回复超时时间冲突导致的。<h2 id="原因描述"><a href="#原因描述" class="headerlink" title="原因描述"></a>原因描述</h2>因为公众号被动回复响应时间为5秒，也就是说当你后端服务超过5秒钟没有响应内容的话，公众号就会当成当前用户的这次操作没有响应，因此，报了上面那个错误：<code>该公众号提供的服务出现故障，请稍后再试</code>。</li>
+<li>最后排查发现，是后端服务httpclient与公众号被动回复超时时间冲突导致的。</li>
 </ol>
+<h2 id="原因描述"><a href="#原因描述" class="headerlink" title="原因描述"></a>原因描述</h2><p>因为公众号被动回复响应时间为5秒，也就是说当你后端服务超过5秒钟没有响应内容的话，公众号就会当成当前用户的这次操作没有响应，因此，报了上面那个错误：<code>该公众号提供的服务出现故障，请稍后再试</code>。</p>
 <p>原因就是出在我们后台服务的httpclient设置的超时时间也是5秒钟，调用内部接口时，接口没响应的情况下，虽然五秒后我们有默认响应结果给到微信公众号，但是公号已经提前一步响应错误结果给到用户了，所以我们后面那次默认响应就其实是没用的，所以这里我们调整一下我们调用接口的超时响应时间为小于公众号的5秒就行了。</p>
 <h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> TIMEOUT = <span class="number">4000</span>;</span><br></pre></td></tr></table></figure>
 <p>把httpclient的超时响应时间改为4秒钟，比公号的响应时间早一秒就可以解决问题了。</p>
@@ -139,7 +140,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/9e53d1a6.html" data-id="cjmmuq97n00azvdykphgnpfm1" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/9e53d1a6.html" data-id="cjmmuswc400auzxykb5x324cd" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Apache-HttpClient/">Apache HttpClient</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/微信公众号/">微信公众号</a></li></ul>
