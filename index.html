@@ -41,7 +41,7 @@
     <h2 class="author">豪快二突撃スル</h2>
     <h3 class="description">javaer</h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>121</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>122</strong><br>文章</div></a>
       <a href="/categories"><div><strong>42</strong><br>分类</div></a>
       <a href="/tags"><div><strong>79</strong><br>标签</div></a>
     </div>
@@ -68,6 +68,92 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-微信公众号 被动回复超时问题" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/9e53d1a6.html" class="article-date">
+  <time class="post-time" datetime="2018-09-29T02:00:00.000Z" itemprop="datePublished">
+    <span class="post-month">9月</span><br/>
+    <span class="post-day">29</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/9e53d1a6.html">微信公众号 被动回复超时问题</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/9e53d1a6.html" class="leancloud_visitors" data-flag-title="微信公众号 被动回复超时问题">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 517</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 2 分钟</span>
+  </div>
+ 
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p><img src="http://img.tidyko.com/blog/wechat_bd1.png" alt="微信公众号 被动回复超时问题1"><br>先看一下上图，我在公号上面输入<code>，，</code>，到公号后端服务，被动响应之前，这个字符会调用一个内部接口，主要是查询答案，然后返回到公号后端，然后后端服务再处理报文后，做被动响应操作。</p>
+<p>正常操作结果就是像第一个一样，返回处理后的文字向导。<br>但是输入第二个<code>积分多少</code>的时候，公号就显示出<code>该公众号提供的服务出现故障，请稍后再试</code>，这并不是正常的处理结果。</p>
+<h2 id="问题排查"><a href="#问题排查" class="headerlink" title="问题排查"></a>问题排查</h2><p>排查了几个问题，</p>
+<ol>
+<li>公号后端服务运行正常。</li>
+<li>排查日志，后端服务就算机器人接口调用不通也会有返回默认响应报文，但是就是出现了故障提示。</li>
+<li>最后排查发现，是后端服务httpclient与公众号被动回复超时时间冲突导致的。<h2 id="原因描述"><a href="#原因描述" class="headerlink" title="原因描述"></a>原因描述</h2>因为公众号被动回复响应时间为5秒，也就是说当你后端服务超过5秒钟没有响应内容的话，公众号就会当成当前用户的这次操作没有响应，因此，报了上面那个错误：<code>该公众号提供的服务出现故障，请稍后再试</code>。</li>
+</ol>
+<p>原因就是出在我们后台服务的httpclient设置的超时时间也是5秒钟，调用内部接口时，接口没响应的情况下，虽然五秒后我们有默认响应结果给到微信公众号，但是公号已经提前一步响应错误结果给到用户了，所以我们后面那次默认响应就其实是没用的，所以这里我们调整一下我们调用接口的超时响应时间为小于公众号的5秒就行了。</p>
+<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> TIMEOUT = <span class="number">4000</span>;</span><br></pre></td></tr></table></figure>
+<p>把httpclient的超时响应时间改为4秒钟，比公号的响应时间早一秒就可以解决问题了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/9e53d1a6.html" data-id="cjmmupllo00asr0ykoperr3x7" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Apache-HttpClient/">Apache HttpClient</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/微信公众号/">微信公众号</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
   
     <article id="post-Android AndroidStudio" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -132,7 +218,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/7aeb1e46.html" data-id="cjmmuopqg000amsykd2vgz2k0" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/7aeb1e46.html" data-id="cjmmupla20007r0yksk5oz12u" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
@@ -213,7 +299,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/bf60621.html" data-id="cjmmuopz60088msyk1t076zwn" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/bf60621.html" data-id="cjmmuplhl006lr0yk56hghvuy" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
@@ -300,7 +386,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/e4163a66.html" data-id="cjmmuopqr000gmsyksk4pcnq5" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/e4163a66.html" data-id="cjmmuplal000jr0yk7o6ess3h" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/">Docker</a></li></ul>
@@ -389,7 +475,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/a5557ea7.html" data-id="cjmmuopqy000kmsykuhjb9mkv" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/a5557ea7.html" data-id="cjmmuplap000lr0ykxv2trrxt" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/">Docker</a></li></ul>
@@ -475,7 +561,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/4573f792.html" data-id="cjmmuoptg002mmsykw832n292" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/4573f792.html" data-id="cjmmuplcp0026r0yk0sw9gq1k" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ELK/">ELK</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FileBeat/">FileBeat</a></li></ul>
@@ -559,7 +645,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3c49f4b8.html" data-id="cjmmuopv60040msyk5wb7zbe1" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/3c49f4b8.html" data-id="cjmmuplem003or0yksj313bii" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/">Spring</a></li></ul>
@@ -638,7 +724,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3d5c725a.html" data-id="cjmmuopyx007xmsyk16onyab7" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/3d5c725a.html" data-id="cjmmupli10074r0ykwoir9ftz" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ELK/">ELK</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LogStash/">LogStash</a></li></ul>
@@ -724,7 +810,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3e9aef58.html" data-id="cjmmuopt5002dmsykgo58v5u2" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/3e9aef58.html" data-id="cjmmuplcl0024r0ykkxph3e05" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ELK/">ELK</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ElasticSearch/">ElasticSearch</a></li></ul>
@@ -827,92 +913,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/d0e6a555.html" data-id="cjmmuopuw003rmsyk0eecsuxk" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/d0e6a555.html" data-id="cjmmupldm002wr0yk3fiprxx2" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IDEA/">IDEA</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/规范/">规范</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-建站 HEXO发布到github时出现卡顿" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/3f08f656.html" class="article-date">
-  <time class="post-time" datetime="2018-08-13T13:58:00.000Z" itemprop="datePublished">
-    <span class="post-month">8月</span><br/>
-    <span class="post-day">13</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/3f08f656.html">建站 HEXO发布到github时出现卡顿</a>
-    </h1>
-  
-
-        <div>
-          
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/建站/">建站</a>
-  </div>
-
-          
-              
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/3f08f656.html" class="leancloud_visitors" data-flag-title="建站 HEXO发布到github时出现卡顿">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 231</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 1 分钟</span>
-  </div>
- 
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>使用以下命令构建发布时，一直循环出现该错误，导致发布不了。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> hexo clean &amp;&amp; hexo g &amp;&amp; hexo d -debug</span></span><br><span class="line"></span><br><span class="line">INFO  Deleted database.</span><br><span class="line">INFO  Deleted public folder.</span><br><span class="line">INFO  Start processing</span><br><span class="line">INFO  Files loaded in 1.63 s</span><br><span class="line">INFO  Generated: index.html</span><br><span class="line">...</span><br><span class="line">INFO  359 files generated in 5.06 s</span><br><span class="line">INFO  Start processing</span><br><span class="line">INFO  Files loaded in 826 ms</span><br><span class="line">INFO  0 files generated in 3.65 s</span><br><span class="line">INFO  Start processing</span><br><span class="line">INFO  Files loaded in 339 ms</span><br><span class="line">INFO  0 files generated in 3.59 s</span><br><span class="line">INFO  Start processing</span><br><span class="line">INFO  Files loaded in 295 ms</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
-<p>无奈之下，只能重新构建一个项目，将源码拷贝到新的项目进行重新构建。</p>
-<p>发现就可以了。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hexo init hexoblog</span><br><span class="line"></span><br><span class="line">cd hexoblog</span><br><span class="line"></span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
-<p>然后复制老项目现有的 <code>_config.yml</code> 到新项目路径下，</p>
-<p>再复制 <code>hexoblog/source</code> 下面的 <code>categories</code> 、 <code>tags</code> 、 <code>CNAME</code> 到新项目底下，</p>
-<p>然后复制 <code>themes/shana</code> 到新项目的themes底下，重新执行发布命令即可。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3f08f656.html" data-id="cjmmuoq1q00anmsyk2ts9i9gk" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HEXO/">HEXO</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li></ul>
 
     </footer>
   </div>
@@ -971,7 +975,7 @@
     <h2 class="author">豪快二突撃スル</h2>
     <h3 class="description">javaer</h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>121</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>122</strong><br>文章</div></a>
       <a href="/categories"><div><strong>42</strong><br>分类</div></a>
       <a href="/tags"><div><strong>79</strong><br>标签</div></a>
     </div>

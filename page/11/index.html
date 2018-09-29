@@ -41,7 +41,7 @@
     <h2 class="author">豪快二突撃スル</h2>
     <h3 class="description">javaer</h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>121</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>122</strong><br>文章</div></a>
       <a href="/categories"><div><strong>42</strong><br>分类</div></a>
       <a href="/tags"><div><strong>79</strong><br>标签</div></a>
     </div>
@@ -68,6 +68,85 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-Java date 到 Oracle date 精确到时分秒" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/6a3fb6fb.html" class="article-date">
+  <time class="post-time" datetime="2014-03-03T06:41:00.000Z" itemprop="datePublished">
+    <span class="post-month">3月</span><br/>
+    <span class="post-day">03</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/6a3fb6fb.html">Java date 到 Oracle date 精确到时分秒</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/6a3fb6fb.html" class="leancloud_visitors" data-flag-title="Java date 到 Oracle date 精确到时分秒">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 140</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 1 分钟</span>
+  </div>
+ 
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>有两种方法：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java.util.Date startTime=<span class="keyword">new</span> Date(<span class="string">"2014/01/01 23:00:00"</span>);</span><br></pre></td></tr></table></figure></p>
+<h3 id="1）"><a href="#1）" class="headerlink" title="1）"></a>1）</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Timestamp(startTime.getTime())</span><br></pre></td></tr></table></figure>
+<p>如果数据库中时间字段定义为date类型，由于timestamp类型的精度比date类型的精度高，所以oracle会对数据库里的date类型做出隐身转换，将date类型转换为timestamp类型，由于加了函数，那么创建在date类型上的索引将不会使用到；(好像是oracle9i后开始才有的问题)</p>
+<h3 id="2）"><a href="#2）" class="headerlink" title="2）"></a>2）</h3><p>数据库直接使用varchar2类型，在过程里面用to_date直接转换。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/6a3fb6fb.html" data-id="cjmmuplgd005gr0ykz64gswfi" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Oracle/">Oracle</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
   
     <article id="post-Eclipse 配置pom.xml错误" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -131,7 +210,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/ac53be82.html" data-id="cjmmuopsq001xmsykxvmpqmby" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/ac53be82.html" data-id="cjmmuplcd001zr0yk7ucupvek" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Maven/">Maven</a></li></ul>
@@ -209,7 +288,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/26788ddf.html" data-id="cjmmuopvd0048msykqwjmx6kd" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/26788ddf.html" data-id="cjmmuplew003xr0ykmb3gl2du" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
@@ -286,7 +365,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/93821c9f.html" data-id="cjmmuopx3005zmsyk2vx2hpah" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/93821c9f.html" data-id="cjmmuplgr005or0ykecp5ylri" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
@@ -367,7 +446,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/bd745825.html" data-id="cjmmuopr7000pmsykzr8wxr2k" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/bd745825.html" data-id="cjmmuplb4000vr0ykxh1m292c" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jdk/">Jdk</a></li></ul>
@@ -444,7 +523,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3e42071e.html" data-id="cjmmuopro0015msykf186qwtb" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/3e42071e.html" data-id="cjmmuplax000qr0ykhh5hwfrp" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Svn/">Svn</a></li></ul>
@@ -524,7 +603,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/fd6e9fc4.html" data-id="cjmmuoprl0012msykdb2pntdp" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/fd6e9fc4.html" data-id="cjmmuplbb0012r0ykkxz7icsh" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SonarQube/">SonarQube</a></li></ul>
@@ -601,7 +680,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/353a4b3e.html" data-id="cjmmuoprg000xmsyk8hl0x76g" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/353a4b3e.html" data-id="cjmmuplbe0015r0ykaznqfpq9" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tomcat/">Tomcat</a></li></ul>
@@ -679,7 +758,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/df9c274.html" data-id="cjmmuopsg001qmsykk4wht2io" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/df9c274.html" data-id="cjmmuplc3001pr0ykbqojutkb" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tomcat/">Tomcat</a></li></ul>
@@ -756,87 +835,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/f362ee4b.html" data-id="cjmmuopsu0022msykfhjjzs5j" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/f362ee4b.html" data-id="cjmmuplc6001tr0ykhphig8r8" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-Eclipse 项目添加Maven类库依赖" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/d809e936.html" class="article-date">
-  <time class="post-time" datetime="2013-11-22T08:02:00.000Z" itemprop="datePublished">
-    <span class="post-month">11月</span><br/>
-    <span class="post-day">22</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/d809e936.html">Eclipse 项目添加Maven类库依赖</a>
-    </h1>
-  
-
-        <div>
-          
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/开发调试工具/">开发调试工具</a>,<a class="article-category-link" href="/categories/开发调试工具/Eclipse/">Eclipse</a>
-  </div>
-
-          
-              
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/d809e936.html" class="leancloud_visitors" data-flag-title="Eclipse 项目添加Maven类库依赖">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 32</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 1 分钟</span>
-  </div>
- 
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1）"><a href="#1）" class="headerlink" title="1）"></a>1）</h3><p><code>右击项目</code> -&gt; <code>Maven</code> -&gt; <code>EnableDependencyManagement</code><br>然后按步骤完成操作。</p>
-<h3 id="2）"><a href="#2）" class="headerlink" title="2）"></a>2）</h3><p><code>右击项目</code> -&gt; <code>Properties</code> -&gt; <code>DeploymentAssembly</code> -&gt; <code>Add</code> -&gt; <code>JavaBuildPathEntries</code> -&gt; <code>选择Maven</code><br>确定应用。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/d809e936.html" data-id="cjmmuopsw0024msykg3b1m69z" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Maven/">Maven</a></li></ul>
 
     </footer>
   </div>
@@ -895,7 +897,7 @@
     <h2 class="author">豪快二突撃スル</h2>
     <h3 class="description">javaer</h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>121</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>122</strong><br>文章</div></a>
       <a href="/categories"><div><strong>42</strong><br>分类</div></a>
       <a href="/tags"><div><strong>79</strong><br>标签</div></a>
     </div>
