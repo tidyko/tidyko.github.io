@@ -123,21 +123,16 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p><img src="http://img.tidyko.com/blog/wechat_bd1.png" alt="微信公众号 被动回复超时问题1"><br>先看一下上图，我在公号上面输入<code>，，</code>，到公号后端服务，被动响应之前，这个字符会调用一个内部接口，主要是查询答案，然后返回到公号后端，然后后端服务再处理报文后，做被动响应操作。</p>
-<p>正常操作结果就是像第一个一样，返回处理后的文字向导。<br>但是输入第二个<code>积分多少</code>的时候，公号就显示出<code>该公众号提供的服务出现故障，请稍后再试</code>，这并不是正常的处理结果。</p>
-<h2 id="问题排查"><a href="#问题排查" class="headerlink" title="问题排查"></a>问题排查</h2><p>排查了几个问题，</p>
-<ol>
-<li>公号后端服务运行正常。</li>
-<li>排查日志，后端服务就算机器人接口调用不通也会有返回默认响应报文，但是就是出现了故障提示。</li>
-<li>最后排查发现，是后端服务httpclient与公众号被动回复超时时间冲突导致的。<h2 id="原因描述"><a href="#原因描述" class="headerlink" title="原因描述"></a>原因描述</h2>因为公众号被动回复响应时间为5秒，也就是说当你后端服务超过5秒钟没有响应内容的话，公众号就会当成当前用户的这次操作没有响应，因此，报了上面那个错误：<code>该公众号提供的服务出现故障，请稍后再试</code>。</li>
-</ol>
-<p>原因就是出在我们后台服务的httpclient设置的超时时间也是5秒钟，调用内部接口时，接口没响应的情况下，虽然五秒后我们有默认响应结果给到微信公众号，但是公号已经提前一步响应错误结果给到用户了，所以我们后面那次默认响应就其实是没用的，所以这里我们调整一下我们调用接口的超时响应时间为小于公众号的5秒就行了。</p>
-<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> TIMEOUT = <span class="number">4000</span>;</span><br></pre></td></tr></table></figure>
-<p>把httpclient的超时响应时间改为4秒钟，比公号的响应时间早一秒就可以解决问题了。</p>
-
+<p>正常操作结果就是像第一个一样，返回处理后的文字向导。<br>但是输入第二个<code>积分多少</code>的时候，公号就显示出<code>该公众号提供的服务出现故障，请稍后再试</code>，这并不是正常的处理结果。<br>
+        
+          <p class="article-more-link">
+            <a href="/posts/9e53d1a6.html#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/9e53d1a6.html" data-id="cjmmupllo00asr0ykoperr3x7" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/9e53d1a6.html" data-id="cjmmuq97n00azvdykphgnpfm1" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Apache-HttpClient/">Apache HttpClient</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/微信公众号/">微信公众号</a></li></ul>
@@ -218,7 +213,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/7aeb1e46.html" data-id="cjmmupla20007r0yksk5oz12u" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/7aeb1e46.html" data-id="cjmmuq8uv0007vdyk6ubxpv6h" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
@@ -299,7 +294,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/bf60621.html" data-id="cjmmuplhl006lr0yk56hghvuy" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/bf60621.html" data-id="cjmmuq933006rvdyk2qrzfmpq" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
@@ -386,7 +381,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/e4163a66.html" data-id="cjmmuplal000jr0yk7o6ess3h" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/e4163a66.html" data-id="cjmmuq8vn000jvdykxije8rj9" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/">Docker</a></li></ul>
@@ -475,7 +470,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/a5557ea7.html" data-id="cjmmuplap000lr0ykxv2trrxt" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/a5557ea7.html" data-id="cjmmuq8w0000pvdykt5n0i5b3" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/">Docker</a></li></ul>
@@ -561,7 +556,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/4573f792.html" data-id="cjmmuplcp0026r0yk0sw9gq1k" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/4573f792.html" data-id="cjmmuq8y30026vdyk9b1tshhy" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ELK/">ELK</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FileBeat/">FileBeat</a></li></ul>
@@ -645,7 +640,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3c49f4b8.html" data-id="cjmmuplem003or0yksj313bii" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/3c49f4b8.html" data-id="cjmmuq904003svdyknjsd7hb2" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/">Spring</a></li></ul>
@@ -724,7 +719,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3d5c725a.html" data-id="cjmmupli10074r0ykwoir9ftz" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/3d5c725a.html" data-id="cjmmuq93m007avdyk9c6ous9m" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ELK/">ELK</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LogStash/">LogStash</a></li></ul>
@@ -810,7 +805,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3e9aef58.html" data-id="cjmmuplcl0024r0ykkxph3e05" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/3e9aef58.html" data-id="cjmmuq8xz0024vdykeekw5y47" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ELK/">ELK</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ElasticSearch/">ElasticSearch</a></li></ul>
@@ -913,7 +908,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/d0e6a555.html" data-id="cjmmupldm002wr0yk3fiprxx2" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/d0e6a555.html" data-id="cjmmuq8z0002wvdykfdrpfmfe" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IDEA/">IDEA</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/规范/">规范</a></li></ul>
