@@ -41,9 +41,9 @@
     <h2 class="author">豪快二突撃スル</h2>
     <h3 class="description">javaer</h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>122</strong><br>文章</div></a>
-      <a href="/categories"><div><strong>42</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>79</strong><br>标签</div></a>
+      <a href="/archives"><div><strong>123</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>44</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>81</strong><br>标签</div></a>
     </div>
     <ul class="blog-link">
      
@@ -68,6 +68,97 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-Mac iterm2使用expect实现SSH自动登陆" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/c14d120e.html" class="article-date">
+  <time class="post-time" datetime="2018-10-09T03:53:00.000Z" itemprop="datePublished">
+    <span class="post-month">10月</span><br/>
+    <span class="post-day">09</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/c14d120e.html">Mac iterm2使用expect实现SSH自动登陆</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/IDE/">IDE</a>,<a class="article-category-link" href="/categories/IDE/iterm2/">iterm2</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/c14d120e.html" class="leancloud_visitors" data-flag-title="Mac iterm2使用expect实现SSH自动登陆">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 389</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 2 分钟</span>
+  </div>
+ 
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>##安装brew<br>先确保已经安装了brew，我们将使用brew来安装我们需要的命令和软件。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew --version</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Homebrew 1.5.10</span><br><span class="line">Homebrew/homebrew-core (git revision c3f55; last commit 2018-03-14)</span><br></pre></td></tr></table></figure>
+<h2 id="安装iterm2"><a href="#安装iterm2" class="headerlink" title="安装iterm2"></a>安装iterm2</h2><p>命令行工具。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew cask install iterm2</span><br></pre></td></tr></table></figure></p>
+<p>##安装expect<br>expect的作用是当遇到指定命令之后执行对应命令。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install expect</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">expect -version</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">expect version 5.45</span><br></pre></td></tr></table></figure>
+<p>##编写自动登录脚本<br>在<code>/usr/local/bin/</code>目录下，新建<code>iterm2login.sh</code>文件，内容如下：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/usr/bin/expect</span></span><br><span class="line"></span><br><span class="line">set timeout 30</span><br><span class="line">spawn ssh -p [lindex $argv 0] [lindex $argv 1]@[lindex $argv 2]</span><br><span class="line">expect &#123;</span><br><span class="line">        "(yes/no)?"</span><br><span class="line">        &#123;send "yes\n";exp_continue&#125;</span><br><span class="line">        "password:"</span><br><span class="line">        &#123;send "[lindex $argv 3]\n"&#125;</span><br><span class="line">        "Password:"</span><br><span class="line">        &#123;send "[lindex $argv 3]\n"&#125;</span><br><span class="line">&#125;</span><br><span class="line">interact</span><br></pre></td></tr></table></figure></p>
+<p>##配置iterm2<br>添加profile，配置如下：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">iterm2login.sh 端口号 用户 IP地址 密码</span><br><span class="line"></span><br><span class="line">iterm2login.sh 22 finder 10.121.22.211 ImLog4Dev</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://img.tidyko.com/blog/iterm2login_1.png" alt="iterm2login_1"></p>
+<p>##更改TAB页的title<br>先勾选 <code>Preference</code> -&gt; <code>Appearance</code> -&gt; <code>Show profile name</code> 选项。</p>
+<p><img src="http://img.tidyko.com/blog/iterm2login_2.png" alt="iterm2login_2"></p>
+<p>再打开 <code>Preference</code> -&gt; <code>Profiles</code>，选中你要设置的 profile，点击右边的 <code>Terminal</code> 标签，把默认勾选上的 <code>Terminal may set tab/window title</code>选项取消勾选，如下：</p>
+<p><img src="http://img.tidyko.com/blog/iterm2login_3.png" alt="iterm2login_3"></p>
+<p>##保存iterm2的个性化配置<br>为了防止配置丢失，或者重装系统能够恢复当前配置，可以把当前配置保存在iCloud或者其他云盘中，我这里使用Dropbox。</p>
+<p>现在Dropbox下创建好保存配置的文件夹。<br><img src="http://img.tidyko.com/blog/iterm2login_4.png" alt="iterm2login_4"></p>
+<p>iterm2中选择 Preferences，general页签下部勾选如下两个复选框，然后点击右边的<code>Browse</code>浏览文件夹，选择刚才创建的目录，之后确认配置已经保存完毕。<br><img src="http://img.tidyko.com/blog/iterm2login_5.png" alt="iterm2login_5"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/c14d120e.html" data-id="cjn1d38kb007h5cyk7f4r4jwp" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IDE/">IDE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mac/">Mac</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iterm2/">iterm2</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
   
     <article id="post-微信公众号 被动回复超时问题" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -132,7 +223,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/9e53d1a6.html" data-id="cjmmuswc400auzxykb5x324cd" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/9e53d1a6.html" data-id="cjn1d38p400b85cyk2fyc9bvb" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Apache-HttpClient/">Apache HttpClient</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/微信公众号/">微信公众号</a></li></ul>
@@ -213,7 +304,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/7aeb1e46.html" data-id="cjmmusvzh0007zxyk3t4jphpp" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/7aeb1e46.html" data-id="cjn1d38ak00065cykry98jmjp" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
@@ -294,7 +385,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/bf60621.html" data-id="cjmmusw7o006ozxyk62su68zf" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/bf60621.html" data-id="cjn1d38m8008z5cyk2cuk066y" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
@@ -381,7 +472,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/e4163a66.html" data-id="cjmmusw03000jzxyk1tc0hmxw" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/e4163a66.html" data-id="cjn1d38bh000k5cyk6ymgmy33" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/">Docker</a></li></ul>
@@ -470,7 +561,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/a5557ea7.html" data-id="cjmmusw05000lzxykbxeirepf" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/a5557ea7.html" data-id="cjn1d38bv000r5cykmxnbbrpt" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/">Docker</a></li></ul>
@@ -556,7 +647,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/4573f792.html" data-id="cjmmusw2p002azxyk7gnf4km6" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/4573f792.html" data-id="cjn1d38dt00285cykx867iaat" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ELK/">ELK</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FileBeat/">FileBeat</a></li></ul>
@@ -640,7 +731,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3c49f4b8.html" data-id="cjmmusw4e003qzxykizgkz0s9" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/3c49f4b8.html" data-id="cjn1d38gd004d5cykvy3awxiz" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/">Spring</a></li></ul>
@@ -719,7 +810,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3d5c725a.html" data-id="cjmmusw840076zxykte30c1et" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/3d5c725a.html" data-id="cjn1d38kv007y5cyk8l5js1g6" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ELK/">ELK</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LogStash/">LogStash</a></li></ul>
@@ -805,113 +896,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3e9aef58.html" data-id="cjmmusw2i0024zxyk3nk4l5ft" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/3e9aef58.html" data-id="cjn1d38e8002m5cykovii3kq6" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ELK/">ELK</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ElasticSearch/">ElasticSearch</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-IDEA 编程风格规范" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/d0e6a555.html" class="article-date">
-  <time class="post-time" datetime="2018-08-15T08:59:00.000Z" itemprop="datePublished">
-    <span class="post-month">8月</span><br/>
-    <span class="post-day">15</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/d0e6a555.html">IDEA 编程风格规范</a>
-    </h1>
-  
-
-        <div>
-          
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/开发调试工具/">开发调试工具</a>,<a class="article-category-link" href="/categories/开发调试工具/IDEA/">IDEA</a>
-  </div>
-
-          
-              
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/d0e6a555.html" class="leancloud_visitors" data-flag-title="IDEA 编程风格规范">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 158</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 1 分钟</span>
-  </div>
- 
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>为了统一规范代码风格，规定团队均使用下列插件以及设置。</p>
-<p>编程规范统一使用： <a href="https://github.com/google/google-java-format" target="_blank" rel="noopener">google-java-format</a><br>代码规范统一使用： <a href="https://github.com/alibaba/p3c" target="_blank" rel="noopener">Alibaba Java Coding Guidelines</a><br>快速格式优化使用： <a href="https://github.com/dubreuia/intellij-plugin-save-actions" target="_blank" rel="noopener">Save Actions</a></p>
-<h1 id="设置"><a href="#设置" class="headerlink" title="设置"></a>设置</h1><h2 id="1）google-java-format"><a href="#1）google-java-format" class="headerlink" title="1）google-java-format"></a>1）google-java-format</h2><h3 id="1-1）Tab键统一4个空格"><a href="#1-1）Tab键统一4个空格" class="headerlink" title="1.1）Tab键统一4个空格"></a>1.1）Tab键统一4个空格</h3><p><code>Editor</code> -&gt; <code>Code Style</code> -&gt; <code>Java</code> </p>
-<ul>
-<li style="list-style: none"><input type="checkbox" checked> Use tab character<ul>
-<li style="list-style: none"><input type="checkbox" checked> Smart tabs</li>
-</ul>
-</li>
-</ul>
-<p>Tab size：4</p>
-<h3 id="1-2）行宽120"><a href="#1-2）行宽120" class="headerlink" title="1.2）行宽120"></a>1.2）行宽120</h3><p><code>Editor</code> -&gt; <code>Code Style</code></p>
-<p>Hard wrap at 120 columns</p>
-<h2 id="2）Alibaba-Java-Coding-Guidelines"><a href="#2）Alibaba-Java-Coding-Guidelines" class="headerlink" title="2）Alibaba Java Coding Guidelines"></a>2）Alibaba Java Coding Guidelines</h2><p>根据项目自行开启</p>
-<h2 id="3）Save-Actions"><a href="#3）Save-Actions" class="headerlink" title="3）Save Actions"></a>3）Save Actions</h2><p>general </p>
-<ul>
-<li style="list-style: none"><input type="checkbox" checked> 1.activate save actions on sace (before saving each file, performs the …)</li>
-</ul>
-<p>formatting actions </p>
-<ul>
-<li style="list-style: none"><input type="checkbox" checked> 1.organize imports</li>
-<li style="list-style: none"><input type="checkbox" checked> 2.reformat file</li>
-<li style="list-style: none"><input type="checkbox" checked> 3.reformat only changed code</li>
-</ul>
-<p>java inspection and quick fix</p>
-<ul>
-<li style="list-style: none"><input type="checkbox" checked> 6.add missing @Override annotations</li>
-<li style="list-style: none"><input type="checkbox" checked> 7.add blocks in if/while/for sattements</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/d0e6a555.html" data-id="cjmmusw3h002wzxykcxhwsq5l" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IDEA/">IDEA</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/规范/">规范</a></li></ul>
 
     </footer>
   </div>
@@ -970,9 +958,9 @@
     <h2 class="author">豪快二突撃スル</h2>
     <h3 class="description">javaer</h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>122</strong><br>文章</div></a>
-      <a href="/categories"><div><strong>42</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>79</strong><br>标签</div></a>
+      <a href="/archives"><div><strong>123</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>44</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>81</strong><br>标签</div></a>
     </div>
 
 
