@@ -129,20 +129,15 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">expect -version</span><br></pre></td></tr></table></figure>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">expect version 5.45</span><br></pre></td></tr></table></figure>
 <p>## 编写自动登录脚本<br>在<code>/usr/local/bin/</code>目录下，新建<code>iterm2login.sh</code>文件，内容如下：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/usr/bin/expect</span></span><br><span class="line"></span><br><span class="line">set timeout 30</span><br><span class="line">spawn ssh -p [lindex $argv 0] [lindex $argv 1]@[lindex $argv 2]</span><br><span class="line">expect &#123;</span><br><span class="line">        "(yes/no)?"</span><br><span class="line">        &#123;send "yes\n";exp_continue&#125;</span><br><span class="line">        "password:"</span><br><span class="line">        &#123;send "[lindex $argv 3]\n"&#125;</span><br><span class="line">        "Password:"</span><br><span class="line">        &#123;send "[lindex $argv 3]\n"&#125;</span><br><span class="line">&#125;</span><br><span class="line">interact</span><br></pre></td></tr></table></figure></p>
-<h2 id="配置iterm2"><a href="#配置iterm2" class="headerlink" title="配置iterm2"></a>配置iterm2</h2><p>添加profile，配置如下：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">iterm2login.sh 端口号 用户 IP地址 密码</span><br><span class="line"></span><br><span class="line">iterm2login.sh 22 finder 10.121.22.211 ImLog4Dev</span><br></pre></td></tr></table></figure></p>
-<p><img src="http://img.tidyko.com/blog/iterm2login_1.png" alt="iterm2login_1"></p>
-<h2 id="更改TAB页的title"><a href="#更改TAB页的title" class="headerlink" title="更改TAB页的title"></a>更改TAB页的title</h2><p>先勾选 <code>Preference</code> -&gt; <code>Appearance</code> -&gt; <code>Show profile name</code> 选项。</p>
-<p><img src="http://img.tidyko.com/blog/iterm2login_2.png" alt="iterm2login_2"></p>
-<p>再打开 <code>Preference</code> -&gt; <code>Profiles</code>，选中你要设置的 profile，点击右边的 <code>Terminal</code> 标签，把默认勾选上的 <code>Terminal may set tab/window title</code>选项取消勾选，如下：</p>
-<p><img src="http://img.tidyko.com/blog/iterm2login_3.png" alt="iterm2login_3"></p>
-<h2 id="保存iterm2的个性化配置"><a href="#保存iterm2的个性化配置" class="headerlink" title="保存iterm2的个性化配置"></a>保存iterm2的个性化配置</h2><p>为了防止配置丢失，或者重装系统能够恢复当前配置，可以把当前配置保存在iCloud或者其他云盘中，我这里使用Dropbox。</p>
-<p>现在Dropbox下创建好保存配置的文件夹。<br><img src="http://img.tidyko.com/blog/iterm2login_4.png" alt="iterm2login_4"></p>
-<p>iterm2中选择 Preferences，general页签下部勾选如下两个复选框，然后点击右边的<code>Browse</code>浏览文件夹，选择刚才创建的目录，之后确认配置已经保存完毕。<br><img src="http://img.tidyko.com/blog/iterm2login_5.png" alt="iterm2login_5"></p>
-
+        
+          <p class="article-more-link">
+            <a href="/posts/c14d120e.html#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/c14d120e.html" data-id="cjn1d5van00799myk9witsc8f" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/c14d120e.html" data-id="cjn1d8q2j0078dtykbjla1yhv" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IDE/">IDE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mac/">Mac</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iterm2/">iterm2</a></li></ul>
@@ -223,7 +218,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/9e53d1a6.html" data-id="cjn1d5vdv00aw9mykiocak2la" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/9e53d1a6.html" data-id="cjn1d8q6h00axdtykgc6zblkl" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Apache-HttpClient/">Apache HttpClient</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/微信公众号/">微信公众号</a></li></ul>
@@ -304,7 +299,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/7aeb1e46.html" data-id="cjn1d5v1900079mykkqaxk7ni" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/7aeb1e46.html" data-id="cjn1d8ptk0008dtyki3n07i9v" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
@@ -385,7 +380,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/bf60621.html" data-id="cjn1d5v9r006j9myk7ib8djy0" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/bf60621.html" data-id="cjn1d8q1z006mdtyktb2rmemr" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
@@ -472,7 +467,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/e4163a66.html" data-id="cjn1d5v20000j9mykry828xb5" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/e4163a66.html" data-id="cjn1d8pua000ldtyka42bxlzp" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/">Docker</a></li></ul>
@@ -561,7 +556,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/a5557ea7.html" data-id="cjn1d5v24000l9myk2xomnzcy" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/a5557ea7.html" data-id="cjn1d8puf000ndtykxquso9cy" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/">Docker</a></li></ul>
@@ -647,7 +642,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/4573f792.html" data-id="cjn1d5v4p00269myk9oguroiq" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/4573f792.html" data-id="cjn1d8pwm002adtyk0aey9v0t" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ELK/">ELK</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FileBeat/">FileBeat</a></li></ul>
@@ -731,7 +726,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3c49f4b8.html" data-id="cjn1d5v6j003o9mykvlmf1h0h" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/3c49f4b8.html" data-id="cjn1d8pyn003qdtykm550yjnz" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/">Spring</a></li></ul>
@@ -810,7 +805,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3d5c725a.html" data-id="cjn1d5vae006z9mykt30ebs0j" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/3d5c725a.html" data-id="cjn1d8q2g0074dtykjvjs4ksq" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ELK/">ELK</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LogStash/">LogStash</a></li></ul>
@@ -896,7 +891,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3e9aef58.html" data-id="cjn1d5v4l00249mykkhqah0tq" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/3e9aef58.html" data-id="cjn1d8pwj0029dtykw8n2ob4h" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ELK/">ELK</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ElasticSearch/">ElasticSearch</a></li></ul>

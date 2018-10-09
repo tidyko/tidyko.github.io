@@ -18,7 +18,7 @@
 <meta property="og:image" content="http://img.tidyko.com/blog/iterm2login_3.png">
 <meta property="og:image" content="http://img.tidyko.com/blog/iterm2login_4.png">
 <meta property="og:image" content="http://img.tidyko.com/blog/iterm2login_5.png">
-<meta property="og:updated_time" content="2018-10-09T06:48:01.194Z">
+<meta property="og:updated_time" content="2018-10-09T06:50:10.896Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mac iterm2使用expect实现SSH自动登陆">
 <meta name="twitter:description" content="安装brew先确保已经安装了brew，我们将使用brew来安装我们需要的命令和软件。1brew --version 12Homebrew 1.5.10Homebrew/homebrew-core (git revision c3f55; last commit 2018-03-14) 安装iterm2命令行工具。1brew cask install iterm2 安装expectexpect的作用">
@@ -135,6 +135,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">expect -version</span><br></pre></td></tr></table></figure>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">expect version 5.45</span><br></pre></td></tr></table></figure>
 <p>## 编写自动登录脚本<br>在<code>/usr/local/bin/</code>目录下，新建<code>iterm2login.sh</code>文件，内容如下：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/usr/bin/expect</span></span><br><span class="line"></span><br><span class="line">set timeout 30</span><br><span class="line">spawn ssh -p [lindex $argv 0] [lindex $argv 1]@[lindex $argv 2]</span><br><span class="line">expect &#123;</span><br><span class="line">        "(yes/no)?"</span><br><span class="line">        &#123;send "yes\n";exp_continue&#125;</span><br><span class="line">        "password:"</span><br><span class="line">        &#123;send "[lindex $argv 3]\n"&#125;</span><br><span class="line">        "Password:"</span><br><span class="line">        &#123;send "[lindex $argv 3]\n"&#125;</span><br><span class="line">&#125;</span><br><span class="line">interact</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
 <h2 id="配置iterm2"><a href="#配置iterm2" class="headerlink" title="配置iterm2"></a>配置iterm2</h2><p>添加profile，配置如下：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">iterm2login.sh 端口号 用户 IP地址 密码</span><br><span class="line"></span><br><span class="line">iterm2login.sh 22 finder 10.121.22.211 ImLog4Dev</span><br></pre></td></tr></table></figure></p>
 <p><img src="http://img.tidyko.com/blog/iterm2login_1.png" alt="iterm2login_1"></p>
 <h2 id="更改TAB页的title"><a href="#更改TAB页的title" class="headerlink" title="更改TAB页的title"></a>更改TAB页的title</h2><p>先勾选 <code>Preference</code> -&gt; <code>Appearance</code> -&gt; <code>Show profile name</code> 选项。</p>
@@ -148,7 +149,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/c14d120e.html" data-id="cjn1d5van00799myk9witsc8f" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/c14d120e.html" data-id="cjn1d8q2j0078dtykbjla1yhv" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IDE/">IDE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mac/">Mac</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iterm2/">iterm2</a></li></ul>
