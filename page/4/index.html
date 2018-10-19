@@ -41,7 +41,7 @@
     <h2 class="author">豪快二突撃スル</h2>
     <h3 class="description">javaer</h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>123</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>124</strong><br>文章</div></a>
       <a href="/categories"><div><strong>43</strong><br>分类</div></a>
       <a href="/tags"><div><strong>80</strong><br>标签</div></a>
     </div>
@@ -68,6 +68,88 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-Kafka 搭建和测试等问题" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/95c8a77e.html" class="article-date">
+  <time class="post-time" datetime="2017-03-23T08:11:00.000Z" itemprop="datePublished">
+    <span class="post-month">3月</span><br/>
+    <span class="post-day">23</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/95c8a77e.html">Kafka 搭建和测试等问题</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/中间件/">中间件</a>,<a class="article-category-link" href="/categories/中间件/Kafka/">Kafka</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/95c8a77e.html" class="leancloud_visitors" data-flag-title="Kafka 搭建和测试等问题">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 316</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 2 分钟</span>
+  </div>
+ 
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1）安装启动kafka"><a href="#1）安装启动kafka" class="headerlink" title="1）安装启动kafka"></a>1）安装启动kafka</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">跳转到下载目录</span></span><br><span class="line">cd /opt/setup</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 下载安装包</span></span><br><span class="line">wget http://mirror.bit.edu.cn/apache/kafka/0.10.2.0/kafka_2.12-0.10.2.0.tgz</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 解压</span></span><br><span class="line">tar -xzf kafka_2.10-0.8.1.1.tgz</span><br><span class="line">mv kafka_2.12-0.10.2.0 /usr/program</span><br><span class="line"><span class="meta">#</span><span class="bash"> 启动 Zookeeper</span></span><br><span class="line">cd /usr/program/zookeeper-3.4.9</span><br><span class="line">bin/zookeeper-server-start.sh config/zookeeper.properties</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 启动 Kafka</span></span><br><span class="line"></span><br><span class="line">cd /usr/program/kafka_2.12-0.10.2.0 </span><br><span class="line">bin/kafka-server-start.sh config/server.properties</span><br></pre></td></tr></table></figure>
+<h3 id="2）"><a href="#2）" class="headerlink" title="2）"></a>2）</h3><p>启动过程中，发现提示“未知的名称或服务”需要修改host配置，在127.0.0.1后面最佳goukaiHost，，为主机名称。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/hosts</span><br><span class="line"></span><br><span class="line">127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4 goukaiHost</span><br><span class="line">::1         localhost localhost.localdomain localhost6 localhost6.localdomain6</span><br></pre></td></tr></table></figure></p>
+<h3 id="3）"><a href="#3）" class="headerlink" title="3）"></a>3）</h3><p>创建一个叫做“test”的topic，它只有一个分区，一个副本。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test</span><br></pre></td></tr></table></figure></p>
+<p>查看创建的topic<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/kafka-topics.sh --list --zookeeper localhost:2181</span><br></pre></td></tr></table></figure></p>
+<h3 id="4）发送消息"><a href="#4）发送消息" class="headerlink" title="4）发送消息"></a>4）发送消息</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/kafka-console-producer.sh --broker-list localhost:9092 --topic test</span><br></pre></td></tr></table></figure>
+<p>输入命令之后，输入字符串按回车进行发送即可。可另开一个窗口使用消费命令监听消息发送情况。<br>Ctrl+c可以结束当前操作。</p>
+<h3 id="5）启动consumer"><a href="#5）启动consumer" class="headerlink" title="5）启动consumer"></a>5）启动consumer</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic test --from-beginning</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/95c8a77e.html" data-id="cjnfota2q00byy7ykg1v9co6y" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Kafka/">Kafka</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/队列/">队列</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
   
     <article id="post-Linux 开放指定端口设置" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -140,7 +222,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/a4bec044.html" data-id="cjnfflprx0071feykhd1lzk2d" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/a4bec044.html" data-id="cjnfota3r00cty7ykj8grjmc2" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
@@ -218,7 +300,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/6966e243.html" data-id="cjnfflprq006tfeykfenbuf38" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/6966e243.html" data-id="cjnfota3a00cly7yk8e082r8c" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
@@ -300,7 +382,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/b3c1b12f.html" data-id="cjnfflpv4009tfeyk1qd3at3e" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/b3c1b12f.html" data-id="cjnfota5q00gby7ykwv5mt0ui" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VirtualBox/">VirtualBox</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络配置/">网络配置</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/虚拟机/">虚拟机</a></li></ul>
@@ -383,7 +465,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/20e9a4b.html" data-id="cjnfflpr9006hfeyk0ary1u6l" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/20e9a4b.html" data-id="cjnfota2z00c9y7ykkaw77orr" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Shell/">Shell</a></li></ul>
@@ -461,7 +543,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/58d69454.html" data-id="cjnfflpru006xfeykf1bvn7r1" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/58d69454.html" data-id="cjnfota3h00cpy7yk28yklb4s" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tomcat/">Tomcat</a></li></ul>
@@ -538,7 +620,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/9f6836b6.html" data-id="cjnfflpkc000lfeykgiubu8w2" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/9f6836b6.html" data-id="cjnfot9ts000jy7yki5bduluq" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Dubbo/">Dubbo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Maven/">Maven</a></li></ul>
@@ -614,7 +696,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/968fb276.html" data-id="cjnfflpk4000gfeykshpdh51u" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/968fb276.html" data-id="cjnfot9t4000cy7yk9ne7uba4" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Charles/">Charles</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/抓包/">抓包</a></li></ul>
@@ -694,7 +776,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/f8433bbb.html" data-id="cjnfflpms0026feyky3x3x0u5" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/f8433bbb.html" data-id="cjnfot9vm002by7ykyin7xfoa" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Gradle/">Gradle</a></li></ul>
@@ -774,87 +856,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/7b8cc3e2.html" data-id="cjnfflpr4006efeykecp7k1mf" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/7b8cc3e2.html" data-id="cjnfota2t00c1y7ykpbn9of00" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-Eclipse 使用Tomcat发布项目时，项目启动路径错误" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/7e7d7a18.html" class="article-date">
-  <time class="post-time" datetime="2016-12-01T08:49:00.000Z" itemprop="datePublished">
-    <span class="post-month">12月</span><br/>
-    <span class="post-day">01</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/7e7d7a18.html">Eclipse 使用Tomcat发布项目时，项目启动路径错误</a>
-    </h1>
-  
-
-        <div>
-          
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/开发调试工具/">开发调试工具</a>,<a class="article-category-link" href="/categories/开发调试工具/Eclipse/">Eclipse</a>
-  </div>
-
-          
-              
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/7e7d7a18.html" class="leancloud_visitors" data-flag-title="Eclipse 使用Tomcat发布项目时，项目启动路径错误">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 97</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 1 分钟</span>
-  </div>
- 
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>这种情况下，通常会去 <code>C:\User\[USERNAME]\</code> 或者 Tomcat路径下面的一个temp文件夹里面找项目文件，由此出现报错。</p>
-<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><p>双击Eclipse的Servers里面的tomcat，勾选，<code>Server Options</code> 的 <code>Publish modulecontext to separate XML files</code> 选项，<br>在 <code>Tomcat目录</code> 下，找到 <code>conf</code> 文件夹下的 <code>context.xml</code> 文件，找到<code>antiJARLocking=&quot;true&quot;</code> 和 <code>antiResourceLocking=&quot;true&quot;</code> ，将 <code>true</code> 全部改为 <code>false</code> 即可解决。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/7e7d7a18.html" data-id="cjnfflpll001afeykcw8rj1hb" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tomcat/">Tomcat</a></li></ul>
 
     </footer>
   </div>
@@ -913,7 +918,7 @@
     <h2 class="author">豪快二突撃スル</h2>
     <h3 class="description">javaer</h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>123</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>124</strong><br>文章</div></a>
       <a href="/categories"><div><strong>43</strong><br>分类</div></a>
       <a href="/tags"><div><strong>80</strong><br>标签</div></a>
     </div>
