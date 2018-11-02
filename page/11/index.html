@@ -41,9 +41,9 @@
     <h2 class="author">豪快二突撃スル</h2>
     <h3 class="description">javaer</h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>125</strong><br>文章</div></a>
-      <a href="/categories"><div><strong>43</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>80</strong><br>标签</div></a>
+      <a href="/archives"><div><strong>126</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>44</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>81</strong><br>标签</div></a>
     </div>
     <ul class="blog-link">
      
@@ -68,6 +68,85 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-Oracle nvl与nvl2对比" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/efb40b79.html" class="article-date">
+  <time class="post-time" datetime="2014-03-12T03:15:00.000Z" itemprop="datePublished">
+    <span class="post-month">3月</span><br/>
+    <span class="post-day">12</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/efb40b79.html">Oracle nvl与nvl2对比</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/数据库/">数据库</a>,<a class="article-category-link" href="/categories/数据库/Oracle/">Oracle</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/efb40b79.html" class="leancloud_visitors" data-flag-title="Oracle nvl与nvl2对比">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 105</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 1 分钟</span>
+  </div>
+ 
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1）nvl"><a href="#1）nvl" class="headerlink" title="1）nvl"></a>1）nvl</h3><p>只要v1为null，即将值变为v2。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvl(v1,v2)</span><br></pre></td></tr></table></figure></p>
+<p>pay(类型):number;</p>
+<p>在执行 <figure class="highlight sql"><figcaption><span>nvl(pay_type,'null') ``` 函数的时候会提示无效数字，可能是nvl函数会自动将其转换成数字类型的原因。</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">这里需要将pay_type用to_char函数处理一下。</span><br><span class="line">``` sql</span><br><span class="line">nvl(to_char(pay_type),'null')</span><br></pre></td></tr></table></figure></p>
+<h3 id="2）nvl2"><a href="#2）nvl2" class="headerlink" title="2）nvl2"></a>2）nvl2</h3><p>只要v1为null，即将值变为v2，否则将值变为v3。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvl2(v1,v2,v3)</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/efb40b79.html" data-id="cjnzos43p008gueykiqt0jl9h" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Oracle/">Oracle</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sql/">Sql</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
   
     <article id="post-J2EE CXF WebService 服务端和客户端 环境搭建及测试" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -142,7 +221,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/4115afa8.html" data-id="cjnzoqzmz003eqkyky7nyh69d" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/4115afa8.html" data-id="cjnzos416003eueykqlbqmc4x" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CXF/">CXF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WebService/">WebService</a></li></ul>
@@ -220,7 +299,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/7c9f9e00.html" data-id="cjnzoqzpj008fqkyk1vrv89qh" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/7c9f9e00.html" data-id="cjnzos43o008dueykuvvgymqp" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Oracle/">Oracle</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sql/">Sql</a></li></ul>
@@ -299,7 +378,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/2cf05a87.html" data-id="cjnzoqzn4003mqkyk1try8813" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/2cf05a87.html" data-id="cjnzos41a003mueykvd6toxun" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
@@ -378,7 +457,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/6a3fb6fb.html" data-id="cjnzoqzo3005kqkyk4vslamzb" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/6a3fb6fb.html" data-id="cjnzos429005jueykdhacbu75" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Oracle/">Oracle</a></li></ul>
@@ -458,7 +537,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/ac53be82.html" data-id="cjnzoqzm70021qkykneizg5wn" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/ac53be82.html" data-id="cjnzos40g0021ueyku78lp52m" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Maven/">Maven</a></li></ul>
@@ -536,7 +615,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/26788ddf.html" data-id="cjnzoqzne0041qkykhdawergp" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/26788ddf.html" data-id="cjnzos41m0043ueykvku156a8" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
@@ -613,7 +692,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/93821c9f.html" data-id="cjnzoqzo9005sqkykxefrb6qo" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/93821c9f.html" data-id="cjnzos42d005rueykb84dz58g" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
@@ -694,7 +773,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/bd745825.html" data-id="cjnzoqzlb0010qkyk03std5pu" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/bd745825.html" data-id="cjnzos3zz0010ueykavotb5kk" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jdk/">Jdk</a></li></ul>
@@ -771,90 +850,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3e42071e.html" data-id="cjnzoqzl7000qqkykrmbr5trb" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/3e42071e.html" data-id="cjnzos3zw000tueyklzwjnevg" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Svn/">Svn</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-Eclipse SonarQube启动报错" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/fd6e9fc4.html" class="article-date">
-  <time class="post-time" datetime="2014-02-12T09:53:00.000Z" itemprop="datePublished">
-    <span class="post-month">2月</span><br/>
-    <span class="post-day">12</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/fd6e9fc4.html">Eclipse SonarQube启动报错</a>
-    </h1>
-  
-
-        <div>
-          
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/开发调试工具/">开发调试工具</a>,<a class="article-category-link" href="/categories/开发调试工具/Eclipse/">Eclipse</a>
-  </div>
-
-          
-              
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/fd6e9fc4.html" class="leancloud_visitors" data-flag-title="Eclipse SonarQube启动报错">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 241</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 1 分钟</span>
-  </div>
- 
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>由于近期，信息安全部在搞代码优化工作。<br>所以，配合上边的工作需求，使用sonar对代码进行优化检测。<br>在Eclipse上装Sonar很简单，只要在Eclipse Marketplace上面搜索“Sonar”关键字，点击第一个插件安装即可。</p>
-<p>重启，接下来对需要检测的项目进行下一步工作。<br>如果是普通java项目的话，需要将此项目变成Maven项目，然后update project。<br>update完之后，<br><code>右击项目</code> -&gt; <code>选择SonarQube</code> -&gt; <code>Analyze</code><br>之后等检测完之后需要优化的错误项就会一一出现在项目代码上面，根据提示可以进行相应修改。</p>
-<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>在点击Analyze选项之后，报Can not create markers的错误。</p>
-<h3 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h3><p>其原因在于，我本机系统是64bit的，<br>但是使用的Eclipse版本和jdk版本却是32bit版本的。</p>
-<h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><p>所以，把Eclipse和jdk的版本都换成64位的问题就解决了。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/fd6e9fc4.html" data-id="cjnzoqzlf0015qkykrsrvefmb" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SonarQube/">SonarQube</a></li></ul>
 
     </footer>
   </div>
@@ -913,9 +912,9 @@
     <h2 class="author">豪快二突撃スル</h2>
     <h3 class="description">javaer</h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>125</strong><br>文章</div></a>
-      <a href="/categories"><div><strong>43</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>80</strong><br>标签</div></a>
+      <a href="/archives"><div><strong>126</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>44</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>81</strong><br>标签</div></a>
     </div>
 
 

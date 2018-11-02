@@ -41,9 +41,9 @@
     <h2 class="author">豪快二突撃スル</h2>
     <h3 class="description">javaer</h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>125</strong><br>文章</div></a>
-      <a href="/categories"><div><strong>43</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>80</strong><br>标签</div></a>
+      <a href="/archives"><div><strong>126</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>44</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>81</strong><br>标签</div></a>
     </div>
     <ul class="blog-link">
      
@@ -68,6 +68,85 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-Oracle ORA-01722" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/a1cbf0aa.html" class="article-date">
+  <time class="post-time" datetime="2013-06-21T02:32:00.000Z" itemprop="datePublished">
+    <span class="post-month">6月</span><br/>
+    <span class="post-day">21</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/a1cbf0aa.html">Oracle ORA-01722</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/数据库/">数据库</a>,<a class="article-category-link" href="/categories/数据库/Oracle/">Oracle</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/a1cbf0aa.html" class="leancloud_visitors" data-flag-title="Oracle ORA-01722">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 136</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 1 分钟</span>
+  </div>
+ 
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>ORA-01722:无效数字(控制文件最后一个字段)<br>图例:<br><img src="http://img.tidyko.com/blog/ORA-01722_1.jpg" alt="ORA-01722-图例1"></p>
+<h3 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h3><p>每一行物理数据最后都存在一个换行符。</p>
+<p>如果integer或者number类型的字段位于控制文件的最后，最后其实都会有CR/LF的换行符，在用sqlldr导入时会把换行符也算作那个数字的一部分，使得对应的导入ORDERADV_TK 的值与ORDERADV_TK在数据库中定义的NUMBER类型不匹配，从而出错。</p>
+<h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><p>在该列后面追加“INTEGER EXTERNAL TERMINATED BY WHITESPACE”。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/a1cbf0aa.html" data-id="cjnzos43j0080ueykn1brirx9" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Oracle/">Oracle</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
   
     <article id="post-Oracle SQL*Loader-522" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -130,7 +209,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/544340d1.html" data-id="cjnzoqzpg008aqkykoj0nmpe4" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/544340d1.html" data-id="cjnzos43m0088ueyknsaxudc5" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Oracle/">Oracle</a></li></ul>
@@ -209,7 +288,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/be1a87c4.html" data-id="cjnzoqzok006gqkykvf3cif53" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/be1a87c4.html" data-id="cjnzos42l006aueyk4szs0ag8" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
@@ -290,7 +369,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/6473f805.html" data-id="cjnzoqzo5005nqkykn45xhx5f" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/6473f805.html" data-id="cjnzos42a005mueykpqtc0fga" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
@@ -368,7 +447,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/d46f9b3d.html" data-id="cjnzoqzoo006oqkyku2sg6tpj" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/d46f9b3d.html" data-id="cjnzos42q006nueyktbpejcs1" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
@@ -452,7 +531,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/1bffb80a.html" data-id="cjnzoqzpd007zqkyk5144w4hb" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/1bffb80a.html" data-id="cjnzos43h007xueyk2q2m8vur" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Oracle/">Oracle</a></li></ul>
@@ -514,9 +593,9 @@
     <h2 class="author">豪快二突撃スル</h2>
     <h3 class="description">javaer</h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>125</strong><br>文章</div></a>
-      <a href="/categories"><div><strong>43</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>80</strong><br>标签</div></a>
+      <a href="/archives"><div><strong>126</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>44</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>81</strong><br>标签</div></a>
     </div>
 
 

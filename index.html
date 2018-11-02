@@ -41,9 +41,9 @@
     <h2 class="author">豪快二突撃スル</h2>
     <h3 class="description">javaer</h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>125</strong><br>文章</div></a>
-      <a href="/categories"><div><strong>43</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>80</strong><br>标签</div></a>
+      <a href="/archives"><div><strong>126</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>44</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>81</strong><br>标签</div></a>
     </div>
     <ul class="blog-link">
      
@@ -68,6 +68,85 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-Vue webpack打包src路径问题" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/3ad33ff3.html" class="article-date">
+  <time class="post-time" datetime="2018-11-02T07:02:00.000Z" itemprop="datePublished">
+    <span class="post-month">11月</span><br/>
+    <span class="post-day">02</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/3ad33ff3.html">Vue webpack打包src路径问题</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Vue/">Vue</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/3ad33ff3.html" class="leancloud_visitors" data-flag-title="Vue webpack打包src路径问题">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 302</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 1 分钟</span>
+  </div>
+ 
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>使用vue的时候，因为图片路径为动态数据，下面这样直接将数据传入元素，编译输出后路径将会是原始相对路径的数据</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div id=<span class="string">"cover-container"</span>&gt;</span><br><span class="line">    &lt;template v-<span class="keyword">for</span>=<span class="string">"(cover,index) in coverList"</span>&gt;</span><br><span class="line">      &lt;div :key=<span class="string">"index"</span> @click=<span class="string">"openPage(cover.url)"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"cover"</span>&gt;</span><br><span class="line">        &lt;template v-<span class="keyword">if</span>=<span class="string">"index === 0"</span>&gt;</span><br><span class="line">          &lt;span <span class="class"><span class="keyword">class</span></span>=<span class="string">"cover_title"</span>&gt;&#123;&#123;cover.title&#125;&#125;&lt;<span class="regexp">/span&gt;</span></span><br><span class="line"><span class="regexp">          &lt;img v-bind:src="cover.banner" class="cover_img_top"&gt;</span></span><br><span class="line"><span class="regexp">        &lt;/</span>template&gt;</span><br><span class="line">        &lt;template v-<span class="keyword">else</span>&gt;</span><br><span class="line">          &lt;img v-bind:src=<span class="string">"cover.banner"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"cover_img_other"</span>&gt;</span><br><span class="line">        &lt;<span class="regexp">/template&gt;</span></span><br><span class="line"><span class="regexp">        &lt;span class="cover_desc" v-html="cover.desc"&gt;&lt;/</span>span&gt;</span><br><span class="line">      &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">      &lt;span v-if="index!=coverList.length-1" :key="index" class="line"&gt;&lt;/</span>span&gt;</span><br><span class="line">    &lt;<span class="regexp">/template&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>div&gt;</span><br><span class="line">&lt;<span class="regexp">/template&gt;</span></span><br></pre></td></tr></table></figure>
+<p>所以需要在数据上面做处理，在url上面加上require，如下：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> coverList = [&#123;</span><br><span class="line">    title: <span class="string">'营业厅服务'</span>,</span><br><span class="line">    banner: <span class="built_in">require</span>(<span class="string">'../assets/bizhall_1.jpg'</span>),</span><br><span class="line">    url: <span class="string">'https://im.189.cn/weixinopen/outserver/oauth/getOpenid?url=aHR0cHM6Ly9pbS4xODkuY24veG10L3BhZ2VPcGVuTG9nL3JlbGF5LmRvP3VybD1hSFIwY0RvdkwybHRMakU0T1M1amJpOTRiWFF2YjNCbGNtRjBMMmRsZEU5d1pYSmhkRXhwYzNSRGVpNWtidz09Jm9wPXl5dGN6Y2Q='</span>,</span><br><span class="line">    desc: <span class="string">'可通过筛选发现附近营业厅及查询营业厅相关信息'</span></span><br><span class="line">&#125;, &#123;</span><br><span class="line">    banner: <span class="built_in">require</span>(<span class="string">'../assets/bizhall_2.jpg'</span>),</span><br><span class="line">    url: <span class="string">'http://im.189.cn/weixinopen/outserver/oauth/getOpenid?url=aHR0cHM6Ly9pbS4xODkuY24veG10L3BhZ2VPcGVuTG9nL3JlbGF5LmRvP3VybD1hSFIwY0RvdkwybHRMakU0T1M1amJpOXBiVmQ0VUdGamEyRm5aWE12Y0dGamEyRm5aWE12YjNCbFlYSjBMbVJ2Jm9wPXl5dHl5Y2Q='</span>,</span><br><span class="line">    desc: <span class="string">'预约营业厅办理业务及时查看排队情况，&lt;/br&gt;使用前确认已经打开授权微信获取定位功能'</span></span><br><span class="line">&#125;]</span><br></pre></td></tr></table></figure></p>
+<p>这样webpack在打包的时候就会自动将图片相对路径转化为项目路径了</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/3ad33ff3.html" data-id="cjnzos44l00a1ueykm4lsfaly" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
   
     <article id="post-Charles Map Remote使用" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -136,7 +215,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/8476b89f.html" data-id="cjnzoqzkv000gqkykkxl7oc75" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/8476b89f.html" data-id="cjnzos3zo000gueykpegf2d6r" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Charles/">Charles</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/抓包/">抓包</a></li></ul>
@@ -213,7 +292,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/8b59beec.html" data-id="cjnzoqzmt0032qkyk6s9vsbfu" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/8b59beec.html" data-id="cjnzos40z002zueyk85cdhio7" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IDEA/">IDEA</a></li></ul>
@@ -299,7 +378,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/c14d120e.html" data-id="cjnzoqzp1007cqkykrv25n49b" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/c14d120e.html" data-id="cjnzos435007aueykrcebhnyx" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mac/">Mac</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iterm2/">iterm2</a></li></ul>
@@ -380,7 +459,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/9e53d1a6.html" data-id="cjnzoqzqv00b1qkykn0m2hhok" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/9e53d1a6.html" data-id="cjnzos45300b2ueyk4928o112" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Apache-HttpClient/">Apache HttpClient</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/微信公众号/">微信公众号</a></li></ul>
@@ -461,7 +540,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/7aeb1e46.html" data-id="cjnzoqzkm0007qkyk2vpv1wd1" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/7aeb1e46.html" data-id="cjnzos3zh0007ueykpjvtwpr6" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
@@ -542,7 +621,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/bf60621.html" data-id="cjnzoqzoq006rqkykshjd9ol0" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/bf60621.html" data-id="cjnzos42v006tueykmjzzc1qk" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
@@ -629,7 +708,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/e4163a66.html" data-id="cjnzoqzl4000lqkykjn6otyh8" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/e4163a66.html" data-id="cjnzos3zr000lueykv8nws3yx" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/">Docker</a></li></ul>
@@ -718,7 +797,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/a5557ea7.html" data-id="cjnzoqzl8000tqkyk4gk1hvok" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/a5557ea7.html" data-id="cjnzos3zt000pueykqnb5o7dy" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/">Docker</a></li></ul>
@@ -804,94 +883,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/4573f792.html" data-id="cjnzoqzmc002aqkykemj6ofr0" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/4573f792.html" data-id="cjnzos40l002aueykitwnv846" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ELK/">ELK</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FileBeat/">FileBeat</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-J2EE Spring redirect导致内存溢出问题" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/3c49f4b8.html" class="article-date">
-  <time class="post-time" datetime="2018-08-31T01:47:00.000Z" itemprop="datePublished">
-    <span class="post-month">8月</span><br/>
-    <span class="post-day">31</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/3c49f4b8.html">J2EE Spring redirect导致内存溢出问题</a>
-    </h1>
-  
-
-        <div>
-          
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
-  </div>
-
-          
-              
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/3c49f4b8.html" class="leancloud_visitors" data-flag-title="J2EE Spring redirect导致内存溢出问题">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 1,041</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 5 分钟</span>
-  </div>
- 
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>最近发现线上的一个应用跑一段周期之后就会出现内存溢出问题，需要重启，所以以此分析一下原因并修复。</p>
-<h2 id="1-获取内存快照"><a href="#1-获取内存快照" class="headerlink" title="1.获取内存快照"></a>1.获取内存快照</h2><p>使用jdk自带工具jmap获取内存快照文件，如下：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">jmap -dump:format=b,file=快照保存路径 进程id</span><br><span class="line"></span><br><span class="line">如：</span><br><span class="line"></span><br><span class="line">jmap -dump:format=b,file=/opt/27245.hprof 27245</span><br></pre></td></tr></table></figure></p>
-<h2 id="2-使用工具进行分析"><a href="#2-使用工具进行分析" class="headerlink" title="2.使用工具进行分析"></a>2.使用工具进行分析</h2><p>获取到内存快照文件27245.hprof后，我们需要对此进行分析，这里使用的分析工具为<code>Eclipse Memory Analyzer Tool</code>，我们使用工具打开27245.hprof文件。</p>
-<h3 id="2-1-Main-View"><a href="#2-1-Main-View" class="headerlink" title="2.1 Main View"></a>2.1 Main View</h3><p>主界面显示有一大块内存占用高达1.3G，基本可以确定是这一块出现了问题。</p>
-<p><img src="http://img.tidyko.com/blog/Memoryanalysis_27245_1.png" alt="J2EE Spring redirect导致内存溢出问题_图例1"><br>
-        
-          <p class="article-more-link">
-            <a href="/posts/3c49f4b8.html#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3c49f4b8.html" data-id="cjnzoqzn7003tqkykmnt6rrug" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/">Spring</a></li></ul>
 
     </footer>
   </div>
@@ -950,9 +945,9 @@
     <h2 class="author">豪快二突撃スル</h2>
     <h3 class="description">javaer</h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>125</strong><br>文章</div></a>
-      <a href="/categories"><div><strong>43</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>80</strong><br>标签</div></a>
+      <a href="/archives"><div><strong>126</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>44</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>81</strong><br>标签</div></a>
     </div>
 
 
