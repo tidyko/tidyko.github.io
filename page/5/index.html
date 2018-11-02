@@ -41,7 +41,7 @@
     <h2 class="author">豪快二突撃スル</h2>
     <h3 class="description">javaer</h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>124</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>125</strong><br>文章</div></a>
       <a href="/categories"><div><strong>43</strong><br>分类</div></a>
       <a href="/tags"><div><strong>80</strong><br>标签</div></a>
     </div>
@@ -68,6 +68,86 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-Linux SHELL syntax error:unexpected end of file" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/7b8cc3e2.html" class="article-date">
+  <time class="post-time" datetime="2016-12-20T02:20:00.000Z" itemprop="datePublished">
+    <span class="post-month">12月</span><br/>
+    <span class="post-day">20</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/7b8cc3e2.html">Linux SHELL syntax error:unexpected end of file</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/服务器/">服务器</a>,<a class="article-category-link" href="/categories/服务器/Linux/">Linux</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/7b8cc3e2.html" class="leancloud_visitors" data-flag-title="Linux SHELL syntax error:unexpected end of file">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 219</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 1 分钟</span>
+  </div>
+ 
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="解决思路"><a href="#解决思路" class="headerlink" title="解决思路"></a>解决思路</h2><p>DOS下文件和Linux下文件格式差异问题导致的。</p>
+<p>DOS下的文本文件是以\r\n作为断行标志的，表示成十六进制就是0D 0A。而Unix下的文本文件是以\n作为断行标志的，表示成十六进制就是0A。</p>
+<p>在windows里,换行用的两个符号，回车\r，换行符号\n，<br>在linux下只需一个符号\n就可以了.</p>
+<p>DOS格式的文本文件在Linux下，用较低版本的vi打开时行尾会显示^M，当然也有可能看不到，但是在vi的时候，会在下面显示此文件的格式，”M.txt” [dos] 8L, 72C表示是一个dos文件格式。</p>
+<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><p>使用下面的命令将文件格式设置为unix格式即可解决上述错误。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vi M.txt</span><br><span class="line">:set fileformat=unix</span><br><span class="line">:wq</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/7b8cc3e2.html" data-id="cjnzoor3f006phoyk65wmku6i" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
   
     <article id="post-Eclipse 使用Tomcat发布项目时，项目启动路径错误" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -128,7 +208,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/7e7d7a18.html" data-id="cjnfq1wvl001bltyklwlglww9" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/7e7d7a18.html" data-id="cjnzoor0q001fhoyk05xpimzz" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tomcat/">Tomcat</a></li></ul>
@@ -204,7 +284,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/e388ac5d.html" data-id="cjnfq1x3q009eltyk31bnnba4" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/e388ac5d.html" data-id="cjnzoor4q009qhoykn45diy4a" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SVN/">SVN</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/花生壳/">花生壳</a></li></ul>
@@ -281,7 +361,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/c70f76d0.html" data-id="cjnfq1wzj0055ltykh5z604zr" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/c70f76d0.html" data-id="cjnzoor31005qhoyksh7azdg8" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
@@ -365,7 +445,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/13b74a79.html" data-id="cjnfq1wwn0028ltykn5r69md4" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/13b74a79.html" data-id="cjnzoor1e002nhoyk46uijgc2" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML/">HTML</a></li></ul>
@@ -457,7 +537,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/f6190ed2.html" data-id="cjnfq1x3x009lltykx02pvsua" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/f6190ed2.html" data-id="cjnzoor4t009xhoyk6m96bgw7" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tomcat/">Tomcat</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/源码/">源码</a></li></ul>
@@ -535,7 +615,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/1e7ee8d0.html" data-id="cjnfq1x5800asltyk2xoujhsm" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/1e7ee8d0.html" data-id="cjnzoor5a00b1hoyku7m26mvp" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/微信公众号/">微信公众号</a></li></ul>
@@ -611,7 +691,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/1b8b5be2.html" data-id="cjnfq1x5d00azltykq2hetluc" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/1b8b5be2.html" data-id="cjnzoor5c00b5hoykk48lp97a" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/微信公众号/">微信公众号</a></li></ul>
@@ -690,7 +770,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/69238558.html" data-id="cjnfq1x0f005tltykjpxh5zq4" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/69238558.html" data-id="cjnzoor370069hoykqpjyclq6" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
@@ -766,88 +846,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/6a2a165c.html" data-id="cjnfq1wvv001lltyks6h9tmyi" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-Eclipse 依赖生成jar包时，避免最外层同时生成资源文件的配置" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/75c14ffd.html" class="article-date">
-  <time class="post-time" datetime="2016-03-23T02:02:00.000Z" itemprop="datePublished">
-    <span class="post-month">3月</span><br/>
-    <span class="post-day">23</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/75c14ffd.html">Eclipse 依赖生成jar包时，避免最外层同时生成资源文件的配置</a>
-    </h1>
-  
-
-        <div>
-          
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/开发调试工具/">开发调试工具</a>,<a class="article-category-link" href="/categories/开发调试工具/Eclipse/">Eclipse</a>
-  </div>
-
-          
-              
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/75c14ffd.html" class="leancloud_visitors" data-flag-title="Eclipse 依赖生成jar包时，避免最外层同时生成资源文件的配置">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 384</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 1 分钟</span>
-  </div>
- 
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>使用Eclipse依赖生成jar包时，如果做配置，生成的jar包文件会全部生成在外面，这并不是我们需要的，下面我们一起来修改下配置，使生成的jar包符合我们的需求吧。</p>
-<h2 id="1）"><a href="#1）" class="headerlink" title="1）"></a>1）</h2><p>如果不做任何配置生成的jar包如下：<br><img src="http://img.tidyko.com/blog/eclipse-jar_1.png" alt="Eclipse 依赖生成jar包时，避免最外层同时生成资源文件的配置-图例1"><br>这样最原始的生成方式并不是我们想要的，我们想要的是test.properties和ums.properties文件同时放到message文件夹里面，下面修改一下Eclipse配置。</p>
-<h2 id="2）"><a href="#2）" class="headerlink" title="2）"></a>2）</h2><p>修改Eclipse配置，使test.properties和ums.properties文件同时放到message文件夹里面。</p>
-<p>最原始为下图所示：<br><img src="http://img.tidyko.com/blog/eclipse-jar_2.png" alt="Eclipse 依赖生成jar包时，避免最外层同时生成资源文件的配置-图例2"><br>修改Source为/message的Deploy Path为message，为下图所示：<br><img src="http://img.tidyko.com/blog/eclipse-jar_3.png" alt="Eclipse 依赖生成jar包时，避免最外层同时生成资源文件的配置-图例3"><br>修改完成之后点击ok按钮，发布，生成的jar包内容为以下所示：<br><img src="http://img.tidyko.com/blog/eclipse-jar_4.png" alt="Eclipse 依赖生成jar包时，避免最外层同时生成资源文件的配置-图例4"><br>这时候我们可以看到jar包里面已经有了message文件夹了，但是这时候我们会发现，message文件夹里面存在test.properties和ums.properties文件，同时最外层也存在了这两个文件。这时我们需要继续做配置。</p>
-<h2 id="3）"><a href="#3）" class="headerlink" title="3）"></a>3）</h2><p>修改配置，使message资源文件夹的指定内容不出现在jar包最外层。</p>
-<p>没修改之前为下图所示：<br><img src="http://img.tidyko.com/blog/eclipse-jar_5.png" alt="Eclipse 依赖生成jar包时，避免最外层同时生成资源文件的配置-图例5"><br>点击message下面的Excluded,然后点击右边的Edit，进入编辑，在下方的Exclude里面输入*.properties，完成即可，如下图所示：<br><img src="http://img.tidyko.com/blog/eclipse-jar_6.png" alt="Eclipse 依赖生成jar包时，避免最外层同时生成资源文件的配置-图例6"><br>最后，生成jar包时你就会看到里面只有一个message文件夹，并且最外面没有同时生成其他文件了，效果如下图所示：<br><img src="http://img.tidyko.com/blog/eclipse-jar_7.png" alt="Eclipse 依赖生成jar包时，避免最外层同时生成资源文件的配置-图例7"></p>
-<h2 id="4）完成"><a href="#4）完成" class="headerlink" title="4）完成"></a>4）完成</h2>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/75c14ffd.html" data-id="cjnfq1wvo001fltykafjjd2bw" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/6a2a165c.html" data-id="cjnzoor0u001lhoykkq1faaps" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li></ul>
@@ -909,7 +908,7 @@
     <h2 class="author">豪快二突撃スル</h2>
     <h3 class="description">javaer</h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>124</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>125</strong><br>文章</div></a>
       <a href="/categories"><div><strong>43</strong><br>分类</div></a>
       <a href="/tags"><div><strong>80</strong><br>标签</div></a>
     </div>
