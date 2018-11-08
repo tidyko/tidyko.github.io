@@ -120,11 +120,11 @@
 
   &nbsp; | &nbsp;
   <div class="view-box">
-    <span>字数 302</span>
+    <span>字数 597</span>
   </div>
   &nbsp; | &nbsp;
   <div class="view-box">
-    <span>时长 ≈ 1 分钟</span>
+    <span>时长 ≈ 3 分钟</span>
   </div>
  
           
@@ -134,14 +134,16 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>使用vue的时候，因为图片路径为动态数据，下面这样直接将数据传入元素，编译输出后路径将会是原始相对路径的数据</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div id=<span class="string">"cover-container"</span>&gt;</span><br><span class="line">    &lt;template v-<span class="keyword">for</span>=<span class="string">"(cover,index) in coverList"</span>&gt;</span><br><span class="line">      &lt;div :key=<span class="string">"index"</span> @click=<span class="string">"openPage(cover.url)"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"cover"</span>&gt;</span><br><span class="line">        &lt;template v-<span class="keyword">if</span>=<span class="string">"index === 0"</span>&gt;</span><br><span class="line">          &lt;span <span class="class"><span class="keyword">class</span></span>=<span class="string">"cover_title"</span>&gt;&#123;&#123;cover.title&#125;&#125;&lt;<span class="regexp">/span&gt;</span></span><br><span class="line"><span class="regexp">          &lt;img v-bind:src="cover.banner" class="cover_img_top"&gt;</span></span><br><span class="line"><span class="regexp">        &lt;/</span>template&gt;</span><br><span class="line">        &lt;template v-<span class="keyword">else</span>&gt;</span><br><span class="line">          &lt;img v-bind:src=<span class="string">"cover.banner"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"cover_img_other"</span>&gt;</span><br><span class="line">        &lt;<span class="regexp">/template&gt;</span></span><br><span class="line"><span class="regexp">        &lt;span class="cover_desc" v-html="cover.desc"&gt;&lt;/</span>span&gt;</span><br><span class="line">      &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">      &lt;span v-if="index!=coverList.length-1" :key="index" class="line"&gt;&lt;/</span>span&gt;</span><br><span class="line">    &lt;<span class="regexp">/template&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>div&gt;</span><br><span class="line">&lt;<span class="regexp">/template&gt;</span></span><br></pre></td></tr></table></figure>
-<p>所以需要在数据上面做处理，在url上面加上require，如下：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> coverList = [&#123;</span><br><span class="line">    title: <span class="string">'营业厅服务'</span>,</span><br><span class="line">    banner: <span class="built_in">require</span>(<span class="string">'../assets/bizhall_1.jpg'</span>),</span><br><span class="line">    url: <span class="string">'https://im.189.cn/weixinopen/outserver/oauth/getOpenid?url=aHR0cHM6Ly9pbS4xODkuY24veG10L3BhZ2VPcGVuTG9nL3JlbGF5LmRvP3VybD1hSFIwY0RvdkwybHRMakU0T1M1amJpOTRiWFF2YjNCbGNtRjBMMmRsZEU5d1pYSmhkRXhwYzNSRGVpNWtidz09Jm9wPXl5dGN6Y2Q='</span>,</span><br><span class="line">    desc: <span class="string">'可通过筛选发现附近营业厅及查询营业厅相关信息'</span></span><br><span class="line">&#125;, &#123;</span><br><span class="line">    banner: <span class="built_in">require</span>(<span class="string">'../assets/bizhall_2.jpg'</span>),</span><br><span class="line">    url: <span class="string">'http://im.189.cn/weixinopen/outserver/oauth/getOpenid?url=aHR0cHM6Ly9pbS4xODkuY24veG10L3BhZ2VPcGVuTG9nL3JlbGF5LmRvP3VybD1hSFIwY0RvdkwybHRMakU0T1M1amJpOXBiVmQ0VUdGamEyRm5aWE12Y0dGamEyRm5aWE12YjNCbFlYSjBMbVJ2Jm9wPXl5dHl5Y2Q='</span>,</span><br><span class="line">    desc: <span class="string">'预约营业厅办理业务及时查看排队情况，&lt;/br&gt;使用前确认已经打开授权微信获取定位功能'</span></span><br><span class="line">&#125;]</span><br></pre></td></tr></table></figure></p>
-<p>这样webpack在打包的时候就会自动将图片相对路径转化为项目路径了</p>
-
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"cover-container"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">template</span> <span class="attr">v-for</span>=<span class="string">"(cover,index) in coverList"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">:key</span>=<span class="string">"index"</span> @<span class="attr">click</span>=<span class="string">"openPage(cover.url)"</span> <span class="attr">class</span>=<span class="string">"cover"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">template</span> <span class="attr">v-if</span>=<span class="string">"index === 0"</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"cover_title"</span>&gt;</span>&#123;&#123;cover.title&#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">img</span> <span class="attr">v-bind:src</span>=<span class="string">"cover.banner"</span> <span class="attr">class</span>=<span class="string">"cover_img_top"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">template</span> <span class="attr">v-else</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">img</span> <span class="attr">v-bind:src</span>=<span class="string">"cover.banner"</span> <span class="attr">class</span>=<span class="string">"cover_img_other"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"cover_desc"</span> <span class="attr">v-html</span>=<span class="string">"cover.desc"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">span</span> <span class="attr">v-if</span>=<span class="string">"index!=coverList.length-1"</span> <span class="attr">:key</span>=<span class="string">"index"</span> <span class="attr">class</span>=<span class="string">"line"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
+        
+          <p class="article-more-link">
+            <a href="/posts/3ad33ff3.html#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3ad33ff3.html" data-id="cjo7yzsyh00msudykk2fm17xy" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/3ad33ff3.html" data-id="cjo7zf7jb00a2o1ykbwdwkp9z" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li></ul>
@@ -226,7 +228,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/8476b89f.html" data-id="cjo7yzsq4000gudyk8i1luh56" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/8476b89f.html" data-id="cjo7zf7d9000ho1ykoytrrgo7" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Charles/">Charles</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/抓包/">抓包</a></li></ul>
@@ -303,7 +305,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/8b59beec.html" data-id="cjo7yzsre003audykso1a8xg5" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/8b59beec.html" data-id="cjo7zf7fj003go1yk3q4gsyyk" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IDEA/">IDEA</a></li></ul>
@@ -389,7 +391,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/c14d120e.html" data-id="cjo7yzsta007qudykrd8ye3qa" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/c14d120e.html" data-id="cjo7zf7i7008ao1yk9zbex1kj" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mac/">Mac</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iterm2/">iterm2</a></li></ul>
@@ -470,7 +472,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/9e53d1a6.html" data-id="cjo7yzsza00nzudykk7iouhau" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/9e53d1a6.html" data-id="cjo7zf7ka00bno1ykbe5wx2pw" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Apache-HttpClient/">Apache HttpClient</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/微信公众号/">微信公众号</a></li></ul>
@@ -551,7 +553,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/7aeb1e46.html" data-id="cjo7yzspw0006udyk3mpgtq58" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/7aeb1e46.html" data-id="cjo7zf7dg000mo1yk0p8kk16w" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
@@ -632,7 +634,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/bf60621.html" data-id="cjo7yzst00078udykpjkavda2" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/bf60621.html" data-id="cjo7zf7hu007jo1yk6ipmeuxk" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
@@ -719,7 +721,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/e4163a66.html" data-id="cjo7yzsq6000judyk7u3oo55g" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/e4163a66.html" data-id="cjo7zf7de000lo1yk90fj1mxp" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/">Docker</a></li></ul>
@@ -808,7 +810,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/a5557ea7.html" data-id="cjo7yzsq8000pudykaolhwoss" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/a5557ea7.html" data-id="cjo7zf7dv0016o1ykdy00xg31" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/">Docker</a></li></ul>
@@ -894,7 +896,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/4573f792.html" data-id="cjo7yzsqy0028udykl21qnh9z" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/4573f792.html" data-id="cjo7zf7f0002mo1yklbg7immq" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ELK/">ELK</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FileBeat/">FileBeat</a></li></ul>
