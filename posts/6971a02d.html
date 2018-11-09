@@ -6,18 +6,23 @@
   
   <title>
     
-    Tag: VirtualBox |
+    ng |
     
     Tidy的个人博客
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Tidy的个人博客">
-<meta property="og:url" content="https://www.tidyko.com/tags/VirtualBox/index.html">
+  <meta name="description" content="1）配置agent_deny.conf在nginx的conf目录下新增agent_deny.conf配置文件123456789101112131415if ($http_user_agent ~* &quot;qihoobot|Baiduspider|Googlebot|Googlebot-Mobile|Googlebot-Image|Mediapartners-Google|Adsbot-Google|F">
+<meta name="keywords" content="Nginx">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ng">
+<meta property="og:url" content="https://www.tidyko.com/posts/6971a02d.html">
 <meta property="og:site_name" content="Tidy的个人博客">
+<meta property="og:description" content="1）配置agent_deny.conf在nginx的conf目录下新增agent_deny.conf配置文件123456789101112131415if ($http_user_agent ~* &quot;qihoobot|Baiduspider|Googlebot|Googlebot-Mobile|Googlebot-Image|Mediapartners-Google|Adsbot-Google|F">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-11-09T09:50:34.820Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Tidy的个人博客">
+<meta name="twitter:title" content="ng">
+<meta name="twitter:description" content="1）配置agent_deny.conf在nginx的conf目录下新增agent_deny.conf配置文件123456789101112131415if ($http_user_agent ~* &quot;qihoobot|Baiduspider|Googlebot|Googlebot-Mobile|Googlebot-Image|Mediapartners-Google|Adsbot-Google|F">
   
   <link rel="alternate" href="/atom.xml" title="Tidy的个人博客" type="application/atom+xml">
   
@@ -70,43 +75,111 @@
   </div>
 </div>
 
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap animated rubberBand">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/posts/b3c1b12f.html" class="archive-article-date">
-  <time class="post-time" datetime="2017-03-22T06:33:00.000Z" itemprop="datePublished">
-    <span class="post-month">3月</span><br/>
-    <span class="post-day">22</span>
+        <section id="main"><article id="post-NGINX 反爬配置" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/6971a02d.html" class="article-date">
+  <time class="post-time" datetime="2018-11-09T09:38:00.000Z" itemprop="datePublished">
+    <span class="post-month">11月</span><br/>
+    <span class="post-day">09</span>
   </time>
 </a>
-      
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/posts/b3c1b12f.html">VirtualBox Linux虚拟网络配置</a>
+    <h1 class="article-title" itemprop="name">
+      ng
     </h1>
   
 
-    </header>
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/服务器/">服务器</a>,<a class="article-category-link" href="/categories/服务器/Nginx/">Nginx</a>
   </div>
-</article>
-  
-  
-    </div></section>
-  
 
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/6971a02d.html" class="leancloud_visitors" data-flag-title="ng">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 221</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 1 分钟</span>
+  </div>
+ 
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1）配置agent-deny-conf"><a href="#1）配置agent-deny-conf" class="headerlink" title="1）配置agent_deny.conf"></a>1）配置agent_deny.conf</h3><p>在nginx的conf目录下新增agent_deny.conf配置文件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="variable">$http_user_agent</span> ~* <span class="string">"qihoobot|Baiduspider|Googlebot|Googlebot-Mobile|Googlebot-Image|Mediapartners-Google|Adsbot-Google|Feedfetcher-Google|Yahoo! Slurp|Yahoo! Slurp China|YoudaoBot|Sosospider|Sogou spider|Sogou web spider|MSNBot|ia_archiver|Tomato Bot|Catall Spider|AcoiRobot|Yisou|bingbot|360Spider"</span>) &#123; </span><br><span class="line">    <span class="built_in">return</span> 403;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="variable">$http_user_agent</span> ~ <span class="string">"WinHttp|WebZIP|FetchURL|node-superagent|FeedDemon|Jullo|JikeSpider|Indy Library|Alexa Toolbar|AskTbFXTV|AhrefsBot|CrawlDaddy|Feedly|UniversalFeedParser|ApacheBench|Microsoft URL Control|Swiftbot|ZmEu|oBot|jaunty|Python-urllib|lightDeckReports Bot|YYSpider|DigExt|MJ12bot|heritrix|EasouSpider|Ezooms|BOT/0.1|YandexBot|FlightDeckReports|Linguee Bot|iaskspider^$"</span>) &#123;</span><br><span class="line">    <span class="built_in">return</span> 403;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="variable">$request_method</span> !~ ^(GET|POST)$) &#123;</span><br><span class="line">    <span class="built_in">return</span> 403;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="variable">$http_user_agent</span> ~* (Python|Wget|Scrapy|Spider)) &#123;</span><br><span class="line">    <span class="built_in">return</span> 403;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="2）修改反向代理配置文件"><a href="#2）修改反向代理配置文件" class="headerlink" title="2）修改反向代理配置文件"></a>2）修改反向代理配置文件</h3><p>在具体的location下面配置 include agent_deny.conf<br>如：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Server</span></span><br><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    server_name localhost;</span><br><span class="line">    charset utf-8;</span><br><span class="line">    </span><br><span class="line">    location / &#123;</span><br><span class="line">        <span class="comment"># 此设置在 http, server, location 节点都可以设置；设置了 nodelay 将不会等待</span></span><br><span class="line">        limit_req zone=ratelimit burst=20 nodelay;</span><br><span class="line">        include agent_deny.conf;</span><br><span class="line">        proxy_pass http://127.0.0.1:8080/java-web;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/6971a02d.html" data-id="cjo9uc42b007nn9ykwztqy27d" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nginx/">Nginx</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/posts/3ad33ff3.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Vue webpack打包src路径问题</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+
+
+  <div id="comments" class="comments">
+    <div id="gitment_container"></div>
+  </div>
+  
+  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+  <script>
+  var gitment = new Gitment({
+    owner: 'tidyko',
+    repo: 'tidyko.github.io',
+    oauth: {
+      client_id: '62e4f6a4ca86e056da76',
+      client_secret: '912d627549301dd54437313b122a7c543215bc4c',
+    },
+  })
+  gitment.render('gitment_container')
+  </script>
 </section>
         
           <aside id="sidebar">

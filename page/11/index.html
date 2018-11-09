@@ -52,7 +52,7 @@
     <h2 class="author"></h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>126</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>127</strong><br>文章</div></a>
       <a href="/categories"><div><strong>44</strong><br>分类</div></a>
       <a href="/tags"><div><strong>81</strong><br>标签</div></a>
     </div>
@@ -79,6 +79,81 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-Oracle 格式化数字小数位" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/380553c.html" class="article-date">
+  <time class="post-time" datetime="2014-03-12T05:41:00.000Z" itemprop="datePublished">
+    <span class="post-month">3月</span><br/>
+    <span class="post-day">12</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/380553c.html">Oracle 格式化数字小数位</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/数据库/">数据库</a>,<a class="article-category-link" href="/categories/数据库/Oracle/">Oracle</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/380553c.html" class="leancloud_visitors" data-flag-title="Oracle 格式化数字小数位">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 105</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 1 分钟</span>
+  </div>
+ 
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">OR</span> <span class="keyword">REPLACE</span> <span class="keyword">FUNCTION</span> fun_format_number_to_char(i_number  <span class="keyword">IN</span> <span class="built_in">NUMBER</span> ,  <span class="comment">--要格式化的数字</span></span><br><span class="line">                                                     i_decimal <span class="keyword">IN</span> <span class="built_in">NUMBER</span>    <span class="comment">--小数个数</span></span><br><span class="line">                                                    ) <span class="keyword">RETURN</span> VARCHAR2 <span class="keyword">IS</span></span><br><span class="line">  v_format varchar2(<span class="number">100</span>) := <span class="string">'.'</span> ;</span><br><span class="line">  v_result varchar2(100) ;</span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line">  </span><br><span class="line">  <span class="keyword">if</span> i_decimal = <span class="number">0</span> <span class="keyword">then</span></span><br><span class="line">     <span class="keyword">RETURN</span> to_char(<span class="keyword">round</span>(i_number,<span class="number">0</span>));</span><br><span class="line">  else</span><br><span class="line">     for i in 1..i_decimal loop </span><br><span class="line">       v_format := v_format || '9';</span><br><span class="line">     <span class="keyword">end</span> <span class="keyword">loop</span>;</span><br><span class="line">  <span class="keyword">end</span> <span class="keyword">if</span>;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">select</span> <span class="keyword">trim</span>(to_char(i_number,<span class="string">'99999999999999'</span>|| v_format)) <span class="keyword">into</span> v_result <span class="keyword">from</span> dual;</span><br><span class="line">  </span><br><span class="line">  if instr(v_result,'.',1,1) = 1 then</span><br><span class="line">    v_result := '0'||v_result;</span><br><span class="line">  <span class="keyword">end</span> <span class="keyword">if</span>;</span><br><span class="line">  </span><br><span class="line">  RETURN v_result;</span><br><span class="line"></span><br><span class="line"><span class="keyword">END</span> fun_format_number_to_char;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/380553c.html" data-id="cjo9uc4300097n9ykfakohf6f" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Oracle/">Oracle</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sql/">Sql</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
   
     <article id="post-Oracle nvl与nvl2对比" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -141,7 +216,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/efb40b79.html" data-id="cjo9uatlk008jidykk24nj52b" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/efb40b79.html" data-id="cjo9uc42r008mn9yk3gvkw4ti" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Oracle/">Oracle</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sql/">Sql</a></li></ul>
@@ -232,7 +307,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/4115afa8.html" data-id="cjo9uatj6003fidyk1i106edf" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/4115afa8.html" data-id="cjo9uc409003in9ykjhjrhxh5" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CXF/">CXF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WebService/">WebService</a></li></ul>
@@ -310,7 +385,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/7c9f9e00.html" data-id="cjo9uatlj008gidykmzikl57r" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/7c9f9e00.html" data-id="cjo9uc42t008rn9ykb1u7yqth" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Oracle/">Oracle</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sql/">Sql</a></li></ul>
@@ -389,7 +464,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/2cf05a87.html" data-id="cjo9uatjb003nidykmfcepngu" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/2cf05a87.html" data-id="cjo9uc40d003nn9yknrwmpirw" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
@@ -468,7 +543,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/6a3fb6fb.html" data-id="cjo9uatk7005lidykqarjkir0" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/6a3fb6fb.html" data-id="cjo9uc41a005bn9yk5i3ih8w7" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Oracle/">Oracle</a></li></ul>
@@ -548,7 +623,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/ac53be82.html" data-id="cjo9uatid0022idyk9pmg25af" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/ac53be82.html" data-id="cjo9uc3zd0022n9ykbpmv3sfn" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Maven/">Maven</a></li></ul>
@@ -626,7 +701,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/26788ddf.html" data-id="cjo9uatjm0042idykv2t3q2mq" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/26788ddf.html" data-id="cjo9uc40w004cn9yknp6vqhhr" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
@@ -703,7 +778,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/93821c9f.html" data-id="cjo9uatka005tidykm1y1ol9z" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/93821c9f.html" data-id="cjo9uc41j005wn9ykho9azym6" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
@@ -784,87 +859,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/bd745825.html" data-id="cjo9uatho000widykszswdk7a" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/bd745825.html" data-id="cjo9uc3yr0013n9ykuq85lvw3" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jdk/">Jdk</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-Eclipse Failed to load JavaHL Library" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/3e42071e.html" class="article-date">
-  <time class="post-time" datetime="2014-02-12T09:57:00.000Z" itemprop="datePublished">
-    <span class="post-month">2月</span><br/>
-    <span class="post-day">12</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/3e42071e.html">Eclipse Failed to load JavaHL Library</a>
-    </h1>
-  
-
-        <div>
-          
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/开发调试工具/">开发调试工具</a>,<a class="article-category-link" href="/categories/开发调试工具/Eclipse/">Eclipse</a>
-  </div>
-
-          
-              
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/3e42071e.html" class="leancloud_visitors" data-flag-title="Eclipse Failed to load JavaHL Library">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 21</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 1 分钟</span>
-  </div>
- 
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1）"><a href="#1）" class="headerlink" title="1）"></a>1）</h3><p>选择菜单<br><code>window</code> -&gt; <code>preferences</code> -&gt; <code>Team</code> -&gt; <code>SVN</code> -&gt; <code>SVN接口</code> </p>
-<h3 id="2）"><a href="#2）" class="headerlink" title="2）"></a>2）</h3><p>选择SVNKit (Pure Java) xxxxxx<br>图例：<br><img src="http://img.tidyko.com/blog/Failed%20to%20load%20JavaHL%20Library_1.jpg" alt="Eclipse里Failed to load JavaHL Library-图例1"></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3e42071e.html" data-id="cjo9uathl000ridyk8ipo9bq2" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Svn/">Svn</a></li></ul>
 
     </footer>
   </div>
@@ -923,7 +921,7 @@
     <h2 class="author"></h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>126</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>127</strong><br>文章</div></a>
       <a href="/categories"><div><strong>44</strong><br>分类</div></a>
       <a href="/tags"><div><strong>81</strong><br>标签</div></a>
     </div>

@@ -52,7 +52,7 @@
     <h2 class="author"></h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>126</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>127</strong><br>文章</div></a>
       <a href="/categories"><div><strong>44</strong><br>分类</div></a>
       <a href="/tags"><div><strong>81</strong><br>标签</div></a>
     </div>
@@ -79,6 +79,88 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-Java ExecutorService与quartz搭配出现的问题" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/b0fc798c.html" class="article-date">
+  <time class="post-time" datetime="2017-09-13T04:06:00.000Z" itemprop="datePublished">
+    <span class="post-month">9月</span><br/>
+    <span class="post-day">13</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/b0fc798c.html">Java ExecutorService与quartz搭配出现的问题</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/b0fc798c.html" class="leancloud_visitors" data-flag-title="Java ExecutorService与quartz搭配出现的问题">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 367</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 1 分钟</span>
+  </div>
+ 
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>使用quartz定时推送微信公众号模板消息，一分钟推送一次，定时器里面使用了一个ExecutorService线程池，大小为5个。</p>
+<p>批量获取数据之后，全部数据都被分配到n/5的线程池里面等待执行，分配完成之后，系统就默认了这次任务已经执行完毕。</p>
+<p>下个一分钟到了的时候，继续获取指定状态的数据，重复上面的入线程池操作。</p>
+<p>导致，在之前的任务里面已经分配到线程池中，但是还没有来得及处理的数据，在下一个定时任务开始时重新被放进去了线程池里面。</p>
+<p>如此累计，导致最后有的用户多次重复收到了同一条模板消息。</p>
+<h3 id="问题定位"><a href="#问题定位" class="headerlink" title="问题定位"></a>问题定位</h3><p>定时任务没有等待ExecutorService所有任务执行完毕之后再结束此次任务，导致的重复累积推送问题。</p>
+<h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><p>在定时器方法尾部添加判断线程池状态代码，阻塞任务结束执行。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//等待线程池所有线程执行完毕，再执行下一个定时任务</span></span><br><span class="line"><span class="comment">//shutdown()方法会标记之后，等待所有线程执行完毕后，修改其线程池状态，isTerminated()方法为shutdown真正之后才会返回true</span></span><br><span class="line">executorService.shutdown();  </span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> (<span class="keyword">true</span>) &#123;  </span><br><span class="line">    <span class="keyword">if</span> (executorService.isTerminated()) &#123;  </span><br><span class="line">        logger.info(<span class="string">"SendLimitTemplateTimer end"</span>); </span><br><span class="line">        <span class="keyword">break</span>;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/b0fc798c.html" data-id="cjo9uc4190058n9yk0rqqml8f" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/quzrtz/">quzrtz</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
   
     <article id="post-Jenkins 执行nohup java报错" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -139,7 +221,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/10937fe4.html" data-id="cjo9uatkh0061idykvfkgvul5" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/10937fe4.html" data-id="cjo9uc41h005rn9yk1c7mrehx" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jenkins/">Jenkins</a></li></ul>
@@ -221,7 +303,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/ba8658f2.html" data-id="cjo9uatl6007oidykzk9tf9n8" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/ba8658f2.html" data-id="cjo9uc42i0083n9ykc77dqvrx" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mysql/">Mysql</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Navicat-Premium/">Navicat Premium</a></li></ul>
@@ -303,7 +385,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/95c8a77e.html" data-id="cjo9uatkk0069idykx97jp6dy" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/95c8a77e.html" data-id="cjo9uc41q006cn9yk3gbb5yp4" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Kafka/">Kafka</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/队列/">队列</a></li></ul>
@@ -392,7 +474,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/a4bec044.html" data-id="cjo9uatkw0070idykv047qndw" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/a4bec044.html" data-id="cjo9uc4230075n9ykxp8uemjb" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
@@ -470,7 +552,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/6966e243.html" data-id="cjo9uatku006widykmu1urauj" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/6966e243.html" data-id="cjo9uc41w006rn9ykqahqaogy" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
@@ -552,7 +634,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/b3c1b12f.html" data-id="cjo9uatm9009zidykgq28ipca" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/b3c1b12f.html" data-id="cjo9uc43l00a7n9ykb0i46plg" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VirtualBox/">VirtualBox</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络配置/">网络配置</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/虚拟机/">虚拟机</a></li></ul>
@@ -635,7 +717,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/20e9a4b.html" data-id="cjo9uatko006hidyku0xz8ynx" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/20e9a4b.html" data-id="cjo9uc41z006zn9ykfd7hjfng" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Shell/">Shell</a></li></ul>
@@ -713,7 +795,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/58d69454.html" data-id="cjo9uatl1007cidykuc48jbgz" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/58d69454.html" data-id="cjo9uc41y006vn9ykj4d9k7qz" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tomcat/">Tomcat</a></li></ul>
@@ -790,86 +872,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/9f6836b6.html" data-id="cjo9uathk000qidykjztclrl0" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/9f6836b6.html" data-id="cjo9uc3yl000qn9ykzu9db8ii" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Dubbo/">Dubbo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Maven/">Maven</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-Charles 使用Charles时，抓不到包的情况" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/968fb276.html" class="article-date">
-  <time class="post-time" datetime="2017-02-04T03:24:00.000Z" itemprop="datePublished">
-    <span class="post-month">2月</span><br/>
-    <span class="post-day">04</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/968fb276.html">Charles 使用Charles时，抓不到包的情况</a>
-    </h1>
-  
-
-        <div>
-          
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/开发调试工具/">开发调试工具</a>,<a class="article-category-link" href="/categories/开发调试工具/Charles/">Charles</a>
-  </div>
-
-          
-              
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/968fb276.html" class="leancloud_visitors" data-flag-title="Charles 使用Charles时，抓不到包的情况">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 50</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 1 分钟</span>
-  </div>
- 
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>有可能是因为浏览器的代理权限给了其他插件，需要停用该插件，重启浏览器，重新进行访问就可以看到Charles的抓包信息了。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/968fb276.html" data-id="cjo9uathh000kidyk80tm20s7" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Charles/">Charles</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/抓包/">抓包</a></li></ul>
 
     </footer>
   </div>
@@ -928,7 +934,7 @@
     <h2 class="author"></h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>126</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>127</strong><br>文章</div></a>
       <a href="/categories"><div><strong>44</strong><br>分类</div></a>
       <a href="/tags"><div><strong>81</strong><br>标签</div></a>
     </div>
