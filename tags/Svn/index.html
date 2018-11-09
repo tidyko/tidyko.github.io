@@ -6,14 +6,14 @@
   
   <title>
     
-    Tag: SVN |
+    Tag: Svn |
     
     Tidy的个人博客
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="website">
 <meta property="og:title" content="Tidy的个人博客">
-<meta property="og:url" content="https://www.tidyko.com/tags/SVN/index.html">
+<meta property="og:url" content="https://www.tidyko.com/tags/Svn/index.html">
 <meta property="og:site_name" content="Tidy的个人博客">
 <meta property="og:locale" content="zh-CN">
 <meta name="twitter:card" content="summary">
@@ -79,38 +79,6 @@
       
       <section class="archives-wrap animated rubberBand">
         <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/posts/e388ac5d.html" class="archive-article-date">
-  <time class="post-time" datetime="2016-11-14T03:49:00.000Z" itemprop="datePublished">
-    <span class="post-month">11月</span><br/>
-    <span class="post-day">14</span>
-  </time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/posts/e388ac5d.html">SVN 使用花生壳映射VisualSVN外网地址</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-      
-        </div></section>
-      
-      
-      <section class="archives-wrap animated rubberBand">
-        <div class="archive-year-wrap">
           <a href="/archives/2014" class="archive-year">2014</a>
         </div>
         <div class="archives">
@@ -118,16 +86,16 @@
     <article class="archive-article archive-type-post">
   <div class="archive-article-inner">
     <header class="archive-article-header">
-      <a href="/posts/bb413124.html" class="archive-article-date">
-  <time class="post-time" datetime="2014-10-10T04:36:00.000Z" itemprop="datePublished">
-    <span class="post-month">10月</span><br/>
-    <span class="post-day">10</span>
+      <a href="/posts/3e42071e.html" class="archive-article-date">
+  <time class="post-time" datetime="2014-02-12T09:57:00.000Z" itemprop="datePublished">
+    <span class="post-month">2月</span><br/>
+    <span class="post-day">12</span>
   </time>
 </a>
       
   
     <h1 itemprop="name">
-      <a class="archive-article-title" href="/posts/bb413124.html">Eclipse SVN is out of date</a>
+      <a class="archive-article-title" href="/posts/3e42071e.html">Eclipse Failed to load JavaHL Library</a>
     </h1>
   
 
@@ -334,6 +302,40 @@ new WOW().init();
               success: function(newcounter) {
                 var $element = $(document.getElementById(url));
                 $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.article-title').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+
+
+<div id="totop" style="position:fixed;bottom:160px;right:50px;cursor: pointer;z-index: 10;">
+    <a title="返回顶部"><img src="/images/scrollup.png" style="width:50px;height:50px;"/></a>
+</div>
+<script src="/js/totop.js"></script>
+  </div>
+</body>
+</html>rs-count').text(newcounter.get('time'));
               },
               error: function(newcounter, error) {
                 console.log('Failed to create');
