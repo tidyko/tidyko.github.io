@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>
+    
+    IE 浏览器模式与文档模式及其开发中处理方式 |
+    
+    TIDY的个人博客
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="原文：http://blog.csdn.net/neo_liu0000/article/details/7589731 1）什么是浏览器模式和文本模式？经常使用IE开发者工具的同学，肯定见过浏览器模式和文本模式，对于这两个名词，综合相关文档解释如下： 浏览器模式（Browser Mode），用于切换IE针对该网页的默认文本模式、对不同版本浏览器的条件注释解析、决定请求头里userAgent的值。它">
+<meta name="keywords" content="IE">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IE 浏览器模式与文档模式及其开发中处理方式">
+<meta property="og:url" content="https://www.tidyko.com/posts/810bd9aa.html">
+<meta property="og:site_name" content="TIDY的个人博客">
+<meta property="og:description" content="原文：http://blog.csdn.net/neo_liu0000/article/details/7589731 1）什么是浏览器模式和文本模式？经常使用IE开发者工具的同学，肯定见过浏览器模式和文本模式，对于这两个名词，综合相关文档解释如下： 浏览器模式（Browser Mode），用于切换IE针对该网页的默认文本模式、对不同版本浏览器的条件注释解析、决定请求头里userAgent的值。它">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-08-13T15:09:44.457Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="IE 浏览器模式与文档模式及其开发中处理方式">
+<meta name="twitter:description" content="原文：http://blog.csdn.net/neo_liu0000/article/details/7589731 1）什么是浏览器模式和文本模式？经常使用IE开发者工具的同学，肯定见过浏览器模式和文本模式，对于这两个名词，综合相关文档解释如下： 浏览器模式（Browser Mode），用于切换IE针对该网页的默认文本模式、对不同版本浏览器的条件注释解析、决定请求头里userAgent的值。它">
+  
+  <link rel="alternate" href="/atom.xml" title="TIDY的个人博客" type="application/atom+xml">
+  
+  
+  <link rel="icon" href="/favicon.ico">
+  
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <!-- <link rel="stylesheet" href="/plugin/bganimation/bg.css"> -->
+  
+
+  
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <div class="widget-wrap mobile-header">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="http://img.tidyko.com/avatar.jpg">
+    <h2 class="author">豪快二突撃スル</h2>
+    <h3 class="description">javaer</h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>126</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>44</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>81</strong><br>标签</div></a>
+    </div>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+        <section id="main"><article id="post-IE 浏览器模式与文档模式及其开发中处理方式" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/810bd9aa.html" class="article-date">
+  <time class="post-time" datetime="2014-09-11T01:57:00.000Z" itemprop="datePublished">
+    <span class="post-month">9月</span><br/>
+    <span class="post-day">11</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      IE 浏览器模式与文档模式及其开发中处理方式
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/浏览器/">浏览器</a>,<a class="article-category-link" href="/categories/浏览器/IE/">IE</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/810bd9aa.html" class="leancloud_visitors" data-flag-title="IE 浏览器模式与文档模式及其开发中处理方式">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 1,037</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 4 分钟</span>
+  </div>
+ 
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="原文："><a href="#原文：" class="headerlink" title="原文："></a>原文：</h2><p><a href="http://blog.csdn.net/neo_liu0000/article/details/7589731" target="_blank" rel="noopener">http://blog.csdn.net/neo_liu0000/article/details/7589731</a></p>
+<h3 id="1）什么是浏览器模式和文本模式？"><a href="#1）什么是浏览器模式和文本模式？" class="headerlink" title="1）什么是浏览器模式和文本模式？"></a>1）什么是浏览器模式和文本模式？</h3><p>经常使用IE开发者工具的同学，肯定见过浏览器模式和文本模式，对于这两个名词，综合相关文档解释如下：</p>
+<p>浏览器模式（Browser Mode），用于切换IE针对该网页的默认文本模式、对不同版本浏览器的条件注释解析、决定请求头里userAgent的值。它在浏览器发出请求之前就已经确定，网站没有办法修改这个值。它代表的是用户以何种浏览器访问网站。</p>
+<p>文本模式（Document Mode），其实就是经常说的文档模式。不同的文本模式对应不同的排版引擎，不同的JS引擎。上面提到，每一种浏览器模式对应一种默认的文本模式，网站还可以通过一些手段来更改文本模式，它代表的是浏览器以何种模式呈现页面。</p>
+<h3 id="2）浏览器模式和文本模式有什么用？"><a href="#2）浏览器模式和文本模式有什么用？" class="headerlink" title="2）浏览器模式和文本模式有什么用？"></a>2）浏览器模式和文本模式有什么用？</h3><p>用来解决IE各版本带来的兼容性问题。根据微软描述的IE兼容性策略，在IE8+访问一个页面要经过这样的流程：</p>
+<h4 id="2-1）"><a href="#2-1）" class="headerlink" title="2.1）"></a>2.1）</h4><p>首先，浏览器要确定浏览器模式。上面说过，浏览器模式是在请求发送之前就必须确定，默认取最新（IE9为IE9标准，IE8为IE8标准），有两种方式可以更改它：</p>
+<p>通过开发者工具选择（可选项见上表）；<br>通过点击兼容性视图按钮；<br>命中兼容性视图列表（微软维护的需要采用兼容性视图的列表。IE8+默认对这个列表和局域网的网址都会采用相应的兼容性模式）；</p>
+<h4 id="2-2）"><a href="#2-2）" class="headerlink" title="2.2）"></a>2.2）</h4><p>浏览器通过请求头里userAgent的值，告诉服务器当前是何种浏览器模式；</p>
+<h4 id="2-3）"><a href="#2-3）" class="headerlink" title="2.3）"></a>2.3）</h4><p>服务器可以通过下面方式改变浏览器文本模式：</p>
+<p>doctype；<br>X-UA-Compatible Meta或对应的响应头</p>
+<p>浏览器模式决定：1）发送给服务端的UA；2）默认的文本模式；3）如何解析条件注释。它在请求发送前就已经确定，且不受服务端控制。文本模式决 定：1）排版引擎；2）JS引擎。它在浏览器得到响应后最终确定，服务端可通过doctype或X-UA-Compatible来控制。</p>
+<h5 id="测试一"><a href="#测试一" class="headerlink" title="测试一"></a>测试一</h5><p>根据前文，如果用户浏览器没有激活兼容性视图；没有开启IE开发者工具。那么IE9的浏览器模式默认为IE9，默认对应的文本模式应该是IE9标准（对于IE8来说，是类似的），我们通过下列代码将它改到IE7标准：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"IE=7"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h5 id="测试二"><a href="#测试二" class="headerlink" title="测试二"></a>测试二</h5><p>那如果把测试地址加到兼容性列表呢？根据前文，这种情况浏览器模式应该是IE9/IE8兼容性，对应的文本模式依然是IE7标准。</p>
+<h5 id="测试三"><a href="#测试三" class="headerlink" title="测试三"></a>测试三</h5><p>如果把X-UA-Compatible改成IE=edge，继续使用兼容性模式测试呢？</p>
+<p>这个结论其实跟测试一是一致的：X-UA-Compatible为IE=edge，意味着文本模式会使用最新可用的版本，然而文本模式的更改，又把浏览器模式从IE9/IE8兼容性变成IE9/IE8。IE9会按照新的浏览器模式来设置JS的navigator.userAgent，IE8下JS的UA不变。</p>
+<h5 id="测试四"><a href="#测试四" class="headerlink" title="测试四"></a>测试四</h5><p>那如果通过开发者工具人为设置浏览器模式和文本模式呢？经过测试，这样测试都是符合预期的。例如IE9下，设置浏览器模式为IE8，文本模式为IE7标准，请求头UA、JS的UA、条件注释都表明浏览器模式是IE8，documentMode和JS引擎都表明文本模式是IE7标准。因为，IE开发者工具的优先级最高，设置了这个，其他条件统统无视！</p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>IE8/9中X-UA-Compatible对文本模式的改变会导致浏览器模式的改变，也就是说服务端可以间接控制浏览器模式。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/810bd9aa.html" data-id="cjo9dnvs20036ucykehgd9om6" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IE/">IE</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/posts/b93984a5.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          IE trim()方法失效
+        
+      </div>
+    </a>
+  
+  
+    <a href="/posts/e234776b.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">J2EE DWRAnnotation入门</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+
+
+  <div id="comments" class="comments">
+    <div id="gitment_container"></div>
+  </div>
+  
+  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+  <script>
+  var gitment = new Gitment({
+    owner: 'tidyko',
+    repo: 'tidyko.github.io',
+    oauth: {
+      client_id: '62e4f6a4ca86e056da76',
+      client_secret: '912d627549301dd54437313b122a7c543215bc4c',
+    },
+  })
+  gitment.render('gitment_container')
+  </script>
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <h1 class="blog-title">TIDY的个人博客</h1>
+    <h2 class="blog-subtitle">マジにならなきゃ、勝てねぇよ！</h2>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="http://img.tidyko.com/avatar.jpg">
+    <h2 class="author">豪快二突撃スル</h2>
+    <h3 class="description">javaer</h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>126</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>44</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>81</strong><br>标签</div></a>
+    </div>
+
+
+
+    <div class="social-link">
+      
+        <a class="hvr-bounce-in" href="https://github.com/tidyko" target="_blank" title="Github">
+          Github
+        </a>
+      
+    </div>
+
+    <div class="friend-link">
+      <h2>友情链接</h2>
+      
+        <a class="hvr-bounce-in" href="https://www.cnblogs.com/zengweiming" target="_blank" title="tidyko-博客园">
+          tidyko-博客园
+        </a>
+      
+    </div>
+  </div>
+</div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy;2017 - 2018 豪快二突撃スル<br>
+      <!-- 由<a href="https://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
+      主题-<a href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a> -->
+      
+        <br>
+        <!-- <script src="https://s19.cnzz.com/z_stat.php?id=1274390271&web_id=1274390271" language="JavaScript" rel="noreferrer"></script>       -->
+        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1274390271'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1274390271%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));</script>
+      
+    </div>
+  </div>
+</footer>
+    </div>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/wow/0.1.6/wow.min.js"></script>
+<script>
+new WOW().init();
+</script>   
+
+
+  <link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+  <script src="/plugin/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+  <!-- <section class="hidden-xs"> 
+  <ul class="cb-slideshow"> 
+    <li><span>苟利</span></li> 
+    <li><span>国家</span></li> 
+    <li><span>生死以</span></li> 
+    <li><span>岂能</span></li> 
+    <li><span>祸福</span></li> 
+    <li><span>趋避之</span></li> 
+  </ul>
+</section> -->
+<script src="/js/script.js"></script>
+
+
+
+
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("DpQHavrF6hdX8C8q7ONib5Qv-gzGzoHsz", "CFNVYUb4rtTjkji3Erv4ROA7");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.article-title').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+
+
+<div id="totop" style="position:fixed;bottom:160px;right:50px;cursor: pointer;z-index: 10;">
+    <a title="返回顶部"><img src="/images/scrollup.png" style="width:50px;height:50px;"/></a>
+</div>
+<script src="/js/totop.js"></script>
+  </div>
+</body>
+</html>

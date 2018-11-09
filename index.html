@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>
+    
+    TIDY的个人博客
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="javaer">
+<meta property="og:type" content="website">
+<meta property="og:title" content="TIDY的个人博客">
+<meta property="og:url" content="https://www.tidyko.com/index.html">
+<meta property="og:site_name" content="TIDY的个人博客">
+<meta property="og:description" content="javaer">
+<meta property="og:locale" content="zh-CN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="TIDY的个人博客">
+<meta name="twitter:description" content="javaer">
+  
+  <link rel="alternate" href="/atom.xml" title="TIDY的个人博客" type="application/atom+xml">
+  
+  
+  <link rel="icon" href="/favicon.ico">
+  
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <!-- <link rel="stylesheet" href="/plugin/bganimation/bg.css"> -->
+  
+
+  
+<!-- Google Adsense -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-1522837637326007",
+        enable_page_level_ads: true
+    });
+</script>
+<!-- End Google Adsense -->
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <div class="widget-wrap mobile-header">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="http://img.tidyko.com/avatar.jpg">
+    <h2 class="author">豪快二突撃スル</h2>
+    <h3 class="description">javaer</h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>126</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>44</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>81</strong><br>标签</div></a>
+    </div>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+        <section id="main">
+  
+    <article id="post-Vue webpack打包src路径问题" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/3ad33ff3.html" class="article-date">
+  <time class="post-time" datetime="2018-11-02T07:02:00.000Z" itemprop="datePublished">
+    <span class="post-month">11月</span><br/>
+    <span class="post-day">02</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/3ad33ff3.html">Vue webpack打包src路径问题</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Vue/">Vue</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/3ad33ff3.html" class="leancloud_visitors" data-flag-title="Vue webpack打包src路径问题">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 599</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 3 分钟</span>
+  </div>
+ 
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>使用vue的时候，因为图片路径为动态数据，下面这样直接将数据传入元素，编译输出后路径将会是原始相对路径的数据</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"cover-container"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">template</span> <span class="attr">v-for</span>=<span class="string">"(cover,index) in coverList"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">:key</span>=<span class="string">"index"</span> @<span class="attr">click</span>=<span class="string">"openPage(cover.url)"</span> <span class="attr">class</span>=<span class="string">"cover"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">template</span> <span class="attr">v-if</span>=<span class="string">"index === 0"</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"cover_title"</span>&gt;</span>&#123;&#123;cover.title&#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">img</span> <span class="attr">v-bind:src</span>=<span class="string">"cover.banner"</span> <span class="attr">class</span>=<span class="string">"cover_img_top"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">template</span> <span class="attr">v-else</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">img</span> <span class="attr">v-bind:src</span>=<span class="string">"cover.banner"</span> <span class="attr">class</span>=<span class="string">"cover_img_other"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"cover_desc"</span> <span class="attr">v-html</span>=<span class="string">"cover.desc"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">span</span> <span class="attr">v-if</span>=<span class="string">"index!=coverList.length-1"</span> <span class="attr">:key</span>=<span class="string">"index"</span> <span class="attr">class</span>=<span class="string">"line"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
+        
+          <p class="article-more-link">
+            <a href="/posts/3ad33ff3.html#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/3ad33ff3.html" data-id="cjo9dnvvf00a3ucyk6c3jpnsw" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-Charles Map Remote使用" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/8476b89f.html" class="article-date">
+  <time class="post-time" datetime="2018-11-02T06:50:00.000Z" itemprop="datePublished">
+    <span class="post-month">11月</span><br/>
+    <span class="post-day">02</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/8476b89f.html">Charles Map Remote使用</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/开发调试工具/">开发调试工具</a>,<a class="article-category-link" href="/categories/开发调试工具/Charles/">Charles</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/8476b89f.html" class="leancloud_visitors" data-flag-title="Charles Map Remote使用">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 290</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 1 分钟</span>
+  </div>
+ 
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>使用Map Remote功能进行远程调试。</p>
+<h2 id="授权回调中间页正式转本地测试："><a href="#授权回调中间页正式转本地测试：" class="headerlink" title="授权回调中间页正式转本地测试："></a>授权回调中间页正式转本地测试：</h2><h3 id="1-获取正式原始地址"><a href="#1-获取正式原始地址" class="headerlink" title="1.获取正式原始地址"></a>1.获取正式原始地址</h3><p><a href="https://im.189.cn/weixinopen/outserver/link/promotions" target="_blank" rel="noopener">https://im.189.cn/weixinopen/outserver/link/promotions</a></p>
+<h3 id="2-转化为测试域名"><a href="#2-转化为测试域名" class="headerlink" title="2.转化为测试域名"></a>2.转化为测试域名</h3><p><a href="http://ag1.imp.189.cn/weixinopentest/outserver/link/promotions" target="_blank" rel="noopener">http://ag1.imp.189.cn/weixinopentest/outserver/link/promotions</a></p>
+<h3 id="3-将其转化为base64"><a href="#3-将其转化为base64" class="headerlink" title="3.将其转化为base64"></a>3.将其转化为base64</h3><p>aHR0cDovL2FnMS5pbXAuMTg5LmNuL3dlaXhpbm9wZW50ZXN0L291dHNlcnZlci9saW5rL3Byb21vdGlvbnM=</p>
+<h3 id="4-将其放到测试线授权回调格式后面"><a href="#4-将其放到测试线授权回调格式后面" class="headerlink" title="4.将其放到测试线授权回调格式后面"></a>4.将其放到测试线授权回调格式后面</h3><p><a href="http://ag1.imp.189.cn/weixinopentest/outserver/oauth/getOpenid?url=aHR0cDovL2FnMS5pbXAuMTg5LmNuL3dlaXhpbm9wZW50ZXN0L291dHNlcnZlci9saW5rL3Byb21vdGlvbnM=" target="_blank" rel="noopener">http://ag1.imp.189.cn/weixinopentest/outserver/oauth/getOpenid?url=aHR0cDovL2FnMS5pbXAuMTg5LmNuL3dlaXhpbm9wZW50ZXN0L291dHNlcnZlci9saW5rL3Byb21vdGlvbnM=</a></p>
+<h3 id="5-将其发送到v盟测试号"><a href="#5-将其发送到v盟测试号" class="headerlink" title="5.将其发送到v盟测试号"></a>5.将其发送到v盟测试号</h3>
+        
+          <p class="article-more-link">
+            <a href="/posts/8476b89f.html#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/8476b89f.html" data-id="cjo9dnvqn000jucykiwnfgdd8" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Charles/">Charles</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/抓包/">抓包</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-IDEA 设置忽略文件类型" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/8b59beec.html" class="article-date">
+  <time class="post-time" datetime="2018-10-19T07:18:00.000Z" itemprop="datePublished">
+    <span class="post-month">10月</span><br/>
+    <span class="post-day">19</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/8b59beec.html">IDEA 设置忽略文件类型</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/开发调试工具/">开发调试工具</a>,<a class="article-category-link" href="/categories/开发调试工具/IDEA/">IDEA</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/8b59beec.html" class="leancloud_visitors" data-flag-title="IDEA 设置忽略文件类型">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 55</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 1 分钟</span>
+  </div>
+ 
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><code>Editor</code> -&gt; <code>File Types</code> </p>
+<p>将<code>Ignore files and folders</code> 下面的输入框替换成以下代码：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">*.hprof;*.iml;*.ipr;*.iws;*.original;*.pyc;*.pyo;*.rbc;*.yarb;*~;.DS_Store;.classpath;.git;.hg;.idea;.project;.settings;.svn;CVS;__pycache__;_svn;generated-test-sources;maven-archiver;maven-status;test-classes;vssver.scc;vssver2.scc;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/8b59beec.html" data-id="cjo9dnvs00032ucykgd82etyk" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IDEA/">IDEA</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-Mac iterm2使用expect实现SSH自动登陆" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/c14d120e.html" class="article-date">
+  <time class="post-time" datetime="2018-10-09T03:53:00.000Z" itemprop="datePublished">
+    <span class="post-month">10月</span><br/>
+    <span class="post-day">09</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/c14d120e.html">Mac iterm2使用expect实现SSH自动登陆</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/开发调试工具/">开发调试工具</a>,<a class="article-category-link" href="/categories/开发调试工具/iterm2/">iterm2</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/c14d120e.html" class="leancloud_visitors" data-flag-title="Mac iterm2使用expect实现SSH自动登陆">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 389</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 2 分钟</span>
+  </div>
+ 
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="安装brew"><a href="#安装brew" class="headerlink" title="安装brew"></a>安装brew</h2><p>先确保已经安装了brew，我们将使用brew来安装我们需要的命令和软件。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew --version</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Homebrew 1.5.10</span><br><span class="line">Homebrew/homebrew-core (git revision c3f55; last commit 2018-03-14)</span><br></pre></td></tr></table></figure>
+<h2 id="安装iterm2"><a href="#安装iterm2" class="headerlink" title="安装iterm2"></a>安装iterm2</h2><p>命令行工具。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew cask install iterm2</span><br></pre></td></tr></table></figure></p>
+<h2 id="安装expect"><a href="#安装expect" class="headerlink" title="安装expect"></a>安装expect</h2><p>expect的作用是当遇到指定命令之后执行对应命令。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install expect</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">expect -version</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">expect version 5.45</span><br></pre></td></tr></table></figure>
+<p>## 编写自动登录脚本<br>在<code>/usr/local/bin/</code>目录下，新建<code>iterm2login.sh</code>文件，内容如下：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/usr/bin/expect</span></span><br><span class="line"></span><br><span class="line">set timeout 30</span><br><span class="line">spawn ssh -p [lindex $argv 0] [lindex $argv 1]@[lindex $argv 2]</span><br><span class="line">expect &#123;</span><br><span class="line">        "(yes/no)?"</span><br><span class="line">        &#123;send "yes\n";exp_continue&#125;</span><br><span class="line">        "password:"</span><br><span class="line">        &#123;send "[lindex $argv 3]\n"&#125;</span><br><span class="line">        "Password:"</span><br><span class="line">        &#123;send "[lindex $argv 3]\n"&#125;</span><br><span class="line">&#125;</span><br><span class="line">interact</span><br></pre></td></tr></table></figure></p>
+        
+          <p class="article-more-link">
+            <a href="/posts/c14d120e.html#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/c14d120e.html" data-id="cjo9dnvu2007bucyki7tjamh0" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mac/">Mac</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iterm2/">iterm2</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-微信公众号 被动回复超时问题" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/9e53d1a6.html" class="article-date">
+  <time class="post-time" datetime="2018-09-29T02:00:00.000Z" itemprop="datePublished">
+    <span class="post-month">9月</span><br/>
+    <span class="post-day">29</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/9e53d1a6.html">微信公众号 被动回复超时问题</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/9e53d1a6.html" class="leancloud_visitors" data-flag-title="微信公众号 被动回复超时问题">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 517</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 2 分钟</span>
+  </div>
+ 
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p><img src="http://img.tidyko.com/blog/wechat_bd1.png" alt="微信公众号 被动回复超时问题1"><br>先看一下上图，我在公号上面输入<code>，，</code>，到公号后端服务，被动响应之前，这个字符会调用一个内部接口，主要是查询答案，然后返回到公号后端，然后后端服务再处理报文后，做被动响应操作。</p>
+<p>正常操作结果就是像第一个一样，返回处理后的文字向导。<br>但是输入第二个<code>积分多少</code>的时候，公号就显示出<code>该公众号提供的服务出现故障，请稍后再试</code>，这并不是正常的处理结果。<br>
+        
+          <p class="article-more-link">
+            <a href="/posts/9e53d1a6.html#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/9e53d1a6.html" data-id="cjo9dnvvy00b6ucykq1i9e3xl" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Apache-HttpClient/">Apache HttpClient</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/微信公众号/">微信公众号</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-Android AndroidStudio" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/7aeb1e46.html" class="article-date">
+  <time class="post-time" datetime="2018-09-25T08:28:00.000Z" itemprop="datePublished">
+    <span class="post-month">9月</span><br/>
+    <span class="post-day">25</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/7aeb1e46.html">Android AndroidStudio</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/7aeb1e46.html" class="leancloud_visitors" data-flag-title="Android AndroidStudio">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 320</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 1 分钟</span>
+  </div>
+ 
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="启动界面下载sdk卡住"><a href="#启动界面下载sdk卡住" class="headerlink" title="启动界面下载sdk卡住"></a>启动界面下载sdk卡住</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Downloading https://dl.google.com/android/repository/android_m2repository_r47.zip 卡住</span><br></pre></td></tr></table></figure>
+<p>需要设置vpn，如果是Shadowsocks，则设置如下：<br>设置完之后，可能刚开始下载进度条会一直卡在0，需要等待，后面就会看到进度条了。<br><img src="http://img.tidyko.com/blog/Androidstudio_1.png" alt="Androidstudio_1"><br>
+        
+          <p class="article-more-link">
+            <a href="/posts/7aeb1e46.html#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/7aeb1e46.html" data-id="cjo9dnvqc0007ucykd7643x9b" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-Linux awk" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/bf60621.html" class="article-date">
+  <time class="post-time" datetime="2018-09-20T08:16:00.000Z" itemprop="datePublished">
+    <span class="post-month">9月</span><br/>
+    <span class="post-day">20</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/bf60621.html">Linux awk</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/服务器/">服务器</a>,<a class="article-category-link" href="/categories/服务器/Linux/">Linux</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/bf60621.html" class="leancloud_visitors" data-flag-title="Linux awk">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 2,819</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 16 分钟</span>
+  </div>
+ 
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>假用如下数据演示awk。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> cat netstat.txt</span></span><br><span class="line">Proto Recv-Q Send-Q Local-Address          Foreign-Address             State</span><br><span class="line">tcp        0      0 0.0.0.0:3306           0.0.0.0:*                   LISTEN</span><br><span class="line">tcp        0      0 0.0.0.0:80             0.0.0.0:*                   LISTEN</span><br><span class="line">tcp        0      0 127.0.0.1:9000         0.0.0.0:*                   LISTEN</span><br><span class="line">tcp        0      0 coolshell.cn:80        124.205.5.146:18245         TIME_WAIT</span><br><span class="line">tcp        0      0 coolshell.cn:80        61.140.101.185:37538        FIN_WAIT2</span><br><span class="line">tcp        0      0 coolshell.cn:80        110.194.134.189:1032        ESTABLISHED</span><br><span class="line">tcp        0      0 coolshell.cn:80        123.169.124.111:49809       ESTABLISHED</span><br><span class="line">tcp        0      0 coolshell.cn:80        116.234.127.77:11502        FIN_WAIT2</span><br><span class="line">tcp        0      0 coolshell.cn:80        123.169.124.111:49829       ESTABLISHED</span><br><span class="line">tcp        0      0 coolshell.cn:80        183.60.215.36:36970         TIME_WAIT</span><br><span class="line">tcp        0   4166 coolshell.cn:80        61.148.242.38:30901         ESTABLISHED</span><br><span class="line">tcp        0      1 coolshell.cn:80        124.152.181.209:26825       FIN_WAIT1</span><br><span class="line">tcp        0      0 coolshell.cn:80        110.194.134.189:4796        ESTABLISHED</span><br><span class="line">tcp        0      0 coolshell.cn:80        183.60.212.163:51082        TIME_WAIT</span><br><span class="line">tcp        0      1 coolshell.cn:80        208.115.113.92:50601        LAST_ACK</span><br><span class="line">tcp        0      0 coolshell.cn:80        123.169.124.111:49840       ESTABLISHED</span><br><span class="line">tcp        0      0 coolshell.cn:80        117.136.20.85:50025         FIN_WAIT2</span><br><span class="line">tcp        0      0 :::22                  :::*                        LISTEN</span><br></pre></td></tr></table></figure></p>
+<h2 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h2><p>过滤第一列与第四列<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> awk <span class="string">'&#123;print $1,$4&#125;'</span> netstat.txt</span></span><br><span class="line">Proto Local-Address</span><br><span class="line">tcp 0.0.0.0:3306</span><br><span class="line">tcp 0.0.0.0:80</span><br><span class="line">tcp 127.0.0.1:9000</span><br><span class="line">tcp coolshell.cn:80</span><br><span class="line">tcp coolshell.cn:80</span><br><span class="line">tcp coolshell.cn:80</span><br><span class="line">tcp coolshell.cn:80</span><br><span class="line">tcp coolshell.cn:80</span><br><span class="line">tcp coolshell.cn:80</span><br><span class="line">tcp coolshell.cn:80</span><br><span class="line">tcp coolshell.cn:80</span><br><span class="line">tcp coolshell.cn:80</span><br><span class="line">tcp coolshell.cn:80</span><br><span class="line">tcp coolshell.cn:80</span><br><span class="line">tcp coolshell.cn:80</span><br><span class="line">tcp coolshell.cn:80</span><br><span class="line">tcp coolshell.cn:80</span><br><span class="line">tcp :::22</span><br></pre></td></tr></table></figure></p>
+        
+          <p class="article-more-link">
+            <a href="/posts/bf60621.html#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/bf60621.html" data-id="cjo9dnvtt006rucykriy2ymst" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-Docker 容器挂载宿主机环境" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/e4163a66.html" class="article-date">
+  <time class="post-time" datetime="2018-09-13T08:11:00.000Z" itemprop="datePublished">
+    <span class="post-month">9月</span><br/>
+    <span class="post-day">13</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/e4163a66.html">Docker 容器挂载宿主机环境</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/DevOps/">DevOps</a>,<a class="article-category-link" href="/categories/DevOps/Docker/">Docker</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/e4163a66.html" class="leancloud_visitors" data-flag-title="Docker 容器挂载宿主机环境">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 844</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 4 分钟</span>
+  </div>
+ 
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>使用Docker在一台宿主机上面部署多个Java应用镜像的时候并不是将jdk软件包打入镜像，而是选择将jdk部署在每台宿主上，在运行镜像时，通过挂载目录的方式将宿主机上的java home目录挂载至容器指定目录下，从而减少镜像的臃肿与环境的重用。</p>
+<p>此次我们使用jdk和maven来测试。</p>
+<h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p>我们通过官网选择相应版本包进行下载；</p>
+<p><a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" target="_blank" rel="noopener">JDK</a>：jdk-8u181-linux-x64.tar.gz</p>
+<p><a href="https://maven.apache.org/download.cgi" target="_blank" rel="noopener">MAVEN</a>：apache-maven-3.5.4-bin.tar.gz</p>
+<h2 id="解压"><a href="#解压" class="headerlink" title="解压"></a>解压</h2><p>在软件包下载目录下执行解压命令：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tar zxvf jdk-8u181-linux-x64.tar.gz</span><br><span class="line"></span><br><span class="line">tar zxvf apache-maven-3.5.4-bin.tar.gz</span><br></pre></td></tr></table></figure></p>
+<p>解压完成后看到文件路径如下：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> tidy @ TidydeMBP <span class="keyword">in</span> ~/Documents/docker_env [15:48:44] C:130</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> ll</span></span><br><span class="line">total 411864</span><br><span class="line">drwxr-xr-x   9 tidy  staff   288B  9 13 15:27 apache-maven-3.5.4</span><br><span class="line">-rw-r--r--@  1 tidy  staff   8.4M  9 13 15:20 apache-maven-3.5.4-bin.tar.gz</span><br><span class="line">-rw-r--r--@  1 tidy  staff   177M  9 13 15:26 jdk-8u181-linux-x64.tar.gz</span><br><span class="line">drwxr-xr-x@ 15 tidy  staff   480B  7  7 16:09 jdk1.8.0_181</span><br></pre></td></tr></table></figure></p>
+<h2 id="Dockerfile"><a href="#Dockerfile" class="headerlink" title="Dockerfile"></a>Dockerfile</h2><p>编写Dockerfile生成测试镜像：<br><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Dockerfile构建依赖于宿主机的jdk于maven环境</span></span><br><span class="line"><span class="keyword">FROM</span> centos</span><br><span class="line"></span><br><span class="line"><span class="comment">#设置镜像JDK、MAVEN环境变量</span></span><br><span class="line"><span class="keyword">ENV</span> JAVA_HOME=/usr/local/jdk</span><br><span class="line"><span class="keyword">ENV</span> CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar</span><br><span class="line"><span class="keyword">ENV</span> MAVEN_HOME /usr/local/maven</span><br><span class="line"><span class="keyword">ENV</span> PATH $PATH:$JAVA_HOME/bin:$MAVEN_HOME/bin</span><br><span class="line"></span><br><span class="line"><span class="comment">#输出JDK、MAVEN版本</span></span><br><span class="line"><span class="keyword">CMD</span><span class="bash"> [<span class="string">"java"</span>, <span class="string">"-version"</span>]</span></span><br><span class="line"><span class="bash">CMD [<span class="string">"mvn"</span>, <span class="string">"-v"</span>]</span></span><br></pre></td></tr></table></figure></p>
+        
+          <p class="article-more-link">
+            <a href="/posts/e4163a66.html#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/e4163a66.html" data-id="cjo9dnvqo000lucykbkty3e6x" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/">Docker</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-Docker 搭建ELK环境" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/a5557ea7.html" class="article-date">
+  <time class="post-time" datetime="2018-09-04T13:52:00.000Z" itemprop="datePublished">
+    <span class="post-month">9月</span><br/>
+    <span class="post-day">04</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/a5557ea7.html">Docker 搭建ELK环境</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/DevOps/">DevOps</a>,<a class="article-category-link" href="/categories/DevOps/Docker/">Docker</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/a5557ea7.html" class="leancloud_visitors" data-flag-title="Docker 搭建ELK环境">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 4,606</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 24 分钟</span>
+  </div>
+ 
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Mac使用Docker搭建便捷的ELK环境。</p>
+<p>ELK + redis 使用docker搭建，FileBeat由具体应用机进行搭建。</p>
+<p>架构如下：</p>
+<p><img src="http://img.tidyko.com/blog/DockerDesktop_13.png" alt="Docker 搭建ELK环境-图例1"></p>
+<h2 id="1-获取ELK镜像"><a href="#1-获取ELK镜像" class="headerlink" title="1.获取ELK镜像."></a>1.获取ELK镜像.</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> tidy @ TidydeMBP <span class="keyword">in</span> ~ [10:02:28]</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> sudo docker pull sebp/elk</span></span><br><span class="line">Password:</span><br><span class="line">Using default tag: latest</span><br><span class="line">latest: Pulling from sebp/elk</span><br><span class="line">281a73dee007: Pulling fs layer</span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line">Digest: sha256:94c4aa7f9bfe0fe7047f20e1c747ac19538605f8ea0bbe401c7bed923614905e</span><br><span class="line">Status: Downloaded newer image for sebp/elk:latest</span><br></pre></td></tr></table></figure>
+<h2 id="2-创建并运行ELK容器"><a href="#2-创建并运行ELK容器" class="headerlink" title="2.创建并运行ELK容器"></a>2.创建并运行ELK容器</h2><h3 id="2-1-使用命令行"><a href="#2-1-使用命令行" class="headerlink" title="2.1.使用命令行"></a>2.1.使用命令行</h3><h4 id="2-1-1-使用命令行参数"><a href="#2-1-1-使用命令行参数" class="headerlink" title="2.1.1.使用命令行参数"></a>2.1.1.使用命令行参数</h4><p>使用下面命令创建并启动一个elk容器，并映射宿主机端口。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo docker run -d -p 5601:5601 -p 9200:9200 -p 5044:5044 -it --name elk sebp/elk</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="2-1-2-使用Docker-Compose"><a href="#2-1-2-使用Docker-Compose" class="headerlink" title="2.1.2.使用Docker Compose"></a>2.1.2.使用Docker Compose</h4><p>编写docker-compose.yml文件<br><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">elk:</span></span><br><span class="line"><span class="attr">  image:</span> <span class="string">sebp/elk</span></span><br><span class="line"><span class="attr">  ports:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">"5601:5601"</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">"9200:9200"</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">"5044:5044"</span></span><br></pre></td></tr></table></figure></p>
+<p>然后运行以下命令：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo docker-compose -d up elk</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="2-1-3-重启elk容器"><a href="#2-1-3-重启elk容器" class="headerlink" title="2.1.3.重启elk容器"></a>2.1.3.重启elk容器</h4><p>当停止运行之后可以直接使用以下命令直接启动、或者重启elk<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker start elk</span><br><span class="line"></span><br><span class="line">docker restart elk</span><br></pre></td></tr></table></figure></p>
+<h3 id="2-2-使用kiteMatic"><a href="#2-2-使用kiteMatic" class="headerlink" title="2.2.使用kiteMatic"></a>2.2.使用kiteMatic</h3>
+        
+          <p class="article-more-link">
+            <a href="/posts/a5557ea7.html#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/a5557ea7.html" data-id="cjo9dnvqu000tucykzoh500jl" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/">Docker</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-FileBeat 基础配置" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/4573f792.html" class="article-date">
+  <time class="post-time" datetime="2018-08-31T03:18:00.000Z" itemprop="datePublished">
+    <span class="post-month">8月</span><br/>
+    <span class="post-day">31</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/4573f792.html">FileBeat 基础配置</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/中间件/">中间件</a>,<a class="article-category-link" href="/categories/中间件/FileBeat/">FileBeat</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/4573f792.html" class="leancloud_visitors" data-flag-title="FileBeat 基础配置">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 1,179</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 6 分钟</span>
+  </div>
+ 
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>由FileBeat负责统一读取多机服务的日志到redis，再统一由LogStash解析日志内容，放到ElasticSeach。</p>
+<p>不同类型的日志，需要抓取的重点不一样，可统一建立各类型日志记录规范，然后在FileBeat读取的时候在<code>fields</code>字段做标识，然后在LogStash获取到记录的时候通过fields的字段来编写逻辑，判断该日志为什么类型，然后进行grok表达式匹配。</p>
+<h2 id="Filebeat-如何读取多个日志目录？"><a href="#Filebeat-如何读取多个日志目录？" class="headerlink" title="Filebeat 如何读取多个日志目录？"></a>Filebeat 如何读取多个日志目录？</h2><p>如果 Filebeat 所在 server 上运行有多个 application servers，各自有不同的日志目录，那 Filebeat 如何同时读取多个目录，这是一个非常典型的问题。</p>
+<p>解决方案：通过配置多个 prospector 就能达到要求。在配置文件的 prospectors 下，每个”-“表示一个 prospector，每个 prospector 包含一些配置项，指明这个 prospector 所要读取的日志信息。如下所示：<br><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">prospectors:</span></span><br><span class="line"><span class="bullet">    -</span></span><br><span class="line"><span class="attr">      paths:</span></span><br><span class="line"><span class="bullet">         -</span> <span class="string">/home/BizLog/*.log</span></span><br><span class="line">      <span class="comment"># 其他配置项，具体参考 Elastic 官网</span></span><br><span class="line"><span class="bullet">    -</span></span><br><span class="line"><span class="attr">      paths:</span></span><br><span class="line"><span class="bullet">         -</span> <span class="string">/home/ApacheLog/*.log</span></span><br><span class="line">      <span class="comment"># 其他配置项，具体参考 Elastic 官网</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="Filebeat-如何区分不同日志来源？"><a href="#Filebeat-如何区分不同日志来源？" class="headerlink" title="Filebeat 如何区分不同日志来源？"></a>Filebeat 如何区分不同日志来源？</h2><p>还是上题中提到的场景，Filebeat 虽然能读取不同的日志目录，但是在 Logstash 这边，或者是 Elasticsearch 这边，怎么区分不同 application server 的日志数据呢？</p>
+<p>解决方案：Filebeat 的配置项 fields 可以实现不同日志来源的区分。用法如下：<br><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">prospectors:</span></span><br><span class="line"><span class="bullet">    -</span></span><br><span class="line"><span class="attr">       paths:</span></span><br><span class="line"><span class="bullet">          -</span> <span class="string">/home/BizLog/*.log</span></span><br><span class="line"><span class="attr">       fields:</span></span><br><span class="line"><span class="attr">         log_source:</span> <span class="string">Biz</span></span><br><span class="line"><span class="attr">         log_type:</span> <span class="string">interface</span></span><br><span class="line"><span class="bullet">    -</span></span><br><span class="line"><span class="attr">       paths:</span></span><br><span class="line"><span class="bullet">          -</span> <span class="string">/home/ApacheLog/*.log</span></span><br><span class="line"><span class="attr">       fields:</span></span><br><span class="line"><span class="attr">         log_source:</span> <span class="string">Apache</span></span><br><span class="line"><span class="attr">         log_type:</span> <span class="string">system</span></span><br></pre></td></tr></table></figure></p>
+<p>在 fields 配置项中，用户可以自定义域来标识不同的 log。比如上例中的”log_source”就是笔者自定义的。如此，从 Filebeat 输出的 log 就有一个叫做 log_source 的域表明该 log 的实际来源。log_type来区分日志解析类型，在LogStash 解析的时候通过该字段匹配不同的grok表达式。<br>
+        
+          <p class="article-more-link">
+            <a href="/posts/4573f792.html#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/4573f792.html" data-id="cjo9dnvrk002aucykkbnxehou" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ELK/">ELK</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FileBeat/">FileBeat</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+  
+
+
+  <nav id="page-nav">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/2/">next &raquo;</a>
+  </nav>
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <h1 class="blog-title">TIDY的个人博客</h1>
+    <h2 class="blog-subtitle">マジにならなきゃ、勝てねぇよ！</h2>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="http://img.tidyko.com/avatar.jpg">
+    <h2 class="author">豪快二突撃スル</h2>
+    <h3 class="description">javaer</h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>126</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>44</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>81</strong><br>标签</div></a>
+    </div>
+
+
+
+    <div class="social-link">
+      
+        <a class="hvr-bounce-in" href="https://github.com/tidyko" target="_blank" title="Github">
+          Github
+        </a>
+      
+    </div>
+
+    <div class="friend-link">
+      <h2>友情链接</h2>
+      
+        <a class="hvr-bounce-in" href="https://www.cnblogs.com/zengweiming" target="_blank" title="tidyko-博客园">
+          tidyko-博客园
+        </a>
+      
+    </div>
+  </div>
+</div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy;2017 - 2018 豪快二突撃スル<br>
+      <!-- 由<a href="https://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
+      主题-<a href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a> -->
+      
+        <br>
+        <!-- <script src="https://s19.cnzz.com/z_stat.php?id=1274390271&web_id=1274390271" language="JavaScript" rel="noreferrer"></script>       -->
+        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1274390271'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1274390271%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));</script>
+      
+    </div>
+  </div>
+</footer>
+    </div>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/wow/0.1.6/wow.min.js"></script>
+<script>
+new WOW().init();
+</script>   
+
+
+  <link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+  <script src="/plugin/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+  <!-- <section class="hidden-xs"> 
+  <ul class="cb-slideshow"> 
+    <li><span>苟利</span></li> 
+    <li><span>国家</span></li> 
+    <li><span>生死以</span></li> 
+    <li><span>岂能</span></li> 
+    <li><span>祸福</span></li> 
+    <li><span>趋避之</span></li> 
+  </ul>
+</section> -->
+<script src="/js/script.js"></script>
+
+
+
+
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("DpQHavrF6hdX8C8q7ONib5Qv-gzGzoHsz", "CFNVYUb4rtTjkji3Erv4ROA7");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.article-title').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+
+
+<div id="totop" style="position:fixed;bottom:160px;right:50px;cursor: pointer;z-index: 10;">
+    <a title="返回顶部"><img src="/images/scrollup.png" style="width:50px;height:50px;"/></a>
+</div>
+<script src="/js/totop.js"></script>
+  </div>
+</body>
+</html>

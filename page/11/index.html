@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>
+    
+    TIDY的个人博客
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="javaer">
+<meta property="og:type" content="website">
+<meta property="og:title" content="TIDY的个人博客">
+<meta property="og:url" content="https://www.tidyko.com/page/11/index.html">
+<meta property="og:site_name" content="TIDY的个人博客">
+<meta property="og:description" content="javaer">
+<meta property="og:locale" content="zh-CN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="TIDY的个人博客">
+<meta name="twitter:description" content="javaer">
+  
+  <link rel="alternate" href="/atom.xml" title="TIDY的个人博客" type="application/atom+xml">
+  
+  
+  <link rel="icon" href="/favicon.ico">
+  
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <!-- <link rel="stylesheet" href="/plugin/bganimation/bg.css"> -->
+  
+
+  
+<!-- Google Adsense -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-1522837637326007",
+        enable_page_level_ads: true
+    });
+</script>
+<!-- End Google Adsense -->
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <div class="widget-wrap mobile-header">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="http://img.tidyko.com/avatar.jpg">
+    <h2 class="author">豪快二突撃スル</h2>
+    <h3 class="description">javaer</h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>126</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>44</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>81</strong><br>标签</div></a>
+    </div>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+        <section id="main">
+  
+    <article id="post-Oracle nvl与nvl2对比" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/efb40b79.html" class="article-date">
+  <time class="post-time" datetime="2014-03-12T03:15:00.000Z" itemprop="datePublished">
+    <span class="post-month">3月</span><br/>
+    <span class="post-day">12</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/efb40b79.html">Oracle nvl与nvl2对比</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/数据库/">数据库</a>,<a class="article-category-link" href="/categories/数据库/Oracle/">Oracle</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/efb40b79.html" class="leancloud_visitors" data-flag-title="Oracle nvl与nvl2对比">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 105</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 1 分钟</span>
+  </div>
+ 
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1）nvl"><a href="#1）nvl" class="headerlink" title="1）nvl"></a>1）nvl</h3><p>只要v1为null，即将值变为v2。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvl(v1,v2)</span><br></pre></td></tr></table></figure></p>
+<p>pay(类型):number;</p>
+<p>在执行 <figure class="highlight sql"><figcaption><span>nvl(pay_type,'null') ``` 函数的时候会提示无效数字，可能是nvl函数会自动将其转换成数字类型的原因。</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">这里需要将pay_type用to_char函数处理一下。</span><br><span class="line">``` sql</span><br><span class="line">nvl(to_char(pay_type),'null')</span><br></pre></td></tr></table></figure></p>
+<h3 id="2）nvl2"><a href="#2）nvl2" class="headerlink" title="2）nvl2"></a>2）nvl2</h3><p>只要v1为null，即将值变为v2，否则将值变为v3。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvl2(v1,v2,v3)</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/efb40b79.html" data-id="cjo9dnvuj008iucyk4lran0mx" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Oracle/">Oracle</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sql/">Sql</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-J2EE CXF WebService 服务端和客户端 环境搭建及测试" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/4115afa8.html" class="article-date">
+  <time class="post-time" datetime="2014-03-11T07:10:00.000Z" itemprop="datePublished">
+    <span class="post-month">3月</span><br/>
+    <span class="post-day">11</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/4115afa8.html">J2EE CXF WebService 服务端和客户端 环境搭建及测试</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/4115afa8.html" class="leancloud_visitors" data-flag-title="J2EE CXF WebService 服务端和客户端 环境搭建及测试">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 774</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 4 分钟</span>
+  </div>
+ 
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="CXF服务端"><a href="#CXF服务端" class="headerlink" title="CXF服务端"></a>CXF服务端</h2><h3 id="1）如果是普通项目"><a href="#1）如果是普通项目" class="headerlink" title="1）如果是普通项目"></a>1）如果是普通项目</h3><p>去<a href="http://cxf.apache.org/" target="_blank" rel="noopener">官网</a>下载对应的jar包：<br>添加到项目里面。</p>
+<h3 id="2）如果是Maven项目"><a href="#2）如果是Maven项目" class="headerlink" title="2）如果是Maven项目"></a>2）如果是Maven项目</h3><p>在pom文件里面配置相应依赖包。</p>
+<h3 id="3）修改web-xml，完成spring和cxf配置"><a href="#3）修改web-xml，完成spring和cxf配置" class="headerlink" title="3）修改web.xml，完成spring和cxf配置"></a>3）修改web.xml，完成spring和cxf配置</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- Spring --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">context-param</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>contextConfigLocation<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param-value</span>&gt;</span></span><br><span class="line">        classpath*:/applicationContext.xml</span><br><span class="line">    <span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">context-param</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">listener</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">listener-class</span>&gt;</span>org.springframework.web.context.ContextLoaderListener<span class="tag">&lt;/<span class="name">listener-class</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">listener</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- CXFServlet --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>CXFServlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>org.apache.cxf.transport.servlet.CXFServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>CXFServlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/WebService/*<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="4）编写服务接口和实现"><a href="#4）编写服务接口和实现" class="headerlink" title="4）编写服务接口和实现"></a>4）编写服务接口和实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@WebService</span>(targetNamespace=Constant.NAME_SPACE)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">FinanceService</span> </span>&#123;     </span><br><span class="line">    <span class="function">String <span class="title">financeSearchById</span><span class="params">(@WebParam(name=<span class="string">"id"</span>)</span>Integer id)</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Transactional</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FinanceServiceImpl</span> <span class="keyword">implements</span> <span class="title">FinanceService</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Logger logger = Logger.getLogger(FinanceServiceImpl.class);</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Resource</span>(name=<span class="string">"financeDao"</span>)</span><br><span class="line">    <span class="keyword">private</span> FinanceDao financeDao;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">financeSearchById</span><span class="params">(Integer id)</span> </span>&#123;</span><br><span class="line">        String json;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            json=financeDao.financeSearchById(id);</span><br><span class="line">        &#125;<span class="keyword">catch</span>(Exception e)&#123;</span><br><span class="line">            Map&lt;String,Object&gt; map = <span class="keyword">new</span> HashMap&lt;String, Object&gt;();</span><br><span class="line">            map.put(<span class="string">"is_success"</span>, <span class="keyword">false</span>);</span><br><span class="line">            map.put(<span class="string">"error_msg"</span>, <span class="string">"程序执行出错:"</span>+e.getMessage());</span><br><span class="line">            json = JsonUtil.objectToJson(map);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> json;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="5）修改spring配置文件"><a href="#5）修改spring配置文件" class="headerlink" title="5）修改spring配置文件"></a>5）修改spring配置文件</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span> </span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:jaxws</span>=<span class="string">"http://cxf.apache.org/jaxws"</span> <span class="attr">xmlns:cxf</span>=<span class="string">"http://cxf.apache.org/core"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd </span></span></span><br><span class="line"><span class="tag"><span class="string">                           http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd </span></span></span><br><span class="line"><span class="tag"><span class="string">                           http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd"</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">description</span>&gt;</span>Apache CXF配置<span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">import</span> <span class="attr">resource</span>=<span class="string">"classpath:META-INF/cxf/cxf.xml"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">import</span> <span class="attr">resource</span>=<span class="string">"classpath:META-INF/cxf/cxf-servlet.xml"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">import</span> <span class="attr">resource</span>=<span class="string">"classpath:META-INF/cxf/cxf-extension-soap.xml"</span> /&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">&lt;!-- CXF Web Service Server端配置 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"wsFinanceServiceImpl"</span> <span class="attr">class</span>=<span class="string">"com.****.******.business.webservice.server.impl.FinanceServiceImpl"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">jaxws:server</span> <span class="attr">id</span>=<span class="string">"wsFinanceService"</span> <span class="attr">serviceClass</span>=<span class="string">"com.****.******.business.webservice.server.FinanceService"</span> <span class="attr">serviceBean</span>=<span class="string">"#wsFinanceServiceImpl"</span>  <span class="attr">address</span>=<span class="string">"/financeService"</span> /&gt;</span>    </span><br><span class="line">    </span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="6）tomcat发布运行"><a href="#6）tomcat发布运行" class="headerlink" title="6）tomcat发布运行"></a>6）tomcat发布运行</h3><p>访问：<a href="http://localhost:8080/******/WebService/financeService?wsdl" target="_blank" rel="noopener">http://localhost:8080/******/WebService/financeService?wsdl</a><br>看到描述文件即可。</p>
+<h3 id="7）编写测试类测试"><a href="#7）编写测试类测试" class="headerlink" title="7）编写测试类测试"></a>7）编写测试类测试</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        JaxWsProxyFactoryBean webService = <span class="keyword">new</span> JaxWsProxyFactoryBean();  </span><br><span class="line">        webService.setServiceClass(FinanceService.class);  </span><br><span class="line">        webService.setAddress(<span class="string">"http://localhost:8080/******/WebService/financeService?wsdl"</span>);  </span><br><span class="line">        FinanceService financeService = (FinanceService) webService.create();  </span><br><span class="line">        System.out.println(financeService.financeSearchById(<span class="number">5</span>));  </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="8）验证结果"><a href="#8）验证结果" class="headerlink" title="8）验证结果"></a>8）验证结果</h3><p>如预期输出结果就表示调用成功了。</p>
+<h2 id="CXF客户端"><a href="#CXF客户端" class="headerlink" title="CXF客户端"></a>CXF客户端</h2><h3 id="1）获取服务端wsdl连接"><a href="#1）获取服务端wsdl连接" class="headerlink" title="1）获取服务端wsdl连接"></a>1）获取服务端wsdl连接</h3><h3 id="2）使用cxf的wsdl2java生成cxf客户端代码"><a href="#2）使用cxf的wsdl2java生成cxf客户端代码" class="headerlink" title="2）使用cxf的wsdl2java生成cxf客户端代码"></a>2）使用cxf的wsdl2java生成cxf客户端代码</h3><p>下载<a href="http://cxf.apache.org/download.html" target="_blank" rel="noopener">CXF</a><br>设置添加系统变量<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">变量名：CXF_HOME</span><br><span class="line"></span><br><span class="line">变量值：E:\mysoft\apache-cxf-3.0.2（cxf解压路径）</span><br></pre></td></tr></table></figure></p>
+<p>设置完之后，cmd里面输入：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wsdl2java -v</span><br></pre></td></tr></table></figure></p>
+<p>如果显示版本信息就表示安装成功了。<br>然后输入：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wsdl2java  -frontend jaxws21 -p com.****.******.business.webservice.client -d E:\mysoft\apache-cxf-3.0.2\myclass  -client -autoNameResolution  http://localhost:8080/******/WebService/financeService?wsdl</span><br></pre></td></tr></table></figure></p>
+<h3 id="3）"><a href="#3）" class="headerlink" title="3）"></a>3）</h3><p>将生成的代码，除了client和service结尾的文件，和package-info.java之外的文件拷贝到工程下面，进行测试。</p>
+<h3 id="4）"><a href="#4）" class="headerlink" title="4）"></a>4）</h3><p>修改applicationContext-cxf.xml文件添加下面代码：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- CXF Web Service Client端配置 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">jaxws:client</span> <span class="attr">id</span>=<span class="string">"financeService"</span> <span class="attr">serviceClass</span>=<span class="string">"com.****.******.business.webservice.client.financeService"</span> <span class="attr">address</span>=<span class="string">"http://localhost:8080/******/WebService/financeService?wsdl"</span> /&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="5）"><a href="#5）" class="headerlink" title="5）"></a>5）</h3><p>编写测试类在里面添加下面代码：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ClassPathXmlApplicationContext xmlApplicationContext = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"/context/applicationContext-cxf.xml"</span>);  </span><br><span class="line">FinanceService bean = xmlApplicationContext.getBean(financeService.class);  </span><br><span class="line">System.out.println(bean.financeSearchById(<span class="number">5</span>));</span><br></pre></td></tr></table></figure></p>
+<h3 id="6）"><a href="#6）" class="headerlink" title="6）"></a>6）</h3><p>如预期输出结果就表示调用成功了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/4115afa8.html" data-id="cjo9dnvs5003eucykfxiyo7nw" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CXF/">CXF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WebService/">WebService</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-Oracle number类型保留小数位" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/7c9f9e00.html" class="article-date">
+  <time class="post-time" datetime="2014-03-11T02:49:00.000Z" itemprop="datePublished">
+    <span class="post-month">3月</span><br/>
+    <span class="post-day">11</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/7c9f9e00.html">Oracle number类型保留小数位</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/数据库/">数据库</a>,<a class="article-category-link" href="/categories/数据库/Oracle/">Oracle</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/7c9f9e00.html" class="leancloud_visitors" data-flag-title="Oracle number类型保留小数位">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 134</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 1 分钟</span>
+  </div>
+ 
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt; SELECT</span><br><span class="line">  2    TO_CHAR(123,  '9990.00') A,</span><br><span class="line">  3    TO_CHAR(5.8,  '9990.00') B,</span><br><span class="line">  4    TO_CHAR(.46,  '9990.00') C</span><br><span class="line">  5  FROM</span><br><span class="line">  6    dual;</span><br><span class="line"></span><br><span class="line">A                B                C</span><br><span class="line"><span class="comment">---------------- ---------------- ----------------</span></span><br><span class="line">  123.00             5.80             0.46</span><br><span class="line"></span><br><span class="line">SQL&gt;</span><br></pre></td></tr></table></figure>
+<p>‘9990.00’表示转换的数字的最大数，可根据自身表里面的number字段大小，进行调整。<br>比如number(19,2)可变成 :<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ltrim(to_char(price,'9999999999999999999.00'))</span><br></pre></td></tr></table></figure></p>
+<p>但是如果price的值为0的话，就会转成.00，所以用下面的方法再decode一下就可以了。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">decode(price,0,'0.00',ltrim(to_char(price,'9999999999999999999.00')))</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/7c9f9e00.html" data-id="cjo9dnvui008fucyk1rigzigr" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Oracle/">Oracle</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sql/">Sql</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-J2EE HttpServletRequest request 相关方法 得到路径" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/2cf05a87.html" class="article-date">
+  <time class="post-time" datetime="2014-03-03T09:46:00.000Z" itemprop="datePublished">
+    <span class="post-month">3月</span><br/>
+    <span class="post-day">03</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/2cf05a87.html">J2EE HttpServletRequest request 相关方法 得到路径</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/2cf05a87.html" class="leancloud_visitors" data-flag-title="J2EE HttpServletRequest request 相关方法 得到路径">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 116</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 1 分钟</span>
+  </div>
+ 
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1）POST"><a href="#1）POST" class="headerlink" title="1）POST"></a>1）POST</h3><p>url：<a href="http://192.168.1.211:8080/demo/index.jsp" target="_blank" rel="noopener">http://192.168.1.211:8080/demo/index.jsp</a></p>
+<p>FORM表单：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">username = qqqq</span><br><span class="line">password = wwww</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">request.getContextPath() = /demo</span><br><span class="line"></span><br><span class="line">request.getMethod() = POST</span><br><span class="line"></span><br><span class="line">request.getRequestURI() = /demo/reg</span><br><span class="line"></span><br><span class="line">request.getRequestURL() = http:<span class="comment">//192.168.1.211:8080/demo/reg</span></span><br><span class="line"></span><br><span class="line">request.getServletPath() = /reg</span><br></pre></td></tr></table></figure>
+<h3 id="2）GET"><a href="#2）GET" class="headerlink" title="2）GET"></a>2）GET</h3><p>url：<a href="http://192.168.1.211:8080/demo/index.jsp?username=1&amp;password=1&amp;email=1" target="_blank" rel="noopener">http://192.168.1.211:8080/demo/index.jsp?username=1&amp;password=1&amp;email=1</a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">request.getContextPath() = /demo</span><br><span class="line"></span><br><span class="line">request.getMethod() = GET</span><br><span class="line"></span><br><span class="line">request.getQueryString() = username=<span class="number">1</span>&amp;password=<span class="number">1</span>&amp;email=<span class="number">1</span></span><br><span class="line"></span><br><span class="line">request.getRequestURI() = /demo/index.jsp</span><br><span class="line"></span><br><span class="line">request.getRequestURL() = http:<span class="comment">//192.168.1.211:8080/demo/index.jsp</span></span><br><span class="line"></span><br><span class="line">request.getServletPath() = /index.jsp</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/2cf05a87.html" data-id="cjo9dnvs9003mucykrt5nhp85" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-Java date 到 Oracle date 精确到时分秒" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/6a3fb6fb.html" class="article-date">
+  <time class="post-time" datetime="2014-03-03T06:41:00.000Z" itemprop="datePublished">
+    <span class="post-month">3月</span><br/>
+    <span class="post-day">03</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/6a3fb6fb.html">Java date 到 Oracle date 精确到时分秒</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/6a3fb6fb.html" class="leancloud_visitors" data-flag-title="Java date 到 Oracle date 精确到时分秒">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 140</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 1 分钟</span>
+  </div>
+ 
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>有两种方法：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java.util.Date startTime=<span class="keyword">new</span> Date(<span class="string">"2014/01/01 23:00:00"</span>);</span><br></pre></td></tr></table></figure></p>
+<h3 id="1）"><a href="#1）" class="headerlink" title="1）"></a>1）</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Timestamp(startTime.getTime())</span><br></pre></td></tr></table></figure>
+<p>如果数据库中时间字段定义为date类型，由于timestamp类型的精度比date类型的精度高，所以oracle会对数据库里的date类型做出隐身转换，将date类型转换为timestamp类型，由于加了函数，那么创建在date类型上的索引将不会使用到；(好像是oracle9i后开始才有的问题)</p>
+<h3 id="2）"><a href="#2）" class="headerlink" title="2）"></a>2）</h3><p>数据库直接使用varchar2类型，在过程里面用to_date直接转换。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/6a3fb6fb.html" data-id="cjo9dnvtc005kucykdsozgrjl" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Oracle/">Oracle</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-Eclipse 配置pom.xml错误" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/ac53be82.html" class="article-date">
+  <time class="post-time" datetime="2014-02-25T04:31:00.000Z" itemprop="datePublished">
+    <span class="post-month">2月</span><br/>
+    <span class="post-day">25</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/ac53be82.html">Eclipse 配置pom.xml错误</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/开发调试工具/">开发调试工具</a>,<a class="article-category-link" href="/categories/开发调试工具/Eclipse/">Eclipse</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/ac53be82.html" class="leancloud_visitors" data-flag-title="Eclipse 配置pom.xml错误">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 147</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 1 分钟</span>
+  </div>
+ 
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>如下所示，依赖中已经加上了<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">scope</span>&gt;</span>provided<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- servlet --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">　　<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>javax.servlet<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">　　<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>servlet-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">　　<span class="tag">&lt;<span class="name">version</span>&gt;</span>2.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">　　<span class="tag">&lt;<span class="name">scope</span>&gt;</span>provided<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- jsp --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">　　<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>javax.servlet.jsp<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">　　<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jsp-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">　　<span class="tag">&lt;<span class="name">version</span>&gt;</span>2.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">　　<span class="tag">&lt;<span class="name">scope</span>&gt;</span>provided<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>本来在项目发布后是不会把这两个包发布到项目发布路径下面的，但在Eclipse下面却仍然发布了。</p>
+<h2 id="解决方法："><a href="#解决方法：" class="headerlink" title="解决方法："></a>解决方法：</h2><h3 id="1"><a href="#1" class="headerlink" title="1)"></a>1)</h3><p>手动删掉两个包。</p>
+<h3 id="2"><a href="#2" class="headerlink" title="2)"></a>2)</h3><p><code>右击项目</code> -&gt; <code>Build Path</code> -&gt; <code>Configure Build Path</code> -&gt; <code>Libraries</code>  -&gt; <code>Add Library</code> -&gt; <code>Server Runtime</code> -&gt; <code>最后选择一个已配置的Tomcat</code> -&gt; <code>完成</code></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/ac53be82.html" data-id="cjo9dnvrf0021ucykh5ni9qsj" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Maven/">Maven</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-J2EE 异常处理" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/26788ddf.html" class="article-date">
+  <time class="post-time" datetime="2014-02-24T03:50:00.000Z" itemprop="datePublished">
+    <span class="post-month">2月</span><br/>
+    <span class="post-day">24</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/26788ddf.html">J2EE 异常处理</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/26788ddf.html" class="leancloud_visitors" data-flag-title="J2EE 异常处理">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 163</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 1 分钟</span>
+  </div>
+ 
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>J2EE中一般对异常状况的处理都可以用两种情况对其进行相应处理。</p>
+<h3 id="1）"><a href="#1）" class="headerlink" title="1）"></a>1）</h3><p>通常情况下，一般异常处理可以选择用throw、throws从底层一直往上面抛，直到抛到Action，让其将异常显示在页面上面进行显示即可。</p>
+<h3 id="2）"><a href="#2）" class="headerlink" title="2）"></a>2）</h3><p>特殊情况下，如果需要在具体底层对该异常进行捕捉的话，则需要在对其捕捉之后，在catch里面对其做出相应处理，做出默认值返回，或者在catch里面继续throw这个异常，然后，上一层继续对这个异常进行相应处理。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/26788ddf.html" data-id="cjo9dnvsj003zucykvqd0jvuh" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-Java throw和throws的区别和用法" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/93821c9f.html" class="article-date">
+  <time class="post-time" datetime="2014-02-19T09:12:00.000Z" itemprop="datePublished">
+    <span class="post-month">2月</span><br/>
+    <span class="post-day">19</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/93821c9f.html">Java throw和throws的区别和用法</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/93821c9f.html" class="leancloud_visitors" data-flag-title="Java throw和throws的区别和用法">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 519</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 2 分钟</span>
+  </div>
+ 
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1）"><a href="#1）" class="headerlink" title="1）"></a>1）</h3><p>throws关键字通常被应用在声明方法时，用来指定可能抛出的异常。<br>多个异常可以使用逗号隔开。当在主函数中调用该方法时，如果发生异常，就会将异常抛给指定异常对象。<br>如下面例子所示：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Shoot</span> </span>&#123;</span><br><span class="line">　　<span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">pop</span><span class="params">()</span> <span class="keyword">throws</span> NegativeArraySizeException </span>&#123;</span><br><span class="line">　　　　<span class="comment">//定义方法并抛出NegativeArraySizeException异常</span></span><br><span class="line">　　　　<span class="keyword">int</span> [] arr = <span class="keyword">new</span> <span class="keyword">int</span>[-<span class="number">3</span>];<span class="comment">//创建数组</span></span><br><span class="line">　　&#125;</span><br><span class="line">　　<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;<span class="comment">//主方法</span></span><br><span class="line">　　　　<span class="keyword">try</span> &#123; </span><br><span class="line">　　　　　　pop(); <span class="comment">//调用pop()方法</span></span><br><span class="line">　　　　&#125; <span class="keyword">catch</span> (NegativeArraySizeException e) &#123;</span><br><span class="line">　　　　　　System.out.println(<span class="string">"pop()方法抛出的异常"</span>);<span class="comment">//输出异常信息</span></span><br><span class="line">　　　　&#125;</span><br><span class="line">　　&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="2）"><a href="#2）" class="headerlink" title="2）"></a>2）</h3><p>throw关键字通常用在方法体中，并且抛出一个异常对象。<br>程序在执行到throw语句时立即停止，它后面的语句都不执行。<br>通过throw抛出异常后，如果想在上一级代码中来捕获并处理异常，则需要在抛出异常的方法中使用throws关键字在方法声明中指明要跑出的异常；如果要捕捉throw抛出的异常，则必须使用try—catch语句。<br>如下面例子所示：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyException</span> <span class="keyword">extends</span> <span class="title">Exception</span> </span>&#123; <span class="comment">//创建自定义异常类</span></span><br><span class="line">    String message; <span class="comment">//定义String类型变量</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyException</span><span class="params">(String ErrorMessagr)</span> </span>&#123;  <span class="comment">//父类方法</span></span><br><span class="line">        message = ErrorMessagr;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getMessage</span><span class="params">()</span></span>&#123;   <span class="comment">//覆盖getMessage()方法</span></span><br><span class="line">        <span class="keyword">return</span> message;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Captor</span> </span>&#123; <span class="comment">//创建类</span></span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">quotient</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span> <span class="keyword">throws</span> MyException</span>&#123;<span class="comment">//定义方法抛出异常</span></span><br><span class="line">        <span class="keyword">if</span>(y &lt; <span class="number">0</span>)&#123;  <span class="comment">//判断参数是否小于0</span></span><br><span class="line">　　　　　  <span class="keyword">throw</span> <span class="keyword">new</span> MyException(<span class="string">"除数不能是负数"</span>);<span class="comment">//异常信息</span></span><br><span class="line">　      &#125;</span><br><span class="line">        <span class="keyword">return</span> x/y;<span class="comment">//返回值</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span></span>&#123; <span class="comment">//主方法</span></span><br><span class="line">        <span class="keyword">try</span>&#123; <span class="comment">//try语句包含可能发生异常的语句</span></span><br><span class="line">            <span class="keyword">int</span> result = quotient(<span class="number">3</span>,-<span class="number">1</span>);<span class="comment">//调用方法quotient()</span></span><br><span class="line">        &#125;<span class="keyword">catch</span> (MyException e) &#123; <span class="comment">//处理自定义异常</span></span><br><span class="line">            System.out.println(e.getMessage()); <span class="comment">//输出异常信息</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">catch</span> (ArithmeticException e) &#123;</span><br><span class="line">            <span class="comment">//处理ArithmeticException异常</span></span><br><span class="line">        　　System.out.println(<span class="string">"除数不能为0"</span>);<span class="comment">//输出提示信息</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">catch</span> (Exception e) &#123; <span class="comment">//处理其他异常</span></span><br><span class="line">        　　　System.out.println(<span class="string">"程序发生了其他的异常"</span>);</span><br><span class="line">        　　　<span class="comment">//输出提示信息</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/93821c9f.html" data-id="cjo9dnvth005sucyk7ph5mud1" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-Eclipse Failed to load the JNI shared library" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/bd745825.html" class="article-date">
+  <time class="post-time" datetime="2014-02-12T10:00:00.000Z" itemprop="datePublished">
+    <span class="post-month">2月</span><br/>
+    <span class="post-day">12</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/bd745825.html">Eclipse Failed to load the JNI shared library</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/开发调试工具/">开发调试工具</a>,<a class="article-category-link" href="/categories/开发调试工具/Eclipse/">Eclipse</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/bd745825.html" class="leancloud_visitors" data-flag-title="Eclipse Failed to load the JNI shared library">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 278</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 1 分钟</span>
+  </div>
+ 
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这是因为JDK配置错误所导致的现象。</p>
+<p>一般说来，新购笔记本会预装64位的windows系统，而在网上下载软件时，32位会优先出现在页面中（现在来说是这个情况，但我认为未来64位会越来越普及）。</p>
+<p>如果你是64位的系统，却安装了32位的JDK，就会导致上面的情况。</p>
+<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><h3 id="1）"><a href="#1）" class="headerlink" title="1）"></a>1）</h3><p>卸载掉原来安装的32位的JDK，然后安装64位的JDK到电脑中。</p>
+<h3 id="2）"><a href="#2）" class="headerlink" title="2）"></a>2）</h3><p>重新修改path 和 classpath 两个环境变量。<br>因为在64系统当中，32位软件回安装到program files （<em>86）文件夹，64位软件会安装到program files 文件夹，当你先前安装32JDK时，你设置的环境变量路径当中当然会包括“program files （</em>86）”，而这时JDK已经转移到“program files”中了，修改过来即可。</p>
+<h3 id="3）"><a href="#3）" class="headerlink" title="3）"></a>3）</h3><p>注意你两次安装的JDK版本号，不一定相同，因为安装时会根据你的版本号建立JDK文件夹，如果两次的版本号不同，在环境变量里也要修改。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/bd745825.html" data-id="cjo9dnvqv000vucykvj376e1b" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jdk/">Jdk</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-Eclipse Failed to load JavaHL Library" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/3e42071e.html" class="article-date">
+  <time class="post-time" datetime="2014-02-12T09:57:00.000Z" itemprop="datePublished">
+    <span class="post-month">2月</span><br/>
+    <span class="post-day">12</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/3e42071e.html">Eclipse Failed to load JavaHL Library</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/开发调试工具/">开发调试工具</a>,<a class="article-category-link" href="/categories/开发调试工具/Eclipse/">Eclipse</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/3e42071e.html" class="leancloud_visitors" data-flag-title="Eclipse Failed to load JavaHL Library">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 21</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 1 分钟</span>
+  </div>
+ 
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1）"><a href="#1）" class="headerlink" title="1）"></a>1）</h3><p>选择菜单<br><code>window</code> -&gt; <code>preferences</code> -&gt; <code>Team</code> -&gt; <code>SVN</code> -&gt; <code>SVN接口</code> </p>
+<h3 id="2）"><a href="#2）" class="headerlink" title="2）"></a>2）</h3><p>选择SVNKit (Pure Java) xxxxxx<br>图例：<br><img src="http://img.tidyko.com/blog/Failed%20to%20load%20JavaHL%20Library_1.jpg" alt="Eclipse里Failed to load JavaHL Library-图例1"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/3e42071e.html" data-id="cjo9dnvqs000qucyku1wm33x5" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Svn/">Svn</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+  
+
+
+  <nav id="page-nav">
+    <a class="extend prev" rel="prev" href="/page/10/">&laquo; pre</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/12/">next &raquo;</a>
+  </nav>
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <h1 class="blog-title">TIDY的个人博客</h1>
+    <h2 class="blog-subtitle">マジにならなきゃ、勝てねぇよ！</h2>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="http://img.tidyko.com/avatar.jpg">
+    <h2 class="author">豪快二突撃スル</h2>
+    <h3 class="description">javaer</h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>126</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>44</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>81</strong><br>标签</div></a>
+    </div>
+
+
+
+    <div class="social-link">
+      
+        <a class="hvr-bounce-in" href="https://github.com/tidyko" target="_blank" title="Github">
+          Github
+        </a>
+      
+    </div>
+
+    <div class="friend-link">
+      <h2>友情链接</h2>
+      
+        <a class="hvr-bounce-in" href="https://www.cnblogs.com/zengweiming" target="_blank" title="tidyko-博客园">
+          tidyko-博客园
+        </a>
+      
+    </div>
+  </div>
+</div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy;2017 - 2018 豪快二突撃スル<br>
+      <!-- 由<a href="https://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
+      主题-<a href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a> -->
+      
+        <br>
+        <!-- <script src="https://s19.cnzz.com/z_stat.php?id=1274390271&web_id=1274390271" language="JavaScript" rel="noreferrer"></script>       -->
+        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1274390271'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1274390271%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));</script>
+      
+    </div>
+  </div>
+</footer>
+    </div>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/wow/0.1.6/wow.min.js"></script>
+<script>
+new WOW().init();
+</script>   
+
+
+  <link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+  <script src="/plugin/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+  <!-- <section class="hidden-xs"> 
+  <ul class="cb-slideshow"> 
+    <li><span>苟利</span></li> 
+    <li><span>国家</span></li> 
+    <li><span>生死以</span></li> 
+    <li><span>岂能</span></li> 
+    <li><span>祸福</span></li> 
+    <li><span>趋避之</span></li> 
+  </ul>
+</section> -->
+<script src="/js/script.js"></script>
+
+
+
+
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("DpQHavrF6hdX8C8q7ONib5Qv-gzGzoHsz", "CFNVYUb4rtTjkji3Erv4ROA7");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.article-title').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+
+
+<div id="totop" style="position:fixed;bottom:160px;right:50px;cursor: pointer;z-index: 10;">
+    <a title="返回顶部"><img src="/images/scrollup.png" style="width:50px;height:50px;"/></a>
+</div>
+<script src="/js/totop.js"></script>
+  </div>
+</body>
+</html>

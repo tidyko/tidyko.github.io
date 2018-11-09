@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>
+    
+    Oracle 数据库开发规范 |
+    
+    TIDY的个人博客
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1. 背景应用系统数据库方面设计水平的高低直接关系到应用系统运行的稳定、高效性，为保证数据库方面的设计质量和效率，必须建立标准、完备的开发规范。本规范从数据库维护技术角度及数据库设计规范性要求出发，给出了应用开发过程中数据库设计工作的具体要求。 1.1.本规范主要指导应用系统数据库方面的设计，在项目上线后作为数据库维护交接验收的标准。 1.2.本规范是应用系统数据库设计方面的通用要求，在项目实施时">
+<meta name="keywords" content="Oracle,Sql">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Oracle 数据库开发规范">
+<meta property="og:url" content="https://www.tidyko.com/posts/127fa2a9.html">
+<meta property="og:site_name" content="TIDY的个人博客">
+<meta property="og:description" content="1. 背景应用系统数据库方面设计水平的高低直接关系到应用系统运行的稳定、高效性，为保证数据库方面的设计质量和效率，必须建立标准、完备的开发规范。本规范从数据库维护技术角度及数据库设计规范性要求出发，给出了应用开发过程中数据库设计工作的具体要求。 1.1.本规范主要指导应用系统数据库方面的设计，在项目上线后作为数据库维护交接验收的标准。 1.2.本规范是应用系统数据库设计方面的通用要求，在项目实施时">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-08-13T15:09:44.542Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Oracle 数据库开发规范">
+<meta name="twitter:description" content="1. 背景应用系统数据库方面设计水平的高低直接关系到应用系统运行的稳定、高效性，为保证数据库方面的设计质量和效率，必须建立标准、完备的开发规范。本规范从数据库维护技术角度及数据库设计规范性要求出发，给出了应用开发过程中数据库设计工作的具体要求。 1.1.本规范主要指导应用系统数据库方面的设计，在项目上线后作为数据库维护交接验收的标准。 1.2.本规范是应用系统数据库设计方面的通用要求，在项目实施时">
+  
+  <link rel="alternate" href="/atom.xml" title="TIDY的个人博客" type="application/atom+xml">
+  
+  
+  <link rel="icon" href="/favicon.ico">
+  
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <!-- <link rel="stylesheet" href="/plugin/bganimation/bg.css"> -->
+  
+
+  
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <div class="widget-wrap mobile-header">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="http://img.tidyko.com/avatar.jpg">
+    <h2 class="author">豪快二突撃スル</h2>
+    <h3 class="description">javaer</h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>126</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>44</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>81</strong><br>标签</div></a>
+    </div>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+        <section id="main"><article id="post-Oracle 数据库开发规范" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/127fa2a9.html" class="article-date">
+  <time class="post-time" datetime="2014-04-25T02:03:00.000Z" itemprop="datePublished">
+    <span class="post-month">4月</span><br/>
+    <span class="post-day">25</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Oracle 数据库开发规范
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/数据库/">数据库</a>,<a class="article-category-link" href="/categories/数据库/Oracle/">Oracle</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/127fa2a9.html" class="leancloud_visitors" data-flag-title="Oracle 数据库开发规范">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 2,147</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 8 分钟</span>
+  </div>
+ 
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-背景"><a href="#1-背景" class="headerlink" title="1. 背景"></a>1. 背景</h1><p>应用系统数据库方面设计水平的高低直接关系到应用系统运行的稳定、高效性，为保证数据库方面的设计质量和效率，必须建立标准、完备的开发规范。本规范从数据库维护技术角度及数据库设计规范性要求出发，给出了应用开发过程中数据库设计工作的具体要求。</p>
+<h2 id="1-1"><a href="#1-1" class="headerlink" title="1.1."></a>1.1.</h2><p>本规范主要指导应用系统数据库方面的设计，在项目上线后作为数据库维护交接验收的标准。</p>
+<h2 id="1-2"><a href="#1-2" class="headerlink" title="1.2."></a>1.2.</h2><p>本规范是应用系统数据库设计方面的通用要求，在项目实施时可根据情况进行适当的补充和修改。</p>
+<h2 id="1-3"><a href="#1-3" class="headerlink" title="1.3."></a>1.3.</h2><p>文档中标红部分必须严格遵守</p>
+<h1 id="2-数据表设计规范"><a href="#2-数据表设计规范" class="headerlink" title="2. 数据表设计规范"></a>2. 数据表设计规范</h1><h2 id="2-1"><a href="#2-1" class="headerlink" title="2.1."></a>2.1.</h2><p>新设计的表需要包含：数据保留周期、数据清理策略、预期数据行数、查询频率、DML（insert/update/delete）频率</p>
+<h2 id="2-2"><a href="#2-2" class="headerlink" title="2.2."></a>2.2.</h2><p>预计表数据的行数超过1000万行时，建议创建为分区表<br>2.3. 存储历史类数据的表，建议按时间方式进行范围分区，有利于数据清理或转移<br>2.4. 表上的外键约束列必须建立索引<br>2.5. 表中的列名尽量避免为数据库保留的特殊关键字，例如：rownum,rowed,level等等</p>
+<h1 id="3-索引设计规范"><a href="#3-索引设计规范" class="headerlink" title="3. 索引设计规范"></a>3. 索引设计规范</h1><h2 id="3-1"><a href="#3-1" class="headerlink" title="3.1."></a>3.1.</h2><p>单表上的索引尽量不要太多（5个），会严重降低DML（insert/update/delete）性能；</p>
+<h2 id="3-2"><a href="#3-2" class="headerlink" title="3.2."></a>3.2.</h2><p>多列索引尽量不要超过3个字段；</p>
+<h2 id="3-3"><a href="#3-3" class="headerlink" title="3.3."></a>3.3.</h2><p>分区表尽量全部使用本地（LOCAL）索引，有利于数据维护。</p>
+<h2 id="3-4"><a href="#3-4" class="headerlink" title="3.4."></a>3.4.</h2><p>单列索引的选择（仅供参考）</p>
+<h3 id="3-4-1"><a href="#3-4-1" class="headerlink" title="3.4.1."></a>3.4.1.</h3><p>频繁出现在where条件中的列</p>
+<h3 id="3-4-2"><a href="#3-4-2" class="headerlink" title="3.4.2."></a>3.4.2.</h3><p>用来和其他表进行连接的列；</p>
+<h3 id="3-4-3"><a href="#3-4-3" class="headerlink" title="3.4.3."></a>3.4.3.</h3><p>有高的选择性和过滤性的列（高选择性的字段：如果很少的字段拥有相同值,即    有很多独特值,则选择性很好）；</p>
+<h3 id="3-4-4"><a href="#3-4-4" class="headerlink" title="3.4.4."></a>3.4.4.</h3><p>Oracle在UNIQUE和主键字段上自动建立索引</p>
+<h3 id="3-4-5"><a href="#3-4-5" class="headerlink" title="3.4.5."></a>3.4.5.</h3><p>一般在查询数据量占总表数据量10%以下才考虑使用索引定位数据</p>
+<h3 id="3-4-6"><a href="#3-4-6" class="headerlink" title="3.4.6."></a>3.4.6.</h3><p>不要在where条件中使用函数的列上建索引,ORACLE在这种情况,优化器不会用 到索引（例如：where upper(username)=’XXX’ 这种情况下,username上的索引无法使用）</p>
+<h2 id="3-5"><a href="#3-5" class="headerlink" title="3.5."></a>3.5.</h2><p>复合（多列）索引字段选择（仅供参考）</p>
+<h3 id="3-5-1"><a href="#3-5-1" class="headerlink" title="3.5.1"></a>3.5.1</h3><p>where子句的查询条件包含复合索引的前导列（例如：index(a,b,c,d),where 条件中包含where a=xx and b=xx等等，这种情况下索引可以使用）,如果未包含前导列，索引无法被使用（列入：index(a,b,c,d),where 条件中包含where b=xx and c=xx,这种情况下由于未包含前导列a=xx条件，索引无法被使用）</p>
+<h3 id="3-5-2"><a href="#3-5-2" class="headerlink" title="3.5.2"></a>3.5.2</h3><p>频繁查询的字段放在前面（例如a,b,c三列，如果c列使用最频繁，b列次之，则考虑将复合索引创建为(c,b,a)）；</p>
+<h3 id="3-5-3"><a href="#3-5-3" class="headerlink" title="3.5.3"></a>3.5.3</h3><p>如果所有字段查询频率相同，则把选择性较好的字段放在前面；</p>
+<h3 id="3-5-4"><a href="#3-5-4" class="headerlink" title="3.5.4"></a>3.5.4</h3><p>复合索引使用规律:索引index(a,b,c) ，在where 条件里(a)、(a,b)、（a,b,c）、（a,c）组合条件可用到索引;(b)、（b,c）、（c）组合条件用不到索引。</p>
+<h1 id="4"><a href="#4" class="headerlink" title="4."></a>4.</h1><p>数据库SQL语句编写规范</p>
+<h2 id="4-1"><a href="#4-1" class="headerlink" title="4.1."></a>4.1.</h2><p>对于分区表的查询，尽量在where条件中添加分区列的查询条件，</p>
+<h2 id="4-2"><a href="#4-2" class="headerlink" title="4.2."></a>4.2.</h2><p>关键（查询、DML非常频繁）的SQL语句，尽量简化，不要包含太多的层次嵌套和表连接，复杂逻辑结构SQL在数据库中容易出现执行效率低下，并且不利于后期的优化，尽量将复杂的SQL拆分成简单SQL，将逻辑控制在应用代码中实现，避免执行计划低下的可能；</p>
+<h2 id="4-3"><a href="#4-3" class="headerlink" title="4.3."></a>4.3.</h2><p>使用绑定变量，减少数据库硬解析；</p>
+<h2 id="4-4"><a href="#4-4" class="headerlink" title="4.4."></a>4.4.</h2><p>Where条件中输入变量的值与表中列的值必须一致，避免隐式转换，隐式转换会导致列上的索引无法被使用。（例如：name列为字符型，则输入变量值应该为name=’xxx’，name=xxx会导致隐式转换；id列为数字型，则输入变量值应该为id=12234，id=’12234’会导致隐式转换）；</p>
+<h2 id="4-5"><a href="#4-5" class="headerlink" title="4.5."></a>4.5.</h2><p>尽量减少in 的使用，考虑使用exits代替in；</p>
+<h2 id="4-6"><a href="#4-6" class="headerlink" title="4.6."></a>4.6.</h2><p>如果语句的逻辑允许，使用union all代替union（union 将两个结果集合并，并去除重复行，union all将两个结果集合并，不去除重复行）；</p>
+<h2 id="4-7"><a href="#4-7" class="headerlink" title="4.7."></a>4.7.</h2><p>注意like的使用方法,如果  %变量%  及 %变量 是用不到索引，变量% 要注意查询范围, % 放到越靠后使用索引范围越大；</p>
+<h2 id="4-8"><a href="#4-8" class="headerlink" title="4.8."></a>4.8.</h2><p>应用批量业务尽量不要使用单笔提交，建议100-1000做一次提交(批量业务提交量要作为参数可配,可调,缺省批量事务的提交量应该在100-1000范围内) ；</p>
+<h2 id="4-9"><a href="#4-9" class="headerlink" title="4.9."></a>4.9.</h2><p>PL/SQL程序中动态sql 尽量少用，容易产生大量HARD PARSE并造成library cache pin  等待。</p>
+<h2 id="4-10"><a href="#4-10" class="headerlink" title="4.10."></a>4.10.</h2><p>SQL语句的查询结果如果最后需要排序，必须加上order by。</p>
+<h2 id="4-11"><a href="#4-11" class="headerlink" title="4.11."></a>4.11.</h2><p>不要在SQL语句的where条件中对表中的列进行表达式运算（使用函数、使用加减乘除运算等等），如果在where条件中对列使用了表达式，会导致建立在这一列上的索引无法使用！（例如，A表上的name列存在单列索引，where条件为：upper(name)=’zhongbai’ or name ||’sss’=’zhongbaisss’这种情况下name列上的索引无法使用）</p>
+<h1 id="5-数据库上线脚本规范"><a href="#5-数据库上线脚本规范" class="headerlink" title="5. 数据库上线脚本规范"></a>5. 数据库上线脚本规范</h1><h2 id="5-1"><a href="#5-1" class="headerlink" title="5.1."></a>5.1.</h2><p>DDL（insert/update/delete/select以外的语句基本都为DDL语句）与DML语句不能存放在一个脚本中，因为DDL语句会隐式执行commit</p>
+<h2 id="5-2"><a href="#5-2" class="headerlink" title="5.2."></a>5.2.</h2><p>脚本中不能包含commit提交语句，commit会导致数据无法回退。</p>
+<h2 id="5-3"><a href="#5-3" class="headerlink" title="5.3."></a>5.3.</h2><p>如果需要同时上线一批（多个）脚本，请按执行顺序将脚本命名为001_脚本名、002_脚本名 形式，确保上线脚本正确的执行</p>
+<h2 id="5-4"><a href="#5-4" class="headerlink" title="5.4."></a>5.4.</h2><p>上线脚本中涉及的任何表数据变更，需先进行备份（统一备份到data_bak用户下），然后再执行变更，确保任何上线变更都能完成回退。</p>
+<p>例如：UPDATE STORE_CURD.STOREMENU SM SET SM.ISDELETED = 1, SM.DELETEDTIME = SYSDATE;</p>
+<p>需要先执行备份：</p>
+<p>create table data_bak.STOREMENU_0414(日期) As select * from STORE_CURD.STOREMENU;</p>
+<h2 id="5-5"><a href="#5-5" class="headerlink" title="5.5."></a>5.5.</h2><p>备份脚本和上线脚本必须分开存放，因为备份属于DDL语句。</p>
+<h2 id="5-6"><a href="#5-6" class="headerlink" title="5.6."></a>5.6.</h2><p>由于数据已经提前备份，考虑将update x set isdeleted=1语句改为直接删除。缩减表大小，提高该表的执行效率。</p>
+<p>例如：UPDATE STORE_CURD.STOREMENU SM SET SM.ISDELETED = 1, SM.DELETEDTIME = SYSDATE WHERE SM.PARENTID =(SELECT SM.ID FROM STORE_CURD.STOREMENU SM WHERE SM.NAME = ‘营销中心’) AND SM.NAME = ‘最低价活动’;</p>
+<p>改为 delete STORE_CURD.STOREMENU SM WHERE SM.PARENTID =(SELECT SM.ID FROM STORE_CURD.STOREMENU SM WHERE SM.NAME = ‘营销中心’) AND SM.NAME = ‘最低价活动’;</p>
+<h2 id="5-7"><a href="#5-7" class="headerlink" title="5.7."></a>5.7.</h2><p>不同用户的上线语句尽量分开存放在不同的上线脚本中（语句不多可考虑打包为一个脚本）</p>
+<h2 id="5-8"><a href="#5-8" class="headerlink" title="5.8."></a>5.8.</h2><p>新创建的表、索引的名字不能用双引号括起来，例如：create table store_curd.aa创建表，表名会默认为大写；create table store_curd.“aa” 创建表，表名为小写，以后引用该表时必须添加双引号:select * from store_curd.“aa”;</p>
+<h2 id="5-9"><a href="#5-9" class="headerlink" title="5.9."></a>5.9.</h2><p>上线脚本的命名规范：序号<em>上线功能</em>脚本编写者<em>上线日期（YYYYMMDD）例如：001</em>删除商品同步直通车_tidy_20140411.sql</p>
+<h2 id="5-10"><a href="#5-10" class="headerlink" title="5.10."></a>5.10.</h2><p>上线脚本中涉及到的表（不论何种操作），必须指定用户名，例如：STORE_CURD.STOREMENU表示store_curd用户下的storemenu表</p>
+<h2 id="5-11"><a href="#5-11" class="headerlink" title="5.11."></a>5.11.</h2><p>尽量在每一个上线脚本的开始部分添加一段注释，说明该脚本需要在哪个线上数据库和哪个数据库用户下执行。例如（net和java线上数据库分别一条说明示例）：</p>
+<p>–目标数据库: store_curd@rac_f11表示NET线上库的store_curd用户下执行</p>
+<p>–目标数据库: ada@java_online表示JAVA线上库的ada用户下执行</p>
+<h1 id="6-序列创建规范"><a href="#6-序列创建规范" class="headerlink" title="6. 序列创建规范"></a>6. 序列创建规范</h1><h2 id="6-1"><a href="#6-1" class="headerlink" title="6.1."></a>6.1.</h2><p>序列cache值必须大于等于200；</p>
+<h1 id="7-JOB规范"><a href="#7-JOB规范" class="headerlink" title="7. JOB规范"></a>7. JOB规范</h1><h2 id="7-1"><a href="#7-1" class="headerlink" title="7.1."></a>7.1.</h2><p>使用dbms_scheduler_job 代替传统的dbms_job方式创建自动调度作业</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/127fa2a9.html" data-id="cjo9dnvuq008yucykgkbpsmxt" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Oracle/">Oracle</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sql/">Sql</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/posts/6aab53f1.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          JS ==与===对比
+        
+      </div>
+    </a>
+  
+  
+    <a href="/posts/e547806a.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Oracle union 后排序</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+
+
+  <div id="comments" class="comments">
+    <div id="gitment_container"></div>
+  </div>
+  
+  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+  <script>
+  var gitment = new Gitment({
+    owner: 'tidyko',
+    repo: 'tidyko.github.io',
+    oauth: {
+      client_id: '62e4f6a4ca86e056da76',
+      client_secret: '912d627549301dd54437313b122a7c543215bc4c',
+    },
+  })
+  gitment.render('gitment_container')
+  </script>
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <h1 class="blog-title">TIDY的个人博客</h1>
+    <h2 class="blog-subtitle">マジにならなきゃ、勝てねぇよ！</h2>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="http://img.tidyko.com/avatar.jpg">
+    <h2 class="author">豪快二突撃スル</h2>
+    <h3 class="description">javaer</h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>126</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>44</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>81</strong><br>标签</div></a>
+    </div>
+
+
+
+    <div class="social-link">
+      
+        <a class="hvr-bounce-in" href="https://github.com/tidyko" target="_blank" title="Github">
+          Github
+        </a>
+      
+    </div>
+
+    <div class="friend-link">
+      <h2>友情链接</h2>
+      
+        <a class="hvr-bounce-in" href="https://www.cnblogs.com/zengweiming" target="_blank" title="tidyko-博客园">
+          tidyko-博客园
+        </a>
+      
+    </div>
+  </div>
+</div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy;2017 - 2018 豪快二突撃スル<br>
+      <!-- 由<a href="https://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
+      主题-<a href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a> -->
+      
+        <br>
+        <!-- <script src="https://s19.cnzz.com/z_stat.php?id=1274390271&web_id=1274390271" language="JavaScript" rel="noreferrer"></script>       -->
+        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1274390271'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1274390271%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));</script>
+      
+    </div>
+  </div>
+</footer>
+    </div>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/wow/0.1.6/wow.min.js"></script>
+<script>
+new WOW().init();
+</script>   
+
+
+  <link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+  <script src="/plugin/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+  <!-- <section class="hidden-xs"> 
+  <ul class="cb-slideshow"> 
+    <li><span>苟利</span></li> 
+    <li><span>国家</span></li> 
+    <li><span>生死以</span></li> 
+    <li><span>岂能</span></li> 
+    <li><span>祸福</span></li> 
+    <li><span>趋避之</span></li> 
+  </ul>
+</section> -->
+<script src="/js/script.js"></script>
+
+
+
+
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("DpQHavrF6hdX8C8q7ONib5Qv-gzGzoHsz", "CFNVYUb4rtTjkji3Erv4ROA7");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.article-title').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+
+
+<div id="totop" style="position:fixed;bottom:160px;right:50px;cursor: pointer;z-index: 10;">
+    <a title="返回顶部"><img src="/images/scrollup.png" style="width:50px;height:50px;"/></a>
+</div>
+<script src="/js/totop.js"></script>
+  </div>
+</body>
+</html>
