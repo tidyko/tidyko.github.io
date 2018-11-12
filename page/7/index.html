@@ -52,7 +52,7 @@
     <h2 class="author"></h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>127</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>128</strong><br>文章</div></a>
       <a href="/categories"><div><strong>44</strong><br>分类</div></a>
       <a href="/tags"><div><strong>81</strong><br>标签</div></a>
     </div>
@@ -79,6 +79,94 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-前端 一句命令快速合并压缩 JS、CSS" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/58db64d.html" class="article-date">
+  <time class="post-time" datetime="2015-09-01T06:50:00.000Z" itemprop="datePublished">
+    <span class="post-month">9月</span><br/>
+    <span class="post-day">01</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/58db64d.html">前端 一句命令快速合并压缩 JS、CSS</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/优化/">优化</a>,<a class="article-category-link" href="/categories/优化/前端/">前端</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/58db64d.html" class="leancloud_visitors" data-flag-title="前端 一句命令快速合并压缩 JS、CSS">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 729</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 3 分钟</span>
+  </div>
+ 
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>引用自：<a href="http://www.cnblogs.com/hooray/p/3292958.html" target="_blank" rel="noopener">一句命令快速合并 JS、CSS</a></p>
+<p>在项目开发环境下，我们会把 JS 代码尽可能模块化，方便管理和修改，这就避免不了会出现一个项目自身 JS 文件数量达到10个或者更多。</p>
+<p>而项目上线后，会要求将所有 JS 文件合并为 1 个或者几个，手动的操作虽然也不是问题，但每次修改更新都要手动操作合并一遍，这就肯定是个噩梦了。</p>
+<p>这种情况下，一些工具也就随之产生，比如在线合并，一些网站提供js文件上传，然后合并，但这还是很麻烦，如果开发环境没有网络呢？</p>
+<p>这会我就想到了 windows 系统下的 cmd 里的 copy 命令，它虽然是个复制的功能，但实则也是可以实现合并文件的需求，下面就看下这句代码：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">copy a.js+b.js+c.js abc.js /b</span><br></pre></td></tr></table></figure></p>
+<p>相信不会太多编程的人阅读上面那句代码也能大致读懂意思：通过 copy 命令将 a.js b.js c.js 合并为一个 abc.js，最后的 /b 表示文件为二进位文件，copy 命令的其它参数可以在 cmd 里输入 copy /? 学习，这里就不再细述。</p>
+<p>说到这里，其实 windows 本身就可以完成我们的需求，也不用安装什么其它工具了，下面我们要做的就是将这一切操作更简单。</p>
+<p>我们在项目存放 JS 的文件夹下新建一个 TXT 文件，将代码复制进去，并修改需要合并哪些文件，最后保存并将 TXT修改为BAT 后缀，如：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">copy core.js+hros.app.js+hros.appmanage.js+hros.base.js+hros.copyright.js+hros.desktop.js+hros.dock.js+hros.folderView.js+hros.grid.js+hros.maskBox.js+hros.navbar.js+hros.popupMenu.js+hros.searchbar.js+hros.startmenu.js+hros.taskbar.js+hros.uploadFile.js+hros.wallpaper.js+hros.widget.js+hros.window.js+hros.zoom.js+templates.js+util.js core.min.js /b</span><br></pre></td></tr></table></figure></p>
+<p>接下来我们双击下那个 BAT 文件，看到效果了吧？这就是我们想要的。以后每次上线前，只需双击下这个文件，系统就会自动合并并生成一个合并好的文件，比起其它什么工具，这个的效率简直无法直视。</p>
+<p>如果你本地还安装过 <a href="http://wenku.baidu.com/link?url=26FqoMbEcyakhUfFYSggRcG4Jrq0AT5dD3BOuUwDXxWLeDKd4gT1BGg8Gi01hbKUzKqJllhcZGtySQDJ-jELlcrkyy-UR0ybAP58c3naaDi" target="_blank" rel="noopener">UglifyJS</a> 这个工具，可以在代码后面加一句压缩的代码，如：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">copy core.js+hros.app.js+hros.appmanage.js+hros.base.js+hros.copyright.js+hros.desktop.js+hros.dock.js+hros.folderView.js+hros.grid.js+hros.maskBox.js+hros.navbar.js+hros.popupMenu.js+hros.searchbar.js+hros.startmenu.js+hros.taskbar.js+hros.uploadFile.js+hros.wallpaper.js+hros.widget.js+hros.window.js+hros.zoom.js+templates.js+util.js core.min.js /b</span><br><span class="line">uglifyjs core.min.js -m -o core.min.js</span><br></pre></td></tr></table></figure></p>
+<p>或者<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uglifyjs 4.js -o 4-min.js -c</span><br></pre></td></tr></table></figure></p>
+<p>这样每次合并好后就自动压缩了，又省了一步操作。</p>
+<p>CSS 合并同理。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/58db64d.html" data-id="cjoe6n23o00b1prykpb01w2cf" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端/">前端</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
   
     <article id="post-CSS 雪碧图" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -140,7 +228,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/2d2c81b8.html" data-id="cjoe1vvad000gdeykbm1ayjq9" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/2d2c81b8.html" data-id="cjoe6n1yo000cpryk7grki8pr" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/csssprite/">csssprite</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/雪碧图/">雪碧图</a></li></ul>
@@ -361,7 +449,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/a8ddc8ae.html" data-id="cjoe1vvf1009edeykz4svq2wu" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/a8ddc8ae.html" data-id="cjoe6n235009vprykmx1koqhr" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Oracle/">Oracle</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sql/">Sql</a></li></ul>
@@ -440,7 +528,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/67537090.html" data-id="cjoe1vvb3001ldeyky4vjc5a9" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/67537090.html" data-id="cjoe6n1ze001iprykso337u51" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li></ul>
@@ -518,7 +606,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/6d066745.html" data-id="cjoe1vvbs002pdeykridzfgcc" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/6d066745.html" data-id="cjoe6n200002wpryk76a8yjuq" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hibernate/">Hibernate</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
@@ -598,7 +686,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/d1cb6203.html" data-id="cjoe1vvbr002ndeyk3qrsgv7q" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/d1cb6203.html" data-id="cjoe6n1zy002ppryk6v3jchrn" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hibernate/">Hibernate</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
@@ -679,7 +767,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/4a47fe35.html" data-id="cjoe1vvbv002tdeykftpw2uql" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/4a47fe35.html" data-id="cjoe6n1zz002tpryk1gwrqdz4" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hibernate/">Hibernate</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
@@ -843,7 +931,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/85796e0a.html" data-id="cjoe1vvf2009hdeyk7bvcdnm2" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/85796e0a.html" data-id="cjoe6n23e00adprykrvdhuefy" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Redis/">Redis</a></li></ul>
@@ -935,7 +1023,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/74b62430.html" data-id="cjoe1vvfd00a6deykoj5dcibo" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/74b62430.html" data-id="cjoe6n23c00a9prykjey45ww5" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tomcat/">Tomcat</a></li></ul>
@@ -1013,91 +1101,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/284eedd0.html" data-id="cjoe1vvbu002rdeykgo6nir2t" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/284eedd0.html" data-id="cjoe6n2030032pryk8vxezngp" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hibernate/">Hibernate</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-NGROK 快速实现本地Web服务到外网的映射" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/865591b1.html" class="article-date">
-  <time class="post-time" datetime="2014-10-13T03:45:00.000Z" itemprop="datePublished">
-    <span class="post-month">10月</span><br/>
-    <span class="post-day">13</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/865591b1.html">NGROK 快速实现本地Web服务到外网的映射</a>
-    </h1>
-  
-
-        <div>
-          
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/服务器/">服务器</a>,<a class="article-category-link" href="/categories/服务器/映射/">映射</a>
-  </div>
-
-          
-              
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/865591b1.html" class="leancloud_visitors" data-flag-title="NGROK 快速实现本地Web服务到外网的映射">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 114</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 1 分钟</span>
-  </div>
- 
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>NGROK官网：<a href="https://ngrok.com" target="_blank" rel="noopener">https://ngrok.com</a><br>NGROK百科：<a href="http://baike.baidu.com/view/13085941.htm?fr=aladdin" target="_blank" rel="noopener">http://baike.baidu.com/view/13085941.htm?fr=aladdin</a></p>
-<h2 id="1）下载"><a href="#1）下载" class="headerlink" title="1）下载"></a>1）下载</h2><p>ngrok(Windows):<a href="http://files.cnblogs.com/files/zengweiming/ngrok.rar" target="_blank" rel="noopener">下载地址 v2.0</a></p>
-<h2 id="2）使用"><a href="#2）使用" class="headerlink" title="2）使用"></a>2）使用</h2><p>解压ngrok.zip，例如：E:\mysoft\ngrok</p>
-<p>使用命令行进入解压路径，运行：ngrok http 8080（web服务器端口号）</p>
-<p>然后ngrok会解析，生成外网映射路径。</p>
-<p>复制ngrok生成的映射域名链接 <a href="http://b5e38c97.ngrok.io/项目名" target="_blank" rel="noopener">http://b5e38c97.ngrok.io/项目名</a> 到浏览器就可以访问到你本地的项目了。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/865591b1.html" data-id="cjoe1vved007ydeyk62qb10j1" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NGROK/">NGROK</a></li></ul>
 
     </footer>
   </div>
@@ -1156,7 +1163,7 @@
     <h2 class="author"></h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>127</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>128</strong><br>文章</div></a>
       <a href="/categories"><div><strong>44</strong><br>分类</div></a>
       <a href="/tags"><div><strong>81</strong><br>标签</div></a>
     </div>
