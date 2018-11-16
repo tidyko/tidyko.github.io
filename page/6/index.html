@@ -52,7 +52,7 @@
     <h2 class="author"></h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>128</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>129</strong><br>文章</div></a>
       <a href="/categories"><div><strong>44</strong><br>分类</div></a>
       <a href="/tags"><div><strong>81</strong><br>标签</div></a>
     </div>
@@ -79,6 +79,84 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-微信公众号 WeixinJSBridge.call(&#39;closeWindow&#39;)无效" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/1e7ee8d0.html" class="article-date">
+  <time class="post-time" datetime="2016-04-13T02:18:00.000Z" itemprop="datePublished">
+    <span class="post-month">4月</span><br/>
+    <span class="post-day">13</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/1e7ee8d0.html">微信公众号 WeixinJSBridge.call(&#39;closeWindow&#39;)无效</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/JavaScript/">JavaScript</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/1e7ee8d0.html" class="leancloud_visitors" data-flag-title="微信公众号 WeixinJSBridge.call(&#39;closeWindow&#39;)无效">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 126</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 1 分钟</span>
+  </div>
+ 
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>公众号上面使用iframe嵌套子页面，然而子页面无法使用<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WeixinJSBridge.call(<span class="string">'closeWindow'</span>)</span><br></pre></td></tr></table></figure></p>
+<p>这时候必须在函数前面加上parent.,比如：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">parent.WeixinJSBridge.call(<span class="string">'closeWindow'</span>);</span><br></pre></td></tr></table></figure></p>
+<p>在主页面进行签名验证，子页面不添加jssdk的签名信息。需要调用jssdk接口时，比如图片选择接口，在jssdk的函数前加parent.，即调用父页面的此函数，经过测试，功能可正常调用。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">parent.wx.chooseImage(&#123;</span><br><span class="line">    success: <span class="function"><span class="keyword">function</span> (<span class="params">res</span>) </span>&#123;</span><br><span class="line">        <span class="comment">//upload_success(res.localIds);</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/1e7ee8d0.html" data-id="cjojpr9bw00bem4ykvj3ylz8s" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/微信公众号/">微信公众号</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
   
     <article id="post-微信公众号 使用a标签打开链接显示空白" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -138,7 +216,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/1b8b5be2.html" data-id="cjoe6n24400brpryklo38urub" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/1b8b5be2.html" data-id="cjojpr9by00bhm4ykx29ieqbg" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/微信公众号/">微信公众号</a></li></ul>
@@ -217,7 +295,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/69238558.html" data-id="cjoe6n21i0069prykt4y9v191" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/69238558.html" data-id="cjojpr98r0063m4ykme13mm8x" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
@@ -293,7 +371,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/6a2a165c.html" data-id="cjoe6n1zf001lpryksa33mwli" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/6a2a165c.html" data-id="cjojpr965001lm4ykgspqxu0i" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li></ul>
@@ -374,7 +452,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/75c14ffd.html" data-id="cjoe6n1zb001cpryksqaqr74f" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/75c14ffd.html" data-id="cjojpr963001im4ykby546pu9" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li></ul>
@@ -450,7 +528,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3530a775.html" data-id="cjoe6n1yk0007prykj9bfcwiy" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/3530a775.html" data-id="cjojpr9510006m4ykdi9mj446" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ActiveMQ/">ActiveMQ</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/队列/">队列</a></li></ul>
@@ -526,7 +604,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/15ae09a5.html" data-id="cjoe6n1yi0005pryktesma5vc" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/15ae09a5.html" data-id="cjojpr94z0005m4ykl90tklgd" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ActiveMQ/">ActiveMQ</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/队列/">队列</a></li></ul>
@@ -612,7 +690,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/632d0b70.html" data-id="cjoe6n1yf0002prykanh6y8hb" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/632d0b70.html" data-id="cjojpr94q0002m4yk671adtv2" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ActiveMQ/">ActiveMQ</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/队列/">队列</a></li></ul>
@@ -691,7 +769,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3ddda97c.html" data-id="cjoe6n20s004eprykfozr6ooe" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/3ddda97c.html" data-id="cjojpr97t004cm4ykqev58x8m" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/">Spring</a></li></ul>
@@ -771,90 +849,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3f45f33f.html" data-id="cjoe6n23g00ahpryketuq41c4" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/3f45f33f.html" data-id="cjojpr9be00aem4ykwpt8bgb6" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tomcat/">Tomcat</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/probe/">probe</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-weinre 使用weinre对手机、微信浏览器页面调试" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/1eb6656b.html" class="article-date">
-  <time class="post-time" datetime="2015-12-28T02:14:00.000Z" itemprop="datePublished">
-    <span class="post-month">12月</span><br/>
-    <span class="post-day">28</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/1eb6656b.html">weinre 使用weinre对手机、微信浏览器页面调试</a>
-    </h1>
-  
-
-        <div>
-          
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/开发调试工具/">开发调试工具</a>,<a class="article-category-link" href="/categories/开发调试工具/weinre/">weinre</a>
-  </div>
-
-          
-              
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/1eb6656b.html" class="leancloud_visitors" data-flag-title="weinre 使用weinre对手机、微信浏览器页面调试">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 364</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 1 分钟</span>
-  </div>
- 
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>官方网站：<a href="http://people.apache.org/~pmuellr/weinre-docs/latest/" target="_blank" rel="noopener">http://people.apache.org/~pmuellr/weinre-docs/latest/</a></p>
-<h2 id="windows下安装以及使用："><a href="#windows下安装以及使用：" class="headerlink" title="windows下安装以及使用："></a>windows下安装以及使用：</h2><h3 id="1）安装nodejs"><a href="#1）安装nodejs" class="headerlink" title="1）安装nodejs"></a>1）安装nodejs</h3><p>1.下载nodejs引擎，32bit version或者64bit version<br>2.下载最新版的npm  zip格式压缩包：<a href="http://nodejs.org/dist/npm/" target="_blank" rel="noopener">http://nodejs.org/dist/npm/</a><br>3.在硬盘某个位置，如D盘下建立一个文件nodejs，把上面两个下载的东西都放在这里，npm要解压。<br>4.配置两个环境变量：<br>一个是PATH上增加node.exe的目录D:\nodejs<br>一个是增加环境变量NODE_PATH,值为D:\nodejs\node_modules<br>5.安装express：打开cmd命令行，键入指令npm install express[安装express至相对路径]或npm install express -g[安装express至绝对路径]<br>6.最后cmd分别执行node -v和npm -v如果看到nodejs和npm的版本号就算安装成功了。如下图：<br><img src="http://img.tidyko.com/blog/weinre_1.jpg" alt="weinre 使用weinre对手机、微信浏览器页面调试-图例1"></p>
-<h3 id="2）使用npm安装weinre并启动"><a href="#2）使用npm安装weinre并启动" class="headerlink" title="2）使用npm安装weinre并启动"></a>2）使用npm安装weinre并启动</h3><p>1.cmd执行 <code>npm install weinre</code> 安装 weinre<br>2.cmd执行 <code>weinre --boundHost -all-  --httpPort 8081</code> 看到提示启动成功即可。如下图：<br><img src="http://img.tidyko.com/blog/weinre_2.jpg" alt="weinre 使用weinre对手机、微信浏览器页面调试-图例2"></p>
-<h3 id="3）使用weinre对远程端页面进行调试"><a href="#3）使用weinre对远程端页面进行调试" class="headerlink" title="3）使用weinre对远程端页面进行调试"></a>3）使用weinre对远程端页面进行调试</h3><p>1.在浏览器输入 <a href="http://localhost:8081" target="_blank" rel="noopener">http://localhost:8081</a> ，进入weinre的主页。如下图：<br><img src="http://img.tidyko.com/blog/weinre_3.jpg" alt="weinre 使用weinre对手机、微信浏览器页面调试-图例3"><br>2.将上图中 <code>Target Script</code> 部分的js地址加入到你要调试的目标页面内。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=<span class="string">"http://localhost:8081/target/target-script-min.js#anonymous"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure></p>
-<p>3.最后，在移动设备打开添加过这个脚本的网页，这时候你在本地浏览器打开    <a href="http://localhost:8081/client/#anonymous" target="_blank" rel="noopener">http://localhost:8081/client/#anonymous</a> 就能看到对应网页与对其进行调试了，如下图：<br><img src="http://img.tidyko.com/blog/weinre_4.jpg" alt="weinre 使用weinre对手机、微信浏览器页面调试-图例4"></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/1eb6656b.html" data-id="cjoe6n23j00apprykjsnrz07p" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/weinre/">weinre</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/微信公众号/">微信公众号</a></li></ul>
 
     </footer>
   </div>
@@ -913,7 +911,7 @@
     <h2 class="author"></h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>128</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>129</strong><br>文章</div></a>
       <a href="/categories"><div><strong>44</strong><br>分类</div></a>
       <a href="/tags"><div><strong>81</strong><br>标签</div></a>
     </div>

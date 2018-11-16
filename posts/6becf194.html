@@ -6,23 +6,29 @@
   
   <title>
     
-    Oracle union 后排序 |
+    Charles 设置SSL Proxying抓取https请求 |
     
     Tidy的个人博客
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="指定字段的位置即可 order by 5">
-<meta name="keywords" content="Oracle,Sql">
+  <meta name="description" content="1.打开Charles 点击 Help -&amp;gt; SSL Proxying -&amp;gt; Install Charles Root Certificate 安装安全证书。 2.打开Charles 点击 Help -&amp;gt; SSL Proxying -&amp;gt; 安装手机安全证书，根据自己手机系统选择需要安装的选项。在这里，我使用的是Android手机，所以选择了第二个，点击第二个选项。 3.点击上">
+<meta name="keywords" content="Charles,抓包">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Oracle union 后排序">
-<meta property="og:url" content="https://www.tidyko.com/posts/e547806a.html">
+<meta property="og:title" content="Charles 设置SSL Proxying抓取https请求">
+<meta property="og:url" content="https://www.tidyko.com/posts/6becf194.html">
 <meta property="og:site_name" content="Tidy的个人博客">
-<meta property="og:description" content="指定字段的位置即可 order by 5">
+<meta property="og:description" content="1.打开Charles 点击 Help -&amp;gt; SSL Proxying -&amp;gt; Install Charles Root Certificate 安装安全证书。 2.打开Charles 点击 Help -&amp;gt; SSL Proxying -&amp;gt; 安装手机安全证书，根据自己手机系统选择需要安装的选项。在这里，我使用的是Android手机，所以选择了第二个，点击第二个选项。 3.点击上">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-13T15:09:44.540Z">
+<meta property="og:image" content="http://img.tidyko.com/blog/charles-ssl_1.png">
+<meta property="og:image" content="http://img.tidyko.com/blog/charles-ssl_2.png">
+<meta property="og:image" content="http://img.tidyko.com/blog/charles-ssl_3.png">
+<meta property="og:image" content="http://img.tidyko.com/blog/charles-ssl_4.png">
+<meta property="og:image" content="http://img.tidyko.com/blog/charles-ssl_5.png">
+<meta property="og:updated_time" content="2018-11-16T07:40:01.373Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Oracle union 后排序">
-<meta name="twitter:description" content="指定字段的位置即可 order by 5">
+<meta name="twitter:title" content="Charles 设置SSL Proxying抓取https请求">
+<meta name="twitter:description" content="1.打开Charles 点击 Help -&amp;gt; SSL Proxying -&amp;gt; Install Charles Root Certificate 安装安全证书。 2.打开Charles 点击 Help -&amp;gt; SSL Proxying -&amp;gt; 安装手机安全证书，根据自己手机系统选择需要安装的选项。在这里，我使用的是Android手机，所以选择了第二个，点击第二个选项。 3.点击上">
+<meta name="twitter:image" content="http://img.tidyko.com/blog/charles-ssl_1.png">
   
   <link rel="alternate" href="/atom.xml" title="Tidy的个人博客" type="application/atom+xml">
   
@@ -75,12 +81,12 @@
   </div>
 </div>
 
-        <section id="main"><article id="post-Oracle union 后排序" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Charles 设置SSL Proxying抓取https请求" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/posts/e547806a.html" class="article-date">
-  <time class="post-time" datetime="2014-04-25T01:33:00.000Z" itemprop="datePublished">
-    <span class="post-month">4月</span><br/>
-    <span class="post-day">25</span>
+    <a href="/posts/6becf194.html" class="article-date">
+  <time class="post-time" datetime="2018-11-16T07:22:00.000Z" itemprop="datePublished">
+    <span class="post-month">11月</span><br/>
+    <span class="post-day">16</span>
   </time>
 </a>
    
@@ -92,21 +98,21 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Oracle union 后排序
+      Charles 设置SSL Proxying抓取https请求
     </h1>
   
 
         <div>
           
   <div class="article-category">
-    <a class="article-category-link" href="/categories/数据库/">数据库</a>,<a class="article-category-link" href="/categories/数据库/Oracle/">Oracle</a>
+    <a class="article-category-link" href="/categories/开发调试工具/">开发调试工具</a>,<a class="article-category-link" href="/categories/开发调试工具/Charles/">Charles</a>
   </div>
 
           
               
   &nbsp; | &nbsp;
   <div class="view-box">
-    <span id="/posts/e547806a.html" class="leancloud_visitors" data-flag-title="Oracle union 后排序">
+    <span id="/posts/6becf194.html" class="leancloud_visitors" data-flag-title="Charles 设置SSL Proxying抓取https请求">
       阅读次数 <span class="leancloud-visitors-count"></span>
     </span>
   </div>
@@ -115,7 +121,7 @@
 
   &nbsp; | &nbsp;
   <div class="view-box">
-    <span>字数 12</span>
+    <span>字数 165</span>
   </div>
   &nbsp; | &nbsp;
   <div class="view-box">
@@ -128,15 +134,20 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>指定字段的位置即可 order by 5</p>
+        <h3 id="1"><a href="#1" class="headerlink" title="1."></a>1.</h3><p>打开Charles 点击 <code>Help</code> -&gt; <code>SSL Proxying</code> -&gt; <code>Install Charles Root Certificate</code> 安装安全证书。<br><img src="http://img.tidyko.com/blog/charles-ssl_1.png" alt="charles-ssl_1"></p>
+<h3 id="2"><a href="#2" class="headerlink" title="2."></a>2.</h3><p>打开Charles 点击 <code>Help</code> -&gt; <code>SSL Proxying</code> -&gt; 安装手机安全证书，根据自己手机系统选择需要安装的选项。<br><img src="http://img.tidyko.com/blog/charles-ssl_2.png" alt="charles-ssl_2"><br>在这里，我使用的是Android手机，所以选择了第二个，点击第二个选项。</p>
+<h3 id="3"><a href="#3" class="headerlink" title="3."></a>3.</h3><p>点击上一步的选项之后会看到如下界面，会提示你，使用你的手机设置Charles代理，然后打开他给的那个URL就可以下载了。<br><img src="http://img.tidyko.com/blog/charles-ssl_3.png" alt="charles-ssl_3"></p>
+<h3 id="4"><a href="#4" class="headerlink" title="4."></a>4.</h3><p>点击 <code>Proxy</code> -&gt; <code>SSL Proxying Settings</code> ， 设置需要抓取的域名。<br><img src="http://img.tidyko.com/blog/charles-ssl_4.png" alt="charles-ssl_4"></p>
+<p><img src="http://img.tidyko.com/blog/charles-ssl_5.png" alt="charles-ssl_5"></p>
+<h3 id="5"><a href="#5" class="headerlink" title="5."></a>5.</h3><p>上面设置完毕之后就可以抓到指定的https请求了。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/e547806a.html" data-id="cjojpr9an009am4yksxamaq0c" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/6becf194.html" data-id="cjojpr95e000fm4yk76oixupd" class="article-share-link">分享</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Oracle/">Oracle</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sql/">Sql</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Charles/">Charles</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/抓包/">抓包</a></li></ul>
 
     </footer>
   </div>
@@ -144,19 +155,10 @@
     
 <nav id="article-nav">
   
-    <a href="/posts/127fa2a9.html" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">上一篇</strong>
-      <div class="article-nav-title">
-        
-          Oracle 数据库开发规范
-        
-      </div>
-    </a>
   
-  
-    <a href="/posts/52ddf350.html" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/posts/b08e76d2.html" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">JS Could not find action or result No result defined for action</div>
+      <div class="article-nav-title">IDEA 包冲突</div>
     </a>
   
 </nav>

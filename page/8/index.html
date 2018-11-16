@@ -52,7 +52,7 @@
     <h2 class="author"></h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>128</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>129</strong><br>文章</div></a>
       <a href="/categories"><div><strong>44</strong><br>分类</div></a>
       <a href="/tags"><div><strong>81</strong><br>标签</div></a>
     </div>
@@ -79,6 +79,84 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-Hibernate 无外键多表查询" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/284eedd0.html" class="article-date">
+  <time class="post-time" datetime="2014-10-13T17:54:00.000Z" itemprop="datePublished">
+    <span class="post-month">10月</span><br/>
+    <span class="post-day">14</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/284eedd0.html">Hibernate 无外键多表查询</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/284eedd0.html" class="leancloud_visitors" data-flag-title="Hibernate 无外键多表查询">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 150</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 1 分钟</span>
+  </div>
+ 
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>无外键多表查询时编写hql，直接使用逗号分隔表，where作为联合查询条件进行查询。</p>
+<p>查询出来的结果可为两种，List&lt;List<object>&gt;或者List&lt;Map&lt;String,Object&gt;&gt;。</object></p>
+<p>这时候需要使用下面语句限定查询返回结果类型。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//List&lt;Map&lt;String,Object&gt;&gt;</span></span><br><span class="line">Query query = getSessionFactory().openSession().createHQLQuery(queryString).setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP);</span><br><span class="line"></span><br><span class="line">List&lt;Map&lt;String,Object&gt;&gt; tmp = query.list();</span><br><span class="line"></span><br><span class="line">Map&lt;String,Object&gt; result = tmp.get(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">String str = result.get(<span class="string">'1'</span>);</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//List&lt;List&lt;Object&gt;&gt;</span></span><br><span class="line">Query query = getSessionFactory().openSession().createHQLQuery(queryString).setResultTransformer(Transformers.TO_LIST);</span><br><span class="line"></span><br><span class="line">List&lt;List&lt;Object&gt;&gt; tmp = query.list();</span><br><span class="line"></span><br><span class="line">List&lt;Object&gt; result = tmp.get(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">String str = result.get(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/284eedd0.html" data-id="cjojpr9720030m4ykfwd95t6w" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hibernate/">Hibernate</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
   
     <article id="post-NGROK 快速实现本地Web服务到外网的映射" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -143,7 +221,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/865591b1.html" data-id="cjoe6n22h0089pryku9md23tk" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/865591b1.html" data-id="cjojpr9a5008cm4ykajrbf2ul" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NGROK/">NGROK</a></li></ul>
@@ -219,7 +297,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/bb413124.html" data-id="cjoe6n1z2000vprykrq3mvhdb" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/bb413124.html" data-id="cjojpr95x0012m4ykndlxs6rk" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SVN/">SVN</a></li></ul>
@@ -316,7 +394,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/2e6dc29d.html" data-id="cjoe6n23900a1prykllsm25fh" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/2e6dc29d.html" data-id="cjojpr9b500a3m4yksz5vt03r" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tomcat/">Tomcat</a></li></ul>
@@ -397,7 +475,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/cd870320.html" data-id="cjoe6n1zu002iprykgpdlfzyx" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/cd870320.html" data-id="cjojpr96u002km4yk3zuo1v82" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hibernate/">Hibernate</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
@@ -476,7 +554,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/b93984a5.html" data-id="cjoe6n2040036prykoytb5tqj" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/b93984a5.html" data-id="cjojpr979003am4yk2hugmw01" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IE/">IE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
@@ -569,7 +647,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/810bd9aa.html" data-id="cjoe6n207003dprykdm2jsj15" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/810bd9aa.html" data-id="cjojpr9770037m4ykinxa2geg" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IE/">IE</a></li></ul>
@@ -658,7 +736,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/e234776b.html" data-id="cjoe6n20d003tpryk5dmqprfx" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/e234776b.html" data-id="cjojpr97g003rm4ykjgjjvjz9" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DWR/">DWR</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
@@ -743,7 +821,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/dcc50721.html" data-id="cjoe6n22z009hprykhsfgjonu" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/dcc50721.html" data-id="cjojpr9at009im4ykkpwazfr9" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Oracle/">Oracle</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PLSQL/">PLSQL</a></li></ul>
@@ -822,86 +900,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3a649dc9.html" data-id="cjoe6n24000boprykgz14f2pn" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/外语/">外语</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/日语/">日语</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-日语 日本語の勉強" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/3194542f.html" class="article-date">
-  <time class="post-time" datetime="2014-07-17T05:59:00.000Z" itemprop="datePublished">
-    <span class="post-month">7月</span><br/>
-    <span class="post-day">17</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/3194542f.html">日语 日本語の勉強</a>
-    </h1>
-  
-
-        <div>
-          
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/外语/">外语</a>,<a class="article-category-link" href="/categories/外语/日语/">日语</a>
-  </div>
-
-          
-              
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/3194542f.html" class="leancloud_visitors" data-flag-title="日语 日本語の勉強">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 186</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 1 分钟</span>
-  </div>
- 
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>私は一年前から、退勤後と休みの時間に日本語を勉強していました。</p>
-<p>私が日本語を勉強するきっかけとなったのは日本のアニメです。<br>いつもアニメの熱い演出や可愛い声を聞いていて。<br>だから、アニメのセリフを理解したいので、日本語の勉強を始めました。</p>
-<p>勉強の中で、いつも他の日本の文化も見ていました。<br>例えば：<br>日本で最大の国民的アイドルグループ、AKB。特にあっちゃん大好きだよう＾＾<br>これからも私はあっちゃんファンの一人です。<br>後には、日本の桜が好きです。<br>日本の桜はとても綺麗だから、私は日本に行きたい、はらりと散る桜を見るたいと思う。<br>最後はね、もちろん日本の環境です。<br>日本の道は本当に綺麗で、見ていて気分がよいです。</p>
-<p>私は毎晩、中国の音声ソフト（YY）を使って日本語を勉強しています。<br>その中で、日本語の先生が無料で皆に授業します。<br>また、日本語のチャットルームがあります。いつもいろんな日本人が私たちと音声チャットをしています。<br>この様な勉強は面白いなと思います。<br>だって、日本語は見ることばかりが大事なわけではありません、喋ることも同じように重要でしょう？</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3194542f.html" data-id="cjoe6n28n00q5prykro6p5gaa" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/3a649dc9.html" data-id="cjojpr9c300bsm4yk5rxffigh" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/外语/">外语</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/日语/">日语</a></li></ul>
@@ -963,7 +962,7 @@
     <h2 class="author"></h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>128</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>129</strong><br>文章</div></a>
       <a href="/categories"><div><strong>44</strong><br>分类</div></a>
       <a href="/tags"><div><strong>81</strong><br>标签</div></a>
     </div>
