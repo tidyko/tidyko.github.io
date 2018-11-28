@@ -52,9 +52,9 @@
     <h2 class="author"></h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>129</strong><br>文章</div></a>
-      <a href="/categories"><div><strong>44</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>81</strong><br>标签</div></a>
+      <a href="/archives"><div><strong>130</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>45</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>84</strong><br>标签</div></a>
     </div>
     <ul class="blog-link">
      
@@ -79,6 +79,108 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-Navicat 使用Dropbox与NavicatCloud搭建数据库环境自动备份" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/289ca75b.html" class="article-date">
+  <time class="post-time" datetime="2018-11-28T06:59:00.000Z" itemprop="datePublished">
+    <span class="post-month">11月</span><br/>
+    <span class="post-day">28</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/289ca75b.html">Navicat 使用Dropbox与NavicatCloud搭建数据库环境自动备份</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/开发调试工具/">开发调试工具</a>,<a class="article-category-link" href="/categories/开发调试工具/Navicat/">Navicat</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/289ca75b.html" class="leancloud_visitors" data-flag-title="Navicat 使用Dropbox与NavicatCloud搭建数据库环境自动备份">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 594</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 2 分钟</span>
+  </div>
+ 
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在工作中，不同项目中有不同的数据库连接环境以及数据库执行脚本，如果单纯使用记事本备忘的方式存储这些配置以及脚本会显得颇为复杂。<br>特别是在跟换机器的时候，又要重新配置一番，显然这样的方式操作起来很不方便。<br>在这里分享一下自己使用的数据库环境备份方式。</p>
+<h2 id="软件安装"><a href="#软件安装" class="headerlink" title="软件安装"></a>软件安装</h2><ol>
+<li>Navicat Premium（数据库开发工具）</li>
+<li>Navicat Cloud账号（数据库配置以及脚本同步工具）</li>
+<li>Dropbox（文件同步工具）</li>
+<li>ShadowSocks（代理工具）</li>
+</ol>
+<h2 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h2><ol>
+<li><p>打开ShadowSocks，开全局模式，因为Dropbox以及Navicat Cloud账号注册需要使用代理，不然无法使用。<br><img src="http://img.tidyko.com/blog/navicat_5.png" alt="navicat_5"></p>
+</li>
+<li><p>下载Dropbox，并且注册账号，设置同步目录。<br><img src="http://img.tidyko.com/blog/navicat_6.png" alt="navicat_6"></p>
+</li>
+<li><p>先下载Navicat软件，然后新建本地连接配置，需要指定好queries保存路径为Dropbox下面的路径。<br><img src="http://img.tidyko.com/blog/navicat_1.png" alt="navicat_1"><br><img src="http://img.tidyko.com/blog/navicat_2.png" alt="navicat_2"></p>
+</li>
+</ol>
+<ol start="4">
+<li><p>打开新建的链接，在queries里面新建查询，保存完毕后，就会保存在指定的Dropbox目录下面了，这样每当该链接有新增脚本，就会自动备份了。<br><img src="http://img.tidyko.com/blog/navicat_3.png" alt="navicat_3"><br><img src="http://img.tidyko.com/blog/navicat_4.png" alt="navicat_4"></p>
+</li>
+<li><p>注册NavicatCloud账号，点击Navicat右上角的用户图标，按照界面提示进行注册以及邮件激活。<br>注册完成后使用该账号进行登录，就可以看到Navicat界面多出来一个Cloud的图标。<br><img src="http://img.tidyko.com/blog/navicat_7.png" alt="navicat_7"><br><img src="http://img.tidyko.com/blog/navicat_8.png" alt="navicat_8"></p>
+</li>
+<li><p>新建云项目，右键点击Navicat Cloud图标新建项目，可以存放连接配置文件，同时也可以设置开发者共享开发配置。<br>然后复制本地配置到云项目里面，右键点击本地配置-&gt;Duplicate Connection，然后修改配置的归属集合，这里选择上面那个云里面创建的“公司”项目，这样完成后再云里面就可以看到公司项目下面多了个刚刚复制的连接配置了。</p>
+</li>
+</ol>
+<p><img src="http://img.tidyko.com/blog/navicat_9.png" alt="navicat_9"><br><img src="http://img.tidyko.com/blog/navicat_10.png" alt="navicat_10"><br><img src="http://img.tidyko.com/blog/navicat_11.png" alt="navicat_11"></p>
+<ol start="7">
+<li>此时就已经完成了自动备份环境的搭建，这时候打开本地环境或者云的queries脚本进行更改，会自动双向同步更新云端脚本了。<br>这样一来我们不仅备份了Dropbbox而且还同时同步了NavicatCloud，可以做到万无一失，换台电脑只需要简单几步即可自动同步数据库开发配置。</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/289ca75b.html" data-id="cjp0wnqrd008c5dykv4yow293" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Dropbox/">Dropbox</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Navicat/">Navicat</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NavicatCloud/">NavicatCloud</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
   
     <article id="post-Charles 设置SSL Proxying抓取https请求" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -142,7 +244,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/6becf194.html" data-id="cjojpuprq000e01yklt3pkysy" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/6becf194.html" data-id="cjp0wnqmy000h5dykk01utqgq" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Charles/">Charles</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/抓包/">抓包</a></li></ul>
@@ -226,7 +328,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/b08e76d2.html" data-id="cjojpupta002y01ykxigt7fcg" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/b08e76d2.html" data-id="cjp0wnqol00375dyk1v89to22" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IDEA/">IDEA</a></li></ul>
@@ -303,7 +405,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/6971a02d.html" data-id="cjojpupvq008401ykd1d6fg0n" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/6971a02d.html" data-id="cjp0wnqrh008k5dyk77eydgj2" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nginx/">Nginx</a></li></ul>
@@ -384,7 +486,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3ad33ff3.html" data-id="cjojpupx700b001ykdhykbpuo" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/3ad33ff3.html" data-id="cjp0wnqtf00bk5dykpmnf066y" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li></ul>
@@ -469,7 +571,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/8476b89f.html" data-id="cjojpuprw000m01yk70vf4abi" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/8476b89f.html" data-id="cjp0wnqn9000w5dyk87logq8x" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Charles/">Charles</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/抓包/">抓包</a></li></ul>
@@ -546,7 +648,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/8b59beec.html" data-id="cjojpupti003e01ykai656o9o" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/8b59beec.html" data-id="cjp0wnqot003m5dyk8wow2sth" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IDEA/">IDEA</a></li></ul>
@@ -632,7 +734,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/c14d120e.html" data-id="cjojpupvj007p01yknkiabhtl" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/c14d120e.html" data-id="cjp0wnqr200815dyky7cwc0r4" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mac/">Mac</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iterm2/">iterm2</a></li></ul>
@@ -713,7 +815,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/9e53d1a6.html" data-id="cjojpuq1u00qw01yktxqp7wga" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/9e53d1a6.html" data-id="cjp0wnqts00by5dykju5ewhiw" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Apache-HttpClient/">Apache HttpClient</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/微信公众号/">微信公众号</a></li></ul>
@@ -794,91 +896,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/7aeb1e46.html" data-id="cjojpupru000k01ykw5dtvxiz" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/7aeb1e46.html" data-id="cjp0wnqn1000k5dykv4mlccfp" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-Linux awk" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/bf60621.html" class="article-date">
-  <time class="post-time" datetime="2018-09-20T08:16:00.000Z" itemprop="datePublished">
-    <span class="post-month">9月</span><br/>
-    <span class="post-day">20</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/bf60621.html">Linux awk</a>
-    </h1>
-  
-
-        <div>
-          
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/服务器/">服务器</a>,<a class="article-category-link" href="/categories/服务器/Linux/">Linux</a>
-  </div>
-
-          
-              
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/bf60621.html" class="leancloud_visitors" data-flag-title="Linux awk">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 2,819</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 16 分钟</span>
-  </div>
- 
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>假用如下数据演示awk。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> cat netstat.txt</span></span><br><span class="line">Proto Recv-Q Send-Q Local-Address          Foreign-Address             State</span><br><span class="line">tcp        0      0 0.0.0.0:3306           0.0.0.0:*                   LISTEN</span><br><span class="line">tcp        0      0 0.0.0.0:80             0.0.0.0:*                   LISTEN</span><br><span class="line">tcp        0      0 127.0.0.1:9000         0.0.0.0:*                   LISTEN</span><br><span class="line">tcp        0      0 coolshell.cn:80        124.205.5.146:18245         TIME_WAIT</span><br><span class="line">tcp        0      0 coolshell.cn:80        61.140.101.185:37538        FIN_WAIT2</span><br><span class="line">tcp        0      0 coolshell.cn:80        110.194.134.189:1032        ESTABLISHED</span><br><span class="line">tcp        0      0 coolshell.cn:80        123.169.124.111:49809       ESTABLISHED</span><br><span class="line">tcp        0      0 coolshell.cn:80        116.234.127.77:11502        FIN_WAIT2</span><br><span class="line">tcp        0      0 coolshell.cn:80        123.169.124.111:49829       ESTABLISHED</span><br><span class="line">tcp        0      0 coolshell.cn:80        183.60.215.36:36970         TIME_WAIT</span><br><span class="line">tcp        0   4166 coolshell.cn:80        61.148.242.38:30901         ESTABLISHED</span><br><span class="line">tcp        0      1 coolshell.cn:80        124.152.181.209:26825       FIN_WAIT1</span><br><span class="line">tcp        0      0 coolshell.cn:80        110.194.134.189:4796        ESTABLISHED</span><br><span class="line">tcp        0      0 coolshell.cn:80        183.60.212.163:51082        TIME_WAIT</span><br><span class="line">tcp        0      1 coolshell.cn:80        208.115.113.92:50601        LAST_ACK</span><br><span class="line">tcp        0      0 coolshell.cn:80        123.169.124.111:49840       ESTABLISHED</span><br><span class="line">tcp        0      0 coolshell.cn:80        117.136.20.85:50025         FIN_WAIT2</span><br><span class="line">tcp        0      0 :::22                  :::*                        LISTEN</span><br></pre></td></tr></table></figure></p>
-<h2 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h2><p>过滤第一列与第四列<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> awk <span class="string">'&#123;print $1,$4&#125;'</span> netstat.txt</span></span><br><span class="line">Proto Local-Address</span><br><span class="line">tcp 0.0.0.0:3306</span><br><span class="line">tcp 0.0.0.0:80</span><br><span class="line">tcp 127.0.0.1:9000</span><br><span class="line">tcp coolshell.cn:80</span><br><span class="line">tcp coolshell.cn:80</span><br><span class="line">tcp coolshell.cn:80</span><br><span class="line">tcp coolshell.cn:80</span><br><span class="line">tcp coolshell.cn:80</span><br><span class="line">tcp coolshell.cn:80</span><br><span class="line">tcp coolshell.cn:80</span><br><span class="line">tcp coolshell.cn:80</span><br><span class="line">tcp coolshell.cn:80</span><br><span class="line">tcp coolshell.cn:80</span><br><span class="line">tcp coolshell.cn:80</span><br><span class="line">tcp coolshell.cn:80</span><br><span class="line">tcp coolshell.cn:80</span><br><span class="line">tcp coolshell.cn:80</span><br><span class="line">tcp :::22</span><br></pre></td></tr></table></figure></p>
-        
-          <p class="article-more-link">
-            <a href="/posts/bf60621.html#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/bf60621.html" data-id="cjojpupve007d01yk69wvqdut" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
 
     </footer>
   </div>
@@ -937,9 +958,9 @@
     <h2 class="author"></h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>129</strong><br>文章</div></a>
-      <a href="/categories"><div><strong>44</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>81</strong><br>标签</div></a>
+      <a href="/archives"><div><strong>130</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>45</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>84</strong><br>标签</div></a>
     </div>
 
 

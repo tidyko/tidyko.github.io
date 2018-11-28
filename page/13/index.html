@@ -52,9 +52,9 @@
     <h2 class="author"></h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>129</strong><br>文章</div></a>
-      <a href="/categories"><div><strong>44</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>81</strong><br>标签</div></a>
+      <a href="/archives"><div><strong>130</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>45</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>84</strong><br>标签</div></a>
     </div>
     <ul class="blog-link">
      
@@ -79,6 +79,85 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-Maven 运行项目，报ClassNotFound错误" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/a47d877b.html" class="article-date">
+  <time class="post-time" datetime="2013-11-14T08:33:00.000Z" itemprop="datePublished">
+    <span class="post-month">11月</span><br/>
+    <span class="post-day">14</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/a47d877b.html">Maven 运行项目，报ClassNotFound错误</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/包管理器/">包管理器</a>,<a class="article-category-link" href="/categories/包管理器/Maven/">Maven</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/a47d877b.html" class="leancloud_visitors" data-flag-title="Maven 运行项目，报ClassNotFound错误">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 133</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 1 分钟</span>
+  </div>
+ 
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>我们在pom.xml中添加了那些依赖的jar后，一旦在代码中应用。当我们本地调试时，会报ClassNotFound错误，这是为什么？？</p>
+<h3 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h3><p>是因为Tomcat不懂这些配置，你必须把Maven Dependencies中的jar与发布目录配置好</p>
+<h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><p><code>项目</code> —&gt; <code>属性</code> -&gt; <code>Deployment Assembly</code> -&gt; <code>Add</code> -&gt; <code>Java Build Path Entries</code> -&gt; <code>选择Maven Dependencies</code> -&gt; <code>Finish</code> -&gt; <code>OK</code></p>
+<p>这一步就是配置Maven依赖包发布目录，这样调试时会自动把那些jar发布到指定目录下，tomcat也能找到那些jar了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/a47d877b.html" data-id="cjp0wnqr900845dyk495t7y6v" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Maven/">Maven</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
   
     <article id="post-建站 十步教你搭建完整免费的个人网站（花生壳+XAMPP+WordPress" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -169,7 +248,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/c2b7566e.html" data-id="cjojpupxa00b701ykajy2y1vo" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/c2b7566e.html" data-id="cjp0wnqtc00bg5dykyag7kx9h" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WordPress/">WordPress</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/XAMPP/">XAMPP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/花生壳/">花生壳</a></li></ul>
@@ -247,7 +326,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/98f41be3.html" data-id="cjojpuprn000a01ykswysvqd4" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/98f41be3.html" data-id="cjp0wnqmr000c5dykkaxynfeg" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
@@ -327,7 +406,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/d32ce889.html" data-id="cjojpupre000201ykucz3lge3" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/d32ce889.html" data-id="cjp0wnqm800015dyk1rxsvgcm" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nginx/">Nginx</a></li></ul>
@@ -406,7 +485,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/a1cbf0aa.html" data-id="cjojpupvv008h01ykc1rqbzx2" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/a1cbf0aa.html" data-id="cjp0wnqri008n5dyksz8ojkfu" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Oracle/">Oracle</a></li></ul>
@@ -485,7 +564,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/544340d1.html" data-id="cjojpupvw008k01yktflt1awp" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/544340d1.html" data-id="cjp0wnqrl008s5dyk2a5ivftt" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Oracle/">Oracle</a></li></ul>
@@ -564,7 +643,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/be1a87c4.html" data-id="cjojpupv0006i01ykf6t16thh" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/be1a87c4.html" data-id="cjp0wnqqa006j5dyknvd9vy49" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
@@ -645,7 +724,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/6473f805.html" data-id="cjojpupuu006201ykda2frh0b" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/6473f805.html" data-id="cjp0wnqq0005y5dykrkzt0u6t" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
@@ -723,7 +802,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/d46f9b3d.html" data-id="cjojpupv4006q01yklll3doox" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/d46f9b3d.html" data-id="cjp0wnqqk006z5dykpfnf326p" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
@@ -807,7 +886,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/1bffb80a.html" data-id="cjojpupvt008c01ykx3ck3vie" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/1bffb80a.html" data-id="cjp0wnqrf008f5dykvhv5xkmi" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Oracle/">Oracle</a></li></ul>
@@ -869,9 +948,9 @@
     <h2 class="author"></h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>129</strong><br>文章</div></a>
-      <a href="/categories"><div><strong>44</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>81</strong><br>标签</div></a>
+      <a href="/archives"><div><strong>130</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>45</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>84</strong><br>标签</div></a>
     </div>
 
 
