@@ -52,9 +52,9 @@
     <h2 class="author"></h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>130</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>131</strong><br>文章</div></a>
       <a href="/categories"><div><strong>45</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>84</strong><br>标签</div></a>
+      <a href="/tags"><div><strong>85</strong><br>标签</div></a>
     </div>
     <ul class="blog-link">
      
@@ -79,6 +79,93 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-Oracle Package 包说明和包体" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/6b176628.html" class="article-date">
+  <time class="post-time" datetime="2018-12-10T02:48:00.000Z" itemprop="datePublished">
+    <span class="post-month">12月</span><br/>
+    <span class="post-day">10</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/6b176628.html">Oracle Package 包说明和包体</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/数据库/">数据库</a>,<a class="article-category-link" href="/categories/数据库/Oracle/">Oracle</a>
+  </div>
+
+          
+              
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/6b176628.html" class="leancloud_visitors" data-flag-title="Oracle Package 包说明和包体">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 799</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 4 分钟</span>
+  </div>
+ 
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>该文转自 <a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" target="_blank" rel="noopener">forever杨’s Blog - Oracle Package 包说明和包体</a></p>
+<blockquote>
+<p>在包中定义的函数，包体中实现的时候，函数名、参数名、类型都要一致，否则报错</p>
+</blockquote>
+<h1 id="定义包说明"><a href="#定义包说明" class="headerlink" title="定义包说明"></a>定义包说明</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">OR</span> <span class="keyword">REPLACE</span> <span class="keyword">PACKAGE</span> WX_CRYPTO <span class="keyword">IS</span></span><br><span class="line">  <span class="comment">-- 定义 DES encrypt 函数</span></span><br><span class="line">  <span class="keyword">FUNCTION</span> <span class="keyword">DES_ENCRYPT</span>(INPUT_STRING <span class="keyword">IN</span> VARCHAR2) <span class="keyword">RETURN</span> VARCHAR2;</span><br><span class="line">  FUNCTION DES_ENCRYPT(INPUT_STRING IN VARCHAR2, KEY_STRING IN VARCHAR2)</span><br><span class="line">    RETURN VARCHAR2;</span><br><span class="line"></span><br><span class="line">  <span class="comment">-- 定义 DES decrypt 函数</span></span><br><span class="line">  FUNCTION DES_DECRYPT(INPUT_STRING IN VARCHAR2) RETURN VARCHAR2 DETERMINISTIC;</span><br><span class="line">  FUNCTION DES_DECRYPT(INPUT_STRING IN VARCHAR2, KEY_STRING IN VARCHAR2)</span><br><span class="line">    RETURN VARCHAR2 DETERMINISTIC;</span><br><span class="line"><span class="keyword">END</span> WX_CRYPTO;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>在创建基于自定义函数时, 指定 <code>deterministic</code> 参数，在创建函数索引，就没有问题了</p>
+</blockquote>
+        
+          <p class="article-more-link">
+            <a href="/posts/6b176628.html#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/6b176628.html" data-id="cjphq9ef9008pg5yk9mj5sz5i" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Oracle/">Oracle</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Package/">Package</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sql/">Sql</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
   
     <article id="post-Navicat 使用Dropbox与NavicatCloud搭建数据库环境自动备份" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -150,7 +237,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/289ca75b.html" data-id="cjp0wom8a0085a3yknnkiw6dp" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/289ca75b.html" data-id="cjphq9ef5008eg5yk6w1by0pw" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Dropbox/">Dropbox</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Navicat/">Navicat</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NavicatCloud/">NavicatCloud</a></li></ul>
@@ -230,7 +317,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/6becf194.html" data-id="cjp0wom0i000ma3yklkzpt8dj" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/6becf194.html" data-id="cjphq9ebp000pg5ykoe0lag0u" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Charles/">Charles</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/抓包/">抓包</a></li></ul>
@@ -314,7 +401,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/b08e76d2.html" data-id="cjp0wom2l002xa3ykiohif90d" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/b08e76d2.html" data-id="cjphq9ecs0030g5ykztlvsisd" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IDEA/">IDEA</a></li></ul>
@@ -391,7 +478,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/6971a02d.html" data-id="cjp0wom8c0089a3ykhzx0fysj" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/6971a02d.html" data-id="cjphq9ef8008mg5ykb7p4i4vk" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nginx/">Nginx</a></li></ul>
@@ -472,7 +559,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3ad33ff3.html" data-id="cjp0woma300ana3yklyl74y3p" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/3ad33ff3.html" data-id="cjphq9eg900apg5ykxiq3n0h7" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li></ul>
@@ -557,7 +644,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/8476b89f.html" data-id="cjp0wom0c000ga3yk3vmbkv57" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/8476b89f.html" data-id="cjphq9ebk000gg5yk6c753oqz" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Charles/">Charles</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/抓包/">抓包</a></li></ul>
@@ -634,7 +721,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/8b59beec.html" data-id="cjp0wom2q0033a3yknvntwgcn" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/8b59beec.html" data-id="cjphq9ecw003ag5ykxh8c8b42" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IDEA/">IDEA</a></li></ul>
@@ -720,7 +807,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/c14d120e.html" data-id="cjp0wom7t007pa3yksnqhkwxp" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/c14d120e.html" data-id="cjphq9eey007yg5yk3cyhtyaj" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mac/">Mac</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iterm2/">iterm2</a></li></ul>
@@ -801,7 +888,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/9e53d1a6.html" data-id="cjp0womam00boa3ykzvcdzvwl" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/9e53d1a6.html" data-id="cjphq9egv00bvg5ykujmrdo09" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Apache-HttpClient/">Apache HttpClient</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/微信公众号/">微信公众号</a></li></ul>
@@ -819,91 +906,10 @@
 
 
   
-    <article id="post-Android AndroidStudio" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/7aeb1e46.html" class="article-date">
-  <time class="post-time" datetime="2018-09-25T08:28:00.000Z" itemprop="datePublished">
-    <span class="post-month">9月</span><br/>
-    <span class="post-day">25</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/7aeb1e46.html">Android AndroidStudio</a>
-    </h1>
-  
-
-        <div>
-          
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
-  </div>
-
-          
-              
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/7aeb1e46.html" class="leancloud_visitors" data-flag-title="Android AndroidStudio">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 320</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 1 分钟</span>
-  </div>
- 
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="启动界面下载sdk卡住"><a href="#启动界面下载sdk卡住" class="headerlink" title="启动界面下载sdk卡住"></a>启动界面下载sdk卡住</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Downloading https://dl.google.com/android/repository/android_m2repository_r47.zip 卡住</span><br></pre></td></tr></table></figure>
-<p>需要设置vpn，如果是Shadowsocks，则设置如下：<br>设置完之后，可能刚开始下载进度条会一直卡在0，需要等待，后面就会看到进度条了。<br><img src="http://img.tidyko.com/blog/Androidstudio_1.png" alt="Androidstudio_1"><br>
-        
-          <p class="article-more-link">
-            <a href="/posts/7aeb1e46.html#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/7aeb1e46.html" data-id="cjp0wom020008a3yk4r8dqpw8" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-  
 
 
   <nav id="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/2/">next &raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/2/">next &raquo;</a>
   </nav>
 </section>
         
@@ -944,9 +950,9 @@
     <h2 class="author"></h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>130</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>131</strong><br>文章</div></a>
       <a href="/categories"><div><strong>45</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>84</strong><br>标签</div></a>
+      <a href="/tags"><div><strong>85</strong><br>标签</div></a>
     </div>
 
 
