@@ -11,18 +11,18 @@
     Tidy的个人博客
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="该文转自 forever杨’s Blog - Oracle Package 包说明和包体1在包中定义的函数，包体中实现的时候，函数名、参数名、类型都要一致，否则报错 定义包说明1234567891011CREATE OR REPLACE PACKAGE WX_CRYPTO IS  -- 定义 DES encrypt 函数  FUNCTION DES_ENCRYPT(INPUT_STRING IN">
+  <meta name="description" content="该文转自 forever杨’s Blog - Oracle Package 包说明和包体123在包中定义的函数，包体中实现的时候，函数名、参数名、类型都要一致，否则报错。在创建基于自定义函数时, 指定 `deterministic` 参数，再创建函数索引，就没有问题了。 定义包说明1234567891011CREATE OR REPLACE PACKAGE WX_CRYPTO IS  -- 定义">
 <meta name="keywords" content="Oracle,Package,Sql">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Oracle Package 包说明和包体">
 <meta property="og:url" content="https://www.tidyko.com/posts/6b176628.html">
 <meta property="og:site_name" content="Tidy的个人博客">
-<meta property="og:description" content="该文转自 forever杨’s Blog - Oracle Package 包说明和包体1在包中定义的函数，包体中实现的时候，函数名、参数名、类型都要一致，否则报错 定义包说明1234567891011CREATE OR REPLACE PACKAGE WX_CRYPTO IS  -- 定义 DES encrypt 函数  FUNCTION DES_ENCRYPT(INPUT_STRING IN">
+<meta property="og:description" content="该文转自 forever杨’s Blog - Oracle Package 包说明和包体123在包中定义的函数，包体中实现的时候，函数名、参数名、类型都要一致，否则报错。在创建基于自定义函数时, 指定 `deterministic` 参数，再创建函数索引，就没有问题了。 定义包说明1234567891011CREATE OR REPLACE PACKAGE WX_CRYPTO IS  -- 定义">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-12-10T03:10:44.766Z">
+<meta property="og:updated_time" content="2018-12-10T03:15:02.722Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Oracle Package 包说明和包体">
-<meta name="twitter:description" content="该文转自 forever杨’s Blog - Oracle Package 包说明和包体1在包中定义的函数，包体中实现的时候，函数名、参数名、类型都要一致，否则报错 定义包说明1234567891011CREATE OR REPLACE PACKAGE WX_CRYPTO IS  -- 定义 DES encrypt 函数  FUNCTION DES_ENCRYPT(INPUT_STRING IN">
+<meta name="twitter:description" content="该文转自 forever杨’s Blog - Oracle Package 包说明和包体123在包中定义的函数，包体中实现的时候，函数名、参数名、类型都要一致，否则报错。在创建基于自定义函数时, 指定 `deterministic` 参数，再创建函数索引，就没有问题了。 定义包说明1234567891011CREATE OR REPLACE PACKAGE WX_CRYPTO IS  -- 定义">
   
   <link rel="alternate" href="/atom.xml" title="Tidy的个人博客" type="application/atom+xml">
   
@@ -115,7 +115,7 @@
 
   &nbsp; | &nbsp;
   <div class="view-box">
-    <span>字数 801</span>
+    <span>字数 802</span>
   </div>
   &nbsp; | &nbsp;
   <div class="view-box">
@@ -128,9 +128,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>该文转自 <a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" target="_blank" rel="noopener">forever杨’s Blog - Oracle Package 包说明和包体</a><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在包中定义的函数，包体中实现的时候，函数名、参数名、类型都要一致，否则报错</span><br></pre></td></tr></table></figure></p>
+        <p>该文转自 <a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" target="_blank" rel="noopener">forever杨’s Blog - Oracle Package 包说明和包体</a><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">在包中定义的函数，包体中实现的时候，函数名、参数名、类型都要一致，否则报错。</span><br><span class="line"></span><br><span class="line">在创建基于自定义函数时, 指定 `deterministic` 参数，再创建函数索引，就没有问题了。</span><br></pre></td></tr></table></figure></p>
 <h2 id="定义包说明"><a href="#定义包说明" class="headerlink" title="定义包说明"></a>定义包说明</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">OR</span> <span class="keyword">REPLACE</span> <span class="keyword">PACKAGE</span> WX_CRYPTO <span class="keyword">IS</span></span><br><span class="line">  <span class="comment">-- 定义 DES encrypt 函数</span></span><br><span class="line">  <span class="keyword">FUNCTION</span> <span class="keyword">DES_ENCRYPT</span>(INPUT_STRING <span class="keyword">IN</span> VARCHAR2) <span class="keyword">RETURN</span> VARCHAR2;</span><br><span class="line">  FUNCTION DES_ENCRYPT(INPUT_STRING IN VARCHAR2, KEY_STRING IN VARCHAR2)</span><br><span class="line">    RETURN VARCHAR2;</span><br><span class="line"></span><br><span class="line">  <span class="comment">-- 定义 DES decrypt 函数</span></span><br><span class="line">  FUNCTION DES_DECRYPT(INPUT_STRING IN VARCHAR2) RETURN VARCHAR2 DETERMINISTIC;</span><br><span class="line">  FUNCTION DES_DECRYPT(INPUT_STRING IN VARCHAR2, KEY_STRING IN VARCHAR2)</span><br><span class="line">    RETURN VARCHAR2 DETERMINISTIC;</span><br><span class="line"><span class="keyword">END</span> WX_CRYPTO;</span><br></pre></td></tr></table></figure>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在创建基于自定义函数时, 指定 `deterministic` 参数，在创建函数索引，就没有问题了。</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
 <p>比如：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 如果函数不加 deterministic，以下创建索引 SQL 语句会报错：</span></span><br><span class="line"><span class="comment"> * ORA-30553: The function is not deterministic</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">index</span> i_user_decrypt_user_no <span class="keyword">on</span> <span class="keyword">USER</span> (wx_crypto.des_decrypt(user_no));</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 以下查询是会走索引的</span></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">where</span> wx_crypto.des_decrypt(user_no) = <span class="string">'123'</span>;</span><br></pre></td></tr></table></figure>
@@ -139,7 +138,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/6b176628.html" data-id="cjphqpana008o29yk4hrhl2bd" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/6b176628.html" data-id="cjphqusqx008v6rykx0g9bzj7" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Oracle/">Oracle</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Package/">Package</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sql/">Sql</a></li></ul>
