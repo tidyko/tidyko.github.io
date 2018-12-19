@@ -21,7 +21,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://img.tidyko.com/blog/sentinel-1.png">
 <meta property="og:image" content="http://img.tidyko.com/blog/sentinel-2.png">
-<meta property="og:updated_time" content="2018-12-19T04:29:26.058Z">
+<meta property="og:updated_time" content="2018-12-19T04:31:59.806Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Sentinel 阿里高可用防护流量管理框架接入">
 <meta name="twitter:description" content="使用Docker部署Sentinel控制台进入我的 github仓库 ,clone到本地后，进入sentinel目录，具体部署操作请看README.md。启动后进入 http://localhost:8848 ，即可看到控制台首页。 项目接入(web层)以下以springboot程序为例。 1）新增sentinel的starter12345&amp;lt;dependency&amp;gt;    &amp;lt;gro">
@@ -143,14 +143,9 @@
 <p><img src="http://img.tidyko.com/blog/sentinel-2.png" alt="Sentinel 阿里高可用防护流量管理框架接入-图例2"></p>
 <h2 id="Service限流"><a href="#Service限流" class="headerlink" title="Service限流"></a>Service限流</h2><p>使用aop来限流，学习<a href="https://github.com/alibaba/Sentinel/tree/master/sentinel-demo/sentinel-demo-annotation-spring-aop" target="_blank" rel="noopener">官方demo</a>了解流程</p>
 <p>需要注意几点：</p>
-<ol>
-<li><p>需要在项目有使用aop的情况下才能使用，一般导入</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-aop<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p><code>@SentinelResource</code> 注解需要用在 <code>@Service</code> service层。</p>
-</li>
-<li>异常控制类，参数与返回类型必须遵循以下规则。返回类型需要与原方法相匹配，参数类型需要和原方法相匹配并且最后加一个额外的参数，类型为 BlockException</li>
-</ol>
+<h3 id="1）"><a href="#1）" class="headerlink" title="1）"></a>1）</h3><p>需要在项目有使用aop的情况下才能使用，一般导入<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-aop<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="2）-1"><a href="#2）-1" class="headerlink" title="2）"></a>2）</h3><p><code>@SentinelResource</code> 注解需要用在 <code>@Service</code> service层。</p>
+<h3 id="3）-1"><a href="#3）-1" class="headerlink" title="3）"></a>3）</h3><p>异常控制类，参数与返回类型必须遵循以下规则。返回类型需要与原方法相匹配，参数类型需要和原方法相匹配并且最后加一个额外的参数，类型为 BlockException</p>
 <h2 id="代码限流（主要用于除了web层以外的层，或者某个具体代码块）"><a href="#代码限流（主要用于除了web层以外的层，或者某个具体代码块）" class="headerlink" title="代码限流（主要用于除了web层以外的层，或者某个具体代码块）"></a>代码限流（主要用于除了web层以外的层，或者某个具体代码块）</h2><p>代码限流可通过学习<a href="https://github.com/alibaba/Sentinel/tree/master/sentinel-demo/sentinel-demo-basic" target="_blank" rel="noopener">官方demo</a>了解流程</p>
 <h2 id="控流规则持久化"><a href="#控流规则持久化" class="headerlink" title="控流规则持久化"></a>控流规则持久化</h2><p><a href="https://github.com/spring-cloud-incubator/spring-cloud-alibaba/blob/master/spring-cloud-alibaba-docs/src/main/asciidoc-zh/sentinel.adoc#%E5%8A%A8%E6%80%81%E6%95%B0%E6%8D%AE%E6%BA%90%E6%94%AF%E6%8C%81" target="_blank" rel="noopener">官方demo</a></p>
 <h2 id="限流qps数据持久化"><a href="#限流qps数据持久化" class="headerlink" title="限流qps数据持久化"></a>限流qps数据持久化</h2><p>sentinel的数据默认是通过内存保存五分钟以内的数据，如果需要持久化查看可参考该<a href="hhttps://www.cnblogs.com/cdfive2018/p/9838577.html" target="_blank" rel="noopener">文章</a>。</p>
@@ -158,7 +153,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/c39356d9.html" data-id="cjpuohvoo009t0uykq9cf3dib" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/c39356d9.html" data-id="cjpuoknga00k55jykuvgtwknw" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/">Docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sentinel/">Sentinel</a></li></ul>
