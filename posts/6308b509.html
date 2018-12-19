@@ -85,7 +85,8 @@
   </div>
 </div>
 
-        <section id="main"><article id="post-Java Mac配置java环境变量" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Java Mac配置java环境变量" class="wow slideInRight article article-type-post"
+  itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/posts/6308b509.html" class="article-date">
   <time class="post-time" datetime="2018-06-14T07:30:00.000Z" itemprop="datePublished">
@@ -93,27 +94,27 @@
     <span class="post-day">14</span>
   </time>
 </a>
-   
+
   </div>
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       Java Mac配置Java环境变量
     </h1>
   
 
-        <div>
-          
+      <div>
+        
   <div class="article-category">
     <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
   </div>
 
-          
-              
+        
+        
   &nbsp; | &nbsp;
   <div class="view-box">
     <span id="/posts/6308b509.html" class="leancloud_visitors" data-flag-title="Java Mac配置Java环境变量">
@@ -132,20 +133,21 @@
     <span>时长 ≈ 1 分钟</span>
   </div>
  
-          
-        </div>
-      </header>
+        
+      </div>
+    </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>如果用bash，修改~/.bash_profile 或 ~/.profile；<br>如果用zsh，修改～/.zshrc</p>
+      <p>如果用bash，修改~/.bash_profile 或 ~/.profile；<br>如果用zsh，修改～/.zshrc</p>
 <p>修改这些文件之后，重修打开terminal，配置不会丢 </p>
 <h3 id="1）首先确保已经安装了jdk"><a href="#1）首先确保已经安装了jdk" class="headerlink" title="1）首先确保已经安装了jdk"></a>1）首先确保已经安装了jdk</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># check the present running java</span></span></span><br><span class="line">which java</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># check java version</span></span></span><br><span class="line">java -version</span><br></pre></td></tr></table></figure>
 <h3 id="2）以zsh为例"><a href="#2）以zsh为例" class="headerlink" title="2）以zsh为例"></a>2）以zsh为例</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># check all the available jdk</span></span></span><br><span class="line">/usr/libexec/java_home -V</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># check the top jdk</span></span></span><br><span class="line">/usr/libexec/java_home</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># check some jdk (eg. version 1.7)</span></span></span><br><span class="line">/usr/libexec/java_home -v 1.7</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># edit .zshrc to set java_home variable</span></span></span><br><span class="line">vim ~/.zshrc</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># add the following line into the file</span></span></span><br><span class="line">export JAVA_HOME=$(/usr/libexec/java_home)</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># you can also use the following line to set the variable, which is not recommended, only for older mac os.</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># export JAVA_HOME=/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">#let the configuration in .zshrc take effect</span></span></span><br><span class="line">source ~/.zshrc</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># check if configure succeed</span></span></span><br><span class="line">echo $JAVA_HOME</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/6308b509.html" data-id="cjpuzlazr005qz8ykzjcyh5sj" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/6308b509.html" data-id="cjpv1p05x00dzu3yklcudv5vz" class="article-share-link">
+        分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mac/">Mac</a></li></ul>
@@ -153,7 +155,7 @@
     </footer>
   </div>
   
-    
+  
 <nav id="article-nav">
   
     <a href="/posts/64f28a88.html" id="article-nav-newer" class="article-nav-link-wrap">
@@ -183,13 +185,13 @@
 
 
 
-  <div id="comments" class="comments">
-    <div id="gitment_container"></div>
-  </div>
-  
-  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
-  <script>
+<div id="comments" class="comments">
+  <div id="gitment_container"></div>
+</div>
+
+<link rel="stylesheet" href="https://www.wenjunjiang.win/css/gitment.css">
+<script src="https://www.wenjunjiang.win/js/gitment.js"></script>
+<script>
   var gitment = new Gitment({
     owner: 'tidyko',
     repo: 'tidyko.github.io',
@@ -199,7 +201,7 @@
     },
   })
   gitment.render('gitment_container')
-  </script>
+</script>
 </section>
         
           <aside id="sidebar">

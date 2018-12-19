@@ -12,7 +12,7 @@
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="使用Docker部署Sentinel控制台进入我的 github仓库 ,clone到本地后，进入sentinel目录，具体部署操作请看README.md。启动后进入 http://localhost:8848 ，即可看到控制台首页。 项目接入(web层)以下以springboot程序为例。 1）新增sentinel的starter12345&amp;lt;dependency&amp;gt;    &amp;lt;gro">
-<meta name="keywords" content="Java,J2EE,Docker,Sentinel">
+<meta name="keywords" content="Java,Docker,J2EE,Sentinel">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Sentinel 阿里高可用防护流量管理框架接入">
 <meta property="og:url" content="https://www.tidyko.com/posts/c39356d9.html">
@@ -88,7 +88,8 @@
   </div>
 </div>
 
-        <section id="main"><article id="post-Sentinel 阿里高可用防护流量管理框架接入" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Sentinel 阿里高可用防护流量管理框架接入" class="wow slideInRight article article-type-post"
+  itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/posts/c39356d9.html" class="article-date">
   <time class="post-time" datetime="2018-12-18T03:25:00.000Z" itemprop="datePublished">
@@ -96,27 +97,27 @@
     <span class="post-day">18</span>
   </time>
 </a>
-   
+
   </div>
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       Sentinel 阿里高可用防护流量管理框架接入
     </h1>
   
 
-        <div>
-          
+      <div>
+        
   <div class="article-category">
     <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
   </div>
 
-          
-              
+        
+        
   &nbsp; | &nbsp;
   <div class="view-box">
     <span id="/posts/c39356d9.html" class="leancloud_visitors" data-flag-title="Sentinel 阿里高可用防护流量管理框架接入">
@@ -135,13 +136,13 @@
     <span>时长 ≈ 3 分钟</span>
   </div>
  
-          
-        </div>
-      </header>
+        
+      </div>
+    </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="使用Docker部署Sentinel控制台"><a href="#使用Docker部署Sentinel控制台" class="headerlink" title="使用Docker部署Sentinel控制台"></a>使用Docker部署Sentinel控制台</h2><p>进入我的 <a href="https://github.com/tidyko/docker" target="_blank" rel="noopener">github仓库</a> ,clone到本地后，进入sentinel目录，具体部署操作请看README.md。<br>启动后进入 <a href="http://localhost:8848/" target="_blank" rel="noopener">http://localhost:8848</a> ，即可看到控制台首页。</p>
+      <h2 id="使用Docker部署Sentinel控制台"><a href="#使用Docker部署Sentinel控制台" class="headerlink" title="使用Docker部署Sentinel控制台"></a>使用Docker部署Sentinel控制台</h2><p>进入我的 <a href="https://github.com/tidyko/docker" target="_blank" rel="noopener">github仓库</a> ,clone到本地后，进入sentinel目录，具体部署操作请看README.md。<br>启动后进入 <a href="http://localhost:8848/" target="_blank" rel="noopener">http://localhost:8848</a> ，即可看到控制台首页。</p>
 <h2 id="项目接入-web层"><a href="#项目接入-web层" class="headerlink" title="项目接入(web层)"></a>项目接入(web层)</h2><p>以下以springboot程序为例。</p>
 <h3 id="1）新增sentinel的starter"><a href="#1）新增sentinel的starter" class="headerlink" title="1）新增sentinel的starter"></a>1）新增sentinel的starter</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-alibaba-sentinel<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.1.0.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <a id="more"></a>
@@ -165,7 +166,8 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/c39356d9.html" data-id="cjpuzlb2100amz8ykebdzbakx" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/c39356d9.html" data-id="cjpv1p08k00j5u3yk1s8km7fw" class="article-share-link">
+        分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/">Docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sentinel/">Sentinel</a></li></ul>
@@ -173,7 +175,7 @@
     </footer>
   </div>
   
-    
+  
 <nav id="article-nav">
   
   
@@ -194,13 +196,13 @@
 
 
 
-  <div id="comments" class="comments">
-    <div id="gitment_container"></div>
-  </div>
-  
-  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
-  <script>
+<div id="comments" class="comments">
+  <div id="gitment_container"></div>
+</div>
+
+<link rel="stylesheet" href="https://www.wenjunjiang.win/css/gitment.css">
+<script src="https://www.wenjunjiang.win/js/gitment.js"></script>
+<script>
   var gitment = new Gitment({
     owner: 'tidyko',
     repo: 'tidyko.github.io',
@@ -210,7 +212,7 @@
     },
   })
   gitment.render('gitment_container')
-  </script>
+</script>
 </section>
         
           <aside id="sidebar">

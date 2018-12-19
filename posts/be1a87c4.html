@@ -88,7 +88,8 @@
   </div>
 </div>
 
-        <section id="main"><article id="post-Linux CIFS挂载Windows共享" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Linux CIFS挂载Windows共享" class="wow slideInRight article article-type-post"
+  itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/posts/be1a87c4.html" class="article-date">
   <time class="post-time" datetime="2013-03-28T07:22:00.000Z" itemprop="datePublished">
@@ -96,27 +97,27 @@
     <span class="post-day">28</span>
   </time>
 </a>
-   
+
   </div>
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       Linux CIFS挂载Windows共享
     </h1>
   
 
-        <div>
-          
+      <div>
+        
   <div class="article-category">
     <a class="article-category-link" href="/categories/服务器/">服务器</a>,<a class="article-category-link" href="/categories/服务器/Linux/">Linux</a>
   </div>
 
-          
-              
+        
+        
   &nbsp; | &nbsp;
   <div class="view-box">
     <span id="/posts/be1a87c4.html" class="leancloud_visitors" data-flag-title="Linux CIFS挂载Windows共享">
@@ -135,13 +136,13 @@
     <span>时长 ≈ 1 分钟</span>
   </div>
  
-          
-        </div>
-      </header>
+        
+      </div>
+    </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="1）修改-etc-auto-master"><a href="#1）修改-etc-auto-master" class="headerlink" title="1）修改/etc/auto.master"></a>1）修改/etc/auto.master</h3><p>在/misc /etc/auto.misc下面添加/cifs /etc/auto.cifs<br>图例:<br><img src="http://img.tidyko.com/blog/cifs1.jpg" alt="CIFS挂载Windows共享-图例1"></p>
+      <h3 id="1）修改-etc-auto-master"><a href="#1）修改-etc-auto-master" class="headerlink" title="1）修改/etc/auto.master"></a>1）修改/etc/auto.master</h3><p>在/misc /etc/auto.misc下面添加/cifs /etc/auto.cifs<br>图例:<br><img src="http://img.tidyko.com/blog/cifs1.jpg" alt="CIFS挂载Windows共享-图例1"></p>
 <h3 id="2）修改-etc-auto-cifs"><a href="#2）修改-etc-auto-cifs" class="headerlink" title="2）修改/etc/auto.cifs"></a>2）修改/etc/auto.cifs</h3><p>在里面添加内容<br>格式:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[IP] [-fstype=cifs,username=用户名,passwd=密码] [://共享目录]</span><br></pre></td></tr></table></figure></p>
 <p>图例:<br><img src="http://img.tidyko.com/blog/cifs2.jpg" alt="CIFS挂载Windows共享-图例2"></p>
 <h3 id="3）保存退出"><a href="#3）保存退出" class="headerlink" title="3）保存退出"></a>3）保存退出</h3><p>执行ls /cifs/192.168.0.58 即可看到共享.</p>
@@ -149,7 +150,8 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/be1a87c4.html" data-id="cjpuzlb08006uz8yk46yul6jq" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/be1a87c4.html" data-id="cjpv1p06j00f2u3ykp8wy6815" class="article-share-link">
+        分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
@@ -157,7 +159,7 @@
     </footer>
   </div>
   
-    
+  
 <nav id="article-nav">
   
     <a href="/posts/544340d1.html" id="article-nav-newer" class="article-nav-link-wrap">
@@ -187,13 +189,13 @@
 
 
 
-  <div id="comments" class="comments">
-    <div id="gitment_container"></div>
-  </div>
-  
-  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
-  <script>
+<div id="comments" class="comments">
+  <div id="gitment_container"></div>
+</div>
+
+<link rel="stylesheet" href="https://www.wenjunjiang.win/css/gitment.css">
+<script src="https://www.wenjunjiang.win/js/gitment.js"></script>
+<script>
   var gitment = new Gitment({
     owner: 'tidyko',
     repo: 'tidyko.github.io',
@@ -203,7 +205,7 @@
     },
   })
   gitment.render('gitment_container')
-  </script>
+</script>
 </section>
         
           <aside id="sidebar">

@@ -89,7 +89,8 @@
   </div>
 </div>
 
-        <section id="main"><article id="post-J2EE Spring redirect导致内存溢出问题" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-J2EE Spring redirect导致内存溢出问题" class="wow slideInRight article article-type-post"
+  itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/posts/3c49f4b8.html" class="article-date">
   <time class="post-time" datetime="2018-08-31T01:47:00.000Z" itemprop="datePublished">
@@ -97,27 +98,27 @@
     <span class="post-day">31</span>
   </time>
 </a>
-   
+
   </div>
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       J2EE Spring redirect导致内存溢出问题
     </h1>
   
 
-        <div>
-          
+      <div>
+        
   <div class="article-category">
     <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
   </div>
 
-          
-              
+        
+        
   &nbsp; | &nbsp;
   <div class="view-box">
     <span id="/posts/3c49f4b8.html" class="leancloud_visitors" data-flag-title="J2EE Spring redirect导致内存溢出问题">
@@ -136,13 +137,13 @@
     <span>时长 ≈ 5 分钟</span>
   </div>
  
-          
-        </div>
-      </header>
+        
+      </div>
+    </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>最近发现线上的一个应用跑一段周期之后就会出现内存溢出问题，需要重启，所以以此分析一下原因并修复。</p>
+      <p>最近发现线上的一个应用跑一段周期之后就会出现内存溢出问题，需要重启，所以以此分析一下原因并修复。</p>
 <h2 id="1-获取内存快照"><a href="#1-获取内存快照" class="headerlink" title="1.获取内存快照"></a>1.获取内存快照</h2><p>使用jdk自带工具jmap获取内存快照文件，如下：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">jmap -dump:format=b,file=快照保存路径 进程id</span><br><span class="line"></span><br><span class="line">如：</span><br><span class="line"></span><br><span class="line">jmap -dump:format=b,file=/opt/27245.hprof 27245</span><br></pre></td></tr></table></figure></p>
 <h2 id="2-使用工具进行分析"><a href="#2-使用工具进行分析" class="headerlink" title="2.使用工具进行分析"></a>2.使用工具进行分析</h2><p>获取到内存快照文件27245.hprof后，我们需要对此进行分析，这里使用的分析工具为<code>Eclipse Memory Analyzer Tool</code>，我们使用工具打开27245.hprof文件。</p>
 <h3 id="2-1-Main-View"><a href="#2-1-Main-View" class="headerlink" title="2.1 Main View"></a>2.1 Main View</h3><p>主界面显示有一大块内存占用高达1.3G，基本可以确定是这一块出现了问题。</p>
@@ -171,7 +172,8 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3c49f4b8.html" data-id="cjpuzlaz4004cz8yktalctii8" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/3c49f4b8.html" data-id="cjpv1p02p0049u3yka48jjoe7" class="article-share-link">
+        分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/">Spring</a></li></ul>
@@ -179,7 +181,7 @@
     </footer>
   </div>
   
-    
+  
 <nav id="article-nav">
   
     <a href="/posts/4573f792.html" id="article-nav-newer" class="article-nav-link-wrap">
@@ -209,13 +211,13 @@
 
 
 
-  <div id="comments" class="comments">
-    <div id="gitment_container"></div>
-  </div>
-  
-  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
-  <script>
+<div id="comments" class="comments">
+  <div id="gitment_container"></div>
+</div>
+
+<link rel="stylesheet" href="https://www.wenjunjiang.win/css/gitment.css">
+<script src="https://www.wenjunjiang.win/js/gitment.js"></script>
+<script>
   var gitment = new Gitment({
     owner: 'tidyko',
     repo: 'tidyko.github.io',
@@ -225,7 +227,7 @@
     },
   })
   gitment.render('gitment_container')
-  </script>
+</script>
 </section>
         
           <aside id="sidebar">

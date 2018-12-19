@@ -85,7 +85,8 @@
   </div>
 </div>
 
-        <section id="main"><article id="post-微信公众号 WeixinJSBridge.call(&#39;closeWindow&#39;)无效" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-微信公众号 WeixinJSBridge.call(&#39;closeWindow&#39;)无效" class="wow slideInRight article article-type-post"
+  itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/posts/1e7ee8d0.html" class="article-date">
   <time class="post-time" datetime="2016-04-13T02:18:00.000Z" itemprop="datePublished">
@@ -93,27 +94,27 @@
     <span class="post-day">13</span>
   </time>
 </a>
-   
+
   </div>
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       微信公众号 WeixinJSBridge.call(&#39;closeWindow&#39;)无效
     </h1>
   
 
-        <div>
-          
+      <div>
+        
   <div class="article-category">
     <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/JavaScript/">JavaScript</a>
   </div>
 
-          
-              
+        
+        
   &nbsp; | &nbsp;
   <div class="view-box">
     <span id="/posts/1e7ee8d0.html" class="leancloud_visitors" data-flag-title="微信公众号 WeixinJSBridge.call(&#39;closeWindow&#39;)无效">
@@ -132,20 +133,21 @@
     <span>时长 ≈ 1 分钟</span>
   </div>
  
-          
-        </div>
-      </header>
+        
+      </div>
+    </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>公众号上面使用iframe嵌套子页面，然而子页面无法使用<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WeixinJSBridge.call(<span class="string">'closeWindow'</span>)</span><br></pre></td></tr></table></figure></p>
+      <p>公众号上面使用iframe嵌套子页面，然而子页面无法使用<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WeixinJSBridge.call(<span class="string">'closeWindow'</span>)</span><br></pre></td></tr></table></figure></p>
 <p>这时候必须在函数前面加上parent.,比如：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">parent.WeixinJSBridge.call(<span class="string">'closeWindow'</span>);</span><br></pre></td></tr></table></figure></p>
 <p>在主页面进行签名验证，子页面不添加jssdk的签名信息。需要调用jssdk接口时，比如图片选择接口，在jssdk的函数前加parent.，即调用父页面的此函数，经过测试，功能可正常调用。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">parent.wx.chooseImage(&#123;</span><br><span class="line">    success: <span class="function"><span class="keyword">function</span> (<span class="params">res</span>) </span>&#123;</span><br><span class="line">        <span class="comment">//upload_success(res.localIds);</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/1e7ee8d0.html" data-id="cjpuzlb2r00byz8ykidq2ee2i" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/1e7ee8d0.html" data-id="cjpv1p08y00jwu3ykxfj854ti" class="article-share-link">
+        分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/微信公众号/">微信公众号</a></li></ul>
@@ -153,7 +155,7 @@
     </footer>
   </div>
   
-    
+  
 <nav id="article-nav">
   
     <a href="/posts/f6190ed2.html" id="article-nav-newer" class="article-nav-link-wrap">
@@ -183,13 +185,13 @@
 
 
 
-  <div id="comments" class="comments">
-    <div id="gitment_container"></div>
-  </div>
-  
-  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
-  <script>
+<div id="comments" class="comments">
+  <div id="gitment_container"></div>
+</div>
+
+<link rel="stylesheet" href="https://www.wenjunjiang.win/css/gitment.css">
+<script src="https://www.wenjunjiang.win/js/gitment.js"></script>
+<script>
   var gitment = new Gitment({
     owner: 'tidyko',
     repo: 'tidyko.github.io',
@@ -199,7 +201,7 @@
     },
   })
   gitment.render('gitment_container')
-  </script>
+</script>
 </section>
         
           <aside id="sidebar">

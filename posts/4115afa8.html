@@ -85,7 +85,8 @@
   </div>
 </div>
 
-        <section id="main"><article id="post-J2EE CXF WebService 服务端和客户端 环境搭建及测试" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-J2EE CXF WebService 服务端和客户端 环境搭建及测试" class="wow slideInRight article article-type-post"
+  itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/posts/4115afa8.html" class="article-date">
   <time class="post-time" datetime="2014-03-11T07:10:00.000Z" itemprop="datePublished">
@@ -93,27 +94,27 @@
     <span class="post-day">11</span>
   </time>
 </a>
-   
+
   </div>
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       J2EE CXF WebService 服务端和客户端 环境搭建及测试
     </h1>
   
 
-        <div>
-          
+      <div>
+        
   <div class="article-category">
     <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
   </div>
 
-          
-              
+        
+        
   &nbsp; | &nbsp;
   <div class="view-box">
     <span id="/posts/4115afa8.html" class="leancloud_visitors" data-flag-title="J2EE CXF WebService 服务端和客户端 环境搭建及测试">
@@ -132,13 +133,13 @@
     <span>时长 ≈ 4 分钟</span>
   </div>
  
-          
-        </div>
-      </header>
+        
+      </div>
+    </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="CXF服务端"><a href="#CXF服务端" class="headerlink" title="CXF服务端"></a>CXF服务端</h2><h3 id="1）如果是普通项目"><a href="#1）如果是普通项目" class="headerlink" title="1）如果是普通项目"></a>1）如果是普通项目</h3><p>去<a href="http://cxf.apache.org/" target="_blank" rel="noopener">官网</a>下载对应的jar包：<br>添加到项目里面。</p>
+      <h2 id="CXF服务端"><a href="#CXF服务端" class="headerlink" title="CXF服务端"></a>CXF服务端</h2><h3 id="1）如果是普通项目"><a href="#1）如果是普通项目" class="headerlink" title="1）如果是普通项目"></a>1）如果是普通项目</h3><p>去<a href="http://cxf.apache.org/" target="_blank" rel="noopener">官网</a>下载对应的jar包：<br>添加到项目里面。</p>
 <h3 id="2）如果是Maven项目"><a href="#2）如果是Maven项目" class="headerlink" title="2）如果是Maven项目"></a>2）如果是Maven项目</h3><p>在pom文件里面配置相应依赖包。</p>
 <h3 id="3）修改web-xml，完成spring和cxf配置"><a href="#3）修改web-xml，完成spring和cxf配置" class="headerlink" title="3）修改web.xml，完成spring和cxf配置"></a>3）修改web.xml，完成spring和cxf配置</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- Spring --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">context-param</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>contextConfigLocation<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param-value</span>&gt;</span></span><br><span class="line">        classpath*:/applicationContext.xml</span><br><span class="line">    <span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">context-param</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">listener</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">listener-class</span>&gt;</span>org.springframework.web.context.ContextLoaderListener<span class="tag">&lt;/<span class="name">listener-class</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">listener</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- CXFServlet --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>CXFServlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>org.apache.cxf.transport.servlet.CXFServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>CXFServlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/WebService/*<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <h3 id="4）编写服务接口和实现"><a href="#4）编写服务接口和实现" class="headerlink" title="4）编写服务接口和实现"></a>4）编写服务接口和实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@WebService</span>(targetNamespace=Constant.NAME_SPACE)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">FinanceService</span> </span>&#123;     </span><br><span class="line">    <span class="function">String <span class="title">financeSearchById</span><span class="params">(@WebParam(name=<span class="string">"id"</span>)</span>Integer id)</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -158,7 +159,8 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/4115afa8.html" data-id="cjpuzlaz20048z8ykc035ebnf" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/4115afa8.html" data-id="cjpv1p029003nu3yk22n58yxq" class="article-share-link">
+        分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CXF/">CXF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WebService/">WebService</a></li></ul>
@@ -166,7 +168,7 @@
     </footer>
   </div>
   
-    
+  
 <nav id="article-nav">
   
     <a href="/posts/efb40b79.html" id="article-nav-newer" class="article-nav-link-wrap">
@@ -196,13 +198,13 @@
 
 
 
-  <div id="comments" class="comments">
-    <div id="gitment_container"></div>
-  </div>
-  
-  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
-  <script>
+<div id="comments" class="comments">
+  <div id="gitment_container"></div>
+</div>
+
+<link rel="stylesheet" href="https://www.wenjunjiang.win/css/gitment.css">
+<script src="https://www.wenjunjiang.win/js/gitment.js"></script>
+<script>
   var gitment = new Gitment({
     owner: 'tidyko',
     repo: 'tidyko.github.io',
@@ -212,7 +214,7 @@
     },
   })
   gitment.render('gitment_container')
-  </script>
+</script>
 </section>
         
           <aside id="sidebar">

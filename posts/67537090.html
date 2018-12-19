@@ -85,7 +85,8 @@
   </div>
 </div>
 
-        <section id="main"><article id="post-Eclipse 修改java代码不强制重启" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Eclipse 修改java代码不强制重启" class="wow slideInRight article article-type-post"
+  itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/posts/67537090.html" class="article-date">
   <time class="post-time" datetime="2015-03-03T03:45:00.000Z" itemprop="datePublished">
@@ -93,27 +94,27 @@
     <span class="post-day">03</span>
   </time>
 </a>
-   
+
   </div>
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       Eclipse 修改java代码不强制重启
     </h1>
   
 
-        <div>
-          
+      <div>
+        
   <div class="article-category">
     <a class="article-category-link" href="/categories/开发调试工具/">开发调试工具</a>,<a class="article-category-link" href="/categories/开发调试工具/Eclipse/">Eclipse</a>
   </div>
 
-          
-              
+        
+        
   &nbsp; | &nbsp;
   <div class="view-box">
     <span id="/posts/67537090.html" class="leancloud_visitors" data-flag-title="Eclipse 修改java代码不强制重启">
@@ -132,13 +133,13 @@
     <span>时长 ≈ 1 分钟</span>
   </div>
  
-          
-        </div>
-      </header>
+        
+      </div>
+    </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>找到tomcat的server.xml文件，修改以下代码，重新发布重启。然后修改java代码就可以不用重启了。</p>
+      <p>找到tomcat的server.xml文件，修改以下代码，重新发布重启。然后修改java代码就可以不用重启了。</p>
 <p>将 <code>reloadable=“true”</code> 改成 <code>reloadable=&quot;false&quot;</code></p>
 <p>原代码:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Context</span> <span class="attr">docBase</span>=<span class="string">"gdgpms"</span> <span class="attr">path</span>=<span class="string">"/gdgpms"</span> <span class="attr">reloadable</span>=<span class="string">"true"</span> <span class="attr">source</span>=<span class="string">"org.eclipse.jst.jee.server:gdgpms"</span>/&gt;</span><span class="tag">&lt;/<span class="name">Host</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p>修改后<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Context</span> <span class="attr">docBase</span>=<span class="string">"gdgpms"</span> <span class="attr">path</span>=<span class="string">"/gdgpms"</span> <span class="attr">reloadable</span>=<span class="string">"false"</span> <span class="attr">source</span>=<span class="string">"org.eclipse.jst.jee.server:gdgpms"</span>/&gt;</span><span class="tag">&lt;/<span class="name">Host</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
@@ -146,7 +147,8 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/67537090.html" data-id="cjpuzlaxe001pz8ykqc7lu8m7" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/67537090.html" data-id="cjpv1p016001du3yk93o5o1ts" class="article-share-link">
+        分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li></ul>
@@ -154,7 +156,7 @@
     </footer>
   </div>
   
-    
+  
 <nav id="article-nav">
   
     <a href="/posts/a8ddc8ae.html" id="article-nav-newer" class="article-nav-link-wrap">
@@ -184,13 +186,13 @@
 
 
 
-  <div id="comments" class="comments">
-    <div id="gitment_container"></div>
-  </div>
-  
-  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
-  <script>
+<div id="comments" class="comments">
+  <div id="gitment_container"></div>
+</div>
+
+<link rel="stylesheet" href="https://www.wenjunjiang.win/css/gitment.css">
+<script src="https://www.wenjunjiang.win/js/gitment.js"></script>
+<script>
   var gitment = new Gitment({
     owner: 'tidyko',
     repo: 'tidyko.github.io',
@@ -200,7 +202,7 @@
     },
   })
   gitment.render('gitment_container')
-  </script>
+</script>
 </section>
         
           <aside id="sidebar">

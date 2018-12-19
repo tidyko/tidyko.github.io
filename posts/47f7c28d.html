@@ -85,7 +85,8 @@
   </div>
 </div>
 
-        <section id="main"><article id="post-Linux 机器之间 zssh, rz, sz互相传输" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Linux 机器之间 zssh, rz, sz互相传输" class="wow slideInRight article article-type-post"
+  itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/posts/47f7c28d.html" class="article-date">
   <time class="post-time" datetime="2018-07-27T10:24:00.000Z" itemprop="datePublished">
@@ -93,27 +94,27 @@
     <span class="post-day">27</span>
   </time>
 </a>
-   
+
   </div>
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       Linux 机器之间 zssh, rz, sz互相传输
     </h1>
   
 
-        <div>
-          
+      <div>
+        
   <div class="article-category">
     <a class="article-category-link" href="/categories/服务器/">服务器</a>,<a class="article-category-link" href="/categories/服务器/Linux/">Linux</a>
   </div>
 
-          
-              
+        
+        
   &nbsp; | &nbsp;
   <div class="view-box">
     <span id="/posts/47f7c28d.html" class="leancloud_visitors" data-flag-title="Linux 机器之间 zssh, rz, sz互相传输">
@@ -132,13 +133,13 @@
     <span>时长 ≈ 2 分钟</span>
   </div>
  
-          
-        </div>
-      </header>
+        
+      </div>
+    </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>服务器端安装lrzsz：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo  yum install lrzsz</span><br></pre></td></tr></table></figure></p>
+      <p>服务器端安装lrzsz：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo  yum install lrzsz</span><br></pre></td></tr></table></figure></p>
 <p>本地客户端安装lrzsz：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install lrzsz</span><br></pre></td></tr></table></figure></p>
 <p>本地客户端安装zssh：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install zssh</span><br></pre></td></tr></table></figure></p>
 <h3 id="1）下载"><a href="#1）下载" class="headerlink" title="1）下载"></a>1）下载</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> tidy @ TidydeMBP <span class="keyword">in</span> ~ [15:56:24]</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> zssh finder@10.121.22.201</span></span><br><span class="line">Press ^@ (C-Space) to enter file transfer mode, then ? for help</span><br><span class="line"></span><br><span class="line">finder@10.121.22.201's password:</span><br><span class="line">Last login: Mon Jul 30 15:56:20 2018 from 10.121.80.1</span><br><span class="line">-bash: ulimit: open files: cannot modify limit: 不允许的操作</span><br><span class="line">[finder@im2-gf-test ~]$ ssh imhtp@localhost</span><br><span class="line">imhtp@localhost's password:</span><br><span class="line">Last login: Mon Jul 30 15:56:49 2018 from 10.121.80.1</span><br><span class="line">[imhtp@im2-gf-test ~]$ cd /opt/20180728/</span><br><span class="line">[imhtp@im2-gf-test 20180728]$ sz tmp.txt</span><br><span class="line">�*B00000000000000</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> ctrl+@</span></span><br><span class="line">zssh &gt; pw</span><br><span class="line">pw: No such file or directory</span><br><span class="line">zssh &gt; pwd</span><br><span class="line">/Users/tidy</span><br><span class="line">zssh &gt; cd Downloads</span><br><span class="line">zssh &gt; rz</span><br><span class="line">Receiving: tmp.txt</span><br><span class="line">Bytes received: 0/ 0 BPS:0</span><br><span class="line">Retry 0: Got TIMEOUT</span><br><span class="line"></span><br><span class="line">Transfer complete</span><br></pre></td></tr></table></figure>
@@ -148,7 +149,8 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/47f7c28d.html" data-id="cjpuzlb0j007iz8yks749k86p" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/47f7c28d.html" data-id="cjpv1p06t00fou3ykk3lxdfo9" class="article-share-link">
+        分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
@@ -156,7 +158,7 @@
     </footer>
   </div>
   
-    
+  
 <nav id="article-nav">
   
     <a href="/posts/3f08f656.html" id="article-nav-newer" class="article-nav-link-wrap">
@@ -186,13 +188,13 @@
 
 
 
-  <div id="comments" class="comments">
-    <div id="gitment_container"></div>
-  </div>
-  
-  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
-  <script>
+<div id="comments" class="comments">
+  <div id="gitment_container"></div>
+</div>
+
+<link rel="stylesheet" href="https://www.wenjunjiang.win/css/gitment.css">
+<script src="https://www.wenjunjiang.win/js/gitment.js"></script>
+<script>
   var gitment = new Gitment({
     owner: 'tidyko',
     repo: 'tidyko.github.io',
@@ -202,7 +204,7 @@
     },
   })
   gitment.render('gitment_container')
-  </script>
+</script>
 </section>
         
           <aside id="sidebar">

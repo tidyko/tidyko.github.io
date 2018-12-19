@@ -85,7 +85,8 @@
   </div>
 </div>
 
-        <section id="main"><article id="post-Kafka 搭建和测试等问题" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Kafka 搭建和测试等问题" class="wow slideInRight article article-type-post"
+  itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/posts/95c8a77e.html" class="article-date">
   <time class="post-time" datetime="2017-03-23T08:11:00.000Z" itemprop="datePublished">
@@ -93,27 +94,27 @@
     <span class="post-day">23</span>
   </time>
 </a>
-   
+
   </div>
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       Kafka 搭建和测试等问题
     </h1>
   
 
-        <div>
-          
+      <div>
+        
   <div class="article-category">
     <a class="article-category-link" href="/categories/中间件/">中间件</a>,<a class="article-category-link" href="/categories/中间件/Kafka/">Kafka</a>
   </div>
 
-          
-              
+        
+        
   &nbsp; | &nbsp;
   <div class="view-box">
     <span id="/posts/95c8a77e.html" class="leancloud_visitors" data-flag-title="Kafka 搭建和测试等问题">
@@ -132,13 +133,13 @@
     <span>时长 ≈ 2 分钟</span>
   </div>
  
-          
-        </div>
-      </header>
+        
+      </div>
+    </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="1）安装启动kafka"><a href="#1）安装启动kafka" class="headerlink" title="1）安装启动kafka"></a>1）安装启动kafka</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">跳转到下载目录</span></span><br><span class="line">cd /opt/setup</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 下载安装包</span></span><br><span class="line">wget http://mirror.bit.edu.cn/apache/kafka/0.10.2.0/kafka_2.12-0.10.2.0.tgz</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 解压</span></span><br><span class="line">tar -xzf kafka_2.10-0.8.1.1.tgz</span><br><span class="line">mv kafka_2.12-0.10.2.0 /usr/program</span><br><span class="line"><span class="meta">#</span><span class="bash"> 启动 Zookeeper</span></span><br><span class="line">cd /usr/program/zookeeper-3.4.9</span><br><span class="line">bin/zookeeper-server-start.sh config/zookeeper.properties</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 启动 Kafka</span></span><br><span class="line"></span><br><span class="line">cd /usr/program/kafka_2.12-0.10.2.0 </span><br><span class="line">bin/kafka-server-start.sh config/server.properties</span><br></pre></td></tr></table></figure>
+      <h3 id="1）安装启动kafka"><a href="#1）安装启动kafka" class="headerlink" title="1）安装启动kafka"></a>1）安装启动kafka</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">跳转到下载目录</span></span><br><span class="line">cd /opt/setup</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 下载安装包</span></span><br><span class="line">wget http://mirror.bit.edu.cn/apache/kafka/0.10.2.0/kafka_2.12-0.10.2.0.tgz</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 解压</span></span><br><span class="line">tar -xzf kafka_2.10-0.8.1.1.tgz</span><br><span class="line">mv kafka_2.12-0.10.2.0 /usr/program</span><br><span class="line"><span class="meta">#</span><span class="bash"> 启动 Zookeeper</span></span><br><span class="line">cd /usr/program/zookeeper-3.4.9</span><br><span class="line">bin/zookeeper-server-start.sh config/zookeeper.properties</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 启动 Kafka</span></span><br><span class="line"></span><br><span class="line">cd /usr/program/kafka_2.12-0.10.2.0 </span><br><span class="line">bin/kafka-server-start.sh config/server.properties</span><br></pre></td></tr></table></figure>
 <h3 id="2）"><a href="#2）" class="headerlink" title="2）"></a>2）</h3><p>启动过程中，发现提示“未知的名称或服务”需要修改host配置，在127.0.0.1后面最佳goukaiHost，，为主机名称。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/hosts</span><br><span class="line"></span><br><span class="line">127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4 goukaiHost</span><br><span class="line">::1         localhost localhost.localdomain localhost6 localhost6.localdomain6</span><br></pre></td></tr></table></figure></p>
 <h3 id="3）"><a href="#3）" class="headerlink" title="3）"></a>3）</h3><p>创建一个叫做“test”的topic，它只有一个分区，一个副本。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test</span><br></pre></td></tr></table></figure></p>
 <p>查看创建的topic<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/kafka-topics.sh --list --zookeeper localhost:2181</span><br></pre></td></tr></table></figure></p>
@@ -149,7 +150,8 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/95c8a77e.html" data-id="cjpuzlb04006mz8ykab054khh" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/95c8a77e.html" data-id="cjpv1p06g00evu3ykkneuq2dl" class="article-share-link">
+        分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Kafka/">Kafka</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/队列/">队列</a></li></ul>
@@ -157,7 +159,7 @@
     </footer>
   </div>
   
-    
+  
 <nav id="article-nav">
   
     <a href="/posts/ba8658f2.html" id="article-nav-newer" class="article-nav-link-wrap">
@@ -187,13 +189,13 @@
 
 
 
-  <div id="comments" class="comments">
-    <div id="gitment_container"></div>
-  </div>
-  
-  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
-  <script>
+<div id="comments" class="comments">
+  <div id="gitment_container"></div>
+</div>
+
+<link rel="stylesheet" href="https://www.wenjunjiang.win/css/gitment.css">
+<script src="https://www.wenjunjiang.win/js/gitment.js"></script>
+<script>
   var gitment = new Gitment({
     owner: 'tidyko',
     repo: 'tidyko.github.io',
@@ -203,7 +205,7 @@
     },
   })
   gitment.render('gitment_container')
-  </script>
+</script>
 </section>
         
           <aside id="sidebar">

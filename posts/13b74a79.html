@@ -85,7 +85,8 @@
   </div>
 </div>
 
-        <section id="main"><article id="post-HTML 设置event.cancelBubble，使触发子元素的onclick不同时触发父元素的onclick" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-HTML 设置event.cancelBubble，使触发子元素的onclick不同时触发父元素的onclick" class="wow slideInRight article article-type-post"
+  itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/posts/13b74a79.html" class="article-date">
   <time class="post-time" datetime="2016-05-12T03:14:00.000Z" itemprop="datePublished">
@@ -93,27 +94,27 @@
     <span class="post-day">12</span>
   </time>
 </a>
-   
+
   </div>
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       HTML 设置event.cancelBubble，使触发子元素的onclick不同时触发父元素的onclick
     </h1>
   
 
-        <div>
-          
+      <div>
+        
   <div class="article-category">
     <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/HTML/">HTML</a>
   </div>
 
-          
-              
+        
+        
   &nbsp; | &nbsp;
   <div class="view-box">
     <span id="/posts/13b74a79.html" class="leancloud_visitors" data-flag-title="HTML 设置event.cancelBubble，使触发子元素的onclick不同时触发父元素的onclick">
@@ -132,13 +133,13 @@
     <span>时长 ≈ 4 分钟</span>
   </div>
  
-          
-        </div>
-      </header>
+        
+      </div>
+    </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>由于HTML中的对象都是层次结构，比如一个Table包含了多个TR，一个TR包含了多个TD。</p>
+      <p>由于HTML中的对象都是层次结构，比如一个Table包含了多个TR，一个TR包含了多个TD。</p>
 <p>Bubble就是一个事件可以从子节点向父节点传递，比如鼠标点击了一个TD，当前的event.srcElement就是这个TD，但是这种冒 泡机制使你可以从TR或者Table处截获这个点击事件，但是如果你event.cancelBubble，则就不能上传事件。 </p>
 <p>例子：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">table</span> <span class="attr">border</span>=<span class="string">"1"</span> <span class="attr">width</span>=<span class="string">"26%"</span> <span class="attr">id</span>=<span class="string">"tableA"</span> <span class="attr">onclick</span>=<span class="string">"alert('tableA')"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">tr</span> <span class="attr">onclick</span>=<span class="string">"tableA_rowA_click()"</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">td</span> <span class="attr">width</span>=<span class="string">"106"</span>&gt;</span>一般<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">tr</span> <span class="attr">onclick</span>=<span class="string">"tableA_rowB_click()"</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">td</span> <span class="attr">width</span>=<span class="string">"106"</span>&gt;</span>阻止消息上传<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span> 　<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--   --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">language</span>=<span class="string">"javascript"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">&lt;!--</span></span><br><span class="line"><span class="undefined">function tableA_rowA_click()&#123;</span></span><br><span class="line"><span class="undefined">alert('tableA_rowA');</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">function tableA_rowB_click()&#123;</span></span><br><span class="line"><span class="undefined">alert('tableA_rowB');</span></span><br><span class="line"><span class="undefined">event.cancelBubble=true;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined">//--&gt;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 <h3 id="event-cancelBubble阻止事件冒泡"><a href="#event-cancelBubble阻止事件冒泡" class="headerlink" title="event.cancelBubble阻止事件冒泡"></a>event.cancelBubble阻止事件冒泡</h3><p>event.cancelBubble=true; </p>
@@ -151,7 +152,8 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/13b74a79.html" data-id="cjpuzlaxu002cz8ykwrrsnn1h" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/13b74a79.html" data-id="cjpv1p01n002au3ykzxbs9y2s" class="article-share-link">
+        分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML/">HTML</a></li></ul>
@@ -159,7 +161,7 @@
     </footer>
   </div>
   
-    
+  
 <nav id="article-nav">
   
     <a href="/posts/c70f76d0.html" id="article-nav-newer" class="article-nav-link-wrap">
@@ -189,13 +191,13 @@
 
 
 
-  <div id="comments" class="comments">
-    <div id="gitment_container"></div>
-  </div>
-  
-  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
-  <script>
+<div id="comments" class="comments">
+  <div id="gitment_container"></div>
+</div>
+
+<link rel="stylesheet" href="https://www.wenjunjiang.win/css/gitment.css">
+<script src="https://www.wenjunjiang.win/js/gitment.js"></script>
+<script>
   var gitment = new Gitment({
     owner: 'tidyko',
     repo: 'tidyko.github.io',
@@ -205,7 +207,7 @@
     },
   })
   gitment.render('gitment_container')
-  </script>
+</script>
 </section>
         
           <aside id="sidebar">

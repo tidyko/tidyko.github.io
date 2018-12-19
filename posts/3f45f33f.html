@@ -87,7 +87,8 @@
   </div>
 </div>
 
-        <section id="main"><article id="post-Tomcat 使用probe对tomcat服务进行监控" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Tomcat 使用probe对tomcat服务进行监控" class="wow slideInRight article article-type-post"
+  itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/posts/3f45f33f.html" class="article-date">
   <time class="post-time" datetime="2016-01-29T03:16:00.000Z" itemprop="datePublished">
@@ -95,27 +96,27 @@
     <span class="post-day">29</span>
   </time>
 </a>
-   
+
   </div>
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       Tomcat 使用probe对tomcat服务进行监控
     </h1>
   
 
-        <div>
-          
+      <div>
+        
   <div class="article-category">
     <a class="article-category-link" href="/categories/服务容器/">服务容器</a>,<a class="article-category-link" href="/categories/服务容器/Tomcat/">Tomcat</a>
   </div>
 
-          
-              
+        
+        
   &nbsp; | &nbsp;
   <div class="view-box">
     <span id="/posts/3f45f33f.html" class="leancloud_visitors" data-flag-title="Tomcat 使用probe对tomcat服务进行监控">
@@ -134,13 +135,13 @@
     <span>时长 ≈ 1 分钟</span>
   </div>
  
-          
-        </div>
-      </header>
+        
+      </div>
+    </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="1）运行环境（博主本地）"><a href="#1）运行环境（博主本地）" class="headerlink" title="1）运行环境（博主本地）"></a>1）运行环境（博主本地）</h2><p>JDK：jdk1.6<br>Tomcat:tomcat7<br>OS:Windows10</p>
+      <h2 id="1）运行环境（博主本地）"><a href="#1）运行环境（博主本地）" class="headerlink" title="1）运行环境（博主本地）"></a>1）运行环境（博主本地）</h2><p>JDK：jdk1.6<br>Tomcat:tomcat7<br>OS:Windows10</p>
 <h2 id="2）下载"><a href="#2）下载" class="headerlink" title="2）下载"></a>2）下载</h2><p><a href="http://files.cnblogs.com/files/zengweiming/PSI-probe-2.3.3%E4%B8%AD%E6%96%87%E7%89%88%E5%8F%8A%E5%AE%89%E8%A3%85%E8%AF%A6%E8%A7%A3.rar" target="_blank" rel="noopener">点击下载</a></p>
 <h2 id="3）安装运行"><a href="#3）安装运行" class="headerlink" title="3）安装运行"></a>3）安装运行</h2><h3 id="3-1）解压"><a href="#3-1）解压" class="headerlink" title="3.1）解压"></a>3.1）解压</h3><p>将probe文件夹复制放进tomcat里面的webapp目录</p>
 <h3 id="3-2）修改tomcat的管理用户配置"><a href="#3-2）修改tomcat的管理用户配置" class="headerlink" title="3.2）修改tomcat的管理用户配置"></a>3.2）修改tomcat的管理用户配置</h3><p>打开 <code>CATALINA_HOME/conf/tomcat-users.xml</code> ，在里面添加以下代码<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">tomcat-users</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">role</span> <span class="attr">rolename</span>=<span class="string">"probeuser"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">role</span> <span class="attr">rolename</span>=<span class="string">"poweruser"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">role</span> <span class="attr">rolename</span>=<span class="string">"poweruserplus"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">role</span> <span class="attr">rolename</span>=<span class="string">"manager"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">user</span> <span class="attr">username</span>=<span class="string">"admin"</span> <span class="attr">password</span>=<span class="string">"admin"</span> <span class="attr">roles</span>=<span class="string">"manager"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">tomcat-users</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
@@ -149,7 +150,8 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3f45f33f.html" data-id="cjpuzlb2500auz8yks1pmi28l" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/3f45f33f.html" data-id="cjpv1p08i00j0u3ykhnjwp1ge" class="article-share-link">
+        分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tomcat/">Tomcat</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/probe/">probe</a></li></ul>
@@ -157,7 +159,7 @@
     </footer>
   </div>
   
-    
+  
 <nav id="article-nav">
   
     <a href="/posts/3ddda97c.html" id="article-nav-newer" class="article-nav-link-wrap">
@@ -187,13 +189,13 @@
 
 
 
-  <div id="comments" class="comments">
-    <div id="gitment_container"></div>
-  </div>
-  
-  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
-  <script>
+<div id="comments" class="comments">
+  <div id="gitment_container"></div>
+</div>
+
+<link rel="stylesheet" href="https://www.wenjunjiang.win/css/gitment.css">
+<script src="https://www.wenjunjiang.win/js/gitment.js"></script>
+<script>
   var gitment = new Gitment({
     owner: 'tidyko',
     repo: 'tidyko.github.io',
@@ -203,7 +205,7 @@
     },
   })
   gitment.render('gitment_container')
-  </script>
+</script>
 </section>
         
           <aside id="sidebar">

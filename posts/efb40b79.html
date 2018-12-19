@@ -85,7 +85,8 @@
   </div>
 </div>
 
-        <section id="main"><article id="post-Oracle nvl与nvl2对比" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Oracle nvl与nvl2对比" class="wow slideInRight article article-type-post"
+  itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/posts/efb40b79.html" class="article-date">
   <time class="post-time" datetime="2014-03-12T03:15:00.000Z" itemprop="datePublished">
@@ -93,27 +94,27 @@
     <span class="post-day">12</span>
   </time>
 </a>
-   
+
   </div>
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       Oracle nvl与nvl2对比
     </h1>
   
 
-        <div>
-          
+      <div>
+        
   <div class="article-category">
     <a class="article-category-link" href="/categories/数据库/">数据库</a>,<a class="article-category-link" href="/categories/数据库/Oracle/">Oracle</a>
   </div>
 
-          
-              
+        
+        
   &nbsp; | &nbsp;
   <div class="view-box">
     <span id="/posts/efb40b79.html" class="leancloud_visitors" data-flag-title="Oracle nvl与nvl2对比">
@@ -132,13 +133,13 @@
     <span>时长 ≈ 1 分钟</span>
   </div>
  
-          
-        </div>
-      </header>
+        
+      </div>
+    </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="1）nvl"><a href="#1）nvl" class="headerlink" title="1）nvl"></a>1）nvl</h3><p>只要v1为null，即将值变为v2。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvl(v1,v2)</span><br></pre></td></tr></table></figure></p>
+      <h3 id="1）nvl"><a href="#1）nvl" class="headerlink" title="1）nvl"></a>1）nvl</h3><p>只要v1为null，即将值变为v2。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvl(v1,v2)</span><br></pre></td></tr></table></figure></p>
 <p>pay(类型):number;</p>
 <p>在执行 <figure class="highlight sql"><figcaption><span>nvl(pay_type,'null') ``` 函数的时候会提示无效数字，可能是nvl函数会自动将其转换成数字类型的原因。</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">这里需要将pay_type用to_char函数处理一下。</span><br><span class="line">``` sql</span><br><span class="line">nvl(to_char(pay_type),'null')</span><br></pre></td></tr></table></figure></p>
 <h3 id="2）nvl2"><a href="#2）nvl2" class="headerlink" title="2）nvl2"></a>2）nvl2</h3><p>只要v1为null，即将值变为v2，否则将值变为v3。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvl2(v1,v2,v3)</span><br></pre></td></tr></table></figure></p>
@@ -146,7 +147,8 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/efb40b79.html" data-id="cjpuzlb1f009gz8ykrlpyzjbz" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/efb40b79.html" data-id="cjpv1p07q00hau3yk4pr29scw" class="article-share-link">
+        分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Oracle/">Oracle</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sql/">Sql</a></li></ul>
@@ -154,7 +156,7 @@
     </footer>
   </div>
   
-    
+  
 <nav id="article-nav">
   
     <a href="/posts/380553c.html" id="article-nav-newer" class="article-nav-link-wrap">
@@ -184,13 +186,13 @@
 
 
 
-  <div id="comments" class="comments">
-    <div id="gitment_container"></div>
-  </div>
-  
-  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
-  <script>
+<div id="comments" class="comments">
+  <div id="gitment_container"></div>
+</div>
+
+<link rel="stylesheet" href="https://www.wenjunjiang.win/css/gitment.css">
+<script src="https://www.wenjunjiang.win/js/gitment.js"></script>
+<script>
   var gitment = new Gitment({
     owner: 'tidyko',
     repo: 'tidyko.github.io',
@@ -200,7 +202,7 @@
     },
   })
   gitment.render('gitment_container')
-  </script>
+</script>
 </section>
         
           <aside id="sidebar">

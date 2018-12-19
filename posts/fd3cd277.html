@@ -85,7 +85,8 @@
   </div>
 </div>
 
-        <section id="main"><article id="post-Redis DENIED Redis is running in protected mode" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Redis DENIED Redis is running in protected mode" class="wow slideInRight article article-type-post"
+  itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/posts/fd3cd277.html" class="article-date">
   <time class="post-time" datetime="2017-10-17T01:30:00.000Z" itemprop="datePublished">
@@ -93,27 +94,27 @@
     <span class="post-day">17</span>
   </time>
 </a>
-   
+
   </div>
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       Redis DENIED Redis is running in protected mode
     </h1>
   
 
-        <div>
-          
+      <div>
+        
   <div class="article-category">
     <a class="article-category-link" href="/categories/中间件/">中间件</a>,<a class="article-category-link" href="/categories/中间件/Redis/">Redis</a>
   </div>
 
-          
-              
+        
+        
   &nbsp; | &nbsp;
   <div class="view-box">
     <span id="/posts/fd3cd277.html" class="leancloud_visitors" data-flag-title="Redis DENIED Redis is running in protected mode">
@@ -132,20 +133,21 @@
     <span>时长 ≈ 1 分钟</span>
   </div>
  
-          
-        </div>
-      </header>
+        
+      </div>
+    </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="1）修改redis服务器的配置文件"><a href="#1）修改redis服务器的配置文件" class="headerlink" title="1）修改redis服务器的配置文件"></a>1）修改redis服务器的配置文件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vi redis.conf    </span><br><span class="line">  </span><br><span class="line">注释以下绑定的主机地址  </span><br><span class="line"><span class="meta">#</span><span class="bash"> <span class="built_in">bind</span> 127.0.0.1</span></span><br></pre></td></tr></table></figure>
+      <h3 id="1）修改redis服务器的配置文件"><a href="#1）修改redis服务器的配置文件" class="headerlink" title="1）修改redis服务器的配置文件"></a>1）修改redis服务器的配置文件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vi redis.conf    </span><br><span class="line">  </span><br><span class="line">注释以下绑定的主机地址  </span><br><span class="line"><span class="meta">#</span><span class="bash"> <span class="built_in">bind</span> 127.0.0.1</span></span><br></pre></td></tr></table></figure>
 <h3 id="2）修改redis服务器的参数配置"><a href="#2）修改redis服务器的参数配置" class="headerlink" title="2）修改redis服务器的参数配置"></a>2）修改redis服务器的参数配置</h3><p>修改redis的守护进程为no ，不启用<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; config set daemonize "no"  </span><br><span class="line">OK</span><br></pre></td></tr></table></figure></p>
 <p>修改redis的保护模式为no，不启用<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; config set protected-mode "no"  </span><br><span class="line">OK</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/fd3cd277.html" data-id="cjpuzlb1q00a1z8yksp6lyxnt" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/fd3cd277.html" data-id="cjpv1p08400i6u3ykmlue4n2g" class="article-share-link">
+        分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Redis/">Redis</a></li></ul>
@@ -153,7 +155,7 @@
     </footer>
   </div>
   
-    
+  
 <nav id="article-nav">
   
     <a href="/posts/a6562b5c.html" id="article-nav-newer" class="article-nav-link-wrap">
@@ -183,13 +185,13 @@
 
 
 
-  <div id="comments" class="comments">
-    <div id="gitment_container"></div>
-  </div>
-  
-  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
-  <script>
+<div id="comments" class="comments">
+  <div id="gitment_container"></div>
+</div>
+
+<link rel="stylesheet" href="https://www.wenjunjiang.win/css/gitment.css">
+<script src="https://www.wenjunjiang.win/js/gitment.js"></script>
+<script>
   var gitment = new Gitment({
     owner: 'tidyko',
     repo: 'tidyko.github.io',
@@ -199,7 +201,7 @@
     },
   })
   gitment.render('gitment_container')
-  </script>
+</script>
 </section>
         
           <aside id="sidebar">

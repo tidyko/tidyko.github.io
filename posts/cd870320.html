@@ -85,7 +85,8 @@
   </div>
 </div>
 
-        <section id="main"><article id="post-Hibernate Illegal attempt to associate a collection with two open sessions" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Hibernate Illegal attempt to associate a collection with two open sessions" class="wow slideInRight article article-type-post"
+  itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/posts/cd870320.html" class="article-date">
   <time class="post-time" datetime="2014-09-17T10:29:00.000Z" itemprop="datePublished">
@@ -93,27 +94,27 @@
     <span class="post-day">17</span>
   </time>
 </a>
-   
+
   </div>
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       Hibernate Illegal attempt to associate a collection with two open sessions
     </h1>
   
 
-        <div>
-          
+      <div>
+        
   <div class="article-category">
     <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
   </div>
 
-          
-              
+        
+        
   &nbsp; | &nbsp;
   <div class="view-box">
     <span id="/posts/cd870320.html" class="leancloud_visitors" data-flag-title="Hibernate Illegal attempt to associate a collection with two open sessions">
@@ -132,13 +133,13 @@
     <span>时长 ≈ 1 分钟</span>
   </div>
  
-          
-        </div>
-      </header>
+        
+      </div>
+    </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>今天在用Hibernate对对象进行修改操作的时候报了这个错。</p>
+      <p>今天在用Hibernate对对象进行修改操作的时候报了这个错。</p>
 <p>之前一直没什么错误，但是今天修改了一下表结构，增加了一个OneToMany的映射。</p>
 <p>所以在我获取对象，重新set一个变量之后就报了这个错误了。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Illegal attempt to associate a collection with two open sessions; nested exception is org.hibernate.HibernateException: Illegal attempt to associate a collection with two open sessions</span><br></pre></td></tr></table></figure></p>
 <p>网上查了一下，说是不同session直接对象的操作造成的，原因还有待查明。</p>
@@ -148,7 +149,8 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/cd870320.html" data-id="cjpuzlay0002mz8yk76blqg7v" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/cd870320.html" data-id="cjpv1p01u002qu3ykoz18p4rw" class="article-share-link">
+        分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hibernate/">Hibernate</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
@@ -156,7 +158,7 @@
     </footer>
   </div>
   
-    
+  
 <nav id="article-nav">
   
     <a href="/posts/2e6dc29d.html" id="article-nav-newer" class="article-nav-link-wrap">
@@ -186,13 +188,13 @@
 
 
 
-  <div id="comments" class="comments">
-    <div id="gitment_container"></div>
-  </div>
-  
-  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
-  <script>
+<div id="comments" class="comments">
+  <div id="gitment_container"></div>
+</div>
+
+<link rel="stylesheet" href="https://www.wenjunjiang.win/css/gitment.css">
+<script src="https://www.wenjunjiang.win/js/gitment.js"></script>
+<script>
   var gitment = new Gitment({
     owner: 'tidyko',
     repo: 'tidyko.github.io',
@@ -202,7 +204,7 @@
     },
   })
   gitment.render('gitment_container')
-  </script>
+</script>
 </section>
         
           <aside id="sidebar">

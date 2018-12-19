@@ -85,7 +85,8 @@
   </div>
 </div>
 
-        <section id="main"><article id="post-建站 HEXO发布到github时出现卡顿" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-建站 HEXO发布到github时出现卡顿" class="wow slideInRight article article-type-post"
+  itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/posts/3f08f656.html" class="article-date">
   <time class="post-time" datetime="2018-08-13T13:58:00.000Z" itemprop="datePublished">
@@ -93,27 +94,27 @@
     <span class="post-day">13</span>
   </time>
 </a>
-   
+
   </div>
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       建站 HEXO发布到github时出现卡顿
     </h1>
   
 
-        <div>
-          
+      <div>
+        
   <div class="article-category">
     <a class="article-category-link" href="/categories/建站/">建站</a>
   </div>
 
-          
-              
+        
+        
   &nbsp; | &nbsp;
   <div class="view-box">
     <span id="/posts/3f08f656.html" class="leancloud_visitors" data-flag-title="建站 HEXO发布到github时出现卡顿">
@@ -132,13 +133,13 @@
     <span>时长 ≈ 1 分钟</span>
   </div>
  
-          
-        </div>
-      </header>
+        
+      </div>
+    </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>使用以下命令构建发布时，一直循环出现该错误，导致发布不了。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> hexo clean &amp;&amp; hexo g &amp;&amp; hexo d -debug</span></span><br><span class="line"></span><br><span class="line">INFO  Deleted database.</span><br><span class="line">INFO  Deleted public folder.</span><br><span class="line">INFO  Start processing</span><br><span class="line">INFO  Files loaded in 1.63 s</span><br><span class="line">INFO  Generated: index.html</span><br><span class="line">...</span><br><span class="line">INFO  359 files generated in 5.06 s</span><br><span class="line">INFO  Start processing</span><br><span class="line">INFO  Files loaded in 826 ms</span><br><span class="line">INFO  0 files generated in 3.65 s</span><br><span class="line">INFO  Start processing</span><br><span class="line">INFO  Files loaded in 339 ms</span><br><span class="line">INFO  0 files generated in 3.59 s</span><br><span class="line">INFO  Start processing</span><br><span class="line">INFO  Files loaded in 295 ms</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+      <p>使用以下命令构建发布时，一直循环出现该错误，导致发布不了。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> hexo clean &amp;&amp; hexo g &amp;&amp; hexo d -debug</span></span><br><span class="line"></span><br><span class="line">INFO  Deleted database.</span><br><span class="line">INFO  Deleted public folder.</span><br><span class="line">INFO  Start processing</span><br><span class="line">INFO  Files loaded in 1.63 s</span><br><span class="line">INFO  Generated: index.html</span><br><span class="line">...</span><br><span class="line">INFO  359 files generated in 5.06 s</span><br><span class="line">INFO  Start processing</span><br><span class="line">INFO  Files loaded in 826 ms</span><br><span class="line">INFO  0 files generated in 3.65 s</span><br><span class="line">INFO  Start processing</span><br><span class="line">INFO  Files loaded in 339 ms</span><br><span class="line">INFO  0 files generated in 3.59 s</span><br><span class="line">INFO  Start processing</span><br><span class="line">INFO  Files loaded in 295 ms</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
 <p>无奈之下，只能重新构建一个项目，将源码拷贝到新的项目进行重新构建。</p>
 <p>发现就可以了。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hexo init hexoblog</span><br><span class="line"></span><br><span class="line">cd hexoblog</span><br><span class="line"></span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
@@ -149,7 +150,8 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3f08f656.html" data-id="cjpuzlb2o00bqz8ykef2s7t72" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/3f08f656.html" data-id="cjpv1p08t00jou3yky9fhfhb7" class="article-share-link">
+        分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HEXO/">HEXO</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li></ul>
@@ -157,7 +159,7 @@
     </footer>
   </div>
   
-    
+  
 <nav id="article-nav">
   
     <a href="/posts/d0e6a555.html" id="article-nav-newer" class="article-nav-link-wrap">
@@ -187,13 +189,13 @@
 
 
 
-  <div id="comments" class="comments">
-    <div id="gitment_container"></div>
-  </div>
-  
-  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
-  <script>
+<div id="comments" class="comments">
+  <div id="gitment_container"></div>
+</div>
+
+<link rel="stylesheet" href="https://www.wenjunjiang.win/css/gitment.css">
+<script src="https://www.wenjunjiang.win/js/gitment.js"></script>
+<script>
   var gitment = new Gitment({
     owner: 'tidyko',
     repo: 'tidyko.github.io',
@@ -203,7 +205,7 @@
     },
   })
   gitment.render('gitment_container')
-  </script>
+</script>
 </section>
         
           <aside id="sidebar">

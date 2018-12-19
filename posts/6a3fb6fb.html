@@ -85,7 +85,8 @@
   </div>
 </div>
 
-        <section id="main"><article id="post-Java date 到 Oracle date 精确到时分秒" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Java date 到 Oracle date 精确到时分秒" class="wow slideInRight article article-type-post"
+  itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/posts/6a3fb6fb.html" class="article-date">
   <time class="post-time" datetime="2014-03-03T06:41:00.000Z" itemprop="datePublished">
@@ -93,27 +94,27 @@
     <span class="post-day">03</span>
   </time>
 </a>
-   
+
   </div>
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       Java date 到 Oracle date 精确到时分秒
     </h1>
   
 
-        <div>
-          
+      <div>
+        
   <div class="article-category">
     <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
   </div>
 
-          
-              
+        
+        
   &nbsp; | &nbsp;
   <div class="view-box">
     <span id="/posts/6a3fb6fb.html" class="leancloud_visitors" data-flag-title="Java date 到 Oracle date 精确到时分秒">
@@ -132,13 +133,13 @@
     <span>时长 ≈ 1 分钟</span>
   </div>
  
-          
-        </div>
-      </header>
+        
+      </div>
+    </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>有两种方法：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java.util.Date startTime=<span class="keyword">new</span> Date(<span class="string">"2014/01/01 23:00:00"</span>);</span><br></pre></td></tr></table></figure></p>
+      <p>有两种方法：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java.util.Date startTime=<span class="keyword">new</span> Date(<span class="string">"2014/01/01 23:00:00"</span>);</span><br></pre></td></tr></table></figure></p>
 <h3 id="1）"><a href="#1）" class="headerlink" title="1）"></a>1）</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Timestamp(startTime.getTime())</span><br></pre></td></tr></table></figure>
 <p>如果数据库中时间字段定义为date类型，由于timestamp类型的精度比date类型的精度高，所以oracle会对数据库里的date类型做出隐身转换，将date类型转换为timestamp类型，由于加了函数，那么创建在date类型上的索引将不会使用到；(好像是oracle9i后开始才有的问题)</p>
 <h3 id="2）"><a href="#2）" class="headerlink" title="2）"></a>2）</h3><p>数据库直接使用varchar2类型，在过程里面用to_date直接转换。</p>
@@ -146,7 +147,8 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/6a3fb6fb.html" data-id="cjpuzlazt005vz8ykfl5e3tie" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/6a3fb6fb.html" data-id="cjpv1p06200e9u3ykmpd6y0jj" class="article-share-link">
+        分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Oracle/">Oracle</a></li></ul>
@@ -154,7 +156,7 @@
     </footer>
   </div>
   
-    
+  
 <nav id="article-nav">
   
     <a href="/posts/2cf05a87.html" id="article-nav-newer" class="article-nav-link-wrap">
@@ -184,13 +186,13 @@
 
 
 
-  <div id="comments" class="comments">
-    <div id="gitment_container"></div>
-  </div>
-  
-  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
-  <script>
+<div id="comments" class="comments">
+  <div id="gitment_container"></div>
+</div>
+
+<link rel="stylesheet" href="https://www.wenjunjiang.win/css/gitment.css">
+<script src="https://www.wenjunjiang.win/js/gitment.js"></script>
+<script>
   var gitment = new Gitment({
     owner: 'tidyko',
     repo: 'tidyko.github.io',
@@ -200,7 +202,7 @@
     },
   })
   gitment.render('gitment_container')
-  </script>
+</script>
 </section>
         
           <aside id="sidebar">

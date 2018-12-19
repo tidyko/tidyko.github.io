@@ -85,7 +85,8 @@
   </div>
 </div>
 
-        <section id="main"><article id="post-Vue webpack打包src路径问题" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Vue webpack打包src路径问题" class="wow slideInRight article article-type-post"
+  itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/posts/3ad33ff3.html" class="article-date">
   <time class="post-time" datetime="2018-11-02T07:02:00.000Z" itemprop="datePublished">
@@ -93,27 +94,27 @@
     <span class="post-day">02</span>
   </time>
 </a>
-   
+
   </div>
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       Vue webpack打包src路径问题
     </h1>
   
 
-        <div>
-          
+      <div>
+        
   <div class="article-category">
     <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Vue/">Vue</a>
   </div>
 
-          
-              
+        
+        
   &nbsp; | &nbsp;
   <div class="view-box">
     <span id="/posts/3ad33ff3.html" class="leancloud_visitors" data-flag-title="Vue webpack打包src路径问题">
@@ -132,13 +133,13 @@
     <span>时长 ≈ 3 分钟</span>
   </div>
  
-          
-        </div>
-      </header>
+        
+      </div>
+    </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>使用vue的时候，因为图片路径为动态数据，下面这样直接将数据传入元素，编译输出后路径将会是原始相对路径的数据</p>
+      <p>使用vue的时候，因为图片路径为动态数据，下面这样直接将数据传入元素，编译输出后路径将会是原始相对路径的数据</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"cover-container"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">template</span> <span class="attr">v-for</span>=<span class="string">"(cover,index) in coverList"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">:key</span>=<span class="string">"index"</span> @<span class="attr">click</span>=<span class="string">"openPage(cover.url)"</span> <span class="attr">class</span>=<span class="string">"cover"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">template</span> <span class="attr">v-if</span>=<span class="string">"index === 0"</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"cover_title"</span>&gt;</span>&#123;&#123;cover.title&#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">img</span> <span class="attr">v-bind:src</span>=<span class="string">"cover.banner"</span> <span class="attr">class</span>=<span class="string">"cover_img_top"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">template</span> <span class="attr">v-else</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">img</span> <span class="attr">v-bind:src</span>=<span class="string">"cover.banner"</span> <span class="attr">class</span>=<span class="string">"cover_img_other"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"cover_desc"</span> <span class="attr">v-html</span>=<span class="string">"cover.desc"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">span</span> <span class="attr">v-if</span>=<span class="string">"index!=coverList.length-1"</span> <span class="attr">:key</span>=<span class="string">"index"</span> <span class="attr">class</span>=<span class="string">"line"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <a id="more"></a>
 <p>所以需要在数据上面做处理，在url上面加上require，如下：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> coverList = [&#123;</span><br><span class="line">    title: <span class="string">'营业厅服务'</span>,</span><br><span class="line">    banner: <span class="built_in">require</span>(<span class="string">'../assets/bizhall_1.jpg'</span>),</span><br><span class="line">    url: <span class="string">'https://im.189.cn/weixinopen/outserver/oauth/getOpenid?url=aHR0cHM6Ly9pbS4xODkuY24veG10L3BhZ2VPcGVuTG9nL3JlbGF5LmRvP3VybD1hSFIwY0RvdkwybHRMakU0T1M1amJpOTRiWFF2YjNCbGNtRjBMMmRsZEU5d1pYSmhkRXhwYzNSRGVpNWtidz09Jm9wPXl5dGN6Y2Q='</span>,</span><br><span class="line">    desc: <span class="string">'可通过筛选发现附近营业厅及查询营业厅相关信息'</span></span><br><span class="line">&#125;, &#123;</span><br><span class="line">    banner: <span class="built_in">require</span>(<span class="string">'../assets/bizhall_2.jpg'</span>),</span><br><span class="line">    url: <span class="string">'http://im.189.cn/weixinopen/outserver/oauth/getOpenid?url=aHR0cHM6Ly9pbS4xODkuY24veG10L3BhZ2VPcGVuTG9nL3JlbGF5LmRvP3VybD1hSFIwY0RvdkwybHRMakU0T1M1amJpOXBiVmQ0VUdGamEyRm5aWE12Y0dGamEyRm5aWE12YjNCbFlYSjBMbVJ2Jm9wPXl5dHl5Y2Q='</span>,</span><br><span class="line">    desc: <span class="string">'预约营业厅办理业务及时查看排队情况，&lt;/br&gt;使用前确认已经打开授权微信获取定位功能'</span></span><br><span class="line">&#125;]</span><br></pre></td></tr></table></figure></p>
@@ -151,7 +152,8 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3ad33ff3.html" data-id="cjpuzlb2700ayz8yktpsugp5r" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/3ad33ff3.html" data-id="cjpv1p09600kcu3yk8qkokxja" class="article-share-link">
+        分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li></ul>
@@ -159,7 +161,7 @@
     </footer>
   </div>
   
-    
+  
 <nav id="article-nav">
   
     <a href="/posts/6971a02d.html" id="article-nav-newer" class="article-nav-link-wrap">
@@ -189,13 +191,13 @@
 
 
 
-  <div id="comments" class="comments">
-    <div id="gitment_container"></div>
-  </div>
-  
-  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
-  <script>
+<div id="comments" class="comments">
+  <div id="gitment_container"></div>
+</div>
+
+<link rel="stylesheet" href="https://www.wenjunjiang.win/css/gitment.css">
+<script src="https://www.wenjunjiang.win/js/gitment.js"></script>
+<script>
   var gitment = new Gitment({
     owner: 'tidyko',
     repo: 'tidyko.github.io',
@@ -205,7 +207,7 @@
     },
   })
   gitment.render('gitment_container')
-  </script>
+</script>
 </section>
         
           <aside id="sidebar">

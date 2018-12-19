@@ -85,7 +85,8 @@
   </div>
 </div>
 
-        <section id="main"><article id="post-FileBeat 基础配置" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-FileBeat 基础配置" class="wow slideInRight article article-type-post"
+  itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/posts/4573f792.html" class="article-date">
   <time class="post-time" datetime="2018-08-31T03:18:00.000Z" itemprop="datePublished">
@@ -93,27 +94,27 @@
     <span class="post-day">31</span>
   </time>
 </a>
-   
+
   </div>
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       FileBeat 基础配置
     </h1>
   
 
-        <div>
-          
+      <div>
+        
   <div class="article-category">
     <a class="article-category-link" href="/categories/中间件/">中间件</a>,<a class="article-category-link" href="/categories/中间件/FileBeat/">FileBeat</a>
   </div>
 
-          
-              
+        
+        
   &nbsp; | &nbsp;
   <div class="view-box">
     <span id="/posts/4573f792.html" class="leancloud_visitors" data-flag-title="FileBeat 基础配置">
@@ -132,13 +133,13 @@
     <span>时长 ≈ 6 分钟</span>
   </div>
  
-          
-        </div>
-      </header>
+        
+      </div>
+    </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>由FileBeat负责统一读取多机服务的日志到redis，再统一由LogStash解析日志内容，放到ElasticSeach。</p>
+      <p>由FileBeat负责统一读取多机服务的日志到redis，再统一由LogStash解析日志内容，放到ElasticSeach。</p>
 <p>不同类型的日志，需要抓取的重点不一样，可统一建立各类型日志记录规范，然后在FileBeat读取的时候在<code>fields</code>字段做标识，然后在LogStash获取到记录的时候通过fields的字段来编写逻辑，判断该日志为什么类型，然后进行grok表达式匹配。</p>
 <h2 id="Filebeat-如何读取多个日志目录？"><a href="#Filebeat-如何读取多个日志目录？" class="headerlink" title="Filebeat 如何读取多个日志目录？"></a>Filebeat 如何读取多个日志目录？</h2><p>如果 Filebeat 所在 server 上运行有多个 application servers，各自有不同的日志目录，那 Filebeat 如何同时读取多个目录，这是一个非常典型的问题。</p>
 <p>解决方案：通过配置多个 prospector 就能达到要求。在配置文件的 prospectors 下，每个”-“表示一个 prospector，每个 prospector 包含一些配置项，指明这个 prospector 所要读取的日志信息。如下所示：<br><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">prospectors:</span></span><br><span class="line"><span class="bullet">    -</span></span><br><span class="line"><span class="attr">      paths:</span></span><br><span class="line"><span class="bullet">         -</span> <span class="string">/home/BizLog/*.log</span></span><br><span class="line">      <span class="comment"># 其他配置项，具体参考 Elastic 官网</span></span><br><span class="line"><span class="bullet">    -</span></span><br><span class="line"><span class="attr">      paths:</span></span><br><span class="line"><span class="bullet">         -</span> <span class="string">/home/ApacheLog/*.log</span></span><br><span class="line">      <span class="comment"># 其他配置项，具体参考 Elastic 官网</span></span><br></pre></td></tr></table></figure></p>
@@ -155,7 +156,8 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/4573f792.html" data-id="cjpuzlaxw002fz8yk6ni4uc59" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/4573f792.html" data-id="cjpv1p01r002ku3ykfslnype0" class="article-share-link">
+        分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ELK/">ELK</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FileBeat/">FileBeat</a></li></ul>
@@ -163,7 +165,7 @@
     </footer>
   </div>
   
-    
+  
 <nav id="article-nav">
   
     <a href="/posts/a5557ea7.html" id="article-nav-newer" class="article-nav-link-wrap">
@@ -193,13 +195,13 @@
 
 
 
-  <div id="comments" class="comments">
-    <div id="gitment_container"></div>
-  </div>
-  
-  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
-  <script>
+<div id="comments" class="comments">
+  <div id="gitment_container"></div>
+</div>
+
+<link rel="stylesheet" href="https://www.wenjunjiang.win/css/gitment.css">
+<script src="https://www.wenjunjiang.win/js/gitment.js"></script>
+<script>
   var gitment = new Gitment({
     owner: 'tidyko',
     repo: 'tidyko.github.io',
@@ -209,7 +211,7 @@
     },
   })
   gitment.render('gitment_container')
-  </script>
+</script>
 </section>
         
           <aside id="sidebar">

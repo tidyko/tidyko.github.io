@@ -85,7 +85,8 @@
   </div>
 </div>
 
-        <section id="main"><article id="post-ActiveMQ 持久化消息队列的三种方式" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-ActiveMQ 持久化消息队列的三种方式" class="wow slideInRight article article-type-post"
+  itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/posts/632d0b70.html" class="article-date">
   <time class="post-time" datetime="2016-02-02T03:09:00.000Z" itemprop="datePublished">
@@ -93,27 +94,27 @@
     <span class="post-day">02</span>
   </time>
 </a>
-   
+
   </div>
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       ActiveMQ 持久化消息队列的三种方式
     </h1>
   
 
-        <div>
-          
+      <div>
+        
   <div class="article-category">
     <a class="article-category-link" href="/categories/中间件/">中间件</a>,<a class="article-category-link" href="/categories/中间件/ActiveMQ/">ActiveMQ</a>
   </div>
 
-          
-              
+        
+        
   &nbsp; | &nbsp;
   <div class="view-box">
     <span id="/posts/632d0b70.html" class="leancloud_visitors" data-flag-title="ActiveMQ 持久化消息队列的三种方式">
@@ -132,13 +133,13 @@
     <span>时长 ≈ 3 分钟</span>
   </div>
  
-          
-        </div>
-      </header>
+        
+      </div>
+    </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>ActiveMQ消息持久化方式，分别是：<code>文件</code>、<code>mysql数据库</code>、<code>oracle数据库</code>。</p>
+      <p>ActiveMQ消息持久化方式，分别是：<code>文件</code>、<code>mysql数据库</code>、<code>oracle数据库</code>。</p>
 <h2 id="1）文件持久化"><a href="#1）文件持久化" class="headerlink" title="1）文件持久化"></a>1）文件持久化</h2><p>ActiveMQ默认的消息保存方式，一般如果没有修改过其他持久化方式的话可以不用修改配置文件。</p>
 <p>如果是修改过的，打开<code>盘符：\apache-activemq-版本号\conf\activemq.xml</code>，然后找到 <code>&lt;persistenceAdapter&gt;</code> 节点，将其替换成以下代码段:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">persistenceAdapter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">kahaDB</span> <span class="attr">directory</span>=<span class="string">"$&#123;activemq.base&#125;/data/kahadb"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">persistenceAdapter</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p>然后修改配置文件（此处演示为spring+ActiveMQ），找到消息发送者所对应的JmsTemplate配置代码块，增加以下配置:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--  是否持久化  DeliveryMode.NON_PERSISTENT=1:非持久 ; DeliveryMode.PERSISTENT=2:持久 --&gt;</span>   </span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"deliveryMode"</span> <span class="attr">value</span>=<span class="string">"2"</span> /&gt;</span></span><br></pre></td></tr></table></figure></p>
@@ -153,7 +154,8 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/632d0b70.html" data-id="cjpuzlaw50006z8ykpdgv8nvp" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/632d0b70.html" data-id="cjpv1p00f0005u3ykdsl3a7tr" class="article-share-link">
+        分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ActiveMQ/">ActiveMQ</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/队列/">队列</a></li></ul>
@@ -161,7 +163,7 @@
     </footer>
   </div>
   
-    
+  
 <nav id="article-nav">
   
     <a href="/posts/15ae09a5.html" id="article-nav-newer" class="article-nav-link-wrap">
@@ -191,13 +193,13 @@
 
 
 
-  <div id="comments" class="comments">
-    <div id="gitment_container"></div>
-  </div>
-  
-  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
-  <script>
+<div id="comments" class="comments">
+  <div id="gitment_container"></div>
+</div>
+
+<link rel="stylesheet" href="https://www.wenjunjiang.win/css/gitment.css">
+<script src="https://www.wenjunjiang.win/js/gitment.js"></script>
+<script>
   var gitment = new Gitment({
     owner: 'tidyko',
     repo: 'tidyko.github.io',
@@ -207,7 +209,7 @@
     },
   })
   gitment.render('gitment_container')
-  </script>
+</script>
 </section>
         
           <aside id="sidebar">

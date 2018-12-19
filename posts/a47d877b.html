@@ -85,7 +85,8 @@
   </div>
 </div>
 
-        <section id="main"><article id="post-Maven 运行项目，报ClassNotFound错误" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Maven 运行项目，报ClassNotFound错误" class="wow slideInRight article article-type-post"
+  itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/posts/a47d877b.html" class="article-date">
   <time class="post-time" datetime="2013-11-14T08:33:00.000Z" itemprop="datePublished">
@@ -93,27 +94,27 @@
     <span class="post-day">14</span>
   </time>
 </a>
-   
+
   </div>
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       Maven 运行项目，报ClassNotFound错误
     </h1>
   
 
-        <div>
-          
+      <div>
+        
   <div class="article-category">
     <a class="article-category-link" href="/categories/包管理器/">包管理器</a>,<a class="article-category-link" href="/categories/包管理器/Maven/">Maven</a>
   </div>
 
-          
-              
+        
+        
   &nbsp; | &nbsp;
   <div class="view-box">
     <span id="/posts/a47d877b.html" class="leancloud_visitors" data-flag-title="Maven 运行项目，报ClassNotFound错误">
@@ -132,13 +133,13 @@
     <span>时长 ≈ 1 分钟</span>
   </div>
  
-          
-        </div>
-      </header>
+        
+      </div>
+    </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>我们在pom.xml中添加了那些依赖的jar后，一旦在代码中应用。当我们本地调试时，会报ClassNotFound错误，这是为什么？？</p>
+      <p>我们在pom.xml中添加了那些依赖的jar后，一旦在代码中应用。当我们本地调试时，会报ClassNotFound错误，这是为什么？？</p>
 <h3 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h3><p>是因为Tomcat不懂这些配置，你必须把Maven Dependencies中的jar与发布目录配置好</p>
 <h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><p><code>项目</code> —&gt; <code>属性</code> -&gt; <code>Deployment Assembly</code> -&gt; <code>Add</code> -&gt; <code>Java Build Path Entries</code> -&gt; <code>选择Maven Dependencies</code> -&gt; <code>Finish</code> -&gt; <code>OK</code></p>
 <p>这一步就是配置Maven依赖包发布目录，这样调试时会自动把那些jar发布到指定目录下，tomcat也能找到那些jar了。</p>
@@ -146,7 +147,8 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/a47d877b.html" data-id="cjpuzlb0u0088z8yk1pa35ib4" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/a47d877b.html" data-id="cjpv1p07000g3u3yk87nqwz9m" class="article-share-link">
+        分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Maven/">Maven</a></li></ul>
@@ -154,7 +156,7 @@
     </footer>
   </div>
   
-    
+  
 <nav id="article-nav">
   
     <a href="/posts/f59ca5b1.html" id="article-nav-newer" class="article-nav-link-wrap">
@@ -184,13 +186,13 @@
 
 
 
-  <div id="comments" class="comments">
-    <div id="gitment_container"></div>
-  </div>
-  
-  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
-  <script>
+<div id="comments" class="comments">
+  <div id="gitment_container"></div>
+</div>
+
+<link rel="stylesheet" href="https://www.wenjunjiang.win/css/gitment.css">
+<script src="https://www.wenjunjiang.win/js/gitment.js"></script>
+<script>
   var gitment = new Gitment({
     owner: 'tidyko',
     repo: 'tidyko.github.io',
@@ -200,7 +202,7 @@
     },
   })
   gitment.render('gitment_container')
-  </script>
+</script>
 </section>
         
           <aside id="sidebar">

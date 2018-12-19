@@ -87,7 +87,8 @@
   </div>
 </div>
 
-        <section id="main"><article id="post-Oracle ORA-01722" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Oracle ORA-01722" class="wow slideInRight article article-type-post"
+  itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/posts/a1cbf0aa.html" class="article-date">
   <time class="post-time" datetime="2013-06-21T02:32:00.000Z" itemprop="datePublished">
@@ -95,27 +96,27 @@
     <span class="post-day">21</span>
   </time>
 </a>
-   
+
   </div>
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       Oracle ORA-01722
     </h1>
   
 
-        <div>
-          
+      <div>
+        
   <div class="article-category">
     <a class="article-category-link" href="/categories/数据库/">数据库</a>,<a class="article-category-link" href="/categories/数据库/Oracle/">Oracle</a>
   </div>
 
-          
-              
+        
+        
   &nbsp; | &nbsp;
   <div class="view-box">
     <span id="/posts/a1cbf0aa.html" class="leancloud_visitors" data-flag-title="Oracle ORA-01722">
@@ -134,13 +135,13 @@
     <span>时长 ≈ 1 分钟</span>
   </div>
  
-          
-        </div>
-      </header>
+        
+      </div>
+    </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>ORA-01722:无效数字(控制文件最后一个字段)<br>图例:<br><img src="http://img.tidyko.com/blog/ORA-01722_1.jpg" alt="ORA-01722-图例1"></p>
+      <p>ORA-01722:无效数字(控制文件最后一个字段)<br>图例:<br><img src="http://img.tidyko.com/blog/ORA-01722_1.jpg" alt="ORA-01722-图例1"></p>
 <h3 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h3><p>每一行物理数据最后都存在一个换行符。</p>
 <p>如果integer或者number类型的字段位于控制文件的最后，最后其实都会有CR/LF的换行符，在用sqlldr导入时会把换行符也算作那个数字的一部分，使得对应的导入ORDERADV_TK 的值与ORDERADV_TK在数据库中定义的NUMBER类型不匹配，从而出错。</p>
 <h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><p>在该列后面追加“INTEGER EXTERNAL TERMINATED BY WHITESPACE”。</p>
@@ -148,7 +149,8 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/a1cbf0aa.html" data-id="cjpuzlb180090z8ykt0vvtrra" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/a1cbf0aa.html" data-id="cjpv1p07d00guu3ykuo4e6u2p" class="article-share-link">
+        分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Oracle/">Oracle</a></li></ul>
@@ -156,7 +158,7 @@
     </footer>
   </div>
   
-    
+  
 <nav id="article-nav">
   
     <a href="/posts/d32ce889.html" id="article-nav-newer" class="article-nav-link-wrap">
@@ -186,13 +188,13 @@
 
 
 
-  <div id="comments" class="comments">
-    <div id="gitment_container"></div>
-  </div>
-  
-  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
-  <script>
+<div id="comments" class="comments">
+  <div id="gitment_container"></div>
+</div>
+
+<link rel="stylesheet" href="https://www.wenjunjiang.win/css/gitment.css">
+<script src="https://www.wenjunjiang.win/js/gitment.js"></script>
+<script>
   var gitment = new Gitment({
     owner: 'tidyko',
     repo: 'tidyko.github.io',
@@ -202,7 +204,7 @@
     },
   })
   gitment.render('gitment_container')
-  </script>
+</script>
 </section>
         
           <aside id="sidebar">

@@ -88,7 +88,8 @@
   </div>
 </div>
 
-        <section id="main"><article id="post-VirtualBox Linux虚拟网络配置" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-VirtualBox Linux虚拟网络配置" class="wow slideInRight article article-type-post"
+  itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/posts/b3c1b12f.html" class="article-date">
   <time class="post-time" datetime="2017-03-22T06:33:00.000Z" itemprop="datePublished">
@@ -96,27 +97,27 @@
     <span class="post-day">22</span>
   </time>
 </a>
-   
+
   </div>
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       VirtualBox Linux虚拟网络配置
     </h1>
   
 
-        <div>
-          
+      <div>
+        
   <div class="article-category">
     <a class="article-category-link" href="/categories/开发调试工具/">开发调试工具</a>,<a class="article-category-link" href="/categories/开发调试工具/VirtualBox/">VirtualBox</a>
   </div>
 
-          
-              
+        
+        
   &nbsp; | &nbsp;
   <div class="view-box">
     <span id="/posts/b3c1b12f.html" class="leancloud_visitors" data-flag-title="VirtualBox Linux虚拟网络配置">
@@ -135,13 +136,13 @@
     <span>时长 ≈ 2 分钟</span>
   </div>
  
-          
-        </div>
-      </header>
+        
+      </div>
+    </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><p>Host OS : Windows 10<br>Guest OS : CentOS 6.8<br>VirtualBox：5.1.18<br>网络连接方式: NAT</p>
+      <h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><p>Host OS : Windows 10<br>Guest OS : CentOS 6.8<br>VirtualBox：5.1.18<br>网络连接方式: NAT</p>
 <h3 id="1）CentOS中使用DHCP"><a href="#1）CentOS中使用DHCP" class="headerlink" title="1）CentOS中使用DHCP"></a>1）CentOS中使用DHCP</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[root@goukaiHost opt]# cat /etc/sysconfig/network-scripts/ifcfg-eth0</span><br><span class="line">DEVICE=eth0</span><br><span class="line">HWADDR=08:00:27:74:E9:14</span><br><span class="line">TYPE=Ethernet</span><br><span class="line">UUID=aa2112e6-21b6-4a14-89e7-a2b769f212b8</span><br><span class="line">ONBOOT=yes</span><br><span class="line">NM_CONTROLLED=yes</span><br><span class="line">BOOTPROTO=dhcp</span><br><span class="line"></span><br><span class="line">DEFROUTE=yes</span><br><span class="line">PEERDNS=yes</span><br><span class="line">PEERROUTES=yes</span><br><span class="line">IPV4_FAILURE_FATAL=yes</span><br><span class="line">IPV6INIT=no</span><br><span class="line">NAME="System eth0"</span><br></pre></td></tr></table></figure>
 <h3 id="2）查看inet-addr（NAT端口转发时的子系统IP）"><a href="#2）查看inet-addr（NAT端口转发时的子系统IP）" class="headerlink" title="2）查看inet addr（NAT端口转发时的子系统IP）"></a>2）查看inet addr（NAT端口转发时的子系统IP）</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@goukaiHost opt]# ifconfig eth0</span><br><span class="line">eth0      Link encap:Ethernet  HWaddr 08:00:27:74:E9:14  </span><br><span class="line">          inet addr:10.0.2.15  Bcast:10.0.2.255  Mask:255.255.255.0</span><br><span class="line">          inet6 addr: fe80::a00:27ff:fe74:e914/64 Scope:Link</span><br><span class="line">          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1</span><br><span class="line">          RX packets:357 errors:0 dropped:0 overruns:0 frame:0</span><br><span class="line">          TX packets:273 errors:0 dropped:0 overruns:0 carrier:0</span><br><span class="line">          collisions:0 txqueuelen:1000 </span><br><span class="line">          RX bytes:34617 (33.8 KiB)  TX bytes:31373 (30.6 KiB)</span><br></pre></td></tr></table></figure>
 <h3 id="3）在VirtualBox中设置NAT端口转发"><a href="#3）在VirtualBox中设置NAT端口转发" class="headerlink" title="3）在VirtualBox中设置NAT端口转发"></a>3）在VirtualBox中设置NAT端口转发</h3><h4 id="3-1）"><a href="#3-1）" class="headerlink" title="3.1）"></a>3.1）</h4><p><code>管理</code> -&gt; <code>全局设定</code> -&gt; <code>网络</code> -&gt; <code>VirtualBox Host-Only Ethernet Adapter</code> -&gt; <code>编辑</code><br>查看主机虚拟网络界面 IPv4地址192.168.56.1 这就是NAT端口转发时的主机IP。</p>
@@ -152,7 +153,8 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/b3c1b12f.html" data-id="cjpuzlb2b00b6z8ykv7wbs6fr" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/b3c1b12f.html" data-id="cjpv1p08f00ixu3ykf56o0d4l" class="article-share-link">
+        分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VirtualBox/">VirtualBox</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络配置/">网络配置</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/虚拟机/">虚拟机</a></li></ul>
@@ -160,7 +162,7 @@
     </footer>
   </div>
   
-    
+  
 <nav id="article-nav">
   
     <a href="/posts/6966e243.html" id="article-nav-newer" class="article-nav-link-wrap">
@@ -190,13 +192,13 @@
 
 
 
-  <div id="comments" class="comments">
-    <div id="gitment_container"></div>
-  </div>
-  
-  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
-  <script>
+<div id="comments" class="comments">
+  <div id="gitment_container"></div>
+</div>
+
+<link rel="stylesheet" href="https://www.wenjunjiang.win/css/gitment.css">
+<script src="https://www.wenjunjiang.win/js/gitment.js"></script>
+<script>
   var gitment = new Gitment({
     owner: 'tidyko',
     repo: 'tidyko.github.io',
@@ -206,7 +208,7 @@
     },
   })
   gitment.render('gitment_container')
-  </script>
+</script>
 </section>
         
           <aside id="sidebar">

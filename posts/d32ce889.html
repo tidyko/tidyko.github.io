@@ -85,7 +85,8 @@
   </div>
 </div>
 
-        <section id="main"><article id="post-NGINX 端口占用" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-NGINX 端口占用" class="wow slideInRight article article-type-post"
+  itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/posts/d32ce889.html" class="article-date">
   <time class="post-time" datetime="2013-08-26T02:38:00.000Z" itemprop="datePublished">
@@ -93,27 +94,27 @@
     <span class="post-day">26</span>
   </time>
 </a>
-   
+
   </div>
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       NGINX 端口占用
     </h1>
   
 
-        <div>
-          
+      <div>
+        
   <div class="article-category">
     <a class="article-category-link" href="/categories/服务器/">服务器</a>,<a class="article-category-link" href="/categories/服务器/Nginx/">Nginx</a>
   </div>
 
-          
-              
+        
+        
   &nbsp; | &nbsp;
   <div class="view-box">
     <span id="/posts/d32ce889.html" class="leancloud_visitors" data-flag-title="NGINX 端口占用">
@@ -132,13 +133,13 @@
     <span>时长 ≈ 1 分钟</span>
   </div>
  
-          
-        </div>
-      </header>
+        
+      </div>
+    </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>将下载的windows版nginx的压缩包nginx-1.4.2.zip解压到F:\server\nginx-1.4.2里面。</p>
+      <p>将下载的windows版nginx的压缩包nginx-1.4.2.zip解压到F:\server\nginx-1.4.2里面。</p>
 <h3 id="1）运行cmd命令"><a href="#1）运行cmd命令" class="headerlink" title="1）运行cmd命令"></a>1）运行cmd命令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">F:</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> F:\server\nginx-1.4.2</span><br><span class="line"></span><br><span class="line">start nginx</span><br></pre></td></tr></table></figure>
 <p>发现启动界面一闪而过，经查看目录里面的日志文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">F:\server\nginx-1.4.2\logs\error.log后发现，默认的80端口被占用。</span><br><span class="line">2013/08/26 10:20:13 [emerg] 10632#10640: bind() to 0.0.0.0:80 failed (10013: An attempt was made to access a socket in a way forbidden by its access permissions)</span><br></pre></td></tr></table></figure></p>
 <h3 id="2）修改配置文件"><a href="#2）修改配置文件" class="headerlink" title="2）修改配置文件"></a>2）修改配置文件</h3><p>修改配置文件F:\server\nginx-1.4.2\conf\nginx.conf的Server配置里面的listen属性值，将80改为8011，保存。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">listen       8011;</span><br></pre></td></tr></table></figure></p>
@@ -147,7 +148,8 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/d32ce889.html" data-id="cjpuzlavx0001z8ykbqkb518c" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/d32ce889.html" data-id="cjpv1p0070000u3ykhx1h7sm7" class="article-share-link">
+        分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nginx/">Nginx</a></li></ul>
@@ -155,7 +157,7 @@
     </footer>
   </div>
   
-    
+  
 <nav id="article-nav">
   
     <a href="/posts/98f41be3.html" id="article-nav-newer" class="article-nav-link-wrap">
@@ -185,13 +187,13 @@
 
 
 
-  <div id="comments" class="comments">
-    <div id="gitment_container"></div>
-  </div>
-  
-  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
-  <script>
+<div id="comments" class="comments">
+  <div id="gitment_container"></div>
+</div>
+
+<link rel="stylesheet" href="https://www.wenjunjiang.win/css/gitment.css">
+<script src="https://www.wenjunjiang.win/js/gitment.js"></script>
+<script>
   var gitment = new Gitment({
     owner: 'tidyko',
     repo: 'tidyko.github.io',
@@ -201,7 +203,7 @@
     },
   })
   gitment.render('gitment_container')
-  </script>
+</script>
 </section>
         
           <aside id="sidebar">

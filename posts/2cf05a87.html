@@ -85,7 +85,8 @@
   </div>
 </div>
 
-        <section id="main"><article id="post-J2EE HttpServletRequest request 相关方法 得到路径" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-J2EE HttpServletRequest request 相关方法 得到路径" class="wow slideInRight article article-type-post"
+  itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/posts/2cf05a87.html" class="article-date">
   <time class="post-time" datetime="2014-03-03T09:46:00.000Z" itemprop="datePublished">
@@ -93,27 +94,27 @@
     <span class="post-day">03</span>
   </time>
 </a>
-   
+
   </div>
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       J2EE HttpServletRequest request 相关方法 得到路径
     </h1>
   
 
-        <div>
-          
+      <div>
+        
   <div class="article-category">
     <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
   </div>
 
-          
-              
+        
+        
   &nbsp; | &nbsp;
   <div class="view-box">
     <span id="/posts/2cf05a87.html" class="leancloud_visitors" data-flag-title="J2EE HttpServletRequest request 相关方法 得到路径">
@@ -132,13 +133,13 @@
     <span>时长 ≈ 1 分钟</span>
   </div>
  
-          
-        </div>
-      </header>
+        
+      </div>
+    </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="1）POST"><a href="#1）POST" class="headerlink" title="1）POST"></a>1）POST</h3><p>url：<a href="http://192.168.1.211:8080/demo/index.jsp" target="_blank" rel="noopener">http://192.168.1.211:8080/demo/index.jsp</a></p>
+      <h3 id="1）POST"><a href="#1）POST" class="headerlink" title="1）POST"></a>1）POST</h3><p>url：<a href="http://192.168.1.211:8080/demo/index.jsp" target="_blank" rel="noopener">http://192.168.1.211:8080/demo/index.jsp</a></p>
 <p>FORM表单：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">username = qqqq</span><br><span class="line">password = wwww</span><br></pre></td></tr></table></figure></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">request.getContextPath() = /demo</span><br><span class="line"></span><br><span class="line">request.getMethod() = POST</span><br><span class="line"></span><br><span class="line">request.getRequestURI() = /demo/reg</span><br><span class="line"></span><br><span class="line">request.getRequestURL() = http:<span class="comment">//192.168.1.211:8080/demo/reg</span></span><br><span class="line"></span><br><span class="line">request.getServletPath() = /reg</span><br></pre></td></tr></table></figure>
 <h3 id="2）GET"><a href="#2）GET" class="headerlink" title="2）GET"></a>2）GET</h3><p>url：<a href="http://192.168.1.211:8080/demo/index.jsp?username=1&amp;password=1&amp;email=1" target="_blank" rel="noopener">http://192.168.1.211:8080/demo/index.jsp?username=1&amp;password=1&amp;email=1</a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">request.getContextPath() = /demo</span><br><span class="line"></span><br><span class="line">request.getMethod() = GET</span><br><span class="line"></span><br><span class="line">request.getQueryString() = username=<span class="number">1</span>&amp;password=<span class="number">1</span>&amp;email=<span class="number">1</span></span><br><span class="line"></span><br><span class="line">request.getRequestURI() = /demo/index.jsp</span><br><span class="line"></span><br><span class="line">request.getRequestURL() = http:<span class="comment">//192.168.1.211:8080/demo/index.jsp</span></span><br><span class="line"></span><br><span class="line">request.getServletPath() = /index.jsp</span><br></pre></td></tr></table></figure></p>
@@ -146,7 +147,8 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/2cf05a87.html" data-id="cjpuzlayz0041z8yknxdoj55i" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/2cf05a87.html" data-id="cjpv1p02e003yu3ykfilsbu82" class="article-share-link">
+        分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
@@ -154,7 +156,7 @@
     </footer>
   </div>
   
-    
+  
 <nav id="article-nav">
   
     <a href="/posts/7c9f9e00.html" id="article-nav-newer" class="article-nav-link-wrap">
@@ -184,13 +186,13 @@
 
 
 
-  <div id="comments" class="comments">
-    <div id="gitment_container"></div>
-  </div>
-  
-  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
-  <script>
+<div id="comments" class="comments">
+  <div id="gitment_container"></div>
+</div>
+
+<link rel="stylesheet" href="https://www.wenjunjiang.win/css/gitment.css">
+<script src="https://www.wenjunjiang.win/js/gitment.js"></script>
+<script>
   var gitment = new Gitment({
     owner: 'tidyko',
     repo: 'tidyko.github.io',
@@ -200,7 +202,7 @@
     },
   })
   gitment.render('gitment_container')
-  </script>
+</script>
 </section>
         
           <aside id="sidebar">

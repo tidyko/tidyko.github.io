@@ -85,7 +85,8 @@
   </div>
 </div>
 
-        <section id="main"><article id="post-J2EE CGI与Servlet技术对比" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-J2EE CGI与Servlet技术对比" class="wow slideInRight article article-type-post"
+  itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/posts/2db10ac8.html" class="article-date">
   <time class="post-time" datetime="2014-05-29T02:23:00.000Z" itemprop="datePublished">
@@ -93,27 +94,27 @@
     <span class="post-day">29</span>
   </time>
 </a>
-   
+
   </div>
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       J2EE CGI与Servlet技术对比
     </h1>
   
 
-        <div>
-          
+      <div>
+        
   <div class="article-category">
     <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
   </div>
 
-          
-              
+        
+        
   &nbsp; | &nbsp;
   <div class="view-box">
     <span id="/posts/2db10ac8.html" class="leancloud_visitors" data-flag-title="J2EE CGI与Servlet技术对比">
@@ -132,13 +133,13 @@
     <span>时长 ≈ 3 分钟</span>
   </div>
  
-          
-        </div>
-      </header>
+        
+      </div>
+    </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>CGI：Common Gateway Interface，通用网关接口。</p>
+      <p>CGI：Common Gateway Interface，通用网关接口。</p>
 <h2 id="1）CGI处理步骤"><a href="#1）CGI处理步骤" class="headerlink" title="1）CGI处理步骤"></a>1）CGI处理步骤</h2><p>首先，客户端（即Web浏览器）根据某资源的URL向Web服务器提出请求；Web服务器的守护进程（HTTP Daemon）将此请求的参数通过标准输入和环境变量传递给指定的CGI程序，并启动此应用程序进行处理，如要存取数据库服务器上数据库的数据，则向数据库服务器发出处理请求，数据库服务器将执行结果返回给CGI程序，CGI程序把处理结果通过标准输出返回给HTTP Daemon进程，再由HTTP Daemon进程返回给客户端，由浏览器解释执行，将最终结果在用户面前显示。</p>
 <h2 id="2）Servlet与CGI的比较"><a href="#2）Servlet与CGI的比较" class="headerlink" title="2）Servlet与CGI的比较"></a>2）Servlet与CGI的比较</h2><p>和CGI程序一样，Servlet可以响应用户的指令(提交一个FORM等等)，也可以象CGI程序一样，收集用户表单的信息并给予动态反馈(简单的注册信息录入和检查错误)。</p>
 <p>然而，Servlet的机制并不仅仅是这样简单的与用户表单进行交互。传统技术中，动态的网页建立和显示都是通过CGI来实现的，但是，有了Servlet,您可以大胆的放弃所有CGI(perl?php?甚至asp!)，利用Servlet代替CGI,进行程序编写。</p>
@@ -150,7 +151,8 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/2db10ac8.html" data-id="cjpuzlays003qz8ykj12i5kjh" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/2db10ac8.html" data-id="cjpv1p028003lu3ykcjs1ju0m" class="article-share-link">
+        分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CGI/">CGI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Servlet/">Servlet</a></li></ul>
@@ -158,7 +160,7 @@
     </footer>
   </div>
   
-    
+  
 <nav id="article-nav">
   
     <a href="/posts/f995fc27.html" id="article-nav-newer" class="article-nav-link-wrap">
@@ -188,13 +190,13 @@
 
 
 
-  <div id="comments" class="comments">
-    <div id="gitment_container"></div>
-  </div>
-  
-  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
-  <script>
+<div id="comments" class="comments">
+  <div id="gitment_container"></div>
+</div>
+
+<link rel="stylesheet" href="https://www.wenjunjiang.win/css/gitment.css">
+<script src="https://www.wenjunjiang.win/js/gitment.js"></script>
+<script>
   var gitment = new Gitment({
     owner: 'tidyko',
     repo: 'tidyko.github.io',
@@ -204,7 +206,7 @@
     },
   })
   gitment.render('gitment_container')
-  </script>
+</script>
 </section>
         
           <aside id="sidebar">

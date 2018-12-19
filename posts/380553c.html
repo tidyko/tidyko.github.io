@@ -85,7 +85,8 @@
   </div>
 </div>
 
-        <section id="main"><article id="post-Oracle 格式化数字小数位" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Oracle 格式化数字小数位" class="wow slideInRight article article-type-post"
+  itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/posts/380553c.html" class="article-date">
   <time class="post-time" datetime="2014-03-12T05:41:00.000Z" itemprop="datePublished">
@@ -93,27 +94,27 @@
     <span class="post-day">12</span>
   </time>
 </a>
-   
+
   </div>
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       Oracle 格式化数字小数位
     </h1>
   
 
-        <div>
-          
+      <div>
+        
   <div class="article-category">
     <a class="article-category-link" href="/categories/数据库/">数据库</a>,<a class="article-category-link" href="/categories/数据库/Oracle/">Oracle</a>
   </div>
 
-          
-              
+        
+        
   &nbsp; | &nbsp;
   <div class="view-box">
     <span id="/posts/380553c.html" class="leancloud_visitors" data-flag-title="Oracle 格式化数字小数位">
@@ -132,17 +133,18 @@
     <span>时长 ≈ 1 分钟</span>
   </div>
  
-          
-        </div>
-      </header>
+        
+      </div>
+    </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">OR</span> <span class="keyword">REPLACE</span> <span class="keyword">FUNCTION</span> fun_format_number_to_char(i_number  <span class="keyword">IN</span> <span class="built_in">NUMBER</span> ,  <span class="comment">--要格式化的数字</span></span><br><span class="line">                                                     i_decimal <span class="keyword">IN</span> <span class="built_in">NUMBER</span>    <span class="comment">--小数个数</span></span><br><span class="line">                                                    ) <span class="keyword">RETURN</span> VARCHAR2 <span class="keyword">IS</span></span><br><span class="line">  v_format varchar2(<span class="number">100</span>) := <span class="string">'.'</span> ;</span><br><span class="line">  v_result varchar2(100) ;</span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line">  </span><br><span class="line">  <span class="keyword">if</span> i_decimal = <span class="number">0</span> <span class="keyword">then</span></span><br><span class="line">     <span class="keyword">RETURN</span> to_char(<span class="keyword">round</span>(i_number,<span class="number">0</span>));</span><br><span class="line">  else</span><br><span class="line">     for i in 1..i_decimal loop </span><br><span class="line">       v_format := v_format || '9';</span><br><span class="line">     <span class="keyword">end</span> <span class="keyword">loop</span>;</span><br><span class="line">  <span class="keyword">end</span> <span class="keyword">if</span>;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">select</span> <span class="keyword">trim</span>(to_char(i_number,<span class="string">'99999999999999'</span>|| v_format)) <span class="keyword">into</span> v_result <span class="keyword">from</span> dual;</span><br><span class="line">  </span><br><span class="line">  if instr(v_result,'.',1,1) = 1 then</span><br><span class="line">    v_result := '0'||v_result;</span><br><span class="line">  <span class="keyword">end</span> <span class="keyword">if</span>;</span><br><span class="line">  </span><br><span class="line">  RETURN v_result;</span><br><span class="line"></span><br><span class="line"><span class="keyword">END</span> fun_format_number_to_char;</span><br></pre></td></tr></table></figure>
+      <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">OR</span> <span class="keyword">REPLACE</span> <span class="keyword">FUNCTION</span> fun_format_number_to_char(i_number  <span class="keyword">IN</span> <span class="built_in">NUMBER</span> ,  <span class="comment">--要格式化的数字</span></span><br><span class="line">                                                     i_decimal <span class="keyword">IN</span> <span class="built_in">NUMBER</span>    <span class="comment">--小数个数</span></span><br><span class="line">                                                    ) <span class="keyword">RETURN</span> VARCHAR2 <span class="keyword">IS</span></span><br><span class="line">  v_format varchar2(<span class="number">100</span>) := <span class="string">'.'</span> ;</span><br><span class="line">  v_result varchar2(100) ;</span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line">  </span><br><span class="line">  <span class="keyword">if</span> i_decimal = <span class="number">0</span> <span class="keyword">then</span></span><br><span class="line">     <span class="keyword">RETURN</span> to_char(<span class="keyword">round</span>(i_number,<span class="number">0</span>));</span><br><span class="line">  else</span><br><span class="line">     for i in 1..i_decimal loop </span><br><span class="line">       v_format := v_format || '9';</span><br><span class="line">     <span class="keyword">end</span> <span class="keyword">loop</span>;</span><br><span class="line">  <span class="keyword">end</span> <span class="keyword">if</span>;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">select</span> <span class="keyword">trim</span>(to_char(i_number,<span class="string">'99999999999999'</span>|| v_format)) <span class="keyword">into</span> v_result <span class="keyword">from</span> dual;</span><br><span class="line">  </span><br><span class="line">  if instr(v_result,'.',1,1) = 1 then</span><br><span class="line">    v_result := '0'||v_result;</span><br><span class="line">  <span class="keyword">end</span> <span class="keyword">if</span>;</span><br><span class="line">  </span><br><span class="line">  RETURN v_result;</span><br><span class="line"></span><br><span class="line"><span class="keyword">END</span> fun_format_number_to_char;</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/380553c.html" data-id="cjpuzlb1n009vz8ykc7ixkai5" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/380553c.html" data-id="cjpv1p07z00htu3yk1xhhiddz" class="article-share-link">
+        分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Oracle/">Oracle</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sql/">Sql</a></li></ul>
@@ -150,7 +152,7 @@
     </footer>
   </div>
   
-    
+  
 <nav id="article-nav">
   
     <a href="/posts/97ea625a.html" id="article-nav-newer" class="article-nav-link-wrap">
@@ -180,13 +182,13 @@
 
 
 
-  <div id="comments" class="comments">
-    <div id="gitment_container"></div>
-  </div>
-  
-  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
-  <script>
+<div id="comments" class="comments">
+  <div id="gitment_container"></div>
+</div>
+
+<link rel="stylesheet" href="https://www.wenjunjiang.win/css/gitment.css">
+<script src="https://www.wenjunjiang.win/js/gitment.js"></script>
+<script>
   var gitment = new Gitment({
     owner: 'tidyko',
     repo: 'tidyko.github.io',
@@ -196,7 +198,7 @@
     },
   })
   gitment.render('gitment_container')
-  </script>
+</script>
 </section>
         
           <aside id="sidebar">

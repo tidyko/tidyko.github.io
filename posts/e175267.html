@@ -85,7 +85,8 @@
   </div>
 </div>
 
-        <section id="main"><article id="post-Hibernate HQL new map" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Hibernate HQL new map" class="wow slideInRight article article-type-post"
+  itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/posts/e175267.html" class="article-date">
   <time class="post-time" datetime="2014-04-12T07:57:00.000Z" itemprop="datePublished">
@@ -93,27 +94,27 @@
     <span class="post-day">12</span>
   </time>
 </a>
-   
+
   </div>
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       Hibernate HQL new map
     </h1>
   
 
-        <div>
-          
+      <div>
+        
   <div class="article-category">
     <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
   </div>
 
-          
-              
+        
+        
   &nbsp; | &nbsp;
   <div class="view-box">
     <span id="/posts/e175267.html" class="leancloud_visitors" data-flag-title="Hibernate HQL new map">
@@ -132,13 +133,13 @@
     <span>时长 ≈ 1 分钟</span>
   </div>
  
-          
-        </div>
-      </header>
+        
+      </div>
+    </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>HQL 查询如果需要带出对象（比如：OneToOne子对象）的一两个属性，而不是全部带出。可以使用 select new map的方法带出。</p>
+      <p>HQL 查询如果需要带出对象（比如：OneToOne子对象）的一两个属性，而不是全部带出。可以使用 select new map的方法带出。</p>
 <h3 id="1）"><a href="#1）" class="headerlink" title="1）"></a>1）</h3><p>lazy还是设置为false<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**关联属性对象*/</span></span><br><span class="line"><span class="meta">@OneToOne</span>(cascade=CascadeType.PERSIST, fetch=FetchType.LAZY)</span><br><span class="line"><span class="meta">@JoinColumn</span>(name=<span class="string">"PROPERTY_ID"</span>, referencedColumnName=<span class="string">"ID"</span>)</span><br><span class="line"><span class="keyword">private</span> Property property;</span><br></pre></td></tr></table></figure></p>
 <h3 id="2）"><a href="#2）" class="headerlink" title="2）"></a>2）</h3><p>使用select new map（propertyId为要带出的子对象ID属性值）<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String HQLPAGE = <span class="string">"from Plugin p where p.state=1 and p.name like :name"</span>;</span><br><span class="line"></span><br><span class="line">String hqlResult =<span class="string">"select new map(id as id,prictureUrl as prictureUrl,name as name,priceFormula as priceFormula,sort as sort,isShow as isShow,property.id as propertyId) "</span> + HQLPAGE;</span><br></pre></td></tr></table></figure></p>
 <p>注:<br>如果带出的是一整个property对象的话，用jackson对对象进行转换的时候会报错。<br>这时候要将带出的对象设置为fetch=FetchType.EAGER</p>
@@ -150,7 +151,8 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/e175267.html" data-id="cjpuzlay1002oz8ykfw9qxepj" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/e175267.html" data-id="cjpv1p01o002eu3ykc50egxe7" class="article-share-link">
+        分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hibernate/">Hibernate</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
@@ -158,7 +160,7 @@
     </footer>
   </div>
   
-    
+  
 <nav id="article-nav">
   
     <a href="/posts/8e7d3f9d.html" id="article-nav-newer" class="article-nav-link-wrap">
@@ -188,13 +190,13 @@
 
 
 
-  <div id="comments" class="comments">
-    <div id="gitment_container"></div>
-  </div>
-  
-  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
-  <script>
+<div id="comments" class="comments">
+  <div id="gitment_container"></div>
+</div>
+
+<link rel="stylesheet" href="https://www.wenjunjiang.win/css/gitment.css">
+<script src="https://www.wenjunjiang.win/js/gitment.js"></script>
+<script>
   var gitment = new Gitment({
     owner: 'tidyko',
     repo: 'tidyko.github.io',
@@ -204,7 +206,7 @@
     },
   })
   gitment.render('gitment_container')
-  </script>
+</script>
 </section>
         
           <aside id="sidebar">

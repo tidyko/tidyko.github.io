@@ -85,7 +85,8 @@
   </div>
 </div>
 
-        <section id="main"><article id="post-博客园 使用ifream的两种方法" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-博客园 使用ifream的两种方法" class="wow slideInRight article article-type-post"
+  itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/posts/a0a2137e.html" class="article-date">
   <time class="post-time" datetime="2014-07-01T09:55:00.000Z" itemprop="datePublished">
@@ -93,27 +94,27 @@
     <span class="post-day">01</span>
   </time>
 </a>
-   
+
   </div>
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       博客园 使用ifream的两种方法
     </h1>
   
 
-        <div>
-          
+      <div>
+        
   <div class="article-category">
     <a class="article-category-link" href="/categories/建站/">建站</a>
   </div>
 
-          
-              
+        
+        
   &nbsp; | &nbsp;
   <div class="view-box">
     <span id="/posts/a0a2137e.html" class="leancloud_visitors" data-flag-title="博客园 使用ifream的两种方法">
@@ -132,13 +133,13 @@
     <span>时长 ≈ 2 分钟</span>
   </div>
  
-          
-        </div>
-      </header>
+        
+      </div>
+    </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>作为博客平台，发现博客园可能出于安全考虑，并不支持正常的iframe嵌套。</p>
+      <p>作为博客平台，发现博客园可能出于安全考虑，并不支持正常的iframe嵌套。</p>
 <p>但是经过研究发现还是可以通过两种特殊途径在自己博客使用iframe进行嵌套。</p>
 <h3 id="1）字符串拼接"><a href="#1）字符串拼接" class="headerlink" title="1）字符串拼接"></a>1）字符串拼接</h3><p>一个正常的iframe结构如下，如果直接将下面的代码作为变量，对html元素进行拼接的话是行不通的。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ifr = <span class="string">"&lt;iframe </span></span><br><span class="line"><span class="string">　　　　　　　　width='100%' </span></span><br><span class="line"><span class="string">　　　　　　　　height='600'</span></span><br><span class="line"><span class="string">　　　　　　　　class='share_self'</span></span><br><span class="line"><span class="string">　　　　　　　　frameborder='0'</span></span><br><span class="line"><span class="string">　　　　　　　　scrolling='no'</span></span><br><span class="line"><span class="string">　　　　　　　　src='http://widget.weibo.com/weiboshow/index.php</span></span><br><span class="line"><span class="string">　　　　　　　　?language=zh_cn&amp;width=0&amp;height=600&amp;fansRow=2&amp;ptype=1&amp;speed=0&amp;skin=1&amp;</span></span><br><span class="line"><span class="string">　　　　　　　　isTitle=1&amp;noborder=0&amp;isWeibo=1&amp;isFans=0&amp;uid=3424286664&amp;verifier=3c8ebf87&amp;dpc=1'&gt;&lt;/iframe&gt;"</span>;</span><br><span class="line">$(<span class="string">"#tmp"</span>).after(ifr);</span><br></pre></td></tr></table></figure></p>
 <p>但是可以通过下面的方法实现。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ifr = <span class="string">"&lt;ifr"</span>;</span><br><span class="line">ifr += <span class="string">"ame </span></span><br><span class="line"><span class="string">  　　　　　　width='100%' </span></span><br><span class="line"><span class="string">　　　　　height='600'</span></span><br><span class="line"><span class="string">　　　　　class='share_self'</span></span><br><span class="line"><span class="string">　　　　　frameborder='0'</span></span><br><span class="line"><span class="string">　　　　　scrolling='no'</span></span><br><span class="line"><span class="string">　　　　　src='http://widget.weibo.com/weiboshow/index.php</span></span><br><span class="line"><span class="string">　　　　　?language=zh_cn&amp;width=0&amp;height=600&amp;fansRow=2&amp;ptype=1&amp;speed=0&amp;skin=1&amp;</span></span><br><span class="line"><span class="string">　　　　　isTitle=1&amp;noborder=0&amp;isWeibo=1&amp;isFans=0&amp;uid=3424286664&amp;verifier=3c8ebf87&amp;dpc=1'&gt;&lt;/ifr"</span>;</span><br><span class="line">ifr += <span class="string">"ame&gt;"</span>;</span><br><span class="line">$(<span class="string">"#tmp"</span>).after(ifr);</span><br></pre></td></tr></table></figure></p>
@@ -148,7 +149,8 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/a0a2137e.html" data-id="cjpuzlb2n00bmz8ykmdii8yhq" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/a0a2137e.html" data-id="cjpv1p08w00jtu3yklj76fi6c" class="article-share-link">
+        分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iframe/">iframe</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/博客园/">博客园</a></li></ul>
@@ -156,7 +158,7 @@
     </footer>
   </div>
   
-    
+  
 <nav id="article-nav">
   
     <a href="/posts/3975e50a.html" id="article-nav-newer" class="article-nav-link-wrap">
@@ -186,13 +188,13 @@
 
 
 
-  <div id="comments" class="comments">
-    <div id="gitment_container"></div>
-  </div>
-  
-  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
-  <script>
+<div id="comments" class="comments">
+  <div id="gitment_container"></div>
+</div>
+
+<link rel="stylesheet" href="https://www.wenjunjiang.win/css/gitment.css">
+<script src="https://www.wenjunjiang.win/js/gitment.js"></script>
+<script>
   var gitment = new Gitment({
     owner: 'tidyko',
     repo: 'tidyko.github.io',
@@ -202,7 +204,7 @@
     },
   })
   gitment.render('gitment_container')
-  </script>
+</script>
 </section>
         
           <aside id="sidebar">

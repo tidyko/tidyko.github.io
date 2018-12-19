@@ -85,7 +85,8 @@
   </div>
 </div>
 
-        <section id="main"><article id="post-Eclipse 使用Tomcat发布项目时，项目启动路径错误" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Eclipse 使用Tomcat发布项目时，项目启动路径错误" class="wow slideInRight article article-type-post"
+  itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/posts/7e7d7a18.html" class="article-date">
   <time class="post-time" datetime="2016-12-01T08:49:00.000Z" itemprop="datePublished">
@@ -93,27 +94,27 @@
     <span class="post-day">01</span>
   </time>
 </a>
-   
+
   </div>
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       Eclipse 使用Tomcat发布项目时，项目启动路径错误
     </h1>
   
 
-        <div>
-          
+      <div>
+        
   <div class="article-category">
     <a class="article-category-link" href="/categories/开发调试工具/">开发调试工具</a>,<a class="article-category-link" href="/categories/开发调试工具/Eclipse/">Eclipse</a>
   </div>
 
-          
-              
+        
+        
   &nbsp; | &nbsp;
   <div class="view-box">
     <span id="/posts/7e7d7a18.html" class="leancloud_visitors" data-flag-title="Eclipse 使用Tomcat发布项目时，项目启动路径错误">
@@ -132,19 +133,20 @@
     <span>时长 ≈ 1 分钟</span>
   </div>
  
-          
-        </div>
-      </header>
+        
+      </div>
+    </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>这种情况下，通常会去 <code>C:\User\[USERNAME]\</code> 或者 Tomcat路径下面的一个temp文件夹里面找项目文件，由此出现报错。</p>
+      <p>这种情况下，通常会去 <code>C:\User\[USERNAME]\</code> 或者 Tomcat路径下面的一个temp文件夹里面找项目文件，由此出现报错。</p>
 <h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><p>双击Eclipse的Servers里面的tomcat，勾选，<code>Server Options</code> 的 <code>Publish modulecontext to separate XML files</code> 选项，<br>在 <code>Tomcat目录</code> 下，找到 <code>conf</code> 文件夹下的 <code>context.xml</code> 文件，找到<code>antiJARLocking=&quot;true&quot;</code> 和 <code>antiResourceLocking=&quot;true&quot;</code> ，将 <code>true</code> 全部改为 <code>false</code> 即可解决。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/7e7d7a18.html" data-id="cjpuzlax7001ez8ykg6thdoox" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/7e7d7a18.html" data-id="cjpv1p017001iu3ykitg9g0k8" class="article-share-link">
+        分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tomcat/">Tomcat</a></li></ul>
@@ -152,7 +154,7 @@
     </footer>
   </div>
   
-    
+  
 <nav id="article-nav">
   
     <a href="/posts/7b8cc3e2.html" id="article-nav-newer" class="article-nav-link-wrap">
@@ -182,13 +184,13 @@
 
 
 
-  <div id="comments" class="comments">
-    <div id="gitment_container"></div>
-  </div>
-  
-  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
-  <script>
+<div id="comments" class="comments">
+  <div id="gitment_container"></div>
+</div>
+
+<link rel="stylesheet" href="https://www.wenjunjiang.win/css/gitment.css">
+<script src="https://www.wenjunjiang.win/js/gitment.js"></script>
+<script>
   var gitment = new Gitment({
     owner: 'tidyko',
     repo: 'tidyko.github.io',
@@ -198,7 +200,7 @@
     },
   })
   gitment.render('gitment_container')
-  </script>
+</script>
 </section>
         
           <aside id="sidebar">

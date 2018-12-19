@@ -85,7 +85,8 @@
   </div>
 </div>
 
-        <section id="main"><article id="post-Oracle ORA-01219" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Oracle ORA-01219" class="wow slideInRight article article-type-post"
+  itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/posts/1bffb80a.html" class="article-date">
   <time class="post-time" datetime="2013-01-05T02:40:00.000Z" itemprop="datePublished">
@@ -93,27 +94,27 @@
     <span class="post-day">05</span>
   </time>
 </a>
-   
+
   </div>
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       Oracle ORA-01219
     </h1>
   
 
-        <div>
-          
+      <div>
+        
   <div class="article-category">
     <a class="article-category-link" href="/categories/数据库/">数据库</a>,<a class="article-category-link" href="/categories/数据库/Oracle/">Oracle</a>
   </div>
 
-          
-              
+        
+        
   &nbsp; | &nbsp;
   <div class="view-box">
     <span id="/posts/1bffb80a.html" class="leancloud_visitors" data-flag-title="Oracle ORA-01219">
@@ -132,13 +133,13 @@
     <span>时长 ≈ 1 分钟</span>
   </div>
  
-          
-        </div>
-      </header>
+        
+      </div>
+    </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>ORA-01219:database not open:queries allowed on fixed tables/views only<br>ORA-01219:数据库未打开：仅允许在固定表/视图中查询”的警告窗口！</p>
+      <p>ORA-01219:database not open:queries allowed on fixed tables/views only<br>ORA-01219:数据库未打开：仅允许在固定表/视图中查询”的警告窗口！</p>
 <h2 id="解决办法："><a href="#解决办法：" class="headerlink" title="解决办法："></a>解决办法：</h2><h3 id="登录Oracle-SQLPlus"><a href="#登录Oracle-SQLPlus" class="headerlink" title="登录Oracle SQLPlus"></a>登录Oracle SQLPlus</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">username  TIDY</span><br><span class="line"></span><br><span class="line">password  TIDY</span><br></pre></td></tr></table></figure>
 <h3 id="1）"><a href="#1）" class="headerlink" title="1）"></a>1）</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt; select open_mode from v$database;</span><br><span class="line"></span><br><span class="line">OPEN_MODE</span><br><span class="line"><span class="comment">----------</span></span><br><span class="line">MOUNTED</span><br></pre></td></tr></table></figure>
 <h3 id="2）"><a href="#2）" class="headerlink" title="2）"></a>2）</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt; alter database open;</span><br><span class="line"></span><br><span class="line">ERROR at line 1:</span><br><span class="line">ORA-01157: cannot identify/<span class="keyword">lock</span> <span class="keyword">data</span> <span class="keyword">file</span> <span class="number">4</span> - see DBWR <span class="keyword">trace</span> <span class="keyword">file</span></span><br><span class="line">ORA<span class="number">-01110</span>: <span class="keyword">data</span> <span class="keyword">file</span> <span class="number">4</span>: <span class="string">'E:/MYBANK.dbf'</span></span><br></pre></td></tr></table></figure>
@@ -151,7 +152,8 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/1bffb80a.html" data-id="cjpuzlb12008nz8ykibmv01xm" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/1bffb80a.html" data-id="cjpv1p07a00gnu3yks1r3teb5" class="article-share-link">
+        分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Oracle/">Oracle</a></li></ul>
@@ -159,7 +161,7 @@
     </footer>
   </div>
   
-    
+  
 <nav id="article-nav">
   
     <a href="/posts/d46f9b3d.html" id="article-nav-newer" class="article-nav-link-wrap">
@@ -184,13 +186,13 @@
 
 
 
-  <div id="comments" class="comments">
-    <div id="gitment_container"></div>
-  </div>
-  
-  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
-  <script>
+<div id="comments" class="comments">
+  <div id="gitment_container"></div>
+</div>
+
+<link rel="stylesheet" href="https://www.wenjunjiang.win/css/gitment.css">
+<script src="https://www.wenjunjiang.win/js/gitment.js"></script>
+<script>
   var gitment = new Gitment({
     owner: 'tidyko',
     repo: 'tidyko.github.io',
@@ -200,7 +202,7 @@
     },
   })
   gitment.render('gitment_container')
-  </script>
+</script>
 </section>
         
           <aside id="sidebar">

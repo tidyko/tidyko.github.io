@@ -80,7 +80,8 @@
 
         <section id="main">
   
-    <article id="post-Java date 到 Oracle date 精确到时分秒" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Java date 到 Oracle date 精确到时分秒" class="wow slideInRight article article-type-post"
+  itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/posts/6a3fb6fb.html" class="article-date">
   <time class="post-time" datetime="2014-03-03T06:41:00.000Z" itemprop="datePublished">
@@ -88,27 +89,27 @@
     <span class="post-day">03</span>
   </time>
 </a>
-   
+
   </div>
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 itemprop="name">
       <a class="article-title" href="/posts/6a3fb6fb.html">Java date 到 Oracle date 精确到时分秒</a>
     </h1>
   
 
-        <div>
-          
+      <div>
+        
   <div class="article-category">
     <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
   </div>
 
-          
-              
+        
+        
   &nbsp; | &nbsp;
   <div class="view-box">
     <span id="/posts/6a3fb6fb.html" class="leancloud_visitors" data-flag-title="Java date 到 Oracle date 精确到时分秒">
@@ -127,13 +128,13 @@
     <span>时长 ≈ 1 分钟</span>
   </div>
  
-          
-        </div>
-      </header>
+        
+      </div>
+    </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>有两种方法：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java.util.Date startTime=<span class="keyword">new</span> Date(<span class="string">"2014/01/01 23:00:00"</span>);</span><br></pre></td></tr></table></figure></p>
+      <p>有两种方法：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java.util.Date startTime=<span class="keyword">new</span> Date(<span class="string">"2014/01/01 23:00:00"</span>);</span><br></pre></td></tr></table></figure></p>
 <h3 id="1）"><a href="#1）" class="headerlink" title="1）"></a>1）</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Timestamp(startTime.getTime())</span><br></pre></td></tr></table></figure>
 <p>如果数据库中时间字段定义为date类型，由于timestamp类型的精度比date类型的精度高，所以oracle会对数据库里的date类型做出隐身转换，将date类型转换为timestamp类型，由于加了函数，那么创建在date类型上的索引将不会使用到；(好像是oracle9i后开始才有的问题)</p>
 <h3 id="2）"><a href="#2）" class="headerlink" title="2）"></a>2）</h3><p>数据库直接使用varchar2类型，在过程里面用to_date直接转换。</p>
@@ -141,7 +142,8 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/6a3fb6fb.html" data-id="cjpuzlazt005vz8ykfl5e3tie" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/6a3fb6fb.html" data-id="cjpv1p06200e9u3ykmpd6y0jj" class="article-share-link">
+        分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Oracle/">Oracle</a></li></ul>
@@ -159,7 +161,8 @@
 
 
   
-    <article id="post-Eclipse 配置pom.xml错误" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Eclipse 配置pom.xml错误" class="wow slideInRight article article-type-post"
+  itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/posts/ac53be82.html" class="article-date">
   <time class="post-time" datetime="2014-02-25T04:31:00.000Z" itemprop="datePublished">
@@ -167,27 +170,27 @@
     <span class="post-day">25</span>
   </time>
 </a>
-   
+
   </div>
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 itemprop="name">
       <a class="article-title" href="/posts/ac53be82.html">Eclipse 配置pom.xml错误</a>
     </h1>
   
 
-        <div>
-          
+      <div>
+        
   <div class="article-category">
     <a class="article-category-link" href="/categories/开发调试工具/">开发调试工具</a>,<a class="article-category-link" href="/categories/开发调试工具/Eclipse/">Eclipse</a>
   </div>
 
-          
-              
+        
+        
   &nbsp; | &nbsp;
   <div class="view-box">
     <span id="/posts/ac53be82.html" class="leancloud_visitors" data-flag-title="Eclipse 配置pom.xml错误">
@@ -206,13 +209,13 @@
     <span>时长 ≈ 1 分钟</span>
   </div>
  
-          
-        </div>
-      </header>
+        
+      </div>
+    </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>如下所示，依赖中已经加上了<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">scope</span>&gt;</span>provided<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+      <p>如下所示，依赖中已经加上了<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">scope</span>&gt;</span>provided<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- servlet --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">　　<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>javax.servlet<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">　　<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>servlet-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">　　<span class="tag">&lt;<span class="name">version</span>&gt;</span>2.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">　　<span class="tag">&lt;<span class="name">scope</span>&gt;</span>provided<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- jsp --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">　　<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>javax.servlet.jsp<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">　　<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jsp-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">　　<span class="tag">&lt;<span class="name">version</span>&gt;</span>2.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">　　<span class="tag">&lt;<span class="name">scope</span>&gt;</span>provided<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>本来在项目发布后是不会把这两个包发布到项目发布路径下面的，但在Eclipse下面却仍然发布了。</p>
 <h2 id="解决方法："><a href="#解决方法：" class="headerlink" title="解决方法："></a>解决方法：</h2><h3 id="1"><a href="#1" class="headerlink" title="1)"></a>1)</h3><p>手动删掉两个包。</p>
@@ -221,7 +224,8 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/ac53be82.html" data-id="cjpuzlaxq0027z8yko2vovybi" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/ac53be82.html" data-id="cjpv1p01h0021u3yka7dp9epk" class="article-share-link">
+        分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Maven/">Maven</a></li></ul>
@@ -239,7 +243,8 @@
 
 
   
-    <article id="post-J2EE 异常处理" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-J2EE 异常处理" class="wow slideInRight article article-type-post"
+  itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/posts/26788ddf.html" class="article-date">
   <time class="post-time" datetime="2014-02-24T03:50:00.000Z" itemprop="datePublished">
@@ -247,27 +252,27 @@
     <span class="post-day">24</span>
   </time>
 </a>
-   
+
   </div>
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 itemprop="name">
       <a class="article-title" href="/posts/26788ddf.html">J2EE 异常处理</a>
     </h1>
   
 
-        <div>
-          
+      <div>
+        
   <div class="article-category">
     <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
   </div>
 
-          
-              
+        
+        
   &nbsp; | &nbsp;
   <div class="view-box">
     <span id="/posts/26788ddf.html" class="leancloud_visitors" data-flag-title="J2EE 异常处理">
@@ -286,20 +291,21 @@
     <span>时长 ≈ 1 分钟</span>
   </div>
  
-          
-        </div>
-      </header>
+        
+      </div>
+    </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>J2EE中一般对异常状况的处理都可以用两种情况对其进行相应处理。</p>
+      <p>J2EE中一般对异常状况的处理都可以用两种情况对其进行相应处理。</p>
 <h3 id="1）"><a href="#1）" class="headerlink" title="1）"></a>1）</h3><p>通常情况下，一般异常处理可以选择用throw、throws从底层一直往上面抛，直到抛到Action，让其将异常显示在页面上面进行显示即可。</p>
 <h3 id="2）"><a href="#2）" class="headerlink" title="2）"></a>2）</h3><p>特殊情况下，如果需要在具体底层对该异常进行捕捉的话，则需要在对其捕捉之后，在catch里面对其做出相应处理，做出默认值返回，或者在catch里面继续throw这个异常，然后，上一层继续对这个异常进行相应处理。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/26788ddf.html" data-id="cjpuzlaz9004kz8ykddz4pmom" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/26788ddf.html" data-id="cjpv1p05h00d5u3ykak4ki6iw" class="article-share-link">
+        分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
@@ -317,7 +323,8 @@
 
 
   
-    <article id="post-Java throw和throws的区别和用法" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Java throw和throws的区别和用法" class="wow slideInRight article article-type-post"
+  itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/posts/93821c9f.html" class="article-date">
   <time class="post-time" datetime="2014-02-19T09:12:00.000Z" itemprop="datePublished">
@@ -325,27 +332,27 @@
     <span class="post-day">19</span>
   </time>
 </a>
-   
+
   </div>
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 itemprop="name">
       <a class="article-title" href="/posts/93821c9f.html">Java throw和throws的区别和用法</a>
     </h1>
   
 
-        <div>
-          
+      <div>
+        
   <div class="article-category">
     <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
   </div>
 
-          
-              
+        
+        
   &nbsp; | &nbsp;
   <div class="view-box">
     <span id="/posts/93821c9f.html" class="leancloud_visitors" data-flag-title="Java throw和throws的区别和用法">
@@ -364,19 +371,20 @@
     <span>时长 ≈ 2 分钟</span>
   </div>
  
-          
-        </div>
-      </header>
+        
+      </div>
+    </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="1）"><a href="#1）" class="headerlink" title="1）"></a>1）</h3><p>throws关键字通常被应用在声明方法时，用来指定可能抛出的异常。<br>多个异常可以使用逗号隔开。当在主函数中调用该方法时，如果发生异常，就会将异常抛给指定异常对象。<br>如下面例子所示：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Shoot</span> </span>&#123;</span><br><span class="line">　　<span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">pop</span><span class="params">()</span> <span class="keyword">throws</span> NegativeArraySizeException </span>&#123;</span><br><span class="line">　　　　<span class="comment">//定义方法并抛出NegativeArraySizeException异常</span></span><br><span class="line">　　　　<span class="keyword">int</span> [] arr = <span class="keyword">new</span> <span class="keyword">int</span>[-<span class="number">3</span>];<span class="comment">//创建数组</span></span><br><span class="line">　　&#125;</span><br><span class="line">　　<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;<span class="comment">//主方法</span></span><br><span class="line">　　　　<span class="keyword">try</span> &#123; </span><br><span class="line">　　　　　　pop(); <span class="comment">//调用pop()方法</span></span><br><span class="line">　　　　&#125; <span class="keyword">catch</span> (NegativeArraySizeException e) &#123;</span><br><span class="line">　　　　　　System.out.println(<span class="string">"pop()方法抛出的异常"</span>);<span class="comment">//输出异常信息</span></span><br><span class="line">　　　　&#125;</span><br><span class="line">　　&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+      <h3 id="1）"><a href="#1）" class="headerlink" title="1）"></a>1）</h3><p>throws关键字通常被应用在声明方法时，用来指定可能抛出的异常。<br>多个异常可以使用逗号隔开。当在主函数中调用该方法时，如果发生异常，就会将异常抛给指定异常对象。<br>如下面例子所示：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Shoot</span> </span>&#123;</span><br><span class="line">　　<span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">pop</span><span class="params">()</span> <span class="keyword">throws</span> NegativeArraySizeException </span>&#123;</span><br><span class="line">　　　　<span class="comment">//定义方法并抛出NegativeArraySizeException异常</span></span><br><span class="line">　　　　<span class="keyword">int</span> [] arr = <span class="keyword">new</span> <span class="keyword">int</span>[-<span class="number">3</span>];<span class="comment">//创建数组</span></span><br><span class="line">　　&#125;</span><br><span class="line">　　<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;<span class="comment">//主方法</span></span><br><span class="line">　　　　<span class="keyword">try</span> &#123; </span><br><span class="line">　　　　　　pop(); <span class="comment">//调用pop()方法</span></span><br><span class="line">　　　　&#125; <span class="keyword">catch</span> (NegativeArraySizeException e) &#123;</span><br><span class="line">　　　　　　System.out.println(<span class="string">"pop()方法抛出的异常"</span>);<span class="comment">//输出异常信息</span></span><br><span class="line">　　　　&#125;</span><br><span class="line">　　&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h3 id="2）"><a href="#2）" class="headerlink" title="2）"></a>2）</h3><p>throw关键字通常用在方法体中，并且抛出一个异常对象。<br>程序在执行到throw语句时立即停止，它后面的语句都不执行。<br>通过throw抛出异常后，如果想在上一级代码中来捕获并处理异常，则需要在抛出异常的方法中使用throws关键字在方法声明中指明要跑出的异常；如果要捕捉throw抛出的异常，则必须使用try—catch语句。<br>如下面例子所示：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyException</span> <span class="keyword">extends</span> <span class="title">Exception</span> </span>&#123; <span class="comment">//创建自定义异常类</span></span><br><span class="line">    String message; <span class="comment">//定义String类型变量</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyException</span><span class="params">(String ErrorMessagr)</span> </span>&#123;  <span class="comment">//父类方法</span></span><br><span class="line">        message = ErrorMessagr;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getMessage</span><span class="params">()</span></span>&#123;   <span class="comment">//覆盖getMessage()方法</span></span><br><span class="line">        <span class="keyword">return</span> message;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Captor</span> </span>&#123; <span class="comment">//创建类</span></span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">quotient</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span> <span class="keyword">throws</span> MyException</span>&#123;<span class="comment">//定义方法抛出异常</span></span><br><span class="line">        <span class="keyword">if</span>(y &lt; <span class="number">0</span>)&#123;  <span class="comment">//判断参数是否小于0</span></span><br><span class="line">　　　　　  <span class="keyword">throw</span> <span class="keyword">new</span> MyException(<span class="string">"除数不能是负数"</span>);<span class="comment">//异常信息</span></span><br><span class="line">　      &#125;</span><br><span class="line">        <span class="keyword">return</span> x/y;<span class="comment">//返回值</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span></span>&#123; <span class="comment">//主方法</span></span><br><span class="line">        <span class="keyword">try</span>&#123; <span class="comment">//try语句包含可能发生异常的语句</span></span><br><span class="line">            <span class="keyword">int</span> result = quotient(<span class="number">3</span>,-<span class="number">1</span>);<span class="comment">//调用方法quotient()</span></span><br><span class="line">        &#125;<span class="keyword">catch</span> (MyException e) &#123; <span class="comment">//处理自定义异常</span></span><br><span class="line">            System.out.println(e.getMessage()); <span class="comment">//输出异常信息</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">catch</span> (ArithmeticException e) &#123;</span><br><span class="line">            <span class="comment">//处理ArithmeticException异常</span></span><br><span class="line">        　　System.out.println(<span class="string">"除数不能为0"</span>);<span class="comment">//输出提示信息</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">catch</span> (Exception e) &#123; <span class="comment">//处理其他异常</span></span><br><span class="line">        　　　System.out.println(<span class="string">"程序发生了其他的异常"</span>);</span><br><span class="line">        　　　<span class="comment">//输出提示信息</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/93821c9f.html" data-id="cjpuzlazz006bz8ykbymus2zc" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/93821c9f.html" data-id="cjpv1p06600egu3yk2ypl54fk" class="article-share-link">
+        分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
@@ -394,7 +402,8 @@
 
 
   
-    <article id="post-Eclipse Failed to load the JNI shared library" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Eclipse Failed to load the JNI shared library" class="wow slideInRight article article-type-post"
+  itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/posts/bd745825.html" class="article-date">
   <time class="post-time" datetime="2014-02-12T10:00:00.000Z" itemprop="datePublished">
@@ -402,27 +411,27 @@
     <span class="post-day">12</span>
   </time>
 </a>
-   
+
   </div>
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 itemprop="name">
       <a class="article-title" href="/posts/bd745825.html">Eclipse Failed to load the JNI shared library</a>
     </h1>
   
 
-        <div>
-          
+      <div>
+        
   <div class="article-category">
     <a class="article-category-link" href="/categories/开发调试工具/">开发调试工具</a>,<a class="article-category-link" href="/categories/开发调试工具/Eclipse/">Eclipse</a>
   </div>
 
-          
-              
+        
+        
   &nbsp; | &nbsp;
   <div class="view-box">
     <span id="/posts/bd745825.html" class="leancloud_visitors" data-flag-title="Eclipse Failed to load the JNI shared library">
@@ -441,13 +450,13 @@
     <span>时长 ≈ 1 分钟</span>
   </div>
  
-          
-        </div>
-      </header>
+        
+      </div>
+    </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>这是因为JDK配置错误所导致的现象。</p>
+      <p>这是因为JDK配置错误所导致的现象。</p>
 <p>一般说来，新购笔记本会预装64位的windows系统，而在网上下载软件时，32位会优先出现在页面中（现在来说是这个情况，但我认为未来64位会越来越普及）。</p>
 <p>如果你是64位的系统，却安装了32位的JDK，就会导致上面的情况。</p>
 <h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><h3 id="1）"><a href="#1）" class="headerlink" title="1）"></a>1）</h3><p>卸载掉原来安装的32位的JDK，然后安装64位的JDK到电脑中。</p>
@@ -457,7 +466,8 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/bd745825.html" data-id="cjpuzlaww000wz8ykjh8oaecu" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/bd745825.html" data-id="cjpv1p0100012u3ykn2j4vkym" class="article-share-link">
+        分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jdk/">Jdk</a></li></ul>
@@ -475,7 +485,8 @@
 
 
   
-    <article id="post-Eclipse Failed to load JavaHL Library" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Eclipse Failed to load JavaHL Library" class="wow slideInRight article article-type-post"
+  itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/posts/3e42071e.html" class="article-date">
   <time class="post-time" datetime="2014-02-12T09:57:00.000Z" itemprop="datePublished">
@@ -483,27 +494,27 @@
     <span class="post-day">12</span>
   </time>
 </a>
-   
+
   </div>
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 itemprop="name">
       <a class="article-title" href="/posts/3e42071e.html">Eclipse Failed to load JavaHL Library</a>
     </h1>
   
 
-        <div>
-          
+      <div>
+        
   <div class="article-category">
     <a class="article-category-link" href="/categories/开发调试工具/">开发调试工具</a>,<a class="article-category-link" href="/categories/开发调试工具/Eclipse/">Eclipse</a>
   </div>
 
-          
-              
+        
+        
   &nbsp; | &nbsp;
   <div class="view-box">
     <span id="/posts/3e42071e.html" class="leancloud_visitors" data-flag-title="Eclipse Failed to load JavaHL Library">
@@ -522,19 +533,20 @@
     <span>时长 ≈ 1 分钟</span>
   </div>
  
-          
-        </div>
-      </header>
+        
+      </div>
+    </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="1）"><a href="#1）" class="headerlink" title="1）"></a>1）</h3><p>选择菜单<br><code>window</code> -&gt; <code>preferences</code> -&gt; <code>Team</code> -&gt; <code>SVN</code> -&gt; <code>SVN接口</code> </p>
+      <h3 id="1）"><a href="#1）" class="headerlink" title="1）"></a>1）</h3><p>选择菜单<br><code>window</code> -&gt; <code>preferences</code> -&gt; <code>Team</code> -&gt; <code>SVN</code> -&gt; <code>SVN接口</code> </p>
 <h3 id="2）"><a href="#2）" class="headerlink" title="2）"></a>2）</h3><p>选择SVNKit (Pure Java) xxxxxx<br>图例：<br><img src="http://img.tidyko.com/blog/Failed%20to%20load%20JavaHL%20Library_1.jpg" alt="Eclipse里Failed to load JavaHL Library-图例1"></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3e42071e.html" data-id="cjpuzlax00013z8yk2vy1adqb" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/3e42071e.html" data-id="cjpv1p00x000vu3ykxt6ayh2i" class="article-share-link">
+        分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Svn/">Svn</a></li></ul>
@@ -552,7 +564,8 @@
 
 
   
-    <article id="post-Eclipse SonarQube启动报错" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Eclipse SonarQube启动报错" class="wow slideInRight article article-type-post"
+  itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/posts/fd6e9fc4.html" class="article-date">
   <time class="post-time" datetime="2014-02-12T09:53:00.000Z" itemprop="datePublished">
@@ -560,27 +573,27 @@
     <span class="post-day">12</span>
   </time>
 </a>
-   
+
   </div>
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 itemprop="name">
       <a class="article-title" href="/posts/fd6e9fc4.html">Eclipse SonarQube启动报错</a>
     </h1>
   
 
-        <div>
-          
+      <div>
+        
   <div class="article-category">
     <a class="article-category-link" href="/categories/开发调试工具/">开发调试工具</a>,<a class="article-category-link" href="/categories/开发调试工具/Eclipse/">Eclipse</a>
   </div>
 
-          
-              
+        
+        
   &nbsp; | &nbsp;
   <div class="view-box">
     <span id="/posts/fd6e9fc4.html" class="leancloud_visitors" data-flag-title="Eclipse SonarQube启动报错">
@@ -599,13 +612,13 @@
     <span>时长 ≈ 1 分钟</span>
   </div>
  
-          
-        </div>
-      </header>
+        
+      </div>
+    </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>由于近期，信息安全部在搞代码优化工作。<br>所以，配合上边的工作需求，使用sonar对代码进行优化检测。<br>在Eclipse上装Sonar很简单，只要在Eclipse Marketplace上面搜索“Sonar”关键字，点击第一个插件安装即可。</p>
+      <p>由于近期，信息安全部在搞代码优化工作。<br>所以，配合上边的工作需求，使用sonar对代码进行优化检测。<br>在Eclipse上装Sonar很简单，只要在Eclipse Marketplace上面搜索“Sonar”关键字，点击第一个插件安装即可。</p>
 <p>重启，接下来对需要检测的项目进行下一步工作。<br>如果是普通java项目的话，需要将此项目变成Maven项目，然后update project。<br>update完之后，<br><code>右击项目</code> -&gt; <code>选择SonarQube</code> -&gt; <code>Analyze</code><br>之后等检测完之后需要优化的错误项就会一一出现在项目代码上面，根据提示可以进行相应修改。</p>
 <h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>在点击Analyze选项之后，报Can not create markers的错误。</p>
 <h3 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h3><p>其原因在于，我本机系统是64bit的，<br>但是使用的Eclipse版本和jdk版本却是32bit版本的。</p>
@@ -614,7 +627,8 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/fd6e9fc4.html" data-id="cjpuzlax10015z8yk778s3sm4" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/fd6e9fc4.html" data-id="cjpv1p0130017u3ykze6dq9e9" class="article-share-link">
+        分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SonarQube/">SonarQube</a></li></ul>
@@ -632,7 +646,8 @@
 
 
   
-    <article id="post-Eclipse Tomcat一直处于starting状态，项目却已成功启动" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Eclipse Tomcat一直处于starting状态，项目却已成功启动" class="wow slideInRight article article-type-post"
+  itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/posts/353a4b3e.html" class="article-date">
   <time class="post-time" datetime="2014-02-11T09:34:00.000Z" itemprop="datePublished">
@@ -640,27 +655,27 @@
     <span class="post-day">11</span>
   </time>
 </a>
-   
+
   </div>
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 itemprop="name">
       <a class="article-title" href="/posts/353a4b3e.html">Eclipse Tomcat一直处于starting状态，项目却已成功启动</a>
     </h1>
   
 
-        <div>
-          
+      <div>
+        
   <div class="article-category">
     <a class="article-category-link" href="/categories/开发调试工具/">开发调试工具</a>,<a class="article-category-link" href="/categories/开发调试工具/Eclipse/">Eclipse</a>
   </div>
 
-          
-              
+        
+        
   &nbsp; | &nbsp;
   <div class="view-box">
     <span id="/posts/353a4b3e.html" class="leancloud_visitors" data-flag-title="Eclipse Tomcat一直处于starting状态，项目却已成功启动">
@@ -679,19 +694,20 @@
     <span>时长 ≈ 1 分钟</span>
   </div>
  
-          
-        </div>
-      </header>
+        
+      </div>
+    </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h3><p>是因为Eclipse里面设置了代理。</p>
+      <h3 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h3><p>是因为Eclipse里面设置了代理。</p>
 <h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><p><code>preference</code> -&gt; <code>network connections</code> -&gt; <code>activity provider</code> -&gt; <code>direct</code> -&gt; <code>应用</code><br>重启tomcat即可。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/353a4b3e.html" data-id="cjpuzlax6001dz8yku7rr8c97" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/353a4b3e.html" data-id="cjpv1p014001au3ykckd7yqcp" class="article-share-link">
+        分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tomcat/">Tomcat</a></li></ul>
@@ -709,7 +725,8 @@
 
 
   
-    <article id="post-Eclipse 改变Tomcat发布路径" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Eclipse 改变Tomcat发布路径" class="wow slideInRight article article-type-post"
+  itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/posts/df9c274.html" class="article-date">
   <time class="post-time" datetime="2014-02-11T09:33:00.000Z" itemprop="datePublished">
@@ -717,27 +734,27 @@
     <span class="post-day">11</span>
   </time>
 </a>
-   
+
   </div>
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 itemprop="name">
       <a class="article-title" href="/posts/df9c274.html">Eclipse 改变Tomcat发布路径</a>
     </h1>
   
 
-        <div>
-          
+      <div>
+        
   <div class="article-category">
     <a class="article-category-link" href="/categories/开发调试工具/">开发调试工具</a>,<a class="article-category-link" href="/categories/开发调试工具/Eclipse/">Eclipse</a>
   </div>
 
-          
-              
+        
+        
   &nbsp; | &nbsp;
   <div class="view-box">
     <span id="/posts/df9c274.html" class="leancloud_visitors" data-flag-title="Eclipse 改变Tomcat发布路径">
@@ -756,20 +773,21 @@
     <span>时长 ≈ 1 分钟</span>
   </div>
  
-          
-        </div>
-      </header>
+        
+      </div>
+    </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="1）"><a href="#1）" class="headerlink" title="1）"></a>1）</h3><p>关闭服务，删除里面的所有项目，clean。</p>
+      <h3 id="1）"><a href="#1）" class="headerlink" title="1）"></a>1）</h3><p>关闭服务，删除里面的所有项目，clean。</p>
 <h3 id="2）"><a href="#2）" class="headerlink" title="2）"></a>2）</h3><p>然后双击服务，发布路径修改就可以点击了。</p>
 <h3 id="3）"><a href="#3）" class="headerlink" title="3）"></a>3）</h3><p>当重新发布了项目后，发布路径修改的按钮又会恢复不可点击状态。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/df9c274.html" data-id="cjpuzlaxl0020z8ykvl48cbq6" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/df9c274.html" data-id="cjpv1p01b001pu3ykofw4jua9" class="article-share-link">
+        分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tomcat/">Tomcat</a></li></ul>
@@ -787,7 +805,8 @@
 
 
   
-    <article id="post-Eclipse 离线插件安装" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Eclipse 离线插件安装" class="wow slideInRight article article-type-post"
+  itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/posts/f362ee4b.html" class="article-date">
   <time class="post-time" datetime="2014-02-11T09:32:00.000Z" itemprop="datePublished">
@@ -795,27 +814,27 @@
     <span class="post-day">11</span>
   </time>
 </a>
-   
+
   </div>
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 itemprop="name">
       <a class="article-title" href="/posts/f362ee4b.html">Eclipse 离线插件安装</a>
     </h1>
   
 
-        <div>
-          
+      <div>
+        
   <div class="article-category">
     <a class="article-category-link" href="/categories/开发调试工具/">开发调试工具</a>,<a class="article-category-link" href="/categories/开发调试工具/Eclipse/">Eclipse</a>
   </div>
 
-          
-              
+        
+        
   &nbsp; | &nbsp;
   <div class="view-box">
     <span id="/posts/f362ee4b.html" class="leancloud_visitors" data-flag-title="Eclipse 离线插件安装">
@@ -834,19 +853,20 @@
     <span>时长 ≈ 1 分钟</span>
   </div>
  
-          
-        </div>
-      </header>
+        
+      </div>
+    </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="1）"><a href="#1）" class="headerlink" title="1）"></a>1）</h3><p>在eclipse里根目录里，dropins里建一个目录，名字叫sonar(这个名字随便)，再在svn下面建一个目录eclipse.在根目录里建一个目录links目录，并建一个sonar.link文件，在里边写上path = dropins/sonar。</p>
+      <h3 id="1）"><a href="#1）" class="headerlink" title="1）"></a>1）</h3><p>在eclipse里根目录里，dropins里建一个目录，名字叫sonar(这个名字随便)，再在svn下面建一个目录eclipse.在根目录里建一个目录links目录，并建一个sonar.link文件，在里边写上path = dropins/sonar。</p>
 <h3 id="2）"><a href="#2）" class="headerlink" title="2）"></a>2）</h3><p>解压下载的SVN包，把feature和plugins两个文件夹考进刚才建的sonar/eclipse目录里。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/f362ee4b.html" data-id="cjpuzlaxj001wz8ykwhv1y5mr" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/f362ee4b.html" data-id="cjpv1p01d001su3yk7vl8cn0c" class="article-share-link">
+        分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li></ul>

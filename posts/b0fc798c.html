@@ -85,7 +85,8 @@
   </div>
 </div>
 
-        <section id="main"><article id="post-Java ExecutorService与quartz搭配出现的问题" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Java ExecutorService与quartz搭配出现的问题" class="wow slideInRight article article-type-post"
+  itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/posts/b0fc798c.html" class="article-date">
   <time class="post-time" datetime="2017-09-13T04:06:00.000Z" itemprop="datePublished">
@@ -93,27 +94,27 @@
     <span class="post-day">13</span>
   </time>
 </a>
-   
+
   </div>
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       Java ExecutorService与quartz搭配出现的问题
     </h1>
   
 
-        <div>
-          
+      <div>
+        
   <div class="article-category">
     <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
   </div>
 
-          
-              
+        
+        
   &nbsp; | &nbsp;
   <div class="view-box">
     <span id="/posts/b0fc798c.html" class="leancloud_visitors" data-flag-title="Java ExecutorService与quartz搭配出现的问题">
@@ -132,13 +133,13 @@
     <span>时长 ≈ 1 分钟</span>
   </div>
  
-          
-        </div>
-      </header>
+        
+      </div>
+    </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>使用quartz定时推送微信公众号模板消息，一分钟推送一次，定时器里面使用了一个ExecutorService线程池，大小为5个。</p>
+      <h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>使用quartz定时推送微信公众号模板消息，一分钟推送一次，定时器里面使用了一个ExecutorService线程池，大小为5个。</p>
 <p>批量获取数据之后，全部数据都被分配到n/5的线程池里面等待执行，分配完成之后，系统就默认了这次任务已经执行完毕。</p>
 <p>下个一分钟到了的时候，继续获取指定状态的数据，重复上面的入线程池操作。</p>
 <p>导致，在之前的任务里面已经分配到线程池中，但是还没有来得及处理的数据，在下一个定时任务开始时重新被放进去了线程池里面。</p>
@@ -149,7 +150,8 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/b0fc798c.html" data-id="cjpuzlazq005nz8ykj1yml2d2" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/b0fc798c.html" data-id="cjpv1p05v00dvu3ykl3frdwti" class="article-share-link">
+        分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/quzrtz/">quzrtz</a></li></ul>
@@ -157,7 +159,7 @@
     </footer>
   </div>
   
-    
+  
 <nav id="article-nav">
   
     <a href="/posts/b014d2be.html" id="article-nav-newer" class="article-nav-link-wrap">
@@ -187,13 +189,13 @@
 
 
 
-  <div id="comments" class="comments">
-    <div id="gitment_container"></div>
-  </div>
-  
-  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
-  <script>
+<div id="comments" class="comments">
+  <div id="gitment_container"></div>
+</div>
+
+<link rel="stylesheet" href="https://www.wenjunjiang.win/css/gitment.css">
+<script src="https://www.wenjunjiang.win/js/gitment.js"></script>
+<script>
   var gitment = new Gitment({
     owner: 'tidyko',
     repo: 'tidyko.github.io',
@@ -203,7 +205,7 @@
     },
   })
   gitment.render('gitment_container')
-  </script>
+</script>
 </section>
         
           <aside id="sidebar">

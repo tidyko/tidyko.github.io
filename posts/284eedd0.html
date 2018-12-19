@@ -85,7 +85,8 @@
   </div>
 </div>
 
-        <section id="main"><article id="post-Hibernate 无外键多表查询" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Hibernate 无外键多表查询" class="wow slideInRight article article-type-post"
+  itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/posts/284eedd0.html" class="article-date">
   <time class="post-time" datetime="2014-10-13T17:54:00.000Z" itemprop="datePublished">
@@ -93,27 +94,27 @@
     <span class="post-day">14</span>
   </time>
 </a>
-   
+
   </div>
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       Hibernate 无外键多表查询
     </h1>
   
 
-        <div>
-          
+      <div>
+        
   <div class="article-category">
     <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
   </div>
 
-          
-              
+        
+        
   &nbsp; | &nbsp;
   <div class="view-box">
     <span id="/posts/284eedd0.html" class="leancloud_visitors" data-flag-title="Hibernate 无外键多表查询">
@@ -132,20 +133,21 @@
     <span>时长 ≈ 1 分钟</span>
   </div>
  
-          
-        </div>
-      </header>
+        
+      </div>
+    </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>无外键多表查询时编写hql，直接使用逗号分隔表，where作为联合查询条件进行查询。</p>
+      <p>无外键多表查询时编写hql，直接使用逗号分隔表，where作为联合查询条件进行查询。</p>
 <p>查询出来的结果可为两种，List&lt;List<object>&gt;或者List&lt;Map&lt;String,Object&gt;&gt;。</object></p>
 <p>这时候需要使用下面语句限定查询返回结果类型。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//List&lt;Map&lt;String,Object&gt;&gt;</span></span><br><span class="line">Query query = getSessionFactory().openSession().createHQLQuery(queryString).setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP);</span><br><span class="line"></span><br><span class="line">List&lt;Map&lt;String,Object&gt;&gt; tmp = query.list();</span><br><span class="line"></span><br><span class="line">Map&lt;String,Object&gt; result = tmp.get(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">String str = result.get(<span class="string">'1'</span>);</span><br></pre></td></tr></table></figure></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//List&lt;List&lt;Object&gt;&gt;</span></span><br><span class="line">Query query = getSessionFactory().openSession().createHQLQuery(queryString).setResultTransformer(Transformers.TO_LIST);</span><br><span class="line"></span><br><span class="line">List&lt;List&lt;Object&gt;&gt; tmp = query.list();</span><br><span class="line"></span><br><span class="line">List&lt;Object&gt; result = tmp.get(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">String str = result.get(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/284eedd0.html" data-id="cjpuzlay6002xz8yk66vxiyq9" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/284eedd0.html" data-id="cjpv1p01z002wu3yk8egrw9el" class="article-share-link">
+        分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hibernate/">Hibernate</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
@@ -153,7 +155,7 @@
     </footer>
   </div>
   
-    
+  
 <nav id="article-nav">
   
     <a href="/posts/74b62430.html" id="article-nav-newer" class="article-nav-link-wrap">
@@ -183,13 +185,13 @@
 
 
 
-  <div id="comments" class="comments">
-    <div id="gitment_container"></div>
-  </div>
-  
-  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
-  <script>
+<div id="comments" class="comments">
+  <div id="gitment_container"></div>
+</div>
+
+<link rel="stylesheet" href="https://www.wenjunjiang.win/css/gitment.css">
+<script src="https://www.wenjunjiang.win/js/gitment.js"></script>
+<script>
   var gitment = new Gitment({
     owner: 'tidyko',
     repo: 'tidyko.github.io',
@@ -199,7 +201,7 @@
     },
   })
   gitment.render('gitment_container')
-  </script>
+</script>
 </section>
         
           <aside id="sidebar">

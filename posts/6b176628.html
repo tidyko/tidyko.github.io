@@ -12,7 +12,7 @@
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="该文转自 forever杨’s Blog - Oracle Package 包说明和包体12在包中定义的函数，包体中实现的时候，函数名、参数名、类型都要一致，否则报错。在创建基于自定义函数时, 指定 `deterministic` 参数，再创建函数索引，就没有问题了。 定义包说明1234567891011CREATE OR REPLACE PACKAGE WX_CRYPTO IS  -- 定义 D">
-<meta name="keywords" content="Oracle,Package,Sql">
+<meta name="keywords" content="Oracle,Sql,Package">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Oracle Package 包说明和包体">
 <meta property="og:url" content="https://www.tidyko.com/posts/6b176628.html">
@@ -85,7 +85,8 @@
   </div>
 </div>
 
-        <section id="main"><article id="post-Oracle Package 包说明和包体" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Oracle Package 包说明和包体" class="wow slideInRight article article-type-post"
+  itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/posts/6b176628.html" class="article-date">
   <time class="post-time" datetime="2018-12-10T02:48:00.000Z" itemprop="datePublished">
@@ -93,27 +94,27 @@
     <span class="post-day">10</span>
   </time>
 </a>
-   
+
   </div>
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       Oracle Package 包说明和包体
     </h1>
   
 
-        <div>
-          
+      <div>
+        
   <div class="article-category">
     <a class="article-category-link" href="/categories/数据库/">数据库</a>,<a class="article-category-link" href="/categories/数据库/Oracle/">Oracle</a>
   </div>
 
-          
-              
+        
+        
   &nbsp; | &nbsp;
   <div class="view-box">
     <span id="/posts/6b176628.html" class="leancloud_visitors" data-flag-title="Oracle Package 包说明和包体">
@@ -132,13 +133,13 @@
     <span>时长 ≈ 4 分钟</span>
   </div>
  
-          
-        </div>
-      </header>
+        
+      </div>
+    </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>该文转自 <a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" target="_blank" rel="noopener">forever杨’s Blog - Oracle Package 包说明和包体</a><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">在包中定义的函数，包体中实现的时候，函数名、参数名、类型都要一致，否则报错。</span><br><span class="line">在创建基于自定义函数时, 指定 `deterministic` 参数，再创建函数索引，就没有问题了。</span><br></pre></td></tr></table></figure></p>
+      <p>该文转自 <a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" target="_blank" rel="noopener">forever杨’s Blog - Oracle Package 包说明和包体</a><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">在包中定义的函数，包体中实现的时候，函数名、参数名、类型都要一致，否则报错。</span><br><span class="line">在创建基于自定义函数时, 指定 `deterministic` 参数，再创建函数索引，就没有问题了。</span><br></pre></td></tr></table></figure></p>
 <h2 id="定义包说明"><a href="#定义包说明" class="headerlink" title="定义包说明"></a>定义包说明</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">OR</span> <span class="keyword">REPLACE</span> <span class="keyword">PACKAGE</span> WX_CRYPTO <span class="keyword">IS</span></span><br><span class="line">  <span class="comment">-- 定义 DES encrypt 函数</span></span><br><span class="line">  <span class="keyword">FUNCTION</span> <span class="keyword">DES_ENCRYPT</span>(INPUT_STRING <span class="keyword">IN</span> VARCHAR2) <span class="keyword">RETURN</span> VARCHAR2;</span><br><span class="line">  FUNCTION DES_ENCRYPT(INPUT_STRING IN VARCHAR2, KEY_STRING IN VARCHAR2)</span><br><span class="line">    RETURN VARCHAR2;</span><br><span class="line"></span><br><span class="line">  <span class="comment">-- 定义 DES decrypt 函数</span></span><br><span class="line">  FUNCTION DES_DECRYPT(INPUT_STRING IN VARCHAR2) RETURN VARCHAR2 DETERMINISTIC;</span><br><span class="line">  FUNCTION DES_DECRYPT(INPUT_STRING IN VARCHAR2, KEY_STRING IN VARCHAR2)</span><br><span class="line">    RETURN VARCHAR2 DETERMINISTIC;</span><br><span class="line"><span class="keyword">END</span> WX_CRYPTO;</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
 <p>比如：</p>
@@ -148,7 +149,8 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/6b176628.html" data-id="cjpuzlb1c0098z8ykri04tk40" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/6b176628.html" data-id="cjpv1p08600i9u3yko7fqfxzr" class="article-share-link">
+        分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Oracle/">Oracle</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Package/">Package</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sql/">Sql</a></li></ul>
@@ -156,7 +158,7 @@
     </footer>
   </div>
   
-    
+  
 <nav id="article-nav">
   
     <a href="/posts/c39356d9.html" id="article-nav-newer" class="article-nav-link-wrap">
@@ -186,13 +188,13 @@
 
 
 
-  <div id="comments" class="comments">
-    <div id="gitment_container"></div>
-  </div>
-  
-  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
-  <script>
+<div id="comments" class="comments">
+  <div id="gitment_container"></div>
+</div>
+
+<link rel="stylesheet" href="https://www.wenjunjiang.win/css/gitment.css">
+<script src="https://www.wenjunjiang.win/js/gitment.js"></script>
+<script>
   var gitment = new Gitment({
     owner: 'tidyko',
     repo: 'tidyko.github.io',
@@ -202,7 +204,7 @@
     },
   })
   gitment.render('gitment_container')
-  </script>
+</script>
 </section>
         
           <aside id="sidebar">

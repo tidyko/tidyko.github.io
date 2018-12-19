@@ -85,7 +85,8 @@
   </div>
 </div>
 
-        <section id="main"><article id="post-J2EE CXF使用SpringBoot与xml配置的差别所导致的问题" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-J2EE CXF使用SpringBoot与xml配置的差别所导致的问题" class="wow slideInRight article article-type-post"
+  itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/posts/920d2c96.html" class="article-date">
   <time class="post-time" datetime="2018-06-04T08:18:00.000Z" itemprop="datePublished">
@@ -93,27 +94,27 @@
     <span class="post-day">04</span>
   </time>
 </a>
-   
+
   </div>
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       J2EE CXF使用springboot与xml配置的差别所导致的问题
     </h1>
   
 
-        <div>
-          
+      <div>
+        
   <div class="article-category">
     <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
   </div>
 
-          
-              
+        
+        
   &nbsp; | &nbsp;
   <div class="view-box">
     <span id="/posts/920d2c96.html" class="leancloud_visitors" data-flag-title="J2EE CXF使用springboot与xml配置的差别所导致的问题">
@@ -132,20 +133,21 @@
     <span>时长 ≈ 1 分钟</span>
   </div>
  
-          
-        </div>
-      </header>
+        
+      </div>
+    </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>使用xml时使用以下配置使报文没有加上命名空间时也能正常访问接口。bean定义的前后顺序不影响程序正常注册对象。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 通过Spring创建数据绑定的类 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"aegisBean"</span> <span class="attr">class</span>=<span class="string">"org.apache.cxf.aegis.databinding.AegisDatabinding"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"jaxWsServiceFactoryBean"</span> <span class="attr">class</span>=<span class="string">"org.apache.cxf.jaxws.support.JaxWsServiceFactoryBean"</span> <span class="attr">scope</span>=<span class="string">"prototype"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"wrapped"</span> <span class="attr">value</span>=<span class="string">"true"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"dataBinding"</span> <span class="attr">ref</span>=<span class="string">"aegisBean"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">jaxws:endpoint</span> <span class="attr">id</span>=<span class="string">"imSendWXModelMessageServicews"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">implementor</span>=<span class="string">"#imSendWXModelMessageService"</span> <span class="attr">address</span>=<span class="string">"/imSendWXModelMessageService.ws"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">jaxws:serviceFactory</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">ref</span> <span class="attr">bean</span>=<span class="string">"jaxWsServiceFactoryBean"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">jaxws:serviceFactory</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">jaxws:endpoint</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+      <p>使用xml时使用以下配置使报文没有加上命名空间时也能正常访问接口。bean定义的前后顺序不影响程序正常注册对象。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 通过Spring创建数据绑定的类 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"aegisBean"</span> <span class="attr">class</span>=<span class="string">"org.apache.cxf.aegis.databinding.AegisDatabinding"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"jaxWsServiceFactoryBean"</span> <span class="attr">class</span>=<span class="string">"org.apache.cxf.jaxws.support.JaxWsServiceFactoryBean"</span> <span class="attr">scope</span>=<span class="string">"prototype"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"wrapped"</span> <span class="attr">value</span>=<span class="string">"true"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"dataBinding"</span> <span class="attr">ref</span>=<span class="string">"aegisBean"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">jaxws:endpoint</span> <span class="attr">id</span>=<span class="string">"imSendWXModelMessageServicews"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">implementor</span>=<span class="string">"#imSendWXModelMessageService"</span> <span class="attr">address</span>=<span class="string">"/imSendWXModelMessageService.ws"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">jaxws:serviceFactory</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">ref</span> <span class="attr">bean</span>=<span class="string">"jaxWsServiceFactoryBean"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">jaxws:serviceFactory</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">jaxws:endpoint</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p>但是如果使用SpringBoot的话，使用注解方式配置，需要注意的是，需要使用到的类一定要放在前面先初始化。不然会没有效果。</p>
 <p>例如下面代码红色部分。如果放在endpoint.publish()后面则不会生效。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> AegisDatabinding <span class="title">aegisDatabinding</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> AegisDatabinding();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="meta">@Scope</span>(ConfigurableBeanFactory.SCOPE_PROTOTYPE)</span><br><span class="line"><span class="function"><span class="keyword">public</span> JaxWsServiceFactoryBean <span class="title">jaxWsServiceFactoryBean</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    org.apache.cxf.jaxws.support.JaxWsServiceFactoryBean sf = <span class="keyword">new</span> JaxWsServiceFactoryBean();</span><br><span class="line">    sf.setWrapped(<span class="keyword">true</span>);</span><br><span class="line">    sf.setDataBinding(aegisDatabinding());</span><br><span class="line">    <span class="keyword">return</span> sf;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Endpoint <span class="title">sendMessageEndpoint</span><span class="params">(SendMessageService sendMessageService)</span> </span>&#123;</span><br><span class="line">    EndpointImpl endpoint = <span class="keyword">new</span> EndpointImpl(sendMessageService);</span><br><span class="line">    endpoint.setServiceFactory(jaxWsServiceFactoryBean());</span><br><span class="line">    <span class="comment">// 该部分</span></span><br><span class="line">    endpoint.publish(<span class="string">"/imSendWXModelMessageService.ws"</span>);</span><br><span class="line">    <span class="keyword">return</span> endpoint;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/920d2c96.html" data-id="cjpuzlayu003tz8ykar4culvx" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/920d2c96.html" data-id="cjpv1p02c003vu3ykrhxwah67" class="article-share-link">
+        分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CXF/">CXF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringBoot/">SpringBoot</a></li></ul>
@@ -153,7 +155,7 @@
     </footer>
   </div>
   
-    
+  
 <nav id="article-nav">
   
     <a href="/posts/3a2e7663.html" id="article-nav-newer" class="article-nav-link-wrap">
@@ -183,13 +185,13 @@
 
 
 
-  <div id="comments" class="comments">
-    <div id="gitment_container"></div>
-  </div>
-  
-  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
-  <script>
+<div id="comments" class="comments">
+  <div id="gitment_container"></div>
+</div>
+
+<link rel="stylesheet" href="https://www.wenjunjiang.win/css/gitment.css">
+<script src="https://www.wenjunjiang.win/js/gitment.js"></script>
+<script>
   var gitment = new Gitment({
     owner: 'tidyko',
     repo: 'tidyko.github.io',
@@ -199,7 +201,7 @@
     },
   })
   gitment.render('gitment_container')
-  </script>
+</script>
 </section>
         
           <aside id="sidebar">

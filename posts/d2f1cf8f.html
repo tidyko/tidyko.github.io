@@ -89,7 +89,8 @@
   </div>
 </div>
 
-        <section id="main"><article id="post-Jenkins 服务器与svn服务器时间不一致出现的问题" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Jenkins 服务器与svn服务器时间不一致出现的问题" class="wow slideInRight article article-type-post"
+  itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/posts/d2f1cf8f.html" class="article-date">
   <time class="post-time" datetime="2018-05-22T09:56:00.000Z" itemprop="datePublished">
@@ -97,27 +98,27 @@
     <span class="post-day">22</span>
   </time>
 </a>
-   
+
   </div>
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       Jenkins 服务器与svn服务器时间不一致出现的问题
     </h1>
   
 
-        <div>
-          
+      <div>
+        
   <div class="article-category">
     <a class="article-category-link" href="/categories/DevOps/">DevOps</a>,<a class="article-category-link" href="/categories/DevOps/Jenkins/">Jenkins</a>
   </div>
 
-          
-              
+        
+        
   &nbsp; | &nbsp;
   <div class="view-box">
     <span id="/posts/d2f1cf8f.html" class="leancloud_visitors" data-flag-title="Jenkins 服务器与svn服务器时间不一致出现的问题">
@@ -136,13 +137,13 @@
     <span>时长 ≈ 1 分钟</span>
   </div>
  
-          
-        </div>
-      </header>
+        
+      </div>
+    </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="1）问题描述"><a href="#1）问题描述" class="headerlink" title="1）问题描述"></a>1）问题描述</h2><p>svn提交了一次更新包，到了jenkins提交更新的时候，第一次代码没有生效，然后重新提交了一次，第二次才生效。</p>
+      <h2 id="1）问题描述"><a href="#1）问题描述" class="headerlink" title="1）问题描述"></a>1）问题描述</h2><p>svn提交了一次更新包，到了jenkins提交更新的时候，第一次代码没有生效，然后重新提交了一次，第二次才生效。</p>
 <h2 id="2）问题排查"><a href="#2）问题排查" class="headerlink" title="2）问题排查"></a>2）问题排查</h2><h3 id="2-1）"><a href="#2-1）" class="headerlink" title="2.1）"></a>2.1）</h3><p>首先第一反应比对了下两次更新的包文件是否一致，然后发现大小不一。<br>由此看出问题应该是出在jenkins，继续排查。<br><img src="http://img.tidyko.com/blog/jenkins_time_1.jpg" alt="Jenkins 服务器与svn服务器时间不一致出现的问题-图例1"></p>
 <h3 id="2-2）"><a href="#2-2）" class="headerlink" title="2.2）"></a>2.2）</h3><p>比对了下第一次jenkins的提交时间与svn提交的时间<br><img src="http://img.tidyko.com/blog/jenkins_time_2.jpg" alt="Jenkins 服务器与svn服务器时间不一致出现的问题-图例2"><br><img src="http://img.tidyko.com/blog/jenkins_time_3.jpg" alt="Jenkins 服务器与svn服务器时间不一致出现的问题-图例3"></p>
 <p>由此可看出，svn提交的时间是5：07，但是我jenkins提交的时间却为5：06，显然顺序不对，</p>
@@ -156,7 +157,8 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/d2f1cf8f.html" data-id="cjpuzlb07006rz8ykjntfdq9q" class="article-share-link">分享</a>
+      <a data-url="https://www.tidyko.com/posts/d2f1cf8f.html" data-id="cjpv1p06h00eyu3ykiecsawtm" class="article-share-link">
+        分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jenkins/">Jenkins</a></li></ul>
@@ -164,7 +166,7 @@
     </footer>
   </div>
   
-    
+  
 <nav id="article-nav">
   
     <a href="/posts/920d2c96.html" id="article-nav-newer" class="article-nav-link-wrap">
@@ -194,13 +196,13 @@
 
 
 
-  <div id="comments" class="comments">
-    <div id="gitment_container"></div>
-  </div>
-  
-  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
-  <script>
+<div id="comments" class="comments">
+  <div id="gitment_container"></div>
+</div>
+
+<link rel="stylesheet" href="https://www.wenjunjiang.win/css/gitment.css">
+<script src="https://www.wenjunjiang.win/js/gitment.js"></script>
+<script>
   var gitment = new Gitment({
     owner: 'tidyko',
     repo: 'tidyko.github.io',
@@ -210,7 +212,7 @@
     },
   })
   gitment.render('gitment_container')
-  </script>
+</script>
 </section>
         
           <aside id="sidebar">
