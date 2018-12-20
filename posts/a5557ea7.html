@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>
+    
+    Docker 搭建ELK环境 |
+    
+    Tidy的个人博客
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Mac使用Docker搭建便捷的ELK环境。 ELK + redis 使用docker搭建，FileBeat由具体应用机进行搭建。 架构如下：  1.获取ELK镜像.1234567891011# tidy @ TidydeMBP in ~ [10:02:28]$ sudo docker pull sebp/elkPassword:Using default tag: latestlatest: P">
+<meta name="keywords" content="Docker,DevOps">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker 搭建ELK环境">
+<meta property="og:url" content="https://www.tidyko.com/posts/a5557ea7.html">
+<meta property="og:site_name" content="Tidy的个人博客">
+<meta property="og:description" content="Mac使用Docker搭建便捷的ELK环境。 ELK + redis 使用docker搭建，FileBeat由具体应用机进行搭建。 架构如下：  1.获取ELK镜像.1234567891011# tidy @ TidydeMBP in ~ [10:02:28]$ sudo docker pull sebp/elkPassword:Using default tag: latestlatest: P">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://img.tidyko.com/blog/DockerDesktop_13.png">
+<meta property="og:image" content="http://img.tidyko.com/blog/DockerDesktop_1.png">
+<meta property="og:image" content="http://img.tidyko.com/blog/DockerDesktop_2.png">
+<meta property="og:image" content="http://img.tidyko.com/blog/DockerDesktop_3.png">
+<meta property="og:image" content="http://img.tidyko.com/blog/DockerDesktop_4.png">
+<meta property="og:image" content="http://img.tidyko.com/blog/DockerDesktop_5.png">
+<meta property="og:image" content="http://img.tidyko.com/blog/DockerDesktop_6.png">
+<meta property="og:image" content="http://img.tidyko.com/blog/DockerDesktop_7.png">
+<meta property="og:image" content="http://img.tidyko.com/blog/DockerDesktop_11.png">
+<meta property="og:image" content="http://img.tidyko.com/blog/DockerDesktop_12.png">
+<meta property="og:image" content="http://img.tidyko.com/blog/DockerDesktop_8.png">
+<meta property="og:image" content="http://img.tidyko.com/blog/DockerDesktop_9.png">
+<meta property="og:image" content="http://img.tidyko.com/blog/DockerDesktop_10.png">
+<meta property="og:image" content="http://img.tidyko.com/blog/DockerDesktop_14.png">
+<meta property="og:updated_time" content="2018-09-05T07:35:21.589Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Docker 搭建ELK环境">
+<meta name="twitter:description" content="Mac使用Docker搭建便捷的ELK环境。 ELK + redis 使用docker搭建，FileBeat由具体应用机进行搭建。 架构如下：  1.获取ELK镜像.1234567891011# tidy @ TidydeMBP in ~ [10:02:28]$ sudo docker pull sebp/elkPassword:Using default tag: latestlatest: P">
+<meta name="twitter:image" content="http://img.tidyko.com/blog/DockerDesktop_13.png">
+  
+  <link rel="alternate" href="/atom.xml" title="Tidy的个人博客" type="application/atom+xml">
+  
+  
+  <link rel="icon" href="/favicon.ico">
+  
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <!-- <link rel="stylesheet" href="/plugin/bganimation/bg.css"> -->
+  
+
+  
+<!-- Google Adsense -->
+<!-- <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+</script> -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-1522837637326007",
+        enable_page_level_ads: true
+    });
+</script>
+
+<script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
+<!-- End Google Adsense -->
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <div class="widget-wrap mobile-header">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="http://img.tidyko.com/avatar.jpg">
+    <h2 class="author"></h2>
+    <h3 class="description"></h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>132</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>45</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>86</strong><br>标签</div></a>
+    </div>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+        <section id="main"><article id="post-Docker 搭建ELK环境" class="article" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/a5557ea7.html" class="article-date">
+  <time class="post-time" datetime="2018-09-04T13:52:00.000Z" itemprop="datePublished">
+    <span class="post-month">9月</span><br/>
+    <span class="post-day">04</span>
+  </time>
+</a>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 class="article-title" itemprop="name">
+      Docker 搭建ELK环境
+    </h1>
+  
+
+      <div>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/DevOps/">DevOps</a>,<a class="article-category-link" href="/categories/DevOps/Docker/">Docker</a>
+  </div>
+
+        
+        
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/a5557ea7.html" class="leancloud_visitors" data-flag-title="Docker 搭建ELK环境">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 4,606</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 24 分钟</span>
+  </div>
+ 
+        
+      </div>
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <p>Mac使用Docker搭建便捷的ELK环境。</p>
+<p>ELK + redis 使用docker搭建，FileBeat由具体应用机进行搭建。</p>
+<p>架构如下：</p>
+<p><img src="http://img.tidyko.com/blog/DockerDesktop_13.png" alt="Docker 搭建ELK环境-图例1"></p>
+<h2 id="1-获取ELK镜像"><a href="#1-获取ELK镜像" class="headerlink" title="1.获取ELK镜像."></a>1.获取ELK镜像.</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> tidy @ TidydeMBP <span class="keyword">in</span> ~ [10:02:28]</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> sudo docker pull sebp/elk</span></span><br><span class="line">Password:</span><br><span class="line">Using default tag: latest</span><br><span class="line">latest: Pulling from sebp/elk</span><br><span class="line">281a73dee007: Pulling fs layer</span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line">Digest: sha256:94c4aa7f9bfe0fe7047f20e1c747ac19538605f8ea0bbe401c7bed923614905e</span><br><span class="line">Status: Downloaded newer image for sebp/elk:latest</span><br></pre></td></tr></table></figure>
+<h2 id="2-创建并运行ELK容器"><a href="#2-创建并运行ELK容器" class="headerlink" title="2.创建并运行ELK容器"></a>2.创建并运行ELK容器</h2><h3 id="2-1-使用命令行"><a href="#2-1-使用命令行" class="headerlink" title="2.1.使用命令行"></a>2.1.使用命令行</h3><h4 id="2-1-1-使用命令行参数"><a href="#2-1-1-使用命令行参数" class="headerlink" title="2.1.1.使用命令行参数"></a>2.1.1.使用命令行参数</h4><p>使用下面命令创建并启动一个elk容器，并映射宿主机端口。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo docker run -d -p 5601:5601 -p 9200:9200 -p 5044:5044 -it --name elk sebp/elk</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="2-1-2-使用Docker-Compose"><a href="#2-1-2-使用Docker-Compose" class="headerlink" title="2.1.2.使用Docker Compose"></a>2.1.2.使用Docker Compose</h4><p>编写docker-compose.yml文件<br><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">elk:</span></span><br><span class="line"><span class="attr">  image:</span> <span class="string">sebp/elk</span></span><br><span class="line"><span class="attr">  ports:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">"5601:5601"</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">"9200:9200"</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">"5044:5044"</span></span><br></pre></td></tr></table></figure></p>
+<p>然后运行以下命令：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo docker-compose -d up elk</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="2-1-3-重启elk容器"><a href="#2-1-3-重启elk容器" class="headerlink" title="2.1.3.重启elk容器"></a>2.1.3.重启elk容器</h4><p>当停止运行之后可以直接使用以下命令直接启动、或者重启elk<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker start elk</span><br><span class="line"></span><br><span class="line">docker restart elk</span><br></pre></td></tr></table></figure></p>
+<h3 id="2-2-使用kiteMatic"><a href="#2-2-使用kiteMatic" class="headerlink" title="2.2.使用kiteMatic"></a>2.2.使用kiteMatic</h3><a id="more"></a>
+<h4 id="2-2-1-创建ELK镜像"><a href="#2-2-1-创建ELK镜像" class="headerlink" title="2.2.1.创建ELK镜像"></a>2.2.1.创建ELK镜像</h4><p>安装<code>Docker Desktop</code>，在里面安装<code>kiteMatic</code>，如下图，点击后根据提示下载安装包拖到/Applications即可。</p>
+<p><img src="http://img.tidyko.com/blog/DockerDesktop_1.png" alt="Docker 搭建ELK环境-图例2"><br>完成之后打开<code>Kitematic</code>，给刚刚拉下来的ELK镜像创建新容器。</p>
+<p>点击<code>new</code>按钮 -&gt; 点击<code>My Images</code> -&gt; 找到<code>elk</code>镜像 -&gt; 点击<code>CREATE</code>创建镜像。</p>
+<p>界面操作如下：</p>
+<p><img src="http://img.tidyko.com/blog/DockerDesktop_2.png" alt="Docker 搭建ELK环境-图例3"></p>
+<p>创建完成之后镜像将按照默认参数启动。</p>
+<h2 id="2-2-2-使用kiteMatic修改宿主机映射端口"><a href="#2-2-2-使用kiteMatic修改宿主机映射端口" class="headerlink" title="2.2.2.使用kiteMatic修改宿主机映射端口"></a>2.2.2.使用kiteMatic修改宿主机映射端口</h2><p>点击左边的侧边栏选中刚刚创建好的镜像 -&gt; 点击右边的主界面的<code>Settings</code> -&gt; 点击<code>Hostname/Posts</code> -&gt; 然后修改<code>localhost:*</code>后面的端口，跟左边保持一致，将左边的Logstash、Kibana、ElasticSearch的默认端口映射到宿主机上面。</p>
+<p>界面操作如下：<br><img src="http://img.tidyko.com/blog/DockerDesktop_3.png" alt="Docker 搭建ELK环境-图例4"></p>
+<p>修改完之后点击<code>SAVE</code>按钮，保存设置，等待容器重启应用设置。<br>就可以通过默认端口访问对应服务了。</p>
+<p>Kibana web interface: <a href="http://localhost:5601/app/kibana#/home?_g=()" target="_blank" rel="noopener">http://localhost:5601/app/kibana#/home?_g=()</a><br>Elasticsearch JSON interface：<a href="http://localhost:9200/" target="_blank" rel="noopener">http://localhost:9200/</a><br>Logstash Beats interface：<a href="http://localhost:5044" target="_blank" rel="noopener">http://localhost:5044</a></p>
+<h2 id="3-创建虚拟日志条目"><a href="#3-创建虚拟日志条目" class="headerlink" title="3.创建虚拟日志条目"></a>3.创建虚拟日志条目</h2><h3 id="3-1-进入容器bash"><a href="#3-1-进入容器bash" class="headerlink" title="3.1.进入容器bash"></a>3.1.进入容器bash</h3><h4 id="3-1-1-使用命令行"><a href="#3-1-1-使用命令行" class="headerlink" title="3.1.1.使用命令行"></a>3.1.1.使用命令行</h4><p>可以使用以下命令获取正在运行的docker容器。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> tidy @ TidydeMBP <span class="keyword">in</span> ~ [14:48:22] C:1</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> docker ps</span></span><br><span class="line">CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                                                                                            NAMES</span><br><span class="line">491409ca8e44        sebp/elk:latest     "/usr/local/bin/st..."   3 hours ago         Up 3 hours          0.0.0.0:5044-&gt;5044/tcp, 0.0.0.0:5601-&gt;5601/tcp, 0.0.0.0:9200-&gt;9200/tcp, 0.0.0.0:9300-&gt;9300/tcp   elk</span><br></pre></td></tr></table></figure></p>
+<p>然后进入容器bash，格式如下：</p>
+<p>$ docker exec -it <container-name> /bin/bash</container-name></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> tidy @ TidydeMBP <span class="keyword">in</span> ~ [14:56:54]</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> docker <span class="built_in">exec</span> -it elk /bin/bash</span></span><br><span class="line">root@4ae9e2a871fa:/#</span><br></pre></td></tr></table></figure>
+<h4 id="3-1-2-使用kiteMatic"><a href="#3-1-2-使用kiteMatic" class="headerlink" title="3.1.2.使用kiteMatic"></a>3.1.2.使用kiteMatic</h4><p>也可以直接使用kiteMatic，点击<code>EXEC</code>直接打开容器命令行：</p>
+<p><img src="http://img.tidyko.com/blog/DockerDesktop_4.png" alt="Docker 搭建ELK环境-图例5"></p>
+<h3 id="3-2-指定logstash输入流为控制台"><a href="#3-2-指定logstash输入流为控制台" class="headerlink" title="3.2.指定logstash输入流为控制台"></a>3.2.指定logstash输入流为控制台</h3><p>在命令行输入以下命令，以控制台方式input数据，制造测试数据。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> /opt/logstash/bin/logstash --path.data /tmp/logstash/data \</span></span><br><span class="line">    -e 'input &#123; stdin &#123; &#125; &#125; output &#123; elasticsearch &#123; hosts =&gt; ["localhost"] &#125; &#125;'</span><br></pre></td></tr></table></figure></p>
+<p>然后等待logstash重启，如果正常则界面如下：</p>
+<p><img src="http://img.tidyko.com/blog/DockerDesktop_5.png" alt="Docker 搭建ELK环境-图例6"></p>
+<p>如果重启后，命令行界面有类似<code>docker logstash No living connections</code>错误，则需要做如下操作，调整以下docker的内存参数：</p>
+<p><img src="http://img.tidyko.com/blog/DockerDesktop_6.png" alt="Docker 搭建ELK环境-图例7"></p>
+<p>默认为2G，此处调整为4G之后，应用并重启，然后继续上面操作，重新执行命令即可。</p>
+<h3 id="3-3-输入测试数据"><a href="#3-3-输入测试数据" class="headerlink" title="3.3.输入测试数据"></a>3.3.输入测试数据</h3><p>当Logstash成功重启完成之后，可以直接在控制台输入一条测试数据。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">this is a dummy entry</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://img.tidyko.com/blog/DockerDesktop_7.png" alt="Docker 搭建ELK环境-图例8"></p>
+<p>你可以根据你的喜好，增加多条测试数据。</p>
+<p>按<code>^C</code>可以返回bash界面。</p>
+<h3 id="3-4-验证数据"><a href="#3-4-验证数据" class="headerlink" title="3.4.验证数据"></a>3.4.验证数据</h3><p>在浏览器按照格式输入：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">http://&lt;your-host&gt;:9200/_search?pretty</span><br><span class="line">如：</span><br><span class="line">http://localhost:9200/_search?pretty</span><br></pre></td></tr></table></figure></p>
+<p>获取到以下数据，说明数据插入成功。<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"took"</span> : <span class="number">4</span>,</span><br><span class="line">  <span class="attr">"timed_out"</span> : <span class="literal">false</span>,</span><br><span class="line">  <span class="attr">"_shards"</span> : &#123;</span><br><span class="line">    <span class="attr">"total"</span> : <span class="number">6</span>,</span><br><span class="line">    <span class="attr">"successful"</span> : <span class="number">6</span>,</span><br><span class="line">    <span class="attr">"skipped"</span> : <span class="number">0</span>,</span><br><span class="line">    <span class="attr">"failed"</span> : <span class="number">0</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"hits"</span> : &#123;</span><br><span class="line">    <span class="attr">"total"</span> : <span class="number">2</span>,</span><br><span class="line">    <span class="attr">"max_score"</span> : <span class="number">1.0</span>,</span><br><span class="line">    <span class="attr">"hits"</span> : [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">"_index"</span> : <span class="string">".kibana"</span>,</span><br><span class="line">        <span class="attr">"_type"</span> : <span class="string">"doc"</span>,</span><br><span class="line">        <span class="attr">"_id"</span> : <span class="string">"config:6.4.0"</span>,</span><br><span class="line">        <span class="attr">"_score"</span> : <span class="number">1.0</span>,</span><br><span class="line">        <span class="attr">"_source"</span> : &#123;</span><br><span class="line">          <span class="attr">"type"</span> : <span class="string">"config"</span>,</span><br><span class="line">          <span class="attr">"updated_at"</span> : <span class="string">"2018-09-04T03:51:42.086Z"</span>,</span><br><span class="line">          <span class="attr">"config"</span> : &#123;</span><br><span class="line">            <span class="attr">"buildNum"</span> : <span class="number">17929</span>,</span><br><span class="line">            <span class="attr">"telemetry:optIn"</span> : <span class="literal">false</span></span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">"_index"</span> : <span class="string">"logstash-2018.09.04"</span>,</span><br><span class="line">        <span class="attr">"_type"</span> : <span class="string">"doc"</span>,</span><br><span class="line">        <span class="attr">"_id"</span> : <span class="string">"v72Ao2UB4ryUqOiyKpIL"</span>,</span><br><span class="line">        <span class="attr">"_score"</span> : <span class="number">1.0</span>,</span><br><span class="line">        <span class="attr">"_source"</span> : &#123;</span><br><span class="line">          <span class="attr">"message"</span> : <span class="string">"this is a dummy entry"</span>,</span><br><span class="line">          <span class="attr">"@version"</span> : <span class="string">"1"</span>,</span><br><span class="line">          <span class="attr">"host"</span> : <span class="string">"4ae9e2a871fa"</span>,</span><br><span class="line">          <span class="attr">"@timestamp"</span> : <span class="string">"2018-09-04T07:33:29.887Z"</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>你也可以使用<a href="http://localhost:5601" target="_blank" rel="noopener">Kibana’s web interface</a>查看和管理es的索引。</p>
+<h2 id="4-配置FileBeat"><a href="#4-配置FileBeat" class="headerlink" title="4.配置FileBeat"></a>4.配置FileBeat</h2><h3 id="4-1-下载"><a href="#4-1-下载" class="headerlink" title="4.1.下载"></a>4.1.下载</h3><p>打开 <a href="https://www.elastic.co/downloads/beats/filebeat" target="_blank" rel="noopener">FileBeat下载页</a> 获取需要的FileBeat版本进行下载。</p>
+<p>如我本机是mac，我选择了mac版本进行下载。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> tidy @ TidydeMBP <span class="keyword">in</span> ~/Documents/elk-6.2.4/filebeat [17:29:51]</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> wget https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-6.4.0-darwin-x86_64.tar.gz</span></span><br><span class="line">--2018-09-04 17:31:23--  https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-6.4.0-darwin-x86_64.tar.gz</span><br><span class="line">Resolving artifacts.elastic.co... 107.21.239.197, 107.21.237.188, 184.73.245.233, ...</span><br><span class="line">Connecting to artifacts.elastic.co|107.21.239.197|:443... connected.</span><br><span class="line">HTTP request sent, awaiting response... 200 OK</span><br><span class="line">Length: 7941770 (7.6M) [application/x-gzip]</span><br><span class="line">Saving to: ‘filebeat-6.4.0-darwin-x86_64.tar.gz’</span><br><span class="line"></span><br><span class="line">filebeat-6.4.0-darwin-x86_64.tar.gz   100%[=======================================================================&gt;]   7.57M   626KB/s    in 13s</span><br><span class="line"></span><br><span class="line">2018-09-04 17:31:37 (581 KB/s) - ‘filebeat-6.4.0-darwin-x86_64.tar.gz’ saved [7941770/7941770]</span><br></pre></td></tr></table></figure></p>
+<h3 id="4-2-解压FileBeat"><a href="#4-2-解压FileBeat" class="headerlink" title="4.2.解压FileBeat"></a>4.2.解压FileBeat</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> tidy @ TidydeMBP <span class="keyword">in</span> ~/Documents/elk-6.2.4/filebeat [17:31:37]</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> tar xzvf filebeat-6.4.0-darwin-x86_64.tar.gz</span></span><br></pre></td></tr></table></figure>
+<h3 id="4-3-修改filebeat-yml配置"><a href="#4-3-修改filebeat-yml配置" class="headerlink" title="4.3.修改filebeat.yml配置"></a>4.3.修改filebeat.yml配置</h3><p>1.新增filebeat嗅探器加载目录，并启动自动加载配置。<br>2.输出到redis。<br><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">###################### Filebeat Configuration Example #########################</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># This file is an example configuration file highlighting only the most common</span></span><br><span class="line"><span class="comment"># options. The filebeat.reference.yml file from the same directory contains all the</span></span><br><span class="line"><span class="comment"># supported options with more comments. You can use it as a reference.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># You can find the full configuration reference here:</span></span><br><span class="line"><span class="comment"># https://www.elastic.co/guide/en/beats/filebeat/index.html</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># For more available modules and options, please see the filebeat.reference.yml sample</span></span><br><span class="line"><span class="comment"># configuration file.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#=========================== Filebeat inputs =============================</span></span><br><span class="line"></span><br><span class="line"><span class="string">filebeat.inputs:</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Each - is an input. Most options can be set at the input level, so</span></span><br><span class="line"><span class="comment"># you can use different inputs for various configurations.</span></span><br><span class="line"><span class="comment"># Below are the input specific configurations.</span></span><br><span class="line"></span><br><span class="line"><span class="attr">- type:</span> <span class="string">log</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Change to true to enable this input configuration.</span></span><br><span class="line"><span class="attr">  enabled:</span> <span class="literal">false</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Paths that should be crawled and fetched. Glob based paths.</span></span><br><span class="line"><span class="attr">  paths:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">/var/log/*.log</span></span><br><span class="line">    <span class="comment">#- c:\programdata\elasticsearch\logs\*</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Exclude lines. A list of regular expressions to match. It drops the lines that are</span></span><br><span class="line">  <span class="comment"># matching any regular expression from the list.</span></span><br><span class="line">  <span class="comment">#exclude_lines: ['^DBG']</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Include lines. A list of regular expressions to match. It exports the lines that are</span></span><br><span class="line">  <span class="comment"># matching any regular expression from the list.</span></span><br><span class="line">  <span class="comment">#include_lines: ['^ERR', '^WARN']</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Exclude files. A list of regular expressions to match. Filebeat drops the files that</span></span><br><span class="line">  <span class="comment"># are matching any regular expression from the list. By default, no files are dropped.</span></span><br><span class="line">  <span class="comment">#exclude_files: ['.gz$']</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Optional additional fields. These fields can be freely picked</span></span><br><span class="line">  <span class="comment"># to add additional information to the crawled log files for filtering</span></span><br><span class="line">  <span class="comment">#fields:</span></span><br><span class="line">  <span class="comment">#  level: debug</span></span><br><span class="line">  <span class="comment">#  review: 1</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">### Multiline options</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Multiline can be used for log messages spanning multiple lines. This is common</span></span><br><span class="line">  <span class="comment"># for Java Stack Traces or C-Line Continuation</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># The regexp Pattern that has to be matched. The example pattern matches all lines starting with [</span></span><br><span class="line">  <span class="comment">#multiline.pattern: ^\[</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Defines if the pattern set under pattern should be negated or not. Default is false.</span></span><br><span class="line">  <span class="comment">#multiline.negate: false</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Match can be set to "after" or "before". It is used to define if lines should be append to a pattern</span></span><br><span class="line">  <span class="comment"># that was (not) matched before or after or as long as a pattern is not matched based on negate.</span></span><br><span class="line">  <span class="comment"># Note: After is the equivalent to previous and before is the equivalent to to next in Logstash</span></span><br><span class="line">  <span class="comment">#multiline.match: after</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#============================= Filebeat modules ===============================</span></span><br><span class="line"><span class="string">filebeat.config:</span></span><br><span class="line"><span class="attr">  modules:</span></span><br><span class="line">    <span class="comment"># Glob pattern for configuration loading</span></span><br><span class="line"><span class="attr">    path:</span> <span class="string">$&#123;path.config&#125;/modules.d/*.yml</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Set to true to enable config reloading</span></span><br><span class="line">    <span class="string">reload.enabled:</span> <span class="literal">false</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Period on which files under path should be checked for changes</span></span><br><span class="line">    <span class="comment">#reload.period: 10s</span></span><br><span class="line"></span><br><span class="line"><span class="attr">  prospectors:</span></span><br><span class="line"><span class="attr">    enabled:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">    path:</span> <span class="string">$&#123;path.config&#125;/prospectors.d/*.yml</span></span><br><span class="line">    <span class="string">reload.enabled:</span> <span class="literal">true</span></span><br><span class="line">    <span class="string">reload.period:</span> <span class="number">10</span><span class="string">s</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#==================== Elasticsearch template setting ==========================</span></span><br><span class="line"></span><br><span class="line"><span class="string">setup.template.settings:</span></span><br><span class="line">  <span class="string">index.number_of_shards:</span> <span class="number">3</span></span><br><span class="line">  <span class="comment">#index.codec: best_compression</span></span><br><span class="line">  <span class="comment">#_source.enabled: false</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#================================ General =====================================</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># The name of the shipper that publishes the network data. It can be used to group</span></span><br><span class="line"><span class="comment"># all the transactions sent by a single shipper in the web interface.</span></span><br><span class="line"><span class="comment">#name:</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># The tags of the shipper are included in their own field with each</span></span><br><span class="line"><span class="comment"># transaction published.</span></span><br><span class="line"><span class="comment">#tags: ["service-X", "web-tier"]</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Optional fields that you can specify to add additional information to the</span></span><br><span class="line"><span class="comment"># output.</span></span><br><span class="line"><span class="comment">#fields:</span></span><br><span class="line"><span class="comment">#  env: staging</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#============================== Dashboards =====================================</span></span><br><span class="line"><span class="comment"># These settings control loading the sample dashboards to the Kibana index. Loading</span></span><br><span class="line"><span class="comment"># the dashboards is disabled by default and can be enabled either by setting the</span></span><br><span class="line"><span class="comment"># options here, or by using the `-setup` CLI flag or the `setup` command.</span></span><br><span class="line"><span class="comment">#setup.dashboards.enabled: false</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># The URL from where to download the dashboards archive. By default this URL</span></span><br><span class="line"><span class="comment"># has a value which is computed based on the Beat name and version. For released</span></span><br><span class="line"><span class="comment"># versions, this URL points to the dashboard archive on the artifacts.elastic.co</span></span><br><span class="line"><span class="comment"># website.</span></span><br><span class="line"><span class="comment">#setup.dashboards.url:</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#============================== Kibana =====================================</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Starting with Beats version 6.0.0, the dashboards are loaded via the Kibana API.</span></span><br><span class="line"><span class="comment"># This requires a Kibana endpoint configuration.</span></span><br><span class="line"><span class="string">setup.kibana:</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Kibana Host</span></span><br><span class="line">  <span class="comment"># Scheme and port can be left out and will be set to the default (http and 5601)</span></span><br><span class="line">  <span class="comment"># In case you specify and additional path, the scheme is required: http://localhost:5601/path</span></span><br><span class="line">  <span class="comment"># IPv6 addresses should always be defined as: https://[2001:db8::1]:5601</span></span><br><span class="line">  <span class="comment">#host: "localhost:5601"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#============================= Elastic Cloud ==================================</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># These settings simplify using filebeat with the Elastic Cloud (https://cloud.elastic.co/).</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># The cloud.id setting overwrites the `output.elasticsearch.hosts` and</span></span><br><span class="line"><span class="comment"># `setup.kibana.host` options.</span></span><br><span class="line"><span class="comment"># You can find the `cloud.id` in the Elastic Cloud web UI.</span></span><br><span class="line"><span class="comment">#cloud.id:</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># The cloud.auth setting overwrites the `output.elasticsearch.username` and</span></span><br><span class="line"><span class="comment"># `output.elasticsearch.password` settings. The format is `&lt;user&gt;:&lt;pass&gt;`.</span></span><br><span class="line"><span class="comment">#cloud.auth:</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#================================ Outputs =====================================</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Configure what output to use when sending the data collected by the beat.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#-------------------------- Redis output ------------------------------</span></span><br><span class="line"><span class="string">output.redis:</span></span><br><span class="line"><span class="attr">  enabled:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">  hosts:</span> <span class="string">["localhost:6379"]</span></span><br><span class="line"><span class="attr">  key:</span> <span class="string">filebeat</span></span><br><span class="line"><span class="attr">  db:</span> <span class="number">15</span></span><br><span class="line"><span class="attr">  worker:</span> <span class="number">1</span></span><br><span class="line"><span class="attr">  timeout:</span> <span class="number">5</span><span class="string">s</span></span><br><span class="line"><span class="attr">  max_retries:</span> <span class="number">3</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#-------------------------- Elasticsearch output ------------------------------</span></span><br><span class="line"><span class="comment">#output.elasticsearch:</span></span><br><span class="line">  <span class="comment"># Array of hosts to connect to.</span></span><br><span class="line">  <span class="comment">#hosts: ["localhost:9200"]</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Optional protocol and basic auth credentials.</span></span><br><span class="line">  <span class="comment">#protocol: "https"</span></span><br><span class="line">  <span class="comment">#username: "elastic"</span></span><br><span class="line">  <span class="comment">#password: "changeme"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#----------------------------- Logstash output --------------------------------</span></span><br><span class="line"><span class="comment">#output.logstash:</span></span><br><span class="line">  <span class="comment"># The Logstash hosts</span></span><br><span class="line">  <span class="comment">#hosts: ["localhost:5044"]</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Optional SSL. By default is off.</span></span><br><span class="line">  <span class="comment"># List of root certificates for HTTPS server verifications</span></span><br><span class="line">  <span class="comment">#ssl.certificate_authorities: ["/etc/pki/root/ca.pem"]</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Certificate for SSL client authentication</span></span><br><span class="line">  <span class="comment">#ssl.certificate: "/etc/pki/client/cert.pem"</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Client Certificate Key</span></span><br><span class="line">  <span class="comment">#ssl.key: "/etc/pki/client/cert.key"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#================================ Logging =====================================</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Sets log level. The default log level is info.</span></span><br><span class="line"><span class="comment"># Available log levels are: error, warning, info, debug</span></span><br><span class="line"><span class="comment">#logging.level: debug</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># At debug level, you can selectively enable logging only for some components.</span></span><br><span class="line"><span class="comment"># To enable all selectors use ["*"]. Examples of other selectors are "beat",</span></span><br><span class="line"><span class="comment"># "publish", "service".</span></span><br><span class="line"><span class="comment">#logging.selectors: ["*"]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#============================== Xpack Monitoring ===============================</span></span><br><span class="line"><span class="comment"># filebeat can export internal metrics to a central Elasticsearch monitoring</span></span><br><span class="line"><span class="comment"># cluster.  This requires xpack monitoring to be enabled in Elasticsearch.  The</span></span><br><span class="line"><span class="comment"># reporting is disabled by default.</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Set to true to enable the monitoring reporter.</span></span><br><span class="line"><span class="comment">#xpack.monitoring.enabled: false</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Uncomment to send the metrics to Elasticsearch. Most settings from the</span></span><br><span class="line"><span class="comment"># Elasticsearch output are accepted here as well. Any setting that is not set is</span></span><br><span class="line"><span class="comment"># automatically inherited from the Elasticsearch output configuration, so if you</span></span><br><span class="line"><span class="comment"># have the Elasticsearch output configured, you can simply uncomment the</span></span><br><span class="line"><span class="comment"># following line.</span></span><br><span class="line"><span class="comment">#xpack.monitoring.elasticsearch:</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="4-4-启动Redis"><a href="#4-4-启动Redis" class="headerlink" title="4.4.启动Redis"></a>4.4.启动Redis</h3><p>使用Docker Redis</p>
+<h4 id="4-4-1-使用命令行"><a href="#4-4-1-使用命令行" class="headerlink" title="4.4.1.使用命令行"></a>4.4.1.使用命令行</h4><h5 id="4-4-1-1-获取镜像"><a href="#4-4-1-1-获取镜像" class="headerlink" title="4.4.1.1.获取镜像"></a>4.4.1.1.获取镜像</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker pull redis</span><br></pre></td></tr></table></figure>
+<h5 id="4-4-1-2-启动redis"><a href="#4-4-1-2-启动redis" class="headerlink" title="4.4.1.2.启动redis"></a>4.4.1.2.启动redis</h5><p>创建并后台运行一个redis容器<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name redis -d redis</span><br></pre></td></tr></table></figure></p>
+<p>当停止运行之后可以直接使用以下命令直接启动redis<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker start redis</span><br></pre></td></tr></table></figure></p>
+<h4 id="4-4-2-使用Kitematic"><a href="#4-4-2-使用Kitematic" class="headerlink" title="4.4.2.使用Kitematic"></a>4.4.2.使用Kitematic</h4><h5 id="4-4-2-1-创建并启动redis容器"><a href="#4-4-2-1-创建并启动redis容器" class="headerlink" title="4.4.2.1.创建并启动redis容器"></a>4.4.2.1.创建并启动redis容器</h5><p>点击左边的NEW按钮 -&gt; 在搜索框里面输入’redis’ -&gt; 点击’CREATE’按钮<br>这样既可创建一个redis容器。</p>
+<p><img src="http://img.tidyko.com/blog/DockerDesktop_11.png" alt="Docker 搭建ELK环境-图例9"></p>
+<h5 id="4-4-2-2-修改宿主机映射端口"><a href="#4-4-2-2-修改宿主机映射端口" class="headerlink" title="4.4.2.2.修改宿主机映射端口"></a>4.4.2.2.修改宿主机映射端口</h5><p>点击左边的侧边栏选中刚刚创建好的镜像 -&gt; 点击右边的主界面的<code>Settings</code> -&gt; 点击<code>Hostname/Posts</code> -&gt; 然后修改<code>localhost:*</code>后面的端口，跟左边保持一致，将左边的redis的默认端口映射到宿主机上面。</p>
+<p><img src="http://img.tidyko.com/blog/DockerDesktop_12.png" alt="Docker 搭建ELK环境-图例10"></p>
+<h4 id="4-4-3-验证"><a href="#4-4-3-验证" class="headerlink" title="4.4.3.验证"></a>4.4.3.验证</h4><p>宿主机使用redis客户端工具连接刚创建好的redis的docker容器实例进行测试。</p>
+<h3 id="4-5-启动FileBeat"><a href="#4-5-启动FileBeat" class="headerlink" title="4.5.启动FileBeat"></a>4.5.启动FileBeat</h3><p>然后根据系统，从 <a href="https://www.elastic.co/guide/en/beats/filebeat/current/filebeat-starting.html" target="_blank" rel="noopener">启动帮助页</a> 里选择对应命令启动FileBeat.<br>这里是Mac：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> tidy @ TidydeMBP <span class="keyword">in</span> ~ [17:50:36]</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> /Users/tidy/Documents/elk-6.2.4/filebeat/filebeat-6.4.0-darwin-x86_64</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> tidy @ TidydeMBP <span class="keyword">in</span> ~/Documents/elk-6.2.4/filebeat/filebeat-6.4.0-darwin-x86_64 [17:50:41]</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> ./filebeat -e -c filebeat.yml -d <span class="string">"publish"</span></span></span><br></pre></td></tr></table></figure></p>
+<h3 id="4-6-编写FileBeat嗅探器"><a href="#4-6-编写FileBeat嗅探器" class="headerlink" title="4.6.编写FileBeat嗅探器"></a>4.6.编写FileBeat嗅探器</h3><p>假设我们有一个应用日志<code>info.log.18.07.31.3</code>，内容如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">18-09-01 16:47:57 INFO pool-2-thread-3 c.t.w.c.o.i.LoggingInterceptor.intercept(39)  | url: https://api.weixin.qq.com/cgi-bin/user/info?access_token=13_AarGHRP0xBZtUbM5bbIm1Z0Ha_pvHVjYA4EF3OFvF1ylp9AEkcOW8rkLKthe4DRo8_5MwgGCr5QQ0-UTeluD3Nh-n10PqGpCN9HZH3kjVWPpgoFs3cG0Yw6nMqbceKEPMtEWmvghvOxgd62hOAFgCIAGSX&amp;openid=oBBmBjsjaAooCLlqMxzRhPLMHzy8&amp;lang=zh_CN, method: GET, time: 93, request(), response(&#123;&quot;subscribe&quot;:0,&quot;openid&quot;:&quot;oBBmBjsjaAooCLlqMxzRhPLMHzy8&quot;,&quot;tagid_list&quot;:[]&#125;)</span><br><span class="line">18-09-01 16:47:57 INFO pool-2-thread-1 c.t.w.c.o.i.LoggingInterceptor.intercept(39)  | url: https://api.weixin.qq.com/cgi-bin/user/info?access_token=13_AarGHRP0xBZtUbM5bbIm1Z0Ha_pvHVjYA4EF3OFvF1ylp9AEkcOW8rkLKthe4DRo8_5MwgGCr5QQ0-UTeluD3Nh-n10PqGpCN9HZH3kjVWPpgoFs3cG0Yw6nMqbceKEPMtEWmvghvOxgd62hOAFgCIAGSX&amp;openid=oBBmBjsI6r3hSarOyPRvK1e0RTzU&amp;lang=zh_CN, method: GET, time: 88, request(), response(&#123;&quot;subscribe&quot;:0,&quot;openid&quot;:&quot;oBBmBjsI6r3hSarOyPRvK1e0RTzU&quot;,&quot;tagid_list&quot;:[]&#125;)</span><br><span class="line">18-09-01 16:47:57 INFO pool-2-thread-2 c.t.w.c.o.i.LoggingInterceptor.intercept(39)  | url: https://api.weixin.qq.com/cgi-bin/user/info?access_token=13_AarGHRP0xBZtUbM5bbIm1Z0Ha_pvHVjYA4EF3OFvF1ylp9AEkcOW8rkLKthe4DRo8_5MwgGCr5QQ0-UTeluD3Nh-n10PqGpCN9HZH3kjVWPpgoFs3cG0Yw6nMqbceKEPMtEWmvghvOxgd62hOAFgCIAGSX&amp;openid=oBBmBjggVlN5KMsOTfTroqlhV1vg&amp;lang=zh_CN, method: GET, time: 63, request(), response(&#123;&quot;subscribe&quot;:0,&quot;openid&quot;:&quot;oBBmBjggVlN5KMsOTfTroqlhV1vg&quot;,&quot;tagid_list&quot;:[]&#125;)</span><br><span class="line">18-09-01 16:47:57 INFO pool-2-thread-5 c.t.w.c.o.i.LoggingInterceptor.intercept(39)  | biz: aA</span><br><span class="line">18-09-01 16:47:57 INFO pool-2-thread-3 c.t.w.c.o.i.LoggingInterceptor.intercept(39)  | biz: bB</span><br><span class="line">18-09-01 16:47:57 INFO pool-2-thread-4 c.t.w.c.o.i.LoggingInterceptor.intercept(39)  | biz: cC</span><br><span class="line">18-09-01 16:47:57 INFO pool-2-thread-4 c.t.w.c.o.i.LoggingInterceptor.intercept(39)  | biz: dD</span><br></pre></td></tr></table></figure></p>
+<p>在<code>filebeat-6.4.0-darwin-x86_64</code>目录下新建<code>prospectors.d</code>文件夹，并创建<code>tisson-open-rpc-service.yml</code>文件，配置应用嗅探路径已经解析规则。<br><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">- type:</span> <span class="string">log</span></span><br><span class="line"><span class="attr">  enabled:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">  paths:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">/Users/tidy/Documents/apache-tomcat8/apache-tomcat-8.5.20-shuniu/logs/info.log.18.07.31.3</span></span><br><span class="line"><span class="attr">  encoding:</span> <span class="string">utf-8</span></span><br><span class="line"><span class="attr">  include_lines:</span> <span class="string">['url']</span></span><br><span class="line"><span class="attr">  fields:</span></span><br><span class="line"><span class="attr">    log_type:</span> <span class="string">interface</span></span><br><span class="line"><span class="attr">  fields_under_root:</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="attr">- type:</span> <span class="string">log</span></span><br><span class="line"><span class="attr">  enabled:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">  paths:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">/Users/tidy/Documents/apache-tomcat8/apache-tomcat-8.5.20-shuniu/logs/info.log.18.07.31.3</span></span><br><span class="line"><span class="attr">  encoding:</span> <span class="string">utf-8</span></span><br><span class="line"><span class="attr">  include_lines:</span> <span class="string">['biz']</span></span><br><span class="line"><span class="attr">  fields:</span></span><br><span class="line"><span class="attr">    log_type:</span> <span class="string">biz</span></span><br><span class="line"><span class="attr">  fields_under_root:</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="attr">- type:</span> <span class="string">log</span></span><br><span class="line"><span class="attr">  enabled:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">  paths:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">/Users/tidy/Documents/apache-tomcat8/apache-tomcat-8.5.20-shuniu/logs/info.log.18.07.31.3</span></span><br><span class="line"><span class="attr">  encoding:</span> <span class="string">utf-8</span></span><br><span class="line"><span class="attr">  include_lines:</span> <span class="string">['^\d&#123;2,4&#125;-\d&#123;1,2&#125;-\d&#123;1,2&#125;']</span></span><br></pre></td></tr></table></figure></p>
+<p>当编写完应用嗅探文件<code>tisson-open-rpc-service.yml</code>之后，一保存,filebeat就会自动监测指定的路径的日志文件并开始解析。</p>
+<p>这时候打开redis的第15个数据库就可以看到已经解析完成的数据了。</p>
+<p><img src="http://img.tidyko.com/blog/DockerDesktop_8.png" alt="Docker 搭建ELK环境-图例11"></p>
+<h2 id="5-配置ELK容器的Logstash"><a href="#5-配置ELK容器的Logstash" class="headerlink" title="5.配置ELK容器的Logstash"></a>5.配置ELK容器的Logstash</h2><p>配置Logstash从Redis上面读取，并解析到ES。</p>
+<p>先进入ELK容器EXEC控制台，然后修改以下配置。</p>
+<h3 id="5-1-修改LogStash自动加载配置"><a href="#5-1-修改LogStash自动加载配置" class="headerlink" title="5.1.修改LogStash自动加载配置"></a>5.1.修改LogStash自动加载配置</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root@4ae9e2a871fa:/etc/init.d# cd /opt/logstash/config/</span><br><span class="line">root@4ae9e2a871fa:/opt/logstash/config# vi logstash.yml</span><br></pre></td></tr></table></figure>
+<p>按字符串匹配<code>auto</code>关键字，输入:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/auto</span><br><span class="line"></span><br><span class="line">回车</span><br></pre></td></tr></table></figure></p>
+<p>就可以看到光标指向了<br><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># config.reload.automatic: false</span></span><br></pre></td></tr></table></figure></p>
+<p>修改配置，将注释去掉，然后修改值为true<br><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">config.reload.automatic:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure></p>
+<p>保存退出。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:wq</span><br></pre></td></tr></table></figure></p>
+<h3 id="5-2-重启容器"><a href="#5-2-重启容器" class="headerlink" title="5.2.重启容器"></a>5.2.重启容器</h3><h3 id="5-3-新增input"><a href="#5-3-新增input" class="headerlink" title="5.3.新增input"></a>5.3.新增input</h3><p>新增配置，从redis读取日志数据进行解析。</p>
+<p>进入<code>/etc/logstash/conf.d</code>：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker <span class="built_in">exec</span> -it elk /bin/bash</span></span><br><span class="line">root@4ae9e2a871fa:/# cd /etc/logstash/conf.d/</span><br><span class="line">root@4ae9e2a871fa:/etc/logstash/conf.d#</span><br></pre></td></tr></table></figure></p>
+<h4 id="5-3-1-修改30-output-conf"><a href="#5-3-1-修改30-output-conf" class="headerlink" title="5.3.1.修改30-output.conf"></a>5.3.1.修改30-output.conf</h4><p>修改<code>30-output.conf</code>文件内容为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">output &#123;</span><br><span class="line">    if [log_type]&#123;</span><br><span class="line">        elasticsearch &#123;</span><br><span class="line">            hosts    =&gt; &quot;localhost:9200&quot;</span><br><span class="line">            action   =&gt;  &quot;index&quot;</span><br><span class="line">            index    =&gt;  &quot;%&#123;log_type&#125;-%&#123;+YYYY.MM.dd&#125;&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        elasticsearch &#123;</span><br><span class="line">            hosts    =&gt; &quot;localhost:9200&quot;</span><br><span class="line">            action   =&gt;  &quot;index&quot;</span><br><span class="line">            index    =&gt;  &quot;logstash-%&#123;+YYYY.MM.dd&#125;&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    stdout &#123;</span><br><span class="line">        codec =&gt; rubydebug</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="5-3-2-重命名30-output-conf"><a href="#5-3-2-重命名30-output-conf" class="headerlink" title="5.3.2.重命名30-output.conf"></a>5.3.2.重命名30-output.conf</h4><p>重命名30-output.conf为elasticsearch_output.conf<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">root@4ae9e2a871fa:/etc/logstash/conf.d# mv 30-output.conf elasticsearch_output.conf</span><br><span class="line">root@4ae9e2a871fa:/etc/logstash/conf.d# ll</span><br><span class="line">total 24</span><br><span class="line">drwxr-xr-x 1 logstash logstash 4096 Sep  4 10:36 ./</span><br><span class="line">drwxr-xr-x 1 logstash logstash 4096 Aug 27 20:07 ../</span><br><span class="line">-rw-r--r-- 1 root     root      177 Aug 27 20:02 02-beats-input.conf</span><br><span class="line">-rw-r--r-- 1 root     root      456 Aug 27 20:02 10-syslog.conf</span><br><span class="line">-rw-r--r-- 1 root     root      113 Aug 27 20:02 11-nginx.conf</span><br><span class="line">-rw-r--r-- 1 root     root      414 Sep  4 10:33 elasticsearch_output.conf</span><br></pre></td></tr></table></figure></p>
+<h4 id="5-3-3-新增filter-test1-conf"><a href="#5-3-3-新增filter-test1-conf" class="headerlink" title="5.3.3.新增filter-test1.conf"></a>5.3.3.新增filter-test1.conf</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@4ae9e2a871fa:/etc/logstash/conf.d# vi filter-test1.conf</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">filter &#123;</span><br><span class="line">    if [log_type]&#123;</span><br><span class="line">        if [log_type] == &quot;interface&quot; &#123;</span><br><span class="line">            grok &#123;</span><br><span class="line">                match =&gt; &#123; &quot;message&quot; =&gt; &quot;\s*%&#123;TIMESTAMP_ISO8601:time&#125;\s*%&#123;LOGLEVEL:level&#125;\s*%&#123;JAVAFILE:thread&#125;\s*%&#123;JAVAFILE:class&#125;\(%&#123;NUMBER:lineNumber&#125;\)\s*\|\s*url:\s*%&#123;GREEDYDATA:url&#125;, method:\s*%&#123;GREEDYDATA:method&#125;, time:\s*%&#123;NUMBER:requestTime&#125;, request\(%&#123;GREEDYDATA:requestBody&#125;\), response\(%&#123;GREEDYDATA:responseBody&#125;\)&quot;&#125;</span><br><span class="line">            &#125;</span><br><span class="line">            json &#123;</span><br><span class="line">                source =&gt;&quot;responseBody&quot;</span><br><span class="line">                target =&gt; &quot;responseBody&quot;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        if [log_type] == &quot;biz&quot; &#123;</span><br><span class="line">            grok &#123;</span><br><span class="line">                match =&gt; &#123; &quot;message&quot; =&gt; &quot;\s*%&#123;TIMESTAMP_ISO8601:time&#125;\s*%&#123;LOGLEVEL:level&#125;\s*%&#123;JAVAFILE:thread&#125;\s*%&#123;JAVAFILE:class&#125;\(%&#123;NUMBER:lineNumber&#125;\)\s*\|\s*biz:%&#123;GREEDYDATA:bizLog&#125;&quot;&#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        date &#123;</span><br><span class="line">            match =&gt; [ &quot;time&quot;, &quot;yy-MM-dd HH:mm:ss&quot;]</span><br><span class="line">        &#125;</span><br><span class="line">        mutate &#123;</span><br><span class="line">            remove_field =&gt;[&quot;message&quot;]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="5-3-1-新增redis-input-conf"><a href="#5-3-1-新增redis-input-conf" class="headerlink" title="5.3.1.新增redis_input.conf"></a>5.3.1.新增redis_input.conf</h4><p>这里host配置占位符，直接访问宿主机的redis<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">input &#123;</span><br><span class="line">     redis &#123;</span><br><span class="line">        data_type =&gt; &quot;list&quot;</span><br><span class="line">        key =&gt; &quot;filebeat&quot;</span><br><span class="line">        host =&gt; &quot;docker.for.mac.localhost&quot;</span><br><span class="line">        port =&gt; 6379</span><br><span class="line">        threads =&gt; 5</span><br><span class="line">        db =&gt; 15</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>到这里当我们保存配置文件，退出之后，看一下redis，里面的数据已经全部被消费完毕，并通过logstash的pipeline生成了我们配置的三个索引。</p>
+<p><img src="http://img.tidyko.com/blog/DockerDesktop_9.png" alt="Docker 搭建ELK环境-图例12"></p>
+<h2 id="6-配置Kibana的Index-Patterns"><a href="#6-配置Kibana的Index-Patterns" class="headerlink" title="6.配置Kibana的Index Patterns"></a>6.配置Kibana的Index Patterns</h2><p>过滤完的数据顺利存入es之后，我们通过Kibana创建Index Patterns，来查看数据。</p>
+<h3 id="6-1-配置Index-Patterns"><a href="#6-1-配置Index-Patterns" class="headerlink" title="6.1.配置Index Patterns"></a>6.1.配置Index Patterns</h3><p>打开 <a href="http://localhost:5601" target="_blank" rel="noopener">Kibana’s web interface</a> ，然后点击<code>Management</code> -&gt; <code>Kibana Index Patterns</code> -&gt; <code>Create Index Pattern</code> -&gt; 在文本框输入<code>interface-*</code> -&gt; 点击<code>&gt; Next step</code> -&gt; 选择下拉框@timestamp -&gt; 最后点击<code>Create index pattern</code>按钮</p>
+<p>这样就完成了索引模式的创建，最后我们点击<code>Discover</code>就可以看到我们的索引模式了。</p>
+<p><img src="http://img.tidyko.com/blog/DockerDesktop_10.png" alt="Docker 搭建ELK环境-图例13"></p>
+<h2 id="7-备份容器"><a href="#7-备份容器" class="headerlink" title="7.备份容器"></a>7.备份容器</h2><p>上面我们已经完成了Docker ELK的个性化配置，现在我们需要将这份我们配置过的容器备份起来，以便日后在其他地方需要使用的时候可以直接使用，而不是重新拉一个全新的ELK镜像又进行一次全新的配置。</p>
+<h3 id="7-1-查看已存在的容器"><a href="#7-1-查看已存在的容器" class="headerlink" title="7.1.查看已存在的容器"></a>7.1.查看已存在的容器</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> tidy @ TidydeMBP <span class="keyword">in</span> ~ [14:34:25]</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> docker ps -a</span></span><br><span class="line">CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS                      PORTS               NAMES</span><br><span class="line">43a05b5ae610        redis:latest        "docker-entrypoint..."   4 hours ago         Exited (0) 3 hours ago                          redis</span><br><span class="line">052e57f262ae        sebp/elk:latest     "/usr/local/bin/st..."   18 hours ago        Exited (137) 3 hours ago                        elk</span><br></pre></td></tr></table></figure>
+<h3 id="7-2-创建本地容器快照"><a href="#7-2-创建本地容器快照" class="headerlink" title="7.2.创建本地容器快照"></a>7.2.创建本地容器快照</h3><p>使用 <code>docker commit -p 容器ID 镜像名称</code> 的格式创建。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> tidy @ TidydeMBP <span class="keyword">in</span> ~ [14:34:28]</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> docker commit -p 052e57f262ae elk_filebeat_redis</span></span><br><span class="line">sha256:42df48a426925959b5cba3d7793cc2caeceef750c0187e8547b47b85fcd8d324</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> tidy @ TidydeMBP <span class="keyword">in</span> ~ [14:42:03]</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> docker images</span></span><br><span class="line">REPOSITORY           TAG                 IMAGE ID            CREATED             SIZE</span><br><span class="line">elk_filebeat_redis   latest              42df48a42692        6 seconds ago       1.52GB</span><br><span class="line">sebp/elk             latest              415660a78986        8 days ago          1.45GB</span><br><span class="line">redis                latest              4e8db158f18d        4 weeks ago         83.4MB</span><br></pre></td></tr></table></figure></p>
+<p>如上所见，我们已经创建好修改后的容器镜像，接下来我们将这个镜像推送到 <a href="https://hub.docker.com/" target="_blank" rel="noopener">DockerHub</a> 镜像中心进行备份。</p>
+<h3 id="7-3-DockerHub"><a href="#7-3-DockerHub" class="headerlink" title="7.3.DockerHub"></a>7.3.DockerHub</h3><h4 id="7-3-1-注册"><a href="#7-3-1-注册" class="headerlink" title="7.3.1.注册"></a>7.3.1.注册</h4><p>在上面的DockerHub注册账号。</p>
+<h4 id="7-3-2-本地登录"><a href="#7-3-2-本地登录" class="headerlink" title="7.3.2.本地登录"></a>7.3.2.本地登录</h4><p>使用如下命令进行登录。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker login</span></span><br><span class="line">Username:</span><br><span class="line">Password:</span><br></pre></td></tr></table></figure></p>
+<h4 id="7-3-3-创建镜像标签"><a href="#7-3-3-创建镜像标签" class="headerlink" title="7.3.3.创建镜像标签"></a>7.3.3.创建镜像标签</h4><p>使用 <code>docker tag 容器ID 登录用户名/镜像名称:标签</code> 的格式创建。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> tidy @ TidydeMBP <span class="keyword">in</span> ~ [14:42:09]</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> docker tag 42df48a42692 tidyko/elk_filebeat_redis:v1</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> tidy @ TidydeMBP <span class="keyword">in</span> ~ [14:52:58]</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> docker images</span></span><br><span class="line">REPOSITORY                  TAG                 IMAGE ID            CREATED             SIZE</span><br><span class="line">elk_filebeat_redis          latest              42df48a42692        11 minutes ago      1.52GB</span><br><span class="line">tidyko/elk_filebeat_redis   v1                  42df48a42692        11 minutes ago      1.52GB</span><br><span class="line">sebp/elk                    latest              415660a78986        8 days ago          1.45GB</span><br><span class="line">redis                       latest              4e8db158f18d        4 weeks ago         83.4MB</span><br></pre></td></tr></table></figure></p>
+<p>这时，我们能看到我们的本地镜像仓库里面出现了名为 <code>tidyko/elk_filebeat_redis</code> 的镜像。</p>
+<h4 id="7-3-4-推送镜像"><a href="#7-3-4-推送镜像" class="headerlink" title="7.3.4.推送镜像"></a>7.3.4.推送镜像</h4><p>使用 <code>docker push REPOSITORY</code> 的格式推送。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> tidy @ TidydeMBP <span class="keyword">in</span> ~ [14:53:10]</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> docker push tidyko/elk_filebeat_redis</span></span><br><span class="line">The push refers to a repository [docker.io/tidyko/elk_filebeat_redis]</span><br><span class="line">74ac712f31c2: Preparing</span><br><span class="line">0ecb078d2795: Preparing</span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line">ff986b10a018: Mounted from sebp/elk</span><br><span class="line">v1: digest: sha256:e4afdd36a986bd6848a391f8a3294bb21f6617dd752cc819a3b1411e1720af17 size: 8855</span><br></pre></td></tr></table></figure></p>
+<p>这样就顺利将镜像备份到Docker Hub了。</p>
+<p>以后我们使用就可以直接获取备份的镜像来用了。</p>
+<p><img src="http://img.tidyko.com/blog/DockerDesktop_14.png" alt="Docker 搭建ELK环境-图例14"></p>
+<h2 id="8-参考"><a href="#8-参考" class="headerlink" title="8.参考"></a>8.参考</h2><p><a href="https://docs.docker.com/get-started/" target="_blank" rel="noopener">Docker Docs</a></p>
+<p><a href="https://hub.docker.com/r/sebp/elk/" target="_blank" rel="noopener">sebp/elk</a></p>
+<p><a href="https://elk-docker.readthedocs.io/" target="_blank" rel="noopener">Elasticsearch, Logstash, Kibana (ELK) Docker image documentation</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/a5557ea7.html" data-id="cjpw8p679000p82ykrwy4xsur" class="article-share-link">
+        分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/">Docker</a></li></ul>
+
+    </footer>
+  </div>
+  
+  
+<nav id="article-nav">
+  
+    <a href="/posts/e4163a66.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          Docker 容器挂载宿主机环境
+        
+      </div>
+    </a>
+  
+  
+    <a href="/posts/4573f792.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">FileBeat 基础配置</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+<div style="margin:50px 0">
+  <amp-auto-ads type="adsense" data-ad-client="ca-pub-1522837637326007">
+  </amp-auto-ads>
+  <!-- left-ad-2 -->
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1522837637326007" data-ad-slot="1200441426"
+    data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+
+
+
+
+
+
+
+
+<div id="comments" class="comments">
+  <div id="gitment_container"></div>
+</div>
+
+<link rel="stylesheet" href="https://www.wenjunjiang.win/css/gitment.css">
+<script src="https://www.wenjunjiang.win/js/gitment.js"></script>
+<script>
+  var gitment = new Gitment({
+    owner: 'tidyko',
+    repo: 'tidyko.github.io',
+    oauth: {
+      client_id: '62e4f6a4ca86e056da76',
+      client_secret: '912d627549301dd54437313b122a7c543215bc4c',
+    },
+  })
+  gitment.render('gitment_container')
+</script>
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <h1 class="blog-title">Tidy的个人博客</h1>
+    <h2 class="blog-subtitle">人生とは好きな人と一緒に過ごした日々だ!</h2>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="http://img.tidyko.com/avatar.jpg">
+    <h2 class="author">
+      
+    </h2>
+    <h3 class="description">
+      
+    </h3>
+    <div class="count-box">
+      <a href="/archives">
+        <div><strong>
+            132</strong><br>文章</div>
+      </a>
+      <a href="/categories">
+        <div><strong>
+            45</strong><br>分类</div>
+      </a>
+      <a href="/tags">
+        <div><strong>
+            86</strong><br>标签</div>
+      </a>
+    </div>
+
+
+
+    <div class="social-link">
+      
+      <a class="hvr-bounce-in" href="https://github.com/tidyko" target="_blank" title="Github">
+        Github
+      </a>
+      
+    </div>
+
+    <div class="friend-link">
+      <h2>
+        友情链接
+      </h2>
+      
+      <a class="hvr-bounce-in" href="https://blog.yl-online.top" target="_blank" title="forever杨">
+        forever杨
+      </a>
+      
+    </div>
+
+    <!-- <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> -->
+    <!-- left-ad-1 -->
+    <!-- <amp-ad width="100vw" height=320 type="adsense" data-ad-client="ca-pub-1522837637326007" data-ad-slot="1201221679"
+      data-auto-format="rspv" data-full-width>
+      <div overflow></div>
+    </amp-ad> -->
+  </div>
+</div>
+  
+    <div class="widget-wrap">
+    <h3 class="widget-title"></h3>
+    <!-- left-ad-1 -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1522837637326007" data-ad-slot="1201221679"
+        data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+  
+    
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy;2017 - 2018 Tidy的个人博客<br>
+      <!-- 由<a href="https://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
+      主题-<a href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a> -->
+      
+        <br>
+        <!-- <script src="https://s19.cnzz.com/z_stat.php?id=1274390271&web_id=1274390271" language="JavaScript" rel="noreferrer"></script>       -->
+        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1274390271'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1274390271%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));</script>
+      
+    </div>
+  </div>
+</footer>
+    </div>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/wow/0.1.6/wow.min.js"></script>
+<script>
+new WOW().init();
+</script>   
+
+
+  <link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+  <script src="/plugin/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+  <!-- <section class="hidden-xs"> 
+  <ul class="cb-slideshow"> 
+    <li><span>苟利</span></li> 
+    <li><span>国家</span></li> 
+    <li><span>生死以</span></li> 
+    <li><span>岂能</span></li> 
+    <li><span>祸福</span></li> 
+    <li><span>趋避之</span></li> 
+  </ul>
+</section> -->
+<script src="/js/script.js"></script>
+
+
+
+
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("DpQHavrF6hdX8C8q7ONib5Qv-gzGzoHsz", "CFNVYUb4rtTjkji3Erv4ROA7");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.article-title').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+
+
+<div id="totop" style="position:fixed;bottom:160px;right:50px;cursor: pointer;z-index: 10;">
+    <a title="返回顶部"><img src="/images/scrollup.png" style="width:50px;height:50px;"/></a>
+</div>
+<script src="/js/totop.js"></script>
+  </div>
+</body>
+</html>

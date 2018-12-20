@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>
+    
+    J2EE CXF WebService 服务端和客户端 环境搭建及测试 |
+    
+    Tidy的个人博客
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="CXF服务端1）如果是普通项目去官网下载对应的jar包：添加到项目里面。 2）如果是Maven项目在pom文件里面配置相应依赖包。 3）修改web.xml，完成spring和cxf配置123456789101112131415161718192021&amp;lt;!-- Spring --&amp;gt;&amp;lt;context-param&amp;gt;    &amp;lt;param-name&amp;gt;contextCon">
+<meta name="keywords" content="Java,J2EE,CXF,WebService">
+<meta property="og:type" content="article">
+<meta property="og:title" content="J2EE CXF WebService 服务端和客户端 环境搭建及测试">
+<meta property="og:url" content="https://www.tidyko.com/posts/4115afa8.html">
+<meta property="og:site_name" content="Tidy的个人博客">
+<meta property="og:description" content="CXF服务端1）如果是普通项目去官网下载对应的jar包：添加到项目里面。 2）如果是Maven项目在pom文件里面配置相应依赖包。 3）修改web.xml，完成spring和cxf配置123456789101112131415161718192021&amp;lt;!-- Spring --&amp;gt;&amp;lt;context-param&amp;gt;    &amp;lt;param-name&amp;gt;contextCon">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-08-13T15:09:44.460Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="J2EE CXF WebService 服务端和客户端 环境搭建及测试">
+<meta name="twitter:description" content="CXF服务端1）如果是普通项目去官网下载对应的jar包：添加到项目里面。 2）如果是Maven项目在pom文件里面配置相应依赖包。 3）修改web.xml，完成spring和cxf配置123456789101112131415161718192021&amp;lt;!-- Spring --&amp;gt;&amp;lt;context-param&amp;gt;    &amp;lt;param-name&amp;gt;contextCon">
+  
+  <link rel="alternate" href="/atom.xml" title="Tidy的个人博客" type="application/atom+xml">
+  
+  
+  <link rel="icon" href="/favicon.ico">
+  
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <!-- <link rel="stylesheet" href="/plugin/bganimation/bg.css"> -->
+  
+
+  
+<!-- Google Adsense -->
+<!-- <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+</script> -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-1522837637326007",
+        enable_page_level_ads: true
+    });
+</script>
+
+<script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
+<!-- End Google Adsense -->
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <div class="widget-wrap mobile-header">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="http://img.tidyko.com/avatar.jpg">
+    <h2 class="author"></h2>
+    <h3 class="description"></h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>132</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>45</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>86</strong><br>标签</div></a>
+    </div>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+        <section id="main"><article id="post-J2EE CXF WebService 服务端和客户端 环境搭建及测试" class="article" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/4115afa8.html" class="article-date">
+  <time class="post-time" datetime="2014-03-11T07:10:00.000Z" itemprop="datePublished">
+    <span class="post-month">3月</span><br/>
+    <span class="post-day">11</span>
+  </time>
+</a>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 class="article-title" itemprop="name">
+      J2EE CXF WebService 服务端和客户端 环境搭建及测试
+    </h1>
+  
+
+      <div>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
+  </div>
+
+        
+        
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/4115afa8.html" class="leancloud_visitors" data-flag-title="J2EE CXF WebService 服务端和客户端 环境搭建及测试">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 774</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 4 分钟</span>
+  </div>
+ 
+        
+      </div>
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <h2 id="CXF服务端"><a href="#CXF服务端" class="headerlink" title="CXF服务端"></a>CXF服务端</h2><h3 id="1）如果是普通项目"><a href="#1）如果是普通项目" class="headerlink" title="1）如果是普通项目"></a>1）如果是普通项目</h3><p>去<a href="http://cxf.apache.org/" target="_blank" rel="noopener">官网</a>下载对应的jar包：<br>添加到项目里面。</p>
+<h3 id="2）如果是Maven项目"><a href="#2）如果是Maven项目" class="headerlink" title="2）如果是Maven项目"></a>2）如果是Maven项目</h3><p>在pom文件里面配置相应依赖包。</p>
+<h3 id="3）修改web-xml，完成spring和cxf配置"><a href="#3）修改web-xml，完成spring和cxf配置" class="headerlink" title="3）修改web.xml，完成spring和cxf配置"></a>3）修改web.xml，完成spring和cxf配置</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- Spring --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">context-param</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>contextConfigLocation<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param-value</span>&gt;</span></span><br><span class="line">        classpath*:/applicationContext.xml</span><br><span class="line">    <span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">context-param</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">listener</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">listener-class</span>&gt;</span>org.springframework.web.context.ContextLoaderListener<span class="tag">&lt;/<span class="name">listener-class</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">listener</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- CXFServlet --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>CXFServlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>org.apache.cxf.transport.servlet.CXFServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>CXFServlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/WebService/*<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="4）编写服务接口和实现"><a href="#4）编写服务接口和实现" class="headerlink" title="4）编写服务接口和实现"></a>4）编写服务接口和实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@WebService</span>(targetNamespace=Constant.NAME_SPACE)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">FinanceService</span> </span>&#123;     </span><br><span class="line">    <span class="function">String <span class="title">financeSearchById</span><span class="params">(@WebParam(name=<span class="string">"id"</span>)</span>Integer id)</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Transactional</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FinanceServiceImpl</span> <span class="keyword">implements</span> <span class="title">FinanceService</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Logger logger = Logger.getLogger(FinanceServiceImpl.class);</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Resource</span>(name=<span class="string">"financeDao"</span>)</span><br><span class="line">    <span class="keyword">private</span> FinanceDao financeDao;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">financeSearchById</span><span class="params">(Integer id)</span> </span>&#123;</span><br><span class="line">        String json;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            json=financeDao.financeSearchById(id);</span><br><span class="line">        &#125;<span class="keyword">catch</span>(Exception e)&#123;</span><br><span class="line">            Map&lt;String,Object&gt; map = <span class="keyword">new</span> HashMap&lt;String, Object&gt;();</span><br><span class="line">            map.put(<span class="string">"is_success"</span>, <span class="keyword">false</span>);</span><br><span class="line">            map.put(<span class="string">"error_msg"</span>, <span class="string">"程序执行出错:"</span>+e.getMessage());</span><br><span class="line">            json = JsonUtil.objectToJson(map);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> json;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="5）修改spring配置文件"><a href="#5）修改spring配置文件" class="headerlink" title="5）修改spring配置文件"></a>5）修改spring配置文件</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span> </span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:jaxws</span>=<span class="string">"http://cxf.apache.org/jaxws"</span> <span class="attr">xmlns:cxf</span>=<span class="string">"http://cxf.apache.org/core"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd </span></span></span><br><span class="line"><span class="tag"><span class="string">                           http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd </span></span></span><br><span class="line"><span class="tag"><span class="string">                           http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd"</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">description</span>&gt;</span>Apache CXF配置<span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">import</span> <span class="attr">resource</span>=<span class="string">"classpath:META-INF/cxf/cxf.xml"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">import</span> <span class="attr">resource</span>=<span class="string">"classpath:META-INF/cxf/cxf-servlet.xml"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">import</span> <span class="attr">resource</span>=<span class="string">"classpath:META-INF/cxf/cxf-extension-soap.xml"</span> /&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">&lt;!-- CXF Web Service Server端配置 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"wsFinanceServiceImpl"</span> <span class="attr">class</span>=<span class="string">"com.****.******.business.webservice.server.impl.FinanceServiceImpl"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">jaxws:server</span> <span class="attr">id</span>=<span class="string">"wsFinanceService"</span> <span class="attr">serviceClass</span>=<span class="string">"com.****.******.business.webservice.server.FinanceService"</span> <span class="attr">serviceBean</span>=<span class="string">"#wsFinanceServiceImpl"</span>  <span class="attr">address</span>=<span class="string">"/financeService"</span> /&gt;</span>    </span><br><span class="line">    </span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="6）tomcat发布运行"><a href="#6）tomcat发布运行" class="headerlink" title="6）tomcat发布运行"></a>6）tomcat发布运行</h3><p>访问：<a href="http://localhost:8080/******/WebService/financeService?wsdl" target="_blank" rel="noopener">http://localhost:8080/******/WebService/financeService?wsdl</a><br>看到描述文件即可。</p>
+<h3 id="7）编写测试类测试"><a href="#7）编写测试类测试" class="headerlink" title="7）编写测试类测试"></a>7）编写测试类测试</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        JaxWsProxyFactoryBean webService = <span class="keyword">new</span> JaxWsProxyFactoryBean();  </span><br><span class="line">        webService.setServiceClass(FinanceService.class);  </span><br><span class="line">        webService.setAddress(<span class="string">"http://localhost:8080/******/WebService/financeService?wsdl"</span>);  </span><br><span class="line">        FinanceService financeService = (FinanceService) webService.create();  </span><br><span class="line">        System.out.println(financeService.financeSearchById(<span class="number">5</span>));  </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="8）验证结果"><a href="#8）验证结果" class="headerlink" title="8）验证结果"></a>8）验证结果</h3><p>如预期输出结果就表示调用成功了。</p>
+<h2 id="CXF客户端"><a href="#CXF客户端" class="headerlink" title="CXF客户端"></a>CXF客户端</h2><h3 id="1）获取服务端wsdl连接"><a href="#1）获取服务端wsdl连接" class="headerlink" title="1）获取服务端wsdl连接"></a>1）获取服务端wsdl连接</h3><h3 id="2）使用cxf的wsdl2java生成cxf客户端代码"><a href="#2）使用cxf的wsdl2java生成cxf客户端代码" class="headerlink" title="2）使用cxf的wsdl2java生成cxf客户端代码"></a>2）使用cxf的wsdl2java生成cxf客户端代码</h3><p>下载<a href="http://cxf.apache.org/download.html" target="_blank" rel="noopener">CXF</a><br>设置添加系统变量<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">变量名：CXF_HOME</span><br><span class="line"></span><br><span class="line">变量值：E:\mysoft\apache-cxf-3.0.2（cxf解压路径）</span><br></pre></td></tr></table></figure></p>
+<p>设置完之后，cmd里面输入：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wsdl2java -v</span><br></pre></td></tr></table></figure></p>
+<p>如果显示版本信息就表示安装成功了。<br>然后输入：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wsdl2java  -frontend jaxws21 -p com.****.******.business.webservice.client -d E:\mysoft\apache-cxf-3.0.2\myclass  -client -autoNameResolution  http://localhost:8080/******/WebService/financeService?wsdl</span><br></pre></td></tr></table></figure></p>
+<h3 id="3）"><a href="#3）" class="headerlink" title="3）"></a>3）</h3><p>将生成的代码，除了client和service结尾的文件，和package-info.java之外的文件拷贝到工程下面，进行测试。</p>
+<h3 id="4）"><a href="#4）" class="headerlink" title="4）"></a>4）</h3><p>修改applicationContext-cxf.xml文件添加下面代码：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- CXF Web Service Client端配置 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">jaxws:client</span> <span class="attr">id</span>=<span class="string">"financeService"</span> <span class="attr">serviceClass</span>=<span class="string">"com.****.******.business.webservice.client.financeService"</span> <span class="attr">address</span>=<span class="string">"http://localhost:8080/******/WebService/financeService?wsdl"</span> /&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="5）"><a href="#5）" class="headerlink" title="5）"></a>5）</h3><p>编写测试类在里面添加下面代码：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ClassPathXmlApplicationContext xmlApplicationContext = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"/context/applicationContext-cxf.xml"</span>);  </span><br><span class="line">FinanceService bean = xmlApplicationContext.getBean(financeService.class);  </span><br><span class="line">System.out.println(bean.financeSearchById(<span class="number">5</span>));</span><br></pre></td></tr></table></figure></p>
+<h3 id="6）"><a href="#6）" class="headerlink" title="6）"></a>6）</h3><p>如预期输出结果就表示调用成功了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/4115afa8.html" data-id="cjpw8p692003s82yk51d80xuo" class="article-share-link">
+        分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CXF/">CXF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WebService/">WebService</a></li></ul>
+
+    </footer>
+  </div>
+  
+  
+<nav id="article-nav">
+  
+    <a href="/posts/efb40b79.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          Oracle nvl与nvl2对比
+        
+      </div>
+    </a>
+  
+  
+    <a href="/posts/7c9f9e00.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Oracle number类型保留小数位</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+<div style="margin:50px 0">
+  <amp-auto-ads type="adsense" data-ad-client="ca-pub-1522837637326007">
+  </amp-auto-ads>
+  <!-- left-ad-2 -->
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1522837637326007" data-ad-slot="1200441426"
+    data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+
+
+
+
+
+
+
+
+<div id="comments" class="comments">
+  <div id="gitment_container"></div>
+</div>
+
+<link rel="stylesheet" href="https://www.wenjunjiang.win/css/gitment.css">
+<script src="https://www.wenjunjiang.win/js/gitment.js"></script>
+<script>
+  var gitment = new Gitment({
+    owner: 'tidyko',
+    repo: 'tidyko.github.io',
+    oauth: {
+      client_id: '62e4f6a4ca86e056da76',
+      client_secret: '912d627549301dd54437313b122a7c543215bc4c',
+    },
+  })
+  gitment.render('gitment_container')
+</script>
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <h1 class="blog-title">Tidy的个人博客</h1>
+    <h2 class="blog-subtitle">人生とは好きな人と一緒に過ごした日々だ!</h2>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="http://img.tidyko.com/avatar.jpg">
+    <h2 class="author">
+      
+    </h2>
+    <h3 class="description">
+      
+    </h3>
+    <div class="count-box">
+      <a href="/archives">
+        <div><strong>
+            132</strong><br>文章</div>
+      </a>
+      <a href="/categories">
+        <div><strong>
+            45</strong><br>分类</div>
+      </a>
+      <a href="/tags">
+        <div><strong>
+            86</strong><br>标签</div>
+      </a>
+    </div>
+
+
+
+    <div class="social-link">
+      
+      <a class="hvr-bounce-in" href="https://github.com/tidyko" target="_blank" title="Github">
+        Github
+      </a>
+      
+    </div>
+
+    <div class="friend-link">
+      <h2>
+        友情链接
+      </h2>
+      
+      <a class="hvr-bounce-in" href="https://blog.yl-online.top" target="_blank" title="forever杨">
+        forever杨
+      </a>
+      
+    </div>
+
+    <!-- <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> -->
+    <!-- left-ad-1 -->
+    <!-- <amp-ad width="100vw" height=320 type="adsense" data-ad-client="ca-pub-1522837637326007" data-ad-slot="1201221679"
+      data-auto-format="rspv" data-full-width>
+      <div overflow></div>
+    </amp-ad> -->
+  </div>
+</div>
+  
+    <div class="widget-wrap">
+    <h3 class="widget-title"></h3>
+    <!-- left-ad-1 -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1522837637326007" data-ad-slot="1201221679"
+        data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+  
+    
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy;2017 - 2018 Tidy的个人博客<br>
+      <!-- 由<a href="https://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
+      主题-<a href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a> -->
+      
+        <br>
+        <!-- <script src="https://s19.cnzz.com/z_stat.php?id=1274390271&web_id=1274390271" language="JavaScript" rel="noreferrer"></script>       -->
+        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1274390271'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1274390271%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));</script>
+      
+    </div>
+  </div>
+</footer>
+    </div>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/wow/0.1.6/wow.min.js"></script>
+<script>
+new WOW().init();
+</script>   
+
+
+  <link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+  <script src="/plugin/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+  <!-- <section class="hidden-xs"> 
+  <ul class="cb-slideshow"> 
+    <li><span>苟利</span></li> 
+    <li><span>国家</span></li> 
+    <li><span>生死以</span></li> 
+    <li><span>岂能</span></li> 
+    <li><span>祸福</span></li> 
+    <li><span>趋避之</span></li> 
+  </ul>
+</section> -->
+<script src="/js/script.js"></script>
+
+
+
+
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("DpQHavrF6hdX8C8q7ONib5Qv-gzGzoHsz", "CFNVYUb4rtTjkji3Erv4ROA7");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.article-title').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+
+
+<div id="totop" style="position:fixed;bottom:160px;right:50px;cursor: pointer;z-index: 10;">
+    <a title="返回顶部"><img src="/images/scrollup.png" style="width:50px;height:50px;"/></a>
+</div>
+<script src="/js/totop.js"></script>
+  </div>
+</body>
+</html>
