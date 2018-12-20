@@ -56,9 +56,9 @@
     <h2 class="author"></h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>132</strong><br>文章</div></a>
-      <a href="/categories"><div><strong>45</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>86</strong><br>标签</div></a>
+      <a href="/archives"><div><strong>133</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>47</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>88</strong><br>标签</div></a>
     </div>
     <ul class="blog-link">
      
@@ -83,6 +83,97 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-Mac iterm2使用expect实现SSH自动登陆" class="article" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/c14d120e.html" class="article-date">
+  <time class="post-time" datetime="2018-10-09T03:53:00.000Z" itemprop="datePublished">
+    <span class="post-month">10月</span><br/>
+    <span class="post-day">09</span>
+  </time>
+</a>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/c14d120e.html">Mac iterm2使用expect实现SSH自动登陆</a>
+    </h1>
+  
+
+      <div>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/开发调试工具/">开发调试工具</a>,<a class="article-category-link" href="/categories/开发调试工具/iterm2/">iterm2</a>
+  </div>
+
+        
+        
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/c14d120e.html" class="leancloud_visitors" data-flag-title="Mac iterm2使用expect实现SSH自动登陆">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 389</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 2 分钟</span>
+  </div>
+ 
+        
+      </div>
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <h2 id="安装brew"><a href="#安装brew" class="headerlink" title="安装brew"></a>安装brew</h2><p>先确保已经安装了brew，我们将使用brew来安装我们需要的命令和软件。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew --version</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Homebrew 1.5.10</span><br><span class="line">Homebrew/homebrew-core (git revision c3f55; last commit 2018-03-14)</span><br></pre></td></tr></table></figure>
+<h2 id="安装iterm2"><a href="#安装iterm2" class="headerlink" title="安装iterm2"></a>安装iterm2</h2><p>命令行工具。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew cask install iterm2</span><br></pre></td></tr></table></figure></p>
+<h2 id="安装expect"><a href="#安装expect" class="headerlink" title="安装expect"></a>安装expect</h2><p>expect的作用是当遇到指定命令之后执行对应命令。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install expect</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">expect -version</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">expect version 5.45</span><br></pre></td></tr></table></figure>
+<p>## 编写自动登录脚本<br>在<code>/usr/local/bin/</code>目录下，新建<code>iterm2login.sh</code>文件，内容如下：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/usr/bin/expect</span></span><br><span class="line"></span><br><span class="line">set timeout 30</span><br><span class="line">spawn ssh -p [lindex $argv 0] [lindex $argv 1]@[lindex $argv 2]</span><br><span class="line">expect &#123;</span><br><span class="line">        "(yes/no)?"</span><br><span class="line">        &#123;send "yes\n";exp_continue&#125;</span><br><span class="line">        "password:"</span><br><span class="line">        &#123;send "[lindex $argv 3]\n"&#125;</span><br><span class="line">        "Password:"</span><br><span class="line">        &#123;send "[lindex $argv 3]\n"&#125;</span><br><span class="line">&#125;</span><br><span class="line">interact</span><br></pre></td></tr></table></figure></p>
+      
+      <p class="article-more-link">
+        <a href="/posts/c14d120e.html#more">
+          Read More</a>
+      </p>
+      
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/c14d120e.html" data-id="cjpwa28v5008iukykkfc7vrxm" class="article-share-link">
+        分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mac/">Mac</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iterm2/">iterm2</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
   
     <article id="post-微信公众号 被动回复超时问题" class="article" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -148,7 +239,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/9e53d1a6.html" data-id="cjpw8uwm900bxfgykeuq6ivj4" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/9e53d1a6.html" data-id="cjpwa28xe00c9ukykrb6efswi" class="article-share-link">
         分享</a>
       
       
@@ -234,7 +325,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/7aeb1e46.html" data-id="cjpw8uwgq0006fgyk9u0rbf5a" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/7aeb1e46.html" data-id="cjpwa28r8000hukyk4cekw39i" class="article-share-link">
         分享</a>
       
       
@@ -320,7 +411,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/bf60621.html" data-id="cjpw8uwjt007ffgykh1ng535u" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/bf60621.html" data-id="cjpwa28ux0086ukyktfnibug3" class="article-share-link">
         分享</a>
       
       
@@ -412,7 +503,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/e4163a66.html" data-id="cjpw8uwh1000lfgyklj9h2r9w" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/e4163a66.html" data-id="cjpwa28rb000mukyk2bgrlr3p" class="article-share-link">
         分享</a>
       
       
@@ -506,7 +597,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/a5557ea7.html" data-id="cjpw8uwh5000tfgyku38s4kz2" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/a5557ea7.html" data-id="cjpwa28rk0013ukyk0gft3izf" class="article-share-link">
         分享</a>
       
       
@@ -597,7 +688,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/4573f792.html" data-id="cjpw8uwht002bfgykty87nayj" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/4573f792.html" data-id="cjpwa28sf002lukyk3fc13bfp" class="article-share-link">
         分享</a>
       
       
@@ -686,7 +777,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3c49f4b8.html" data-id="cjpw8uwip0049fgyk140qk54a" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/3c49f4b8.html" data-id="cjpwa28t8004gukykoinl35h8" class="article-share-link">
         分享</a>
       
       
@@ -769,7 +860,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3d5c725a.html" data-id="cjpw8uwjv007jfgykfvspq9ip" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/3d5c725a.html" data-id="cjpwa28uw0082ukykgny8q8py" class="article-share-link">
         分享</a>
       
       
@@ -860,112 +951,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3e9aef58.html" data-id="cjpw8uwhr0026fgyk1zgnqv8q" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/3e9aef58.html" data-id="cjpwa28si002uukykbc4u40ht" class="article-share-link">
         分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ELK/">ELK</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ElasticSearch/">ElasticSearch</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-IDEA 编程风格规范" class="article" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/d0e6a555.html" class="article-date">
-  <time class="post-time" datetime="2018-08-15T08:59:00.000Z" itemprop="datePublished">
-    <span class="post-month">8月</span><br/>
-    <span class="post-day">15</span>
-  </time>
-</a>
-
-  </div>
-  <div class="article-inner">
-    
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/d0e6a555.html">IDEA 编程风格规范</a>
-    </h1>
-  
-
-      <div>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/开发调试工具/">开发调试工具</a>,<a class="article-category-link" href="/categories/开发调试工具/IDEA/">IDEA</a>
-  </div>
-
-        
-        
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/d0e6a555.html" class="leancloud_visitors" data-flag-title="IDEA 编程风格规范">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 153</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 1 分钟</span>
-  </div>
- 
-        
-      </div>
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      <p>为了统一规范代码风格，规定团队均使用下列插件以及设置。</p>
-<p>编程规范统一使用： <a href="https://github.com/google/google-java-format" target="_blank" rel="noopener">google-java-format</a><br>代码规范统一使用： <a href="https://github.com/alibaba/p3c" target="_blank" rel="noopener">Alibaba Java Coding Guidelines</a><br>快速格式优化使用： <a href="https://github.com/dubreuia/intellij-plugin-save-actions" target="_blank" rel="noopener">Save Actions</a></p>
-<h1 id="设置"><a href="#设置" class="headerlink" title="设置"></a>设置</h1><h2 id="1）google-java-format"><a href="#1）google-java-format" class="headerlink" title="1）google-java-format"></a>1）google-java-format</h2><h3 id="1-1）Tab键统一4个空格"><a href="#1-1）Tab键统一4个空格" class="headerlink" title="1.1）Tab键统一4个空格"></a>1.1）Tab键统一4个空格</h3><p><code>Editor</code> -&gt; <code>Code Style</code> -&gt; <code>Java</code> </p>
-<p>Tab size：4</p>
-<h3 id="1-2）行宽120"><a href="#1-2）行宽120" class="headerlink" title="1.2）行宽120"></a>1.2）行宽120</h3><p><code>Editor</code> -&gt; <code>Code Style</code></p>
-<p>Hard wrap at 120 columns</p>
-<h2 id="2）Alibaba-Java-Coding-Guidelines"><a href="#2）Alibaba-Java-Coding-Guidelines" class="headerlink" title="2）Alibaba Java Coding Guidelines"></a>2）Alibaba Java Coding Guidelines</h2><p>根据项目自行开启</p>
-<h2 id="3）Save-Actions"><a href="#3）Save-Actions" class="headerlink" title="3）Save Actions"></a>3）Save Actions</h2><p>general </p>
-<ul>
-<li style="list-style: none"><input type="checkbox" checked> 1.activate save actions on sace (before saving each file, performs the …)</li>
-</ul>
-<p>formatting actions </p>
-<ul>
-<li style="list-style: none"><input type="checkbox" checked> 1.organize imports</li>
-<li style="list-style: none"><input type="checkbox" checked> 2.reformat file</li>
-<li style="list-style: none"><input type="checkbox" checked> 3.reformat only changed code</li>
-</ul>
-<p>java inspection and quick fix</p>
-<ul>
-<li style="list-style: none"><input type="checkbox" checked> 6.add missing @Override annotations</li>
-<li style="list-style: none"><input type="checkbox" checked> 7.add blocks in if/while/for sattements</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/d0e6a555.html" data-id="cjpw8uwia003hfgykp3f3v27h" class="article-share-link">
-        分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IDEA/">IDEA</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/规范/">规范</a></li></ul>
 
     </footer>
   </div>
@@ -1033,15 +1023,15 @@
     <div class="count-box">
       <a href="/archives">
         <div><strong>
-            132</strong><br>文章</div>
+            133</strong><br>文章</div>
       </a>
       <a href="/categories">
         <div><strong>
-            45</strong><br>分类</div>
+            47</strong><br>分类</div>
       </a>
       <a href="/tags">
         <div><strong>
-            86</strong><br>标签</div>
+            88</strong><br>标签</div>
       </a>
     </div>
 

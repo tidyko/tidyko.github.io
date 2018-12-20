@@ -56,9 +56,9 @@
     <h2 class="author"></h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>132</strong><br>文章</div></a>
-      <a href="/categories"><div><strong>45</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>86</strong><br>标签</div></a>
+      <a href="/archives"><div><strong>133</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>47</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>88</strong><br>标签</div></a>
     </div>
     <ul class="blog-link">
      
@@ -83,6 +83,89 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-J2EE HttpServletRequest request 相关方法 得到路径" class="article" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/2cf05a87.html" class="article-date">
+  <time class="post-time" datetime="2014-03-03T09:46:00.000Z" itemprop="datePublished">
+    <span class="post-month">3月</span><br/>
+    <span class="post-day">03</span>
+  </time>
+</a>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/2cf05a87.html">J2EE HttpServletRequest request 相关方法 得到路径</a>
+    </h1>
+  
+
+      <div>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
+  </div>
+
+        
+        
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/2cf05a87.html" class="leancloud_visitors" data-flag-title="J2EE HttpServletRequest request 相关方法 得到路径">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 116</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 1 分钟</span>
+  </div>
+ 
+        
+      </div>
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <h3 id="1）POST"><a href="#1）POST" class="headerlink" title="1）POST"></a>1）POST</h3><p>url：<a href="http://192.168.1.211:8080/demo/index.jsp" target="_blank" rel="noopener">http://192.168.1.211:8080/demo/index.jsp</a></p>
+<p>FORM表单：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">username = qqqq</span><br><span class="line">password = wwww</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">request.getContextPath() = /demo</span><br><span class="line"></span><br><span class="line">request.getMethod() = POST</span><br><span class="line"></span><br><span class="line">request.getRequestURI() = /demo/reg</span><br><span class="line"></span><br><span class="line">request.getRequestURL() = http:<span class="comment">//192.168.1.211:8080/demo/reg</span></span><br><span class="line"></span><br><span class="line">request.getServletPath() = /reg</span><br></pre></td></tr></table></figure>
+<h3 id="2）GET"><a href="#2）GET" class="headerlink" title="2）GET"></a>2）GET</h3><p>url：<a href="http://192.168.1.211:8080/demo/index.jsp?username=1&amp;password=1&amp;email=1" target="_blank" rel="noopener">http://192.168.1.211:8080/demo/index.jsp?username=1&amp;password=1&amp;email=1</a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">request.getContextPath() = /demo</span><br><span class="line"></span><br><span class="line">request.getMethod() = GET</span><br><span class="line"></span><br><span class="line">request.getQueryString() = username=<span class="number">1</span>&amp;password=<span class="number">1</span>&amp;email=<span class="number">1</span></span><br><span class="line"></span><br><span class="line">request.getRequestURI() = /demo/index.jsp</span><br><span class="line"></span><br><span class="line">request.getRequestURL() = http:<span class="comment">//192.168.1.211:8080/demo/index.jsp</span></span><br><span class="line"></span><br><span class="line">request.getServletPath() = /index.jsp</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/2cf05a87.html" data-id="cjpwa28t40045ukykphzu8ra1" class="article-share-link">
+        分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
   
     <article id="post-Java date 到 Oracle date 精确到时分秒" class="article" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -145,7 +228,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/6a3fb6fb.html" data-id="cjpw8uwjb005wfgyk3r3dizw4" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/6a3fb6fb.html" data-id="cjpwa28tx0069ukykkpg0b1f2" class="article-share-link">
         分享</a>
       
       
@@ -229,7 +312,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/ac53be82.html" data-id="cjpw8uwho001zfgykfjtr497r" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/ac53be82.html" data-id="cjpwa28s70026ukykqikhw1i1" class="article-share-link">
         分享</a>
       
       
@@ -311,7 +394,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/26788ddf.html" data-id="cjpw8uwir004gfgykhzmm08to" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/26788ddf.html" data-id="cjpwa28tc004qukykdofvoexe" class="article-share-link">
         分享</a>
       
       
@@ -392,7 +475,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/93821c9f.html" data-id="cjpw8uwjd0064fgykca9h2nbu" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/93821c9f.html" data-id="cjpwa28tw0064ukyk5xhk4pfa" class="article-share-link">
         分享</a>
       
       
@@ -477,7 +560,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/bd745825.html" data-id="cjpw8uwh70010fgykt0aqflt8" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/bd745825.html" data-id="cjpwa28rj0011ukykqbulh650" class="article-share-link">
         分享</a>
       
       
@@ -558,7 +641,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3e42071e.html" data-id="cjpw8uwh6000vfgykw7qw5y9k" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/3e42071e.html" data-id="cjpwa28rf000uukyk72rr7h81" class="article-share-link">
         分享</a>
       
       
@@ -642,7 +725,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/fd6e9fc4.html" data-id="cjpw8uwha0014fgykf0y394jq" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/fd6e9fc4.html" data-id="cjpwa28rm0015ukyk6cmm9fr4" class="article-share-link">
         分享</a>
       
       
@@ -723,7 +806,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/353a4b3e.html" data-id="cjpw8uwhc0017fgykrylmqojg" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/353a4b3e.html" data-id="cjpwa28rp001aukykds3m20c1" class="article-share-link">
         分享</a>
       
       
@@ -805,92 +888,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/df9c274.html" data-id="cjpw8uwhs002afgyk1nct0mba" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/df9c274.html" data-id="cjpwa28s2001vukyk2h5nd6gv" class="article-share-link">
         分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tomcat/">Tomcat</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Eclipse 离线插件安装" class="article" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/f362ee4b.html" class="article-date">
-  <time class="post-time" datetime="2014-02-11T09:32:00.000Z" itemprop="datePublished">
-    <span class="post-month">2月</span><br/>
-    <span class="post-day">11</span>
-  </time>
-</a>
-
-  </div>
-  <div class="article-inner">
-    
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/f362ee4b.html">Eclipse 离线插件安装</a>
-    </h1>
-  
-
-      <div>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/开发调试工具/">开发调试工具</a>,<a class="article-category-link" href="/categories/开发调试工具/Eclipse/">Eclipse</a>
-  </div>
-
-        
-        
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/f362ee4b.html" class="leancloud_visitors" data-flag-title="Eclipse 离线插件安装">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 90</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 1 分钟</span>
-  </div>
- 
-        
-      </div>
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      <h3 id="1）"><a href="#1）" class="headerlink" title="1）"></a>1）</h3><p>在eclipse里根目录里，dropins里建一个目录，名字叫sonar(这个名字随便)，再在svn下面建一个目录eclipse.在根目录里建一个目录links目录，并建一个sonar.link文件，在里边写上path = dropins/sonar。</p>
-<h3 id="2）"><a href="#2）" class="headerlink" title="2）"></a>2）</h3><p>解压下载的SVN包，把feature和plugins两个文件夹考进刚才建的sonar/eclipse目录里。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/f362ee4b.html" data-id="cjpw8uwhm001vfgykd2ttthn7" class="article-share-link">
-        分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li></ul>
 
     </footer>
   </div>
@@ -958,15 +960,15 @@
     <div class="count-box">
       <a href="/archives">
         <div><strong>
-            132</strong><br>文章</div>
+            133</strong><br>文章</div>
       </a>
       <a href="/categories">
         <div><strong>
-            45</strong><br>分类</div>
+            47</strong><br>分类</div>
       </a>
       <a href="/tags">
         <div><strong>
-            86</strong><br>标签</div>
+            88</strong><br>标签</div>
       </a>
     </div>
 
