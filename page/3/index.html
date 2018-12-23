@@ -56,9 +56,9 @@
     <h2 class="author"></h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>133</strong><br>文章</div></a>
-      <a href="/categories"><div><strong>47</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>88</strong><br>标签</div></a>
+      <a href="/archives"><div><strong>134</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>49</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>92</strong><br>标签</div></a>
     </div>
     <ul class="blog-link">
      
@@ -83,6 +83,97 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-ElasticSearch 基础命令" class="article" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/3e9aef58.html" class="article-date">
+  <time class="post-time" datetime="2018-08-30T03:15:00.000Z" itemprop="datePublished">
+    <span class="post-month">8月</span><br/>
+    <span class="post-day">30</span>
+  </time>
+</a>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/3e9aef58.html">ElasticSearch 基础命令</a>
+    </h1>
+  
+
+      <div>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/中间件/">中间件</a>,<a class="article-category-link" href="/categories/中间件/ElasticSearch/">ElasticSearch</a>
+  </div>
+
+        
+        
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/3e9aef58.html" class="leancloud_visitors" data-flag-title="ElasticSearch 基础命令">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 1,600</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 8 分钟</span>
+  </div>
+ 
+        
+      </div>
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <p>mac使用brew安装，使用默认端口。</p>
+<p>启动命令：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">elasticsearch</span><br></pre></td></tr></table></figure></p>
+<p>ElasticSearch 基础命令记录，分es和kibana两种。</p>
+<p>一个代码块分为三块，上面一行为es中间一行为kibana最后行为执行结果。</p>
+<h3 id="索引操作"><a href="#索引操作" class="headerlink" title="索引操作"></a>索引操作</h3><h4 id="创建一个索引weather"><a href="#创建一个索引weather" class="headerlink" title="创建一个索引weather"></a>创建一个索引weather</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">curl -X PUT 'localhost:9200/weather'</span><br><span class="line"></span><br><span class="line">put weather</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  "acknowledged": true,</span><br><span class="line">  "shards_acknowledged": true,</span><br><span class="line">  "index": "weather"</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="删除一个索引weather"><a href="#删除一个索引weather" class="headerlink" title="删除一个索引weather"></a>删除一个索引weather</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">curl -X DELETE 'localhost:9200/weather'</span><br><span class="line"></span><br><span class="line">delete weather</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  "acknowledged": true</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="数据操作"><a href="#数据操作" class="headerlink" title="数据操作"></a>数据操作</h3><h4 id="新建一个accounts索引下的文档类型为person的记录1"><a href="#新建一个accounts索引下的文档类型为person的记录1" class="headerlink" title="新建一个accounts索引下的文档类型为person的记录1"></a>新建一个accounts索引下的文档类型为person的记录1</h4><p>手动指定id，则创建的索引_id字段会被指定为1<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">curl -X PUT 'localhost:9200/accounts/person/1' -d '</span><br><span class="line">&#123;</span><br><span class="line">  "user": "张三",</span><br><span class="line">  "title": "工程师",</span><br><span class="line">  "desc": "数据库管理"</span><br><span class="line">&#125;'</span><br><span class="line"></span><br><span class="line">put accounts/person/1</span><br><span class="line">&#123;</span><br><span class="line">  "user": "张三",</span><br><span class="line">  "title": "工程师",</span><br><span class="line">  "desc": "数据库管理"</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  "_index": "accounts",</span><br><span class="line">  "_type": "person",</span><br><span class="line">  "_id": "1",</span><br><span class="line">  "_version": 1,</span><br><span class="line">  "result": "created",</span><br><span class="line">  "_shards": &#123;</span><br><span class="line">    "total": 2,</span><br><span class="line">    "successful": 1,</span><br><span class="line">    "failed": 0</span><br><span class="line">  &#125;,</span><br><span class="line">  "_seq_no": 0,</span><br><span class="line">  "_primary_term": 1</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+      
+      <p class="article-more-link">
+        <a href="/posts/3e9aef58.html#more">
+          Read More</a>
+      </p>
+      
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/3e9aef58.html" data-id="cjq0etdql002ar9yk9ke6qryj" class="article-share-link">
+        分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ELK/">ELK</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ElasticSearch/">ElasticSearch</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
   
     <article id="post-IDEA 编程风格规范" class="article" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -163,7 +254,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/d0e6a555.html" data-id="cjpxfxjy8003dcgyk0s5nve7c" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/d0e6a555.html" data-id="cjq0etdr2003er9ykbobb3l3w" class="article-share-link">
         分享</a>
       
       
@@ -249,7 +340,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3f08f656.html" data-id="cjpxfxk1r00btcgykf2przlpo" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/3f08f656.html" data-id="cjq0etdv000brr9yk7w1sz5yd" class="article-share-link">
         分享</a>
       
       
@@ -334,7 +425,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/47f7c28d.html" data-id="cjpxfxk01007pcgykoyn7pyw9" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/47f7c28d.html" data-id="cjq0etdsx007gr9ykzjzr7lzu" class="article-share-link">
         分享</a>
       
       
@@ -413,7 +504,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/1136d15d.html" data-id="cjpxfxjz8005mcgyk6xv9uag4" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/1136d15d.html" data-id="cjq0etds5005jr9ykk2vvso8e" class="article-share-link">
         分享</a>
       
       
@@ -508,7 +599,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/64f28a88.html" data-id="cjpxfxjxa0016cgyk5ruz9evg" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/64f28a88.html" data-id="cjq0etdpz0012r9yk0x7xmym8" class="article-share-link">
         分享</a>
       
       
@@ -590,7 +681,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/6308b509.html" data-id="cjpxfxjza005ucgyk7acdb322" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/6308b509.html" data-id="cjq0etds9005rr9yk4sdd2w51" class="article-share-link">
         分享</a>
       
       
@@ -686,7 +777,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3a2e7663.html" data-id="cjpxfxjy9003hcgyki09kjv8h" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/3a2e7663.html" data-id="cjq0etdqy0034r9yka87jay24" class="article-share-link">
         分享</a>
       
       
@@ -768,7 +859,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/920d2c96.html" data-id="cjpxfxjyf003vcgyk4pfe4wn7" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/920d2c96.html" data-id="cjq0etdra003sr9ykmwjidyx1" class="article-share-link">
         分享</a>
       
       
@@ -857,91 +948,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/d2f1cf8f.html" data-id="cjpxfxjzs006ycgykpmuytrn8" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/d2f1cf8f.html" data-id="cjq0etdso006vr9yku7348jte" class="article-share-link">
         分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jenkins/">Jenkins</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-分布式 服务追踪" class="article" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/4ad6e4a7.html" class="article-date">
-  <time class="post-time" datetime="2018-04-25T10:29:00.000Z" itemprop="datePublished">
-    <span class="post-month">4月</span><br/>
-    <span class="post-day">25</span>
-  </time>
-</a>
-
-  </div>
-  <div class="article-inner">
-    
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/4ad6e4a7.html">分布式 服务追踪</a>
-    </h1>
-  
-
-      <div>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
-  </div>
-
-        
-        
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/4ad6e4a7.html" class="leancloud_visitors" data-flag-title="分布式 服务追踪">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 1</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 1 分钟</span>
-  </div>
- 
-        
-      </div>
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      <p>zipkin</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/4ad6e4a7.html" data-id="cjpxfxk1m00bhcgykgg2exizl" class="article-share-link">
-        分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/分布式/">分布式</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/调用链跟踪/">调用链跟踪</a></li></ul>
 
     </footer>
   </div>
@@ -1009,15 +1020,15 @@
     <div class="count-box">
       <a href="/archives">
         <div><strong>
-            133</strong><br>文章</div>
+            134</strong><br>文章</div>
       </a>
       <a href="/categories">
         <div><strong>
-            47</strong><br>分类</div>
+            49</strong><br>分类</div>
       </a>
       <a href="/tags">
         <div><strong>
-            88</strong><br>标签</div>
+            92</strong><br>标签</div>
       </a>
     </div>
 
