@@ -56,7 +56,7 @@
     <h2 class="author"></h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>134</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>136</strong><br>文章</div></a>
       <a href="/categories"><div><strong>49</strong><br>分类</div></a>
       <a href="/tags"><div><strong>92</strong><br>标签</div></a>
     </div>
@@ -83,6 +83,177 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-J2EE CXF使用SpringBoot与xml配置的差别所导致的问题" class="article" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/920d2c96.html" class="article-date">
+  <time class="post-time" datetime="2018-06-04T08:18:00.000Z" itemprop="datePublished">
+    <span class="post-month">6月</span><br/>
+    <span class="post-day">04</span>
+  </time>
+</a>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/920d2c96.html">J2EE CXF使用springboot与xml配置的差别所导致的问题</a>
+    </h1>
+  
+
+      <div>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
+  </div>
+
+        
+        
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/920d2c96.html" class="leancloud_visitors" data-flag-title="J2EE CXF使用springboot与xml配置的差别所导致的问题">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 272</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 1 分钟</span>
+  </div>
+ 
+        
+      </div>
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <p>使用xml时使用以下配置使报文没有加上命名空间时也能正常访问接口。bean定义的前后顺序不影响程序正常注册对象。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 通过Spring创建数据绑定的类 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"aegisBean"</span> <span class="attr">class</span>=<span class="string">"org.apache.cxf.aegis.databinding.AegisDatabinding"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"jaxWsServiceFactoryBean"</span> <span class="attr">class</span>=<span class="string">"org.apache.cxf.jaxws.support.JaxWsServiceFactoryBean"</span> <span class="attr">scope</span>=<span class="string">"prototype"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"wrapped"</span> <span class="attr">value</span>=<span class="string">"true"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"dataBinding"</span> <span class="attr">ref</span>=<span class="string">"aegisBean"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">jaxws:endpoint</span> <span class="attr">id</span>=<span class="string">"imSendWXModelMessageServicews"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">implementor</span>=<span class="string">"#imSendWXModelMessageService"</span> <span class="attr">address</span>=<span class="string">"/imSendWXModelMessageService.ws"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">jaxws:serviceFactory</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">ref</span> <span class="attr">bean</span>=<span class="string">"jaxWsServiceFactoryBean"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">jaxws:serviceFactory</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">jaxws:endpoint</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>但是如果使用SpringBoot的话，使用注解方式配置，需要注意的是，需要使用到的类一定要放在前面先初始化。不然会没有效果。</p>
+<p>例如下面代码红色部分。如果放在endpoint.publish()后面则不会生效。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> AegisDatabinding <span class="title">aegisDatabinding</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> AegisDatabinding();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="meta">@Scope</span>(ConfigurableBeanFactory.SCOPE_PROTOTYPE)</span><br><span class="line"><span class="function"><span class="keyword">public</span> JaxWsServiceFactoryBean <span class="title">jaxWsServiceFactoryBean</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    org.apache.cxf.jaxws.support.JaxWsServiceFactoryBean sf = <span class="keyword">new</span> JaxWsServiceFactoryBean();</span><br><span class="line">    sf.setWrapped(<span class="keyword">true</span>);</span><br><span class="line">    sf.setDataBinding(aegisDatabinding());</span><br><span class="line">    <span class="keyword">return</span> sf;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Endpoint <span class="title">sendMessageEndpoint</span><span class="params">(SendMessageService sendMessageService)</span> </span>&#123;</span><br><span class="line">    EndpointImpl endpoint = <span class="keyword">new</span> EndpointImpl(sendMessageService);</span><br><span class="line">    endpoint.setServiceFactory(jaxWsServiceFactoryBean());</span><br><span class="line">    <span class="comment">// 该部分</span></span><br><span class="line">    endpoint.publish(<span class="string">"/imSendWXModelMessageService.ws"</span>);</span><br><span class="line">    <span class="keyword">return</span> endpoint;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/920d2c96.html" data-id="cjqfzxk9f003sjvyk7qnvcsqe" class="article-share-link">
+        分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CXF/">CXF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringBoot/">SpringBoot</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Jenkins 服务器与svn服务器时间不一致出现的问题" class="article" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/d2f1cf8f.html" class="article-date">
+  <time class="post-time" datetime="2018-05-22T09:56:00.000Z" itemprop="datePublished">
+    <span class="post-month">5月</span><br/>
+    <span class="post-day">22</span>
+  </time>
+</a>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/d2f1cf8f.html">Jenkins 服务器与svn服务器时间不一致出现的问题</a>
+    </h1>
+  
+
+      <div>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/DevOps/">DevOps</a>,<a class="article-category-link" href="/categories/DevOps/Jenkins/">Jenkins</a>
+  </div>
+
+        
+        
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/d2f1cf8f.html" class="leancloud_visitors" data-flag-title="Jenkins 服务器与svn服务器时间不一致出现的问题">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 331</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 1 分钟</span>
+  </div>
+ 
+        
+      </div>
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <h2 id="1）问题描述"><a href="#1）问题描述" class="headerlink" title="1）问题描述"></a>1）问题描述</h2><p>svn提交了一次更新包，到了jenkins提交更新的时候，第一次代码没有生效，然后重新提交了一次，第二次才生效。</p>
+<h2 id="2）问题排查"><a href="#2）问题排查" class="headerlink" title="2）问题排查"></a>2）问题排查</h2><h3 id="2-1）"><a href="#2-1）" class="headerlink" title="2.1）"></a>2.1）</h3><p>首先第一反应比对了下两次更新的包文件是否一致，然后发现大小不一。<br>由此看出问题应该是出在jenkins，继续排查。<br><img src="http://img.tidyko.com/blog/jenkins_time_1.jpg" alt="Jenkins 服务器与svn服务器时间不一致出现的问题-图例1"></p>
+<h3 id="2-2）"><a href="#2-2）" class="headerlink" title="2.2）"></a>2.2）</h3><p>比对了下第一次jenkins的提交时间与svn提交的时间<br><img src="http://img.tidyko.com/blog/jenkins_time_2.jpg" alt="Jenkins 服务器与svn服务器时间不一致出现的问题-图例2"><br><img src="http://img.tidyko.com/blog/jenkins_time_3.jpg" alt="Jenkins 服务器与svn服务器时间不一致出现的问题-图例3"></p>
+<p>由此可看出，svn提交的时间是5：07，但是我jenkins提交的时间却为5：06，显然顺序不对，</p>
+<p>但是我操作的时候确实是先提交了svn，再提交了jenkins的。</p>
+<p>由此可以确认，应该是jenkins服务器时间比svn的慢了，导致jenkins在06分的时间段认为svn上面没有最新的更新包，</p>
+<p>然后拿了旧的包进行部署，所以代码功能没有改变，</p>
+<p>然后等我第二次提交更新的时候17：10早就超过了svn上面的5：07，所以拿到了最新的更新包进行更新。</p>
+<p>功能代码才得以生效。</p>
+<h3 id="2-3）"><a href="#2-3）" class="headerlink" title="2.3）"></a>2.3）</h3><p>所以这里要注意，jenkins时间一定要与版本控制服务器的时间一致，不然可能引发像我这样的更新失效的情况。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/d2f1cf8f.html" data-id="cjqfzxkal006kjvykbnbk85y4" class="article-share-link">
+        分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jenkins/">Jenkins</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
   
     <article id="post-分布式 服务追踪" class="article" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -142,7 +313,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/4ad6e4a7.html" data-id="cjq3ilji000htwrykjwhi5lch" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/4ad6e4a7.html" data-id="cjqfzxkd500bajvyk4l7kwkql" class="article-share-link">
         分享</a>
       
       
@@ -233,7 +404,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/76273d12.html" data-id="cjq3iljg200dkwrykr2w07ztf" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/76273d12.html" data-id="cjqfzxkad005wjvykhmx5zwyj" class="article-share-link">
         分享</a>
       
       
@@ -313,7 +484,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/7042626b.html" data-id="cjq3iljhy00hqwryklnomsj6v" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/7042626b.html" data-id="cjqfzxkcr00ayjvykk1ngdqt3" class="article-share-link">
         分享</a>
       
       
@@ -478,7 +649,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/c87c55c4.html" data-id="cjq3iljek00azwrykowr9vby9" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/c87c55c4.html" data-id="cjqfzxk9v004jjvykobi3kded" class="article-share-link">
         分享</a>
       
       
@@ -561,7 +732,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/a6562b5c.html" data-id="cjq3iljgi00ejwrykpa2q8zcv" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/a6562b5c.html" data-id="cjqfzxkba007xjvykr6mb910r" class="article-share-link">
         分享</a>
       
       
@@ -643,7 +814,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/fd3cd277.html" data-id="cjq3iljhn00guwryk4kf01oc4" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/fd3cd277.html" data-id="cjqfzxkc7009tjvykkuzx20y0" class="article-share-link">
         分享</a>
       
       
@@ -725,7 +896,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/b014d2be.html" data-id="cjq3iljeg00aswryk69prmqus" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/b014d2be.html" data-id="cjqfzxk9m0042jvyk1ohbkb7w" class="article-share-link">
         分享</a>
       
       
@@ -811,178 +982,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/b0fc798c.html" data-id="cjq3iljf800c5wrykvtdg2om3" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/b0fc798c.html" data-id="cjqfzxkac005tjvykn12323g8" class="article-share-link">
         分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/quzrtz/">quzrtz</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Jenkins 执行nohup java报错" class="article" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/10937fe4.html" class="article-date">
-  <time class="post-time" datetime="2017-06-09T09:42:00.000Z" itemprop="datePublished">
-    <span class="post-month">6月</span><br/>
-    <span class="post-day">09</span>
-  </time>
-</a>
-
-  </div>
-  <div class="article-inner">
-    
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/10937fe4.html">Jenkins 执行nohup java报错</a>
-    </h1>
-  
-
-      <div>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/DevOps/">DevOps</a>,<a class="article-category-link" href="/categories/DevOps/Jenkins/">Jenkins</a>
-  </div>
-
-        
-        
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/10937fe4.html" class="leancloud_visitors" data-flag-title="Jenkins 执行nohup java报错">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 42</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 1 分钟</span>
-  </div>
- 
-        
-      </div>
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      <p>nohup:failed to run command ‘java’:No such file or directory</p>
-<p>这是因为jenkins只认绝对路径。在shell里面有涉及到文件的都应该写成绝对路径。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/10937fe4.html" data-id="cjq3iljfl00ctwrykt736fbg4" class="article-share-link">
-        分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jenkins/">Jenkins</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Mysql MAC环境下使用Navicat Premium连接mysql乱码问题" class="article" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/ba8658f2.html" class="article-date">
-  <time class="post-time" datetime="2017-04-28T08:47:00.000Z" itemprop="datePublished">
-    <span class="post-month">4月</span><br/>
-    <span class="post-day">28</span>
-  </time>
-</a>
-
-  </div>
-  <div class="article-inner">
-    
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/ba8658f2.html">Mysql MAC环境下使用Navicat Premium连接mysql乱码问题</a>
-    </h1>
-  
-
-      <div>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/数据库/">数据库</a>,<a class="article-category-link" href="/categories/数据库/Mysql/">Mysql</a>
-  </div>
-
-        
-        
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/ba8658f2.html" class="leancloud_visitors" data-flag-title="Mysql MAC环境下使用Navicat Premium连接mysql乱码问题">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 1,086</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 6 分钟</span>
-  </div>
- 
-        
-      </div>
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      <p>最重要的两点：使用navicat premium创建mysql连接和在mysql连接里面创建数据库时，需要注意。</p>
-<h3 id="1）"><a href="#1）" class="headerlink" title="1）"></a>1）</h3><p>创建连接时，Encoding不需要手动选择，保持Auto就可以了。<br><img src="http://img.tidyko.com/blog/mac-np-mysql_1.png" alt="Mysql MAC环境下使用Navicat Premium连接mysql乱码问题-图例1"></p>
-<h3 id="2）"><a href="#2）" class="headerlink" title="2）"></a>2）</h3><p>使用该连接创建新的数据库时，也保持默认编码。<br>创建连接时，Encoding不需要手动选择，保持Auto就可以了。<br><img src="http://img.tidyko.com/blog/mac-np-mysql_2.png" alt="Mysql MAC环境下使用Navicat Premium连接mysql乱码问题-图例2"><br>这两点注意了，如果还出现乱码的话，就有可能是mysql本身编码引起的。<br>可以通过以下操作进行设置。</p>
-<h4 id="2-1）"><a href="#2-1）" class="headerlink" title="2.1）"></a>2.1）</h4><p>在mac环境下，安装了mysql之后，/etc路径下是没有my.cnf文件的，需要我们手动添加。</p>
-<p>找到mysql安装目录，在底下找到support-files文件夹，复制里面的my-default.cnf，到桌面，并修改其名称为my.cnf。<br>（注：在mysql-5.7.17之后的版本好像没有了my-default.cnf）</p>
-<p>并将里面的内容修改为以下内容：<br><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Example MySQL config file for medium systems. </span></span><br><span class="line"><span class="comment">#  </span></span><br><span class="line"><span class="comment"># This is for a system with little memory (32M - 64M) where MySQL plays  </span></span><br><span class="line"><span class="comment"># an important part, or systems up to 128M where MySQL is used together with  </span></span><br><span class="line"><span class="comment"># other programs (such as a web server)  </span></span><br><span class="line"><span class="comment">#  </span></span><br><span class="line"><span class="comment"># MySQL programs look for option files in a set of  </span></span><br><span class="line"><span class="comment"># locations which depend on the deployment platform.  </span></span><br><span class="line"><span class="comment"># You can copy this option file to one of those  </span></span><br><span class="line"><span class="comment"># locations. For information about these locations, see:  </span></span><br><span class="line"><span class="comment"># http://dev.mysql.com/doc/mysql/en/option-files.html  </span></span><br><span class="line"><span class="comment">#  </span></span><br><span class="line"><span class="comment"># In this file, you can use all long options that a program supports.  </span></span><br><span class="line"><span class="comment"># If you want to know which options a program supports, run the program  </span></span><br><span class="line"><span class="comment"># with the "--help" option.  </span></span><br><span class="line">  </span><br><span class="line"><span class="comment"># The following options will be passed to all MySQL clients  </span></span><br><span class="line"><span class="string">[client]</span>  </span><br><span class="line"><span class="comment">#password   = your_password  </span></span><br><span class="line"><span class="string">port</span>        <span class="string">=</span> <span class="number">3306</span>  </span><br><span class="line"><span class="string">socket</span>      <span class="string">=</span> <span class="string">/tmp/mysql.sock</span>  </span><br><span class="line">  </span><br><span class="line"><span class="comment"># Here follows entries for some specific programs  </span></span><br><span class="line">  </span><br><span class="line"><span class="comment"># The MySQL server  </span></span><br><span class="line"><span class="string">[mysqld]</span>  </span><br><span class="line"><span class="string">port</span>        <span class="string">=</span> <span class="number">3306</span>  </span><br><span class="line"><span class="string">socket</span>      <span class="string">=</span> <span class="string">/tmp/mysql.sock</span>  </span><br><span class="line"><span class="string">skip-external-locking</span>  </span><br><span class="line"><span class="string">key_buffer_size</span> <span class="string">=</span> <span class="number">16</span><span class="string">M</span>  </span><br><span class="line"><span class="string">max_allowed_packet</span> <span class="string">=</span> <span class="number">1</span><span class="string">M</span>  </span><br><span class="line"><span class="string">table_open_cache</span> <span class="string">=</span> <span class="number">64</span>  </span><br><span class="line"><span class="string">sort_buffer_size</span> <span class="string">=</span> <span class="number">512</span><span class="string">K</span>  </span><br><span class="line"><span class="string">net_buffer_length</span> <span class="string">=</span> <span class="number">8</span><span class="string">K</span>  </span><br><span class="line"><span class="string">read_buffer_size</span> <span class="string">=</span> <span class="number">256</span><span class="string">K</span>  </span><br><span class="line"><span class="string">read_rnd_buffer_size</span> <span class="string">=</span> <span class="number">512</span><span class="string">K</span>  </span><br><span class="line"><span class="string">myisam_sort_buffer_size</span> <span class="string">=</span> <span class="number">8</span><span class="string">M</span>  </span><br><span class="line"><span class="string">character-set-server=utf8</span>  </span><br><span class="line"><span class="string">init_connect='SET</span> <span class="string">NAMES</span> <span class="string">utf8'</span>  </span><br><span class="line">  </span><br><span class="line"><span class="comment"># Don't listen on a TCP/IP port at all. This can be a security enhancement,  </span></span><br><span class="line"><span class="comment"># if all processes that need to connect to mysqld run on the same host.  </span></span><br><span class="line"><span class="comment"># All interaction with mysqld must be made via Unix sockets or named pipes.  </span></span><br><span class="line"><span class="comment"># Note that using this option without enabling named pipes on Windows  </span></span><br><span class="line"><span class="comment"># (via the "enable-named-pipe" option) will render mysqld useless!  </span></span><br><span class="line"><span class="comment">#   </span></span><br><span class="line"><span class="comment">#skip-networking  </span></span><br><span class="line">  </span><br><span class="line"><span class="comment"># Replication Master Server (default)  </span></span><br><span class="line"><span class="comment"># binary logging is required for replication  </span></span><br><span class="line"><span class="string">log-bin=mysql-bin</span>  </span><br><span class="line">  </span><br><span class="line"><span class="comment"># binary logging format - mixed recommended  </span></span><br><span class="line"><span class="string">binlog_format=mixed</span>  </span><br><span class="line">  </span><br><span class="line"><span class="comment"># required unique id between 1 and 2^32 - 1  </span></span><br><span class="line"><span class="comment"># defaults to 1 if master-host is not set  </span></span><br><span class="line"><span class="comment"># but will not function as a master if omitted  </span></span><br><span class="line"><span class="string">server-id</span>   <span class="string">=</span> <span class="number">1</span>  </span><br><span class="line">  </span><br><span class="line"><span class="comment"># Replication Slave (comment out master section to use this)  </span></span><br><span class="line"><span class="comment">#  </span></span><br><span class="line"><span class="comment"># To configure this host as a replication slave, you can choose between  </span></span><br><span class="line"><span class="comment"># two methods :  </span></span><br><span class="line"><span class="comment">#  </span></span><br><span class="line"><span class="comment"># 1) Use the CHANGE MASTER TO command (fully described in our manual) -  </span></span><br><span class="line"><span class="comment">#    the syntax is:  </span></span><br><span class="line"><span class="comment">#  </span></span><br><span class="line"><span class="comment">#    CHANGE MASTER TO MASTER_HOST=&lt;host&gt;, MASTER_PORT=&lt;port&gt;,  </span></span><br><span class="line"><span class="comment">#    MASTER_USER=&lt;user&gt;, MASTER_PASSWORD=&lt;password&gt; ;  </span></span><br><span class="line"><span class="comment">#  </span></span><br><span class="line"><span class="comment">#    where you replace &lt;host&gt;, &lt;user&gt;, &lt;password&gt; by quoted strings and  </span></span><br><span class="line"><span class="comment">#    &lt;port&gt; by the master's port number (3306 by default).  </span></span><br><span class="line"><span class="comment">#  </span></span><br><span class="line"><span class="comment">#    Example:  </span></span><br><span class="line"><span class="comment">#  </span></span><br><span class="line"><span class="comment">#    CHANGE MASTER TO MASTER_HOST='125.564.12.1', MASTER_PORT=3306,  </span></span><br><span class="line"><span class="comment">#    MASTER_USER='joe', MASTER_PASSWORD='secret';  </span></span><br><span class="line"><span class="comment">#  </span></span><br><span class="line"><span class="comment"># OR  </span></span><br><span class="line"><span class="comment">#  </span></span><br><span class="line"><span class="comment"># 2) Set the variables below. However, in case you choose this method, then  </span></span><br><span class="line"><span class="comment">#    start replication for the first time (even unsuccessfully, for example  </span></span><br><span class="line"><span class="comment">#    if you mistyped the password in master-password and the slave fails to  </span></span><br><span class="line"><span class="comment">#    connect), the slave will create a master.info file, and any later  </span></span><br><span class="line"><span class="comment">#    change in this file to the variables' values below will be ignored and  </span></span><br><span class="line"><span class="comment">#    overridden by the content of the master.info file, unless you shutdown  </span></span><br><span class="line"><span class="comment">#    the slave server, delete master.info and restart the slaver server.  </span></span><br><span class="line"><span class="comment">#    For that reason, you may want to leave the lines below untouched  </span></span><br><span class="line"><span class="comment">#    (commented) and instead use CHANGE MASTER TO (see above)  </span></span><br><span class="line"><span class="comment">#  </span></span><br><span class="line"><span class="comment"># required unique id between 2 and 2^32 - 1  </span></span><br><span class="line"><span class="comment"># (and different from the master)  </span></span><br><span class="line"><span class="comment"># defaults to 2 if master-host is set  </span></span><br><span class="line"><span class="comment"># but will not function as a slave if omitted  </span></span><br><span class="line"><span class="comment">#server-id       = 2  </span></span><br><span class="line"><span class="comment">#  </span></span><br><span class="line"><span class="comment"># The replication master for this slave - required  </span></span><br><span class="line"><span class="comment">#master-host     =   &lt;hostname&gt;  </span></span><br><span class="line"><span class="comment">#  </span></span><br><span class="line"><span class="comment"># The username the slave will use for authentication when connecting  </span></span><br><span class="line"><span class="comment"># to the master - required  </span></span><br><span class="line"><span class="comment">#master-user     =   &lt;username&gt;  </span></span><br><span class="line"><span class="comment">#  </span></span><br><span class="line"><span class="comment"># The password the slave will authenticate with when connecting to  </span></span><br><span class="line"><span class="comment"># the master - required  </span></span><br><span class="line"><span class="comment">#master-password =   &lt;password&gt;  </span></span><br><span class="line"><span class="comment">#  </span></span><br><span class="line"><span class="comment"># The port the master is listening on.  </span></span><br><span class="line"><span class="comment"># optional - defaults to 3306  </span></span><br><span class="line"><span class="comment">#master-port     =  &lt;port&gt;  </span></span><br><span class="line"><span class="comment">#  </span></span><br><span class="line"><span class="comment"># binary logging - not required for slaves, but recommended  </span></span><br><span class="line"><span class="comment">#log-bin=mysql-bin  </span></span><br><span class="line">  </span><br><span class="line"><span class="comment"># Uncomment the following if you are using InnoDB tables  </span></span><br><span class="line"><span class="comment">#innodb_data_home_dir = /usr/local/mysql/data  </span></span><br><span class="line"><span class="comment">#innodb_data_file_path = ibdata1:10M:autoextend  </span></span><br><span class="line"><span class="comment">#innodb_log_group_home_dir = /usr/local/mysql/data  </span></span><br><span class="line"><span class="comment"># You can set .._buffer_pool_size up to 50 - 80 %  </span></span><br><span class="line"><span class="comment"># of RAM but beware of setting memory usage too high  </span></span><br><span class="line"><span class="comment">#innodb_buffer_pool_size = 16M  </span></span><br><span class="line"><span class="comment">#innodb_additional_mem_pool_size = 2M  </span></span><br><span class="line"><span class="comment"># Set .._log_file_size to 25 % of buffer pool size  </span></span><br><span class="line"><span class="comment">#innodb_log_file_size = 5M  </span></span><br><span class="line"><span class="comment">#innodb_log_buffer_size = 8M  </span></span><br><span class="line"><span class="comment">#innodb_flush_log_at_trx_commit = 1  </span></span><br><span class="line"><span class="comment">#innodb_lock_wait_timeout = 50  </span></span><br><span class="line">  </span><br><span class="line"><span class="string">[mysqldump]</span>  </span><br><span class="line"><span class="string">quick</span>  </span><br><span class="line"><span class="string">max_allowed_packet</span> <span class="string">=</span> <span class="number">16</span><span class="string">M</span>  </span><br><span class="line">  </span><br><span class="line"><span class="string">[mysql]</span>  </span><br><span class="line"><span class="literal">no</span><span class="bullet">-auto-rehash</span>  </span><br><span class="line"><span class="comment"># Remove the next comment character if you are not familiar with SQL  </span></span><br><span class="line"><span class="comment">#safe-updates  </span></span><br><span class="line"><span class="string">default-character-set=utf8</span>   </span><br><span class="line">  </span><br><span class="line"><span class="string">[myisamchk]</span>  </span><br><span class="line"><span class="string">key_buffer_size</span> <span class="string">=</span> <span class="number">20</span><span class="string">M</span>  </span><br><span class="line"><span class="string">sort_buffer_size</span> <span class="string">=</span> <span class="number">20</span><span class="string">M</span>  </span><br><span class="line"><span class="string">read_buffer</span> <span class="string">=</span> <span class="number">2</span><span class="string">M</span>  </span><br><span class="line"><span class="string">write_buffer</span> <span class="string">=</span> <span class="number">2</span><span class="string">M</span>  </span><br><span class="line">  </span><br><span class="line"><span class="string">[mysqlhotcopy]</span>  </span><br><span class="line"><span class="string">interactive-timeout</span></span><br></pre></td></tr></table></figure></p>
-<p>然后将其复制到/etc下面，重启mysql服务就可以了。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/ba8658f2.html" data-id="cjq3iljgk00eowrykl8ym96iw" class="article-share-link">
-        分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mysql/">Mysql</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Navicat-Premium/">Navicat Premium</a></li></ul>
 
     </footer>
   </div>
@@ -1050,7 +1054,7 @@
     <div class="count-box">
       <a href="/archives">
         <div><strong>
-            134</strong><br>文章</div>
+            136</strong><br>文章</div>
       </a>
       <a href="/categories">
         <div><strong>
@@ -1112,7 +1116,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy;2017 - 2018 Tidy的个人博客<br>
+      &copy;2018 - 2019 Tidy的个人博客<br>
       <!-- 由<a href="https://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
       主题-<a href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a> -->
       

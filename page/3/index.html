@@ -56,7 +56,7 @@
     <h2 class="author"></h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>134</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>136</strong><br>文章</div></a>
       <a href="/categories"><div><strong>49</strong><br>分类</div></a>
       <a href="/tags"><div><strong>92</strong><br>标签</div></a>
     </div>
@@ -83,6 +83,178 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-J2EE Spring redirect导致内存溢出问题" class="article" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/3c49f4b8.html" class="article-date">
+  <time class="post-time" datetime="2018-08-31T01:47:00.000Z" itemprop="datePublished">
+    <span class="post-month">8月</span><br/>
+    <span class="post-day">31</span>
+  </time>
+</a>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/3c49f4b8.html">J2EE Spring redirect导致内存溢出问题</a>
+    </h1>
+  
+
+      <div>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
+  </div>
+
+        
+        
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/3c49f4b8.html" class="leancloud_visitors" data-flag-title="J2EE Spring redirect导致内存溢出问题">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 1,041</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 5 分钟</span>
+  </div>
+ 
+        
+      </div>
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <p>最近发现线上的一个应用跑一段周期之后就会出现内存溢出问题，需要重启，所以以此分析一下原因并修复。</p>
+<h2 id="1-获取内存快照"><a href="#1-获取内存快照" class="headerlink" title="1.获取内存快照"></a>1.获取内存快照</h2><p>使用jdk自带工具jmap获取内存快照文件，如下：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">jmap -dump:format=b,file=快照保存路径 进程id</span><br><span class="line"></span><br><span class="line">如：</span><br><span class="line"></span><br><span class="line">jmap -dump:format=b,file=/opt/27245.hprof 27245</span><br></pre></td></tr></table></figure></p>
+<h2 id="2-使用工具进行分析"><a href="#2-使用工具进行分析" class="headerlink" title="2.使用工具进行分析"></a>2.使用工具进行分析</h2><p>获取到内存快照文件27245.hprof后，我们需要对此进行分析，这里使用的分析工具为<code>Eclipse Memory Analyzer Tool</code>，我们使用工具打开27245.hprof文件。</p>
+<h3 id="2-1-Main-View"><a href="#2-1-Main-View" class="headerlink" title="2.1 Main View"></a>2.1 Main View</h3><p>主界面显示有一大块内存占用高达1.3G，基本可以确定是这一块出现了问题。</p>
+<p><img src="http://img.tidyko.com/blog/Memoryanalysis_27245_1.png" alt="J2EE Spring redirect导致内存溢出问题_图例1"><br>
+      
+      <p class="article-more-link">
+        <a href="/posts/3c49f4b8.html#more">
+          Read More</a>
+      </p>
+      
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/3c49f4b8.html" data-id="cjqfzxk9w004njvyk7evkmfic" class="article-share-link">
+        分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/">Spring</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-LogStash 基础配置" class="article" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/3d5c725a.html" class="article-date">
+  <time class="post-time" datetime="2018-08-30T08:25:00.000Z" itemprop="datePublished">
+    <span class="post-month">8月</span><br/>
+    <span class="post-day">30</span>
+  </time>
+</a>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/3d5c725a.html">LogStash 基础配置</a>
+    </h1>
+  
+
+      <div>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/中间件/">中间件</a>,<a class="article-category-link" href="/categories/中间件/LogStash/">LogStash</a>
+  </div>
+
+        
+        
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/3d5c725a.html" class="leancloud_visitors" data-flag-title="LogStash 基础配置">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 361</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 2 分钟</span>
+  </div>
+ 
+        
+      </div>
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <p>LogStash 基础配置记录</p>
+<p>下载解压包，并配置以下配置文件。</p>
+<p>启动命令（指定配置文件）：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd ~/Documents/elk-6.2.4/logstash/logstash-6.2.4</span><br><span class="line"></span><br><span class="line">./bin/logstash -f logstash-simple.conf</span><br></pre></td></tr></table></figure></p>
+<p>logstash-simple.conf<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">input &#123;</span><br><span class="line">     #指定redis为输入流，从redis中读取数据进行解析</span><br><span class="line">     redis &#123;</span><br><span class="line">        data_type =&gt; &quot;list&quot;</span><br><span class="line">        key =&gt; &quot;filebeat&quot;</span><br><span class="line">        host =&gt; &quot;localhost&quot;</span><br><span class="line">        port =&gt; 6379</span><br><span class="line">        threads =&gt; 5</span><br><span class="line">        db =&gt; 15</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">filter &#123;</span><br><span class="line">    #使用GrokDebugger调试Grok表达式后再filter添加Grok，匹配日志格式并输出到指定字段，日志格式如下</span><br><span class="line">    #18-08-30 16:05:26 INFO pool-2-thread-1 c.t.w.c.o.i.LoggingInterceptor.intercept(39)  | url: https://api.weixin.qq.com/cgi-bin/user/info?access_token=13_qvMXVHYu_hwt0r4fGLfck8lP-seK0NXNE3UMQTeWppzpW_1Z0-SsPY4kR5kTjPwjKi_icM3nXcoUuAjoakbPBKUQArMru4e8efcFFvkpcLilZkywtHSz9CHUjX-Aoehc9inNlsBts18MEYSMAAPkCFAGGV&amp;openid=oBBmBjijP3MN6m0uNf_9Z66TglmM&amp;lang=zh_CN, method: GET, time: 134, request(), response(&#123;&quot;subscribe&quot;:1,&quot;openid&quot;:&quot;oBBmBjijP3MN6m0uNf_9Z66TglmM&quot;,&quot;nickname&quot;:&quot;小萝卜&quot;,&quot;sex&quot;:0,&quot;language&quot;:&quot;zh_CN&quot;,&quot;city&quot;:&quot;&quot;,&quot;province&quot;:&quot;&quot;,&quot;country&quot;:&quot;&quot;,&quot;headimgurl&quot;:&quot;&quot;,&quot;subscribe_time&quot;:1508819231,&quot;unionid&quot;:&quot;oxAVa1F-E3GmhjquNqxk3Xyk1bGA&quot;,&quot;remark&quot;:&quot;&quot;,&quot;groupid&quot;:139,&quot;tagid_list&quot;:[139],&quot;subscribe_scene&quot;:&quot;ADD_SCENE_SEARCH&quot;,&quot;qr_scene&quot;:0,&quot;qr_scene_str&quot;:&quot;&quot;&#125;)</span><br><span class="line">    grok &#123;</span><br><span class="line">        match =&gt; &#123; &quot;message&quot; =&gt; &quot;\s*%&#123;TIMESTAMP_ISO8601:time&#125;\s*%&#123;LOGLEVEL:level&#125;\s*%&#123;JAVAFILE:thread&#125;\s*%&#123;JAVAFILE:class&#125;\(%&#123;NUMBER:lineNumber&#125;\)\s*\|%&#123;GREEDYDATA:result&#125;&quot;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    #替换默认@timestamp字段</span><br><span class="line">    date &#123;</span><br><span class="line">        match =&gt; [ &quot;time&quot;, &quot;yy-MM-dd HH:mm:ss&quot;]</span><br><span class="line">        #默认的替换字段为@timestamp,所以省略以下配置</span><br><span class="line">        #target =&gt; &quot;@timestamp&quot;</span><br><span class="line">    &#125;</span><br><span class="line">    json &#123;</span><br><span class="line">        #使用json插件解析responseBody</span><br><span class="line">        source =&gt; &quot;responseBody&quot;</span><br><span class="line">        #解析的字段前面带上字段名</span><br><span class="line">        target =&gt; &quot;responseBody&quot;</span><br><span class="line">    &#125;</span><br><span class="line">    mutate &#123;</span><br><span class="line">        #删除message字段</span><br><span class="line">        remove_field =&gt; [&quot;message&quot;]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">output &#123;</span><br><span class="line">    #指定es为输出流，并指定创建的索引格式</span><br><span class="line">    elasticsearch &#123;</span><br><span class="line">        hosts    =&gt; &quot;localhost:9200&quot;</span><br><span class="line">        action   =&gt;  &quot;index&quot;</span><br><span class="line">        index    =&gt;  &quot;filebeat-%&#123;+YYYY.MM.dd&#125;&quot;</span><br><span class="line">    &#125;</span><br><span class="line">    stdout &#123;</span><br><span class="line">        codec =&gt; rubydebug</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/3d5c725a.html" data-id="cjqfzxkb7007pjvyklei7jbv2" class="article-share-link">
+        分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ELK/">ELK</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LogStash/">LogStash</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
   
     <article id="post-ElasticSearch 基础命令" class="article" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -153,7 +325,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3e9aef58.html" data-id="cjq3iljau0026wryko04e5q3f" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/3e9aef58.html" data-id="cjqfzxk8h002bjvykd980bhef" class="article-share-link">
         分享</a>
       
       
@@ -254,7 +426,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/d0e6a555.html" data-id="cjq3iljdz009ywryk8ksqqbnq" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/d0e6a555.html" data-id="cjqfzxk9h003vjvyk8ajv1ft8" class="article-share-link">
         分享</a>
       
       
@@ -340,7 +512,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3f08f656.html" data-id="cjq3ilji600i5wrykpv4k146x" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/3f08f656.html" data-id="cjqfzxkdd00btjvykc7ejlxus" class="article-share-link">
         分享</a>
       
       
@@ -425,7 +597,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/47f7c28d.html" data-id="cjq3iljge00ebwryksqlszjpi" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/47f7c28d.html" data-id="cjqfzxkaz007cjvykm5psjp7o" class="article-share-link">
         分享</a>
       
       
@@ -504,7 +676,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/1136d15d.html" data-id="cjq3iljey00bnwrykwqak9vow" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/1136d15d.html" data-id="cjqfzxka40059jvyk6kh5m7qo" class="article-share-link">
         分享</a>
       
       
@@ -599,7 +771,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/64f28a88.html" data-id="cjq3iljag001iwryk7dbbedds" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/64f28a88.html" data-id="cjqfzxk7z001ejvykreo0q3wh" class="article-share-link">
         分享</a>
       
       
@@ -681,7 +853,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/6308b509.html" data-id="cjq3iljfa00c8wrykr8a59n56" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/6308b509.html" data-id="cjqfzxka9005ljvykyvlabtn5" class="article-share-link">
         分享</a>
       
       
@@ -777,182 +949,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3a2e7663.html" data-id="cjq3iljdr009pwrykqza319qv" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/3a2e7663.html" data-id="cjqfzxk8x0032jvykj1w8hw4f" class="article-share-link">
         分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IDEA/">IDEA</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jrebel/">Jrebel</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-J2EE CXF使用SpringBoot与xml配置的差别所导致的问题" class="article" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/920d2c96.html" class="article-date">
-  <time class="post-time" datetime="2018-06-04T08:18:00.000Z" itemprop="datePublished">
-    <span class="post-month">6月</span><br/>
-    <span class="post-day">04</span>
-  </time>
-</a>
-
-  </div>
-  <div class="article-inner">
-    
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/920d2c96.html">J2EE CXF使用springboot与xml配置的差别所导致的问题</a>
-    </h1>
-  
-
-      <div>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
-  </div>
-
-        
-        
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/920d2c96.html" class="leancloud_visitors" data-flag-title="J2EE CXF使用springboot与xml配置的差别所导致的问题">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 272</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 1 分钟</span>
-  </div>
- 
-        
-      </div>
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      <p>使用xml时使用以下配置使报文没有加上命名空间时也能正常访问接口。bean定义的前后顺序不影响程序正常注册对象。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 通过Spring创建数据绑定的类 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"aegisBean"</span> <span class="attr">class</span>=<span class="string">"org.apache.cxf.aegis.databinding.AegisDatabinding"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"jaxWsServiceFactoryBean"</span> <span class="attr">class</span>=<span class="string">"org.apache.cxf.jaxws.support.JaxWsServiceFactoryBean"</span> <span class="attr">scope</span>=<span class="string">"prototype"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"wrapped"</span> <span class="attr">value</span>=<span class="string">"true"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"dataBinding"</span> <span class="attr">ref</span>=<span class="string">"aegisBean"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">jaxws:endpoint</span> <span class="attr">id</span>=<span class="string">"imSendWXModelMessageServicews"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">implementor</span>=<span class="string">"#imSendWXModelMessageService"</span> <span class="attr">address</span>=<span class="string">"/imSendWXModelMessageService.ws"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">jaxws:serviceFactory</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">ref</span> <span class="attr">bean</span>=<span class="string">"jaxWsServiceFactoryBean"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">jaxws:serviceFactory</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">jaxws:endpoint</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>但是如果使用SpringBoot的话，使用注解方式配置，需要注意的是，需要使用到的类一定要放在前面先初始化。不然会没有效果。</p>
-<p>例如下面代码红色部分。如果放在endpoint.publish()后面则不会生效。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> AegisDatabinding <span class="title">aegisDatabinding</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> AegisDatabinding();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="meta">@Scope</span>(ConfigurableBeanFactory.SCOPE_PROTOTYPE)</span><br><span class="line"><span class="function"><span class="keyword">public</span> JaxWsServiceFactoryBean <span class="title">jaxWsServiceFactoryBean</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    org.apache.cxf.jaxws.support.JaxWsServiceFactoryBean sf = <span class="keyword">new</span> JaxWsServiceFactoryBean();</span><br><span class="line">    sf.setWrapped(<span class="keyword">true</span>);</span><br><span class="line">    sf.setDataBinding(aegisDatabinding());</span><br><span class="line">    <span class="keyword">return</span> sf;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Endpoint <span class="title">sendMessageEndpoint</span><span class="params">(SendMessageService sendMessageService)</span> </span>&#123;</span><br><span class="line">    EndpointImpl endpoint = <span class="keyword">new</span> EndpointImpl(sendMessageService);</span><br><span class="line">    endpoint.setServiceFactory(jaxWsServiceFactoryBean());</span><br><span class="line">    <span class="comment">// 该部分</span></span><br><span class="line">    endpoint.publish(<span class="string">"/imSendWXModelMessageService.ws"</span>);</span><br><span class="line">    <span class="keyword">return</span> endpoint;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/920d2c96.html" data-id="cjq3ilje400aawryk5gu4ef4o" class="article-share-link">
-        分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CXF/">CXF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringBoot/">SpringBoot</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Jenkins 服务器与svn服务器时间不一致出现的问题" class="article" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/d2f1cf8f.html" class="article-date">
-  <time class="post-time" datetime="2018-05-22T09:56:00.000Z" itemprop="datePublished">
-    <span class="post-month">5月</span><br/>
-    <span class="post-day">22</span>
-  </time>
-</a>
-
-  </div>
-  <div class="article-inner">
-    
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/d2f1cf8f.html">Jenkins 服务器与svn服务器时间不一致出现的问题</a>
-    </h1>
-  
-
-      <div>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/DevOps/">DevOps</a>,<a class="article-category-link" href="/categories/DevOps/Jenkins/">Jenkins</a>
-  </div>
-
-        
-        
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/d2f1cf8f.html" class="leancloud_visitors" data-flag-title="Jenkins 服务器与svn服务器时间不一致出现的问题">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 331</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 1 分钟</span>
-  </div>
- 
-        
-      </div>
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      <h2 id="1）问题描述"><a href="#1）问题描述" class="headerlink" title="1）问题描述"></a>1）问题描述</h2><p>svn提交了一次更新包，到了jenkins提交更新的时候，第一次代码没有生效，然后重新提交了一次，第二次才生效。</p>
-<h2 id="2）问题排查"><a href="#2）问题排查" class="headerlink" title="2）问题排查"></a>2）问题排查</h2><h3 id="2-1）"><a href="#2-1）" class="headerlink" title="2.1）"></a>2.1）</h3><p>首先第一反应比对了下两次更新的包文件是否一致，然后发现大小不一。<br>由此看出问题应该是出在jenkins，继续排查。<br><img src="http://img.tidyko.com/blog/jenkins_time_1.jpg" alt="Jenkins 服务器与svn服务器时间不一致出现的问题-图例1"></p>
-<h3 id="2-2）"><a href="#2-2）" class="headerlink" title="2.2）"></a>2.2）</h3><p>比对了下第一次jenkins的提交时间与svn提交的时间<br><img src="http://img.tidyko.com/blog/jenkins_time_2.jpg" alt="Jenkins 服务器与svn服务器时间不一致出现的问题-图例2"><br><img src="http://img.tidyko.com/blog/jenkins_time_3.jpg" alt="Jenkins 服务器与svn服务器时间不一致出现的问题-图例3"></p>
-<p>由此可看出，svn提交的时间是5：07，但是我jenkins提交的时间却为5：06，显然顺序不对，</p>
-<p>但是我操作的时候确实是先提交了svn，再提交了jenkins的。</p>
-<p>由此可以确认，应该是jenkins服务器时间比svn的慢了，导致jenkins在06分的时间段认为svn上面没有最新的更新包，</p>
-<p>然后拿了旧的包进行部署，所以代码功能没有改变，</p>
-<p>然后等我第二次提交更新的时候17：10早就超过了svn上面的5：07，所以拿到了最新的更新包进行更新。</p>
-<p>功能代码才得以生效。</p>
-<h3 id="2-3）"><a href="#2-3）" class="headerlink" title="2.3）"></a>2.3）</h3><p>所以这里要注意，jenkins时间一定要与版本控制服务器的时间一致，不然可能引发像我这样的更新失效的情况。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/d2f1cf8f.html" data-id="cjq3iljfp00d0wrykj46xg9pk" class="article-share-link">
-        分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jenkins/">Jenkins</a></li></ul>
 
     </footer>
   </div>
@@ -1020,7 +1021,7 @@
     <div class="count-box">
       <a href="/archives">
         <div><strong>
-            134</strong><br>文章</div>
+            136</strong><br>文章</div>
       </a>
       <a href="/categories">
         <div><strong>
@@ -1082,7 +1083,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy;2017 - 2018 Tidy的个人博客<br>
+      &copy;2018 - 2019 Tidy的个人博客<br>
       <!-- 由<a href="https://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
       主题-<a href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a> -->
       

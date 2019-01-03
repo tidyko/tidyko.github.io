@@ -56,7 +56,7 @@
     <h2 class="author"></h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>134</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>136</strong><br>文章</div></a>
       <a href="/categories"><div><strong>49</strong><br>分类</div></a>
       <a href="/tags"><div><strong>92</strong><br>标签</div></a>
     </div>
@@ -83,6 +83,192 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-Tomcat java.lang.OutOfMemoryError" class="article" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/2e6dc29d.html" class="article-date">
+  <time class="post-time" datetime="2014-09-26T01:56:00.000Z" itemprop="datePublished">
+    <span class="post-month">9月</span><br/>
+    <span class="post-day">26</span>
+  </time>
+</a>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/2e6dc29d.html">Tomcat java.lang.OutOfMemoryError</a>
+    </h1>
+  
+
+      <div>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
+  </div>
+
+        
+        
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/2e6dc29d.html" class="leancloud_visitors" data-flag-title="Tomcat java.lang.OutOfMemoryError">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 421</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 2 分钟</span>
+  </div>
+ 
+        
+      </div>
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <h2 id="1）Java-heap-space-Heap-size"><a href="#1）Java-heap-space-Heap-size" class="headerlink" title="1）Java heap space Heap size"></a>1）Java heap space Heap size</h2><p>昨天在服务器上面部署项目，之前服务器上面已经有一个项目的了。</p>
+<p>然后我再部署一个，上去跑了之后，居然内存溢出了。</p>
+<p>好吧，内存溢出就调一下，调了之后发现还是那样，点不到几下就挂了。</p>
+<p>后面折腾了一下午，因为我机子上面本地跑的是多少个都没问题的，</p>
+<p>我想了下，会不会是tomcat版本的问题，果断换了个tomcat上去，一换果然行了。</p>
+<p>郁闷，记录一下吧。</p>
+<p>下面是版本号：<br><code>apache-tomcat-7.0.55</code>:这个是出现内存溢出，修改内存还解决不了问题的版本。</p>
+<p><code>apache-tomcat-7.0.11</code>:这个是不会内存溢出的版本。</p>
+<h2 id="2）PermGen-space"><a href="#2）PermGen-space" class="headerlink" title="2）PermGen space"></a>2）PermGen space</h2><p>PermGen space的全称是Permanent Generation space,是指内存的永久保存区域，</p>
+<p>这块内存主要是被JVM存放Class和Meta信息的,</p>
+<p>Class在被Loader时就会被放到PermGen space中，</p>
+<p>它和存放类实例(Instance)的Heap区域不同,</p>
+<p>GC(Garbage Collection)不会在主程序运行期对PermGen space进行清理，</p>
+<p>所以如果你的应用中有很CLASS的话,就很可能出现PermGen space错误，</p>
+<p>这种错误常见在web服务器对JSP进行pre compile的时候。</p>
+<p>如果你的WEB APP下都用了大量的第三方jar, </p>
+<p>其大小超过了jvm默认的大小(4M)那么就会产生此错误信息了。</p>
+<p>解决方法：</p>
+<h3 id="2-1）-手动设置MaxPermSize大小"><a href="#2-1）-手动设置MaxPermSize大小" class="headerlink" title="2.1） 手动设置MaxPermSize大小"></a>2.1） 手动设置MaxPermSize大小</h3><p>修改TOMCAT_HOME/bin/catalina.bat（Linux下为catalina.sh），</p>
+<p>在<code>“echo &quot;Using CATALINA_BASE:$CATALINA_BASE&quot;”</code>上面加入以下行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> JAVA_OPTS=%JAVA_OPTS% -server -XX:PermSize=128M -XX:MaxPermSize=512m</span><br></pre></td></tr></table></figure>
+<p>catalina.sh下为：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">JAVA_OPTS=<span class="string">"<span class="variable">$JAVA_OPTS</span> -server -XX:PermSize=128M -XX:MaxPermSize=512m"</span></span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/2e6dc29d.html" data-id="cjqfzxkck00aijvyk7olqumn6" class="article-share-link">
+        分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tomcat/">Tomcat</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Hibernate Illegal attempt to associate a collection with two open sessions" class="article" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/cd870320.html" class="article-date">
+  <time class="post-time" datetime="2014-09-17T10:29:00.000Z" itemprop="datePublished">
+    <span class="post-month">9月</span><br/>
+    <span class="post-day">17</span>
+  </time>
+</a>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/cd870320.html">Hibernate Illegal attempt to associate a collection with two open sessions</a>
+    </h1>
+  
+
+      <div>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
+  </div>
+
+        
+        
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/cd870320.html" class="leancloud_visitors" data-flag-title="Hibernate Illegal attempt to associate a collection with two open sessions">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 194</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 1 分钟</span>
+  </div>
+ 
+        
+      </div>
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <p>今天在用Hibernate对对象进行修改操作的时候报了这个错。</p>
+<p>之前一直没什么错误，但是今天修改了一下表结构，增加了一个OneToMany的映射。</p>
+<p>所以在我获取对象，重新set一个变量之后就报了这个错误了。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Illegal attempt to associate a collection with two open sessions; nested exception is org.hibernate.HibernateException: Illegal attempt to associate a collection with two open sessions</span><br></pre></td></tr></table></figure></p>
+<p>网上查了一下，说是不同session直接对象的操作造成的，原因还有待查明。</p>
+<p>目前暂时采用了下面的方法</p>
+<p>在修改完对象值之后，给对象的OneToMany的List设置null值就可以了。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Dao&lt;Resources&gt; resourcesDao=TitanContext.getDaoProxy(Resources.class);</span><br><span class="line">Resources resource = resourcesDao.find(id);</span><br><span class="line">resource.setClickCount(resource.getClickCount()+<span class="number">1</span>);</span><br><span class="line">resource.setResourcePeriod(<span class="keyword">null</span>);    </span><br><span class="line">resourcesDao.update(resource);</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/cd870320.html" data-id="cjqfzxk8p002qjvyka39gkqim" class="article-share-link">
+        分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hibernate/">Hibernate</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
   
     <article id="post-IE trim()方法失效" class="article" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -145,7 +331,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/b93984a5.html" data-id="cjq3iljdv009twrykibt3fi24" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/b93984a5.html" data-id="cjqfzxk95003bjvykyuw7yaaa" class="article-share-link">
         分享</a>
       
       
@@ -242,7 +428,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/810bd9aa.html" data-id="cjq3iljdx009wwrykmu5mqszp" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/810bd9aa.html" data-id="cjqfzxk8z0037jvykwxdmvupg" class="article-share-link">
         分享</a>
       
       
@@ -335,7 +521,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/e234776b.html" data-id="cjq3iljeb00alwrykyieic6l2" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/e234776b.html" data-id="cjqfzxk9d003ojvykccalyx6x" class="article-share-link">
         分享</a>
       
       
@@ -424,7 +610,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/dcc50721.html" data-id="cjq3iljh900gawrykxkjq0n36" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/dcc50721.html" data-id="cjqfzxkc2009njvykfc65zjt4" class="article-share-link">
         分享</a>
       
       
@@ -507,7 +693,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3a649dc9.html" data-id="cjq3iljii00ixwryka67a16ep" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/3a649dc9.html" data-id="cjqfzxkdl00c6jvykucrkfmtl" class="article-share-link">
         分享</a>
       
       
@@ -590,7 +776,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3194542f.html" data-id="cjq3iljij00j0wrykk9kgxqjl" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/3194542f.html" data-id="cjqfzxkdq00cijvykt45d7bal" class="article-share-link">
         分享</a>
       
       
@@ -670,7 +856,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/8cfd6ae4.html" data-id="cjq3iljah001lwryk5qcw841d" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/8cfd6ae4.html" data-id="cjqfzxk84001pjvyk1rtmqrf3" class="article-share-link">
         分享</a>
       
       
@@ -750,179 +936,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/c21e42c5.html" data-id="cjq3iljam001pwrykmsfm5ogb" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/c21e42c5.html" data-id="cjqfzxk85001qjvykohbq1cn4" class="article-share-link">
         分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jdk/">Jdk</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-日语 バスの火事" class="article" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/3975e50a.html" class="article-date">
-  <time class="post-time" datetime="2014-07-16T06:52:00.000Z" itemprop="datePublished">
-    <span class="post-month">7月</span><br/>
-    <span class="post-day">16</span>
-  </time>
-</a>
-
-  </div>
-  <div class="article-inner">
-    
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/3975e50a.html">日语 バスの火事</a>
-    </h1>
-  
-
-      <div>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/外语/">外语</a>,<a class="article-category-link" href="/categories/外语/日语/">日语</a>
-  </div>
-
-        
-        
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/3975e50a.html" class="leancloud_visitors" data-flag-title="日语 バスの火事">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 116</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 1 分钟</span>
-  </div>
- 
-        
-      </div>
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      <p>昨日の夜に、私は住んでいた市（広州）の３０１バスで大きな火事を起きました。</p>
-<p>新聞でそのことを知った時、私は”本当に？バスに乗っていても危険があるの？”と思いました。<br>本当に、本当に、心からその人達の事を心配しています。<br>全ての人が安全でいればいいな、と思いました。</p>
-<p>その火事の発生の原因は、燃えやすいものを持った人が一人バスに乗ったということです。<br>そして、それが燃えて、火事になりました。<br>この事故では、二人が死にました。三十人ぐらいの人が怪我をしました。</p>
-<p>感想：<br>自分はこの世に生まれて、本当に良かったです。<br>これからは、頑張って自分の夢を追っで行こう。<br>必ず皆さんも交通事故に注意してください。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3975e50a.html" data-id="cjq3iljif00itwryk35mysxqn" class="article-share-link">
-        分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/外语/">外语</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/日语/">日语</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-博客园 使用ifream的两种方法" class="article" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/a0a2137e.html" class="article-date">
-  <time class="post-time" datetime="2014-07-01T09:55:00.000Z" itemprop="datePublished">
-    <span class="post-month">7月</span><br/>
-    <span class="post-day">01</span>
-  </time>
-</a>
-
-  </div>
-  <div class="article-inner">
-    
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/a0a2137e.html">博客园 使用ifream的两种方法</a>
-    </h1>
-  
-
-      <div>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/建站/">建站</a>
-  </div>
-
-        
-        
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/a0a2137e.html" class="leancloud_visitors" data-flag-title="博客园 使用ifream的两种方法">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 340</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 2 分钟</span>
-  </div>
- 
-        
-      </div>
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      <p>作为博客平台，发现博客园可能出于安全考虑，并不支持正常的iframe嵌套。</p>
-<p>但是经过研究发现还是可以通过两种特殊途径在自己博客使用iframe进行嵌套。</p>
-<h3 id="1）字符串拼接"><a href="#1）字符串拼接" class="headerlink" title="1）字符串拼接"></a>1）字符串拼接</h3><p>一个正常的iframe结构如下，如果直接将下面的代码作为变量，对html元素进行拼接的话是行不通的。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ifr = <span class="string">"&lt;iframe </span></span><br><span class="line"><span class="string">　　　　　　　　width='100%' </span></span><br><span class="line"><span class="string">　　　　　　　　height='600'</span></span><br><span class="line"><span class="string">　　　　　　　　class='share_self'</span></span><br><span class="line"><span class="string">　　　　　　　　frameborder='0'</span></span><br><span class="line"><span class="string">　　　　　　　　scrolling='no'</span></span><br><span class="line"><span class="string">　　　　　　　　src='http://widget.weibo.com/weiboshow/index.php</span></span><br><span class="line"><span class="string">　　　　　　　　?language=zh_cn&amp;width=0&amp;height=600&amp;fansRow=2&amp;ptype=1&amp;speed=0&amp;skin=1&amp;</span></span><br><span class="line"><span class="string">　　　　　　　　isTitle=1&amp;noborder=0&amp;isWeibo=1&amp;isFans=0&amp;uid=3424286664&amp;verifier=3c8ebf87&amp;dpc=1'&gt;&lt;/iframe&gt;"</span>;</span><br><span class="line">$(<span class="string">"#tmp"</span>).after(ifr);</span><br></pre></td></tr></table></figure></p>
-<p>但是可以通过下面的方法实现。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ifr = <span class="string">"&lt;ifr"</span>;</span><br><span class="line">ifr += <span class="string">"ame </span></span><br><span class="line"><span class="string">  　　　　　　width='100%' </span></span><br><span class="line"><span class="string">　　　　　height='600'</span></span><br><span class="line"><span class="string">　　　　　class='share_self'</span></span><br><span class="line"><span class="string">　　　　　frameborder='0'</span></span><br><span class="line"><span class="string">　　　　　scrolling='no'</span></span><br><span class="line"><span class="string">　　　　　src='http://widget.weibo.com/weiboshow/index.php</span></span><br><span class="line"><span class="string">　　　　　?language=zh_cn&amp;width=0&amp;height=600&amp;fansRow=2&amp;ptype=1&amp;speed=0&amp;skin=1&amp;</span></span><br><span class="line"><span class="string">　　　　　isTitle=1&amp;noborder=0&amp;isWeibo=1&amp;isFans=0&amp;uid=3424286664&amp;verifier=3c8ebf87&amp;dpc=1'&gt;&lt;/ifr"</span>;</span><br><span class="line">ifr += <span class="string">"ame&gt;"</span>;</span><br><span class="line">$(<span class="string">"#tmp"</span>).after(ifr);</span><br></pre></td></tr></table></figure></p>
-<h3 id="2）使用createElement"><a href="#2）使用createElement" class="headerlink" title="2）使用createElement"></a>2）使用createElement</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> iii = <span class="built_in">document</span>.createElement(<span class="string">'iframe'</span>);</span><br><span class="line">iii.src = <span class="string">'http://widget.weibo.com/weiboshow/index.php</span></span><br><span class="line"><span class="string">　　　　　　　　　　　　?language=zh_cn&amp;width=0&amp;height=600&amp;fansRow=2&amp;ptype=1&amp;speed=0&amp;skin=1&amp;</span></span><br><span class="line"><span class="string">　　　　　　　　　　　　isTitle=1&amp;noborder=0&amp;isWeibo=1&amp;isFans=0&amp;uid=3424286664&amp;verifier=3c8ebf87&amp;dpc=1'</span>;</span><br><span class="line">iii.height = <span class="number">600</span>;</span><br><span class="line">iii.width = <span class="string">'100%'</span>;</span><br><span class="line">iii.className = <span class="string">'share_self'</span>;</span><br><span class="line">iii.scrolling = <span class="string">'no'</span>;</span><br><span class="line">$(<span class="string">"#tmp"</span>).after(ifr);</span><br></pre></td></tr></table></figure>
-<p>使用以上两种方法就可以在博客园嵌套iframe了。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/a0a2137e.html" data-id="cjq3ilji700i9wrykozy394lv" class="article-share-link">
-        分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iframe/">iframe</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/博客园/">博客园</a></li></ul>
 
     </footer>
   </div>
@@ -990,7 +1008,7 @@
     <div class="count-box">
       <a href="/archives">
         <div><strong>
-            134</strong><br>文章</div>
+            136</strong><br>文章</div>
       </a>
       <a href="/categories">
         <div><strong>
@@ -1052,7 +1070,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy;2017 - 2018 Tidy的个人博客<br>
+      &copy;2018 - 2019 Tidy的个人博客<br>
       <!-- 由<a href="https://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
       主题-<a href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a> -->
       

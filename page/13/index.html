@@ -56,7 +56,7 @@
     <h2 class="author"></h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>134</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>136</strong><br>文章</div></a>
       <a href="/categories"><div><strong>49</strong><br>分类</div></a>
       <a href="/tags"><div><strong>92</strong><br>标签</div></a>
     </div>
@@ -83,6 +83,171 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-Eclipse SonarQube启动报错" class="article" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/fd6e9fc4.html" class="article-date">
+  <time class="post-time" datetime="2014-02-12T09:53:00.000Z" itemprop="datePublished">
+    <span class="post-month">2月</span><br/>
+    <span class="post-day">12</span>
+  </time>
+</a>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/fd6e9fc4.html">Eclipse SonarQube启动报错</a>
+    </h1>
+  
+
+      <div>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/开发调试工具/">开发调试工具</a>,<a class="article-category-link" href="/categories/开发调试工具/Eclipse/">Eclipse</a>
+  </div>
+
+        
+        
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/fd6e9fc4.html" class="leancloud_visitors" data-flag-title="Eclipse SonarQube启动报错">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 241</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 1 分钟</span>
+  </div>
+ 
+        
+      </div>
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <p>由于近期，信息安全部在搞代码优化工作。<br>所以，配合上边的工作需求，使用sonar对代码进行优化检测。<br>在Eclipse上装Sonar很简单，只要在Eclipse Marketplace上面搜索“Sonar”关键字，点击第一个插件安装即可。</p>
+<p>重启，接下来对需要检测的项目进行下一步工作。<br>如果是普通java项目的话，需要将此项目变成Maven项目，然后update project。<br>update完之后，<br><code>右击项目</code> -&gt; <code>选择SonarQube</code> -&gt; <code>Analyze</code><br>之后等检测完之后需要优化的错误项就会一一出现在项目代码上面，根据提示可以进行相应修改。</p>
+<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>在点击Analyze选项之后，报Can not create markers的错误。</p>
+<h3 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h3><p>其原因在于，我本机系统是64bit的，<br>但是使用的Eclipse版本和jdk版本却是32bit版本的。</p>
+<h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><p>所以，把Eclipse和jdk的版本都换成64位的问题就解决了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/fd6e9fc4.html" data-id="cjqfzxk7t0016jvyka43u1up9" class="article-share-link">
+        分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SonarQube/">SonarQube</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Eclipse Tomcat一直处于starting状态，项目却已成功启动" class="article" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/353a4b3e.html" class="article-date">
+  <time class="post-time" datetime="2014-02-11T09:34:00.000Z" itemprop="datePublished">
+    <span class="post-month">2月</span><br/>
+    <span class="post-day">11</span>
+  </time>
+</a>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/353a4b3e.html">Eclipse Tomcat一直处于starting状态，项目却已成功启动</a>
+    </h1>
+  
+
+      <div>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/开发调试工具/">开发调试工具</a>,<a class="article-category-link" href="/categories/开发调试工具/Eclipse/">Eclipse</a>
+  </div>
+
+        
+        
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/353a4b3e.html" class="leancloud_visitors" data-flag-title="Eclipse Tomcat一直处于starting状态，项目却已成功启动">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 30</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 1 分钟</span>
+  </div>
+ 
+        
+      </div>
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <h3 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h3><p>是因为Eclipse里面设置了代理。</p>
+<h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><p><code>preference</code> -&gt; <code>network connections</code> -&gt; <code>activity provider</code> -&gt; <code>direct</code> -&gt; <code>应用</code><br>重启tomcat即可。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/353a4b3e.html" data-id="cjqfzxk7u0018jvykza02nzhy" class="article-share-link">
+        分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tomcat/">Tomcat</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
   
     <article id="post-Eclipse 改变Tomcat发布路径" class="article" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -144,7 +309,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/df9c274.html" data-id="cjq3iljao001swrykh2qu57n4" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/df9c274.html" data-id="cjqfzxk890020jvykkhnbtfry" class="article-share-link">
         分享</a>
       
       
@@ -225,7 +390,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/f362ee4b.html" data-id="cjq3iljaw0029wryk6d2qosml" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/f362ee4b.html" data-id="cjqfzxk87001wjvykxomuryw1" class="article-share-link">
         分享</a>
       
       
@@ -306,7 +471,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/d809e936.html" data-id="cjq3iljat0023wrykcfp71jjo" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/d809e936.html" data-id="cjqfzxk8f0027jvyk8a43asyg" class="article-share-link">
         分享</a>
       
       
@@ -388,7 +553,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/f59ca5b1.html" data-id="cjq3iljh700g6wryk7c6qa5wp" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/f59ca5b1.html" data-id="cjqfzxkc0009jjvykflgtlbf0" class="article-share-link">
         分享</a>
       
       
@@ -471,7 +636,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/a47d877b.html" data-id="cjq3iljgg00egwrykt2dwtwmr" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/a47d877b.html" data-id="cjqfzxkbc0081jvyke7gegm2u" class="article-share-link">
         分享</a>
       
       
@@ -582,7 +747,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/c2b7566e.html" data-id="cjq3ilji900idwrykm9wy2b1j" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/c2b7566e.html" data-id="cjqfzxkdg00bxjvykaihfqs7f" class="article-share-link">
         分享</a>
       
       
@@ -664,7 +829,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/98f41be3.html" data-id="cjq3ilj9k0007wrykbbnpb8y9" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/98f41be3.html" data-id="cjqfzxk76000cjvykhlke3znh" class="article-share-link">
         分享</a>
       
       
@@ -748,177 +913,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/d32ce889.html" data-id="cjq3ilj9b0001wryka78k3gpi" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/d32ce889.html" data-id="cjqfzxk6s0001jvykygta9gxz" class="article-share-link">
         分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nginx/">Nginx</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Oracle ORA-01722" class="article" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/a1cbf0aa.html" class="article-date">
-  <time class="post-time" datetime="2013-06-21T02:32:00.000Z" itemprop="datePublished">
-    <span class="post-month">6月</span><br/>
-    <span class="post-day">21</span>
-  </time>
-</a>
-
-  </div>
-  <div class="article-inner">
-    
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/a1cbf0aa.html">Oracle ORA-01722</a>
-    </h1>
-  
-
-      <div>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/数据库/">数据库</a>,<a class="article-category-link" href="/categories/数据库/Oracle/">Oracle</a>
-  </div>
-
-        
-        
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/a1cbf0aa.html" class="leancloud_visitors" data-flag-title="Oracle ORA-01722">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 136</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 1 分钟</span>
-  </div>
- 
-        
-      </div>
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      <p>ORA-01722:无效数字(控制文件最后一个字段)<br>图例:<br><img src="http://img.tidyko.com/blog/ORA-01722_1.jpg" alt="ORA-01722-图例1"></p>
-<h3 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h3><p>每一行物理数据最后都存在一个换行符。</p>
-<p>如果integer或者number类型的字段位于控制文件的最后，最后其实都会有CR/LF的换行符，在用sqlldr导入时会把换行符也算作那个数字的一部分，使得对应的导入ORDERADV_TK 的值与ORDERADV_TK在数据库中定义的NUMBER类型不匹配，从而出错。</p>
-<h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><p>在该列后面追加“INTEGER EXTERNAL TERMINATED BY WHITESPACE”。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/a1cbf0aa.html" data-id="cjq3iljgv00ffwrykbpk7p532" class="article-share-link">
-        分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Oracle/">Oracle</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Oracle SQL*Loader-522" class="article" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/544340d1.html" class="article-date">
-  <time class="post-time" datetime="2013-06-20T08:42:00.000Z" itemprop="datePublished">
-    <span class="post-month">6月</span><br/>
-    <span class="post-day">20</span>
-  </time>
-</a>
-
-  </div>
-  <div class="article-inner">
-    
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/544340d1.html">Oracle SQL*Loader-522</a>
-    </h1>
-  
-
-      <div>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/数据库/">数据库</a>,<a class="article-category-link" href="/categories/数据库/Oracle/">Oracle</a>
-  </div>
-
-        
-        
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/544340d1.html" class="leancloud_visitors" data-flag-title="Oracle SQL*Loader-522">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 91</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 1 分钟</span>
-  </div>
- 
-        
-      </div>
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      <p>SQL*Loader-522: lfiopn failed for file</p>
-<h3 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h3><p>Linux下使用sqlldr进行批量操作，此操作会自动生成和删除临时文件。</p>
-<p>因此，当前操作的用户必须具备对存放文件的文件夹有增删改的权限。</p>
-<h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><p>使用root登录，修改改文件夹权限为777即可。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod 777 /usr/<span class="built_in">local</span>/src/sqlldr</span><br></pre></td></tr></table></figure></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/544340d1.html" data-id="cjq3iljgz00fqwrykbvgvpsa4" class="article-share-link">
-        分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Oracle/">Oracle</a></li></ul>
 
     </footer>
   </div>
@@ -986,7 +985,7 @@
     <div class="count-box">
       <a href="/archives">
         <div><strong>
-            134</strong><br>文章</div>
+            136</strong><br>文章</div>
       </a>
       <a href="/categories">
         <div><strong>
@@ -1048,7 +1047,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy;2017 - 2018 Tidy的个人博客<br>
+      &copy;2018 - 2019 Tidy的个人博客<br>
       <!-- 由<a href="https://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
       主题-<a href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a> -->
       
