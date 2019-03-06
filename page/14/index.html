@@ -56,7 +56,7 @@
     <h2 class="author"></h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>136</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>137</strong><br>文章</div></a>
       <a href="/categories"><div><strong>49</strong><br>分类</div></a>
       <a href="/tags"><div><strong>92</strong><br>标签</div></a>
     </div>
@@ -83,6 +83,90 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-NGINX 端口占用" class="article" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/d32ce889.html" class="article-date">
+  <time class="post-time" datetime="2013-08-26T02:38:00.000Z" itemprop="datePublished">
+    <span class="post-month">8月</span><br/>
+    <span class="post-day">26</span>
+  </time>
+</a>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/d32ce889.html">NGINX 端口占用</a>
+    </h1>
+  
+
+      <div>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/服务器/">服务器</a>,<a class="article-category-link" href="/categories/服务器/Nginx/">Nginx</a>
+  </div>
+
+        
+        
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/d32ce889.html" class="leancloud_visitors" data-flag-title="NGINX 端口占用">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 216</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 1 分钟</span>
+  </div>
+ 
+        
+      </div>
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <p>将下载的windows版nginx的压缩包nginx-1.4.2.zip解压到F:\server\nginx-1.4.2里面。</p>
+<h3 id="1）运行cmd命令"><a href="#1）运行cmd命令" class="headerlink" title="1）运行cmd命令"></a>1）运行cmd命令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">F:</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> F:\server\nginx-1.4.2</span><br><span class="line"></span><br><span class="line">start nginx</span><br></pre></td></tr></table></figure>
+<p>发现启动界面一闪而过，经查看目录里面的日志文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">F:\server\nginx-1.4.2\logs\error.log后发现，默认的80端口被占用。</span><br><span class="line">2013/08/26 10:20:13 [emerg] 10632#10640: bind() to 0.0.0.0:80 failed (10013: An attempt was made to access a socket in a way forbidden by its access permissions)</span><br></pre></td></tr></table></figure></p>
+<h3 id="2）修改配置文件"><a href="#2）修改配置文件" class="headerlink" title="2）修改配置文件"></a>2）修改配置文件</h3><p>修改配置文件F:\server\nginx-1.4.2\conf\nginx.conf的Server配置里面的listen属性值，将80改为8011，保存。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">listen       8011;</span><br></pre></td></tr></table></figure></p>
+<h3 id="3）重新运行cmd命令"><a href="#3）重新运行cmd命令" class="headerlink" title="3）重新运行cmd命令"></a>3）重新运行cmd命令</h3><p>重新键入dos命令，查看Windows任务管理器，进程选项卡，出现nginx.exe，和访问localhost：8011后成功出现Welcome to nginx！页面则为启动成功。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/d32ce889.html" data-id="cjswvomu10001k1ykbsobmdle" class="article-share-link">
+        分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nginx/">Nginx</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
   
     <article id="post-Oracle ORA-01722" class="article" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -145,7 +229,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/a1cbf0aa.html" data-id="cjqrqcidq008y4fyk0lmk8gek" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/a1cbf0aa.html" data-id="cjswvon6000hbk1ykkh5kh7hy" class="article-share-link">
         分享</a>
       
       
@@ -228,7 +312,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/544340d1.html" data-id="cjqrqcidw00964fykhn30bydn" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/544340d1.html" data-id="cjswvon6300hfk1ykh9ohxj3y" class="article-share-link">
         分享</a>
       
       
@@ -311,7 +395,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/be1a87c4.html" data-id="cjqrqcicy007h4fykertr09c2" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/be1a87c4.html" data-id="cjswvon4w00fgk1yk4fbfqqjc" class="article-share-link">
         分享</a>
       
       
@@ -396,7 +480,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/6473f805.html" data-id="cjqrqcic7005z4fykvmdrg0h1" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/6473f805.html" data-id="cjswvon4c00efk1yk7o1w1ri4" class="article-share-link">
         分享</a>
       
       
@@ -478,7 +562,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/d46f9b3d.html" data-id="cjqrqcicl006v4fyku77zwmo4" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/d46f9b3d.html" data-id="cjswvon4u00fck1yk948qlk4e" class="article-share-link">
         分享</a>
       
       
@@ -566,7 +650,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/1bffb80a.html" data-id="cjqrqcidk008l4fykqjputpj4" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/1bffb80a.html" data-id="cjswvon5u00h3k1ykciyw4sc3" class="article-share-link">
         分享</a>
       
       
@@ -638,7 +722,7 @@
     <div class="count-box">
       <a href="/archives">
         <div><strong>
-            136</strong><br>文章</div>
+            137</strong><br>文章</div>
       </a>
       <a href="/categories">
         <div><strong>
