@@ -11,13 +11,13 @@
     Tidy的个人博客
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="使用Grafana对Elasticsearch数据进行展示时，可使用变量来对一个图表进行动态传参操作，下面我们就来简单了解一下怎么使用吧。 1.选择需要添加变量的仪表盘 进入Grafana主页后选择左侧侧边栏 选择Dashboards -&amp;gt; home进入仪表盘主页 选择需要添加变量的仪表盘点击进入。">
+  <meta name="description" content="使用Grafana对Elasticsearch数据进行展示时，可使用变量来对一个图表进行动态传参操作，下面我们就来简单了解一下怎么使用吧。  1.选择需要添加变量的仪表盘1.1. 进入Grafana主页后选择左侧侧边栏 1.2. 选择`Dashboards` -&amp;gt; `home`进入仪表盘主页 1.3. 选择需要添加变量的仪表盘点击进入。">
 <meta name="keywords" content="ELK,Grafana">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Grafana Variables变量使用">
 <meta property="og:url" content="https://www.tidyko.com/posts/8ca969bc.html">
 <meta property="og:site_name" content="Tidy的个人博客">
-<meta property="og:description" content="使用Grafana对Elasticsearch数据进行展示时，可使用变量来对一个图表进行动态传参操作，下面我们就来简单了解一下怎么使用吧。 1.选择需要添加变量的仪表盘 进入Grafana主页后选择左侧侧边栏 选择Dashboards -&amp;gt; home进入仪表盘主页 选择需要添加变量的仪表盘点击进入。">
+<meta property="og:description" content="使用Grafana对Elasticsearch数据进行展示时，可使用变量来对一个图表进行动态传参操作，下面我们就来简单了解一下怎么使用吧。  1.选择需要添加变量的仪表盘1.1. 进入Grafana主页后选择左侧侧边栏 1.2. 选择`Dashboards` -&amp;gt; `home`进入仪表盘主页 1.3. 选择需要添加变量的仪表盘点击进入。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://img.tidyko.com/blog/grafana_-1.png">
 <meta property="og:image" content="http://img.tidyko.com/blog/grafana_-2.png">
@@ -27,10 +27,10 @@
 <meta property="og:image" content="http://img.tidyko.com/blog/grafana_2.png">
 <meta property="og:image" content="http://img.tidyko.com/blog/grafana_3.png">
 <meta property="og:image" content="http://img.tidyko.com/blog/grafana_4.png">
-<meta property="og:updated_time" content="2019-03-11T09:26:57.531Z">
+<meta property="og:updated_time" content="2019-03-11T09:30:04.666Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Grafana Variables变量使用">
-<meta name="twitter:description" content="使用Grafana对Elasticsearch数据进行展示时，可使用变量来对一个图表进行动态传参操作，下面我们就来简单了解一下怎么使用吧。 1.选择需要添加变量的仪表盘 进入Grafana主页后选择左侧侧边栏 选择Dashboards -&amp;gt; home进入仪表盘主页 选择需要添加变量的仪表盘点击进入。">
+<meta name="twitter:description" content="使用Grafana对Elasticsearch数据进行展示时，可使用变量来对一个图表进行动态传参操作，下面我们就来简单了解一下怎么使用吧。  1.选择需要添加变量的仪表盘1.1. 进入Grafana主页后选择左侧侧边栏 1.2. 选择`Dashboards` -&amp;gt; `home`进入仪表盘主页 1.3. 选择需要添加变量的仪表盘点击进入。">
 <meta name="twitter:image" content="http://img.tidyko.com/blog/grafana_-1.png">
   
   <link rel="alternate" href="/atom.xml" title="Tidy的个人博客" type="application/atom+xml">
@@ -138,7 +138,7 @@
 
   &nbsp; | &nbsp;
   <div class="view-box">
-    <span>字数 306</span>
+    <span>字数 309</span>
   </div>
   &nbsp; | &nbsp;
   <div class="view-box">
@@ -151,23 +151,29 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-      <p>使用Grafana对Elasticsearch数据进行展示时，可使用变量来对一个图表进行动态传参操作，下面我们就来简单了解一下怎么使用吧。<br><img src="http://img.tidyko.com/blog/grafana_-1.png" alt=""></p>
-<h2 id="1-选择需要添加变量的仪表盘"><a href="#1-选择需要添加变量的仪表盘" class="headerlink" title="1.选择需要添加变量的仪表盘"></a>1.选择需要添加变量的仪表盘</h2><ol>
-<li>进入Grafana主页后选择左侧侧边栏</li>
-<li>选择<code>Dashboards</code> -&gt; <code>home</code>进入仪表盘主页</li>
-<li>选择需要添加变量的仪表盘点击进入。<a id="more"></a>
-<img src="http://img.tidyko.com/blog/grafana_-2.png" alt=""></li>
-</ol>
-<h2 id="2-点击设置按钮"><a href="#2-点击设置按钮" class="headerlink" title="2.点击设置按钮"></a>2.点击设置按钮</h2><p>进入仪表盘后，点击页面右上角的<code>Dashboard settings</code>进入设置页面。<br><img src="http://img.tidyko.com/blog/grafana_5.png" alt=""></p>
-<h2 id="3-创建Variable变量"><a href="#3-创建Variable变量" class="headerlink" title="3.创建Variable变量"></a>3.创建Variable变量</h2><p>选择<code>Settings</code> -&gt; <code>Variables</code> -&gt; <code>+New</code> ，进行创建一个变量。<br><img src="http://img.tidyko.com/blog/grafana_0.png" alt=""></p>
-<h2 id="4-设置变量"><a href="#4-设置变量" class="headerlink" title="4.设置变量"></a>4.设置变量</h2><p>如下图所示创建一个<code>platform</code>字段值变量，设置完成后点击最下方的<code>Add</code>按钮进行保存。<br><img src="http://img.tidyko.com/blog/grafana_1.png" alt=""></p>
-<h2 id="5-进入具体图表设置变量"><a href="#5-进入具体图表设置变量" class="headerlink" title="5.进入具体图表设置变量"></a>5.进入具体图表设置变量</h2><p>进入具体图表后，将需要使用变量替换的值替换成$变量值即可。<br><img src="http://img.tidyko.com/blog/grafana_2.png" alt=""><br>需要注意的是，如果需要全词匹配，则设置的变量名需要使用.keyword那个，不然则可能出现正则匹配出错，出现多个数据的情况。<br><img src="http://img.tidyko.com/blog/grafana_3.png" alt=""><br>正确的为如下：<br><img src="http://img.tidyko.com/blog/grafana_4.png" alt=""></p>
+      <p>使用Grafana对Elasticsearch数据进行展示时，可使用变量来对一个图表进行动态传参操作，下面我们就来简单了解一下怎么使用吧。</p>
+<p><img src="http://img.tidyko.com/blog/grafana_-1.png" alt=""></p>
+<h2 id="1-选择需要添加变量的仪表盘"><a href="#1-选择需要添加变量的仪表盘" class="headerlink" title="1.选择需要添加变量的仪表盘"></a>1.选择需要添加变量的仪表盘</h2><pre><code>1.1. 进入Grafana主页后选择左侧侧边栏
+1.2. 选择`Dashboards` -&gt; `home`进入仪表盘主页
+1.3. 选择需要添加变量的仪表盘点击进入。
+</code></pre><a id="more"></a>
+<p><img src="http://img.tidyko.com/blog/grafana_-2.png" alt=""></p>
+<h2 id="2-点击设置按钮"><a href="#2-点击设置按钮" class="headerlink" title="2.点击设置按钮"></a>2.点击设置按钮</h2><p>进入仪表盘后，点击页面右上角的<code>Dashboard settings</code>进入设置页面。</p>
+<p><img src="http://img.tidyko.com/blog/grafana_5.png" alt=""></p>
+<h2 id="3-创建Variable变量"><a href="#3-创建Variable变量" class="headerlink" title="3.创建Variable变量"></a>3.创建Variable变量</h2><p>选择<code>Settings</code> -&gt; <code>Variables</code> -&gt; <code>+New</code> ，进行创建一个变量。</p>
+<p><img src="http://img.tidyko.com/blog/grafana_0.png" alt=""></p>
+<h2 id="4-设置变量"><a href="#4-设置变量" class="headerlink" title="4.设置变量"></a>4.设置变量</h2><p>如下图所示创建一个<code>platform</code>字段值变量，设置完成后点击最下方的<code>Add</code>按钮进行保存。</p>
+<p><img src="http://img.tidyko.com/blog/grafana_1.png" alt=""></p>
+<h2 id="5-进入具体图表设置变量"><a href="#5-进入具体图表设置变量" class="headerlink" title="5.进入具体图表设置变量"></a>5.进入具体图表设置变量</h2><p>进入具体图表后，将需要使用变量替换的值替换成$变量值即可。</p>
+<p><img src="http://img.tidyko.com/blog/grafana_2.png" alt=""><br>需要注意的是，如果需要全词匹配，则设置的变量名需要使用.keyword那个，不然则可能出现正则匹配出错，出现多个数据的情况。</p>
+<p><img src="http://img.tidyko.com/blog/grafana_3.png" alt=""><br>正确的为如下：</p>
+<p><img src="http://img.tidyko.com/blog/grafana_4.png" alt=""></p>
 <h2 id="6-保存"><a href="#6-保存" class="headerlink" title="6.保存"></a>6.保存</h2><p>最后选择保存提交即可看到文章第一张图的效果。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/8ca969bc.html" data-id="cjt457qwu002lu6ykhi033hkn" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/8ca969bc.html" data-id="cjt45bnmc002h01ykgbg2mssa" class="article-share-link">
         分享</a>
       
       
