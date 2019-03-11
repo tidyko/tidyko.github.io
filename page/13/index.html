@@ -56,9 +56,9 @@
     <h2 class="author"></h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>137</strong><br>文章</div></a>
-      <a href="/categories"><div><strong>49</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>92</strong><br>标签</div></a>
+      <a href="/archives"><div><strong>138</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>50</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>93</strong><br>标签</div></a>
     </div>
     <ul class="blog-link">
      
@@ -83,6 +83,91 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-Eclipse Failed to load the JNI shared library" class="article" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/bd745825.html" class="article-date">
+  <time class="post-time" datetime="2014-02-12T10:00:00.000Z" itemprop="datePublished">
+    <span class="post-month">2月</span><br/>
+    <span class="post-day">12</span>
+  </time>
+</a>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/bd745825.html">Eclipse Failed to load the JNI shared library</a>
+    </h1>
+  
+
+      <div>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/开发调试工具/">开发调试工具</a>,<a class="article-category-link" href="/categories/开发调试工具/Eclipse/">Eclipse</a>
+  </div>
+
+        
+        
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/bd745825.html" class="leancloud_visitors" data-flag-title="Eclipse Failed to load the JNI shared library">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 278</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 1 分钟</span>
+  </div>
+ 
+        
+      </div>
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <p>这是因为JDK配置错误所导致的现象。</p>
+<p>一般说来，新购笔记本会预装64位的windows系统，而在网上下载软件时，32位会优先出现在页面中（现在来说是这个情况，但我认为未来64位会越来越普及）。</p>
+<p>如果你是64位的系统，却安装了32位的JDK，就会导致上面的情况。</p>
+<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><h3 id="1）"><a href="#1）" class="headerlink" title="1）"></a>1）</h3><p>卸载掉原来安装的32位的JDK，然后安装64位的JDK到电脑中。</p>
+<h3 id="2）"><a href="#2）" class="headerlink" title="2）"></a>2）</h3><p>重新修改path 和 classpath 两个环境变量。<br>因为在64系统当中，32位软件回安装到program files （<em>86）文件夹，64位软件会安装到program files 文件夹，当你先前安装32JDK时，你设置的环境变量路径当中当然会包括“program files （</em>86）”，而这时JDK已经转移到“program files”中了，修改过来即可。</p>
+<h3 id="3）"><a href="#3）" class="headerlink" title="3）"></a>3）</h3><p>注意你两次安装的JDK版本号，不一定相同，因为安装时会根据你的版本号建立JDK文件夹，如果两次的版本号不同，在环境变量里也要修改。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/bd745825.html" data-id="cjt457qvp000yu6ykoc8u2fcw" class="article-share-link">
+        分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jdk/">Jdk</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
   
     <article id="post-Eclipse Failed to load JavaHL Library" class="article" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -143,7 +228,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3e42071e.html" data-id="cjszuuff2000w92ykst0muduq" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/3e42071e.html" data-id="cjt457qvr0012u6yk35ad3x2j" class="article-share-link">
         分享</a>
       
       
@@ -227,7 +312,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/fd6e9fc4.html" data-id="cjszuuffb001892ykyfb7bkcn" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/fd6e9fc4.html" data-id="cjt457qvx001au6ykckmw47lm" class="article-share-link">
         分享</a>
       
       
@@ -308,7 +393,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/353a4b3e.html" data-id="cjszuuffg001d92ykz89tiicu" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/353a4b3e.html" data-id="cjt457qvz001eu6yk54642cr1" class="article-share-link">
         分享</a>
       
       
@@ -390,7 +475,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/df9c274.html" data-id="cjszuufg2002292yk0fits4tc" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/df9c274.html" data-id="cjt457qwe0023u6ykiqyrb8vw" class="article-share-link">
         分享</a>
       
       
@@ -471,7 +556,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/f362ee4b.html" data-id="cjszuuffr001q92yk6gisviuk" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/f362ee4b.html" data-id="cjt457qwi002au6ykay1oqo2d" class="article-share-link">
         分享</a>
       
       
@@ -552,7 +637,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/d809e936.html" data-id="cjszuufg4002592yky5cex2ut" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/d809e936.html" data-id="cjt457qwj002du6yk3wv3wxma" class="article-share-link">
         分享</a>
       
       
@@ -634,7 +719,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/f59ca5b1.html" data-id="cjszuufmw009i92ykj9esk0ct" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/f59ca5b1.html" data-id="cjt457r1e009vu6yklxrl75c2" class="article-share-link">
         分享</a>
       
       
@@ -717,7 +802,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/a47d877b.html" data-id="cjszuufm4008b92ykynx0qha6" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/a47d877b.html" data-id="cjt457r0l008fu6ykwcazisan" class="article-share-link">
         分享</a>
       
       
@@ -828,93 +913,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/c2b7566e.html" data-id="cjszuufof00c792ykjocpa9w3" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/c2b7566e.html" data-id="cjt457r2v00c5u6ykd4jkfgs0" class="article-share-link">
         分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WordPress/">WordPress</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/XAMPP/">XAMPP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/花生壳/">花生壳</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Android ScrollView+GridView显示问题" class="article" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/98f41be3.html" class="article-date">
-  <time class="post-time" datetime="2013-09-11T02:25:00.000Z" itemprop="datePublished">
-    <span class="post-month">9月</span><br/>
-    <span class="post-day">11</span>
-  </time>
-</a>
-
-  </div>
-  <div class="article-inner">
-    
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/98f41be3.html">Android ScrollView+GridView显示问题</a>
-    </h1>
-  
-
-      <div>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
-  </div>
-
-        
-        
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/98f41be3.html" class="leancloud_visitors" data-flag-title="Android ScrollView+GridView显示问题">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 317</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 2 分钟</span>
-  </div>
- 
-        
-      </div>
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      <p>在使用Android的ScrollView里面嵌套GridView时，设置android:layout_height=”wrap_content”属性，运行界面的效果不会出现全部数据，即GridView会显示不全。 </p>
-<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><h3 id="1）重写onMeasure"><a href="#1）重写onMeasure" class="headerlink" title="1）重写onMeasure()"></a>1）重写onMeasure()</h3><p>重写GridView的onMeasure()方法，使其不会出现滚动条即可。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.gridview;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> android.content.Context;</span><br><span class="line"><span class="keyword">import</span> android.util.AttributeSet;</span><br><span class="line"><span class="keyword">import</span> android.widget.GridView;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyGridView</span> <span class="keyword">extends</span> <span class="title">GridView</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyGridView</span><span class="params">(Context context)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(context);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyGridView</span><span class="params">(Context context, AttributeSet attrs)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(context, attrs);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyGridView</span><span class="params">(Context context, AttributeSet attrs, <span class="keyword">int</span> defStyle)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(context, attrs, defStyle);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onMeasure</span><span class="params">(<span class="keyword">int</span> widthMeasureSpec, <span class="keyword">int</span> heightMeasureSpec)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> expandSpec = MeasureSpec.makeMeasureSpec( </span><br><span class="line">                    Integer.MAX_VALUE &gt;&gt; <span class="number">2</span>, MeasureSpec.AT_MOST); </span><br><span class="line">        <span class="keyword">super</span>.onMeasure(widthMeasureSpec, expandSpec); </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="2）引用重写的GridView控件"><a href="#2）引用重写的GridView控件" class="headerlink" title="2）引用重写的GridView控件"></a>2）引用重写的GridView控件</h3><p>在布局文件里面引用重写的GridView控件。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">com.example.gridview.MyGridView</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:id</span>=<span class="string">"@+id/gv1"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_width</span>=<span class="string">"fill_parent"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:background</span>=<span class="string">"@color/gv1"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:columnWidth</span>=<span class="string">"@dimen/itemSize"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:gravity</span>=<span class="string">"center"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:horizontalSpacing</span>=<span class="string">"@dimen/horiz_spac"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:numColumns</span>=<span class="string">"auto_fit"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:scrollbarStyle</span>=<span class="string">"insideOverlay"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:scrollbars</span>=<span class="string">"vertical"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:stretchMode</span>=<span class="string">"columnWidth"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:verticalSpacing</span>=<span class="string">"@dimen/vertc_space"</span> /&gt;</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="3）最后设置Adapter即可"><a href="#3）最后设置Adapter即可" class="headerlink" title="3）最后设置Adapter即可"></a>3）最后设置Adapter即可</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.gridview;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> android.app.Activity;</span><br><span class="line"><span class="keyword">import</span> android.os.Bundle;</span><br><span class="line"><span class="keyword">import</span> android.widget.GridView;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.grid_view);</span><br><span class="line">        </span><br><span class="line">        GridView gv=(GridView)findViewById(R.id.gv1);</span><br><span class="line">        gv.setAdapter(<span class="keyword">new</span> GridAdapter(<span class="keyword">this</span>,R.layout.grid_item));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/98f41be3.html" data-id="cjszuufeh000d92ykpejh9mt7" class="article-share-link">
-        分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
 
     </footer>
   </div>
@@ -982,15 +985,15 @@
     <div class="count-box">
       <a href="/archives">
         <div><strong>
-            137</strong><br>文章</div>
+            138</strong><br>文章</div>
       </a>
       <a href="/categories">
         <div><strong>
-            49</strong><br>分类</div>
+            50</strong><br>分类</div>
       </a>
       <a href="/tags">
         <div><strong>
-            92</strong><br>标签</div>
+            93</strong><br>标签</div>
       </a>
     </div>
 
