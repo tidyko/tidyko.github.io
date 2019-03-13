@@ -11,21 +11,21 @@
     Tidy的个人博客
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="在将Vue的编译静态文件上传至GitHub仓库，作为项目主页进行访问的过程中遇到了一些问题，记录一下。 Vue的基础路径问题生成静态页后，想放到GitHub作为项目主页，路径需要设置为”./“ 123module.exports = &amp;#123;  baseUrl: &quot;./&quot;&amp;#125;; 将Vue项目编译完成后的dist上传至GitHub仓库将Vue项目进行npm run build之后，将di">
+  <meta name="description" content="在将Vue的编译静态文件上传至GitHub仓库，作为项目主页进行访问的过程中遇到了一些问题，记录一下。 1.Vue的基础路径问题生成静态页后，想放到GitHub作为项目主页，路径需要设置为”./“ 123module.exports = &amp;#123;  baseUrl: &quot;./&quot;&amp;#125;; 2.将Vue项目编译完成后的dist上传至GitHub仓库将Vue项目进行npm run build之后">
 <meta name="keywords" content="GitHub,GitHubPage">
 <meta property="og:type" content="article">
 <meta property="og:title" content="GitHubPage 搭建项目主页的一些问题">
 <meta property="og:url" content="https://www.tidyko.com/posts/a4e1109a.html">
 <meta property="og:site_name" content="Tidy的个人博客">
-<meta property="og:description" content="在将Vue的编译静态文件上传至GitHub仓库，作为项目主页进行访问的过程中遇到了一些问题，记录一下。 Vue的基础路径问题生成静态页后，想放到GitHub作为项目主页，路径需要设置为”./“ 123module.exports = &amp;#123;  baseUrl: &quot;./&quot;&amp;#125;; 将Vue项目编译完成后的dist上传至GitHub仓库将Vue项目进行npm run build之后，将di">
+<meta property="og:description" content="在将Vue的编译静态文件上传至GitHub仓库，作为项目主页进行访问的过程中遇到了一些问题，记录一下。 1.Vue的基础路径问题生成静态页后，想放到GitHub作为项目主页，路径需要设置为”./“ 123module.exports = &amp;#123;  baseUrl: &quot;./&quot;&amp;#125;; 2.将Vue项目编译完成后的dist上传至GitHub仓库将Vue项目进行npm run build之后">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://img.tidyko.com/blog/github_prjpage_3.png">
 <meta property="og:image" content="http://img.tidyko.com/blog/github_prjpage_1.png">
 <meta property="og:image" content="http://img.tidyko.com/blog/github_prjpage_2.png">
-<meta property="og:updated_time" content="2019-03-13T07:36:03.134Z">
+<meta property="og:updated_time" content="2019-03-13T07:37:45.582Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GitHubPage 搭建项目主页的一些问题">
-<meta name="twitter:description" content="在将Vue的编译静态文件上传至GitHub仓库，作为项目主页进行访问的过程中遇到了一些问题，记录一下。 Vue的基础路径问题生成静态页后，想放到GitHub作为项目主页，路径需要设置为”./“ 123module.exports = &amp;#123;  baseUrl: &quot;./&quot;&amp;#125;; 将Vue项目编译完成后的dist上传至GitHub仓库将Vue项目进行npm run build之后，将di">
+<meta name="twitter:description" content="在将Vue的编译静态文件上传至GitHub仓库，作为项目主页进行访问的过程中遇到了一些问题，记录一下。 1.Vue的基础路径问题生成静态页后，想放到GitHub作为项目主页，路径需要设置为”./“ 123module.exports = &amp;#123;  baseUrl: &quot;./&quot;&amp;#125;; 2.将Vue项目编译完成后的dist上传至GitHub仓库将Vue项目进行npm run build之后">
 <meta name="twitter:image" content="http://img.tidyko.com/blog/github_prjpage_3.png">
   
   <link rel="alternate" href="/atom.xml" title="Tidy的个人博客" type="application/atom+xml">
@@ -133,7 +133,7 @@
 
   &nbsp; | &nbsp;
   <div class="view-box">
-    <span>字数 339</span>
+    <span>字数 343</span>
   </div>
   &nbsp; | &nbsp;
   <div class="view-box">
@@ -147,20 +147,20 @@
     <div class="article-entry" itemprop="articleBody">
       
       <p>在将Vue的编译静态文件上传至GitHub仓库，作为项目主页进行访问的过程中遇到了一些问题，记录一下。</p>
-<h2 id="Vue的基础路径问题"><a href="#Vue的基础路径问题" class="headerlink" title="Vue的基础路径问题"></a>Vue的基础路径问题</h2><p>生成静态页后，想放到GitHub作为项目主页，路径需要设置为”./“</p>
+<h2 id="1-Vue的基础路径问题"><a href="#1-Vue的基础路径问题" class="headerlink" title="1.Vue的基础路径问题"></a>1.Vue的基础路径问题</h2><p>生成静态页后，想放到GitHub作为项目主页，路径需要设置为”./“</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  baseUrl: <span class="string">"./"</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h2 id="将Vue项目编译完成后的dist上传至GitHub仓库"><a href="#将Vue项目编译完成后的dist上传至GitHub仓库" class="headerlink" title="将Vue项目编译完成后的dist上传至GitHub仓库"></a>将Vue项目编译完成后的dist上传至GitHub仓库</h2><p>将Vue项目进行<code>npm run build</code>之后，将dist的文件全部上传至新建的项目主页仓库。</p>
-<h2 id="在已有个人主页后，创建项目主页"><a href="#在已有个人主页后，创建项目主页" class="headerlink" title="在已有个人主页后，创建项目主页"></a>在已有个人主页后，创建项目主页</h2><p>如果之前创建过GitHub个人主页，并设置过个性域名，则项目主页不需要上传CNAME文件，直接将静态文件上传至仓库即可。<br><a id="more"></a><br><img src="http://img.tidyko.com/blog/github_prjpage_3.png" alt="域名设置A记录以及CNAME"></p>
+<h2 id="2-将Vue项目编译完成后的dist上传至GitHub仓库"><a href="#2-将Vue项目编译完成后的dist上传至GitHub仓库" class="headerlink" title="2.将Vue项目编译完成后的dist上传至GitHub仓库"></a>2.将Vue项目编译完成后的dist上传至GitHub仓库</h2><p>将Vue项目进行<code>npm run build</code>之后，将dist的文件全部上传至新建的项目主页仓库。</p>
+<h2 id="3-在已有个人主页后，创建项目主页"><a href="#3-在已有个人主页后，创建项目主页" class="headerlink" title="3.在已有个人主页后，创建项目主页"></a>3.在已有个人主页后，创建项目主页</h2><p>如果之前创建过GitHub个人主页，并设置过个性域名，则项目主页不需要上传CNAME文件，直接将静态文件上传至仓库即可。<br><a id="more"></a><br><img src="http://img.tidyko.com/blog/github_prjpage_3.png" alt="域名设置A记录以及CNAME"></p>
 <p><img src="http://img.tidyko.com/blog/github_prjpage_1.png" alt="GitHub个人主页设置"></p>
 <p>这里GitHub个人主页库里面需要新建一个CNAME文件，内容为tidyko.com</p>
 <p><img src="http://img.tidyko.com/blog/github_prjpage_2.png" alt="GitHub项目主页设置"></p>
-<h2 id="可以通过域名访问后，报以下错误"><a href="#可以通过域名访问后，报以下错误" class="headerlink" title="可以通过域名访问后，报以下错误"></a>可以通过域名访问后，报以下错误</h2><p>如果通过上面步骤的设置后，正常访问到页面，但是是空白页面的话，报以下错误，可能是使用了vue的history模式，将其关掉即可。</p>
+<h2 id="4-可以通过域名访问后，报以下错误"><a href="#4-可以通过域名访问后，报以下错误" class="headerlink" title="4.可以通过域名访问后，报以下错误"></a>4.可以通过域名访问后，报以下错误</h2><p>如果通过上面步骤的设置后，正常访问到页面，但是是空白页面的话，报以下错误，可能是使用了vue的history模式，将其关掉即可。</p>
 <pre><code>We&apos;re sorry but gojyuuon doesn&apos;t work properly without JavaScript enabled. Please enable it to continue.
 </code></pre><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> Router(&#123;</span><br><span class="line">  <span class="comment">// mode: "history",</span></span><br><span class="line">  base: process.env.BASE_URL,</span><br><span class="line">  routes: [&#123;</span><br><span class="line">      path: <span class="string">"/"</span>,</span><br><span class="line">      name: <span class="string">"welcome"</span>,</span><br><span class="line">      component: welcome</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      path: <span class="string">"/index"</span>,</span><br><span class="line">      name: <span class="string">"index"</span>,</span><br><span class="line">      component: <span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">import</span>(<span class="string">"./views/index.vue"</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      path: <span class="string">"/video"</span>,</span><br><span class="line">      name: <span class="string">"video"</span>,</span><br><span class="line">      component: <span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">import</span>(<span class="string">"./views/video.vue"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/a4e1109a.html" data-id="cjt6w4xcb002chvykwj1ssxps" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/a4e1109a.html" data-id="cjt6w6xna0027myykcd4xhul1" class="article-share-link">
         分享</a>
       
       
