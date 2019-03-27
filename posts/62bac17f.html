@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="Tidy的个人博客">
 <meta property="og:description" content="一、介绍使用mpvue构建编译小程序，vant-weapp组件库作为页面组件，做一些记录。 mpvuevant-weapp 二、使用复制编译文件按照mpvue官方（五分钟上手教程 ）初始化mpvue项目,进入到项目根目录安装vant-weapp依赖1npm i vant-weapp -S --production 安装完毕之后，在node_modules目录下找到vant-weapp将dist下面">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-27T03:43:48.072Z">
+<meta property="og:updated_time" content="2019-03-27T03:52:41.802Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mpvue中使用vant-weapp组件库">
 <meta name="twitter:description" content="一、介绍使用mpvue构建编译小程序，vant-weapp组件库作为页面组件，做一些记录。 mpvuevant-weapp 二、使用复制编译文件按照mpvue官方（五分钟上手教程 ）初始化mpvue项目,进入到项目根目录安装vant-weapp依赖1npm i vant-weapp -S --production 安装完毕之后，在node_modules目录下找到vant-weapp将dist下面">
@@ -129,7 +129,7 @@
 
   &nbsp; | &nbsp;
   <div class="view-box">
-    <span>字数 556</span>
+    <span>字数 549</span>
   </div>
   &nbsp; | &nbsp;
   <div class="view-box">
@@ -158,11 +158,12 @@
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bind:click="onClick"</span><br></pre></td></tr></table></figure>
 <p>mpvue 为</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@click="onClick"</span><br></pre></td></tr></table></figure>
-<h2 id="vue页面中组件引入"><a href="#vue页面中组件引入" class="headerlink" title="vue页面中组件引入"></a>vue页面中组件引入</h2><p><code>vant</code>中像<code>Toast</code>这种操作反馈类的组件都有两个引入，<br>一是组件的引入，这个在main.json中引入；<br>二是方法的引入，需要在vue文件中import引入，值得注意的是，这里的引入不能使用绝对路径，可以用类似于这样的相对路径。</p>
+<h2 id="vue页面中组件引入"><a href="#vue页面中组件引入" class="headerlink" title="vue页面中组件引入"></a>vue页面中组件引入</h2><p><code>vant</code>中像<code>Toast</code>这种操作反馈类的组件都有两个引入，<br>一是组件的引入，这个在<code>app.json</code>中引入；<br>二是方法的引入，需要在vue文件中import引入，值得注意的是，这里的引入不能使用绝对路径，可以用类似于这样的相对路径。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Toast <span class="keyword">from</span> <span class="string">'@/../static/vant/toast/toast'</span>;</span><br></pre></td></tr></table></figure>
 <h2 id="获取event"><a href="#获取event" class="headerlink" title="获取event"></a>获取event</h2><p>值得注意的是，<code>mpvue</code>中获取<code>event</code>值与原生小程序有所不同。举例：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">onChange(event)&#123; <span class="comment">// 获取表单组件filed的值</span></span><br><span class="line">  <span class="built_in">console</span>.log(event.mp.detail) <span class="comment">// 注意加入mp</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="富文本支持"><a href="#富文本支持" class="headerlink" title="富文本支持"></a>富文本支持</h2><h3 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h3><p>如果普通的html字符串可以使用v-html，但是如果是自定义标签(比如<code>&lt;hi&gt;&lt;/hi&gt;</code>)就渲染不了样式，这样需要使用到富文本组件。<br>(mpvue-wxParse)[<a href="https://github.com/F-loat/mpvue-wxParse]" target="_blank" rel="noopener">https://github.com/F-loat/mpvue-wxParse]</a></p>
+<h2 id="富文本支持"><a href="#富文本支持" class="headerlink" title="富文本支持"></a>富文本支持</h2><h3 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h3><p>如果普通的html字符串可以使用v-html，但是如果是自定义标签(比如<code>&lt;hi&gt;&lt;/hi&gt;</code>)就渲染不了样式，这样需要使用到富文本组件。</p>
+<p><a href="https://github.com/F-loat/mpvue-wxParse" target="_blank" rel="noopener">mpvue-wxParse</a></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev mpvue-wxparse</span><br></pre></td></tr></table></figure>
 <h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>动态样式需要另外自行引入才会生效。</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">wxParse</span></span></span><br><span class="line"><span class="tag">    <span class="attr">:content</span>=<span class="string">"data"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">className</span>=<span class="string">"grammarTip"</span></span></span><br><span class="line"><span class="tag">    /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript"><span class="keyword">import</span> wxParse <span class="keyword">from</span> <span class="string">'mpvue-wxparse'</span></span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="undefined">  data () &#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="xml">        "data":"<span class="tag">&lt;<span class="name">div</span>&gt;</span>Hello<span class="tag">&lt;<span class="name">hi</span>&gt;</span>,<span class="tag">&lt;/<span class="name">hi</span>&gt;</span>World.<span class="tag">&lt;/<span class="name">div</span>&gt;</span>"</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">  &#125;,</span></span><br><span class="line"><span class="undefined">  components: &#123;</span></span><br><span class="line"><span class="undefined">    wxParse</span></span><br><span class="line"><span class="undefined">  &#125;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">scoped</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">@import url("~mpvue-wxparse/src/wxParse.css");</span></span><br><span class="line"><span class="undefined">@import url("test.css");</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
@@ -172,7 +173,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/62bac17f.html" data-id="cjtqo081f00854uyk3hoynsf9" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/62bac17f.html" data-id="cjtqobofi008obkykrpdyiyhb" class="article-share-link">
         分享</a>
       
       
