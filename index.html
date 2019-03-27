@@ -56,9 +56,9 @@
     <h2 class="author"></h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>139</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>140</strong><br>文章</div></a>
       <a href="/categories"><div><strong>52</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>95</strong><br>标签</div></a>
+      <a href="/tags"><div><strong>98</strong><br>标签</div></a>
     </div>
     <ul class="blog-link">
      
@@ -83,6 +83,108 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-Mpvue中使用vant-weapp组件库" class="article" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/62bac17f.html" class="article-date">
+  <time class="post-time" datetime="2019-03-27T02:38:00.000Z" itemprop="datePublished">
+    <span class="post-month">3月</span><br/>
+    <span class="post-day">27</span>
+  </time>
+</a>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/62bac17f.html">mpvue中使用vant-weapp组件库</a>
+    </h1>
+  
+
+      <div>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Vue/">Vue</a>
+  </div>
+
+        
+        
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/62bac17f.html" class="leancloud_visitors" data-flag-title="mpvue中使用vant-weapp组件库">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 547</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 2 分钟</span>
+  </div>
+ 
+        
+      </div>
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <h1 id="一、介绍"><a href="#一、介绍" class="headerlink" title="一、介绍"></a>一、介绍</h1><p>使用mpvue构建编译小程序，vant-weapp组件库作为页面组件，做一些记录。<br><a href="https://github.com/Meituan-Dianping/mpvue" target="_blank" rel="noopener">mpvue</a><br><a href="https://github.com/youzan/vant-weapp" target="_blank" rel="noopener">vant-weapp</a></p>
+<h1 id="二、使用"><a href="#二、使用" class="headerlink" title="二、使用"></a>二、使用</h1><h2 id="复制编译文件"><a href="#复制编译文件" class="headerlink" title="复制编译文件"></a>复制编译文件</h2><p>按照mpvue官方（<a href="http://mpvue.com/mpvue/quickstart/" target="_blank" rel="noopener">五分钟上手教程 </a>）初始化mpvue项目,进入到项目根目录安装vant-weapp依赖<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i vant-weapp -S --production</span><br></pre></td></tr></table></figure></p>
+<p>安装完毕之后，在<code>node_modules</code>目录下找到<code>vant-weapp</code>将<code>dist</code>下面的所有文件复制到你项目的<code>/static/vant/</code>目录下。</p>
+<h2 id="引入组件"><a href="#引入组件" class="headerlink" title="引入组件"></a>引入组件</h2><p>在<code>app.json</code>下加入<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">"usingComponents": &#123;</span><br><span class="line">    "van-search": "/static/vant/button/index"</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="使用组件"><a href="#使用组件" class="headerlink" title="使用组件"></a>使用组件</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">van-button</span>&gt;</span>测试<span class="tag">&lt;/<span class="name">van-button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h1 id="三、踩坑"><a href="#三、踩坑" class="headerlink" title="三、踩坑"></a>三、踩坑</h1><p>具体组件 api 文档参考(Vant Weapp - 轻量、可靠的小程序 UI 组件库)[<a href="https://youzan.github.io/vant-weapp/#/intro]" target="_blank" rel="noopener">https://youzan.github.io/vant-weapp/#/intro]</a></p>
+<h2 id="值绑定方式"><a href="#值绑定方式" class="headerlink" title="值绑定方式"></a>值绑定方式</h2><p>原生小程序使用方式为</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">value="&#123;&#123;value&#125;&#125;"</span><br></pre></td></tr></table></figure>
+<p>mpvue 为</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">v-bind:value="value"</span><br><span class="line">//或者</span><br><span class="line">:value="value"</span><br></pre></td></tr></table></figure>
+<h2 id="事件监听"><a href="#事件监听" class="headerlink" title="事件监听"></a>事件监听</h2><p>原生小程序使用方式为</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bind:click="onClick"</span><br></pre></td></tr></table></figure>
+<p>mpvue 为</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@click="onClick"</span><br></pre></td></tr></table></figure>
+<h2 id="vue页面中组件引入"><a href="#vue页面中组件引入" class="headerlink" title="vue页面中组件引入"></a>vue页面中组件引入</h2><p><code>vant</code>中像<code>Toast</code>这种操作反馈类的组件都有两个引入，<br>一是组件的引入，这个在main.json中引入；<br>二是方法的引入，需要在vue文件中import引入，值得注意的是，这里的引入不能使用绝对路径，可以用类似于这样的相对路径。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Toast <span class="keyword">from</span> <span class="string">'@/../static/vant/toast/toast'</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="获取event"><a href="#获取event" class="headerlink" title="获取event"></a>获取event</h2><p>值得注意的是，<code>mpvue</code>中获取<code>event</code>值与原生小程序有所不同。举例：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">onChange(event)&#123; <span class="comment">// 获取表单组件filed的值</span></span><br><span class="line">  <span class="built_in">console</span>.log(event.mp.detail) <span class="comment">// 注意加入mp</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="富文本支持"><a href="#富文本支持" class="headerlink" title="富文本支持"></a>富文本支持</h2><h3 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h3><p>如果普通的html字符串可以使用v-html，但是如果是自定义标签(比如<code>&lt;hi&gt;&lt;/hi&gt;</code>)就渲染不了样式，这样需要使用到富文本组件。<br>(mpvue-wxParse)[<a href="https://github.com/F-loat/mpvue-wxParse]" target="_blank" rel="noopener">https://github.com/F-loat/mpvue-wxParse]</a></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev mpvue-wxparse</span><br></pre></td></tr></table></figure>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>动态样式需要另外自行引入才会生效。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">wxParse</span></span></span><br><span class="line"><span class="tag">    <span class="attr">:content</span>=<span class="string">"data"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">className</span>=<span class="string">"grammarTip"</span></span></span><br><span class="line"><span class="tag">    /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript"><span class="keyword">import</span> wxParse <span class="keyword">from</span> <span class="string">'mpvue-wxparse'</span></span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="undefined">  data () &#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="xml">        "data":"<span class="tag">&lt;<span class="name">div</span>&gt;</span>Hello<span class="tag">&lt;<span class="name">hi</span>&gt;</span>,<span class="tag">&lt;/<span class="name">hi</span>&gt;</span>World.<span class="tag">&lt;/<span class="name">div</span>&gt;</span>"</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">  &#125;,</span></span><br><span class="line"><span class="undefined">  components: &#123;</span></span><br><span class="line"><span class="undefined">    wxParse</span></span><br><span class="line"><span class="undefined">  &#125;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">scoped</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">@import url("~mpvue-wxparse/src/wxParse.css");</span></span><br><span class="line"><span class="undefined">@import url("test.css");</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.grammarTip</span> <span class="selector-class">.hi</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#3a6bdd</span>;</span><br><span class="line">  <span class="attribute">display</span>: inline;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/62bac17f.html" data-id="cjtqnqlon008jlzyknd98vq5c" class="article-share-link">
+        分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mpvue/">mpvue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vant-weapp/">vant-weapp</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/小程序/">小程序</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
   
     <article id="post-GitHubPage 搭建项目主页的一些问题" class="article" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -151,7 +253,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/a4e1109a.html" data-id="cjt6w9cjo0026sayk7wfw4jgx" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/a4e1109a.html" data-id="cjtqnqlku002clzyk5wdqe99n" class="article-share-link">
         分享</a>
       
       
@@ -241,7 +343,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/8ca969bc.html" data-id="cjt6w9ck2002wsaykb9iu41cf" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/8ca969bc.html" data-id="cjtqnqllp003dlzykce3gswoh" class="article-share-link">
         分享</a>
       
       
@@ -327,7 +429,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/1fedb9b.html" data-id="cjt6w9cmi007rsaykwwudvc1g" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/1fedb9b.html" data-id="cjtqnqlom008elzykyp0h428j" class="article-share-link">
         分享</a>
       
       
@@ -409,7 +511,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/9b48042e.html" data-id="cjt6w9coy00cnsayk5j8ag6qw" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/9b48042e.html" data-id="cjtqnqlvk00omlzykf7cmpg7m" class="article-share-link">
         分享</a>
       
       
@@ -493,7 +595,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/8320f4a9.html" data-id="cjt6w9cp100cqsaykre5wispg" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/8320f4a9.html" data-id="cjtqnqlvq00oulzykoapa8mza" class="article-share-link">
         分享</a>
       
       
@@ -583,7 +685,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/47061d14.html" data-id="cjt6w9cmn0082sayk0btk54f6" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/47061d14.html" data-id="cjtqnqlop008mlzyknge2xjdt" class="article-share-link">
         分享</a>
       
       
@@ -645,11 +747,11 @@
 
   &nbsp; | &nbsp;
   <div class="view-box">
-    <span>字数 1,209</span>
+    <span>字数 1,355</span>
   </div>
   &nbsp; | &nbsp;
   <div class="view-box">
-    <span>时长 ≈ 4 分钟</span>
+    <span>时长 ≈ 5 分钟</span>
   </div>
  
         
@@ -672,7 +774,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/a4c46188.html" data-id="cjt6w9cjt002fsaykfib8zk4o" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/a4c46188.html" data-id="cjtqnqlky002elzykjsyb19jd" class="article-share-link">
         分享</a>
       
       
@@ -759,7 +861,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/c39356d9.html" data-id="cjt6w9co300azsaykq3rgvi7f" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/c39356d9.html" data-id="cjtqnqlv100nrlzyka0ud4jnu" class="article-share-link">
         分享</a>
       
       
@@ -845,104 +947,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/6b176628.html" data-id="cjt6w9cnn00a2saykitnily2h" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/6b176628.html" data-id="cjtqnqlu500mhlzykkz3rfc9n" class="article-share-link">
         分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Oracle/">Oracle</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Package/">Package</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sql/">Sql</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Navicat 使用Dropbox与NavicatCloud搭建数据库环境自动备份" class="article" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/289ca75b.html" class="article-date">
-  <time class="post-time" datetime="2018-11-28T06:59:00.000Z" itemprop="datePublished">
-    <span class="post-month">11月</span><br/>
-    <span class="post-day">28</span>
-  </time>
-</a>
-
-  </div>
-  <div class="article-inner">
-    
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/289ca75b.html">Navicat 使用Dropbox与NavicatCloud搭建数据库环境自动备份</a>
-    </h1>
-  
-
-      <div>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/开发调试工具/">开发调试工具</a>,<a class="article-category-link" href="/categories/开发调试工具/Navicat/">Navicat</a>
-  </div>
-
-        
-        
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/289ca75b.html" class="leancloud_visitors" data-flag-title="Navicat 使用Dropbox与NavicatCloud搭建数据库环境自动备份">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 594</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 2 分钟</span>
-  </div>
- 
-        
-      </div>
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      <p>在工作中，不同项目中有不同的数据库连接环境以及数据库执行脚本，如果单纯使用记事本备忘的方式存储这些配置以及脚本会显得颇为复杂。<br>特别是在跟换机器的时候，又要重新配置一番，显然这样的方式操作起来很不方便。<br>在这里分享一下自己使用的数据库环境备份方式。</p>
-<h2 id="软件安装"><a href="#软件安装" class="headerlink" title="软件安装"></a>软件安装</h2><ol>
-<li>Navicat Premium（数据库开发工具）</li>
-<li>Navicat Cloud账号（数据库配置以及脚本同步工具）</li>
-<li>Dropbox（文件同步工具）</li>
-<li>ShadowSocks（代理工具）</li>
-</ol>
-<h2 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h2><ol>
-<li><p>打开ShadowSocks，开全局模式，因为Dropbox以及Navicat Cloud账号注册需要使用代理，不然无法使用。</p>
-      
-      <p class="article-more-link">
-        <a href="/posts/289ca75b.html#more">
-          Read More</a>
-      </p>
-      
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/289ca75b.html" data-id="cjt6w9cn0008wsaykufill1m3" class="article-share-link">
-        分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Dropbox/">Dropbox</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Navicat/">Navicat</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NavicatCloud/">NavicatCloud</a></li></ul>
 
     </footer>
   </div>
@@ -1010,7 +1019,7 @@
     <div class="count-box">
       <a href="/archives">
         <div><strong>
-            139</strong><br>文章</div>
+            140</strong><br>文章</div>
       </a>
       <a href="/categories">
         <div><strong>
@@ -1018,7 +1027,7 @@
       </a>
       <a href="/tags">
         <div><strong>
-            95</strong><br>标签</div>
+            98</strong><br>标签</div>
       </a>
     </div>
 
