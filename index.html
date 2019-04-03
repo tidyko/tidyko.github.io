@@ -145,20 +145,17 @@
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">rollingPolicy</span> <span class="attr">class</span>=<span class="string">"ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">fileNamePattern</span>&gt;</span></span><br><span class="line">        $&#123;logger.path&#125;/info.%d&#123;yy-MM-dd&#125;.%i.log</span><br><span class="line">    <span class="tag">&lt;/<span class="name">fileNamePattern</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">maxHistory</span>&gt;</span>6<span class="tag">&lt;/<span class="name">maxHistory</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">maxFileSize</span>&gt;</span>1GB<span class="tag">&lt;/<span class="name">maxFileSize</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">totalSizeCap</span>&gt;</span>5GB<span class="tag">&lt;/<span class="name">totalSizeCap</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">rollingPolicy</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>error级别的日志，totalSizeCap为2G</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">rollingPolicy</span> <span class="attr">class</span>=<span class="string">"ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">fileNamePattern</span>&gt;</span></span><br><span class="line">        $&#123;logger.path&#125;/info.%d&#123;yy-MM-dd&#125;.%i.log</span><br><span class="line">    <span class="tag">&lt;/<span class="name">fileNamePattern</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">maxHistory</span>&gt;</span>6<span class="tag">&lt;/<span class="name">maxHistory</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">maxFileSize</span>&gt;</span>1GB<span class="tag">&lt;/<span class="name">maxFileSize</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">totalSizeCap</span>&gt;</span>2GB<span class="tag">&lt;/<span class="name">totalSizeCap</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">rollingPolicy</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>经过排查发现是使用的版本刚好有一个这样的bug所导致的。</p>
-<h1 id="问题排查"><a href="#问题排查" class="headerlink" title="问题排查"></a>问题排查</h1><p>根据totalSizeCap关键字，查找源码，可以看到以下代码。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">capTotalSize</span><span class="params">(Date now)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> totalSize = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> totalRemoved = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> offset = <span class="number">0</span>; offset &lt; maxHistory; offset++) &#123;</span><br><span class="line">        Date date = rc.getEndOfNextNthPeriod(now, -offset);</span><br><span class="line">        File[] matchingFileArray = getFilesInPeriod(date);</span><br><span class="line">        descendingSortByLastModified(matchingFileArray);</span><br><span class="line">        <span class="keyword">for</span> (File f : matchingFileArray) &#123;</span><br><span class="line">            <span class="keyword">long</span> size = f.length();</span><br><span class="line">            <span class="keyword">if</span> (totalSize + size &gt; totalSizeCap) &#123;</span><br><span class="line">                addInfo(<span class="string">"Deleting ["</span> + f + <span class="string">"]"</span> + <span class="string">" of size "</span> + <span class="keyword">new</span> FileSize(size));</span><br><span class="line">                totalRemoved += size;</span><br><span class="line">                f.delete();</span><br><span class="line">            &#125;</span><br><span class="line">            totalSize += size;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    addInfo(<span class="string">"Removed  "</span> + <span class="keyword">new</span> FileSize(totalRemoved) + <span class="string">" of files"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>此代码正是Logback用于删除总日志文件大小超过指定阈值时，进行删除最旧文件的方法所在。<br>自己本地打断点以及查看这个逻辑好像都不存在问题，经过一番排查后在最新版的源码里看到了该方法的异同之处。<br>最新的源码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">capTotalSize</span><span class="params">(Date now)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">long</span> totalSize = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">long</span> totalRemoved = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> offset = <span class="number">0</span>; offset &lt; maxHistory; offset++) &#123;</span><br><span class="line">        Date date = rc.getEndOfNextNthPeriod(now, -offset);</span><br><span class="line">        File[] matchingFileArray = getFilesInPeriod(date);</span><br><span class="line">        descendingSort(matchingFileArray, date);</span><br><span class="line">        <span class="keyword">for</span> (File f : matchingFileArray) &#123;</span><br><span class="line">            <span class="keyword">long</span> size = f.length();</span><br><span class="line">            <span class="keyword">if</span> (totalSize + size &gt; totalSizeCap) &#123;</span><br><span class="line">                addInfo(<span class="string">"Deleting ["</span> + f + <span class="string">"]"</span> + <span class="string">" of size "</span> + <span class="keyword">new</span> FileSize(size));</span><br><span class="line">                totalRemoved += size;</span><br><span class="line">                f.delete();</span><br><span class="line">            &#125;</span><br><span class="line">            totalSize += size;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    addInfo(<span class="string">"Removed  "</span> + <span class="keyword">new</span> FileSize(totalRemoved) + <span class="string">" of files"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>两处代码的不同之处来自与前面两个字段类型的定义，一个是int一个是long，看到这里焕然大悟！int类型的最大值 <code>Integer.MAX_VALUE</code>为<code>2147483647</code>，这样折算下来在以上第一段代码所示，如<code>totalSizeCap</code>值设置超过<code>2G</code>时，同时<code>maxHistory</code>内的文件大小累计到大于或等于<code>Integer.MAX_VALUE</code>时，该值将一直不会改变，也就是<code>totalSize + size &gt; totalSizeCap</code>条件将永不成立，所以会导致在<code>totalSizeCap</code>设置超过2G时，不会删除旧日志文件的问题。<br>这里合理的代码为，将<code>int</code>类型的变量定义改为<code>long</code>类型，即第二段代码。</p>
-<h1 id="解决问题"><a href="#解决问题" class="headerlink" title="解决问题"></a>解决问题</h1><p>知道了是bug了之后，就需要查看该问题在哪个版本进行了修复，然后将线上版本升级为fix掉该bug的版本。</p>
-<p>点击<a href="https://github.com/qos-ch/logback/blob/4dd08e6832/logback-core/src/main/java/ch/qos/logback/core/rolling/helper/TimeBasedArchiveRemover.java" target="_blank" rel="noopener">该类</a>的<code>History</code>查看历史修改版本，可以看到这个问题已经有人提出过<a href="https://jira.qos.ch/browse/LOGBACK-1231" target="_blank" rel="noopener">issue</a>，并且fix掉之后提供了<a href="https://github.com/qos-ch/logback/releases/tag/v_1.2.0" target="_blank" rel="noopener">修复版</a>了。</p>
-<p><img src="hhttp://img.tidyko.com/blog/Logback_1.png" alt=""></p>
-
+<p>经过排查发现是使用的版本刚好有一个这样的bug所导致的。<br>
+      
+      <p class="article-more-link">
+        <a href="/posts/589711b0.html#more">
+          Read More</a>
+      </p>
+      
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/589711b0.html" data-id="cju0lbb4q007vtzykw5vpayp0" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/589711b0.html" data-id="cju0ldfii0086ykykvwt0ytle" class="article-share-link">
         分享</a>
       
       
@@ -248,7 +245,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/62bac17f.html" data-id="cju0lbb55008stzykvuje4y27" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/62bac17f.html" data-id="cju0ldfiy0094ykykeepza4f1" class="article-share-link">
         分享</a>
       
       
@@ -337,7 +334,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/a4e1109a.html" data-id="cju0lbb1u002gtzykconfoolz" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/a4e1109a.html" data-id="cju0ldffk002oykyk9gcpwcbw" class="article-share-link">
         分享</a>
       
       
@@ -427,7 +424,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/8ca969bc.html" data-id="cju0lbb1z002otzyk0pybm2f0" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/8ca969bc.html" data-id="cju0ldffp002wykyk3qxje1ba" class="article-share-link">
         分享</a>
       
       
@@ -513,7 +510,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/1fedb9b.html" data-id="cju0lbb4t0083tzyk2w2gh8rb" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/1fedb9b.html" data-id="cju0ldfiv008wykykdcu9gw92" class="article-share-link">
         分享</a>
       
       
@@ -595,7 +592,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/9b48042e.html" data-id="cju0lbb6y00cxtzykmhrwh8b1" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/9b48042e.html" data-id="cju0ldfl300d6ykykbsbdxp75" class="article-share-link">
         分享</a>
       
       
@@ -679,7 +676,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/8320f4a9.html" data-id="cju0lbb7000d1tzykcacp5vtw" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/8320f4a9.html" data-id="cju0ldfl400d9ykykrfejc1nk" class="article-share-link">
         分享</a>
       
       
@@ -769,7 +766,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/47061d14.html" data-id="cju0lbb52008ktzykml07q2zl" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/47061d14.html" data-id="cju0ldfir008pykykrv777l3c" class="article-share-link">
         分享</a>
       
       
@@ -858,7 +855,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/a4c46188.html" data-id="cju0lbb20002rtzyksm6af80d" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/a4c46188.html" data-id="cju0ldffo002tykykoj93et67" class="article-share-link">
         分享</a>
       
       
@@ -945,7 +942,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/c39356d9.html" data-id="cju0lbb6200b0tzyk5moo8oge" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/c39356d9.html" data-id="cju0ldfk700b9ykyk2c5i3o6q" class="article-share-link">
         分享</a>
       
       
