@@ -56,9 +56,9 @@
     <h2 class="author"></h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>140</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>141</strong><br>文章</div></a>
       <a href="/categories"><div><strong>52</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>98</strong><br>标签</div></a>
+      <a href="/tags"><div><strong>99</strong><br>标签</div></a>
     </div>
     <ul class="blog-link">
      
@@ -83,6 +83,98 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-Logback totalSizeCap不生效" class="article" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/589711b0.html" class="article-date">
+  <time class="post-time" datetime="2019-04-03T01:49:00.000Z" itemprop="datePublished">
+    <span class="post-month">4月</span><br/>
+    <span class="post-day">03</span>
+  </time>
+</a>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/589711b0.html">Logback totalSizeCap不生效</a>
+    </h1>
+  
+
+      <div>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
+  </div>
+
+        
+        
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/589711b0.html" class="leancloud_visitors" data-flag-title="Logback totalSizeCap不生效">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 693</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 3 分钟</span>
+  </div>
+ 
+        
+      </div>
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>这几天发现线上的info日志文件，总大小超过了设定阈值，仍然没删除掉旧文件，但是error日志却如期删除了。<br>info级别的日志，totalSizeCap为5G</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">rollingPolicy</span> <span class="attr">class</span>=<span class="string">"ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">fileNamePattern</span>&gt;</span></span><br><span class="line">        $&#123;logger.path&#125;/info.%d&#123;yy-MM-dd&#125;.%i.log</span><br><span class="line">    <span class="tag">&lt;/<span class="name">fileNamePattern</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">maxHistory</span>&gt;</span>6<span class="tag">&lt;/<span class="name">maxHistory</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">maxFileSize</span>&gt;</span>1GB<span class="tag">&lt;/<span class="name">maxFileSize</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">totalSizeCap</span>&gt;</span>5GB<span class="tag">&lt;/<span class="name">totalSizeCap</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">rollingPolicy</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>error级别的日志，totalSizeCap为2G</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">rollingPolicy</span> <span class="attr">class</span>=<span class="string">"ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">fileNamePattern</span>&gt;</span></span><br><span class="line">        $&#123;logger.path&#125;/info.%d&#123;yy-MM-dd&#125;.%i.log</span><br><span class="line">    <span class="tag">&lt;/<span class="name">fileNamePattern</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">maxHistory</span>&gt;</span>6<span class="tag">&lt;/<span class="name">maxHistory</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">maxFileSize</span>&gt;</span>1GB<span class="tag">&lt;/<span class="name">maxFileSize</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">totalSizeCap</span>&gt;</span>2GB<span class="tag">&lt;/<span class="name">totalSizeCap</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">rollingPolicy</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>经过排查发现是使用的版本刚好有一个这样的bug所导致的。</p>
+<h1 id="问题排查"><a href="#问题排查" class="headerlink" title="问题排查"></a>问题排查</h1><p>根据totalSizeCap关键字，查找源码，可以看到以下代码。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">capTotalSize</span><span class="params">(Date now)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> totalSize = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> totalRemoved = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> offset = <span class="number">0</span>; offset &lt; maxHistory; offset++) &#123;</span><br><span class="line">        Date date = rc.getEndOfNextNthPeriod(now, -offset);</span><br><span class="line">        File[] matchingFileArray = getFilesInPeriod(date);</span><br><span class="line">        descendingSortByLastModified(matchingFileArray);</span><br><span class="line">        <span class="keyword">for</span> (File f : matchingFileArray) &#123;</span><br><span class="line">            <span class="keyword">long</span> size = f.length();</span><br><span class="line">            <span class="keyword">if</span> (totalSize + size &gt; totalSizeCap) &#123;</span><br><span class="line">                addInfo(<span class="string">"Deleting ["</span> + f + <span class="string">"]"</span> + <span class="string">" of size "</span> + <span class="keyword">new</span> FileSize(size));</span><br><span class="line">                totalRemoved += size;</span><br><span class="line">                f.delete();</span><br><span class="line">            &#125;</span><br><span class="line">            totalSize += size;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    addInfo(<span class="string">"Removed  "</span> + <span class="keyword">new</span> FileSize(totalRemoved) + <span class="string">" of files"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>此代码正是Logback用于删除总日志文件大小超过指定阈值时，进行删除最旧文件的方法所在。<br>自己本地打断点以及查看这个逻辑好像都不存在问题，经过一番排查后在最新版的源码里看到了该方法的异同之处。<br>最新的源码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">capTotalSize</span><span class="params">(Date now)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">long</span> totalSize = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">long</span> totalRemoved = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> offset = <span class="number">0</span>; offset &lt; maxHistory; offset++) &#123;</span><br><span class="line">        Date date = rc.getEndOfNextNthPeriod(now, -offset);</span><br><span class="line">        File[] matchingFileArray = getFilesInPeriod(date);</span><br><span class="line">        descendingSort(matchingFileArray, date);</span><br><span class="line">        <span class="keyword">for</span> (File f : matchingFileArray) &#123;</span><br><span class="line">            <span class="keyword">long</span> size = f.length();</span><br><span class="line">            <span class="keyword">if</span> (totalSize + size &gt; totalSizeCap) &#123;</span><br><span class="line">                addInfo(<span class="string">"Deleting ["</span> + f + <span class="string">"]"</span> + <span class="string">" of size "</span> + <span class="keyword">new</span> FileSize(size));</span><br><span class="line">                totalRemoved += size;</span><br><span class="line">                f.delete();</span><br><span class="line">            &#125;</span><br><span class="line">            totalSize += size;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    addInfo(<span class="string">"Removed  "</span> + <span class="keyword">new</span> FileSize(totalRemoved) + <span class="string">" of files"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>两处代码的不同之处来自与前面两个字段类型的定义，一个是int一个是long，看到这里焕然大悟！int类型的最大值 <code>Integer.MAX_VALUE</code>为<code>2147483647</code>，这样折算下来在以上第一段代码所示，如<code>totalSizeCap</code>值设置超过<code>2G</code>时，同时<code>maxHistory</code>内的文件大小累计到大于或等于<code>Integer.MAX_VALUE</code>时，该值将一直不会改变，也就是<code>totalSize + size &gt; totalSizeCap</code>条件将永不成立，所以会导致在<code>totalSizeCap</code>设置超过2G时，不会删除旧日志文件的问题。<br>这里合理的代码为，将<code>int</code>类型的变量定义改为<code>long</code>类型，即第二段代码。</p>
+<h1 id="解决问题"><a href="#解决问题" class="headerlink" title="解决问题"></a>解决问题</h1><p>知道了是bug了之后，就需要查看该问题在哪个版本进行了修复，然后将线上版本升级为fix掉该bug的版本。</p>
+<p>点击<a href="https://github.com/qos-ch/logback/blob/4dd08e6832/logback-core/src/main/java/ch/qos/logback/core/rolling/helper/TimeBasedArchiveRemover.java" target="_blank" rel="noopener">该类</a>的<code>History</code>查看历史修改版本，可以看到这个问题已经有人提出过<a href="https://jira.qos.ch/browse/LOGBACK-1231" target="_blank" rel="noopener">issue</a>，并且fix掉之后提供了<a href="https://github.com/qos-ch/logback/releases/tag/v_1.2.0" target="_blank" rel="noopener">修复版</a>了。</p>
+<p><img src="hhttp://img.tidyko.com/blog/Logback_1.png" alt=""></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/589711b0.html" data-id="cju0l6hqp007tnhykqkvln5g7" class="article-share-link">
+        分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Logback/">Logback</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
   
     <article id="post-Mpvue中使用vant-weapp组件库" class="article" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -152,7 +244,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/62bac17f.html" data-id="cjtqobofi008obkykrpdyiyhb" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/62bac17f.html" data-id="cju0l6hra0090nhykx8b0rxjo" class="article-share-link">
         分享</a>
       
       
@@ -241,7 +333,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/a4e1109a.html" data-id="cjtqobocu002ebkykt6m7iwps" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/a4e1109a.html" data-id="cju0l6hnu002enhyk8r85oemg" class="article-share-link">
         分享</a>
       
       
@@ -331,7 +423,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/8ca969bc.html" data-id="cjtqobod60033bkyk6qklnk9y" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/8ca969bc.html" data-id="cju0l6ho0002lnhykxapwqe9k" class="article-share-link">
         分享</a>
       
       
@@ -417,7 +509,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/1fedb9b.html" data-id="cjtqobofa0083bkykb2b2pvlz" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/1fedb9b.html" data-id="cju0l6hqx0084nhyk6x09s2vs" class="article-share-link">
         分享</a>
       
       
@@ -499,7 +591,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/9b48042e.html" data-id="cjtqobohm00cybkykshct9bl4" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/9b48042e.html" data-id="cju0l6hu700d0nhyk224xckcx" class="article-share-link">
         分享</a>
       
       
@@ -583,7 +675,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/8320f4a9.html" data-id="cjtqobohk00cubkykpx8kns0n" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/8320f4a9.html" data-id="cju0l6hu500cwnhykvuof9v3s" class="article-share-link">
         分享</a>
       
       
@@ -673,7 +765,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/47061d14.html" data-id="cjtqobofd008bbkykgg9wfwqz" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/47061d14.html" data-id="cju0l6hr2008knhykq91s7fdl" class="article-share-link">
         分享</a>
       
       
@@ -762,7 +854,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/a4c46188.html" data-id="cjtqobocx002jbkyksbjqjmt6" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/a4c46188.html" data-id="cju0l6ho4002qnhykgwos75kz" class="article-share-link">
         分享</a>
       
       
@@ -849,7 +941,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/c39356d9.html" data-id="cjtqobogy00bkbkyk9tej125j" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/c39356d9.html" data-id="cju0l6hsb00aynhyk5rp1tavw" class="article-share-link">
         分享</a>
       
       
@@ -871,96 +963,10 @@
 
 
   
-    <article id="post-Oracle Package 包说明和包体" class="article" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/6b176628.html" class="article-date">
-  <time class="post-time" datetime="2018-12-10T02:48:00.000Z" itemprop="datePublished">
-    <span class="post-month">12月</span><br/>
-    <span class="post-day">10</span>
-  </time>
-</a>
-
-  </div>
-  <div class="article-inner">
-    
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/6b176628.html">Oracle Package 包说明和包体</a>
-    </h1>
-  
-
-      <div>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/数据库/">数据库</a>,<a class="article-category-link" href="/categories/数据库/Oracle/">Oracle</a>
-  </div>
-
-        
-        
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/6b176628.html" class="leancloud_visitors" data-flag-title="Oracle Package 包说明和包体">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 801</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 4 分钟</span>
-  </div>
- 
-        
-      </div>
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      <p>该文转自 <a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" target="_blank" rel="noopener">forever杨’s Blog - Oracle Package 包说明和包体</a><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">在包中定义的函数，包体中实现的时候，函数名、参数名、类型都要一致，否则报错。</span><br><span class="line">在创建基于自定义函数时, 指定 `deterministic` 参数，再创建函数索引，就没有问题了。</span><br></pre></td></tr></table></figure></p>
-<h2 id="定义包说明"><a href="#定义包说明" class="headerlink" title="定义包说明"></a>定义包说明</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">OR</span> <span class="keyword">REPLACE</span> <span class="keyword">PACKAGE</span> WX_CRYPTO <span class="keyword">IS</span></span><br><span class="line">  <span class="comment">-- 定义 DES encrypt 函数</span></span><br><span class="line">  <span class="keyword">FUNCTION</span> <span class="keyword">DES_ENCRYPT</span>(INPUT_STRING <span class="keyword">IN</span> VARCHAR2) <span class="keyword">RETURN</span> VARCHAR2;</span><br><span class="line">  FUNCTION DES_ENCRYPT(INPUT_STRING IN VARCHAR2, KEY_STRING IN VARCHAR2)</span><br><span class="line">    RETURN VARCHAR2;</span><br><span class="line"></span><br><span class="line">  <span class="comment">-- 定义 DES decrypt 函数</span></span><br><span class="line">  FUNCTION DES_DECRYPT(INPUT_STRING IN VARCHAR2) RETURN VARCHAR2 DETERMINISTIC;</span><br><span class="line">  FUNCTION DES_DECRYPT(INPUT_STRING IN VARCHAR2, KEY_STRING IN VARCHAR2)</span><br><span class="line">    RETURN VARCHAR2 DETERMINISTIC;</span><br><span class="line"><span class="keyword">END</span> WX_CRYPTO;</span><br></pre></td></tr></table></figure>
-      
-      <p class="article-more-link">
-        <a href="/posts/6b176628.html#more">
-          Read More</a>
-      </p>
-      
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/6b176628.html" data-id="cjtqobog3009xbkykjj993evn" class="article-share-link">
-        分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Oracle/">Oracle</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Package/">Package</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sql/">Sql</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
 
 
   <nav id="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/2/">next &raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/2/">next &raquo;</a>
   </nav>
 </section>
         
@@ -1007,7 +1013,7 @@
     <div class="count-box">
       <a href="/archives">
         <div><strong>
-            140</strong><br>文章</div>
+            141</strong><br>文章</div>
       </a>
       <a href="/categories">
         <div><strong>
@@ -1015,7 +1021,7 @@
       </a>
       <a href="/tags">
         <div><strong>
-            98</strong><br>标签</div>
+            99</strong><br>标签</div>
       </a>
     </div>
 

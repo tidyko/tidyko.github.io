@@ -56,9 +56,9 @@
     <h2 class="author"></h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>140</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>141</strong><br>文章</div></a>
       <a href="/categories"><div><strong>52</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>98</strong><br>标签</div></a>
+      <a href="/tags"><div><strong>99</strong><br>标签</div></a>
     </div>
     <ul class="blog-link">
      
@@ -83,6 +83,92 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-VirtualBox Linux虚拟网络配置" class="article" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/b3c1b12f.html" class="article-date">
+  <time class="post-time" datetime="2017-03-22T06:33:00.000Z" itemprop="datePublished">
+    <span class="post-month">3月</span><br/>
+    <span class="post-day">22</span>
+  </time>
+</a>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/b3c1b12f.html">VirtualBox Linux虚拟网络配置</a>
+    </h1>
+  
+
+      <div>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/开发调试工具/">开发调试工具</a>,<a class="article-category-link" href="/categories/开发调试工具/VirtualBox/">VirtualBox</a>
+  </div>
+
+        
+        
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/b3c1b12f.html" class="leancloud_visitors" data-flag-title="VirtualBox Linux虚拟网络配置">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 350</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 2 分钟</span>
+  </div>
+ 
+        
+      </div>
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><p>Host OS : Windows 10<br>Guest OS : CentOS 6.8<br>VirtualBox：5.1.18<br>网络连接方式: NAT</p>
+<h3 id="1）CentOS中使用DHCP"><a href="#1）CentOS中使用DHCP" class="headerlink" title="1）CentOS中使用DHCP"></a>1）CentOS中使用DHCP</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[root@goukaiHost opt]# cat /etc/sysconfig/network-scripts/ifcfg-eth0</span><br><span class="line">DEVICE=eth0</span><br><span class="line">HWADDR=08:00:27:74:E9:14</span><br><span class="line">TYPE=Ethernet</span><br><span class="line">UUID=aa2112e6-21b6-4a14-89e7-a2b769f212b8</span><br><span class="line">ONBOOT=yes</span><br><span class="line">NM_CONTROLLED=yes</span><br><span class="line">BOOTPROTO=dhcp</span><br><span class="line"></span><br><span class="line">DEFROUTE=yes</span><br><span class="line">PEERDNS=yes</span><br><span class="line">PEERROUTES=yes</span><br><span class="line">IPV4_FAILURE_FATAL=yes</span><br><span class="line">IPV6INIT=no</span><br><span class="line">NAME="System eth0"</span><br></pre></td></tr></table></figure>
+<h3 id="2）查看inet-addr（NAT端口转发时的子系统IP）"><a href="#2）查看inet-addr（NAT端口转发时的子系统IP）" class="headerlink" title="2）查看inet addr（NAT端口转发时的子系统IP）"></a>2）查看inet addr（NAT端口转发时的子系统IP）</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@goukaiHost opt]# ifconfig eth0</span><br><span class="line">eth0      Link encap:Ethernet  HWaddr 08:00:27:74:E9:14  </span><br><span class="line">          inet addr:10.0.2.15  Bcast:10.0.2.255  Mask:255.255.255.0</span><br><span class="line">          inet6 addr: fe80::a00:27ff:fe74:e914/64 Scope:Link</span><br><span class="line">          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1</span><br><span class="line">          RX packets:357 errors:0 dropped:0 overruns:0 frame:0</span><br><span class="line">          TX packets:273 errors:0 dropped:0 overruns:0 carrier:0</span><br><span class="line">          collisions:0 txqueuelen:1000 </span><br><span class="line">          RX bytes:34617 (33.8 KiB)  TX bytes:31373 (30.6 KiB)</span><br></pre></td></tr></table></figure>
+<h3 id="3）在VirtualBox中设置NAT端口转发"><a href="#3）在VirtualBox中设置NAT端口转发" class="headerlink" title="3）在VirtualBox中设置NAT端口转发"></a>3）在VirtualBox中设置NAT端口转发</h3><h4 id="3-1）"><a href="#3-1）" class="headerlink" title="3.1）"></a>3.1）</h4><p><code>管理</code> -&gt; <code>全局设定</code> -&gt; <code>网络</code> -&gt; <code>VirtualBox Host-Only Ethernet Adapter</code> -&gt; <code>编辑</code><br>查看主机虚拟网络界面 IPv4地址192.168.56.1 这就是NAT端口转发时的主机IP。</p>
+<h4 id="3-2）"><a href="#3-2）" class="headerlink" title="3.2）"></a>3.2）</h4><p><code>设备</code> -&gt; <code>更改网络连接</code> -&gt; <code>网卡1</code> -&gt; <code>连接方式（NAT）</code> -&gt; <code>端口转发</code></p>
+<p>端口转发规则，填写名称，协议TCP,主机IP就是a中主机虚拟网络界面里 IPv4地址192.168.56.1，主机端口22 子系统IP是CentOS中的inet addr:10.0.2.15,子系统端口：22<br><img src="http://img.tidyko.com/blog/virtualbox-linux-net_1.png" alt="VirtualBox Linux虚拟网络配置-图例1"></p>
+<h3 id="4）然后就可以用xshell客户端进行登录了"><a href="#4）然后就可以用xshell客户端进行登录了" class="headerlink" title="4）然后就可以用xshell客户端进行登录了"></a>4）然后就可以用xshell客户端进行登录了</h3><p><img src="http://img.tidyko.com/blog/virtualbox-linux-net_2.png" alt="VirtualBox Linux虚拟网络配置-图例2"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/b3c1b12f.html" data-id="cju0l6hsl00bknhykt7stcn3l" class="article-share-link">
+        分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VirtualBox/">VirtualBox</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络配置/">网络配置</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/虚拟机/">虚拟机</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
   
     <article id="post-Linux SHELL 使用crontab定时检测服务状态脚本" class="article" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -149,7 +235,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/20e9a4b.html" data-id="cjtqoboew0075bkyk88yu7tgv" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/20e9a4b.html" data-id="cju0l6hqh007cnhyk3wde4t7t" class="article-share-link">
         分享</a>
       
       
@@ -231,7 +317,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/58d69454.html" data-id="cjtqobof4007obkyk56bgfioc" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/58d69454.html" data-id="cju0l6hqi007gnhykvsiwjjx3" class="article-share-link">
         分享</a>
       
       
@@ -312,7 +398,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/9f6836b6.html" data-id="cjtqoboc6000ubkykpebx8l71" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/9f6836b6.html" data-id="cju0l6hmr000lnhykz98m3xws" class="article-share-link">
         分享</a>
       
       
@@ -392,7 +478,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/968fb276.html" data-id="cjtqobobw000ebkykluiqz3qy" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/968fb276.html" data-id="cju0l6hmi000enhykc35jpzdo" class="article-share-link">
         分享</a>
       
       
@@ -476,7 +562,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/f8433bbb.html" data-id="cjtqobocv002hbkykqweyatu1" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/f8433bbb.html" data-id="cju0l6hny002inhykg9nlt2gf" class="article-share-link">
         分享</a>
       
       
@@ -560,7 +646,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/7b8cc3e2.html" data-id="cjtqoboeu0071bkykbz2qemee" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/7b8cc3e2.html" data-id="cju0l6hq9006wnhykvjwhicbs" class="article-share-link">
         分享</a>
       
       
@@ -641,7 +727,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/7e7d7a18.html" data-id="cjtqoboce001hbkyk1jt29hs8" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/7e7d7a18.html" data-id="cju0l6hna001jnhyk1lavgjuk" class="article-share-link">
         分享</a>
       
       
@@ -721,7 +807,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/e388ac5d.html" data-id="cjtqobogb00aabkykb0h6qvu3" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/e388ac5d.html" data-id="cju0l6hs700aqnhykm98zwxal" class="article-share-link">
         分享</a>
       
       
@@ -802,7 +888,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/c70f76d0.html" data-id="cjtqoboei0061bkyktr632s69" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/c70f76d0.html" data-id="cju0l6hpx0065nhykyvdf9scr" class="article-share-link">
         分享</a>
       
       
@@ -824,98 +910,10 @@
 
 
   
-    <article id="post-HTML 设置event.cancelBubble，使触发子元素的onclick不同时触发父元素的onclick" class="article" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/13b74a79.html" class="article-date">
-  <time class="post-time" datetime="2016-05-12T03:14:00.000Z" itemprop="datePublished">
-    <span class="post-month">5月</span><br/>
-    <span class="post-day">12</span>
-  </time>
-</a>
-
-  </div>
-  <div class="article-inner">
-    
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/13b74a79.html">HTML 设置event.cancelBubble，使触发子元素的onclick不同时触发父元素的onclick</a>
-    </h1>
-  
-
-      <div>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/HTML/">HTML</a>
-  </div>
-
-        
-        
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/13b74a79.html" class="leancloud_visitors" data-flag-title="HTML 设置event.cancelBubble，使触发子元素的onclick不同时触发父元素的onclick">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 890</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 4 分钟</span>
-  </div>
- 
-        
-      </div>
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      <p>由于HTML中的对象都是层次结构，比如一个Table包含了多个TR，一个TR包含了多个TD。</p>
-<p>Bubble就是一个事件可以从子节点向父节点传递，比如鼠标点击了一个TD，当前的event.srcElement就是这个TD，但是这种冒 泡机制使你可以从TR或者Table处截获这个点击事件，但是如果你event.cancelBubble，则就不能上传事件。 </p>
-<p>例子：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">table</span> <span class="attr">border</span>=<span class="string">"1"</span> <span class="attr">width</span>=<span class="string">"26%"</span> <span class="attr">id</span>=<span class="string">"tableA"</span> <span class="attr">onclick</span>=<span class="string">"alert('tableA')"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">tr</span> <span class="attr">onclick</span>=<span class="string">"tableA_rowA_click()"</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">td</span> <span class="attr">width</span>=<span class="string">"106"</span>&gt;</span>一般<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">tr</span> <span class="attr">onclick</span>=<span class="string">"tableA_rowB_click()"</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">td</span> <span class="attr">width</span>=<span class="string">"106"</span>&gt;</span>阻止消息上传<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span> 　<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--   --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">language</span>=<span class="string">"javascript"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">&lt;!--</span></span><br><span class="line"><span class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">tableA_rowA_click</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">alert(<span class="string">'tableA_rowA'</span>);</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">tableA_rowB_click</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">alert(<span class="string">'tableA_rowB'</span>);</span></span><br><span class="line"><span class="javascript">event.cancelBubble=<span class="literal">true</span>;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="javascript"><span class="comment">//--&gt;</span></span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="event-cancelBubble阻止事件冒泡"><a href="#event-cancelBubble阻止事件冒泡" class="headerlink" title="event.cancelBubble阻止事件冒泡"></a>event.cancelBubble阻止事件冒泡</h3><p>event.cancelBubble=true; </p>
-<p>取消事件冒泡，在 IE 的事件机制中，触发事件会从子元素向父元素逐级上传，就是说，如果子元素触发了单击事件，那么也会触发父元素的单击事件；<code>event.cancelBubble=true;</code>可以停止事件继续上传补充一点，Ie的事件传递是从下到上的： </p>
-<p><code>事件来源对象</code> -&gt; <code>上级对象</code> -&gt; <code>上上级对象</code> -&gt; ….. -&gt; <code>body</code> -&gt; <code>document</code> -&gt; <code>window</code></p>
-<p>NS的事件传递是从上到下： </p>
-<p><code>window</code> -&gt; <code>document</code> -&gt; <code>body</code> -&gt; …. -&gt; <code>事件来源对象实例</code></p>
-<p>源码如下：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"Content-Type"</span> <span class="attr">content</span>=<span class="string">"text/html; charset=gb2312"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>event.cancelBubble<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">&lt;!--</span></span><br><span class="line"><span class="undefined">* &#123;font:menu&#125;</span></span><br><span class="line"><span class="undefined">--&gt;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">onclick</span>=<span class="string">alert(</span>"你好")&gt;</span>点我 <span class="tag">&lt;<span class="name">span</span>&gt;</span>再点我<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">onclick</span>=<span class="string">alert(</span>"你好")&gt;</span>点我 <span class="tag">&lt;<span class="name">span</span> <span class="attr">onclick</span>=<span class="string">event.cancelBubble</span>=<span class="string">true;</span>&gt;</span>再点我<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br><span class="line">实例2：</span><br><span class="line"></span><br><span class="line"><span class="meta">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"</span></span><br><span class="line"><span class="meta">"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">xmlns</span>=<span class="string">"http://www.w3.org/1999/xhtml"</span> <span class="attr">lang</span>=<span class="string">"zh"</span> <span class="attr">xml:lang</span>=<span class="string">"zh"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"Content-Type"</span> <span class="attr">content</span>=<span class="string">"text/html; charset=UTF-8"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"developer"</span> <span class="attr">content</span>=<span class="string">"Realazy"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>Bubble in JavaScript DOM--JavaScript 的事件冒泡 demo　<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span> <span class="attr">media</span>=<span class="string">"screen"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">div * &#123;display:block; margin:4px; padding:4px; border:1px solid white;&#125;</span></span><br><span class="line"><span class="undefined">textarea &#123;width:20em; height:2em;&#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">      <span class="comment">//&lt;![CDATA[</span></span></span><br><span class="line"><span class="javascript">      <span class="function"><span class="keyword">function</span> <span class="title">init</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> log = <span class="built_in">document</span>.getElementsByTagName(<span class="string">'textarea'</span>)[<span class="number">0</span>];</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> all = <span class="built_in">document</span>.getElementsByTagName(<span class="string">'div'</span>)[<span class="number">0</span>].getElementsByTagName(<span class="string">'*'</span>);</span></span><br><span class="line"><span class="javascript">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, n = all.length; i &lt; n; ++i)&#123;</span></span><br><span class="line"><span class="javascript">     all[i].onmouseover = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">      <span class="keyword">this</span>.style.border = <span class="string">'1px solid red'</span>;</span></span><br><span class="line"><span class="javascript">      log.value = <span class="string">'鼠标现在进入的是： '</span> + <span class="keyword">this</span>.nodeName;</span></span><br><span class="line"><span class="undefined">     &#125;;</span></span><br><span class="line"><span class="javascript">     all[i].onmouseout = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">      <span class="keyword">this</span>.style.border = <span class="string">'1px solid white'</span>;</span></span><br><span class="line"><span class="undefined">     &#125;;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> all2 = <span class="built_in">document</span>.getElementsByTagName(<span class="string">'div'</span>)[<span class="number">1</span>].getElementsByTagName(<span class="string">'*'</span>);</span></span><br><span class="line"><span class="javascript">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, n = all2.length; i &lt; n; ++i)&#123;</span></span><br><span class="line"><span class="undefined"> </span></span><br><span class="line"><span class="javascript">       all2[i].onmouseover = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">      <span class="keyword">this</span>.style.border = <span class="string">'1px solid red'</span>;</span></span><br><span class="line"><span class="javascript">      <span class="keyword">if</span> (e) <span class="comment">//停止事件冒泡</span></span></span><br><span class="line"><span class="undefined">       e.stopPropagation();</span></span><br><span class="line"><span class="javascript">      <span class="keyword">else</span></span></span><br><span class="line"><span class="javascript">       <span class="built_in">window</span>.event.cancelBubble = <span class="literal">true</span>;</span></span><br><span class="line"><span class="javascript">      log.value = <span class="string">'鼠标现在进入的是： '</span> + <span class="keyword">this</span>.nodeName;</span></span><br><span class="line"><span class="undefined">     &#125;;</span></span><br><span class="line"><span class="undefined">  </span></span><br><span class="line"><span class="undefined">  </span></span><br><span class="line"><span class="javascript">     all2[i].onmouseout = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">      <span class="keyword">this</span>.style.border = <span class="string">'1px solid white'</span>;&#125;;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">     &#125;</span></span><br><span class="line"><span class="undefined">  </span></span><br><span class="line"><span class="undefined"> </span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="javascript"><span class="built_in">window</span>.onload = init;</span></span><br><span class="line"><span class="javascript">      <span class="comment">//]]&gt;</span></span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Bubble in JavaScript DOM<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>DOM树的结构是：<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">pre</span>&gt;</span><span class="tag">&lt;<span class="name">code</span>&gt;</span></span><br><span class="line">UL</span><br><span class="line">    - LI</span><br><span class="line">       - A</span><br><span class="line">     - SPAN</span><br><span class="line"><span class="tag">&lt;/<span class="name">code</span>&gt;</span><span class="tag">&lt;/<span class="name">pre</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span>Bubbllllllllllllllle<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span>Bubbllllllllllllllle<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">textarea</span>&gt;</span><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span> 鼠标进入UL的任何一个子元素，如果不停止冒泡，我们从UL到SPAN都定义了鼠标悬停 （<span class="tag">&lt;<span class="name">code</span>&gt;</span>mouseover<span class="tag">&lt;/<span class="name">code</span>&gt;</span>）事件，这个事件会上升了UL，从而从鼠标所进入的元素到UL元素都会有红色的 边。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span>Bubbllllllllllllllle<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span>Bubbllllllllllllllle<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>如果停止冒泡，事件不会上升，我们就可以获取精确的鼠标进入元素。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/13b74a79.html" data-id="cjtqobocz002nbkykabzjgfxy" class="article-share-link">
-        分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML/">HTML</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
 
 
   <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/page/5/">&laquo; pre</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/7/">next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/5/">&laquo; pre</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/7/">next &raquo;</a>
   </nav>
 </section>
         
@@ -962,7 +960,7 @@
     <div class="count-box">
       <a href="/archives">
         <div><strong>
-            140</strong><br>文章</div>
+            141</strong><br>文章</div>
       </a>
       <a href="/categories">
         <div><strong>
@@ -970,7 +968,7 @@
       </a>
       <a href="/tags">
         <div><strong>
-            98</strong><br>标签</div>
+            99</strong><br>标签</div>
       </a>
     </div>
 

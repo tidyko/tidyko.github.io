@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>
+    
+    Logback totalSizeCap不生效 |
+    
+    Tidy的个人博客
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="问题描述这几天发现线上的info日志文件，总大小超过了设定阈值，仍然没删除掉旧文件，但是error日志却如期删除了。info级别的日志，totalSizeCap为5G 12345678&amp;lt;rollingPolicy class=&quot;ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy&quot;&amp;gt;    &amp;lt;fileNamePatte">
+<meta name="keywords" content="Java,Logback">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Logback totalSizeCap不生效">
+<meta property="og:url" content="https://www.tidyko.com/posts/589711b0.html">
+<meta property="og:site_name" content="Tidy的个人博客">
+<meta property="og:description" content="问题描述这几天发现线上的info日志文件，总大小超过了设定阈值，仍然没删除掉旧文件，但是error日志却如期删除了。info级别的日志，totalSizeCap为5G 12345678&amp;lt;rollingPolicy class=&quot;ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy&quot;&amp;gt;    &amp;lt;fileNamePatte">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="hhttp://img.tidyko.com/blog/Logback_1.png">
+<meta property="og:updated_time" content="2019-04-03T02:22:25.522Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Logback totalSizeCap不生效">
+<meta name="twitter:description" content="问题描述这几天发现线上的info日志文件，总大小超过了设定阈值，仍然没删除掉旧文件，但是error日志却如期删除了。info级别的日志，totalSizeCap为5G 12345678&amp;lt;rollingPolicy class=&quot;ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy&quot;&amp;gt;    &amp;lt;fileNamePatte">
+<meta name="twitter:image" content="hhttp://img.tidyko.com/blog/Logback_1.png">
+  
+  <link rel="alternate" href="/atom.xml" title="Tidy的个人博客" type="application/atom+xml">
+  
+  
+  <link rel="icon" href="/favicon.ico">
+  
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <!-- <link rel="stylesheet" href="/plugin/bganimation/bg.css"> -->
+  
+
+  
+<!-- Google Adsense -->
+<!-- <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+</script> -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-1522837637326007",
+        enable_page_level_ads: true
+    });
+</script>
+
+<script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
+<!-- End Google Adsense -->
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <div class="widget-wrap mobile-header">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="http://img.tidyko.com/avatar.jpg">
+    <h2 class="author"></h2>
+    <h3 class="description"></h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>141</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>52</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>99</strong><br>标签</div></a>
+    </div>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+        <section id="main"><article id="post-Logback totalSizeCap不生效" class="article" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/589711b0.html" class="article-date">
+  <time class="post-time" datetime="2019-04-03T01:49:00.000Z" itemprop="datePublished">
+    <span class="post-month">4月</span><br/>
+    <span class="post-day">03</span>
+  </time>
+</a>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 class="article-title" itemprop="name">
+      Logback totalSizeCap不生效
+    </h1>
+  
+
+      <div>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
+  </div>
+
+        
+        
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/589711b0.html" class="leancloud_visitors" data-flag-title="Logback totalSizeCap不生效">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 693</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 3 分钟</span>
+  </div>
+ 
+        
+      </div>
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>这几天发现线上的info日志文件，总大小超过了设定阈值，仍然没删除掉旧文件，但是error日志却如期删除了。<br>info级别的日志，totalSizeCap为5G</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">rollingPolicy</span> <span class="attr">class</span>=<span class="string">"ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">fileNamePattern</span>&gt;</span></span><br><span class="line">        $&#123;logger.path&#125;/info.%d&#123;yy-MM-dd&#125;.%i.log</span><br><span class="line">    <span class="tag">&lt;/<span class="name">fileNamePattern</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">maxHistory</span>&gt;</span>6<span class="tag">&lt;/<span class="name">maxHistory</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">maxFileSize</span>&gt;</span>1GB<span class="tag">&lt;/<span class="name">maxFileSize</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">totalSizeCap</span>&gt;</span>5GB<span class="tag">&lt;/<span class="name">totalSizeCap</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">rollingPolicy</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>error级别的日志，totalSizeCap为2G</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">rollingPolicy</span> <span class="attr">class</span>=<span class="string">"ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">fileNamePattern</span>&gt;</span></span><br><span class="line">        $&#123;logger.path&#125;/info.%d&#123;yy-MM-dd&#125;.%i.log</span><br><span class="line">    <span class="tag">&lt;/<span class="name">fileNamePattern</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">maxHistory</span>&gt;</span>6<span class="tag">&lt;/<span class="name">maxHistory</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">maxFileSize</span>&gt;</span>1GB<span class="tag">&lt;/<span class="name">maxFileSize</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">totalSizeCap</span>&gt;</span>2GB<span class="tag">&lt;/<span class="name">totalSizeCap</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">rollingPolicy</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>经过排查发现是使用的版本刚好有一个这样的bug所导致的。</p>
+<h1 id="问题排查"><a href="#问题排查" class="headerlink" title="问题排查"></a>问题排查</h1><p>根据totalSizeCap关键字，查找源码，可以看到以下代码。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">capTotalSize</span><span class="params">(Date now)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> totalSize = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> totalRemoved = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> offset = <span class="number">0</span>; offset &lt; maxHistory; offset++) &#123;</span><br><span class="line">        Date date = rc.getEndOfNextNthPeriod(now, -offset);</span><br><span class="line">        File[] matchingFileArray = getFilesInPeriod(date);</span><br><span class="line">        descendingSortByLastModified(matchingFileArray);</span><br><span class="line">        <span class="keyword">for</span> (File f : matchingFileArray) &#123;</span><br><span class="line">            <span class="keyword">long</span> size = f.length();</span><br><span class="line">            <span class="keyword">if</span> (totalSize + size &gt; totalSizeCap) &#123;</span><br><span class="line">                addInfo(<span class="string">"Deleting ["</span> + f + <span class="string">"]"</span> + <span class="string">" of size "</span> + <span class="keyword">new</span> FileSize(size));</span><br><span class="line">                totalRemoved += size;</span><br><span class="line">                f.delete();</span><br><span class="line">            &#125;</span><br><span class="line">            totalSize += size;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    addInfo(<span class="string">"Removed  "</span> + <span class="keyword">new</span> FileSize(totalRemoved) + <span class="string">" of files"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>此代码正是Logback用于删除总日志文件大小超过指定阈值时，进行删除最旧文件的方法所在。<br>自己本地打断点以及查看这个逻辑好像都不存在问题，经过一番排查后在最新版的源码里看到了该方法的异同之处。<br>最新的源码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">capTotalSize</span><span class="params">(Date now)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">long</span> totalSize = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">long</span> totalRemoved = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> offset = <span class="number">0</span>; offset &lt; maxHistory; offset++) &#123;</span><br><span class="line">        Date date = rc.getEndOfNextNthPeriod(now, -offset);</span><br><span class="line">        File[] matchingFileArray = getFilesInPeriod(date);</span><br><span class="line">        descendingSort(matchingFileArray, date);</span><br><span class="line">        <span class="keyword">for</span> (File f : matchingFileArray) &#123;</span><br><span class="line">            <span class="keyword">long</span> size = f.length();</span><br><span class="line">            <span class="keyword">if</span> (totalSize + size &gt; totalSizeCap) &#123;</span><br><span class="line">                addInfo(<span class="string">"Deleting ["</span> + f + <span class="string">"]"</span> + <span class="string">" of size "</span> + <span class="keyword">new</span> FileSize(size));</span><br><span class="line">                totalRemoved += size;</span><br><span class="line">                f.delete();</span><br><span class="line">            &#125;</span><br><span class="line">            totalSize += size;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    addInfo(<span class="string">"Removed  "</span> + <span class="keyword">new</span> FileSize(totalRemoved) + <span class="string">" of files"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>两处代码的不同之处来自与前面两个字段类型的定义，一个是int一个是long，看到这里焕然大悟！int类型的最大值 <code>Integer.MAX_VALUE</code>为<code>2147483647</code>，这样折算下来在以上第一段代码所示，如<code>totalSizeCap</code>值设置超过<code>2G</code>时，同时<code>maxHistory</code>内的文件大小累计到大于或等于<code>Integer.MAX_VALUE</code>时，该值将一直不会改变，也就是<code>totalSize + size &gt; totalSizeCap</code>条件将永不成立，所以会导致在<code>totalSizeCap</code>设置超过2G时，不会删除旧日志文件的问题。<br>这里合理的代码为，将<code>int</code>类型的变量定义改为<code>long</code>类型，即第二段代码。</p>
+<h1 id="解决问题"><a href="#解决问题" class="headerlink" title="解决问题"></a>解决问题</h1><p>知道了是bug了之后，就需要查看该问题在哪个版本进行了修复，然后将线上版本升级为fix掉该bug的版本。</p>
+<p>点击<a href="https://github.com/qos-ch/logback/blob/4dd08e6832/logback-core/src/main/java/ch/qos/logback/core/rolling/helper/TimeBasedArchiveRemover.java" target="_blank" rel="noopener">该类</a>的<code>History</code>查看历史修改版本，可以看到这个问题已经有人提出过<a href="https://jira.qos.ch/browse/LOGBACK-1231" target="_blank" rel="noopener">issue</a>，并且fix掉之后提供了<a href="https://github.com/qos-ch/logback/releases/tag/v_1.2.0" target="_blank" rel="noopener">修复版</a>了。</p>
+<p><img src="hhttp://img.tidyko.com/blog/Logback_1.png" alt=""></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/589711b0.html" data-id="cju0l6hqp007tnhykqkvln5g7" class="article-share-link">
+        分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Logback/">Logback</a></li></ul>
+
+    </footer>
+  </div>
+  
+  
+<nav id="article-nav">
+  
+  
+    <a href="/posts/62bac17f.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">mpvue中使用vant-weapp组件库</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+<div style="margin:50px 0">
+  <amp-auto-ads type="adsense" data-ad-client="ca-pub-1522837637326007">
+  </amp-auto-ads>
+  <!-- left-ad-2 -->
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1522837637326007" data-ad-slot="1200441426"
+    data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+
+
+
+
+
+
+
+
+<div id="comments" class="comments">
+  <div id="gitment_container"></div>
+</div>
+
+<link rel="stylesheet" href="https://www.wenjunjiang.win/css/gitment.css">
+<script src="https://www.wenjunjiang.win/js/gitment.js"></script>
+<script>
+  var gitment = new Gitment({
+    owner: 'tidyko',
+    repo: 'tidyko.github.io',
+    oauth: {
+      client_id: '62e4f6a4ca86e056da76',
+      client_secret: '912d627549301dd54437313b122a7c543215bc4c',
+    },
+  })
+  gitment.render('gitment_container')
+</script>
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <h1 class="blog-title">Tidy的个人博客</h1>
+    <h2 class="blog-subtitle">人生とは好きな人と一緒に過ごした日々だ!</h2>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="http://img.tidyko.com/avatar.jpg">
+    <h2 class="author">
+      
+    </h2>
+    <h3 class="description">
+      
+    </h3>
+    <div class="count-box">
+      <a href="/archives">
+        <div><strong>
+            141</strong><br>文章</div>
+      </a>
+      <a href="/categories">
+        <div><strong>
+            52</strong><br>分类</div>
+      </a>
+      <a href="/tags">
+        <div><strong>
+            99</strong><br>标签</div>
+      </a>
+    </div>
+
+
+
+    <div class="social-link">
+      
+      <a class="hvr-bounce-in" href="https://github.com/tidyko" target="_blank" title="Github">
+        Github
+      </a>
+      
+    </div>
+
+    <div class="friend-link">
+      <h2>
+        友情链接
+      </h2>
+      
+      <a class="hvr-bounce-in" href="https://blog.yl-online.top" target="_blank" title="forever杨">
+        forever杨
+      </a>
+      
+      <a class="hvr-bounce-in" href="https://denglvl.github.io/" target="_blank" title="DengCong">
+        DengCong
+      </a>
+      
+    </div>
+  </div>
+</div>
+  
+    <div class="widget-wrap">
+    <h3 class="widget-title">关注我的公众号：</h3>
+    <div class="widget"><img style="width:100%" src="http://img.tidyko.com/japanesehub-qrcode.jpg">
+    </div>
+</div>
+  
+    <div class="widget-wrap">
+    <h3 class="widget-title"></h3>
+    <!-- left-ad-1 -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1522837637326007" data-ad-slot="1201221679"
+        data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy;2018 - 2019 Tidy的个人博客<br>
+      <!-- 由<a href="https://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
+      主题-<a href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a> -->
+      
+        <br>
+        <!-- <script src="https://s19.cnzz.com/z_stat.php?id=1274390271&web_id=1274390271" language="JavaScript" rel="noreferrer"></script>       -->
+        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1274390271'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1274390271%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));</script>
+      
+    </div>
+  </div>
+</footer>
+    </div>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/wow/0.1.6/wow.min.js"></script>
+<script>
+new WOW().init();
+</script>   
+
+
+  <link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+  <script src="/plugin/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+  <!-- <section class="hidden-xs"> 
+  <ul class="cb-slideshow"> 
+    <li><span>苟利</span></li> 
+    <li><span>国家</span></li> 
+    <li><span>生死以</span></li> 
+    <li><span>岂能</span></li> 
+    <li><span>祸福</span></li> 
+    <li><span>趋避之</span></li> 
+  </ul>
+</section> -->
+<script src="/js/script.js"></script>
+
+
+
+
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("DpQHavrF6hdX8C8q7ONib5Qv-gzGzoHsz", "CFNVYUb4rtTjkji3Erv4ROA7");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.article-title').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+
+
+<div id="totop" style="position:fixed;bottom:160px;right:50px;cursor: pointer;z-index: 10;">
+    <a title="返回顶部"><img src="/images/scrollup.png" style="width:50px;height:50px;"/></a>
+</div>
+<script src="/js/totop.js"></script>
+  </div>
+</body>
+</html>
