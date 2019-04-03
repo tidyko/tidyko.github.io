@@ -19,12 +19,12 @@
 <meta property="og:site_name" content="Tidy的个人博客">
 <meta property="og:description" content="问题描述项目使用logback作为日志管理框架。 logback project logback index logback issues 这几天发现线上的info日志文件，总大小超过了设定阈值，仍然没删除掉旧文件，但是error日志却如期删除了。info级别的日志，totalSizeCap为5G 12345678&amp;lt;rollingPolicy class=&quot;ch.qos.logback.co">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="hhttp://img.tidyko.com/blog/Logback_1.png">
-<meta property="og:updated_time" content="2019-04-03T02:27:57.370Z">
+<meta property="og:image" content="http://img.tidyko.com/blog/Logback_1.png">
+<meta property="og:updated_time" content="2019-04-03T02:29:29.149Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Logback totalSizeCap不生效">
 <meta name="twitter:description" content="问题描述项目使用logback作为日志管理框架。 logback project logback index logback issues 这几天发现线上的info日志文件，总大小超过了设定阈值，仍然没删除掉旧文件，但是error日志却如期删除了。info级别的日志，totalSizeCap为5G 12345678&amp;lt;rollingPolicy class=&quot;ch.qos.logback.co">
-<meta name="twitter:image" content="hhttp://img.tidyko.com/blog/Logback_1.png">
+<meta name="twitter:image" content="http://img.tidyko.com/blog/Logback_1.png">
   
   <link rel="alternate" href="/atom.xml" title="Tidy的个人博客" type="application/atom+xml">
   
@@ -160,12 +160,12 @@
 <p>两处代码的不同之处来自与前面两个字段类型的定义，一个是int一个是long，看到这里焕然大悟！int类型的最大值 <code>Integer.MAX_VALUE</code>为<code>2147483647</code>，这样折算下来在以上第一段代码所示，如<code>totalSizeCap</code>值设置超过<code>2G</code>时，同时<code>maxHistory</code>内的文件大小累计到大于或等于<code>Integer.MAX_VALUE</code>时，该值将一直不会改变，也就是<code>totalSize + size &gt; totalSizeCap</code>条件将永不成立，所以会导致在<code>totalSizeCap</code>设置超过2G时，不会删除旧日志文件的问题。<br>这里合理的代码为，将<code>int</code>类型的变量定义改为<code>long</code>类型，即第二段代码。</p>
 <h1 id="解决问题"><a href="#解决问题" class="headerlink" title="解决问题"></a>解决问题</h1><p>知道了是bug了之后，就需要查看该问题在哪个版本进行了修复，然后将线上版本升级为fix掉该bug的版本。</p>
 <p>点击<a href="https://github.com/qos-ch/logback/blob/4dd08e6832/logback-core/src/main/java/ch/qos/logback/core/rolling/helper/TimeBasedArchiveRemover.java" target="_blank" rel="noopener">该类</a>的<code>History</code>查看历史修改版本，可以看到这个问题已经有人提出过<a href="https://jira.qos.ch/browse/LOGBACK-1231" target="_blank" rel="noopener">issue</a>，并且fix掉之后提供了<a href="https://github.com/qos-ch/logback/releases/tag/v_1.2.0" target="_blank" rel="noopener">修复版</a>了。</p>
-<p><img src="hhttp://img.tidyko.com/blog/Logback_1.png" alt=""></p>
+<p><img src="http://img.tidyko.com/blog/Logback_1.png" alt=""></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/589711b0.html" data-id="cju0ldfii0086ykykvwt0ytle" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/589711b0.html" data-id="cju0lfc4t007s6oykg7wdwgob" class="article-share-link">
         分享</a>
       
       
