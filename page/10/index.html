@@ -56,9 +56,9 @@
     <h2 class="author"></h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>142</strong><br>文章</div></a>
-      <a href="/categories"><div><strong>52</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>101</strong><br>标签</div></a>
+      <a href="/archives"><div><strong>143</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>54</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>102</strong><br>标签</div></a>
     </div>
     <ul class="blog-link">
      
@@ -83,6 +83,103 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-IE 浏览器模式与文档模式及其开发中处理方式" class="article" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/810bd9aa.html" class="article-date">
+  <time class="post-time" datetime="2014-09-11T01:57:00.000Z" itemprop="datePublished">
+    <span class="post-month">9月</span><br/>
+    <span class="post-day">11</span>
+  </time>
+</a>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/810bd9aa.html">IE 浏览器模式与文档模式及其开发中处理方式</a>
+    </h1>
+  
+
+      <div>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/浏览器/">浏览器</a>,<a class="article-category-link" href="/categories/浏览器/IE/">IE</a>
+  </div>
+
+        
+        
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/810bd9aa.html" class="leancloud_visitors" data-flag-title="IE 浏览器模式与文档模式及其开发中处理方式">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 1,037</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 4 分钟</span>
+  </div>
+ 
+        
+      </div>
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <h2 id="原文："><a href="#原文：" class="headerlink" title="原文："></a>原文：</h2><p><a href="http://blog.csdn.net/neo_liu0000/article/details/7589731" target="_blank" rel="noopener">http://blog.csdn.net/neo_liu0000/article/details/7589731</a></p>
+<h3 id="1）什么是浏览器模式和文本模式？"><a href="#1）什么是浏览器模式和文本模式？" class="headerlink" title="1）什么是浏览器模式和文本模式？"></a>1）什么是浏览器模式和文本模式？</h3><p>经常使用IE开发者工具的同学，肯定见过浏览器模式和文本模式，对于这两个名词，综合相关文档解释如下：</p>
+<p>浏览器模式（Browser Mode），用于切换IE针对该网页的默认文本模式、对不同版本浏览器的条件注释解析、决定请求头里userAgent的值。它在浏览器发出请求之前就已经确定，网站没有办法修改这个值。它代表的是用户以何种浏览器访问网站。</p>
+<p>文本模式（Document Mode），其实就是经常说的文档模式。不同的文本模式对应不同的排版引擎，不同的JS引擎。上面提到，每一种浏览器模式对应一种默认的文本模式，网站还可以通过一些手段来更改文本模式，它代表的是浏览器以何种模式呈现页面。</p>
+<h3 id="2）浏览器模式和文本模式有什么用？"><a href="#2）浏览器模式和文本模式有什么用？" class="headerlink" title="2）浏览器模式和文本模式有什么用？"></a>2）浏览器模式和文本模式有什么用？</h3><p>用来解决IE各版本带来的兼容性问题。根据微软描述的IE兼容性策略，在IE8+访问一个页面要经过这样的流程：</p>
+<h4 id="2-1）"><a href="#2-1）" class="headerlink" title="2.1）"></a>2.1）</h4><p>首先，浏览器要确定浏览器模式。上面说过，浏览器模式是在请求发送之前就必须确定，默认取最新（IE9为IE9标准，IE8为IE8标准），有两种方式可以更改它：</p>
+<p>通过开发者工具选择（可选项见上表）；<br>通过点击兼容性视图按钮；<br>命中兼容性视图列表（微软维护的需要采用兼容性视图的列表。IE8+默认对这个列表和局域网的网址都会采用相应的兼容性模式）；</p>
+<h4 id="2-2）"><a href="#2-2）" class="headerlink" title="2.2）"></a>2.2）</h4><p>浏览器通过请求头里userAgent的值，告诉服务器当前是何种浏览器模式；</p>
+<h4 id="2-3）"><a href="#2-3）" class="headerlink" title="2.3）"></a>2.3）</h4><p>服务器可以通过下面方式改变浏览器文本模式：</p>
+<p>doctype；<br>X-UA-Compatible Meta或对应的响应头</p>
+<p>浏览器模式决定：1）发送给服务端的UA；2）默认的文本模式；3）如何解析条件注释。它在请求发送前就已经确定，且不受服务端控制。文本模式决 定：1）排版引擎；2）JS引擎。它在浏览器得到响应后最终确定，服务端可通过doctype或X-UA-Compatible来控制。</p>
+<h5 id="测试一"><a href="#测试一" class="headerlink" title="测试一"></a>测试一</h5><p>根据前文，如果用户浏览器没有激活兼容性视图；没有开启IE开发者工具。那么IE9的浏览器模式默认为IE9，默认对应的文本模式应该是IE9标准（对于IE8来说，是类似的），我们通过下列代码将它改到IE7标准：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"IE=7"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h5 id="测试二"><a href="#测试二" class="headerlink" title="测试二"></a>测试二</h5><p>那如果把测试地址加到兼容性列表呢？根据前文，这种情况浏览器模式应该是IE9/IE8兼容性，对应的文本模式依然是IE7标准。</p>
+<h5 id="测试三"><a href="#测试三" class="headerlink" title="测试三"></a>测试三</h5><p>如果把X-UA-Compatible改成IE=edge，继续使用兼容性模式测试呢？</p>
+<p>这个结论其实跟测试一是一致的：X-UA-Compatible为IE=edge，意味着文本模式会使用最新可用的版本，然而文本模式的更改，又把浏览器模式从IE9/IE8兼容性变成IE9/IE8。IE9会按照新的浏览器模式来设置JS的navigator.userAgent，IE8下JS的UA不变。</p>
+<h5 id="测试四"><a href="#测试四" class="headerlink" title="测试四"></a>测试四</h5><p>那如果通过开发者工具人为设置浏览器模式和文本模式呢？经过测试，这样测试都是符合预期的。例如IE9下，设置浏览器模式为IE8，文本模式为IE7标准，请求头UA、JS的UA、条件注释都表明浏览器模式是IE8，documentMode和JS引擎都表明文本模式是IE7标准。因为，IE开发者工具的优先级最高，设置了这个，其他条件统统无视！</p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>IE8/9中X-UA-Compatible对文本模式的改变会导致浏览器模式的改变，也就是说服务端可以间接控制浏览器模式。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/810bd9aa.html" data-id="cjudkhu5h003la9yksmlnotn2" class="article-share-link">
+        分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IE/">IE</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
   
     <article id="post-J2EE DWRAnnotation入门" class="article" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -155,7 +252,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/e234776b.html" data-id="cjudjddmv0044s4yky50b9g7o" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/e234776b.html" data-id="cjudkhu5o0041a9yks8f9jblk" class="article-share-link">
         分享</a>
       
       
@@ -244,7 +341,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/dcc50721.html" data-id="cjudjddpb00a4s4ykq989ja1t" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/dcc50721.html" data-id="cjudkhu8k00a3a9yklm60f0lk" class="article-share-link">
         分享</a>
       
       
@@ -327,7 +424,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3a649dc9.html" data-id="cjudjddwy00u2s4yks3srfrrm" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/3a649dc9.html" data-id="cjudkhu9z00cua9yks2jpip7m" class="article-share-link">
         分享</a>
       
       
@@ -410,7 +507,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3194542f.html" data-id="cjudjddqs00cms4ykow7rwmfn" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/3194542f.html" data-id="cjudkhua200cxa9yknsojm8yb" class="article-share-link">
         分享</a>
       
       
@@ -490,7 +587,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/8cfd6ae4.html" data-id="cjudjddlj001ps4ykh8nr0j65" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/8cfd6ae4.html" data-id="cjudkhu49001qa9ykhb8yzlo7" class="article-share-link">
         分享</a>
       
       
@@ -570,7 +667,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/c21e42c5.html" data-id="cjudjddlk001rs4yk03fv3w7h" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/c21e42c5.html" data-id="cjudkhu4b001ta9ykyf23vw74" class="article-share-link">
         分享</a>
       
       
@@ -653,7 +750,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3975e50a.html" data-id="cjudjddqw00cps4ykja73elwc" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/3975e50a.html" data-id="cjudkhu9y00cqa9yknazcrv02" class="article-share-link">
         分享</a>
       
       
@@ -738,7 +835,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/a0a2137e.html" data-id="cjudjddqc00bxs4yk9nb83h5e" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/a0a2137e.html" data-id="cjudkhu9o00c5a9yk6mn3b7xo" class="article-share-link">
         分享</a>
       
       
@@ -844,94 +941,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/7a967e21.html" data-id="cjudjddlp0022s4yk00866k2x" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/7a967e21.html" data-id="cjudkhu4h0025a9yk366w4rnk" class="article-share-link">
         分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-JS history.back() 网页已过期" class="article" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/41464bc7.html" class="article-date">
-  <time class="post-time" datetime="2014-06-27T02:32:00.000Z" itemprop="datePublished">
-    <span class="post-month">6月</span><br/>
-    <span class="post-day">27</span>
-  </time>
-</a>
-
-  </div>
-  <div class="article-inner">
-    
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/41464bc7.html">JS history.back() 网页已过期</a>
-    </h1>
-  
-
-      <div>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/JavaScript/">JavaScript</a>
-  </div>
-
-        
-        
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/41464bc7.html" class="leancloud_visitors" data-flag-title="JS history.back() 网页已过期">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 103</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 1 分钟</span>
-  </div>
- 
-        
-      </div>
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      <p>使用history.back()进行返回时，有时会提示“网页已过期”，</p>
-<p>多数是因为目标页面的form为post提交方式，而且是表单已经提交后的响应页面，无法找到form中的具体参数，而“报错”。</p>
-<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><h3 id="1）"><a href="#1）" class="headerlink" title="1）"></a>1）</h3><p>在要返回的目标页面中，添加&lt;%response.setHeader(“cache-control”,”public”); %&gt;</p>
-<h3 id="2）"><a href="#2）" class="headerlink" title="2）"></a>2）</h3><p>将目标页面的form的method=”post”去掉，或改为method=”get”。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/41464bc7.html" data-id="cjudjddna0055s4yku72ucajp" class="article-share-link">
-        分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
 
     </footer>
   </div>
@@ -999,15 +1013,15 @@
     <div class="count-box">
       <a href="/archives">
         <div><strong>
-            142</strong><br>文章</div>
+            143</strong><br>文章</div>
       </a>
       <a href="/categories">
         <div><strong>
-            52</strong><br>分类</div>
+            54</strong><br>分类</div>
       </a>
       <a href="/tags">
         <div><strong>
-            101</strong><br>标签</div>
+            102</strong><br>标签</div>
       </a>
     </div>
 
