@@ -56,9 +56,9 @@
     <h2 class="author"></h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>141</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>142</strong><br>文章</div></a>
       <a href="/categories"><div><strong>52</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>99</strong><br>标签</div></a>
+      <a href="/tags"><div><strong>101</strong><br>标签</div></a>
     </div>
     <ul class="blog-link">
      
@@ -83,6 +83,93 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-Hibernate HQL new map" class="article" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/e175267.html" class="article-date">
+  <time class="post-time" datetime="2014-04-12T07:57:00.000Z" itemprop="datePublished">
+    <span class="post-month">4月</span><br/>
+    <span class="post-day">12</span>
+  </time>
+</a>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/e175267.html">Hibernate HQL new map</a>
+    </h1>
+  
+
+      <div>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
+  </div>
+
+        
+        
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/e175267.html" class="leancloud_visitors" data-flag-title="Hibernate HQL new map">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 327</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 1 分钟</span>
+  </div>
+ 
+        
+      </div>
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <p>HQL 查询如果需要带出对象（比如：OneToOne子对象）的一两个属性，而不是全部带出。可以使用 select new map的方法带出。</p>
+<h3 id="1）"><a href="#1）" class="headerlink" title="1）"></a>1）</h3><p>lazy还是设置为false<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**关联属性对象*/</span></span><br><span class="line"><span class="meta">@OneToOne</span>(cascade=CascadeType.PERSIST, fetch=FetchType.LAZY)</span><br><span class="line"><span class="meta">@JoinColumn</span>(name=<span class="string">"PROPERTY_ID"</span>, referencedColumnName=<span class="string">"ID"</span>)</span><br><span class="line"><span class="keyword">private</span> Property property;</span><br></pre></td></tr></table></figure></p>
+<h3 id="2）"><a href="#2）" class="headerlink" title="2）"></a>2）</h3><p>使用select new map（propertyId为要带出的子对象ID属性值）<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String HQLPAGE = <span class="string">"from Plugin p where p.state=1 and p.name like :name"</span>;</span><br><span class="line"></span><br><span class="line">String hqlResult =<span class="string">"select new map(id as id,prictureUrl as prictureUrl,name as name,priceFormula as priceFormula,sort as sort,isShow as isShow,property.id as propertyId) "</span> + HQLPAGE;</span><br></pre></td></tr></table></figure></p>
+<p>注:<br>如果带出的是一整个property对象的话，用jackson对对象进行转换的时候会报错。<br>这时候要将带出的对象设置为fetch=FetchType.EAGER</p>
+<p>如果有多步增加操作，可在Service层添加@Transactional。<br>这样如果出错全部操作都会回滚。</p>
+<h3 id="3）"><a href="#3）" class="headerlink" title="3）"></a>3）</h3><p>想要先添加property对象，然后再把property对象放进plugin里面的话，有两种方法。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**关联属性对象*/</span></span><br><span class="line"><span class="meta">@OneToOne</span>(cascade=CascadeType.PERSIST, fetch=FetchType.LAZY)</span><br><span class="line"><span class="meta">@JoinColumn</span>(name=<span class="string">"PROPERTY_ID"</span>, referencedColumnName=<span class="string">"ID"</span>)</span><br><span class="line"><span class="keyword">private</span> Property property;</span><br></pre></td></tr></table></figure></p>
+<p>1.在CascadeType.PERSIST的情况下，设置为瞬时对象，必须将property对象先保存到数据库里面，在放进plugin里面。</p>
+<p>2.在CascadeType.ALL的情况下，可以直接新建对象，然后放进plugin里面。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/e175267.html" data-id="cjudj4tdf002mhryk7dlhqak5" class="article-share-link">
+        分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hibernate/">Hibernate</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
   
     <article id="post-Oracle ORA-06550 PLS-00201" class="article" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -143,7 +230,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/363cca5c.html" data-id="cju0lhaqu0098bhyk2kbo22ls" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/363cca5c.html" data-id="cjudj4tgo0094hryksh30ph8b" class="article-share-link">
         分享</a>
       
       
@@ -226,7 +313,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/4bb3b075.html" data-id="cju0lhamq0019bhykin0tejiu" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/4bb3b075.html" data-id="cjudj4tco001ahrykvrrkdstm" class="article-share-link">
         分享</a>
       
       
@@ -306,7 +393,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/229e30de.html" data-id="cju0lham00006bhykctgqbpfn" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/229e30de.html" data-id="cjudj4tc2000chryk1f7cbbij" class="article-share-link">
         分享</a>
       
       
@@ -387,7 +474,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/97ea625a.html" data-id="cju0lhap3005ebhyk83yzl8k5" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/97ea625a.html" data-id="cjudj4tex005hhryks8ldi0qo" class="article-share-link">
         分享</a>
       
       
@@ -466,7 +553,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/380553c.html" data-id="cju0lharl00adbhykzpk3updo" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/380553c.html" data-id="cjudj4th900a3hryk944ra6vj" class="article-share-link">
         分享</a>
       
       
@@ -549,7 +636,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/efb40b79.html" data-id="cju0lhare00a0bhyk9l88fv09" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/efb40b79.html" data-id="cjudj4th0009ohryk2tms9bmd" class="article-share-link">
         分享</a>
       
       
@@ -644,7 +731,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/4115afa8.html" data-id="cju0lhaok004ebhykahdkoywl" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/4115afa8.html" data-id="cjudj4teb0042hrykrsnz7x2x" class="article-share-link">
         分享</a>
       
       
@@ -726,7 +813,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/7c9f9e00.html" data-id="cju0lhar8009sbhyk4uojs2wg" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/7c9f9e00.html" data-id="cjudj4tgy009khryky2b6afcw" class="article-share-link">
         分享</a>
       
       
@@ -809,94 +896,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/2cf05a87.html" data-id="cju0lhaoh0047bhykgexhziqi" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/2cf05a87.html" data-id="cjudj4te8003vhrykrmw55br6" class="article-share-link">
         分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Java date 到 Oracle date 精确到时分秒" class="article" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/6a3fb6fb.html" class="article-date">
-  <time class="post-time" datetime="2014-03-03T06:41:00.000Z" itemprop="datePublished">
-    <span class="post-month">3月</span><br/>
-    <span class="post-day">03</span>
-  </time>
-</a>
-
-  </div>
-  <div class="article-inner">
-    
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/6a3fb6fb.html">Java date 到 Oracle date 精确到时分秒</a>
-    </h1>
-  
-
-      <div>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
-  </div>
-
-        
-        
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/6a3fb6fb.html" class="leancloud_visitors" data-flag-title="Java date 到 Oracle date 精确到时分秒">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 140</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 1 分钟</span>
-  </div>
- 
-        
-      </div>
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      <p>有两种方法：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java.util.Date startTime=<span class="keyword">new</span> Date(<span class="string">"2014/01/01 23:00:00"</span>);</span><br></pre></td></tr></table></figure></p>
-<h3 id="1）"><a href="#1）" class="headerlink" title="1）"></a>1）</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Timestamp(startTime.getTime())</span><br></pre></td></tr></table></figure>
-<p>如果数据库中时间字段定义为date类型，由于timestamp类型的精度比date类型的精度高，所以oracle会对数据库里的date类型做出隐身转换，将date类型转换为timestamp类型，由于加了函数，那么创建在date类型上的索引将不会使用到；(好像是oracle9i后开始才有的问题)</p>
-<h3 id="2）"><a href="#2）" class="headerlink" title="2）"></a>2）</h3><p>数据库直接使用varchar2类型，在过程里面用to_date直接转换。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/6a3fb6fb.html" data-id="cju0lhapf006abhykpsk8cc6a" class="article-share-link">
-        分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Oracle/">Oracle</a></li></ul>
 
     </footer>
   </div>
@@ -964,7 +968,7 @@
     <div class="count-box">
       <a href="/archives">
         <div><strong>
-            141</strong><br>文章</div>
+            142</strong><br>文章</div>
       </a>
       <a href="/categories">
         <div><strong>
@@ -972,7 +976,7 @@
       </a>
       <a href="/tags">
         <div><strong>
-            99</strong><br>标签</div>
+            101</strong><br>标签</div>
       </a>
     </div>
 

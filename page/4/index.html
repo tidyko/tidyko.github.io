@@ -56,9 +56,9 @@
     <h2 class="author"></h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>141</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>142</strong><br>文章</div></a>
       <a href="/categories"><div><strong>52</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>99</strong><br>标签</div></a>
+      <a href="/tags"><div><strong>101</strong><br>标签</div></a>
     </div>
     <ul class="blog-link">
      
@@ -83,6 +83,92 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-建站 HEXO发布到github时出现卡顿" class="article" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/3f08f656.html" class="article-date">
+  <time class="post-time" datetime="2018-08-13T13:58:00.000Z" itemprop="datePublished">
+    <span class="post-month">8月</span><br/>
+    <span class="post-day">13</span>
+  </time>
+</a>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/3f08f656.html">建站 HEXO发布到github时出现卡顿</a>
+    </h1>
+  
+
+      <div>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/建站/">建站</a>
+  </div>
+
+        
+        
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/3f08f656.html" class="leancloud_visitors" data-flag-title="建站 HEXO发布到github时出现卡顿">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 231</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 1 分钟</span>
+  </div>
+ 
+        
+      </div>
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <p>使用以下命令构建发布时，一直循环出现该错误，导致发布不了。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> hexo clean &amp;&amp; hexo g &amp;&amp; hexo d -debug</span></span><br><span class="line"></span><br><span class="line">INFO  Deleted database.</span><br><span class="line">INFO  Deleted public folder.</span><br><span class="line">INFO  Start processing</span><br><span class="line">INFO  Files loaded in 1.63 s</span><br><span class="line">INFO  Generated: index.html</span><br><span class="line">...</span><br><span class="line">INFO  359 files generated in 5.06 s</span><br><span class="line">INFO  Start processing</span><br><span class="line">INFO  Files loaded in 826 ms</span><br><span class="line">INFO  0 files generated in 3.65 s</span><br><span class="line">INFO  Start processing</span><br><span class="line">INFO  Files loaded in 339 ms</span><br><span class="line">INFO  0 files generated in 3.59 s</span><br><span class="line">INFO  Start processing</span><br><span class="line">INFO  Files loaded in 295 ms</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<p>无奈之下，只能重新构建一个项目，将源码拷贝到新的项目进行重新构建。</p>
+<p>发现就可以了。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hexo init hexoblog</span><br><span class="line"></span><br><span class="line">cd hexoblog</span><br><span class="line"></span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
+<p>然后复制老项目现有的 <code>_config.yml</code> 到新项目路径下，</p>
+<p>再复制 <code>hexoblog/source</code> 下面的 <code>categories</code> 、 <code>tags</code> 、 <code>CNAME</code> 到新项目底下，</p>
+<p>然后复制 <code>themes/shana</code> 到新项目的themes底下，重新执行发布命令即可。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/3f08f656.html" data-id="cjudj4tia00bvhrykcf0in6ph" class="article-share-link">
+        分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HEXO/">HEXO</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
   
     <article id="post-Linux 机器之间 zssh, rz, sz互相传输" class="article" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -147,7 +233,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/47f7c28d.html" data-id="cju0lhaq3007tbhykmoeizz99" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/47f7c28d.html" data-id="cjudj4tfv007mhrykpu72ewue" class="article-share-link">
         分享</a>
       
       
@@ -226,7 +312,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/1136d15d.html" data-id="cju0lhap7005pbhykzjsgekzk" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/1136d15d.html" data-id="cjudj4tey005khryk838i0jy3" class="article-share-link">
         分享</a>
       
       
@@ -321,7 +407,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/64f28a88.html" data-id="cju0lhamv001lbhykv8h2tta8" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/64f28a88.html" data-id="cjudj4tcn0017hrykpq6youle" class="article-share-link">
         分享</a>
       
       
@@ -403,7 +489,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/6308b509.html" data-id="cju0lhapd0062bhykojap3yb9" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/6308b509.html" data-id="cjudj4tf2005shrykchu2t73n" class="article-share-link">
         分享</a>
       
       
@@ -499,7 +585,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3a2e7663.html" data-id="cju0lhanv003abhykdpgespor" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/3a2e7663.html" data-id="cjudj4tds003ahrykab2pddm9" class="article-share-link">
         分享</a>
       
       
@@ -581,7 +667,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/920d2c96.html" data-id="cju0lhaod0041bhykkgfuy3iz" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/920d2c96.html" data-id="cjudj4te3003phrykd46m3x6k" class="article-share-link">
         分享</a>
       
       
@@ -670,7 +756,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/d2f1cf8f.html" data-id="cju0lhapq0071bhyk13ds1g4f" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/d2f1cf8f.html" data-id="cjudj4tfl0070hrykc73nrjhr" class="article-share-link">
         分享</a>
       
       
@@ -750,7 +836,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/4ad6e4a7.html" data-id="cju0lhaso00bybhyk2xa5izj8" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/4ad6e4a7.html" data-id="cjudj4ti600bnhrykve0l24k9" class="article-share-link">
         分享</a>
       
       
@@ -841,91 +927,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/76273d12.html" data-id="cju0lhaph006dbhyk6g688cv9" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/76273d12.html" data-id="cjudj4tfb006ghryktyinyyjv" class="article-share-link">
         分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JVM/">JVM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-分布式 事务解决方案" class="article" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/7042626b.html" class="article-date">
-  <time class="post-time" datetime="2018-04-16T03:30:00.000Z" itemprop="datePublished">
-    <span class="post-month">4月</span><br/>
-    <span class="post-day">16</span>
-  </time>
-</a>
-
-  </div>
-  <div class="article-inner">
-    
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/7042626b.html">分布式 事务解决方案</a>
-    </h1>
-  
-
-      <div>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
-  </div>
-
-        
-        
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/7042626b.html" class="leancloud_visitors" data-flag-title="分布式 事务解决方案">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 25</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 1 分钟</span>
-  </div>
- 
-        
-      </div>
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      <h3 id="1）tcc-事务补偿机制"><a href="#1）tcc-事务补偿机制" class="headerlink" title="1）tcc-事务补偿机制"></a>1）tcc-事务补偿机制</h3><p>实现：<a href="https://github.com/changmingxie/tcc-transaction" target="_blank" rel="noopener">https://github.com/changmingxie/tcc-transaction</a></p>
-<h3 id="2）2pc-两阶段提交机制"><a href="#2）2pc-两阶段提交机制" class="headerlink" title="2）2pc-两阶段提交机制"></a>2）2pc-两阶段提交机制</h3>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/7042626b.html" data-id="cju0lhasp00c2bhyk84rhka38" class="article-share-link">
-        分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/事务/">事务</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/分布式/">分布式</a></li></ul>
 
     </footer>
   </div>
@@ -993,7 +999,7 @@
     <div class="count-box">
       <a href="/archives">
         <div><strong>
-            141</strong><br>文章</div>
+            142</strong><br>文章</div>
       </a>
       <a href="/categories">
         <div><strong>
@@ -1001,7 +1007,7 @@
       </a>
       <a href="/tags">
         <div><strong>
-            99</strong><br>标签</div>
+            101</strong><br>标签</div>
       </a>
     </div>
 
