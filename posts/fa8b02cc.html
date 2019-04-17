@@ -22,7 +22,7 @@
 <meta property="og:image" content="http://img.tidyko.com/blog/thread_pool_exector-2.jpeg">
 <meta property="og:image" content="http://img.tidyko.com/blog/thread_pool_exector-1.jpeg">
 <meta property="og:image" content="http://img.tidyko.com/blog/thread_pool_exector-3.jpeg">
-<meta property="og:updated_time" content="2019-04-17T10:59:25.870Z">
+<meta property="og:updated_time" content="2019-04-17T11:00:49.066Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java ThreadPoolExcutor 初探">
 <meta name="twitter:description" content="我们先打开java.util.concurrent.ThreadPoolExecutor类，看下它的文档注释，大概了解一下它的作用。我们可以了解到该类主要作用是进行线程池的创建，然后我们继续看到下面这一段描述 To be useful across a wide range of contexts, this class provides many adjustable parameters an">
@@ -149,6 +149,7 @@
       <p>我们先打开<code>java.util.concurrent.ThreadPoolExecutor</code>类，看下它的文档注释，大概了解一下它的作用。<br>我们可以了解到该类主要作用是进行线程池的创建，然后我们继续看到下面这一段描述</p>
 <pre><code>To be useful across a wide range of contexts, this class provides many adjustable parameters and extensibility hooks. However, programmers are urged to use the more convenient Executors factory methods Executors.newCachedThreadPool() (unbounded thread pool, with automatic thread reclamation), Executors.newFixedThreadPool(int) (fixed size thread pool) and Executors.newSingleThreadExecutor() (single background thread), that preconfigure settings for the most common usage scenarios. Otherwise, use the following guide when manually configuring and tuning this class:
 </code></pre><p>大概就是说为了更加方便使用，该类提供了手动配置以及调优的方法，不过一般比较推荐<code>java.util.concurrent.Executors</code>类的工厂方法进行创建线程池，它可以创建  </p>
+<a id="more"></a>
 <ol>
 <li><code>Executors.newCachedThreadPool()</code> 无限线程池</li>
 </ol>
@@ -223,7 +224,7 @@ RejectedExecutionHandler handler : 如果线程池已满（线程池满表示：
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/fa8b02cc.html" data-id="cjul3tjyd0069w8yklr5ur1w1" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/fa8b02cc.html" data-id="cjul3uu9m006s0nyk57x5xv8t" class="article-share-link">
         分享</a>
       
       
