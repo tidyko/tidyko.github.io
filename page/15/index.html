@@ -56,9 +56,9 @@
     <h2 class="author"></h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>143</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>144</strong><br>文章</div></a>
       <a href="/categories"><div><strong>54</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>102</strong><br>标签</div></a>
+      <a href="/tags"><div><strong>103</strong><br>标签</div></a>
     </div>
     <ul class="blog-link">
      
@@ -83,6 +83,89 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-Linux CIFS挂载Windows共享" class="article" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/be1a87c4.html" class="article-date">
+  <time class="post-time" datetime="2013-03-28T07:22:00.000Z" itemprop="datePublished">
+    <span class="post-month">3月</span><br/>
+    <span class="post-day">28</span>
+  </time>
+</a>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/be1a87c4.html">Linux CIFS挂载Windows共享</a>
+    </h1>
+  
+
+      <div>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/服务器/">服务器</a>,<a class="article-category-link" href="/categories/服务器/Linux/">Linux</a>
+  </div>
+
+        
+        
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/be1a87c4.html" class="leancloud_visitors" data-flag-title="Linux CIFS挂载Windows共享">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 72</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 1 分钟</span>
+  </div>
+ 
+        
+      </div>
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <h3 id="1）修改-etc-auto-master"><a href="#1）修改-etc-auto-master" class="headerlink" title="1）修改/etc/auto.master"></a>1）修改/etc/auto.master</h3><p>在/misc /etc/auto.misc下面添加/cifs /etc/auto.cifs<br>图例:<br><img src="http://img.tidyko.com/blog/cifs1.jpg" alt="CIFS挂载Windows共享-图例1"></p>
+<h3 id="2）修改-etc-auto-cifs"><a href="#2）修改-etc-auto-cifs" class="headerlink" title="2）修改/etc/auto.cifs"></a>2）修改/etc/auto.cifs</h3><p>在里面添加内容<br>格式:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[IP] [-fstype=cifs,username=用户名,passwd=密码] [://共享目录]</span><br></pre></td></tr></table></figure></p>
+<p>图例:<br><img src="http://img.tidyko.com/blog/cifs2.jpg" alt="CIFS挂载Windows共享-图例2"></p>
+<h3 id="3）保存退出"><a href="#3）保存退出" class="headerlink" title="3）保存退出"></a>3）保存退出</h3><p>执行ls /cifs/192.168.0.58 即可看到共享.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/be1a87c4.html" data-id="cjul3q2mg007iobyky5f0oz65" class="article-share-link">
+        分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
   
     <article id="post-Java jar命令行生成jar包" class="article" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -147,7 +230,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/6473f805.html" data-id="cjudkmoh30065nnyk68nyh20d" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/6473f805.html" data-id="cjul3q2lz006iobyk4e5tcgt7" class="article-share-link">
         分享</a>
       
       
@@ -229,7 +312,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/d46f9b3d.html" data-id="cjudkmohh0070nnykmy701g7s" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/d46f9b3d.html" data-id="cjul3q2me007eobykfco0ydh4" class="article-share-link">
         分享</a>
       
       
@@ -317,7 +400,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/1bffb80a.html" data-id="cjudkmoid0090nnykrf5sjfc6" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/1bffb80a.html" data-id="cjul3q2nc0098obykkkof9c84" class="article-share-link">
         分享</a>
       
       
@@ -389,7 +472,7 @@
     <div class="count-box">
       <a href="/archives">
         <div><strong>
-            143</strong><br>文章</div>
+            144</strong><br>文章</div>
       </a>
       <a href="/categories">
         <div><strong>
@@ -397,7 +480,7 @@
       </a>
       <a href="/tags">
         <div><strong>
-            102</strong><br>标签</div>
+            103</strong><br>标签</div>
       </a>
     </div>
 

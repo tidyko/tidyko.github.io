@@ -56,9 +56,9 @@
     <h2 class="author"></h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>143</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>144</strong><br>文章</div></a>
       <a href="/categories"><div><strong>54</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>102</strong><br>标签</div></a>
+      <a href="/tags"><div><strong>103</strong><br>标签</div></a>
     </div>
     <ul class="blog-link">
      
@@ -83,6 +83,121 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-Java ThreadPoolExcutor 初探" class="article" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/fa8b02cc.html" class="article-date">
+  <time class="post-time" datetime="2019-04-17T03:03:00.000Z" itemprop="datePublished">
+    <span class="post-month">4月</span><br/>
+    <span class="post-day">17</span>
+  </time>
+</a>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/fa8b02cc.html">Java ThreadPoolExcutor 初探</a>
+    </h1>
+  
+
+      <div>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
+  </div>
+
+        
+        
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/fa8b02cc.html" class="leancloud_visitors" data-flag-title="Java ThreadPoolExcutor 初探">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 4,371</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 21 分钟</span>
+  </div>
+ 
+        
+      </div>
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <p>我们先打开<code>java.util.concurrent.ThreadPoolExecutor</code>类，看下它的文档注释，大概了解一下它的作用。<br>我们可以了解到该类主要作用是进行线程池的创建，然后我们继续看到下面这一段描述</p>
+<pre><code>To be useful across a wide range of contexts, this class provides many adjustable parameters and extensibility hooks. However, programmers are urged to use the more convenient Executors factory methods Executors.newCachedThreadPool() (unbounded thread pool, with automatic thread reclamation), Executors.newFixedThreadPool(int) (fixed size thread pool) and Executors.newSingleThreadExecutor() (single background thread), that preconfigure settings for the most common usage scenarios. Otherwise, use the following guide when manually configuring and tuning this class:
+</code></pre><p>大概就是说为了更加方便使用，该类提供了手动配置以及调优的方法，不过一般比较推荐<code>java.util.concurrent.Executors</code>类的工厂方法进行创建线程池，它可以创建  </p>
+<ol>
+<li><code>Executors.newCachedThreadPool()</code> 无限线程池</li>
+</ol>
+<p><img src="http://img.tidyko.com/blog/thread_pool_exector-2.jpeg" alt=""></p>
+<p>它是一个可以无限扩大的线程池；<br>它比较适合处理执行时间比较小的任务；<br>corePoolSize为0，maximumPoolSize为无限大，意味着线程数量可以无限大；<br>keepAliveTime为60S，意味着线程空闲时间超过60S就会被杀死；<br>采用SynchronousQueue装等待的任务，这个阻塞队列没有存储空间，这意味着只要有请求到来，就必须要找到一条工作线程处理他，如果当前没有空闲的线程，那么就会再创建一条新的线程。</p>
+<ol start="2">
+<li><code>Executors.newFixedThreadPool(int)</code> 固定大小的线程池</li>
+</ol>
+<p><img src="http://img.tidyko.com/blog/thread_pool_exector-1.jpeg" alt=""></p>
+<p>它是一种固定大小的线程池；<br>corePoolSize和maximunPoolSize都为用户设定的线程数量nThreads；<br>keepAliveTime为0，意味着一旦有多余的空闲线程，就会被立即停止掉,但这里keepAliveTime无效；<br>阻塞队列采用了LinkedBlockingQueue，它是一个无界队列；<br>由于阻塞队列是一个无界队列，因此永远不可能拒绝任务；由于采用了无界队列，实际线程数量将永远维持在nThreads，因此maximumPoolSize和keepAliveTime将无效。</p>
+<ol start="3">
+<li><code>Executors.newSingleThreadExecutor()</code> 单线程的线程池</li>
+</ol>
+<p><img src="http://img.tidyko.com/blog/thread_pool_exector-3.jpeg" alt=""></p>
+<p>它只会创建一条工作线程处理任务；<br>采用的阻塞队列为LinkedBlockingQueue；</p>
+<p>我们可以看一下他们具体的创建代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** 无限制大小线程池，这里没有入参，只不过corePoolSize初始化的时候为0，maximumPoolSize为int的最大值。 **/</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ExecutorService <span class="title">newCachedThreadPool</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> ThreadPoolExecutor(<span class="number">0</span>, Integer.MAX_VALUE,</span><br><span class="line">                                    <span class="number">60L</span>, TimeUnit.SECONDS,</span><br><span class="line">                                    <span class="keyword">new</span> SynchronousQueue&lt;Runnable&gt;());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/** 固定大小线程池，这里传入的参数是一个线程数，然后设置corePoolSize以及maximumPoolSize相同。 **/</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ExecutorService <span class="title">newFixedThreadPool</span><span class="params">(<span class="keyword">int</span> nThreads)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> ThreadPoolExecutor(nThreads, nThreads,</span><br><span class="line">                                    <span class="number">0L</span>, TimeUnit.MILLISECONDS,</span><br><span class="line">                                    <span class="keyword">new</span> LinkedBlockingQueue&lt;Runnable&gt;());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/** 单线程线程池，这里没有入参，默认设置了corePoolSize以及maximumPoolSize都为1。 **/</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ExecutorService <span class="title">newSingleThreadExecutor</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> FinalizableDelegatedExecutorService</span><br><span class="line">        (<span class="keyword">new</span> ThreadPoolExecutor(<span class="number">1</span>, <span class="number">1</span>,</span><br><span class="line">                                <span class="number">0L</span>, TimeUnit.MILLISECONDS,</span><br><span class="line">                                <span class="keyword">new</span> LinkedBlockingQueue&lt;Runnable&gt;()));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以看到，官方推荐的这几个创建不同类型的线程池方法里都是使用了<code>ThreadPoolExecutor</code>类的构造方法进行创建。</p>
+<p>接下来让我们来看看<code>ThreadPoolExecutor</code>类的构造方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">ThreadPoolExecutor</span><span class="params">(<span class="keyword">int</span> corePoolSize,<span class="keyword">int</span> maximumPoolSize,<span class="keyword">long</span> keepAliveTime,TimeUnit unit,BlockingQueue&lt;Runnable&gt; workQueue)</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">ThreadPoolExecutor</span><span class="params">(<span class="keyword">int</span> corePoolSize,<span class="keyword">int</span> maximumPoolSize,<span class="keyword">long</span> keepAliveTime,TimeUnit unit,BlockingQueue&lt;Runnable&gt; workQueue，RejectedExecutionHandler handler)</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">ThreadPoolExecutor</span><span class="params">(<span class="keyword">int</span> corePoolSize,<span class="keyword">int</span> maximumPoolSize,<span class="keyword">long</span> keepAliveTime,TimeUnit unit,BlockingQueue&lt;Runnable&gt; workQueue,ThreadFactory threadFactory)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="comment">/**</span></span></span><br><span class="line"><span class="function"><span class="comment">* Creates a new &#123;@code ThreadPoolExecutor&#125; with the given initial</span></span></span><br><span class="line"><span class="function"><span class="comment">* parameters.</span></span></span><br><span class="line"><span class="function"><span class="comment">*</span></span></span><br><span class="line"><span class="function"><span class="comment">* @param corePoolSize the number of threads to keep in the pool, even</span></span></span><br><span class="line"><span class="function"><span class="comment">*        if they are idle, unless &#123;@code allowCoreThreadTimeOut&#125; is set</span></span></span><br><span class="line"><span class="function"><span class="comment">* @param maximumPoolSize the maximum number of threads to allow in the</span></span></span><br><span class="line"><span class="function"><span class="comment">*        pool</span></span></span><br><span class="line"><span class="function"><span class="comment">* @param keepAliveTime when the number of threads is greater than</span></span></span><br><span class="line"><span class="function"><span class="comment">*        the core, this is the maximum time that excess idle threads</span></span></span><br><span class="line"><span class="function"><span class="comment">*        will wait for new tasks before terminating.</span></span></span><br><span class="line"><span class="function"><span class="comment">* @param unit the time unit for the &#123;@code keepAliveTime&#125; argument</span></span></span><br><span class="line"><span class="function"><span class="comment">* @param workQueue the queue to use for holding tasks before they are</span></span></span><br><span class="line"><span class="function"><span class="comment">*        executed.  This queue will hold only the &#123;@code Runnable&#125;</span></span></span><br><span class="line"><span class="function"><span class="comment">*        tasks submitted by the &#123;@code execute&#125; method.</span></span></span><br><span class="line"><span class="function"><span class="comment">* @param threadFactory the factory to use when the executor</span></span></span><br><span class="line"><span class="function"><span class="comment">*        creates a new thread</span></span></span><br><span class="line"><span class="function"><span class="comment">* @param handler the handler to use when execution is blocked</span></span></span><br><span class="line"><span class="function"><span class="comment">*        because the thread bounds and queue capacities are reached</span></span></span><br><span class="line"><span class="function"><span class="comment">* @throws IllegalArgumentException if one of the following holds:&lt;br&gt;</span></span></span><br><span class="line"><span class="function"><span class="comment">*         &#123;@code corePoolSize &lt; 0&#125;&lt;br&gt;</span></span></span><br><span class="line"><span class="function"><span class="comment">*         &#123;@code keepAliveTime &lt; 0&#125;&lt;br&gt;</span></span></span><br><span class="line"><span class="function"><span class="comment">*         &#123;@code maximumPoolSize &lt;= 0&#125;&lt;br&gt;</span></span></span><br><span class="line"><span class="function"><span class="comment">*         &#123;@code maximumPoolSize &lt; corePoolSize&#125;</span></span></span><br><span class="line"><span class="function"><span class="comment">* @throws NullPointerException if &#123;@code workQueue&#125;</span></span></span><br><span class="line"><span class="function"><span class="comment">*         or &#123;@code threadFactory&#125; or &#123;@code handler&#125; is null</span></span></span><br><span class="line"><span class="function"><span class="comment">*/</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">ThreadPoolExecutor</span><span class="params">(<span class="keyword">int</span> corePoolSize,<span class="keyword">int</span> maximumPoolSize,<span class="keyword">long</span> keepAliveTime,TimeUnit unit,BlockingQueue&lt;Runnable&gt; workQueue,ThreadFactory threadFactory,RejectedExecutionHandler handler)</span></span></span><br><span class="line"><span class="function">····</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">我们可以看到，有四个构造函数，前三个构造函数都是调用第四个构造函数进行创建的，所以我们可以看以下第四个构造函数的参数,</span></span><br><span class="line"><span class="function">除了方法注释的简单参数介绍之外，</span></span><br><span class="line"><span class="function">我们还可以再看回该类的文档注释，可以看到以下对这些核心参数的解释：</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">        Core and maximum pool sizes</span></span><br><span class="line"><span class="function">            A ThreadPoolExecutor will automatically adjust the pool <span class="title">size</span> <span class="params">(see getPoolSize()</span>) according to the bounds set by <span class="title">corePoolSize</span> <span class="params">(see getCorePoolSize()</span>) and <span class="title">maximumPoolSize</span> <span class="params">(see getMaximumPoolSize()</span>). When a new task is submitted in method <span class="title">execute</span><span class="params">(java.lang.Runnable)</span>, and fewer than corePoolSize threads are running, a new thread is created to handle the request, even <span class="keyword">if</span> other worker threads are idle. If there are more than corePoolSize but less than maximumPoolSize threads running, a new thread will be created only <span class="keyword">if</span> the queue is full. By setting corePoolSize and maximumPoolSize the same, you create a fixed-size thread pool. By setting maximumPoolSize to an essentially unbounded value such as Integer.MAX_VALUE, you allow the pool to accommodate an arbitrary number of concurrent tasks. Most typically, core and maximum pool sizes are set only upon construction, but they may also be changed dynamically using <span class="title">setCorePoolSize</span><span class="params">(<span class="keyword">int</span>)</span> and <span class="title">setMaximumPoolSize</span><span class="params">(<span class="keyword">int</span>)</span>.</span></span><br><span class="line"><span class="function">        Keep-alive times</span></span><br><span class="line"><span class="function">            If the pool currently has more than corePoolSize threads, excess threads will be terminated <span class="keyword">if</span> they have been idle <span class="keyword">for</span> more than the <span class="title">keepAliveTime</span> <span class="params">(see getKeepAliveTime(java.util.concurrent.TimeUnit)</span>). This provides a means of reducing resource consumption when the pool is not being actively used. If the pool becomes more active later, new threads will be constructed. This parameter can also be changed dynamically using method <span class="title">setKeepAliveTime</span><span class="params">(<span class="keyword">long</span>, java.util.concurrent.TimeUnit)</span>. Using a value of Long.MAX_VALUE TimeUnit.NANOSECONDS effectively disables idle threads from ever terminating prior to shut down. By <span class="keyword">default</span>, the keep-alive policy applies only when there are more than corePoolSizeThreads. But method <span class="title">allowCoreThreadTimeOut</span><span class="params">(<span class="keyword">boolean</span>)</span> can be used to apply <span class="keyword">this</span> time-out policy to core threads as well, so <span class="keyword">long</span> as the keepAliveTime value is non-zero.</span></span><br><span class="line"><span class="function">        Queuing</span></span><br><span class="line"><span class="function">            Any BlockingQueue may be used to transfer and hold submitted tasks. The use of <span class="keyword">this</span> queue interacts with pool sizing:</span></span><br><span class="line"><span class="function">                If fewer than corePoolSize threads are running, the Executor always prefers adding a new thread rather than queuing.</span></span><br><span class="line"><span class="function">                If corePoolSize or more threads are running, the Executor always prefers queuing a request rather than adding a new thread.</span></span><br><span class="line"><span class="function">                If a request cannot be queued, a new thread is created unless <span class="keyword">this</span> would exceed maximumPoolSize, in which <span class="keyword">case</span>, the task will be rejected.</span></span><br><span class="line"><span class="function">            There are three general strategies <span class="keyword">for</span> queuing:</span></span><br><span class="line"><span class="function">                1. Direct handoffs. A good <span class="keyword">default</span> choice <span class="keyword">for</span> a work queue is a SynchronousQueue that hands off tasks to threads without otherwise holding them. Here, an attempt to queue a task will fail <span class="keyword">if</span> no threads are immediately available to run it, so a new thread will be constructed. This policy avoids lockups when handling sets of requests that might have internal dependencies. Direct handoffs generally require unbounded maximumPoolSizes to avoid rejection of new submitted tasks. This in turn admits the possibility of unbounded thread growth when commands <span class="keyword">continue</span> to arrive on average faster than they can be processed.</span></span><br><span class="line"><span class="function">                2. Unbounded queues. Using an unbounded <span class="title">queue</span> <span class="params">(<span class="keyword">for</span> example a LinkedBlockingQueue without a predefined capacity)</span> will cause new tasks to wait in the queue when all corePoolSize threads are busy. Thus, no more than corePoolSize threads will ever be created. <span class="params">(And the value of the maximumPoolSize therefore doesnt have any effect.)</span> This may be appropriate when each task is completely independent of others, so tasks cannot affect each others execution</span>; <span class="keyword">for</span> example, in a web page server. While <span class="keyword">this</span> style of queuing can be useful in smoothing out <span class="keyword">transient</span> bursts of requests, it admits the possibility of unbounded work queue growth when commands <span class="keyword">continue</span> to arrive on average faster than they can be processed.</span><br><span class="line">                <span class="number">3</span>. Bounded queues. <span class="function">A bounded <span class="title">queue</span> <span class="params">(<span class="keyword">for</span> example, an ArrayBlockingQueue)</span> helps prevent resource exhaustion when used with finite maximumPoolSizes, but can be more difficult to tune and control. Queue sizes and maximum pool sizes may be traded off <span class="keyword">for</span> each other: Using large queues and small pools minimizes CPU usage, OS resources, and context-switching overhead, but can lead to artificially low throughput. If tasks frequently <span class="title">block</span> <span class="params">(<span class="keyword">for</span> example <span class="keyword">if</span> they are I/O bound)</span>, a system may be able to schedule time <span class="keyword">for</span> more threads than you otherwise allow. Use of small queues generally <span class="keyword">requires</span> larger pool sizes, which keeps CPUs busier but may encounter unacceptable scheduling overhead, which also decreases throughput.</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">经过上面的图解以及文档注释解析之后我们来总结一下这些参数的作用：</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">        <span class="keyword">int</span> corePoolSize : 核心池的大小，当有任务来之后，才会创建一个线程去执行任务，当线程池中的线程数目达到corePoolSize后，就会把到达的任务放到缓存队列当中；若想一开始就创建所有核心线程需调用<span class="title">prestartAllCoreThreads</span><span class="params">()</span>或者<span class="title">prestartCoreThread</span><span class="params">()</span>方法，会直接预先创建corePoolSize的线程.</span></span><br><span class="line"><span class="function">        <span class="keyword">int</span> maximumPoolSize : 线程池最大线程数，表示在线程池中最多能创建多少个线程，任务放入队列到达最大数后才会放到这里，如果运行中的线程超过了这个数字，那么相当于线程池已满，新来的任务会使用RejectedExecutionHandler 进行处理</span></span><br><span class="line"><span class="function">        <span class="keyword">long</span> keepAliveTime : 表示线程没有任务执行时最多保持多久时间后被终止，线程池的最低数目最终将维持在corePoolSize 大小</span></span><br><span class="line"><span class="function">        TimeUnit unit : 参数keepAliveTime的时间单位</span></span><br><span class="line"><span class="function">        BlockingQueue&lt;Runnable&gt; workQueue : 一个阻塞队列，用来存储等待执行的任务，如果当前对线程的需求超过了corePoolSize大小，才会放在这里</span></span><br><span class="line"><span class="function">        ThreadFactory threadFactory : 线程工厂，主要用来创建线程，比如可以指定线程的名字</span></span><br><span class="line"><span class="function">        RejectedExecutionHandler handler : 如果线程池已满（线程池满表示：任务放入队列到达最大数，然后其余的放到maximumPoolSize-corePoolSize里面，最终超过的部分），新的任务的处理方式，java默认提供了4种饱和策略的实现方式：中止、抛弃、抛弃最旧的、调用者运行。</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">以上有一个重要的概念就是队列：</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">每种线程池都有一个corePoolSize，如果线程数超过了corePoolSize，则开始把线程先放到阻塞队列里，相当于生产者消费者的一个数据通道，有以下一些阻塞队列可供选择：</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">1. ArrayBlockingQueue：一个有边界的阻塞队列，它的内部实现是一个数组。有边界的意思是它的容量是有限的，我们必须在其初始化的时候指定它的容量大小，容量大小一旦指定就不可改变。</span></span><br><span class="line"><span class="function">2. DelayQueue：阻塞的是其内部元素，DelayQueue中的元素必须实现 java.util.concurrent.Delayed接口，该接口只有一个方法就是<span class="keyword">long</span> <span class="title">getDelay</span><span class="params">(TimeUnit unit)</span>，返回值就是队列元素被释放前的保持时间，如果返回0或者一个负值，就意味着该元素已经到期需要被释放，此时DelayedQueue会通过其<span class="title">take</span><span class="params">()</span>方法释放此对象，DelayQueue可应用于定时关闭连接、缓存对象，超时处理等各种场景；</span></span><br><span class="line"><span class="function">3. LinkedBlockingQueue：阻塞队列大小的配置是可选的，如果我们初始化时指定一个大小，它就是有边界的，如果不指定，它就是无边界的。说是无边界，其实是采用了默认大小为Integer.MAX_VALUE的容量 。它的内部实现是一个链表。</span></span><br><span class="line"><span class="function">4. PriorityBlockingQueue：一个没有边界的队列，它的排序规则和 java.util.PriorityQueue一样。需要注意，PriorityBlockingQueue中允许插入<span class="keyword">null</span>对象。所有插入PriorityBlockingQueue的对象必须实现 java.lang.Comparable接口，队列优先级的排序规则就是按照我们对这个接口的实现来定义的。</span></span><br><span class="line"><span class="function">5. SynchronousQueue：队列内部仅允许容纳一个元素。当一个线程插入一个元素后会被阻塞，除非这个元素被另一个线程消费。</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">其中在我们上面三个线程池里面，</span></span><br><span class="line"><span class="function">CachedThreadPool使用了SynchronousQueue来达到一有新任务就立即创建新线程的操作，FixedThreadPool以及SingleFixedThreadPool则使用了默认的LinkedBlockingQueue队列作为存储任务的媒介，他的默认大小为Integer.MAX_VALUE</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">除了以上三种常见的线程池之外，我们常用的微服务框架dubbo里面也自己实现了另外两种线程池，在这里也介绍一下：</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">1. LimitedThreadPool</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">``` java</span></span><br><span class="line"><span class="function"><span class="keyword">package</span> com.alibaba.dubbo.common.threadpool.support.limited</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.alibaba.dubbo.common.Constants;</span><br><span class="line"><span class="keyword">import</span> com.alibaba.dubbo.common.URL;</span><br><span class="line"><span class="keyword">import</span> com.alibaba.dubbo.common.threadpool.ThreadPool;</span><br><span class="line"><span class="keyword">import</span> com.alibaba.dubbo.common.threadpool.support.AbortPolicyWithReport;</span><br><span class="line"><span class="keyword">import</span> com.alibaba.dubbo.common.utils.NamedThreadFactory;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.Executor;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.LinkedBlockingQueue;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.SynchronousQueue;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.ThreadPoolExecutor;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.TimeUnit;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Creates a thread pool that creates new threads as needed until limits reaches. This thread pool will not shrink</span></span><br><span class="line"><span class="comment"> * automatically.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LimitedThreadPool</span> <span class="keyword">implements</span> <span class="title">ThreadPool</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Executor <span class="title">getExecutor</span><span class="params">(URL url)</span> </span>&#123;</span><br><span class="line">        String name = url.getParameter(Constants.THREAD_NAME_KEY, Constants.DEFAULT_THREAD_NAME);</span><br><span class="line">        <span class="keyword">int</span> cores = url.getParameter(Constants.CORE_THREADS_KEY, Constants.DEFAULT_CORE_THREADS);</span><br><span class="line">        <span class="keyword">int</span> threads = url.getParameter(Constants.THREADS_KEY, Constants.DEFAULT_THREADS);</span><br><span class="line">        <span class="keyword">int</span> queues = url.getParameter(Constants.QUEUES_KEY, Constants.DEFAULT_QUEUES);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ThreadPoolExecutor(cores, threads, Long.MAX_VALUE, TimeUnit.MILLISECONDS,</span><br><span class="line">                queues == <span class="number">0</span> ? <span class="keyword">new</span> SynchronousQueue&lt;Runnable&gt;() :</span><br><span class="line">                        (queues &lt; <span class="number">0</span> ? <span class="keyword">new</span> LinkedBlockingQueue&lt;Runnable&gt;()</span><br><span class="line">                                : <span class="keyword">new</span> LinkedBlockingQueue&lt;Runnable&gt;(queues)),</span><br><span class="line">                <span class="keyword">new</span> NamedThreadFactory(name, <span class="keyword">true</span>), <span class="keyword">new</span> AbortPolicyWithReport(name, url));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个线程池实现跟java自带的<code>CachedThreadPool</code>大同小异，最大的区别则在于这里面<code>keepAliveTime</code>的参数由原先的<code>60L</code>变为了<code>Long.MAX_VALUE</code>，也就是相当于无限长，意思也就是对已创建的线程永远不进行回收。</p>
+<ol start="2">
+<li>EagerThreadPool</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.alibaba.dubbo.common.threadpool.support.eager;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.alibaba.dubbo.common.Constants;</span><br><span class="line"><span class="keyword">import</span> com.alibaba.dubbo.common.URL;</span><br><span class="line"><span class="keyword">import</span> com.alibaba.dubbo.common.threadpool.ThreadPool;</span><br><span class="line"><span class="keyword">import</span> com.alibaba.dubbo.common.threadpool.support.AbortPolicyWithReport;</span><br><span class="line"><span class="keyword">import</span> com.alibaba.dubbo.common.utils.NamedThreadFactory;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.Executor;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.TimeUnit;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * EagerThreadPool</span></span><br><span class="line"><span class="comment"> * When the core threads are all in busy,</span></span><br><span class="line"><span class="comment"> * create new thread instead of putting task into blocking queue.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EagerThreadPool</span> <span class="keyword">implements</span> <span class="title">ThreadPool</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Executor <span class="title">getExecutor</span><span class="params">(URL url)</span> </span>&#123;</span><br><span class="line">        String name = url.getParameter(Constants.THREAD_NAME_KEY, Constants.DEFAULT_THREAD_NAME);</span><br><span class="line">        <span class="keyword">int</span> cores = url.getParameter(Constants.CORE_THREADS_KEY, Constants.DEFAULT_CORE_THREADS);</span><br><span class="line">        <span class="keyword">int</span> threads = url.getParameter(Constants.THREADS_KEY, Integer.MAX_VALUE);</span><br><span class="line">        <span class="keyword">int</span> queues = url.getParameter(Constants.QUEUES_KEY, Constants.DEFAULT_QUEUES);</span><br><span class="line">        <span class="keyword">int</span> alive = url.getParameter(Constants.ALIVE_KEY, Constants.DEFAULT_ALIVE);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// init queue and executor</span></span><br><span class="line">        TaskQueue&lt;Runnable&gt; taskQueue = <span class="keyword">new</span> TaskQueue&lt;Runnable&gt;(queues &lt;= <span class="number">0</span> ? <span class="number">1</span> : queues);</span><br><span class="line">        EagerThreadPoolExecutor executor = <span class="keyword">new</span> EagerThreadPoolExecutor(cores,</span><br><span class="line">                threads,</span><br><span class="line">                alive,</span><br><span class="line">                TimeUnit.MILLISECONDS,</span><br><span class="line">                taskQueue,</span><br><span class="line">                <span class="keyword">new</span> NamedThreadFactory(name, <span class="keyword">true</span>),</span><br><span class="line">                <span class="keyword">new</span> AbortPolicyWithReport(name, url));</span><br><span class="line">        taskQueue.setExecutor(executor);</span><br><span class="line">        <span class="keyword">return</span> executor;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过上面我们都知道，当线程池中的所有核心线程都在忙碌时，会先把任务放进去队列里面，当队列满了之后才会放入新的线程，直到线程数大于最大maximumPoolSize时，会将超出的任务做另外处理。<br>而<code>EagerThreadPool</code>线程池的操作就与此相反，它则是如果线程数超过了核心线程数之后，再添加新的任务不会放入阻塞队列，而是创建新的线程，直到达到最大线程限制，此时如果还有任务，才会放入阻塞队列。</p>
+<p>这里它通过自定义的<code>TaskQueue</code>以及<code>EagerThreadPoolExecutor</code>来完成此操作。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 继承LinkedBlockingQueue队列</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TaskQueue</span>&lt;<span class="title">R</span> <span class="keyword">extends</span> <span class="title">Runnable</span>&gt; <span class="keyword">extends</span> <span class="title">LinkedBlockingQueue</span>&lt;<span class="title">Runnable</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = -<span class="number">2635853580887179627L</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> EagerThreadPoolExecutor executor;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">TaskQueue</span><span class="params">(<span class="keyword">int</span> capacity)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(capacity);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setExecutor</span><span class="params">(EagerThreadPoolExecutor exec)</span> </span>&#123;</span><br><span class="line">        executor = exec;</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="comment">// 重写 offer 操作</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">offer</span><span class="params">(Runnable runnable)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (executor == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> RejectedExecutionException(<span class="string">"The task queue does not have executor!"</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> currentPoolThreadSize = executor.getPoolSize();</span><br><span class="line">        <span class="comment">// 小于核心线程数 直接调用父类offer</span></span><br><span class="line">        <span class="keyword">if</span> (executor.getSubmittedTaskCount() &lt; currentPoolThreadSize) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">super</span>.offer(runnable);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 当前线程数大于核心线程数，并且小于最大线程数时，直接返回失败使线程池新建线程来执行任务 伪装阻塞队列已满</span></span><br><span class="line">        <span class="keyword">if</span> (currentPoolThreadSize &lt; executor.getMaximumPoolSize()) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 当前线程数超过最大线程数时（currentPoolThreadSize &gt;= max），放入队列</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">super</span>.offer(runnable);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">   	<span class="comment">// 重试 offer 操作</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">retryOffer</span><span class="params">(Runnable o, <span class="keyword">long</span> timeout, TimeUnit unit)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (executor.isShutdown()) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> RejectedExecutionException(<span class="string">"Executor is shutdown!"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">super</span>.offer(o, timeout, unit);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>主要逻辑是通过伪装队列已满，来使线程池新建线程执行任务。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 继承ThreadPoolExecutor</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EagerThreadPoolExecutor</span> <span class="keyword">extends</span> <span class="title">ThreadPoolExecutor</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * task count</span></span><br><span class="line"><span class="comment">     * 任务数量</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> AtomicInteger submittedTaskCount = <span class="keyword">new</span> AtomicInteger(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">EagerThreadPoolExecutor</span><span class="params">(<span class="keyword">int</span> corePoolSize,</span></span></span><br><span class="line"><span class="function"><span class="params">                                   <span class="keyword">int</span> maximumPoolSize,</span></span></span><br><span class="line"><span class="function"><span class="params">                                   <span class="keyword">long</span> keepAliveTime,</span></span></span><br><span class="line"><span class="function"><span class="params">                                   TimeUnit unit, TaskQueue&lt;Runnable&gt; workQueue,</span></span></span><br><span class="line"><span class="function"><span class="params">                                   ThreadFactory threadFactory,</span></span></span><br><span class="line"><span class="function"><span class="params">                                   RejectedExecutionHandler handler)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue, threadFactory, handler);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> current tasks which are executed </span></span><br><span class="line"><span class="comment">     * 返回正在执行的任务数量</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getSubmittedTaskCount</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> submittedTaskCount.get();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">afterExecute</span><span class="params">(Runnable r, Throwable t)</span> </span>&#123;</span><br><span class="line">        submittedTaskCount.decrementAndGet();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="comment">// 重写 execute 方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">(Runnable command)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (command == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// do not increment in method beforeExecute!</span></span><br><span class="line">        <span class="comment">// 当前任务数计数器</span></span><br><span class="line">        submittedTaskCount.incrementAndGet();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">//执行父类execute逻辑，</span></span><br><span class="line">            <span class="keyword">super</span>.execute(command);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (RejectedExecutionException rx) &#123;</span><br><span class="line">            <span class="comment">// retry to offer the task into queue.</span></span><br><span class="line">            <span class="comment">// 提交任务拒绝时 直接放入阻塞队列</span></span><br><span class="line">            <span class="keyword">final</span> TaskQueue queue = (TaskQueue) <span class="keyword">super</span>.getQueue();</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> (!queue.retryOffer(command, <span class="number">0</span>, TimeUnit.MILLISECONDS)) &#123;</span><br><span class="line">                    submittedTaskCount.decrementAndGet();</span><br><span class="line">                    <span class="keyword">throw</span> <span class="keyword">new</span> RejectedExecutionException(<span class="string">"Queue capacity is full."</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException x) &#123;</span><br><span class="line">                submittedTaskCount.decrementAndGet();</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> RejectedExecutionException(x);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Throwable t) &#123;</span><br><span class="line">            <span class="comment">// decrease any way</span></span><br><span class="line">            submittedTaskCount.decrementAndGet();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>看完<code>TaskQueue</code>以及<code>ThreadPoolExecutor</code>的逻辑，我们看回线程池<code>Executor.execute()</code>方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">(Runnable command)</span> </span>&#123;</span><br><span class="line">    <span class="comment">/*如果提交的任务为null  抛出空指针异常*/</span></span><br><span class="line">    <span class="keyword">if</span> (command == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> c = ctl.get();</span><br><span class="line">    <span class="comment">/*如果当前的任务数小于等于设置的核心线程大小，那么调用addWorker直接执行该任务*/</span></span><br><span class="line">    <span class="keyword">if</span> (workerCountOf(c) &lt; corePoolSize) &#123;</span><br><span class="line">        <span class="keyword">if</span> (addWorker(command, <span class="keyword">true</span>))</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        c = ctl.get();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/*如果当前的任务数大于设置的核心线程大小，而且当前的线程池状态时运行状态，那么向阻塞队列中添加任务*/</span></span><br><span class="line">    <span class="comment">//workQueue.offer(command)调用TaskQueue的offer方法，在上面以及看到超过核心线程数后如果当前线程数不超过总大小会返回false</span></span><br><span class="line">    <span class="keyword">if</span> (isRunning(c) &amp;&amp; workQueue.offer(command)) &#123;</span><br><span class="line">        <span class="keyword">int</span> recheck = ctl.get();</span><br><span class="line">        <span class="keyword">if</span> (! isRunning(recheck) &amp;&amp; remove(command))</span><br><span class="line">            reject(command);</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (workerCountOf(recheck) == <span class="number">0</span>)</span><br><span class="line">            addWorker(<span class="keyword">null</span>, <span class="keyword">false</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/*如果向队列中添加失败，那么就新开启一个线程来执行该任务*/</span></span><br><span class="line">    <span class="comment">//tip:最主要的就是这里 当向阻塞队列插入失败时，会直接调用 addWorker 方法，创建新的线程执行任务</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (!addWorker(command, <span class="keyword">false</span>))</span><br><span class="line">        reject(command);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过 ThreadPoolExecutor 源码可以发现，当向阻塞队列插入失败时，会直接调用 addWorker 方法，创建新的线程执行任务。<br>现在就和重写的 TaskQueue 的 offer 方法对上了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/fa8b02cc.html" data-id="cjul3q2m8006yobykkz6mrd2d" class="article-share-link">
+        分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/线程池/">线程池</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
   
     <article id="post-小程序 语法小程序用户量破千啦！" class="article" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -150,7 +265,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/5e551b83.html" data-id="cjudkmojm00c7nnykqajvu6un" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/5e551b83.html" data-id="cjul3q2p700crobykpcdja5ej" class="article-share-link">
         分享</a>
       
       
@@ -237,7 +352,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/41a66ecb.html" data-id="cjudkmoft0037nnykg32h21ns" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/41a66ecb.html" data-id="cjul3q2k8003fobykhye64vav" class="article-share-link">
         分享</a>
       
       
@@ -330,7 +445,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/589711b0.html" data-id="cjudkmohx007wnnykxpim433z" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/589711b0.html" data-id="cjul3q2n2008kobykdfdi9f4q" class="article-share-link">
         分享</a>
       
       
@@ -420,7 +535,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/62bac17f.html" data-id="cjudkmoi5008knnykub85tv8b" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/62bac17f.html" data-id="cjul3q2ni009jobykx21fduti" class="article-share-link">
         分享</a>
       
       
@@ -509,7 +624,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/a4e1109a.html" data-id="cjudkmoff002cnnyk9w0381pi" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/a4e1109a.html" data-id="cjul3q2jl002eobykbhy0ohbr" class="article-share-link">
         分享</a>
       
       
@@ -599,7 +714,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/8ca969bc.html" data-id="cjudkmofi002knnyknjwaac26" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/8ca969bc.html" data-id="cjul3q2jx002vobykx7hvsmbh" class="article-share-link">
         分享</a>
       
       
@@ -685,7 +800,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/1fedb9b.html" data-id="cjudkmoi00084nnykognxc3du" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/1fedb9b.html" data-id="cjul3q2mw0085obykvqojz6ha" class="article-share-link">
         分享</a>
       
       
@@ -767,7 +882,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/9b48042e.html" data-id="cjudkmojv00cunnykfzr85ti3" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/9b48042e.html" data-id="cjul3q2pm00dcobykq70c5yn8" class="article-share-link">
         分享</a>
       
       
@@ -851,101 +966,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/8320f4a9.html" data-id="cjudkmoq300upnnyksj8gu3d2" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/8320f4a9.html" data-id="cjul3q2pn00dfobykncng5ltb" class="article-share-link">
         分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/外语/">外语</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/日语/">日语</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Mac 使用iMovie和actime进行视频剪辑" class="article" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/47061d14.html" class="article-date">
-  <time class="post-time" datetime="2018-12-22T16:15:00.000Z" itemprop="datePublished">
-    <span class="post-month">12月</span><br/>
-    <span class="post-day">23</span>
-  </time>
-</a>
-
-  </div>
-  <div class="article-inner">
-    
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/47061d14.html">Mac 使用iMovie和actime进行视频剪辑</a>
-    </h1>
-  
-
-      <div>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Mac/">Mac</a>,<a class="article-category-link" href="/categories/Mac/视频剪辑/">视频剪辑</a>
-  </div>
-
-        
-        
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/47061d14.html" class="leancloud_visitors" data-flag-title="Mac 使用iMovie和actime进行视频剪辑">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 1,654</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 6 分钟</span>
-  </div>
- 
-        
-      </div>
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      <p>最近因为有开始在公号上面写一些双语文章，文章大概内容就是音频+双语互译的形式。<br>所以在想能不能试着把做好的文章，做成视频文件来播放，同时也可以在视频网站上面投稿。<br>下面就用我所使用的制作环境开始介绍下。<br>本人使用的是MacOS。</p>
-<h2 id="制作语音视频"><a href="#制作语音视频" class="headerlink" title="制作语音视频"></a>制作语音视频</h2><p>首先，我们需要将准备好的mp3文件做成一个语音视频，然后在视频里面可以添加一个固定的背景图片，这样会使人看起来比较舒服。</p>
-<p>所以这里我准备的有：</p>
-<ol>
-<li>语音文件：そんなはした金いらないって言ってんの.mp3</li>
-<li>视频制作软件：iMovie
-      
-      <p class="article-more-link">
-        <a href="/posts/47061d14.html#more">
-          Read More</a>
-      </p>
-      
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/47061d14.html" data-id="cjudkmoi10089nnyk4oa26wp3" class="article-share-link">
-        分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mac/">Mac</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/actime/">actime</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iMovie/">iMovie</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/双语字幕/">双语字幕</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/视频剪辑/">视频剪辑</a></li></ul>
 
     </footer>
   </div>
@@ -1013,7 +1038,7 @@
     <div class="count-box">
       <a href="/archives">
         <div><strong>
-            143</strong><br>文章</div>
+            144</strong><br>文章</div>
       </a>
       <a href="/categories">
         <div><strong>
@@ -1021,7 +1046,7 @@
       </a>
       <a href="/tags">
         <div><strong>
-            102</strong><br>标签</div>
+            103</strong><br>标签</div>
       </a>
     </div>
 
