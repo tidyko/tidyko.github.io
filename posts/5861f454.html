@@ -11,22 +11,22 @@
     Tidy的个人博客
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Logback 与 Log4j 一样都是基于slf4j的日志实现框架，但前者较后者后者更多的性能优势因而被作为Log4j的替代品被广泛进行使用。 本次我们就来简单总结一下Logback常见的一些问题：">
+  <meta name="description" content="Logback 与 Log4j 一样都是基于slf4j的日志实现框架，但前者较后者后者更多的性能优势因而被作为Log4j的替代品被广泛进行使用。 本次我们就来简单总结一下Logback常见的一些问题： 1.工作原理先看一张图：  当调用logger.trace/debug/info/warn/error()时">
 <meta name="keywords" content="Java,Logback">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Logback 问题点总结">
 <meta property="og:url" content="https://www.tidyko.com/posts/5861f454.html">
 <meta property="og:site_name" content="Tidy的个人博客">
-<meta property="og:description" content="Logback 与 Log4j 一样都是基于slf4j的日志实现框架，但前者较后者后者更多的性能优势因而被作为Log4j的替代品被广泛进行使用。 本次我们就来简单总结一下Logback常见的一些问题：">
+<meta property="og:description" content="Logback 与 Log4j 一样都是基于slf4j的日志实现框架，但前者较后者后者更多的性能优势因而被作为Log4j的替代品被广泛进行使用。 本次我们就来简单总结一下Logback常见的一些问题： 1.工作原理先看一张图：  当调用logger.trace/debug/info/warn/error()时">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://img.tidyko.com/blog/logback-2.png">
 <meta property="og:image" content="http://img.tidyko.com/blog/logback-3.png">
 <meta property="og:image" content="http://img.tidyko.com/blog/logback-3.png">
 <meta property="og:image" content="http://img.tidyko.com/blog/logback-5.png">
-<meta property="og:updated_time" content="2019-04-18T07:07:32.810Z">
+<meta property="og:updated_time" content="2019-04-18T07:09:30.741Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Logback 问题点总结">
-<meta name="twitter:description" content="Logback 与 Log4j 一样都是基于slf4j的日志实现框架，但前者较后者后者更多的性能优势因而被作为Log4j的替代品被广泛进行使用。 本次我们就来简单总结一下Logback常见的一些问题：">
+<meta name="twitter:description" content="Logback 与 Log4j 一样都是基于slf4j的日志实现框架，但前者较后者后者更多的性能优势因而被作为Log4j的替代品被广泛进行使用。 本次我们就来简单总结一下Logback常见的一些问题： 1.工作原理先看一张图：  当调用logger.trace/debug/info/warn/error()时">
 <meta name="twitter:image" content="http://img.tidyko.com/blog/logback-2.png">
   
   <link rel="alternate" href="/atom.xml" title="Tidy的个人博客" type="application/atom+xml">
@@ -149,10 +149,10 @@
       
       <p><a href="https://github.com/qos-ch/logback" target="_blank" rel="noopener">Logback</a> 与 <a href="https://github.com/apache/log4j" target="_blank" rel="noopener">Log4j</a> 一样都是基于slf4j的日志实现框架，但前者较后者后者更多的性能优势因而被作为Log4j的替代品被广泛进行使用。</p>
 <p>本次我们就来简单总结一下Logback常见的一些问题：</p>
-<a id="more"></a>
 <h1 id="1-工作原理"><a href="#1-工作原理" class="headerlink" title="1.工作原理"></a>1.工作原理</h1><p>先看一张图：</p>
 <p><img src="http://img.tidyko.com/blog/logback-2.png" alt=""></p>
 <p>当调用logger.trace/debug/info/warn/error()时</p>
+<a id="more"></a>
 <h2 id="1-1-获取过滤链（filter-chain）"><a href="#1-1-获取过滤链（filter-chain）" class="headerlink" title="1.1.获取过滤链（filter chain）"></a>1.1.获取过滤链（filter chain）</h2><p>这里会获取到所有的过滤链，这里我们以LevelFilter为例。<br>如果我们设置了LevelFilter这个filter</p>
 <h2 id="1-2-过滤记录"><a href="#1-2-过滤记录" class="headerlink" title="1.2.过滤记录"></a>1.2.过滤记录</h2><p>这时根据当前Filter所设置的level来匹配当前记录的级别，</p>
 <p>然后根据onMatch/onMissMatch（是否匹配）的布尔值来执行设置的操作。</p>
@@ -272,7 +272,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/5861f454.html" data-id="cjumayq7e007sukyk8y6n4gaj" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/5861f454.html" data-id="cjumb1thm00810jykzaec6bg6" class="article-share-link">
         分享</a>
       
       
