@@ -23,7 +23,7 @@
 <meta property="og:image" content="http://img.tidyko.com/blog/logback-3.png">
 <meta property="og:image" content="http://img.tidyko.com/blog/logback-3.png">
 <meta property="og:image" content="http://img.tidyko.com/blog/logback-5.png">
-<meta property="og:updated_time" content="2019-04-18T07:09:30.741Z">
+<meta property="og:updated_time" content="2019-04-18T07:15:07.230Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Logback 问题点总结">
 <meta name="twitter:description" content="Logback 与 Log4j 一样都是基于slf4j的日志实现框架，但前者较后者后者更多的性能优势因而被作为Log4j的替代品被广泛进行使用。 本次我们就来简单总结一下Logback常见的一些问题： 1.工作原理先看一张图：  当调用logger.trace/debug/info/warn/error()时">
@@ -134,7 +134,7 @@
 
   &nbsp; | &nbsp;
   <div class="view-box">
-    <span>字数 2,179</span>
+    <span>字数 2,181</span>
   </div>
   &nbsp; | &nbsp;
   <div class="view-box">
@@ -267,12 +267,22 @@
 <li>maxFileSize<br>一个日志文件大小的最大值，达到该大小则根据规则自动生成新的日志文件。</li>
 <li>totalSizeCap<br>该属性表示在maxHistory时间内，所允许的总文件大小最大值，如果日志在该时间段内累计超过最大值，则从最老的文件开始删除，腾出空间。</li>
 </ol>
-<h1 id="3-注意点"><a href="#3-注意点" class="headerlink" title="3.注意点"></a>3.注意点</h1><h2 id="3-1"><a href="#3-1" class="headerlink" title="3.1."></a>3.1.</h2><p>任何方法调用都会涉及“隐藏的” 参数构造消耗，例如，对于 logger x，<br>x.debug(“Entry number: “ + i + “is “ + entry[i]);<br>把整数 i 和 entry[i]都转换为字符串和连接各字符串会造成消息参数构造消耗，不管 消息是否被记录。<br>参数构造消耗可以变得非常高，同时也跟参数大小有关。利用 SLF4J 的参数化记 录可以避免这种消耗。<br>x.debug(“Entry number: {} is {}”, i, entry[i]);<br>这种方式不会造成参数构造消耗。与前面的 debug()方法相比，这种方法快得多。 只有当请求在被发送给 appender 时，消息才会被格式化。在格式化的时候，负责 格式化消息的组件性能很高，不会对整个过程造成负面影响。格式化 1 个和 3 个参 数分别需要 2 和 4 微妙。<br>请注意，无论如何，应当避免在紧密循环里或者非常频繁地调用记录语句，因为很可能降低性能。即使记录被禁用，在紧密循环里作记录仍然会拖慢应用程序，如果<br>记录被启用，就会产生大量(也是无用的)输出。</p>
+<h1 id="3-注意点"><a href="#3-注意点" class="headerlink" title="3.注意点"></a>3.注意点</h1><h2 id="3-1"><a href="#3-1" class="headerlink" title="3.1."></a>3.1.</h2><p>任何方法调用都会涉及“隐藏的” 参数构造消耗，例如，对于 logger x，</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x.debug(<span class="string">"Entry number: "</span> + i + <span class="string">"is "</span> + entry[i]);</span><br></pre></td></tr></table></figure>
+<p>把整数 i 和 entry[i]都转换为字符串和连接各字符串会造成消息参数构造消耗，不管 消息是否被记录。</p>
+<p>参数构造消耗可以变得非常高，同时也跟参数大小有关。利用 SLF4J 的参数化记 录可以避免这种消耗。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x.debug(<span class="string">"Entry number: &#123;&#125; is &#123;&#125;"</span>, i, entry[i]);</span><br></pre></td></tr></table></figure>
+<p>这种方式不会造成参数构造消耗。与前面的 debug()方法相比，这种方法快得多。</p>
+<p>只有当请求在被发送给 appender 时，消息才会被格式化。</p>
+<p>在格式化的时候，负责格式化消息的组件性能很高，不会对整个过程造成负面影响。</p>
+<p>格式化 1 个和 3 个参 数分别需要 2 和 4 微妙。</p>
+<p>请注意，无论如何，应当避免在紧密循环里或者非常频繁地调用记录语句，因为很可能降低性能。</p>
+<p>即使记录被禁用，在紧密循环里作记录仍然会拖慢应用程序，如果记录被启用，就会产生大量(也是无用的)输出。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/5861f454.html" data-id="cjumb1thm00810jykzaec6bg6" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/5861f454.html" data-id="cjumb8reg007z90yk3zeau9x2" class="article-share-link">
         分享</a>
       
       
