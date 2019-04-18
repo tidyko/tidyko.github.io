@@ -11,22 +11,22 @@
     Tidy的个人博客
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Logback 与 Log4j 一样都是基于slf4j的日志实现框架，但前者较后者后者更多的性能优势因而被作为Log4j的替代品被广泛进行使用。 本次我们就来简单总结一下Logback常见的一些问题： 1.工作原理先看一张图：  当调用logger.trace/debug/info/warn/error()时">
+  <meta name="description" content="Logback 与 Log4j 一样都是基于 slf4j 的日志实现框架，但前者较后者后者更多的性能优势因而被作为Log4j的替代品被广泛进行使用。 本次我们就来简单总结一下Logback常见的一些问题： 1.工作原理先看一张图：  当调用logger.trace/debug/info/warn/error()时">
 <meta name="keywords" content="Java,Logback">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Logback 问题点总结">
 <meta property="og:url" content="https://www.tidyko.com/posts/5861f454.html">
 <meta property="og:site_name" content="Tidy的个人博客">
-<meta property="og:description" content="Logback 与 Log4j 一样都是基于slf4j的日志实现框架，但前者较后者后者更多的性能优势因而被作为Log4j的替代品被广泛进行使用。 本次我们就来简单总结一下Logback常见的一些问题： 1.工作原理先看一张图：  当调用logger.trace/debug/info/warn/error()时">
+<meta property="og:description" content="Logback 与 Log4j 一样都是基于 slf4j 的日志实现框架，但前者较后者后者更多的性能优势因而被作为Log4j的替代品被广泛进行使用。 本次我们就来简单总结一下Logback常见的一些问题： 1.工作原理先看一张图：  当调用logger.trace/debug/info/warn/error()时">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://img.tidyko.com/blog/logback-2.png">
 <meta property="og:image" content="http://img.tidyko.com/blog/logback-3.png">
 <meta property="og:image" content="http://img.tidyko.com/blog/logback-3.png">
 <meta property="og:image" content="http://img.tidyko.com/blog/logback-5.png">
-<meta property="og:updated_time" content="2019-04-18T07:15:07.230Z">
+<meta property="og:updated_time" content="2019-04-18T07:19:08.239Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Logback 问题点总结">
-<meta name="twitter:description" content="Logback 与 Log4j 一样都是基于slf4j的日志实现框架，但前者较后者后者更多的性能优势因而被作为Log4j的替代品被广泛进行使用。 本次我们就来简单总结一下Logback常见的一些问题： 1.工作原理先看一张图：  当调用logger.trace/debug/info/warn/error()时">
+<meta name="twitter:description" content="Logback 与 Log4j 一样都是基于 slf4j 的日志实现框架，但前者较后者后者更多的性能优势因而被作为Log4j的替代品被广泛进行使用。 本次我们就来简单总结一下Logback常见的一些问题： 1.工作原理先看一张图：  当调用logger.trace/debug/info/warn/error()时">
 <meta name="twitter:image" content="http://img.tidyko.com/blog/logback-2.png">
   
   <link rel="alternate" href="/atom.xml" title="Tidy的个人博客" type="application/atom+xml">
@@ -147,7 +147,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-      <p><a href="https://github.com/qos-ch/logback" target="_blank" rel="noopener">Logback</a> 与 <a href="https://github.com/apache/log4j" target="_blank" rel="noopener">Log4j</a> 一样都是基于slf4j的日志实现框架，但前者较后者后者更多的性能优势因而被作为Log4j的替代品被广泛进行使用。</p>
+      <p><a href="https://github.com/qos-ch/logback" target="_blank" rel="noopener">Logback</a> 与 <a href="https://github.com/apache/log4j" target="_blank" rel="noopener">Log4j</a> 一样都是基于 <a href="https://github.com/qos-ch/slf4j" target="_blank" rel="noopener">slf4j</a> 的日志实现框架，但前者较后者后者更多的性能优势因而被作为Log4j的替代品被广泛进行使用。</p>
 <p>本次我们就来简单总结一下Logback常见的一些问题：</p>
 <h1 id="1-工作原理"><a href="#1-工作原理" class="headerlink" title="1.工作原理"></a>1.工作原理</h1><p>先看一张图：</p>
 <p><img src="http://img.tidyko.com/blog/logback-2.png" alt=""></p>
@@ -282,7 +282,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/5861f454.html" data-id="cjumb8reg007z90yk3zeau9x2" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/5861f454.html" data-id="cjumbdo3x007xf9yknrk1tvez" class="article-share-link">
         分享</a>
       
       
