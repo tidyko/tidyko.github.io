@@ -56,7 +56,7 @@
     <h2 class="author"></h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>144</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>145</strong><br>文章</div></a>
       <a href="/categories"><div><strong>54</strong><br>分类</div></a>
       <a href="/tags"><div><strong>103</strong><br>标签</div></a>
     </div>
@@ -83,6 +83,91 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-博客园 使用ifream的两种方法" class="article" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/a0a2137e.html" class="article-date">
+  <time class="post-time" datetime="2014-07-01T09:55:00.000Z" itemprop="datePublished">
+    <span class="post-month">7月</span><br/>
+    <span class="post-day">01</span>
+  </time>
+</a>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/a0a2137e.html">博客园 使用ifream的两种方法</a>
+    </h1>
+  
+
+      <div>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/建站/">建站</a>
+  </div>
+
+        
+        
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/a0a2137e.html" class="leancloud_visitors" data-flag-title="博客园 使用ifream的两种方法">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 340</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 2 分钟</span>
+  </div>
+ 
+        
+      </div>
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <p>作为博客平台，发现博客园可能出于安全考虑，并不支持正常的iframe嵌套。</p>
+<p>但是经过研究发现还是可以通过两种特殊途径在自己博客使用iframe进行嵌套。</p>
+<h3 id="1）字符串拼接"><a href="#1）字符串拼接" class="headerlink" title="1）字符串拼接"></a>1）字符串拼接</h3><p>一个正常的iframe结构如下，如果直接将下面的代码作为变量，对html元素进行拼接的话是行不通的。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ifr = <span class="string">"&lt;iframe </span></span><br><span class="line"><span class="string">　　　　　　　　width='100%' </span></span><br><span class="line"><span class="string">　　　　　　　　height='600'</span></span><br><span class="line"><span class="string">　　　　　　　　class='share_self'</span></span><br><span class="line"><span class="string">　　　　　　　　frameborder='0'</span></span><br><span class="line"><span class="string">　　　　　　　　scrolling='no'</span></span><br><span class="line"><span class="string">　　　　　　　　src='http://widget.weibo.com/weiboshow/index.php</span></span><br><span class="line"><span class="string">　　　　　　　　?language=zh_cn&amp;width=0&amp;height=600&amp;fansRow=2&amp;ptype=1&amp;speed=0&amp;skin=1&amp;</span></span><br><span class="line"><span class="string">　　　　　　　　isTitle=1&amp;noborder=0&amp;isWeibo=1&amp;isFans=0&amp;uid=3424286664&amp;verifier=3c8ebf87&amp;dpc=1'&gt;&lt;/iframe&gt;"</span>;</span><br><span class="line">$(<span class="string">"#tmp"</span>).after(ifr);</span><br></pre></td></tr></table></figure></p>
+<p>但是可以通过下面的方法实现。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ifr = <span class="string">"&lt;ifr"</span>;</span><br><span class="line">ifr += <span class="string">"ame </span></span><br><span class="line"><span class="string">  　　　　　　width='100%' </span></span><br><span class="line"><span class="string">　　　　　height='600'</span></span><br><span class="line"><span class="string">　　　　　class='share_self'</span></span><br><span class="line"><span class="string">　　　　　frameborder='0'</span></span><br><span class="line"><span class="string">　　　　　scrolling='no'</span></span><br><span class="line"><span class="string">　　　　　src='http://widget.weibo.com/weiboshow/index.php</span></span><br><span class="line"><span class="string">　　　　　?language=zh_cn&amp;width=0&amp;height=600&amp;fansRow=2&amp;ptype=1&amp;speed=0&amp;skin=1&amp;</span></span><br><span class="line"><span class="string">　　　　　isTitle=1&amp;noborder=0&amp;isWeibo=1&amp;isFans=0&amp;uid=3424286664&amp;verifier=3c8ebf87&amp;dpc=1'&gt;&lt;/ifr"</span>;</span><br><span class="line">ifr += <span class="string">"ame&gt;"</span>;</span><br><span class="line">$(<span class="string">"#tmp"</span>).after(ifr);</span><br></pre></td></tr></table></figure></p>
+<h3 id="2）使用createElement"><a href="#2）使用createElement" class="headerlink" title="2）使用createElement"></a>2）使用createElement</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> iii = <span class="built_in">document</span>.createElement(<span class="string">'iframe'</span>);</span><br><span class="line">iii.src = <span class="string">'http://widget.weibo.com/weiboshow/index.php</span></span><br><span class="line"><span class="string">　　　　　　　　　　　　?language=zh_cn&amp;width=0&amp;height=600&amp;fansRow=2&amp;ptype=1&amp;speed=0&amp;skin=1&amp;</span></span><br><span class="line"><span class="string">　　　　　　　　　　　　isTitle=1&amp;noborder=0&amp;isWeibo=1&amp;isFans=0&amp;uid=3424286664&amp;verifier=3c8ebf87&amp;dpc=1'</span>;</span><br><span class="line">iii.height = <span class="number">600</span>;</span><br><span class="line">iii.width = <span class="string">'100%'</span>;</span><br><span class="line">iii.className = <span class="string">'share_self'</span>;</span><br><span class="line">iii.scrolling = <span class="string">'no'</span>;</span><br><span class="line">$(<span class="string">"#tmp"</span>).after(ifr);</span><br></pre></td></tr></table></figure>
+<p>使用以上两种方法就可以在博客园嵌套iframe了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/a0a2137e.html" data-id="cjumayq9c00bzukyk5ebambqz" class="article-share-link">
+        分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iframe/">iframe</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/博客园/">博客园</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
   
     <article id="post-Eclipse 调试java程序的九个技巧" class="article" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -168,7 +253,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/7a967e21.html" data-id="cjul3wmid00255dykoezo2sob" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/7a967e21.html" data-id="cjumayq510025ukykszxy0bvx" class="article-share-link">
         分享</a>
       
       
@@ -251,7 +336,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/41464bc7.html" data-id="cjul3wmkf00555dykwtihxho1" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/41464bc7.html" data-id="cjumayq6c0052ukykx8a2hju7" class="article-share-link">
         分享</a>
       
       
@@ -332,7 +417,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/9a290665.html" data-id="cjul3wmkm005i5dykgcs48fjx" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/9a290665.html" data-id="cjumayq6i005iukyk8zn482hc" class="article-share-link">
         分享</a>
       
       
@@ -415,7 +500,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/43cb033f.html" data-id="cjul3wmkh00585dykdjh6sx38" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/43cb033f.html" data-id="cjumayq6f005aukyk017tc8qv" class="article-share-link">
         分享</a>
       
       
@@ -498,7 +583,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/f995fc27.html" data-id="cjul3wmm6008h5dyk9pn7q84p" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/f995fc27.html" data-id="cjumayq7k008aukyk029tvjis" class="article-share-link">
         分享</a>
       
       
@@ -585,7 +670,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/2db10ac8.html" data-id="cjul3wmjp003z5dykm795oip9" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/2db10ac8.html" data-id="cjumayq5r003mukykwfyrigfa" class="article-share-link">
         分享</a>
       
       
@@ -666,7 +751,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/f7958de1.html" data-id="cjul3wmkl005f5dykzh3bjtvu" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/f7958de1.html" data-id="cjumayq6j005lukyk7qp9bx4r" class="article-share-link">
         分享</a>
       
       
@@ -750,7 +835,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/6aab53f1.html" data-id="cjul3wmkc004y5dykxtqyxqbj" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/6aab53f1.html" data-id="cjumayq65004iukykqp2f4g6q" class="article-share-link">
         分享</a>
       
       
@@ -882,87 +967,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/127fa2a9.html" data-id="cjul3wmnb00ad5dykme85nujl" class="article-share-link">
-        分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Oracle/">Oracle</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sql/">Sql</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Oracle union 后排序" class="article" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/e547806a.html" class="article-date">
-  <time class="post-time" datetime="2014-04-25T01:33:00.000Z" itemprop="datePublished">
-    <span class="post-month">4月</span><br/>
-    <span class="post-day">25</span>
-  </time>
-</a>
-
-  </div>
-  <div class="article-inner">
-    
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/e547806a.html">Oracle union 后排序</a>
-    </h1>
-  
-
-      <div>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/数据库/">数据库</a>,<a class="article-category-link" href="/categories/数据库/Oracle/">Oracle</a>
-  </div>
-
-        
-        
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/e547806a.html" class="leancloud_visitors" data-flag-title="Oracle union 后排序">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 12</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 1 分钟</span>
-  </div>
- 
-        
-      </div>
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      <p>指定字段的位置即可 order by 5</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/e547806a.html" data-id="cjul3wmn3009z5dykf3ff01uy" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/127fa2a9.html" data-id="cjumayq8c00adukykq9q2sp48" class="article-share-link">
         分享</a>
       
       
@@ -1034,7 +1039,7 @@
     <div class="count-box">
       <a href="/archives">
         <div><strong>
-            144</strong><br>文章</div>
+            145</strong><br>文章</div>
       </a>
       <a href="/categories">
         <div><strong>

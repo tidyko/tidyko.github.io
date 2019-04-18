@@ -56,7 +56,7 @@
     <h2 class="author"></h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>144</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>145</strong><br>文章</div></a>
       <a href="/categories"><div><strong>54</strong><br>分类</div></a>
       <a href="/tags"><div><strong>103</strong><br>标签</div></a>
     </div>
@@ -83,6 +83,91 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-Eclipse 依赖生成jar包时，避免最外层同时生成资源文件的配置" class="article" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/75c14ffd.html" class="article-date">
+  <time class="post-time" datetime="2016-03-23T02:02:00.000Z" itemprop="datePublished">
+    <span class="post-month">3月</span><br/>
+    <span class="post-day">23</span>
+  </time>
+</a>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/75c14ffd.html">Eclipse 依赖生成jar包时，避免最外层同时生成资源文件的配置</a>
+    </h1>
+  
+
+      <div>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/开发调试工具/">开发调试工具</a>,<a class="article-category-link" href="/categories/开发调试工具/Eclipse/">Eclipse</a>
+  </div>
+
+        
+        
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/75c14ffd.html" class="leancloud_visitors" data-flag-title="Eclipse 依赖生成jar包时，避免最外层同时生成资源文件的配置">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 384</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 1 分钟</span>
+  </div>
+ 
+        
+      </div>
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <p>使用Eclipse依赖生成jar包时，如果做配置，生成的jar包文件会全部生成在外面，这并不是我们需要的，下面我们一起来修改下配置，使生成的jar包符合我们的需求吧。</p>
+<h2 id="1）"><a href="#1）" class="headerlink" title="1）"></a>1）</h2><p>如果不做任何配置生成的jar包如下：<br><img src="http://img.tidyko.com/blog/eclipse-jar_1.png" alt="Eclipse 依赖生成jar包时，避免最外层同时生成资源文件的配置-图例1"><br>这样最原始的生成方式并不是我们想要的，我们想要的是test.properties和ums.properties文件同时放到message文件夹里面，下面修改一下Eclipse配置。</p>
+<h2 id="2）"><a href="#2）" class="headerlink" title="2）"></a>2）</h2><p>修改Eclipse配置，使test.properties和ums.properties文件同时放到message文件夹里面。</p>
+<p>最原始为下图所示：<br><img src="http://img.tidyko.com/blog/eclipse-jar_2.png" alt="Eclipse 依赖生成jar包时，避免最外层同时生成资源文件的配置-图例2"><br>修改Source为/message的Deploy Path为message，为下图所示：<br><img src="http://img.tidyko.com/blog/eclipse-jar_3.png" alt="Eclipse 依赖生成jar包时，避免最外层同时生成资源文件的配置-图例3"><br>修改完成之后点击ok按钮，发布，生成的jar包内容为以下所示：<br><img src="http://img.tidyko.com/blog/eclipse-jar_4.png" alt="Eclipse 依赖生成jar包时，避免最外层同时生成资源文件的配置-图例4"><br>这时候我们可以看到jar包里面已经有了message文件夹了，但是这时候我们会发现，message文件夹里面存在test.properties和ums.properties文件，同时最外层也存在了这两个文件。这时我们需要继续做配置。</p>
+<h2 id="3）"><a href="#3）" class="headerlink" title="3）"></a>3）</h2><p>修改配置，使message资源文件夹的指定内容不出现在jar包最外层。</p>
+<p>没修改之前为下图所示：<br><img src="http://img.tidyko.com/blog/eclipse-jar_5.png" alt="Eclipse 依赖生成jar包时，避免最外层同时生成资源文件的配置-图例5"><br>点击message下面的Excluded,然后点击右边的Edit，进入编辑，在下方的Exclude里面输入*.properties，完成即可，如下图所示：<br><img src="http://img.tidyko.com/blog/eclipse-jar_6.png" alt="Eclipse 依赖生成jar包时，避免最外层同时生成资源文件的配置-图例6"><br>最后，生成jar包时你就会看到里面只有一个message文件夹，并且最外面没有同时生成其他文件了，效果如下图所示：<br><img src="http://img.tidyko.com/blog/eclipse-jar_7.png" alt="Eclipse 依赖生成jar包时，避免最外层同时生成资源文件的配置-图例7"></p>
+<h2 id="4）完成"><a href="#4）完成" class="headerlink" title="4）完成"></a>4）完成</h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/75c14ffd.html" data-id="cjumayq4p001eukykh1ayiqav" class="article-share-link">
+        分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
   
     <article id="post-ActiveMQ 重写监听" class="article" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -142,7 +227,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3530a775.html" data-id="cjul3wmgs00025dykqmh2jzw9" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/3530a775.html" data-id="cjumayq3v0007ukykjlb8x78t" class="article-share-link">
         分享</a>
       
       
@@ -222,7 +307,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/15ae09a5.html" data-id="cjul3wmgl00005dykkbm38qfd" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/15ae09a5.html" data-id="cjumayq3u0006ukykydih0r3t" class="article-share-link">
         分享</a>
       
       
@@ -312,7 +397,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/632d0b70.html" data-id="cjul3wmh000065dyko7zouzvg" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/632d0b70.html" data-id="cjumayq3p0003ukykyimi1zvo" class="article-share-link">
         分享</a>
       
       
@@ -395,7 +480,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3ddda97c.html" data-id="cjul3wmka004u5dyk4ppwxnpw" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/3ddda97c.html" data-id="cjumayq66004mukykwopea4sc" class="article-share-link">
         分享</a>
       
       
@@ -479,7 +564,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3f45f33f.html" data-id="cjul3wmo100bd5dykkulzcmdk" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/3f45f33f.html" data-id="cjumayq8q00bbukyk5l1fuilj" class="article-share-link">
         分享</a>
       
       
@@ -563,7 +648,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/1eb6656b.html" data-id="cjul3wmo600bo5dykmmd01d31" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/1eb6656b.html" data-id="cjumayq8w00bnukyk3mtjokf2" class="article-share-link">
         分享</a>
       
       
@@ -655,7 +740,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/58db64d.html" data-id="cjul3wmog00c45dyke78ukagw" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/58db64d.html" data-id="cjumayq9900bvukykwe0pwqj2" class="article-share-link">
         分享</a>
       
       
@@ -737,7 +822,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/2d2c81b8.html" data-id="cjul3wmh5000b5dykbstdoxmx" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/2d2c81b8.html" data-id="cjumayq3x000cukyk5ufn48zk" class="article-share-link">
         分享</a>
       
       
@@ -962,94 +1047,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/a8ddc8ae.html" data-id="cjul3wmnj00an5dyk4b39ek73" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/a8ddc8ae.html" data-id="cjumayq8g00alukyk50lvjke1" class="article-share-link">
         分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Oracle/">Oracle</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sql/">Sql</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Eclipse 修改java代码不强制重启" class="article" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/67537090.html" class="article-date">
-  <time class="post-time" datetime="2015-03-03T03:45:00.000Z" itemprop="datePublished">
-    <span class="post-month">3月</span><br/>
-    <span class="post-day">03</span>
-  </time>
-</a>
-
-  </div>
-  <div class="article-inner">
-    
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/67537090.html">Eclipse 修改java代码不强制重启</a>
-    </h1>
-  
-
-      <div>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/开发调试工具/">开发调试工具</a>,<a class="article-category-link" href="/categories/开发调试工具/Eclipse/">Eclipse</a>
-  </div>
-
-        
-        
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/67537090.html" class="leancloud_visitors" data-flag-title="Eclipse 修改java代码不强制重启">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 79</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 1 分钟</span>
-  </div>
- 
-        
-      </div>
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      <p>找到tomcat的server.xml文件，修改以下代码，重新发布重启。然后修改java代码就可以不用重启了。</p>
-<p>将 <code>reloadable=“true”</code> 改成 <code>reloadable=&quot;false&quot;</code></p>
-<p>原代码:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Context</span> <span class="attr">docBase</span>=<span class="string">"gdgpms"</span> <span class="attr">path</span>=<span class="string">"/gdgpms"</span> <span class="attr">reloadable</span>=<span class="string">"true"</span> <span class="attr">source</span>=<span class="string">"org.eclipse.jst.jee.server:gdgpms"</span>/&gt;</span><span class="tag">&lt;/<span class="name">Host</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>修改后<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Context</span> <span class="attr">docBase</span>=<span class="string">"gdgpms"</span> <span class="attr">path</span>=<span class="string">"/gdgpms"</span> <span class="attr">reloadable</span>=<span class="string">"false"</span> <span class="attr">source</span>=<span class="string">"org.eclipse.jst.jee.server:gdgpms"</span>/&gt;</span><span class="tag">&lt;/<span class="name">Host</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/67537090.html" data-id="cjul3wmhy001g5dykm7r3ahrg" class="article-share-link">
-        分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li></ul>
 
     </footer>
   </div>
@@ -1117,7 +1119,7 @@
     <div class="count-box">
       <a href="/archives">
         <div><strong>
-            144</strong><br>文章</div>
+            145</strong><br>文章</div>
       </a>
       <a href="/categories">
         <div><strong>
