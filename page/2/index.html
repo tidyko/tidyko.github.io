@@ -56,7 +56,7 @@
     <h2 class="author"></h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>146</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>147</strong><br>文章</div></a>
       <a href="/categories"><div><strong>54</strong><br>分类</div></a>
       <a href="/tags"><div><strong>103</strong><br>标签</div></a>
     </div>
@@ -83,6 +83,92 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-Logstash 使用tcpinput" class="article" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/1fedb9b.html" class="article-date">
+  <time class="post-time" datetime="2019-03-06T06:58:00.000Z" itemprop="datePublished">
+    <span class="post-month">3月</span><br/>
+    <span class="post-day">06</span>
+  </time>
+</a>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/1fedb9b.html">Logstash 使用tcpinput</a>
+    </h1>
+  
+
+      <div>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/中间件/">中间件</a>,<a class="article-category-link" href="/categories/中间件/LogStash/">LogStash</a>
+  </div>
+
+        
+        
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/1fedb9b.html" class="leancloud_visitors" data-flag-title="Logstash 使用tcpinput">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 1,034</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 6 分钟</span>
+  </div>
+ 
+        
+      </div>
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <p>之前使用的架构为：<code>项目日志</code> -&gt; <code>Filebeat</code> -&gt; <code>redis</code> -&gt; <code>Logstash</code> -&gt; <code>ElasticSearch</code> -&gt; <code>Kibana</code><br>如果使用TCP input的话就可以简化为这样：<code>项目</code> -&gt; <code>Logstash</code> -&gt; <code>ElasticSearch</code> -&gt; <code>Kibana</code><br>这样可以少去每台服务器上面FileBeat的维护。</p>
+<p>项目日志格式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">19-03-06 12:17:12 INFO http-nio-8080-exec-3 cn.xxx.xxx.xxx.xxx.XXXUtils.call(246) | request(&lt;?xml version=&quot;1.0&quot; encoding=&quot;GB2312&quot;?&gt;&lt;SendData&gt;xxx&lt;/SendData&gt;)</span><br><span class="line">19-03-06 12:17:12 INFO http-nio-8080-exec-3 cn.xxx.xxx.xxx.xxx.XXX.getResultSet2015(34) | api_monitor ---&gt; platform=p1, name=n1, tget=666</span><br></pre></td></tr></table></figure></p>
+      
+      <p class="article-more-link">
+        <a href="/posts/1fedb9b.html#more">
+          Read More</a>
+      </p>
+      
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/1fedb9b.html" data-id="cjw8vu7w3008dl4qp6ixc8ywl" class="article-share-link">
+        分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ELK/">ELK</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LogStash/">LogStash</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
   
     <article id="post-日语 敏感APP" class="article" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -144,7 +230,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/9b48042e.html" data-id="cjut9247v00deqdyk2b19pjyq" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/9b48042e.html" data-id="cjw8vu80m00dml4qpx45of28m" class="article-share-link">
         分享</a>
       
       
@@ -228,7 +314,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/8320f4a9.html" data-id="cjut9247x00dhqdyk2hy0yqg1" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/8320f4a9.html" data-id="cjw8vu80j00dil4qpl19icu60" class="article-share-link">
         分享</a>
       
       
@@ -318,7 +404,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/47061d14.html" data-id="cjut9245c008jqdyk2eh0ezb7" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/47061d14.html" data-id="cjw8vu7wj008xl4qp4ruxqyy1" class="article-share-link">
         分享</a>
       
       
@@ -407,7 +493,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/a4c46188.html" data-id="cjut9242n0032qdykezr0r7q8" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/a4c46188.html" data-id="cjw8vu7rl002pl4qp9rpw0vgn" class="article-share-link">
         分享</a>
       
       
@@ -494,7 +580,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/c39356d9.html" data-id="cjut9247200bvqdykoam8oasa" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/c39356d9.html" data-id="cjw8vu7yo00b5l4qpsmgqt3m2" class="article-share-link">
         分享</a>
       
       
@@ -580,7 +666,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/6b176628.html" data-id="cjut9246900afqdykib99xcrn" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/6b176628.html" data-id="cjw8vu7xg00a4l4qpe89hz6hw" class="article-share-link">
         分享</a>
       
       
@@ -673,7 +759,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/289ca75b.html" data-id="cjut9245t009iqdykjwt0ziwh" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/289ca75b.html" data-id="cjw8vu7ww009dl4qpts9gnl4t" class="article-share-link">
         分享</a>
       
       
@@ -758,7 +844,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/6becf194.html" data-id="cjut92410000jqdyk6vrwuqwt" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/6becf194.html" data-id="cjw8vu7pw000ll4qp1e670js9" class="article-share-link">
         分享</a>
       
       
@@ -846,92 +932,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/b08e76d2.html" data-id="cjut9242v003eqdyk0klhezyf" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/b08e76d2.html" data-id="cjw8vu7s2003cl4qpq28qoe9h" class="article-share-link">
         分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IDEA/">IDEA</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-NGINX 反爬策略" class="article" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/6971a02d.html" class="article-date">
-  <time class="post-time" datetime="2018-11-09T09:38:00.000Z" itemprop="datePublished">
-    <span class="post-month">11月</span><br/>
-    <span class="post-day">09</span>
-  </time>
-</a>
-
-  </div>
-  <div class="article-inner">
-    
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/6971a02d.html">NGINX 反爬策略</a>
-    </h1>
-  
-
-      <div>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/服务器/">服务器</a>,<a class="article-category-link" href="/categories/服务器/Nginx/">Nginx</a>
-  </div>
-
-        
-        
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/6971a02d.html" class="leancloud_visitors" data-flag-title="NGINX 反爬策略">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 221</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 1 分钟</span>
-  </div>
- 
-        
-      </div>
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      <h3 id="1）配置agent-deny-conf"><a href="#1）配置agent-deny-conf" class="headerlink" title="1）配置agent_deny.conf"></a>1）配置agent_deny.conf</h3><p>在nginx的conf目录下新增agent_deny.conf配置文件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="variable">$http_user_agent</span> ~* <span class="string">"qihoobot|Baiduspider|Googlebot|Googlebot-Mobile|Googlebot-Image|Mediapartners-Google|Adsbot-Google|Feedfetcher-Google|Yahoo! Slurp|Yahoo! Slurp China|YoudaoBot|Sosospider|Sogou spider|Sogou web spider|MSNBot|ia_archiver|Tomato Bot|Catall Spider|AcoiRobot|Yisou|bingbot|360Spider"</span>) &#123; </span><br><span class="line">    <span class="built_in">return</span> 403;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="variable">$http_user_agent</span> ~ <span class="string">"WinHttp|WebZIP|FetchURL|node-superagent|FeedDemon|Jullo|JikeSpider|Indy Library|Alexa Toolbar|AskTbFXTV|AhrefsBot|CrawlDaddy|Feedly|UniversalFeedParser|ApacheBench|Microsoft URL Control|Swiftbot|ZmEu|oBot|jaunty|Python-urllib|lightDeckReports Bot|YYSpider|DigExt|MJ12bot|heritrix|EasouSpider|Ezooms|BOT/0.1|YandexBot|FlightDeckReports|Linguee Bot|iaskspider|^$"</span>) &#123;</span><br><span class="line">    <span class="built_in">return</span> 403;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="variable">$request_method</span> !~ ^(GET|POST)$) &#123;</span><br><span class="line">    <span class="built_in">return</span> 403;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="variable">$http_user_agent</span> ~* (Python|Wget|Scrapy|Spider)) &#123;</span><br><span class="line">    <span class="built_in">return</span> 403;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="2）修改反向代理配置文件"><a href="#2）修改反向代理配置文件" class="headerlink" title="2）修改反向代理配置文件"></a>2）修改反向代理配置文件</h3><p>在具体的location下面配置 include agent_deny.conf<br>如：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Server</span></span><br><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    server_name localhost;</span><br><span class="line">    charset utf-8;</span><br><span class="line">    </span><br><span class="line">    location / &#123;</span><br><span class="line">        <span class="comment"># 此设置在 http, server, location 节点都可以设置；设置了 nodelay 将不会等待</span></span><br><span class="line">        limit_req zone=ratelimit burst=20 nodelay;</span><br><span class="line">        include agent_deny.conf;</span><br><span class="line">        proxy_pass http://127.0.0.1:8080/java-web;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/6971a02d.html" data-id="cjut9245r009eqdykqmqr0ctj" class="article-share-link">
-        分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nginx/">Nginx</a></li></ul>
 
     </footer>
   </div>
@@ -999,7 +1004,7 @@
     <div class="count-box">
       <a href="/archives">
         <div><strong>
-            146</strong><br>文章</div>
+            147</strong><br>文章</div>
       </a>
       <a href="/categories">
         <div><strong>
