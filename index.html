@@ -141,38 +141,17 @@
 <p><img src="https://img.tidyko.com/blog/shuttle-1.png" alt=""></p>
 <p><img src="https://img.tidyko.com/blog/shuttle-2.png" alt=""></p>
 <p>这种配置方式虽然可以实现需求，但缺点在于操作比较繁琐，特别是在需要频繁切换的情况下，效率极其低下。</p>
-<p>基于该痛点，我们希望能避免重复操作，实现快速切换配置。</p>
-<h2 id="Terminal中设置代理"><a href="#Terminal中设置代理" class="headerlink" title="Terminal中设置代理"></a>Terminal中设置代理</h2><p>要避免在<code>GUI</code>进行重复的配置操作，比较好的简化方式是在<code>Terminal</code>中通过命令实现同样的功能。</p>
-<p>事实上，在<code>MacOS</code>系统中的确是存在配置网络代理的命令，该命令即是<code>networksetup</code>。</p>
-<h3 id="获取系统已有的网络服务"><a href="#获取系统已有的网络服务" class="headerlink" title="获取系统已有的网络服务"></a>获取系统已有的网络服务</h3><p>首先需要明确的是，macOS系统中针对不同网络服务（networkservice）的配置是独立的，因此在配置Web代理时需要进行指定。</p>
-<p>而要获取系统中存在哪些网络服务，可以通过如下命令查看：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> networksetup -listallnetworkservices </span></span><br><span class="line">An asterisk (*) denotes that a network service is disabled.</span><br><span class="line">LPSS Serial Adapter (1)</span><br><span class="line">LPSS Serial Adapter (2)</span><br><span class="line">USB 10/100 LAN</span><br><span class="line">iPhone USB</span><br><span class="line">Wi-Fi</span><br><span class="line">Bluetooth PAN</span><br><span class="line">Thunderbolt Bridge</span><br></pre></td></tr></table></figure>
-<p>如果计算机是通过<code>Wi-Fi</code>上网的，那么我们设置网络代理时就需要指定<code>Wi-Fi</code>进行设置。</p>
-<h3 id="开启http-s-代理"><a href="#开启http-s-代理" class="headerlink" title="开启http(s)代理"></a>开启http(s)代理</h3><p>通过<code>networksetup</code>命令对HTTP接口设置代理时，可以采用如下命令：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo networksetup -setwebproxy &lt;networkservice&gt; &lt;domain&gt; &lt;port number&gt; &lt;authenticated&gt; &lt;username&gt; &lt;password&gt;</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> e.g. sudo networksetup -setwebproxy <span class="string">"Wi-Fi"</span> 127.0.0.1 8080</span></span><br></pre></td></tr></table></figure>
-<p>执行该命令时，会开启系统的<code>Web HTTP Proxy</code>，并将Proxy设置为127.0.0.1:8080。</p>
-<p>如果是对HTTPS接口设置代理时，命令为：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> networksetup -setsecurewebproxy &lt;networkservice&gt; &lt;domain&gt; &lt;port number&gt; &lt;authenticated&gt; &lt;username&gt; &lt;password&gt;</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> e.g. sudo networksetup -setsecurewebproxy <span class="string">"Wi-Fi"</span> 127.0.0.1 8080</span></span><br></pre></td></tr></table></figure>
-<h3 id="关闭http-s-代理"><a href="#关闭http-s-代理" class="headerlink" title="关闭http(s)代理"></a>关闭http(s)代理</h3><p>相应地，关闭HTTP和HTTPS代理的命令为：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo networksetup -setwebproxystate &lt;networkservice&gt; &lt;on off&gt;</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> e.g. sudo networksetup -setwebproxystate <span class="string">"Wi-Fi"</span> off</span></span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> networksetup -setsecurewebproxystate &lt;networkservice&gt; &lt;on off&gt;</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> e.g. sudo networksetup -setsecurewebproxystate <span class="string">"Wi-Fi"</span> off</span></span><br></pre></td></tr></table></figure>
-<h2 id="使用Shuttle一键设置代理"><a href="#使用Shuttle一键设置代理" class="headerlink" title="使用Shuttle一键设置代理"></a>使用Shuttle一键设置代理</h2><p>现在我们已经知道如何通过<code>networksetup</code>命令在Terminal中进行http(s)代理切换了，但如果每次都要重新输入命令和密码，还是会很麻烦，并没有真正地解决我们的痛点。</p>
-<p><img src="https://img.tidyko.com/blog/shuttle-3.png" alt=""></p>
-<p>而且在实际场景中，我们通常需要同时开启或关闭代理，这类操作如此高频，要是还能通过点击一个按钮就实现切换，那就优雅多了。</p>
-<p>幸运的是，这种优雅的方式还真能实现，只需要结合使用<code>Shuttle</code>这么一款小工具。</p>
-<p><a href="http://fitztrev.github.io/shuttle/" target="_blank" rel="noopener">Shuttle</a>，简而言之，它可以将一串命令映射到<code>MacOS</code>顶部菜单栏的快捷方式。我们要做的很简单，只需要将要实现的任务拼接成一条串行的命令即可，然后就可以在系统菜单栏中点击按钮运行整条命令。</p>
-<p>例如，在<code>Terminal</code>中，要想在不手动输入sudo密码的情况下实现同时关闭代理，就可以通过如下串行命令实现。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">echo</span> &lt;password&gt; | sudo -S networksetup -setwebproxystate <span class="string">'Wi-Fi'</span> off &amp;&amp; sudo networksetup -setsecurewebproxystate <span class="string">'Wi-Fi'</span> off</span></span><br></pre></td></tr></table></figure>
-<h3 id="配置Shuttle"><a href="#配置Shuttle" class="headerlink" title="配置Shuttle"></a>配置Shuttle</h3><p>打开<code>Shuttle</code>配置文件，</p>
-<p><img src="https://img.tidyko.com/blog/shuttle-4.png" alt=""></p>
-<p>编辑内容，修改<code>hosts</code>字段内容为以下配置：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">"hosts": [</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">"HTTP(S) Proxy - Wi-Fi"</span>: [</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">"name"</span>: <span class="string">"Turn on HTTP(S) Proxy"</span>,</span><br><span class="line">                <span class="attr">"cmd"</span>: <span class="string">"echo &lt;password&gt; | sudo -S networksetup -setwebproxy 'Wi-Fi' 127.0.0.1 8080 &amp;&amp; sudo networksetup -setsecurewebproxy 'Wi-Fi' 127.0.0.1 8080"</span></span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">"name"</span>: <span class="string">"Turn off HTTP(S) Proxy"</span>,</span><br><span class="line">                <span class="attr">"cmd"</span>: <span class="string">"echo &lt;password&gt; | sudo -S networksetup -setwebproxystate 'Wi-Fi' off &amp;&amp; sudo networksetup -setsecurewebproxystate 'Wi-Fi' off"</span></span><br><span class="line">            &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-<p>配置十分简洁清晰，不用解释也能看懂。完成配置后，点击MacOS顶部菜单栏的Shuttle图标就会出现如下效果的快捷方式。</p>
-<p><img src="https://img.tidyko.com/blog/shuttle-5.png" alt=""></p>
-
+<p>基于该痛点，我们希望能避免重复操作，实现快速切换配置。<br>
+      
+      <p class="article-more-link">
+        <a href="/posts/67b16286.html#more">
+          Read More</a>
+      </p>
+      
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/67b16286.html" data-id="cjwh8i7q90089wrqpsjmgf7jn" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/67b16286.html" data-id="cjwh8njfd008jv2qpdoj7pdpq" class="article-share-link">
         分享</a>
       
       
@@ -256,7 +235,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/169364f6.html" data-id="cjwh8i7rm00b5wrqp0bnuy0tp" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/169364f6.html" data-id="cjwh8njgy00bpv2qpfpzwx7hy" class="article-share-link">
         分享</a>
       
       
@@ -342,7 +321,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/9ecafb15.html" data-id="cjwh8i7s200cfwrqpqmu5z0kn" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/9ecafb15.html" data-id="cjwh8njhh00czv2qp45zadysj" class="article-share-link">
         分享</a>
       
       
@@ -431,7 +410,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/5861f454.html" data-id="cjwh8i7qb008cwrqpamiymsvt" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/5861f454.html" data-id="cjwh8njfg008rv2qpzer7tepx" class="article-share-link">
         分享</a>
       
       
@@ -518,7 +497,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/fa8b02cc.html" data-id="cjwh8i7ph006pwrqpl5hp4vus" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/fa8b02cc.html" data-id="cjwh8njek006ov2qpdedpsx6e" class="article-share-link">
         分享</a>
       
       
@@ -606,7 +585,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/5e551b83.html" data-id="cjwh8i7s600cnwrqpjp3b97ys" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/5e551b83.html" data-id="cjwh8njh900clv2qpw91adbob" class="article-share-link">
         分享</a>
       
       
@@ -693,7 +672,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/41a66ecb.html" data-id="cjwh8i7o5003dwrqpp986zeuc" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/41a66ecb.html" data-id="cjwh8njd4003fv2qpc1xdecst" class="article-share-link">
         分享</a>
       
       
@@ -786,7 +765,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/589711b0.html" data-id="cjwh8i7q70085wrqph7dtx7px" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/589711b0.html" data-id="cjwh8njf90087v2qpv4tgn65w" class="article-share-link">
         分享</a>
       
       
@@ -876,7 +855,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/62bac17f.html" data-id="cjwh8i7qh008pwrqp097764kq" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/62bac17f.html" data-id="cjwh8njfp009av2qp3hizyou3" class="article-share-link">
         分享</a>
       
       
@@ -965,7 +944,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/a4e1109a.html" data-id="cjwh8i7np002ewrqpmyzhsz43" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/a4e1109a.html" data-id="cjwh8njcl002fv2qph5c6la1j" class="article-share-link">
         分享</a>
       
       

@@ -11,23 +11,23 @@
     Tidy的个人博客
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="MacOS中设置代理在MacOS中配置http(s)代理时，通常的做法是在系统偏好设置 - 网络中进行操作，选择一个网络，点击高级按钮，点击代理选项卡，分别勾选网页代理（HTTP）和安全网页代理（HTTPS）然后填写上代理信息。   这种配置方式虽然可以实现需求，但缺点在于操作比较繁琐，特别是在需要频繁切换的情况下，效率极其低下。 基于该痛点，我们希望能避免重复操作，实现快速切换配置。 Termi">
+  <meta name="description" content="MacOS中设置代理在MacOS中配置http(s)代理时，通常的做法是在系统偏好设置 - 网络中进行操作，选择一个网络，点击高级按钮，点击代理选项卡，分别勾选网页代理（HTTP）和安全网页代理（HTTPS）然后填写上代理信息。   这种配置方式虽然可以实现需求，但缺点在于操作比较繁琐，特别是在需要频繁切换的情况下，效率极其低下。 基于该痛点，我们希望能避免重复操作，实现快速切换配置。">
 <meta name="keywords" content="Mac,代理">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Mac 使用Shuttle优雅切换http(s)代理">
 <meta property="og:url" content="https://www.tidyko.com/posts/67b16286.html">
 <meta property="og:site_name" content="Tidy的个人博客">
-<meta property="og:description" content="MacOS中设置代理在MacOS中配置http(s)代理时，通常的做法是在系统偏好设置 - 网络中进行操作，选择一个网络，点击高级按钮，点击代理选项卡，分别勾选网页代理（HTTP）和安全网页代理（HTTPS）然后填写上代理信息。   这种配置方式虽然可以实现需求，但缺点在于操作比较繁琐，特别是在需要频繁切换的情况下，效率极其低下。 基于该痛点，我们希望能避免重复操作，实现快速切换配置。 Termi">
+<meta property="og:description" content="MacOS中设置代理在MacOS中配置http(s)代理时，通常的做法是在系统偏好设置 - 网络中进行操作，选择一个网络，点击高级按钮，点击代理选项卡，分别勾选网页代理（HTTP）和安全网页代理（HTTPS）然后填写上代理信息。   这种配置方式虽然可以实现需求，但缺点在于操作比较繁琐，特别是在需要频繁切换的情况下，效率极其低下。 基于该痛点，我们希望能避免重复操作，实现快速切换配置。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://img.tidyko.com/blog/shuttle-1.png">
 <meta property="og:image" content="https://img.tidyko.com/blog/shuttle-2.png">
 <meta property="og:image" content="https://img.tidyko.com/blog/shuttle-3.png">
 <meta property="og:image" content="https://img.tidyko.com/blog/shuttle-4.png">
 <meta property="og:image" content="https://img.tidyko.com/blog/shuttle-5.png">
-<meta property="og:updated_time" content="2019-06-04T03:18:09.396Z">
+<meta property="og:updated_time" content="2019-06-04T03:23:23.687Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mac 使用Shuttle优雅切换http(s)代理">
-<meta name="twitter:description" content="MacOS中设置代理在MacOS中配置http(s)代理时，通常的做法是在系统偏好设置 - 网络中进行操作，选择一个网络，点击高级按钮，点击代理选项卡，分别勾选网页代理（HTTP）和安全网页代理（HTTPS）然后填写上代理信息。   这种配置方式虽然可以实现需求，但缺点在于操作比较繁琐，特别是在需要频繁切换的情况下，效率极其低下。 基于该痛点，我们希望能避免重复操作，实现快速切换配置。 Termi">
+<meta name="twitter:description" content="MacOS中设置代理在MacOS中配置http(s)代理时，通常的做法是在系统偏好设置 - 网络中进行操作，选择一个网络，点击高级按钮，点击代理选项卡，分别勾选网页代理（HTTP）和安全网页代理（HTTPS）然后填写上代理信息。   这种配置方式虽然可以实现需求，但缺点在于操作比较繁琐，特别是在需要频繁切换的情况下，效率极其低下。 基于该痛点，我们希望能避免重复操作，实现快速切换配置。">
 <meta name="twitter:image" content="https://img.tidyko.com/blog/shuttle-1.png">
   
   <link rel="alternate" href="/atom.xml" title="Tidy的个人博客" type="application/atom+xml">
@@ -152,7 +152,7 @@
 <p><img src="https://img.tidyko.com/blog/shuttle-1.png" alt=""></p>
 <p><img src="https://img.tidyko.com/blog/shuttle-2.png" alt=""></p>
 <p>这种配置方式虽然可以实现需求，但缺点在于操作比较繁琐，特别是在需要频繁切换的情况下，效率极其低下。</p>
-<p>基于该痛点，我们希望能避免重复操作，实现快速切换配置。</p>
+<p>基于该痛点，我们希望能避免重复操作，实现快速切换配置。<br><a id="more"></a></p>
 <h2 id="Terminal中设置代理"><a href="#Terminal中设置代理" class="headerlink" title="Terminal中设置代理"></a>Terminal中设置代理</h2><p>要避免在<code>GUI</code>进行重复的配置操作，比较好的简化方式是在<code>Terminal</code>中通过命令实现同样的功能。</p>
 <p>事实上，在<code>MacOS</code>系统中的确是存在配置网络代理的命令，该命令即是<code>networksetup</code>。</p>
 <h3 id="获取系统已有的网络服务"><a href="#获取系统已有的网络服务" class="headerlink" title="获取系统已有的网络服务"></a>获取系统已有的网络服务</h3><p>首先需要明确的是，macOS系统中针对不同网络服务（networkservice）的配置是独立的，因此在配置Web代理时需要进行指定。</p>
@@ -183,7 +183,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/67b16286.html" data-id="cjwh8i7q90089wrqpsjmgf7jn" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/67b16286.html" data-id="cjwh8njfd008jv2qpdoj7pdpq" class="article-share-link">
         分享</a>
       
       
