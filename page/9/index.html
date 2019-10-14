@@ -56,9 +56,9 @@
     <h2 class="author"></h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>148</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>149</strong><br>文章</div></a>
       <a href="/categories"><div><strong>55</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>104</strong><br>标签</div></a>
+      <a href="/tags"><div><strong>105</strong><br>标签</div></a>
     </div>
     <ul class="blog-link">
      
@@ -83,6 +83,90 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-weinre 使用weinre对手机、微信浏览器页面调试" class="article" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/1eb6656b.html" class="article-date">
+  <time class="post-time" datetime="2015-12-28T02:14:00.000Z" itemprop="datePublished">
+    <span class="post-month">12月</span><br/>
+    <span class="post-day">28</span>
+  </time>
+</a>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/1eb6656b.html">weinre 使用weinre对手机、微信浏览器页面调试</a>
+    </h1>
+  
+
+      <div>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/开发调试工具/">开发调试工具</a>,<a class="article-category-link" href="/categories/开发调试工具/weinre/">weinre</a>
+  </div>
+
+        
+        
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/1eb6656b.html" class="leancloud_visitors" data-flag-title="weinre 使用weinre对手机、微信浏览器页面调试">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 364</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 1 分钟</span>
+  </div>
+ 
+        
+      </div>
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <p>官方网站：<a href="http://people.apache.org/~pmuellr/weinre-docs/latest/" target="_blank" rel="noopener">http://people.apache.org/~pmuellr/weinre-docs/latest/</a></p>
+<h2 id="windows下安装以及使用："><a href="#windows下安装以及使用：" class="headerlink" title="windows下安装以及使用："></a>windows下安装以及使用：</h2><h3 id="1）安装nodejs"><a href="#1）安装nodejs" class="headerlink" title="1）安装nodejs"></a>1）安装nodejs</h3><p>1.下载nodejs引擎，32bit version或者64bit version<br>2.下载最新版的npm  zip格式压缩包：<a href="http://nodejs.org/dist/npm/" target="_blank" rel="noopener">http://nodejs.org/dist/npm/</a><br>3.在硬盘某个位置，如D盘下建立一个文件nodejs，把上面两个下载的东西都放在这里，npm要解压。<br>4.配置两个环境变量：<br>一个是PATH上增加node.exe的目录D:\nodejs<br>一个是增加环境变量NODE_PATH,值为D:\nodejs\node_modules<br>5.安装express：打开cmd命令行，键入指令npm install express[安装express至相对路径]或npm install express -g[安装express至绝对路径]<br>6.最后cmd分别执行node -v和npm -v如果看到nodejs和npm的版本号就算安装成功了。如下图：<br><img src="http://img.tidyko.com/blog/weinre_1.jpg" alt="weinre 使用weinre对手机、微信浏览器页面调试-图例1"></p>
+<h3 id="2）使用npm安装weinre并启动"><a href="#2）使用npm安装weinre并启动" class="headerlink" title="2）使用npm安装weinre并启动"></a>2）使用npm安装weinre并启动</h3><p>1.cmd执行 <code>npm install weinre</code> 安装 weinre<br>2.cmd执行 <code>weinre --boundHost -all-  --httpPort 8081</code> 看到提示启动成功即可。如下图：<br><img src="http://img.tidyko.com/blog/weinre_2.jpg" alt="weinre 使用weinre对手机、微信浏览器页面调试-图例2"></p>
+<h3 id="3）使用weinre对远程端页面进行调试"><a href="#3）使用weinre对远程端页面进行调试" class="headerlink" title="3）使用weinre对远程端页面进行调试"></a>3）使用weinre对远程端页面进行调试</h3><p>1.在浏览器输入 <a href="http://localhost:8081" target="_blank" rel="noopener">http://localhost:8081</a> ，进入weinre的主页。如下图：<br><img src="http://img.tidyko.com/blog/weinre_3.jpg" alt="weinre 使用weinre对手机、微信浏览器页面调试-图例3"><br>2.将上图中 <code>Target Script</code> 部分的js地址加入到你要调试的目标页面内。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=<span class="string">"http://localhost:8081/target/target-script-min.js#anonymous"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure></p>
+<p>3.最后，在移动设备打开添加过这个脚本的网页，这时候你在本地浏览器打开    <a href="http://localhost:8081/client/#anonymous" target="_blank" rel="noopener">http://localhost:8081/client/#anonymous</a> 就能看到对应网页与对其进行调试了，如下图：<br><img src="http://img.tidyko.com/blog/weinre_4.jpg" alt="weinre 使用weinre对手机、微信浏览器页面调试-图例4"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/1eb6656b.html" data-id="ck1pti6vb00bxrqqpu3yhhszt" class="article-share-link">
+        分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/weinre/">weinre</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/微信公众号/">微信公众号</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
   
     <article id="post-前端 一句命令快速合并压缩 JS、CSS" class="article" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -154,7 +238,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/58db64d.html" data-id="cjwh8njh600cdv2qpjwozann7" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/58db64d.html" data-id="ck1pti6vg00ccrqqp3dtueu57" class="article-share-link">
         分享</a>
       
       
@@ -236,7 +320,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/2d2c81b8.html" data-id="cjwh8njbk000ev2qp99a2ft1l" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/2d2c81b8.html" data-id="ck1pti6pu000crqqpja1qulpu" class="article-share-link">
         分享</a>
       
       
@@ -461,7 +545,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/a8ddc8ae.html" data-id="cjwh8njgn00axv2qp6vjwi4ui" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/a8ddc8ae.html" data-id="ck1pti6ux00avrqqp6zsr30j3" class="article-share-link">
         分享</a>
       
       
@@ -544,7 +628,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/67537090.html" data-id="cjwh8njc6001kv2qpjcrumabh" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/67537090.html" data-id="ck1pti6qq001orqqpdta0sarm" class="article-share-link">
         分享</a>
       
       
@@ -626,7 +710,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/6d066745.html" data-id="cjwh8njct002uv2qpkbtcjvdy" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/6d066745.html" data-id="ck1pti6rg002zrqqp25pp51fw" class="article-share-link">
         分享</a>
       
       
@@ -710,7 +794,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/d1cb6203.html" data-id="cjwh8njcx0036v2qp1e94lj6x" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/d1cb6203.html" data-id="ck1pti6rh0032rqqpurt9mbj5" class="article-share-link">
         分享</a>
       
       
@@ -795,7 +879,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/4a47fe35.html" data-id="cjwh8njcw0031v2qp19yydx3k" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/4a47fe35.html" data-id="ck1pti6rf002wrqqpxsuv8a74" class="article-share-link">
         分享</a>
       
       
@@ -963,7 +1047,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/85796e0a.html" data-id="cjwh8njgq00b5v2qpz4fhhm8m" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/85796e0a.html" data-id="ck1pti6v300berqqplh61575t" class="article-share-link">
         分享</a>
       
       
@@ -1059,93 +1143,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/74b62430.html" data-id="cjwh8njh000buv2qplq0eksd3" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/74b62430.html" data-id="ck1pti6v800bprqqplk10yuy5" class="article-share-link">
         分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tomcat/">Tomcat</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Hibernate 无外键多表查询" class="article" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/284eedd0.html" class="article-date">
-  <time class="post-time" datetime="2014-10-13T17:54:00.000Z" itemprop="datePublished">
-    <span class="post-month">10月</span><br/>
-    <span class="post-day">14</span>
-  </time>
-</a>
-
-  </div>
-  <div class="article-inner">
-    
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/284eedd0.html">Hibernate 无外键多表查询</a>
-    </h1>
-  
-
-      <div>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
-  </div>
-
-        
-        
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/284eedd0.html" class="leancloud_visitors" data-flag-title="Hibernate 无外键多表查询">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 150</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 1 分钟</span>
-  </div>
- 
-        
-      </div>
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      <p>无外键多表查询时编写hql，直接使用逗号分隔表，where作为联合查询条件进行查询。</p>
-<p>查询出来的结果可为两种，List&lt;List<object>&gt;或者List&lt;Map&lt;String,Object&gt;&gt;。</object></p>
-<p>这时候需要使用下面语句限定查询返回结果类型。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//List&lt;Map&lt;String,Object&gt;&gt;</span></span><br><span class="line">Query query = getSessionFactory().openSession().createHQLQuery(queryString).setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP);</span><br><span class="line"></span><br><span class="line">List&lt;Map&lt;String,Object&gt;&gt; tmp = query.list();</span><br><span class="line"></span><br><span class="line">Map&lt;String,Object&gt; result = tmp.get(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">String str = result.get(<span class="string">'1'</span>);</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//List&lt;List&lt;Object&gt;&gt;</span></span><br><span class="line">Query query = getSessionFactory().openSession().createHQLQuery(queryString).setResultTransformer(Transformers.TO_LIST);</span><br><span class="line"></span><br><span class="line">List&lt;List&lt;Object&gt;&gt; tmp = query.list();</span><br><span class="line"></span><br><span class="line">List&lt;Object&gt; result = tmp.get(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">String str = result.get(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/284eedd0.html" data-id="cjwh8njd0003cv2qppm5fh3uo" class="article-share-link">
-        分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hibernate/">Hibernate</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
 
     </footer>
   </div>
@@ -1213,7 +1215,7 @@
     <div class="count-box">
       <a href="/archives">
         <div><strong>
-            148</strong><br>文章</div>
+            149</strong><br>文章</div>
       </a>
       <a href="/categories">
         <div><strong>
@@ -1221,7 +1223,7 @@
       </a>
       <a href="/tags">
         <div><strong>
-            104</strong><br>标签</div>
+            105</strong><br>标签</div>
       </a>
     </div>
 

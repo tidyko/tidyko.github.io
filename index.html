@@ -56,9 +56,9 @@
     <h2 class="author"></h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>148</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>149</strong><br>文章</div></a>
       <a href="/categories"><div><strong>55</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>104</strong><br>标签</div></a>
+      <a href="/tags"><div><strong>105</strong><br>标签</div></a>
     </div>
     <ul class="blog-link">
      
@@ -83,6 +83,97 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-J2EE Spring @Resource注解的扫描顺序" class="article" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/ff68fd05.html" class="article-date">
+  <time class="post-time" datetime="2019-10-14T02:11:00.000Z" itemprop="datePublished">
+    <span class="post-month">10月</span><br/>
+    <span class="post-day">14</span>
+  </time>
+</a>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/ff68fd05.html">J2EE Spring @Resource注解的扫描顺序</a>
+    </h1>
+  
+
+      <div>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
+  </div>
+
+        
+        
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/ff68fd05.html" class="leancloud_visitors" data-flag-title="J2EE Spring @Resource注解的扫描顺序">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 834</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 3 分钟</span>
+  </div>
+ 
+        
+      </div>
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <p>让我们先来看看两段代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FooService</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BarService</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(value = <span class="string">"/foo"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FooController</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Resource</span></span><br><span class="line">    <span class="keyword">private</span> FooService service;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(value = <span class="string">"/bar"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BarController</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Resource</span></span><br><span class="line">    <span class="keyword">private</span> BarService service;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FooService</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BarService</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(value = <span class="string">"/foo"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FooController</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Resource</span></span><br><span class="line">    <span class="keyword">private</span> FooService barService;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(value = <span class="string">"/bar"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BarController</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Resource</span></span><br><span class="line">    <span class="keyword">private</span> BarService barService;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这两段代码里面分别都初始化了FooService和BarService两个bean，然后分别都在其调用层被调用，而调用层注入的时候所使用的名字也都是相同的。<br>乍一看这样并没什么蹊跷，好像没什么毛病，但是实际上，第一段代码是可以成功运行的，而第二段却会注入失败。</p>
+<p>我们注意到，两端代码几乎一模一样，而且调用层使用的变量命名虽然在两个调用层而言是一样的，但是在两端代码而言却是有所不同。<br>这里第二段代码会注入失败的原因，重点就在于FooController里注入的FooService变量命名barService。</p>
+<p>这又是为什么呢？</p>
+<p>让我们先来看下Resource注解的扫描步骤。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">如果@Resource的注解name属性为&quot;&quot;</span><br><span class="line">    则把@Resource所在的属性的名称和Spring容器中的id作匹配</span><br><span class="line">        如果匹配成功，则赋值</span><br><span class="line">        如果匹配不成功，则会按照类型进行配置</span><br><span class="line">            如果匹配成功，则赋值；匹配不成功，报错</span><br><span class="line">如果@Resource的注解的name的值不为&quot;&quot;</span><br><span class="line">    则解析@Resource注解name属性的值，把值和spring容器中的ID进行呢匹配</span><br><span class="line">        如果匹配成功，则赋值</span><br><span class="line">        如果匹配不成功，则报错</span><br></pre></td></tr></table></figure>
+<p>在这里我们通过这个规则来分别分析一下两段代码。<br>第一段代码：<br>我们在FooController里面注入了BarService类型的变量service，<br>由于我们的@Resource注解没有填写name属性，所以按照规则，@Resource会先使用属性的名称进行匹配，<br>这里因为属性名是service所以没找到name为service的bean，所以根据类型继续匹配，最后找到了名为fooService的bean进行注入。</p>
+<p>同理BarController的注入也是这样。<br>所以在这里我们的代码运行正确，并没有发现任何问题。</p>
+<p>第二段代码：<br>我们在FooController里面注入了BarService类型的变量barService，<br>由于我们的@Resource注解没有填写name属性，所以按照规则，@Resource会先使用属性的名称进行匹配，<br>这里因为属性名是barService，而我们的内存里面就已经存在着一个初始化好的name为barService的BarService，<br>所以这里@Resource拿到的是BarService，然后我们声明的变量类型为FooService，与拿到的不一致，所以导致注入失败。<br>而在BarController里，我们@Resource拿到的bean与声明的变量一致，所以注入成功。</p>
+<p>这就是第二段代码为什么会出现错误的问题了，<br>所以这也意味，如果我们的实现只有一个的话使用@Autowired会更加方便。<br>在使用@Resource的情况下，如果属性名和nameid都没具备匹配的条件下，最后也会使用类型匹配，所以最后这步与@Autowired是同样的。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/ff68fd05.html" data-id="ck1pti6s7004grqqpxti3vwad" class="article-share-link">
+        分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/">Spring</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/依赖注入/">依赖注入</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
   
     <article id="post-Mac 使用Shuttle优雅切换http(s)代理" class="article" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -151,7 +242,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/67b16286.html" data-id="cjwh8njfd008jv2qpdoj7pdpq" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/67b16286.html" data-id="ck1pti6tz008wrqqpyg6c674y" class="article-share-link">
         分享</a>
       
       
@@ -235,7 +326,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/169364f6.html" data-id="cjwh8njgy00bpv2qpfpzwx7hy" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/169364f6.html" data-id="ck1pti6v500birqqpoadsxrmx" class="article-share-link">
         分享</a>
       
       
@@ -321,7 +412,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/9ecafb15.html" data-id="cjwh8njhh00czv2qp45zadysj" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/9ecafb15.html" data-id="ck1pti6vt00d4rqqpkvjgnajq" class="article-share-link">
         分享</a>
       
       
@@ -410,7 +501,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/5861f454.html" data-id="cjwh8njfg008rv2qpzer7tepx" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/5861f454.html" data-id="ck1pti6tr008drqqp8gdnmm4n" class="article-share-link">
         分享</a>
       
       
@@ -497,7 +588,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/fa8b02cc.html" data-id="cjwh8njek006ov2qpdedpsx6e" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/fa8b02cc.html" data-id="ck1pti6te007irqqpc7e3a23l" class="article-share-link">
         分享</a>
       
       
@@ -585,7 +676,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/5e551b83.html" data-id="cjwh8njh900clv2qpw91adbob" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/5e551b83.html" data-id="ck1pti6vq00cyrqqp6pdjvy0z" class="article-share-link">
         分享</a>
       
       
@@ -672,7 +763,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/41a66ecb.html" data-id="cjwh8njd4003fv2qpc1xdecst" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/41a66ecb.html" data-id="ck1pti6ru003mrqqpy3ni3y63" class="article-share-link">
         分享</a>
       
       
@@ -765,7 +856,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/589711b0.html" data-id="cjwh8njf90087v2qpv4tgn65w" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/589711b0.html" data-id="ck1pti6tq008arqqps8xtcsva" class="article-share-link">
         分享</a>
       
       
@@ -855,100 +946,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/62bac17f.html" data-id="cjwh8njfp009av2qp3hizyou3" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/62bac17f.html" data-id="ck1pti6u5009crqqp7trmn0iv" class="article-share-link">
         分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mpvue/">mpvue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vant-weapp/">vant-weapp</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/小程序/">小程序</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-GitHubPage 搭建项目主页的一些问题" class="article" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/a4e1109a.html" class="article-date">
-  <time class="post-time" datetime="2019-03-13T07:04:00.000Z" itemprop="datePublished">
-    <span class="post-month">3月</span><br/>
-    <span class="post-day">13</span>
-  </time>
-</a>
-
-  </div>
-  <div class="article-inner">
-    
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/a4e1109a.html">GitHubPage 搭建项目主页的一些问题</a>
-    </h1>
-  
-
-      <div>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/网站/">网站</a>,<a class="article-category-link" href="/categories/网站/GitHub/">GitHub</a>
-  </div>
-
-        
-        
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/a4e1109a.html" class="leancloud_visitors" data-flag-title="GitHubPage 搭建项目主页的一些问题">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 343</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 1 分钟</span>
-  </div>
- 
-        
-      </div>
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      <p>在将Vue的编译静态文件上传至GitHub仓库，作为项目主页进行访问的过程中遇到了一些问题，记录一下。</p>
-<h2 id="1-Vue的基础路径问题"><a href="#1-Vue的基础路径问题" class="headerlink" title="1.Vue的基础路径问题"></a>1.Vue的基础路径问题</h2><p>生成静态页后，想放到GitHub作为项目主页，路径需要设置为”./“</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  baseUrl: <span class="string">"./"</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h2 id="2-将Vue项目编译完成后的dist上传至GitHub仓库"><a href="#2-将Vue项目编译完成后的dist上传至GitHub仓库" class="headerlink" title="2.将Vue项目编译完成后的dist上传至GitHub仓库"></a>2.将Vue项目编译完成后的dist上传至GitHub仓库</h2><p>将Vue项目进行<code>npm run build</code>之后，将dist的文件全部上传至新建的项目主页仓库。</p>
-<h2 id="3-在已有个人主页后，创建项目主页"><a href="#3-在已有个人主页后，创建项目主页" class="headerlink" title="3.在已有个人主页后，创建项目主页"></a>3.在已有个人主页后，创建项目主页</h2><p>如果之前创建过GitHub个人主页，并设置过个性域名，则项目主页不需要上传CNAME文件，直接将静态文件上传至仓库即可。<br>
-      
-      <p class="article-more-link">
-        <a href="/posts/a4e1109a.html#more">
-          Read More</a>
-      </p>
-      
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/a4e1109a.html" data-id="cjwh8njcl002fv2qph5c6la1j" class="article-share-link">
-        分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GitHub/">GitHub</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GitHubPage/">GitHubPage</a></li></ul>
 
     </footer>
   </div>
@@ -1016,7 +1018,7 @@
     <div class="count-box">
       <a href="/archives">
         <div><strong>
-            148</strong><br>文章</div>
+            149</strong><br>文章</div>
       </a>
       <a href="/categories">
         <div><strong>
@@ -1024,7 +1026,7 @@
       </a>
       <a href="/tags">
         <div><strong>
-            104</strong><br>标签</div>
+            105</strong><br>标签</div>
       </a>
     </div>
 
