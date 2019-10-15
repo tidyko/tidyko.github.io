@@ -56,9 +56,9 @@
     <h2 class="author"></h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>150</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>151</strong><br>文章</div></a>
       <a href="/categories"><div><strong>55</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>107</strong><br>标签</div></a>
+      <a href="/tags"><div><strong>108</strong><br>标签</div></a>
     </div>
     <ul class="blog-link">
      
@@ -147,7 +147,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/82922308.html" data-id="ck1r9kv4j003tofqprigy2i16" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/82922308.html" data-id="ck1ra9a5f003l2nqpdlpybsa5" class="article-share-link">
         分享</a>
       
       
@@ -233,11 +233,95 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/ff68fd05.html" data-id="ck1r9kv54004qofqp1591emh4" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/ff68fd05.html" data-id="ck1ra9a5y004j2nqphxbiebqy" class="article-share-link">
         分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/">Spring</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/依赖注入/">依赖注入</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Mac EasyConnect 未能正确打开SANGFOR SSL Virtual网卡" class="article" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/f6c0b73e.html" class="article-date">
+  <time class="post-time" datetime="2019-06-27T01:31:00.000Z" itemprop="datePublished">
+    <span class="post-month">6月</span><br/>
+    <span class="post-day">27</span>
+  </time>
+</a>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/f6c0b73e.html">Mac EasyConnect 未能正确打开SANGFOR SSL Virtual网卡</a>
+    </h1>
+  
+
+      <div>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Mac/">Mac</a>,<a class="article-category-link" href="/categories/Mac/代理/">代理</a>
+  </div>
+
+        
+        
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/f6c0b73e.html" class="leancloud_visitors" data-flag-title="Mac EasyConnect 未能正确打开SANGFOR SSL Virtual网卡">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 144</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 1 分钟</span>
+  </div>
+ 
+        
+      </div>
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <h2 id="1-场景："><a href="#1-场景：" class="headerlink" title="1.场景："></a>1.场景：</h2><p>今天打开<code>EasyConnect</code>提示：未能正确打开SANGFOR SSL Virtual网卡，暂时不能提供SSL CS服务，请联系管理员</p>
+<h2 id="2-排查："><a href="#2-排查：" class="headerlink" title="2.排查："></a>2.排查：</h2><p>经排查，最后发现是与其他虚拟网卡冲突了。<br>在昨天安装过网易mumu模拟器，没有安装成功，但是给我遗留了一个虚拟网卡。<br>将其卸载后重启就行了。</p>
+<h2 id="3-操作："><a href="#3-操作：" class="headerlink" title="3.操作："></a>3.操作：</h2><p>查看虚拟网卡：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kextstat</span><br></pre></td></tr></table></figure></p>
+<p>卸载指定虚拟网卡：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo  kextunload -b com.netease.nemu.kext.NemuDrv</span><br></pre></td></tr></table></figure></p>
+<p>删除虚拟网卡目录（Nemu）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo rm -rf /Library/Application\ Support/Nemu</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/f6c0b73e.html" data-id="ck1ra9a7l00892nqp7gs6h9fk" class="article-share-link">
+        分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/EasyConnect/">EasyConnect</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mac/">Mac</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/代理/">代理</a></li></ul>
 
     </footer>
   </div>
@@ -322,7 +406,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/67b16286.html" data-id="ck1r9kv75008vofqp5cuyq7ba" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/67b16286.html" data-id="ck1ra9a7t008s2nqpybmkx5fx" class="article-share-link">
         分享</a>
       
       
@@ -406,7 +490,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/169364f6.html" data-id="ck1r9kvdp00pwofqprzqoqxbn" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/169364f6.html" data-id="ck1ra9a9700bs2nqp0ckh9kdi" class="article-share-link">
         分享</a>
       
       
@@ -492,7 +576,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/9ecafb15.html" data-id="ck1r9kveh00r2ofqp1i0ofdoj" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/9ecafb15.html" data-id="ck1ra9aa200dn2nqpw3wyttue" class="article-share-link">
         分享</a>
       
       
@@ -581,7 +665,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/5861f454.html" data-id="ck1r9kv70008iofqpgzub90pb" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/5861f454.html" data-id="ck1ra9a7r008p2nqptbhod63d" class="article-share-link">
         分享</a>
       
       
@@ -668,7 +752,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/fa8b02cc.html" data-id="ck1r9kv680070ofqpr71qdyn6" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/fa8b02cc.html" data-id="ck1ra9a7e007x2nqp5h5lwr23" class="article-share-link">
         分享</a>
       
       
@@ -756,7 +840,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/5e551b83.html" data-id="ck1r9kvep00rdofqpo42smc5p" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/5e551b83.html" data-id="ck1ra9a9s00d62nqp91d1a0bc" class="article-share-link">
         分享</a>
       
       
@@ -843,7 +927,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/41a66ecb.html" data-id="ck1r9kv4f003lofqp8ff5qnp2" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/41a66ecb.html" data-id="ck1ra9a5e003j2nqpq2ewcvir" class="article-share-link">
         分享</a>
       
       
@@ -865,103 +949,10 @@
 
 
   
-    <article id="post-Logback totalSizeCap不生效" class="article" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/589711b0.html" class="article-date">
-  <time class="post-time" datetime="2019-04-03T01:49:00.000Z" itemprop="datePublished">
-    <span class="post-month">4月</span><br/>
-    <span class="post-day">03</span>
-  </time>
-</a>
-
-  </div>
-  <div class="article-inner">
-    
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/589711b0.html">Logback totalSizeCap不生效</a>
-    </h1>
-  
-
-      <div>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
-  </div>
-
-        
-        
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/589711b0.html" class="leancloud_visitors" data-flag-title="Logback totalSizeCap不生效">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 712</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 3 分钟</span>
-  </div>
- 
-        
-      </div>
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      <h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>项目使用logback作为日志管理框架。</p>
-<p><a href="https://github.com/qos-ch/logback" target="_blank" rel="noopener">logback project</a></p>
-<p><a href="https://logback.qos.ch/index.html" target="_blank" rel="noopener">logback index</a></p>
-<p><a href="https://jira.qos.ch/projects/LOGBACK/issues/" target="_blank" rel="noopener">logback issues</a></p>
-<p>这几天发现线上的info日志文件，总大小超过了设定阈值，仍然没删除掉旧文件，但是error日志却如期删除了。<br>info级别的日志，totalSizeCap为5G</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">rollingPolicy</span> <span class="attr">class</span>=<span class="string">"ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">fileNamePattern</span>&gt;</span></span><br><span class="line">        $&#123;logger.path&#125;/info.%d&#123;yy-MM-dd&#125;.%i.log</span><br><span class="line">    <span class="tag">&lt;/<span class="name">fileNamePattern</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">maxHistory</span>&gt;</span>6<span class="tag">&lt;/<span class="name">maxHistory</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">maxFileSize</span>&gt;</span>1GB<span class="tag">&lt;/<span class="name">maxFileSize</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">totalSizeCap</span>&gt;</span>5GB<span class="tag">&lt;/<span class="name">totalSizeCap</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">rollingPolicy</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>error级别的日志，totalSizeCap为2G</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">rollingPolicy</span> <span class="attr">class</span>=<span class="string">"ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">fileNamePattern</span>&gt;</span></span><br><span class="line">         $&#123;logger.path&#125;/error.%d&#123;yy.MM.dd&#125;.%i.log</span><br><span class="line">    <span class="tag">&lt;/<span class="name">fileNamePattern</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">maxHistory</span>&gt;</span>6<span class="tag">&lt;/<span class="name">maxHistory</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">maxFileSize</span>&gt;</span>1GB<span class="tag">&lt;/<span class="name">maxFileSize</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">totalSizeCap</span>&gt;</span>2GB<span class="tag">&lt;/<span class="name">totalSizeCap</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">rollingPolicy</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>经过排查发现是使用的版本刚好有一个这样的bug所导致的。<br>
-      
-      <p class="article-more-link">
-        <a href="/posts/589711b0.html#more">
-          Read More</a>
-      </p>
-      
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/589711b0.html" data-id="ck1r9kv7u00a6ofqpmmdsbo83" class="article-share-link">
-        分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Logback/">Logback</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
 
 
   <nav id="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/2/">next &raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/2/">next &raquo;</a>
   </nav>
 </section>
         
@@ -1008,7 +999,7 @@
     <div class="count-box">
       <a href="/archives">
         <div><strong>
-            150</strong><br>文章</div>
+            151</strong><br>文章</div>
       </a>
       <a href="/categories">
         <div><strong>
@@ -1016,7 +1007,7 @@
       </a>
       <a href="/tags">
         <div><strong>
-            107</strong><br>标签</div>
+            108</strong><br>标签</div>
       </a>
     </div>
 

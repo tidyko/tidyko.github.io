@@ -56,9 +56,9 @@
     <h2 class="author"></h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>150</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>151</strong><br>文章</div></a>
       <a href="/categories"><div><strong>55</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>107</strong><br>标签</div></a>
+      <a href="/tags"><div><strong>108</strong><br>标签</div></a>
     </div>
     <ul class="blog-link">
      
@@ -83,6 +83,99 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-Logback totalSizeCap不生效" class="article" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/589711b0.html" class="article-date">
+  <time class="post-time" datetime="2019-04-03T01:49:00.000Z" itemprop="datePublished">
+    <span class="post-month">4月</span><br/>
+    <span class="post-day">03</span>
+  </time>
+</a>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/589711b0.html">Logback totalSizeCap不生效</a>
+    </h1>
+  
+
+      <div>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
+  </div>
+
+        
+        
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/589711b0.html" class="leancloud_visitors" data-flag-title="Logback totalSizeCap不生效">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 712</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 3 分钟</span>
+  </div>
+ 
+        
+      </div>
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>项目使用logback作为日志管理框架。</p>
+<p><a href="https://github.com/qos-ch/logback" target="_blank" rel="noopener">logback project</a></p>
+<p><a href="https://logback.qos.ch/index.html" target="_blank" rel="noopener">logback index</a></p>
+<p><a href="https://jira.qos.ch/projects/LOGBACK/issues/" target="_blank" rel="noopener">logback issues</a></p>
+<p>这几天发现线上的info日志文件，总大小超过了设定阈值，仍然没删除掉旧文件，但是error日志却如期删除了。<br>info级别的日志，totalSizeCap为5G</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">rollingPolicy</span> <span class="attr">class</span>=<span class="string">"ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">fileNamePattern</span>&gt;</span></span><br><span class="line">        $&#123;logger.path&#125;/info.%d&#123;yy-MM-dd&#125;.%i.log</span><br><span class="line">    <span class="tag">&lt;/<span class="name">fileNamePattern</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">maxHistory</span>&gt;</span>6<span class="tag">&lt;/<span class="name">maxHistory</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">maxFileSize</span>&gt;</span>1GB<span class="tag">&lt;/<span class="name">maxFileSize</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">totalSizeCap</span>&gt;</span>5GB<span class="tag">&lt;/<span class="name">totalSizeCap</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">rollingPolicy</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>error级别的日志，totalSizeCap为2G</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">rollingPolicy</span> <span class="attr">class</span>=<span class="string">"ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">fileNamePattern</span>&gt;</span></span><br><span class="line">         $&#123;logger.path&#125;/error.%d&#123;yy.MM.dd&#125;.%i.log</span><br><span class="line">    <span class="tag">&lt;/<span class="name">fileNamePattern</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">maxHistory</span>&gt;</span>6<span class="tag">&lt;/<span class="name">maxHistory</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">maxFileSize</span>&gt;</span>1GB<span class="tag">&lt;/<span class="name">maxFileSize</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">totalSizeCap</span>&gt;</span>2GB<span class="tag">&lt;/<span class="name">totalSizeCap</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">rollingPolicy</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>经过排查发现是使用的版本刚好有一个这样的bug所导致的。<br>
+      
+      <p class="article-more-link">
+        <a href="/posts/589711b0.html#more">
+          Read More</a>
+      </p>
+      
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/589711b0.html" data-id="ck1ra9a7j00852nqp3c7qoce2" class="article-share-link">
+        分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Logback/">Logback</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
   
     <article id="post-Mpvue中使用vant-weapp组件库" class="article" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -152,7 +245,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/62bac17f.html" data-id="ck1r9kv7c009aofqpn38lpbn1" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/62bac17f.html" data-id="ck1ra9a84009k2nqpr20geamt" class="article-share-link">
         分享</a>
       
       
@@ -241,7 +334,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/a4e1109a.html" data-id="ck1r9kv3q002dofqpqcrhj5wd" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/a4e1109a.html" data-id="ck1ra9a4m00262nqpzfiphez4" class="article-share-link">
         分享</a>
       
       
@@ -331,7 +424,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/8ca969bc.html" data-id="ck1r9kv3v002oofqpz24aoxko" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/8ca969bc.html" data-id="ck1ra9a4u002l2nqpmoet0rny" class="article-share-link">
         分享</a>
       
       
@@ -417,7 +510,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/1fedb9b.html" data-id="ck1r9kv72008nofqpc43q0lyu" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/1fedb9b.html" data-id="ck1ra9a7y00942nqpunkx5a9u" class="article-share-link">
         分享</a>
       
       
@@ -499,7 +592,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/9b48042e.html" data-id="ck1r9kvf700s5ofqpwoz6udk9" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/9b48042e.html" data-id="ck1ra9aa300dq2nqprkcaa8kc" class="article-share-link">
         分享</a>
       
       
@@ -583,7 +676,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/8320f4a9.html" data-id="ck1r9kvf900s9ofqpwxvtvvgb" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/8320f4a9.html" data-id="ck1ra9aa600dw2nqpf0gj6kj5" class="article-share-link">
         分享</a>
       
       
@@ -673,7 +766,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/47061d14.html" data-id="ck1r9kv77008yofqp8wf5abn7" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/47061d14.html" data-id="ck1ra9a83009g2nqp93mwy3e7" class="article-share-link">
         分享</a>
       
       
@@ -762,7 +855,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/a4c46188.html" data-id="ck1r9kv3t002kofqp5vpavev6" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/a4c46188.html" data-id="ck1ra9a4s002j2nqp5kyxm666" class="article-share-link">
         分享</a>
       
       
@@ -849,7 +942,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/c39356d9.html" data-id="ck1r9kvej00r5ofqpu7vr9kp8" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/c39356d9.html" data-id="ck1ra9a9b00c32nqp61wi4z8l" class="article-share-link">
         分享</a>
       
       
@@ -871,96 +964,10 @@
 
 
   
-    <article id="post-Oracle Package 包说明和包体" class="article" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/6b176628.html" class="article-date">
-  <time class="post-time" datetime="2018-12-10T02:48:00.000Z" itemprop="datePublished">
-    <span class="post-month">12月</span><br/>
-    <span class="post-day">10</span>
-  </time>
-</a>
-
-  </div>
-  <div class="article-inner">
-    
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/6b176628.html">Oracle Package 包说明和包体</a>
-    </h1>
-  
-
-      <div>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/数据库/">数据库</a>,<a class="article-category-link" href="/categories/数据库/Oracle/">Oracle</a>
-  </div>
-
-        
-        
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/6b176628.html" class="leancloud_visitors" data-flag-title="Oracle Package 包说明和包体">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 801</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 4 分钟</span>
-  </div>
- 
-        
-      </div>
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      <p>该文转自 <a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" target="_blank" rel="noopener">forever杨’s Blog - Oracle Package 包说明和包体</a><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">在包中定义的函数，包体中实现的时候，函数名、参数名、类型都要一致，否则报错。</span><br><span class="line">在创建基于自定义函数时, 指定 `deterministic` 参数，再创建函数索引，就没有问题了。</span><br></pre></td></tr></table></figure></p>
-<h2 id="定义包说明"><a href="#定义包说明" class="headerlink" title="定义包说明"></a>定义包说明</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">OR</span> <span class="keyword">REPLACE</span> <span class="keyword">PACKAGE</span> WX_CRYPTO <span class="keyword">IS</span></span><br><span class="line">  <span class="comment">-- 定义 DES encrypt 函数</span></span><br><span class="line">  <span class="keyword">FUNCTION</span> <span class="keyword">DES_ENCRYPT</span>(INPUT_STRING <span class="keyword">IN</span> VARCHAR2) <span class="keyword">RETURN</span> VARCHAR2;</span><br><span class="line">  FUNCTION DES_ENCRYPT(INPUT_STRING IN VARCHAR2, KEY_STRING IN VARCHAR2)</span><br><span class="line">    RETURN VARCHAR2;</span><br><span class="line"></span><br><span class="line">  <span class="comment">-- 定义 DES decrypt 函数</span></span><br><span class="line">  FUNCTION DES_DECRYPT(INPUT_STRING IN VARCHAR2) RETURN VARCHAR2 DETERMINISTIC;</span><br><span class="line">  FUNCTION DES_DECRYPT(INPUT_STRING IN VARCHAR2, KEY_STRING IN VARCHAR2)</span><br><span class="line">    RETURN VARCHAR2 DETERMINISTIC;</span><br><span class="line"><span class="keyword">END</span> WX_CRYPTO;</span><br></pre></td></tr></table></figure>
-      
-      <p class="article-more-link">
-        <a href="/posts/6b176628.html#more">
-          Read More</a>
-      </p>
-      
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/6b176628.html" data-id="ck1r9kv7w00aaofqprjk282ve" class="article-share-link">
-        分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Oracle/">Oracle</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Package/">Package</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sql/">Sql</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
 
 
   <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/">&laquo; pre</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/3/">next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/">&laquo; pre</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/3/">next &raquo;</a>
   </nav>
 </section>
         
@@ -1007,7 +1014,7 @@
     <div class="count-box">
       <a href="/archives">
         <div><strong>
-            150</strong><br>文章</div>
+            151</strong><br>文章</div>
       </a>
       <a href="/categories">
         <div><strong>
@@ -1015,7 +1022,7 @@
       </a>
       <a href="/tags">
         <div><strong>
-            107</strong><br>标签</div>
+            108</strong><br>标签</div>
       </a>
     </div>
 
