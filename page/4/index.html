@@ -56,9 +56,9 @@
     <h2 class="author"></h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>149</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>150</strong><br>文章</div></a>
       <a href="/categories"><div><strong>55</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>105</strong><br>标签</div></a>
+      <a href="/tags"><div><strong>107</strong><br>标签</div></a>
     </div>
     <ul class="blog-link">
      
@@ -83,6 +83,92 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-Linux awk" class="article" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/bf60621.html" class="article-date">
+  <time class="post-time" datetime="2018-09-20T08:16:00.000Z" itemprop="datePublished">
+    <span class="post-month">9月</span><br/>
+    <span class="post-day">20</span>
+  </time>
+</a>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/bf60621.html">Linux awk</a>
+    </h1>
+  
+
+      <div>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/服务器/">服务器</a>,<a class="article-category-link" href="/categories/服务器/Linux/">Linux</a>
+  </div>
+
+        
+        
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/bf60621.html" class="leancloud_visitors" data-flag-title="Linux awk">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 2,819</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 16 分钟</span>
+  </div>
+ 
+        
+      </div>
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <p>假用如下数据演示awk。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> cat netstat.txt</span></span><br><span class="line">Proto Recv-Q Send-Q Local-Address          Foreign-Address             State</span><br><span class="line">tcp        0      0 0.0.0.0:3306           0.0.0.0:*                   LISTEN</span><br><span class="line">tcp        0      0 0.0.0.0:80             0.0.0.0:*                   LISTEN</span><br><span class="line">tcp        0      0 127.0.0.1:9000         0.0.0.0:*                   LISTEN</span><br><span class="line">tcp        0      0 coolshell.cn:80        124.205.5.146:18245         TIME_WAIT</span><br><span class="line">tcp        0      0 coolshell.cn:80        61.140.101.185:37538        FIN_WAIT2</span><br><span class="line">tcp        0      0 coolshell.cn:80        110.194.134.189:1032        ESTABLISHED</span><br><span class="line">tcp        0      0 coolshell.cn:80        123.169.124.111:49809       ESTABLISHED</span><br><span class="line">tcp        0      0 coolshell.cn:80        116.234.127.77:11502        FIN_WAIT2</span><br><span class="line">tcp        0      0 coolshell.cn:80        123.169.124.111:49829       ESTABLISHED</span><br><span class="line">tcp        0      0 coolshell.cn:80        183.60.215.36:36970         TIME_WAIT</span><br><span class="line">tcp        0   4166 coolshell.cn:80        61.148.242.38:30901         ESTABLISHED</span><br><span class="line">tcp        0      1 coolshell.cn:80        124.152.181.209:26825       FIN_WAIT1</span><br><span class="line">tcp        0      0 coolshell.cn:80        110.194.134.189:4796        ESTABLISHED</span><br><span class="line">tcp        0      0 coolshell.cn:80        183.60.212.163:51082        TIME_WAIT</span><br><span class="line">tcp        0      1 coolshell.cn:80        208.115.113.92:50601        LAST_ACK</span><br><span class="line">tcp        0      0 coolshell.cn:80        123.169.124.111:49840       ESTABLISHED</span><br><span class="line">tcp        0      0 coolshell.cn:80        117.136.20.85:50025         FIN_WAIT2</span><br><span class="line">tcp        0      0 :::22                  :::*                        LISTEN</span><br></pre></td></tr></table></figure></p>
+<h2 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h2><p>过滤第一列与第四列<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> awk <span class="string">'&#123;print $1,$4&#125;'</span> netstat.txt</span></span><br><span class="line">Proto Local-Address</span><br><span class="line">tcp 0.0.0.0:3306</span><br><span class="line">tcp 0.0.0.0:80</span><br><span class="line">tcp 127.0.0.1:9000</span><br><span class="line">tcp coolshell.cn:80</span><br><span class="line">tcp coolshell.cn:80</span><br><span class="line">tcp coolshell.cn:80</span><br><span class="line">tcp coolshell.cn:80</span><br><span class="line">tcp coolshell.cn:80</span><br><span class="line">tcp coolshell.cn:80</span><br><span class="line">tcp coolshell.cn:80</span><br><span class="line">tcp coolshell.cn:80</span><br><span class="line">tcp coolshell.cn:80</span><br><span class="line">tcp coolshell.cn:80</span><br><span class="line">tcp coolshell.cn:80</span><br><span class="line">tcp coolshell.cn:80</span><br><span class="line">tcp coolshell.cn:80</span><br><span class="line">tcp coolshell.cn:80</span><br><span class="line">tcp :::22</span><br></pre></td></tr></table></figure></p>
+      
+      <p class="article-more-link">
+        <a href="/posts/bf60621.html#more">
+          Read More</a>
+      </p>
+      
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/bf60621.html" data-id="ck1r9i0h7009t3qqplkdfbdyb" class="article-share-link">
+        分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
   
     <article id="post-Docker 容器挂载宿主机环境" class="article" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -154,7 +240,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/e4163a66.html" data-id="ck1ptq5l1000p5oqp9z3rixal" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/e4163a66.html" data-id="ck1r9i0di001t3qqpy22tnj3d" class="article-share-link">
         分享</a>
       
       
@@ -249,7 +335,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/a5557ea7.html" data-id="ck1ptq5l6000v5oqpf30sv1tg" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/a5557ea7.html" data-id="ck1r9i0da001k3qqponlzemkq" class="article-share-link">
         分享</a>
       
       
@@ -340,7 +426,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/4573f792.html" data-id="ck1ptq5ma002b5oqpq7ikecy6" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/4573f792.html" data-id="ck1r9i0el003x3qqph52ojipx" class="article-share-link">
         分享</a>
       
       
@@ -429,7 +515,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3c49f4b8.html" data-id="ck1ptq5nj004p5oqpkh342gth" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/3c49f4b8.html" data-id="ck1r9i0ft006l3qqp3fmcg46s" class="article-share-link">
         分享</a>
       
       
@@ -512,7 +598,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3d5c725a.html" data-id="ck1ptq5p0008a5oqptt594qln" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/3d5c725a.html" data-id="ck1r9i0h8009y3qqpw3m9gzh8" class="article-share-link">
         分享</a>
       
       
@@ -603,7 +689,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3e9aef58.html" data-id="ck1ptq5m7002a5oqpuiokafbl" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/3e9aef58.html" data-id="ck1r9i0ej003u3qqp53soqfd1" class="article-share-link">
         分享</a>
       
       
@@ -704,7 +790,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/d0e6a555.html" data-id="ck1ptq5n2003u5oqpa4rnxv2h" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/d0e6a555.html" data-id="ck1r9i0fa005a3qqpszyspgi1" class="article-share-link">
         分享</a>
       
       
@@ -790,7 +876,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3f08f656.html" data-id="ck1ptq5rg00ct5oqpb42ieil5" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/3f08f656.html" data-id="ck1r9i0ja00en3qqpl2fmvnbr" class="article-share-link">
         分享</a>
       
       
@@ -875,90 +961,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/47f7c28d.html" data-id="ck1ptq5ov007y5oqpv4ihqnom" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/47f7c28d.html" data-id="ck1r9i0h3009m3qqpbqujzfzl" class="article-share-link">
         分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Java ApacheHttpClient设置http1.0短链接" class="article" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/1136d15d.html" class="article-date">
-  <time class="post-time" datetime="2018-07-25T02:10:00.000Z" itemprop="datePublished">
-    <span class="post-month">7月</span><br/>
-    <span class="post-day">25</span>
-  </time>
-</a>
-
-  </div>
-  <div class="article-inner">
-    
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/1136d15d.html">Java ApacheHttpClient设置http1.0短链接</a>
-    </h1>
-  
-
-      <div>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
-  </div>
-
-        
-        
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/1136d15d.html" class="leancloud_visitors" data-flag-title="Java ApacheHttpClient设置http1.0短链接">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 30</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 1 分钟</span>
-  </div>
- 
-        
-      </div>
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">HttpPost httpPost = <span class="keyword">new</span> HttpPost(url);</span><br><span class="line">httpPost.setEntity(<span class="keyword">new</span> StringEntity(text, ContentType.create(<span class="string">"application/json"</span>, <span class="keyword">this</span>.getCharset())));</span><br><span class="line">httpPost.setProtocolVersion(HttpVersion.HTTP_1_0);</span><br><span class="line">httpPost.addHeader(HTTP.CONN_DIRECTIVE, HTTP.CONN_CLOSE);</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/1136d15d.html" data-id="ck1ptq5nz005w5oqphh3xx1xd" class="article-share-link">
-        分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Apache-HttpClient/">Apache HttpClient</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
 
     </footer>
   </div>
@@ -1026,7 +1033,7 @@
     <div class="count-box">
       <a href="/archives">
         <div><strong>
-            149</strong><br>文章</div>
+            150</strong><br>文章</div>
       </a>
       <a href="/categories">
         <div><strong>
@@ -1034,7 +1041,7 @@
       </a>
       <a href="/tags">
         <div><strong>
-            105</strong><br>标签</div>
+            107</strong><br>标签</div>
       </a>
     </div>
 

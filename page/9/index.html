@@ -56,9 +56,9 @@
     <h2 class="author"></h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>149</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>150</strong><br>文章</div></a>
       <a href="/categories"><div><strong>55</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>105</strong><br>标签</div></a>
+      <a href="/tags"><div><strong>107</strong><br>标签</div></a>
     </div>
     <ul class="blog-link">
      
@@ -83,6 +83,90 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-Tomcat 使用probe对tomcat服务进行监控" class="article" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/3f45f33f.html" class="article-date">
+  <time class="post-time" datetime="2016-01-29T03:16:00.000Z" itemprop="datePublished">
+    <span class="post-month">1月</span><br/>
+    <span class="post-day">29</span>
+  </time>
+</a>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/3f45f33f.html">Tomcat 使用probe对tomcat服务进行监控</a>
+    </h1>
+  
+
+      <div>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/服务容器/">服务容器</a>,<a class="article-category-link" href="/categories/服务容器/Tomcat/">Tomcat</a>
+  </div>
+
+        
+        
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/3f45f33f.html" class="leancloud_visitors" data-flag-title="Tomcat 使用probe对tomcat服务进行监控">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 141</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 1 分钟</span>
+  </div>
+ 
+        
+      </div>
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <h2 id="1）运行环境（博主本地）"><a href="#1）运行环境（博主本地）" class="headerlink" title="1）运行环境（博主本地）"></a>1）运行环境（博主本地）</h2><p>JDK：jdk1.6<br>Tomcat:tomcat7<br>OS:Windows10</p>
+<h2 id="2）下载"><a href="#2）下载" class="headerlink" title="2）下载"></a>2）下载</h2><p><a href="http://files.cnblogs.com/files/zengweiming/PSI-probe-2.3.3%E4%B8%AD%E6%96%87%E7%89%88%E5%8F%8A%E5%AE%89%E8%A3%85%E8%AF%A6%E8%A7%A3.rar" target="_blank" rel="noopener">点击下载</a></p>
+<h2 id="3）安装运行"><a href="#3）安装运行" class="headerlink" title="3）安装运行"></a>3）安装运行</h2><h3 id="3-1）解压"><a href="#3-1）解压" class="headerlink" title="3.1）解压"></a>3.1）解压</h3><p>将probe文件夹复制放进tomcat里面的webapp目录</p>
+<h3 id="3-2）修改tomcat的管理用户配置"><a href="#3-2）修改tomcat的管理用户配置" class="headerlink" title="3.2）修改tomcat的管理用户配置"></a>3.2）修改tomcat的管理用户配置</h3><p>打开 <code>CATALINA_HOME/conf/tomcat-users.xml</code> ，在里面添加以下代码<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">tomcat-users</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">role</span> <span class="attr">rolename</span>=<span class="string">"probeuser"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">role</span> <span class="attr">rolename</span>=<span class="string">"poweruser"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">role</span> <span class="attr">rolename</span>=<span class="string">"poweruserplus"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">role</span> <span class="attr">rolename</span>=<span class="string">"manager"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">user</span> <span class="attr">username</span>=<span class="string">"admin"</span> <span class="attr">password</span>=<span class="string">"admin"</span> <span class="attr">roles</span>=<span class="string">"manager"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">tomcat-users</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="4）启动tomcat"><a href="#4）启动tomcat" class="headerlink" title="4）启动tomcat"></a>4）启动tomcat</h2><p>输入 localhost:8080/probe ，输入用户密码 <code>admin</code> <code>admin</code>，进行访问,首页如下就说明已经运行监控成功啦。<br><img src="http://img.tidyko.com/blog/probe_1.png" alt="Tomcat 使用probe对tomcat服务进行监控-图例1"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/3f45f33f.html" data-id="ck1r9i0ir00do3qqplpv8048o" class="article-share-link">
+        分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tomcat/">Tomcat</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/probe/">probe</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
   
     <article id="post-weinre 使用weinre对手机、微信浏览器页面调试" class="article" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -146,7 +230,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/1eb6656b.html" data-id="ck1ptq5r000bu5oqp9p1l3vrk" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/1eb6656b.html" data-id="ck1r9i0j100e33qqp0r6zlsdi" class="article-share-link">
         分享</a>
       
       
@@ -238,7 +322,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/58db64d.html" data-id="ck1ptq5rb00cl5oqpd4wl9i1a" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/58db64d.html" data-id="ck1r9i0j500ef3qqp1wqjud30" class="article-share-link">
         分享</a>
       
       
@@ -320,7 +404,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/2d2c81b8.html" data-id="ck1ptq5kr000f5oqpnfnhi5ue" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/2d2c81b8.html" data-id="ck1r9i0d6001c3qqpn4d8js2m" class="article-share-link">
         分享</a>
       
       
@@ -545,7 +629,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/a8ddc8ae.html" data-id="ck1ptq5ql00b15oqpu4xt74vf" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/a8ddc8ae.html" data-id="ck1r9i0ic00cp3qqp9oqwqv2h" class="article-share-link">
         分享</a>
       
       
@@ -628,7 +712,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/67537090.html" data-id="ck1ptq5lk001l5oqpkqpo7dwc" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/67537090.html" data-id="ck1r9i0e1002v3qqp4ulhuc0f" class="article-share-link">
         分享</a>
       
       
@@ -710,7 +794,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/6d066745.html" data-id="ck1ptq5mj002w5oqpk2lw519m" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/6d066745.html" data-id="ck1r9i0et004c3qqpabzijvsd" class="article-share-link">
         分享</a>
       
       
@@ -794,7 +878,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/d1cb6203.html" data-id="ck1ptq5mm00325oqp6oo34p6j" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/d1cb6203.html" data-id="ck1r9i0ex004k3qqpvqaqc21s" class="article-share-link">
         分享</a>
       
       
@@ -879,7 +963,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/4a47fe35.html" data-id="ck1ptq5ml002z5oqpw67o79tu" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/4a47fe35.html" data-id="ck1r9i0ez004n3qqpxw1cbkr9" class="article-share-link">
         分享</a>
       
       
@@ -1047,107 +1131,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/85796e0a.html" data-id="ck1ptq5qn00b55oqpgdc7072d" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/85796e0a.html" data-id="ck1r9i0ii00d03qqpqzvaqjhv" class="article-share-link">
         分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Redis/">Redis</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Tomcat 本地域名访问设置" class="article" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/74b62430.html" class="article-date">
-  <time class="post-time" datetime="2014-10-17T02:44:00.000Z" itemprop="datePublished">
-    <span class="post-month">10月</span><br/>
-    <span class="post-day">17</span>
-  </time>
-</a>
-
-  </div>
-  <div class="article-inner">
-    
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/74b62430.html">Tomcat 本地域名访问设置</a>
-    </h1>
-  
-
-      <div>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/服务容器/">服务容器</a>,<a class="article-category-link" href="/categories/服务容器/Tomcat/">Tomcat</a>
-  </div>
-
-        
-        
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/74b62430.html" class="leancloud_visitors" data-flag-title="Tomcat 本地域名访问设置">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 233</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 1 分钟</span>
-  </div>
- 
-        
-      </div>
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      <p>原路径：localhost:8080/tidyko</p>
-<h2 id="1）去掉8080端口"><a href="#1）去掉8080端口" class="headerlink" title="1）去掉8080端口"></a>1）去掉8080端口</h2><p>打开%TOMCAT_HOME%/conf/server.xml</p>
-<p>修改里面的<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Connector</span> <span class="attr">connectionTimeout</span>=<span class="string">"20000"</span> <span class="attr">port</span>=<span class="string">"8080"</span> <span class="attr">protocol</span>=<span class="string">"HTTP/1.1"</span> <span class="attr">redirectPort</span>=<span class="string">"8443"</span>/&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>为<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Connector</span> <span class="attr">connectionTimeout</span>=<span class="string">"20000"</span> <span class="attr">port</span>=<span class="string">"80"</span> <span class="attr">protocol</span>=<span class="string">"HTTP/1.1"</span> <span class="attr">redirectPort</span>=<span class="string">"8443"</span>/&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>现在就可以使用localhost/tidyko访问项目了。</p>
-<h2 id="2）使用域名-项目访问"><a href="#2）使用域名-项目访问" class="headerlink" title="2）使用域名/项目访问"></a>2）使用域名/项目访问</h2><p>打开 <code>%TOMCAT_HOME%/conf/server.xml</code></p>
-<p>修改里面的<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Engine</span> <span class="attr">defaultHost</span>=<span class="string">"localhost"</span> <span class="attr">name</span>=<span class="string">"Catalina"</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>为<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Engine</span> <span class="attr">defaultHost</span>=<span class="string">"www.tidy.me"</span> <span class="attr">name</span>=<span class="string">"Catalina"</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>修改里面的<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Host</span> <span class="attr">appBase</span>=<span class="string">"webapps"</span> <span class="attr">autoDeploy</span>=<span class="string">"true"</span> <span class="attr">name</span>=<span class="string">"localhost"</span> <span class="attr">unpackWARs</span>=<span class="string">"true"</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>为<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Host</span> <span class="attr">appBase</span>=<span class="string">"webapps"</span> <span class="attr">autoDeploy</span>=<span class="string">"true"</span> <span class="attr">name</span>=<span class="string">"www.tidy.me"</span> <span class="attr">unpackWARs</span>=<span class="string">"true"</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>打开 <code>C:/Windows/System32/drivers/etc/HOSTS</code></p>
-<p>修改里面的<br><code>127.0.0.1       localhost</code><br>为<br><code>127.0.0.1       www.tidy.me</code></p>
-<p>现在就可以使用 <a href="http://www.tidy.me/tidyko" target="_blank" rel="noopener">www.tidy.me/tidyko</a> 访问项目了。</p>
-<h2 id="3）使用域名访问项目"><a href="#3）使用域名访问项目" class="headerlink" title="3）使用域名访问项目"></a>3）使用域名访问项目</h2><p>打开 <code>%TOMCAT_HOME%/conf/server.xml</code></p>
-<p>修改里面的<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Context</span> <span class="attr">docBase</span>=<span class="string">"tidy"</span> <span class="attr">path</span>=<span class="string">"/tidy"</span> <span class="attr">reloadable</span>=<span class="string">"true"</span> <span class="attr">source</span>=<span class="string">"org.eclipse.jst.jee.server:tidy"</span>/&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>为<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Context</span> <span class="attr">docBase</span>=<span class="string">"tidy"</span> <span class="attr">path</span>=<span class="string">""</span> <span class="attr">reloadable</span>=<span class="string">"true"</span> <span class="attr">source</span>=<span class="string">"org.eclipse.jst.jee.server:tidy"</span>/&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>完成，现在可以使用 <a href="http://www.tidy.me" target="_blank" rel="noopener">www.tidy.me</a> 访问项目了。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/74b62430.html" data-id="ck1ptq5r200by5oqp4bnzvc6o" class="article-share-link">
-        分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tomcat/">Tomcat</a></li></ul>
 
     </footer>
   </div>
@@ -1215,7 +1203,7 @@
     <div class="count-box">
       <a href="/archives">
         <div><strong>
-            149</strong><br>文章</div>
+            150</strong><br>文章</div>
       </a>
       <a href="/categories">
         <div><strong>
@@ -1223,7 +1211,7 @@
       </a>
       <a href="/tags">
         <div><strong>
-            105</strong><br>标签</div>
+            107</strong><br>标签</div>
       </a>
     </div>
 

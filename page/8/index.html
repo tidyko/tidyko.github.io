@@ -56,9 +56,9 @@
     <h2 class="author"></h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>149</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>150</strong><br>文章</div></a>
       <a href="/categories"><div><strong>55</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>105</strong><br>标签</div></a>
+      <a href="/tags"><div><strong>107</strong><br>标签</div></a>
     </div>
     <ul class="blog-link">
      
@@ -83,6 +83,102 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-Tomcat 使用Eclipse运行Tomcat7源码" class="article" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/f6190ed2.html" class="article-date">
+  <time class="post-time" datetime="2016-04-14T08:13:00.000Z" itemprop="datePublished">
+    <span class="post-month">4月</span><br/>
+    <span class="post-day">14</span>
+  </time>
+</a>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/f6190ed2.html">Tomcat 使用Eclipse运行Tomcat7源码</a>
+    </h1>
+  
+
+      <div>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/服务容器/">服务容器</a>,<a class="article-category-link" href="/categories/服务容器/Tomcat/">Tomcat</a>
+  </div>
+
+        
+        
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/f6190ed2.html" class="leancloud_visitors" data-flag-title="Tomcat 使用Eclipse运行Tomcat7源码">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 742</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 3 分钟</span>
+  </div>
+ 
+        
+      </div>
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <h2 id="1）搭建开发环境"><a href="#1）搭建开发环境" class="headerlink" title="1）搭建开发环境"></a>1）搭建开发环境</h2><p>a.下载好tomcat7源码包</p>
+<p>b.安装好jdk7,及设置好环境变量</p>
+<p>c.安装好ant,及设置好环境变量，用于预编译tocmat源码。</p>
+<p>d.以上步骤准备好我们就可以开始进入源码的预编译了。</p>
+<h2 id="2）使用ant预编译tomcat7源码"><a href="#2）使用ant预编译tomcat7源码" class="headerlink" title="2）使用ant预编译tomcat7源码"></a>2）使用ant预编译tomcat7源码</h2><p>a.进入 <code>tomcat7源码</code> 解压路径，修改 <code>build.properties.default</code> 文件名，去掉后面的 <code>.default</code>。</p>
+<p>b.<code>cmd</code> 进入 <code>tomcat7源码</code> 的解压路径，然后键入 <code>ant</code> 命令，ant会自动下载编译tomcat7源码的依赖包，如果用户不设置，系统默认下载的包路径会是当前盘符下面的 <code>\usr\share\java</code> 里面，</p>
+<p>如果想设置自定义路劲的话，可以打开刚刚修改完成的 <code>build.properties</code> 配置文件，搜索 <code>base.path</code> 属性，设置为比如 <code>base.path=e:/tomcat/lib</code> ，然后 <code>cmd</code> 运行 <code>ant</code> 命令即可。</p>
+<p>c.如果运行完成之后能在解压路径，看到有 <code>output\build</code> 文件夹，而且里面有生成了你熟悉的tomcat相关文件夹的话就算成功了。</p>
+<h2 id="3）使用Eclipse运行tomcat7源码"><a href="#3）使用Eclipse运行tomcat7源码" class="headerlink" title="3）使用Eclipse运行tomcat7源码"></a>3）使用Eclipse运行tomcat7源码</h2><p>a.进入Eclipse新建一个普通java项目，比如这里叫做 <code>tomcat7</code>。</p>
+<p>b.新建完成之后，将 <code>tomcat7</code> 解压路径下面的 <code>java</code> 和 <code>test</code> 文件夹复制到刚刚新建好的tomcat7项目下面。</p>
+<p>c.设置刚刚的 <code>java</code> 和 <code>test</code> 文件夹为源文件夹，<code>右击项目</code> -&gt; <code>Properties</code> -&gt; <code>Java Build Path</code> -&gt; <code>Source</code> -&gt; <code>Add Folder</code>，然后勾选上 <code>java</code> 和 <code>test</code> 两个文件夹。确定即可。</p>
+<p>d.设置完成源文件夹之后，会看到两个源文件夹上面都有红色的小x，这是因为没导入需要的包，这里需要导入的包有：</p>
+<p>ant.jar、jaxrpc.jar、org.eclipse.jdt.core_3.8.3.v20130121-145325.jar、wsdl4j-1.5.1.jar、junit.jar，前面四个jar包可以自行导入，最后的junit.jar可以直接在eclipse里面add external jars里面选择junit进行导入。</p>
+<p>e.到这里需要搭建的都已经完成了，现在可以右击项目，<code>run as</code> -&gt; <code>run configurations</code> ,然后 <code>main class</code> 填写“org.apache.catalina.startup.Bootstrap”，然后在隔壁的“Arguments”里面的VM Arguments 里面填写<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-Dcatalina.home="E:/project/open/tomcat-TOMCAT_7_0_42/output/build</span><br></pre></td></tr></table></figure></p>
+<p>这里需要注意，这个具体路径根据自己的实际改写，我这里刚刚解压的路劲为e盘的这个路径所以使用了这个。</p>
+<p>f.最后点击 <code>RUN</code> 运行项目，运行之后根据提示可以看到缺少了 <code>conf</code> 和 <code>lib</code>文件夹，我们可以自行手动将tomcat的 <code>conf</code> 和 <code>lib</code> 拷到项目下面，然后再重复刚刚的步骤e。</p>
+<p>g.这时候我们可以看到Eclipse的控制台里面已经输出了我们非常熟悉的tomcat启动完成的文字，然后我们在浏览器输入 <a href="http://localhost:8080" target="_blank" rel="noopener">http://localhost:8080</a> 就可以看到tomcat的主页面了。</p>
+<h2 id="4）到了这里我们已经可以在Eclipse里面对tomcat的源码进行一番研究了"><a href="#4）到了这里我们已经可以在Eclipse里面对tomcat的源码进行一番研究了" class="headerlink" title="4）到了这里我们已经可以在Eclipse里面对tomcat的源码进行一番研究了"></a>4）到了这里我们已经可以在Eclipse里面对tomcat的源码进行一番研究了</h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/f6190ed2.html" data-id="ck1r9i0io00dg3qqpbwsp5lf1" class="article-share-link">
+        分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tomcat/">Tomcat</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/源码/">源码</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
   
     <article id="post-微信公众号 WeixinJSBridge.call(&#39;closeWindow&#39;)无效" class="article" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -144,7 +240,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/1e7ee8d0.html" data-id="ck1ptq5rf00cp5oqp88lspvb7" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/1e7ee8d0.html" data-id="ck1r9i0jc00er3qqp3ws52ha4" class="article-share-link">
         分享</a>
       
       
@@ -224,7 +320,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/1b8b5be2.html" data-id="ck1ptq5rm00d75oqpq62y0qgj" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/1b8b5be2.html" data-id="ck1r9i0jr00f63qqpsjxpvgq9" class="article-share-link">
         分享</a>
       
       
@@ -307,7 +403,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/69238558.html" data-id="ck1ptq5o8006k5oqpxbnexe1z" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/69238558.html" data-id="ck1r9i0gl008k3qqpcvvnvtlp" class="article-share-link">
         分享</a>
       
       
@@ -387,7 +483,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/6a2a165c.html" data-id="ck1ptq5lm001o5oqps0zn0lqa" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/6a2a165c.html" data-id="ck1r9i0e2002x3qqpg3s7ynwz" class="article-share-link">
         分享</a>
       
       
@@ -472,7 +568,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/75c14ffd.html" data-id="ck1ptq5li001i5oqpabfeediv" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/75c14ffd.html" data-id="ck1r9i0dw002l3qqpyz4yefc1" class="article-share-link">
         分享</a>
       
       
@@ -552,7 +648,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3530a775.html" data-id="ck1ptq5kb00025oqpws08w3nr" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/3530a775.html" data-id="ck1r9i0an00063qqpbdz0nag7" class="article-share-link">
         分享</a>
       
       
@@ -632,7 +728,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/15ae09a5.html" data-id="ck1ptq5kh00055oqp5tcy3x7u" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/15ae09a5.html" data-id="ck1r9i0ag00023qqpllbapzyi" class="article-share-link">
         分享</a>
       
       
@@ -722,7 +818,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/632d0b70.html" data-id="ck1ptq5kj00065oqpeyo78ho4" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/632d0b70.html" data-id="ck1r9i0al00053qqpdti9jq9b" class="article-share-link">
         分享</a>
       
       
@@ -805,95 +901,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3ddda97c.html" data-id="ck1ptq5ng004j5oqpo4h7ijl4" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/3ddda97c.html" data-id="ck1r9i0fv006p3qqpl3phqkeo" class="article-share-link">
         分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/">Spring</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Tomcat 使用probe对tomcat服务进行监控" class="article" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/3f45f33f.html" class="article-date">
-  <time class="post-time" datetime="2016-01-29T03:16:00.000Z" itemprop="datePublished">
-    <span class="post-month">1月</span><br/>
-    <span class="post-day">29</span>
-  </time>
-</a>
-
-  </div>
-  <div class="article-inner">
-    
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/3f45f33f.html">Tomcat 使用probe对tomcat服务进行监控</a>
-    </h1>
-  
-
-      <div>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/服务容器/">服务容器</a>,<a class="article-category-link" href="/categories/服务容器/Tomcat/">Tomcat</a>
-  </div>
-
-        
-        
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/3f45f33f.html" class="leancloud_visitors" data-flag-title="Tomcat 使用probe对tomcat服务进行监控">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 141</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 1 分钟</span>
-  </div>
- 
-        
-      </div>
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      <h2 id="1）运行环境（博主本地）"><a href="#1）运行环境（博主本地）" class="headerlink" title="1）运行环境（博主本地）"></a>1）运行环境（博主本地）</h2><p>JDK：jdk1.6<br>Tomcat:tomcat7<br>OS:Windows10</p>
-<h2 id="2）下载"><a href="#2）下载" class="headerlink" title="2）下载"></a>2）下载</h2><p><a href="http://files.cnblogs.com/files/zengweiming/PSI-probe-2.3.3%E4%B8%AD%E6%96%87%E7%89%88%E5%8F%8A%E5%AE%89%E8%A3%85%E8%AF%A6%E8%A7%A3.rar" target="_blank" rel="noopener">点击下载</a></p>
-<h2 id="3）安装运行"><a href="#3）安装运行" class="headerlink" title="3）安装运行"></a>3）安装运行</h2><h3 id="3-1）解压"><a href="#3-1）解压" class="headerlink" title="3.1）解压"></a>3.1）解压</h3><p>将probe文件夹复制放进tomcat里面的webapp目录</p>
-<h3 id="3-2）修改tomcat的管理用户配置"><a href="#3-2）修改tomcat的管理用户配置" class="headerlink" title="3.2）修改tomcat的管理用户配置"></a>3.2）修改tomcat的管理用户配置</h3><p>打开 <code>CATALINA_HOME/conf/tomcat-users.xml</code> ，在里面添加以下代码<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">tomcat-users</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">role</span> <span class="attr">rolename</span>=<span class="string">"probeuser"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">role</span> <span class="attr">rolename</span>=<span class="string">"poweruser"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">role</span> <span class="attr">rolename</span>=<span class="string">"poweruserplus"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">role</span> <span class="attr">rolename</span>=<span class="string">"manager"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">user</span> <span class="attr">username</span>=<span class="string">"admin"</span> <span class="attr">password</span>=<span class="string">"admin"</span> <span class="attr">roles</span>=<span class="string">"manager"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">tomcat-users</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<h2 id="4）启动tomcat"><a href="#4）启动tomcat" class="headerlink" title="4）启动tomcat"></a>4）启动tomcat</h2><p>输入 localhost:8080/probe ，输入用户密码 <code>admin</code> <code>admin</code>，进行访问,首页如下就说明已经运行监控成功啦。<br><img src="http://img.tidyko.com/blog/probe_1.png" alt="Tomcat 使用probe对tomcat服务进行监控-图例1"></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3f45f33f.html" data-id="ck1ptq5qy00bq5oqphqcojm9h" class="article-share-link">
-        分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tomcat/">Tomcat</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/probe/">probe</a></li></ul>
 
     </footer>
   </div>
@@ -961,7 +973,7 @@
     <div class="count-box">
       <a href="/archives">
         <div><strong>
-            149</strong><br>文章</div>
+            150</strong><br>文章</div>
       </a>
       <a href="/categories">
         <div><strong>
@@ -969,7 +981,7 @@
       </a>
       <a href="/tags">
         <div><strong>
-            105</strong><br>标签</div>
+            107</strong><br>标签</div>
       </a>
     </div>
 
