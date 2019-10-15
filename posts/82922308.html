@@ -11,13 +11,13 @@
     Tidy的个人博客
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="当我们试图向Maven项目里添加新依赖时，经常会遇到新依赖包与旧依赖包产生冲突的问题，如下图所示：这里面，因为有两个包里面都包含完整路径为org/slf4j/impl/StaticLoggerBinder.class的类，所以导致系统不知道使用哪一个，从而启动失败，所以，我们只需要将这两个包其中一个去除即可，现在让我们使用IDEA的一个小功能来完美解决这个包冲突问题吧。 1.打开Maven依赖图我">
-<meta name="keywords" content="Maven,包冲突,IDEA,依赖图">
+  <meta name="description" content="当我们试图向Maven项目里添加新依赖时，经常会遇到新依赖包与旧依赖包产生冲突的问题，如下图所示：这里面，因为有两个包里面都包含完整路径为org/slf4j/impl/StaticLoggerBinder.class的类，所以导致系统不知道使用哪一个，从而启动失败，所以，我们只需要将这两个包其中一个去除即可，现在让我们使用IDEA的一个小功能来完美解决这个包冲突问题吧。">
+<meta name="keywords" content="Maven,IDEA,包冲突,依赖图">
 <meta property="og:type" content="article">
 <meta property="og:title" content="IDEA 利用Maven依赖图解决包冲突">
 <meta property="og:url" content="https://www.tidyko.com/posts/82922308.html">
 <meta property="og:site_name" content="Tidy的个人博客">
-<meta property="og:description" content="当我们试图向Maven项目里添加新依赖时，经常会遇到新依赖包与旧依赖包产生冲突的问题，如下图所示：这里面，因为有两个包里面都包含完整路径为org/slf4j/impl/StaticLoggerBinder.class的类，所以导致系统不知道使用哪一个，从而启动失败，所以，我们只需要将这两个包其中一个去除即可，现在让我们使用IDEA的一个小功能来完美解决这个包冲突问题吧。 1.打开Maven依赖图我">
+<meta property="og:description" content="当我们试图向Maven项目里添加新依赖时，经常会遇到新依赖包与旧依赖包产生冲突的问题，如下图所示：这里面，因为有两个包里面都包含完整路径为org/slf4j/impl/StaticLoggerBinder.class的类，所以导致系统不知道使用哪一个，从而启动失败，所以，我们只需要将这两个包其中一个去除即可，现在让我们使用IDEA的一个小功能来完美解决这个包冲突问题吧。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://img.tidyko.com/blog/bct_1.png">
 <meta property="og:image" content="http://img.tidyko.com/blog/bct_2.png">
@@ -29,10 +29,10 @@
 <meta property="og:image" content="http://img.tidyko.com/blog/bct_8.png">
 <meta property="og:image" content="http://img.tidyko.com/blog/bct_9.png">
 <meta property="og:image" content="http://img.tidyko.com/blog/bct_10.png">
-<meta property="og:updated_time" content="2019-10-15T03:03:19.085Z">
+<meta property="og:updated_time" content="2019-10-15T03:05:35.024Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="IDEA 利用Maven依赖图解决包冲突">
-<meta name="twitter:description" content="当我们试图向Maven项目里添加新依赖时，经常会遇到新依赖包与旧依赖包产生冲突的问题，如下图所示：这里面，因为有两个包里面都包含完整路径为org/slf4j/impl/StaticLoggerBinder.class的类，所以导致系统不知道使用哪一个，从而启动失败，所以，我们只需要将这两个包其中一个去除即可，现在让我们使用IDEA的一个小功能来完美解决这个包冲突问题吧。 1.打开Maven依赖图我">
+<meta name="twitter:description" content="当我们试图向Maven项目里添加新依赖时，经常会遇到新依赖包与旧依赖包产生冲突的问题，如下图所示：这里面，因为有两个包里面都包含完整路径为org/slf4j/impl/StaticLoggerBinder.class的类，所以导致系统不知道使用哪一个，从而启动失败，所以，我们只需要将这两个包其中一个去除即可，现在让我们使用IDEA的一个小功能来完美解决这个包冲突问题吧。">
 <meta name="twitter:image" content="http://img.tidyko.com/blog/bct_1.png">
   
   <link rel="alternate" href="/atom.xml" title="Tidy的个人博客" type="application/atom+xml">
@@ -154,8 +154,8 @@
     <div class="article-entry" itemprop="articleBody">
       
       <p>当我们试图向Maven项目里添加新依赖时，经常会遇到新依赖包与旧依赖包产生冲突的问题，如下图所示：<br><img src="http://img.tidyko.com/blog/bct_1.png" alt=""><br>这里面，因为有两个包里面都包含完整路径为<code>org/slf4j/impl/StaticLoggerBinder.class</code>的类，所以导致系统不知道使用哪一个，从而启动失败，<br>所以，我们只需要将这两个包其中一个去除即可，现在让我们使用IDEA的一个小功能来完美解决这个包冲突问题吧。</p>
-<h2 id="1-打开Maven依赖图"><a href="#1-打开Maven依赖图" class="headerlink" title="1.打开Maven依赖图"></a>1.打开Maven依赖图</h2><p>我们打开我们Maven项目的<code>pom.xml</code>文件，在文件编辑界面<code>右击</code>鼠标弹出右击菜单，<br>然后依次选择<code>Diagrams</code> -&gt; <code>Show Dependencies</code>，展示Maven依赖图。<br><img src="http://img.tidyko.com/blog/bct_2.png" alt=""><br>点击后我们所看到的界面如下：<br><img src="http://img.tidyko.com/blog/bct_3.png" alt=""></p>
 <a id="more"></a>
+<h2 id="1-打开Maven依赖图"><a href="#1-打开Maven依赖图" class="headerlink" title="1.打开Maven依赖图"></a>1.打开Maven依赖图</h2><p>我们打开我们Maven项目的<code>pom.xml</code>文件，在文件编辑界面<code>右击</code>鼠标弹出右击菜单，<br>然后依次选择<code>Diagrams</code> -&gt; <code>Show Dependencies</code>，展示Maven依赖图。<br><img src="http://img.tidyko.com/blog/bct_2.png" alt=""><br>点击后我们所看到的界面如下：<br><img src="http://img.tidyko.com/blog/bct_3.png" alt=""></p>
 <h2 id="2-定位问题依赖"><a href="#2-定位问题依赖" class="headerlink" title="2.定位问题依赖"></a>2.定位问题依赖</h2><p>我们在Maven依赖图界面，按ctrl+f键，进行依赖搜索，<br>我们将依次搜索我们在控制台里面出现的两个jar包，分析其依赖。<br>首先，我们先搜索<code>logback-classic</code>，它对于我们的第一个报错提示，界面会出现匹配的依赖，我们不用打全称，当你看到相应的包名的时候，直接点击选项即可。<br><img src="http://img.tidyko.com/blog/bct_4.png" alt=""><br>点击后我们就可以看到视图已经自动定位到所选的包名的位置，<br><img src="http://img.tidyko.com/blog/bct_5.png" alt=""><br>从这里，我们可以看到，<code>logback-classic</code>包被我们之前导入的<code>springboot-starter-logging</code>这个日志启动器所引用，<br>这里它属于这个启动器必要的一部分，所以我们先放着不管，继续搜索第二个依赖包<code>slf4j-log4j12</code><br><img src="http://img.tidyko.com/blog/bct_6.png" alt=""><br>继续点击对应选项，我们看到了其有4个依赖<br><img src="http://img.tidyko.com/blog/bct_7.png" alt=""><br>我们看到了<code>slf4j-log4j12</code>这个包被我们导入的<code>zookeeper</code>所引用，这里因为是中间件引用的，所以我们可以将这个移除。</p>
 <h2 id="3-移除问题依赖"><a href="#3-移除问题依赖" class="headerlink" title="3.移除问题依赖"></a>3.移除问题依赖</h2><p>我们选中<code>slf4j-log4j12</code>，右击鼠标，可以看到右击菜单里面有一个<code>Exclude</code>选项，我们点击<code>Exclude</code>,去除该依赖，<br><img src="http://img.tidyko.com/blog/bct_8.png" alt=""><br>点击完成后，我们可以看到<code>zookeeper</code>的依赖由原来的4个变为现在的3个<br><img src="http://img.tidyko.com/blog/bct_9.png" alt=""></p>
 <h2 id="4-验证结果"><a href="#4-验证结果" class="headerlink" title="4.验证结果"></a>4.验证结果</h2><p>最后，我们返回我们的<code>pom.xml</code>文件，搜索<code>zookeeper</code>，定位到<code>zookeeper</code>的依赖块，<br><img src="http://img.tidyko.com/blog/bct_10.png" alt=""><br>我们可以看到<code>zookeeper</code>的依赖块已经顺利加上了<code>&lt;exclusion&gt;</code>标签，并且里面也已经指明了排除的冲突依赖包。<br>到这里，我们就已经成功排除了Maven的依赖包冲突问题，重新运行程序即可。</p>
@@ -163,7 +163,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/82922308.html" data-id="ck1r9i0f4004x3qqpq6wd2l8f" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/82922308.html" data-id="ck1r9kv4j003tofqprigy2i16" class="article-share-link">
         分享</a>
       
       
