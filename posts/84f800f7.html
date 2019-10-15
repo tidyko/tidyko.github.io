@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>
+    
+    Mac 解决16版MBP键盘B+N键重复点击的问题 |
+    
+    Tidy的个人博客
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="在16版MBP中的蝶式键盘有可能出现某个按钮重复点击的问题，就是按一次响应两次，重灾区是B和N键，偶然发现网上除了返修之外，还有一个折中方法，就是通过编写程序，在开机后自启动，在程序里面判断相应按钮的两次点击的间隔时间，如果太短则忽略，从而达到避免重复点击的问题。 1.源码（本文章使用以下代码来自网络）：12345678910111213141516171819202122232425262728">
+<meta name="keywords" content="Mac,键盘,重复点击">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mac 解决16版MBP键盘B+N键重复点击的问题">
+<meta property="og:url" content="https://www.tidyko.com/posts/84f800f7.html">
+<meta property="og:site_name" content="Tidy的个人博客">
+<meta property="og:description" content="在16版MBP中的蝶式键盘有可能出现某个按钮重复点击的问题，就是按一次响应两次，重灾区是B和N键，偶然发现网上除了返修之外，还有一个折中方法，就是通过编写程序，在开机后自启动，在程序里面判断相应按钮的两次点击的间隔时间，如果太短则忽略，从而达到避免重复点击的问题。 1.源码（本文章使用以下代码来自网络）：12345678910111213141516171819202122232425262728">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-10-15T03:51:45.033Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Mac 解决16版MBP键盘B+N键重复点击的问题">
+<meta name="twitter:description" content="在16版MBP中的蝶式键盘有可能出现某个按钮重复点击的问题，就是按一次响应两次，重灾区是B和N键，偶然发现网上除了返修之外，还有一个折中方法，就是通过编写程序，在开机后自启动，在程序里面判断相应按钮的两次点击的间隔时间，如果太短则忽略，从而达到避免重复点击的问题。 1.源码（本文章使用以下代码来自网络）：12345678910111213141516171819202122232425262728">
+  
+  <link rel="alternate" href="/atom.xml" title="Tidy的个人博客" type="application/atom+xml">
+  
+  
+  <link rel="icon" href="/favicon.ico">
+  
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <!-- <link rel="stylesheet" href="/plugin/bganimation/bg.css"> -->
+  
+
+  
+<!-- Google Adsense -->
+<!-- <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+</script> -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-1522837637326007",
+        enable_page_level_ads: true
+    });
+</script>
+
+<script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
+<!-- End Google Adsense -->
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <div class="widget-wrap mobile-header">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="http://img.tidyko.com/avatar.jpg">
+    <h2 class="author"></h2>
+    <h3 class="description"></h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>152</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>56</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>110</strong><br>标签</div></a>
+    </div>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+        <section id="main"><article id="post-Mac 解决16版MBP键盘B+N键重复点击的问题" class="article" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/84f800f7.html" class="article-date">
+  <time class="post-time" datetime="2019-09-23T01:31:00.000Z" itemprop="datePublished">
+    <span class="post-month">9月</span><br/>
+    <span class="post-day">23</span>
+  </time>
+</a>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 class="article-title" itemprop="name">
+      Mac 解决16版MBP键盘B+N键重复点击的问题
+    </h1>
+  
+
+      <div>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Mac/">Mac</a>,<a class="article-category-link" href="/categories/Mac/键盘/">键盘</a>
+  </div>
+
+        
+        
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/84f800f7.html" class="leancloud_visitors" data-flag-title="Mac 解决16版MBP键盘B+N键重复点击的问题">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 849</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 4 分钟</span>
+  </div>
+ 
+        
+      </div>
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <p>在16版MBP中的蝶式键盘有可能出现某个按钮重复点击的问题，就是按一次响应两次，重灾区是<code>B</code>和<code>N</code>键，<br>偶然发现网上除了返修之外，还有一个折中方法，就是通过编写程序，在开机后自启动，在程序里面判断相应按钮的两次点击的间隔时间，<br>如果太短则忽略，从而达到避免重复点击的问题。</p>
+<h2 id="1-源码（本文章使用以下代码来自网络）："><a href="#1-源码（本文章使用以下代码来自网络）：" class="headerlink" title="1.源码（本文章使用以下代码来自网络）："></a>1.源码（本文章使用以下代码来自网络）：</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// alterkeys.c</span></span><br><span class="line"><span class="comment">// http://osxbook.com</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">// You need superuser privileges to create the event tap, unless accessibility</span></span><br><span class="line"><span class="comment">// is enabled. To do so, select the "Enable access for assistive devices"</span></span><br><span class="line"><span class="comment">// checkbox in the Universal Access system preference pane.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// modified by SF-Zhou</span></span><br><span class="line"><span class="comment">// To: Kill Double Typing on MacBook</span></span><br><span class="line"><span class="comment">// Complile: g++ -O2 -Wall -o kill_double_typing kill_double_typing.cpp -framework ApplicationServices</span></span><br><span class="line"><span class="comment">// Run: ./kill_double_typing</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;ApplicationServices/ApplicationServices.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;chrono&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unordered_map&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> chrono::time_point&lt;<span class="built_in">std</span>::chrono::high_resolution_clock&gt; Time;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"></span><br><span class="line"><span class="built_in">unordered_map</span>&lt;CGKeyCode, Time&gt; last_time;</span><br><span class="line"></span><br><span class="line"><span class="function">Time <span class="title">time_now</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> chrono::high_resolution_clock::now();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// This callback will be invoked every time there is a keystroke.</span></span><br><span class="line"><span class="function">CGEventRef <span class="title">myCGEventCallback</span><span class="params">(CGEventTapProxy proxy, CGEventType type, CGEventRef event, <span class="keyword">void</span> *refcon)</span> </span>&#123;</span><br><span class="line">  <span class="comment">// Paranoid sanity check.</span></span><br><span class="line">  <span class="keyword">if</span> ((type != kCGEventKeyDown) &amp;&amp; (type != kCGEventKeyUp)) &#123;</span><br><span class="line">    <span class="keyword">return</span> event;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// The incoming keycode.</span></span><br><span class="line">  CGKeyCode keycode = (CGKeyCode)CGEventGetIntegerValueField(event, kCGKeyboardEventKeycode);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (keycode == <span class="number">11</span> <span class="comment">/* b */</span> || keycode == <span class="number">45</span> <span class="comment">/* n */</span>) &#123;</span><br><span class="line">  <span class="comment">//if (keycode == 11 /* b */) &#123;</span></span><br><span class="line">    <span class="keyword">if</span> (type == kCGEventKeyUp) &#123;</span><br><span class="line">      last_time[keycode] = time_now();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (last_time.count(keycode)) &#123;</span><br><span class="line">        ll microseconds = chrono::duration_cast&lt;chrono::microseconds&gt;(</span><br><span class="line">          time_now() - last_time[keycode]</span><br><span class="line">        ).count();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// ignore if time less than 30ms</span></span><br><span class="line">        <span class="keyword">if</span> (microseconds &lt; <span class="number">30000</span>) &#123;</span><br><span class="line">          <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Set the modified keycode field in the event.</span></span><br><span class="line">  CGEventSetIntegerValueField(event, kCGKeyboardEventKeycode, (<span class="keyword">int64_t</span>)keycode);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// We must return the event for it to be useful.</span></span><br><span class="line">  <span class="keyword">return</span> event;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span> </span>&#123;</span><br><span class="line">  CFMachPortRef      eventTap;</span><br><span class="line">  CGEventMask        eventMask;</span><br><span class="line">  CFRunLoopSourceRef runLoopSource;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Create an event tap. We are interested in key presses.</span></span><br><span class="line">  eventMask = ((<span class="number">1</span> &lt;&lt; kCGEventKeyDown) | (<span class="number">1</span> &lt;&lt; kCGEventKeyUp));</span><br><span class="line">  eventTap = CGEventTapCreate(kCGSessionEventTap, kCGHeadInsertEventTap, <span class="number">0</span>, eventMask, myCGEventCallback, <span class="literal">NULL</span>);</span><br><span class="line">  <span class="keyword">if</span> (!eventTap) &#123;</span><br><span class="line">      <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"failed to create event tap\n"</span>);</span><br><span class="line">      <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Create a run loop source.</span></span><br><span class="line">  runLoopSource = CFMachPortCreateRunLoopSource(kCFAllocatorDefault, eventTap, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Add to the current run loop.</span></span><br><span class="line">  CFRunLoopAddSource(CFRunLoopGetCurrent(), runLoopSource, kCFRunLoopCommonModes);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Enable the event tap.</span></span><br><span class="line">  CGEventTapEnable(eventTap, <span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Set it all running.</span></span><br><span class="line">  CFRunLoopRun();</span><br><span class="line"></span><br><span class="line">  <span class="comment">// In a real program, one would have arranged for cleaning up.</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h2 id="2-操作"><a href="#2-操作" class="headerlink" title="2.操作"></a>2.操作</h2><p>1.修改kill_double_typing.cpp逻辑39行，改为出错的键盘值<br>2.编译<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo g++ -O2 -Wall -o kill_double_typing kill_double_typing.cpp -framework ApplicationServices</span><br></pre></td></tr></table></figure></p>
+<p>3.添加可执行权限<br>依次进入系统设置偏好-安全性与隐私-辅助功能<br>点击<code>+</code>号，选择编译后所在文件夹位置，选择kill_double_typing二进制文件进行添加<br>4.<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/library/launchagents</span><br></pre></td></tr></table></figure></p>
+<p>5.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim local.localhost.doubletyping.plist</span><br></pre></td></tr></table></figure></p>
+<p>6.输入以下内容<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span><br><span class="line"><span class="meta">&lt;!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">plist</span> <span class="attr">version</span>=<span class="string">"1.0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dict</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">key</span>&gt;</span>Label<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">string</span>&gt;</span>local.localhost.doubletyping<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- &lt;key&gt;Disabled&lt;/key&gt;</span></span><br><span class="line"><span class="comment">        &lt;false/&gt; --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">key</span>&gt;</span>RunAtLoad<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">true</span>/&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- &lt;key&gt;KeepAlive&lt;/key&gt;</span></span><br><span class="line"><span class="comment">        &lt;true/&gt; --&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- &lt;key&gt;LaunchOnlyOnce&lt;/key&gt;</span></span><br><span class="line"><span class="comment">        &lt;true/&gt; --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">key</span>&gt;</span>ProgramArguments<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">array</span>&gt;</span></span><br><span class="line">        	<span class="comment">&lt;!-- &lt;string&gt;/usr/bin/nohup&lt;/string&gt; --&gt;</span></span><br><span class="line">        	<span class="tag">&lt;<span class="name">string</span>&gt;</span>/Users/tidy/Dropbox/sublimetext/mac/kill_double_typing/kill_double_typing<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;/<span class="name">array</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dict</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">plist</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>7.保存：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wq</span><br></pre></td></tr></table></figure></p>
+<p>8.加载：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">launchctl load -w local.localhost.doubletyping.plist</span><br></pre></td></tr></table></figure></p>
+<p>9.启动：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">launchctl start local.localhost.doubletyping</span><br></pre></td></tr></table></figure></p>
+<p>10.停止：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">launchctl stop local.localhost.doubletyping</span><br></pre></td></tr></table></figure></p>
+<p>11.查看：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">launchctl list | grep doubletyping</span><br></pre></td></tr></table></figure></p>
+<h2 id="3-注意"><a href="#3-注意" class="headerlink" title="3.注意"></a>3.注意</h2><p>如果重新编译过可执行文件，需要依次进入系统设置偏好-安全性与隐私-辅助功能，<br>然后把之前授权过的kill_double_typing可执行文件删除，然后保存之后，重新运行start命令，<br>然后重新进入辅助功能，将新的kill_double_typing可执行文件赋予权限。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/84f800f7.html" data-id="ck1rb8qbg008nt5qpovmfzcxj" class="article-share-link">
+        分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mac/">Mac</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/重复点击/">重复点击</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/键盘/">键盘</a></li></ul>
+
+    </footer>
+  </div>
+  
+  
+<nav id="article-nav">
+  
+    <a href="/posts/ff68fd05.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          J2EE Spring @Resource注解的扫描顺序
+        
+      </div>
+    </a>
+  
+  
+    <a href="/posts/f6c0b73e.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Mac EasyConnect 未能正确打开SANGFOR SSL Virtual网卡</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+<div style="margin:50px 0">
+  <amp-auto-ads type="adsense" data-ad-client="ca-pub-1522837637326007">
+  </amp-auto-ads>
+  <!-- left-ad-2 -->
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1522837637326007" data-ad-slot="1200441426"
+    data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+
+
+
+
+
+
+
+
+<div id="comments" class="comments">
+  <div id="gitment_container"></div>
+</div>
+
+<link rel="stylesheet" href="https://www.wenjunjiang.win/css/gitment.css">
+<script src="https://www.wenjunjiang.win/js/gitment.js"></script>
+<script>
+  var gitment = new Gitment({
+    owner: 'tidyko',
+    repo: 'tidyko.github.io',
+    oauth: {
+      client_id: '62e4f6a4ca86e056da76',
+      client_secret: '912d627549301dd54437313b122a7c543215bc4c',
+    },
+  })
+  gitment.render('gitment_container')
+</script>
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <h1 class="blog-title">Tidy的个人博客</h1>
+    <h2 class="blog-subtitle">人生とは好きな人と一緒に過ごした日々だ!</h2>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="http://img.tidyko.com/avatar.jpg">
+    <h2 class="author">
+      
+    </h2>
+    <h3 class="description">
+      
+    </h3>
+    <div class="count-box">
+      <a href="/archives">
+        <div><strong>
+            152</strong><br>文章</div>
+      </a>
+      <a href="/categories">
+        <div><strong>
+            56</strong><br>分类</div>
+      </a>
+      <a href="/tags">
+        <div><strong>
+            110</strong><br>标签</div>
+      </a>
+    </div>
+
+
+
+    <div class="social-link">
+      
+      <a class="hvr-bounce-in" href="https://github.com/tidyko" target="_blank" title="Github">
+        Github
+      </a>
+      
+    </div>
+
+    <div class="friend-link">
+      <h2>
+        友情链接
+      </h2>
+      
+      <a class="hvr-bounce-in" href="https://blog.yl-online.top" target="_blank" title="forever杨">
+        forever杨
+      </a>
+      
+      <a class="hvr-bounce-in" href="https://denglvl.github.io/" target="_blank" title="DengCong">
+        DengCong
+      </a>
+      
+    </div>
+  </div>
+</div>
+  
+    <div class="widget-wrap">
+    <h3 class="widget-title">关注我的公众号：</h3>
+    <div class="widget"><img style="width:100%" src="http://img.tidyko.com/japanesehub-qrcode.jpg">
+    </div>
+</div>
+  
+    <div class="widget-wrap">
+    <h3 class="widget-title"></h3>
+    <!-- left-ad-1 -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1522837637326007" data-ad-slot="1201221679"
+        data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy;2018 - 2019 Tidy的个人博客<br>
+      <!-- 由<a href="https://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
+      主题-<a href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a> -->
+      
+        <br>
+        <!-- <script src="https://s19.cnzz.com/z_stat.php?id=1274390271&web_id=1274390271" language="JavaScript" rel="noreferrer"></script>       -->
+        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1274390271'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1274390271%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));</script>
+      
+    </div>
+  </div>
+</footer>
+    </div>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/wow/0.1.6/wow.min.js"></script>
+<script>
+new WOW().init();
+</script>   
+
+
+  <link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+  <script src="/plugin/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+  <!-- <section class="hidden-xs"> 
+  <ul class="cb-slideshow"> 
+    <li><span>苟利</span></li> 
+    <li><span>国家</span></li> 
+    <li><span>生死以</span></li> 
+    <li><span>岂能</span></li> 
+    <li><span>祸福</span></li> 
+    <li><span>趋避之</span></li> 
+  </ul>
+</section> -->
+<script src="/js/script.js"></script>
+
+
+
+
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("DpQHavrF6hdX8C8q7ONib5Qv-gzGzoHsz", "CFNVYUb4rtTjkji3Erv4ROA7");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.article-title').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+
+
+<div id="totop" style="position:fixed;bottom:160px;right:50px;cursor: pointer;z-index: 10;">
+    <a title="返回顶部"><img src="/images/scrollup.png" style="width:50px;height:50px;"/></a>
+</div>
+<script src="/js/totop.js"></script>
+  </div>
+</body>
+</html>

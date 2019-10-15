@@ -56,9 +56,9 @@
     <h2 class="author"></h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>151</strong><br>文章</div></a>
-      <a href="/categories"><div><strong>55</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>108</strong><br>标签</div></a>
+      <a href="/archives"><div><strong>152</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>56</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>110</strong><br>标签</div></a>
     </div>
     <ul class="blog-link">
      
@@ -147,7 +147,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/82922308.html" data-id="ck1ra9a5f003l2nqpdlpybsa5" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/82922308.html" data-id="ck1rb8q900039t5qpt24hs97n" class="article-share-link">
         分享</a>
       
       
@@ -233,11 +233,97 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/ff68fd05.html" data-id="ck1ra9a5y004j2nqphxbiebqy" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/ff68fd05.html" data-id="ck1rb8q9o004ht5qpuxcxgu10" class="article-share-link">
         分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/">Spring</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/依赖注入/">依赖注入</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Mac 解决16版MBP键盘B+N键重复点击的问题" class="article" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/84f800f7.html" class="article-date">
+  <time class="post-time" datetime="2019-09-23T01:31:00.000Z" itemprop="datePublished">
+    <span class="post-month">9月</span><br/>
+    <span class="post-day">23</span>
+  </time>
+</a>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/84f800f7.html">Mac 解决16版MBP键盘B+N键重复点击的问题</a>
+    </h1>
+  
+
+      <div>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Mac/">Mac</a>,<a class="article-category-link" href="/categories/Mac/键盘/">键盘</a>
+  </div>
+
+        
+        
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/84f800f7.html" class="leancloud_visitors" data-flag-title="Mac 解决16版MBP键盘B+N键重复点击的问题">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 849</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 4 分钟</span>
+  </div>
+ 
+        
+      </div>
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <p>在16版MBP中的蝶式键盘有可能出现某个按钮重复点击的问题，就是按一次响应两次，重灾区是<code>B</code>和<code>N</code>键，<br>偶然发现网上除了返修之外，还有一个折中方法，就是通过编写程序，在开机后自启动，在程序里面判断相应按钮的两次点击的间隔时间，<br>如果太短则忽略，从而达到避免重复点击的问题。</p>
+<h2 id="1-源码（本文章使用以下代码来自网络）："><a href="#1-源码（本文章使用以下代码来自网络）：" class="headerlink" title="1.源码（本文章使用以下代码来自网络）："></a>1.源码（本文章使用以下代码来自网络）：</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// alterkeys.c</span></span><br><span class="line"><span class="comment">// http://osxbook.com</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">// You need superuser privileges to create the event tap, unless accessibility</span></span><br><span class="line"><span class="comment">// is enabled. To do so, select the "Enable access for assistive devices"</span></span><br><span class="line"><span class="comment">// checkbox in the Universal Access system preference pane.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// modified by SF-Zhou</span></span><br><span class="line"><span class="comment">// To: Kill Double Typing on MacBook</span></span><br><span class="line"><span class="comment">// Complile: g++ -O2 -Wall -o kill_double_typing kill_double_typing.cpp -framework ApplicationServices</span></span><br><span class="line"><span class="comment">// Run: ./kill_double_typing</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;ApplicationServices/ApplicationServices.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;chrono&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unordered_map&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> chrono::time_point&lt;<span class="built_in">std</span>::chrono::high_resolution_clock&gt; Time;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"></span><br><span class="line"><span class="built_in">unordered_map</span>&lt;CGKeyCode, Time&gt; last_time;</span><br><span class="line"></span><br><span class="line"><span class="function">Time <span class="title">time_now</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> chrono::high_resolution_clock::now();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// This callback will be invoked every time there is a keystroke.</span></span><br><span class="line"><span class="function">CGEventRef <span class="title">myCGEventCallback</span><span class="params">(CGEventTapProxy proxy, CGEventType type, CGEventRef event, <span class="keyword">void</span> *refcon)</span> </span>&#123;</span><br><span class="line">  <span class="comment">// Paranoid sanity check.</span></span><br><span class="line">  <span class="keyword">if</span> ((type != kCGEventKeyDown) &amp;&amp; (type != kCGEventKeyUp)) &#123;</span><br><span class="line">    <span class="keyword">return</span> event;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// The incoming keycode.</span></span><br><span class="line">  CGKeyCode keycode = (CGKeyCode)CGEventGetIntegerValueField(event, kCGKeyboardEventKeycode);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (keycode == <span class="number">11</span> <span class="comment">/* b */</span> || keycode == <span class="number">45</span> <span class="comment">/* n */</span>) &#123;</span><br><span class="line">  <span class="comment">//if (keycode == 11 /* b */) &#123;</span></span><br><span class="line">    <span class="keyword">if</span> (type == kCGEventKeyUp) &#123;</span><br><span class="line">      last_time[keycode] = time_now();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (last_time.count(keycode)) &#123;</span><br><span class="line">        ll microseconds = chrono::duration_cast&lt;chrono::microseconds&gt;(</span><br><span class="line">          time_now() - last_time[keycode]</span><br><span class="line">        ).count();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// ignore if time less than 30ms</span></span><br><span class="line">        <span class="keyword">if</span> (microseconds &lt; <span class="number">30000</span>) &#123;</span><br><span class="line">          <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Set the modified keycode field in the event.</span></span><br><span class="line">  CGEventSetIntegerValueField(event, kCGKeyboardEventKeycode, (<span class="keyword">int64_t</span>)keycode);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// We must return the event for it to be useful.</span></span><br><span class="line">  <span class="keyword">return</span> event;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span> </span>&#123;</span><br><span class="line">  CFMachPortRef      eventTap;</span><br><span class="line">  CGEventMask        eventMask;</span><br><span class="line">  CFRunLoopSourceRef runLoopSource;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Create an event tap. We are interested in key presses.</span></span><br><span class="line">  eventMask = ((<span class="number">1</span> &lt;&lt; kCGEventKeyDown) | (<span class="number">1</span> &lt;&lt; kCGEventKeyUp));</span><br><span class="line">  eventTap = CGEventTapCreate(kCGSessionEventTap, kCGHeadInsertEventTap, <span class="number">0</span>, eventMask, myCGEventCallback, <span class="literal">NULL</span>);</span><br><span class="line">  <span class="keyword">if</span> (!eventTap) &#123;</span><br><span class="line">      <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"failed to create event tap\n"</span>);</span><br><span class="line">      <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Create a run loop source.</span></span><br><span class="line">  runLoopSource = CFMachPortCreateRunLoopSource(kCFAllocatorDefault, eventTap, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Add to the current run loop.</span></span><br><span class="line">  CFRunLoopAddSource(CFRunLoopGetCurrent(), runLoopSource, kCFRunLoopCommonModes);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Enable the event tap.</span></span><br><span class="line">  CGEventTapEnable(eventTap, <span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Set it all running.</span></span><br><span class="line">  CFRunLoopRun();</span><br><span class="line"></span><br><span class="line">  <span class="comment">// In a real program, one would have arranged for cleaning up.</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+      <p class="article-more-link">
+        <a href="/posts/84f800f7.html#more">
+          Read More</a>
+      </p>
+      
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/84f800f7.html" data-id="ck1rb8qbg008nt5qpovmfzcxj" class="article-share-link">
+        分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mac/">Mac</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/重复点击/">重复点击</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/键盘/">键盘</a></li></ul>
 
     </footer>
   </div>
@@ -317,7 +403,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/f6c0b73e.html" data-id="ck1ra9a7l00892nqp7gs6h9fk" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/f6c0b73e.html" data-id="ck1rb8qbe008kt5qpejskewpu" class="article-share-link">
         分享</a>
       
       
@@ -406,7 +492,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/67b16286.html" data-id="ck1ra9a7t008s2nqpybmkx5fx" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/67b16286.html" data-id="ck1rb8qbm008xt5qp9kbc5qna" class="article-share-link">
         分享</a>
       
       
@@ -490,7 +576,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/169364f6.html" data-id="ck1ra9a9700bs2nqp0ckh9kdi" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/169364f6.html" data-id="ck1rb8qht00oyt5qpp7vp8kyq" class="article-share-link">
         分享</a>
       
       
@@ -576,7 +662,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/9ecafb15.html" data-id="ck1ra9aa200dn2nqpw3wyttue" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/9ecafb15.html" data-id="ck1rb8qiq00qit5qpw1tcinh5" class="article-share-link">
         分享</a>
       
       
@@ -665,7 +751,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/5861f454.html" data-id="ck1ra9a7r008p2nqptbhod63d" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/5861f454.html" data-id="ck1rb8qbc008ct5qpjt96o66a" class="article-share-link">
         分享</a>
       
       
@@ -752,7 +838,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/fa8b02cc.html" data-id="ck1ra9a7e007x2nqp5h5lwr23" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/fa8b02cc.html" data-id="ck1rb8qas006zt5qpqozhx612" class="article-share-link">
         分享</a>
       
       
@@ -840,98 +926,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/5e551b83.html" data-id="ck1ra9a9s00d62nqp91d1a0bc" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/5e551b83.html" data-id="ck1rb8qiv00qqt5qpa5pxwgzs" class="article-share-link">
         分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/小程序/">小程序</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/运营/">运营</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-IDEA 使用Cloud Toolkit内置Arthas快速进行服务器诊断" class="article" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/41a66ecb.html" class="article-date">
-  <time class="post-time" datetime="2019-04-12T02:58:00.000Z" itemprop="datePublished">
-    <span class="post-month">4月</span><br/>
-    <span class="post-day">12</span>
-  </time>
-</a>
-
-  </div>
-  <div class="article-inner">
-    
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/41a66ecb.html">IDEA 使用Cloud Toolkit内置Arthas快速进行服务器诊断</a>
-    </h1>
-  
-
-      <div>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/开发调试工具/">开发调试工具</a>,<a class="article-category-link" href="/categories/开发调试工具/IDEA/">IDEA</a>
-  </div>
-
-        
-        
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/41a66ecb.html" class="leancloud_visitors" data-flag-title="IDEA 使用Cloud Toolkit内置Arthas快速进行服务器诊断">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 484</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 2 分钟</span>
-  </div>
- 
-        
-      </div>
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      <h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://www.aliyun.com/product/cloudtoolkit?spm=arthas-site.0.0.0" target="_blank" rel="noopener">Cloud Toolkit</a><br>Alibaba Cloud Toolkit 是一款IDE 插件，帮助开发者更高效地开发、测试、诊断并部署应用。<br>利用此，开发者能够方便地将本地应用一键部署到任意机器，或 ECS、EDAS、Kubernetes；<br>并内置 Arthas 诊断、高效执行终端命令和 SQL 等。</p>
-<p><a href="https://github.com/alibaba/arthas" target="_blank" rel="noopener">Arthas</a><br>Arthas 是Alibaba开源的Java诊断工具。</p>
-<p><a href="https://github.com/alibaba/arthas/issues/570" target="_blank" rel="noopener">使用Cloud Toolkit内置Arthas进行远程诊断</a><br>通过Cloud Toolkit插件使用Arthas一键诊断远程服务器<br>
-      
-      <p class="article-more-link">
-        <a href="/posts/41a66ecb.html#more">
-          Read More</a>
-      </p>
-      
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/41a66ecb.html" data-id="ck1ra9a5e003j2nqpq2ewcvir" class="article-share-link">
-        分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Arthas/">Arthas</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cloud-Toolkit/">Cloud Toolkit</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IDEA/">IDEA</a></li></ul>
 
     </footer>
   </div>
@@ -999,15 +998,15 @@
     <div class="count-box">
       <a href="/archives">
         <div><strong>
-            151</strong><br>文章</div>
+            152</strong><br>文章</div>
       </a>
       <a href="/categories">
         <div><strong>
-            55</strong><br>分类</div>
+            56</strong><br>分类</div>
       </a>
       <a href="/tags">
         <div><strong>
-            108</strong><br>标签</div>
+            110</strong><br>标签</div>
       </a>
     </div>
 

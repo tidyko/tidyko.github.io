@@ -56,9 +56,9 @@
     <h2 class="author"></h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>151</strong><br>文章</div></a>
-      <a href="/categories"><div><strong>55</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>108</strong><br>标签</div></a>
+      <a href="/archives"><div><strong>152</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>56</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>110</strong><br>标签</div></a>
     </div>
     <ul class="blog-link">
      
@@ -83,6 +83,91 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-Hibernate set排序" class="article" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/4a47fe35.html" class="article-date">
+  <time class="post-time" datetime="2014-12-01T03:46:00.000Z" itemprop="datePublished">
+    <span class="post-month">12月</span><br/>
+    <span class="post-day">01</span>
+  </time>
+</a>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/4a47fe35.html">Hibernate set排序</a>
+    </h1>
+  
+
+      <div>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
+  </div>
+
+        
+        
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/4a47fe35.html" class="leancloud_visitors" data-flag-title="Hibernate set排序">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 298</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 2 分钟</span>
+  </div>
+ 
+        
+      </div>
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <p>使用hibernate进行一对多操作的时候，普遍使用HashSet进行操作。但是HashSet是无序集合，对此可以使用TreeSet进行排序。</p>
+<h3 id="1）将HashSet改为TreeSet"><a href="#1）将HashSet改为TreeSet" class="headerlink" title="1）将HashSet改为TreeSet"></a>1）将HashSet改为TreeSet</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> Set&lt;EbgRequmentItem&gt; items = <span class="keyword">new</span> HashSet&lt;EbgRequmentItem&gt;();</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> Set&lt;EbgRequmentItem&gt; items = <span class="keyword">new</span> TreeSet&lt;EbgRequmentItem&gt;(<span class="keyword">new</span> Comparator&lt;EbgRequmentItem&gt;()&#123;</span><br><span class="line">         <span class="meta">@Override</span></span><br><span class="line">         <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(EbgRequmentItem o1, EbgRequmentItem o2)</span> </span>&#123;</span><br><span class="line">              <span class="comment">//默认如果是比较结果为0的话，会认为重复，默认去掉，这里可以做下处理</span></span><br><span class="line">              <span class="keyword">if</span>( o1.getName().compareTo(o2.getName()) == <span class="number">0</span>)&#123;</span><br><span class="line">                  <span class="comment">//返回-1不会去重</span></span><br><span class="line">                  <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">              &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                  <span class="comment">//降序</span></span><br><span class="line">                  <span class="comment">//return o2.getName().compareTo(o1.getName()); </span></span><br><span class="line">                  <span class="comment">//升序</span></span><br><span class="line">                  <span class="keyword">return</span> o1.getName().compareTo(o2.getName()); </span><br><span class="line">              &#125;</span><br><span class="line">         &#125;</span><br><span class="line"> &#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="2）新增TreeSet排序比较器对象"><a href="#2）新增TreeSet排序比较器对象" class="headerlink" title="2）新增TreeSet排序比较器对象"></a>2）新增TreeSet排序比较器对象</h3> <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">package</span> ？？？？？.comparator;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> ？？？？？.EbgRequmentItem;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Comparator;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 采购产品需求项排序比较器</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Tidy</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EbgRequimentItemComparator</span> <span class="keyword">implements</span> <span class="title">Comparator</span>&lt;<span class="title">EbgRequmentItem</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(EbgRequmentItem o1, EbgRequmentItem o2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> o1.getName().compareTo(o2.getName()); </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3）在hbm-xml文件中添加sort属性"><a href="#3）在hbm-xml文件中添加sort属性" class="headerlink" title="3）在hbm.xml文件中添加sort属性"></a>3）在hbm.xml文件中添加sort属性</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">set</span> <span class="attr">name</span>=<span class="string">"items"</span> <span class="attr">cascade</span>=<span class="string">"delete-orphan"</span> <span class="attr">inverse</span>=<span class="string">"true"</span> <span class="attr">lazy</span>=<span class="string">"true"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">key</span> <span class="attr">column</span>=<span class="string">"PRODUCT_REQ_ID"</span>&gt;</span><span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">one-to-many</span> <span class="attr">class</span>=<span class="string">"EbgRequmentItem"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">set</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">set</span> <span class="attr">name</span>=<span class="string">"items"</span> <span class="attr">cascade</span>=<span class="string">"delete-orphan"</span> <span class="attr">inverse</span>=<span class="string">"true"</span> <span class="attr">lazy</span>=<span class="string">"true"</span> <span class="attr">sort</span>=<span class="string">"？？？？？？.comparator.EbgRequimentItemComparator"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">key</span> <span class="attr">column</span>=<span class="string">"PRODUCT_REQ_ID"</span>&gt;</span><span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">one-to-many</span> <span class="attr">class</span>=<span class="string">"EbgRequmentItem"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">set</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="4）重启服务进行测试就可以了"><a href="#4）重启服务进行测试就可以了" class="headerlink" title="4）重启服务进行测试就可以了"></a>4）重启服务进行测试就可以了</h3>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/4a47fe35.html" data-id="ck1rb8q8u002vt5qpr1hq3sdn" class="article-share-link">
+        分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hibernate/">Hibernate</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
   
     <article id="post-Redis Windows版安装及使用" class="article" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -230,7 +315,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/85796e0a.html" data-id="ck1ra9a9500bn2nqpjbm907jf" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/85796e0a.html" data-id="ck1rb8qho00ont5qp2cqnhdn4" class="article-share-link">
         分享</a>
       
       
@@ -326,7 +411,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/74b62430.html" data-id="ck1ra9a9800bv2nqps5l7zisw" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/74b62430.html" data-id="ck1rb8qi400pet5qpry86y40g" class="article-share-link">
         分享</a>
       
       
@@ -408,7 +493,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/284eedd0.html" data-id="ck1ra9a5200312nqpg5u9nxpc" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/284eedd0.html" data-id="ck1rb8q8x0031t5qpl7jt37ek" class="article-share-link">
         分享</a>
       
       
@@ -493,7 +578,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/865591b1.html" data-id="ck1ra9a86009o2nqp0rfgi0fn" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/865591b1.html" data-id="ck1rb8qgz00npt5qp27fljp4q" class="article-share-link">
         分享</a>
       
       
@@ -573,7 +658,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/bb413124.html" data-id="ck1ra9a4300132nqp0tsuhwrj" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/bb413124.html" data-id="ck1rb8q7y0011t5qph8afbb16" class="article-share-link">
         分享</a>
       
       
@@ -674,7 +759,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/2e6dc29d.html" data-id="ck1ra9a9200bh2nqpgd47av1e" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/2e6dc29d.html" data-id="ck1rb8qhw00p3t5qpxrnbzexg" class="article-share-link">
         分享</a>
       
       
@@ -759,7 +844,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/cd870320.html" data-id="ck1ra9a4y002t2nqp0yy8j028" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/cd870320.html" data-id="ck1rb8q8s002rt5qpnbrn7hex" class="article-share-link">
         分享</a>
       
       
@@ -842,7 +927,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/b93984a5.html" data-id="ck1ra9a5g003p2nqp0awo4m3f" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/b93984a5.html" data-id="ck1rb8q95003dt5qpmsdhpnrt" class="article-share-link">
         分享</a>
       
       
@@ -939,104 +1024,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/810bd9aa.html" data-id="ck1ra9a5j003x2nqp494johs5" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/810bd9aa.html" data-id="ck1rb8q9a003mt5qpky0i9ixl" class="article-share-link">
         分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IE/">IE</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-J2EE DWRAnnotation入门" class="article" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/e234776b.html" class="article-date">
-  <time class="post-time" datetime="2014-08-18T09:31:00.000Z" itemprop="datePublished">
-    <span class="post-month">8月</span><br/>
-    <span class="post-day">18</span>
-  </time>
-</a>
-
-  </div>
-  <div class="article-inner">
-    
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/e234776b.html">J2EE DWRAnnotation入门</a>
-    </h1>
-  
-
-      <div>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
-  </div>
-
-        
-        
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/e234776b.html" class="leancloud_visitors" data-flag-title="J2EE DWRAnnotation入门">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 623</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 3 分钟</span>
-  </div>
- 
-        
-      </div>
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      <p>DWR简介：<a href="http://baike.baidu.com/view/73492.htm?fr=aladdin" target="_blank" rel="noopener">http://baike.baidu.com/view/73492.htm?fr=aladdin</a></p>
-<p>DWR2.0以后新增加了JDK5的注解(Annotation)功能，使用注解功能之后可以从很大程度上简化了原来的dwr.xml的配置，使用起来非常的方便。</p>
-<p>下面我们就来一起学习下使用注解方式搭建dwr吧。</p>
-<h3 id="1）new一个项目"><a href="#1）new一个项目" class="headerlink" title="1）new一个项目"></a>1）new一个项目</h3><p>加上依赖包，dwr.jar和commons-logging.jar到lib目录下面。</p>
-<h3 id="2）新建一个测试类"><a href="#2）新建一个测试类" class="headerlink" title="2）新建一个测试类"></a>2）新建一个测试类</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> model;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.directwebremoting.annotations.RemoteMethod;</span><br><span class="line"><span class="keyword">import</span> org.directwebremoting.annotations.RemoteProxy;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RemoteProxy</span>(name=<span class="string">"hentai"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HenTai</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@RemoteMethod</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getHenTai</span><span class="params">(String namae)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"hentai"</span>+namae+<span class="string">"san^^"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="3）配置web-xml"><a href="#3）配置web-xml" class="headerlink" title="3）配置web.xml"></a>3）配置web.xml</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;  </span><br><span class="line"><span class="tag">&lt;<span class="name">web-app</span> <span class="attr">version</span>=<span class="string">"2.5"</span>   </span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns</span>=<span class="string">"http://java.sun.com/xml/ns/javaee"</span>   </span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span>   </span></span><br><span class="line"><span class="tag">    <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://java.sun.com/xml/ns/javaee   </span></span></span><br><span class="line"><span class="tag"><span class="string">    http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"</span>&gt;</span>  </span><br><span class="line">    <span class="comment">&lt;!-- ============================ Servlets ============================ --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--dwr servlet--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>dwr-invoker<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>  </span><br><span class="line">            org.directwebremoting.servlet.DwrServlet  </span><br><span class="line">        <span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span>  </span><br><span class="line">          </span><br><span class="line">        <span class="tag">&lt;<span class="name">init-param</span>&gt;</span>  </span><br><span class="line">            <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>debug<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span>  </span><br><span class="line">            <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>true<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="name">init-param</span>&gt;</span>  </span><br><span class="line">            <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>classes<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span>  </span><br><span class="line">            <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>  </span><br><span class="line">                model.HenTai </span><br><span class="line">            <span class="tag">&lt;/<span class="name">param-value</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet</span>&gt;</span>  </span><br><span class="line">  </span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>dwr-invoker<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/dwr/*<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span>  </span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">welcome-file-list</span>&gt;</span>  </span><br><span class="line">      <span class="tag">&lt;<span class="name">welcome-file</span>&gt;</span>index.jsp<span class="tag">&lt;/<span class="name">welcome-file</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;/<span class="name">welcome-file-list</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;/<span class="name">web-app</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="4）编译启动项目"><a href="#4）编译启动项目" class="headerlink" title="4）编译启动项目"></a>4）编译启动项目</h3><p>访问路径：localhost:8080/dwrt/dwr/</p>
-<p>如果出现Modules known to DWR字样，则说明dwr已经发布成功了。</p>
-<p>如果出现Classes known to DWR字样，则说明你的dwr版本过低，下载最新版本替换就可以了。</p>
-<h3 id="5"><a href="#5" class="headerlink" title="5)"></a>5)</h3><p>点击具体方法进去，可以看到方法详情页，在该页可以做一个基本测试，通过后即可放到页面进行使用。</p>
-<h3 id="6）"><a href="#6）" class="headerlink" title="6）"></a>6）</h3><p>在页面使用的时候，要把方法详情页提供的js连接拷进页面里面。</p>
-<p>比如：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">'text/javascript'</span> src=<span class="string">'/dwrt/dwr/engine.js'</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line">&lt;script type=<span class="string">'text/javascript'</span> src=<span class="string">'/dwrt/dwr/interface/hentai.js'</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure></p>
-<h3 id="7）"><a href="#7）" class="headerlink" title="7）"></a>7）</h3><p>引入之后，就可以使用该方法进行异步调用了。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">%@</span> <span class="attr">page</span> <span class="attr">language</span>=<span class="string">"java"</span> <span class="attr">contentType</span>=<span class="string">"text/html; charset=UTF-8"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">pageEncoding</span>=<span class="string">"UTF-8"</span>%&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"Content-Type"</span> <span class="attr">content</span>=<span class="string">"text/html; charset=UTF-8"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>HenTai Index.<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">'text/javascript'</span> <span class="attr">src</span>=<span class="string">'/dwrt/dwr/engine.js'</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">'text/javascript'</span> <span class="attr">src</span>=<span class="string">'/dwrt/dwr/interface/hentai.js'</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">            hentai.getHenTai(<span class="string">"Tidy"</span>,<span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">                <span class="built_in">document</span>.write(data);</span></span><br><span class="line"><span class="undefined">            &#125;);</span></span><br><span class="line"><span class="undefined">        </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="8）"><a href="#8）" class="headerlink" title="8）"></a>8）</h3><p>最后，界面上显示“hentaiTidysan^^”则表示调用成功了。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/e234776b.html" data-id="ck1ra9a5s004a2nqp2fp0u9gx" class="article-share-link">
-        分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DWR/">DWR</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
 
     </footer>
   </div>
@@ -1104,15 +1096,15 @@
     <div class="count-box">
       <a href="/archives">
         <div><strong>
-            151</strong><br>文章</div>
+            152</strong><br>文章</div>
       </a>
       <a href="/categories">
         <div><strong>
-            55</strong><br>分类</div>
+            56</strong><br>分类</div>
       </a>
       <a href="/tags">
         <div><strong>
-            108</strong><br>标签</div>
+            110</strong><br>标签</div>
       </a>
     </div>
 
