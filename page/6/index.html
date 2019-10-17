@@ -56,9 +56,9 @@
     <h2 class="author"></h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>152</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>153</strong><br>文章</div></a>
       <a href="/categories"><div><strong>56</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>110</strong><br>标签</div></a>
+      <a href="/tags"><div><strong>112</strong><br>标签</div></a>
     </div>
     <ul class="blog-link">
      
@@ -142,7 +142,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/7042626b.html" data-id="ck1t2jrza00ch67qpiheidyx1" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/7042626b.html" data-id="ck1ue9tao00ctxdqprfblgtj7" class="article-share-link">
         分享</a>
       
       
@@ -307,11 +307,94 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/c87c55c4.html" data-id="ck1t2jrv1004z67qpy0skivfq" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/c87c55c4.html" data-id="ck1ue9t7l005bxdqpmvanil6f" class="article-share-link">
         分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/">Spring</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/事务/">事务</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-J2EE Druid数据库连接池被占满的排查思路" class="article" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/2f3fa600.html" class="article-date">
+  <time class="post-time" datetime="2018-03-17T07:22:00.000Z" itemprop="datePublished">
+    <span class="post-month">3月</span><br/>
+    <span class="post-day">17</span>
+  </time>
+</a>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/2f3fa600.html">J2EE Druid数据库连接池被占满的排查思路</a>
+    </h1>
+  
+
+      <div>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
+  </div>
+
+        
+        
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/2f3fa600.html" class="leancloud_visitors" data-flag-title="J2EE Druid数据库连接池被占满的排查思路">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 352</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 1 分钟</span>
+  </div>
+ 
+        
+      </div>
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <p>在使用Druid作为应用数据库连接池的时候，会经常出现连接池被占满的情况，报错信息如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">org.springframework.jdbc.CannotGetJdbcConnectionException: Could not get JDBC Connection; </span><br><span class="line">nested exception is com.alibaba.druid.pool.GetConnectionTimeoutException: </span><br><span class="line">wait millis 60000, active 10, maxActive 10, creating 0</span><br></pre></td></tr></table></figure>
+<p>在此报错信息中，我们可以看到，我们的应用不能够再创建新的连接池，因为当前应用里活跃中的连接池数量已达到可允许被创建使用的最大值10个了，<br>所以新的线程创建不了连接池导致报错。<br>一般连接池不够用的情况可大致分两种：<br>1.连接池数量过少，这种手动调整连接池可创建的最大数即可。<br>2.sql语句执行过慢，导致连接池一直被占用。</p>
+<p>针对第二种情况，在这里提供此情况的一点排查思路：<br>1.使用Druid的sql监控，获取较为耗时的sql语句。<br>2.获取语句后，通过SQLDeveloper工具，运行查看其执行计划（SQL执行栏第三个按钮：F10）。<br>3.分析其执行计划，每个条件执行的时间以及查询字段有没有走索引。<br>4.通过分析，优化查询语句以及让其语句走索引查询达到sql优化的效果。<br>5.这时候再观察应用侧有没有恢复正常。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/2f3fa600.html" data-id="ck1ue9t7d004qxdqpvvl2z25u" class="article-share-link">
+        分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Druid/">Druid</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/连接池/">连接池</a></li></ul>
 
     </footer>
   </div>
@@ -390,7 +473,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/a6562b5c.html" data-id="ck1t2jrxk009c67qpkwqb32lt" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/a6562b5c.html" data-id="ck1ue9t9b009exdqpidfim3c5" class="article-share-link">
         分享</a>
       
       
@@ -472,7 +555,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/fd3cd277.html" data-id="ck1t2jrym00bg67qpoqfvtu8i" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/fd3cd277.html" data-id="ck1ue9ta600bkxdqpeqz62wf2" class="article-share-link">
         分享</a>
       
       
@@ -554,7 +637,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/b014d2be.html" data-id="ck1t2jruv004n67qp5pkkum8o" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/b014d2be.html" data-id="ck1ue9t7e004vxdqpkwywqwhg" class="article-share-link">
         分享</a>
       
       
@@ -640,7 +723,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/b0fc798c.html" data-id="ck1t2jrvo005s67qppsez1az2" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/b0fc798c.html" data-id="ck1ue9t82006ixdqpjxt7ik63" class="article-share-link">
         分享</a>
       
       
@@ -721,7 +804,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/10937fe4.html" data-id="ck1t2jrwg007g67qpt4obbtte" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/10937fe4.html" data-id="ck1ue9t8i007hxdqp4y8liv81" class="article-share-link">
         分享</a>
       
       
@@ -807,7 +890,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/ba8658f2.html" data-id="ck1t2jrxp009o67qpzyx6pmkd" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/ba8658f2.html" data-id="ck1ue9t9i009yxdqpqjkpx1b4" class="article-share-link">
         分享</a>
       
       
@@ -893,104 +976,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/95c8a77e.html" data-id="ck1t2jrwd007c67qp87kofj0b" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/95c8a77e.html" data-id="ck1ue9t8e0075xdqpq4zlb4qj" class="article-share-link">
         分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Kafka/">Kafka</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/队列/">队列</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Linux 开放指定端口设置" class="article" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/a4bec044.html" class="article-date">
-  <time class="post-time" datetime="2017-03-23T04:10:00.000Z" itemprop="datePublished">
-    <span class="post-month">3月</span><br/>
-    <span class="post-day">23</span>
-  </time>
-</a>
-
-  </div>
-  <div class="article-inner">
-    
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/a4bec044.html">Linux 开放指定端口设置</a>
-    </h1>
-  
-
-      <div>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/服务器/">服务器</a>,<a class="article-category-link" href="/categories/服务器/Linux/">Linux</a>
-  </div>
-
-        
-        
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/a4bec044.html" class="leancloud_visitors" data-flag-title="Linux 开放指定端口设置">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 351</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 2 分钟</span>
-  </div>
- 
-        
-      </div>
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      <p>这里以开放tomcat的8080端口为例</p>
-<h3 id="1-开放Linux的8080端口"><a href="#1-开放Linux的8080端口" class="headerlink" title="1)开放Linux的8080端口"></a>1)开放Linux的8080端口</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/sysconfig/iptables</span><br></pre></td></tr></table></figure>
-<p>进入编辑页面，在指定位置新增以下配置<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-A INPUT -m state --state NEW -m tcp -p tcp --dport 8080 -j ACCEPT</span><br></pre></td></tr></table></figure></p>
-<p>这句要放在<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-A INPUT -m state --state NEW -m tcp -p tcp --dport 22 -j ACCEPT</span><br></pre></td></tr></table></figure></p>
-<p>后面</p>
-<p>修改后的整体为下面所示:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> Generated by iptables-save v1.4.7 on Wed Mar 22 17:51:24 2017</span></span><br><span class="line">*filter</span><br><span class="line">:INPUT ACCEPT [0:0]</span><br><span class="line">:FORWARD ACCEPT [0:0]</span><br><span class="line">:OUTPUT ACCEPT [0:0] </span><br><span class="line">-A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT </span><br><span class="line">-A INPUT -p icmp -j ACCEPT </span><br><span class="line">-A INPUT -i lo -j ACCEPT </span><br><span class="line">-A INPUT -m state --state NEW -m tcp -p tcp --dport 22 -j ACCEPT  </span><br><span class="line">-A INPUT -m state --state NEW -m tcp -p tcp --dport 8080 -j ACCEPT  </span><br><span class="line">-A INPUT -j REJECT --reject-with icmp-host-prohibited </span><br><span class="line"></span><br><span class="line">-A FORWARD -j REJECT --reject-with icmp-host-prohibited</span><br><span class="line"></span><br><span class="line">COMMIT</span><br><span class="line"><span class="meta">#</span><span class="bash"> Completed on Wed Mar 22 17:51:24 2017</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="2）"><a href="#2）" class="headerlink" title="2）"></a>2）</h3><p>修改完保存退出，重启网卡服务<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service iptables restart</span><br></pre></td></tr></table></figure></p>
-<h3 id="3）"><a href="#3）" class="headerlink" title="3）"></a>3）</h3><p>查看端口开放信息<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service iptables status</span><br></pre></td></tr></table></figure></p>
-<p><img src="http://img.tidyko.com/blog/linux-open-port_1.png" alt="Linux 开放指定端口设置-图例1"><br>一般服务器能看到开放信息就算成功开放了。</p>
-<h3 id="4）"><a href="#4）" class="headerlink" title="4）"></a>4）</h3><p>如果是虚拟机系统，想要主机对其进行访问，需要设置端口转发，以VirtualBox为例：</p>
-<p>点击 <code>设置</code> -&gt; <code>网络</code> -&gt; <code>高级</code> -&gt; <code>端口转发</code> -&gt; <code>新增转发规则</code> </p>
-<p>具体如下图:<br><img src="http://img.tidyko.com/blog/linux-open-port_2.png" alt="Linux 开放指定端口设置-图例2"><br>点击ok对设置进行保存。</p>
-<h3 id="5）"><a href="#5）" class="headerlink" title="5）"></a>5）</h3><p>使用ip:port方式对服务进行检测，出现了tomcat主页，证明已经开放成功。</p>
-<p><img src="http://img.tidyko.com/blog/linux-open-port_3.png" alt="Linux 开放指定端口设置-图例3"></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/a4bec044.html" data-id="ck1t2jrws008367qp8uwdj2v3" class="article-share-link">
-        分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
 
     </footer>
   </div>
@@ -1058,7 +1048,7 @@
     <div class="count-box">
       <a href="/archives">
         <div><strong>
-            152</strong><br>文章</div>
+            153</strong><br>文章</div>
       </a>
       <a href="/categories">
         <div><strong>
@@ -1066,7 +1056,7 @@
       </a>
       <a href="/tags">
         <div><strong>
-            110</strong><br>标签</div>
+            112</strong><br>标签</div>
       </a>
     </div>
 
