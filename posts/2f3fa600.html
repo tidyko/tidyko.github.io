@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="Tidy的个人博客">
 <meta property="og:description" content="在使用Druid作为应用数据库连接池的时候，会经常出现连接池被占满的情况，报错信息如下： 123org.springframework.jdbc.CannotGetJdbcConnectionException: Could not get JDBC Connection; nested exception is com.alibaba.druid.pool.GetConnectionTimeou">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-17T07:42:39.590Z">
+<meta property="og:updated_time" content="2019-10-17T07:44:48.021Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="J2EE Druid数据库连接池被占满的排查思路">
 <meta name="twitter:description" content="在使用Druid作为应用数据库连接池的时候，会经常出现连接池被占满的情况，报错信息如下： 123org.springframework.jdbc.CannotGetJdbcConnectionException: Could not get JDBC Connection; nested exception is com.alibaba.druid.pool.GetConnectionTimeou">
@@ -145,11 +145,13 @@
       <p>在使用Druid作为应用数据库连接池的时候，会经常出现连接池被占满的情况，报错信息如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">org.springframework.jdbc.CannotGetJdbcConnectionException: Could not get JDBC Connection; </span><br><span class="line">nested exception is com.alibaba.druid.pool.GetConnectionTimeoutException: </span><br><span class="line">wait millis 60000, active 10, maxActive 10, creating 0</span><br></pre></td></tr></table></figure>
 <p>在此报错信息中，我们可以看到，我们的应用不能够再创建新的连接池，因为当前应用里活跃中的连接池数量已达到可允许被创建使用的最大值10个了，<br>所以新的线程创建不了连接池导致报错。</p>
-<h2 id="一般连接池不够用的情况可大致分两种："><a href="#一般连接池不够用的情况可大致分两种：" class="headerlink" title="一般连接池不够用的情况可大致分两种："></a>一般连接池不够用的情况可大致分两种：</h2><h3 id="1-连接池数量过少，这种手动调整连接池可创建的最大数即可。"><a href="#1-连接池数量过少，这种手动调整连接池可创建的最大数即可。" class="headerlink" title="1.连接池数量过少，这种手动调整连接池可创建的最大数即可。"></a>1.连接池数量过少，这种手动调整连接池可创建的最大数即可。</h3><h3 id="2-sql语句执行过慢，导致连接池一直被占用。"><a href="#2-sql语句执行过慢，导致连接池一直被占用。" class="headerlink" title="2.sql语句执行过慢，导致连接池一直被占用。"></a>2.sql语句执行过慢，导致连接池一直被占用。</h3><h2 id="针对第二种情况，在这里提供此情况的一点排查思路："><a href="#针对第二种情况，在这里提供此情况的一点排查思路：" class="headerlink" title="针对第二种情况，在这里提供此情况的一点排查思路："></a>针对第二种情况，在这里提供此情况的一点排查思路：</h2><h3 id="1-使用Druid的sql监控，获取较为耗时的sql语句。"><a href="#1-使用Druid的sql监控，获取较为耗时的sql语句。" class="headerlink" title="1.使用Druid的sql监控，获取较为耗时的sql语句。"></a>1.使用Druid的sql监控，获取较为耗时的sql语句。</h3><h3 id="2-获取语句后，通过SQLDeveloper工具，运行查看其执行计划（SQL执行栏第三个按钮：F10）。"><a href="#2-获取语句后，通过SQLDeveloper工具，运行查看其执行计划（SQL执行栏第三个按钮：F10）。" class="headerlink" title="2.获取语句后，通过SQLDeveloper工具，运行查看其执行计划（SQL执行栏第三个按钮：F10）。"></a>2.获取语句后，通过SQLDeveloper工具，运行查看其执行计划（SQL执行栏第三个按钮：F10）。</h3><h3 id="3-分析其执行计划，每个条件执行的时间以及查询字段有没有走索引。"><a href="#3-分析其执行计划，每个条件执行的时间以及查询字段有没有走索引。" class="headerlink" title="3.分析其执行计划，每个条件执行的时间以及查询字段有没有走索引。"></a>3.分析其执行计划，每个条件执行的时间以及查询字段有没有走索引。</h3><h3 id="4-通过分析，优化查询语句以及让其语句走索引查询达到sql优化的效果。"><a href="#4-通过分析，优化查询语句以及让其语句走索引查询达到sql优化的效果。" class="headerlink" title="4.通过分析，优化查询语句以及让其语句走索引查询达到sql优化的效果。"></a>4.通过分析，优化查询语句以及让其语句走索引查询达到sql优化的效果。</h3><h3 id="5-这时候再观察应用侧有没有恢复正常。"><a href="#5-这时候再观察应用侧有没有恢复正常。" class="headerlink" title="5.这时候再观察应用侧有没有恢复正常。"></a>5.这时候再观察应用侧有没有恢复正常。</h3>
+<p>一般连接池不够用的情况可大致分两种：<br>1.连接池数量过少，这种手动调整连接池可创建的最大数即可。<br>2.sql语句执行过慢，导致连接池一直被占用。</p>
+<p>针对第二种情况，在这里提供此情况的一点排查思路：<br>1.使用Druid的sql监控，获取较为耗时的sql语句。<br>2.获取语句后，通过SQLDeveloper工具，运行查看其执行计划（SQL执行栏第三个按钮：F10）。<br>3.分析其执行计划，每个条件执行的时间以及查询字段有没有走索引。<br>4.通过分析，优化查询语句以及让其语句走索引查询达到sql优化的效果。<br>5.这时候再观察应用侧有没有恢复正常。</p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/2f3fa600.html" data-id="ck1uecy4z0051ixqpmb9hugmj" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/2f3fa600.html" data-id="ck1uefooe004l2iqpysaejbgr" class="article-share-link">
         分享</a>
       
       
