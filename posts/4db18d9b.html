@@ -6,23 +6,27 @@
   
   <title>
     
-    Eclipse SVN is out of date |
+    Grafana ESDOC一对多变量 |
     
     Tidy的个人博客
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="右击项目（team -&amp;gt; update 或者 team -&amp;gt; freash/cleanup ），再操作，提交就可以了。">
-<meta name="keywords" content="Eclipse,SVN">
+  <meta name="description" content="1.需求场景：需要添加一个Grafana变量，让一条ES的Document在Grafana展示时，可以出现在不同的变量筛选结果上。 2.需求效果：新建的变量名为“功能类”，需求值为（ALL、查询类、办理类、故障类、通用域）我ES索引里面，一条Doc通过变量筛选后，可以对应多个功能类。 A -&amp;gt; 查询类、故障类B -&amp;gt; 查询类C -&amp;gt; 查询类、故障类、通用域 这里如果我们使用查询类">
+<meta name="keywords" content="ELK,Grafana">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Eclipse SVN is out of date">
-<meta property="og:url" content="https://www.tidyko.com/posts/bb413124.html">
+<meta property="og:title" content="Grafana ESDOC一对多变量">
+<meta property="og:url" content="https://www.tidyko.com/posts/4db18d9b.html">
 <meta property="og:site_name" content="Tidy的个人博客">
-<meta property="og:description" content="右击项目（team -&amp;gt; update 或者 team -&amp;gt; freash/cleanup ），再操作，提交就可以了。">
+<meta property="og:description" content="1.需求场景：需要添加一个Grafana变量，让一条ES的Document在Grafana展示时，可以出现在不同的变量筛选结果上。 2.需求效果：新建的变量名为“功能类”，需求值为（ALL、查询类、办理类、故障类、通用域）我ES索引里面，一条Doc通过变量筛选后，可以对应多个功能类。 A -&amp;gt; 查询类、故障类B -&amp;gt; 查询类C -&amp;gt; 查询类、故障类、通用域 这里如果我们使用查询类">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-13T15:09:44.417Z">
+<meta property="og:image" content="http://img.tidyko.com/blog/grafana_custom_var_1.png">
+<meta property="og:image" content="http://img.tidyko.com/blog/grafana_custom_var_2.png">
+<meta property="og:image" content="http://img.tidyko.com/blog/grafana_custom_var_3.png">
+<meta property="og:updated_time" content="2019-11-18T09:54:28.943Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Eclipse SVN is out of date">
-<meta name="twitter:description" content="右击项目（team -&amp;gt; update 或者 team -&amp;gt; freash/cleanup ），再操作，提交就可以了。">
+<meta name="twitter:title" content="Grafana ESDOC一对多变量">
+<meta name="twitter:description" content="1.需求场景：需要添加一个Grafana变量，让一条ES的Document在Grafana展示时，可以出现在不同的变量筛选结果上。 2.需求效果：新建的变量名为“功能类”，需求值为（ALL、查询类、办理类、故障类、通用域）我ES索引里面，一条Doc通过变量筛选后，可以对应多个功能类。 A -&amp;gt; 查询类、故障类B -&amp;gt; 查询类C -&amp;gt; 查询类、故障类、通用域 这里如果我们使用查询类">
+<meta name="twitter:image" content="http://img.tidyko.com/blog/grafana_custom_var_1.png">
   
   <link rel="alternate" href="/atom.xml" title="Tidy的个人博客" type="application/atom+xml">
   
@@ -89,12 +93,12 @@
   </div>
 </div>
 
-        <section id="main"><article id="post-Eclipse SVN is out of date" class="article" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Grafana ESDOC一对多变量" class="article" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/posts/bb413124.html" class="article-date">
-  <time class="post-time" datetime="2014-10-10T04:36:00.000Z" itemprop="datePublished">
-    <span class="post-month">10月</span><br/>
-    <span class="post-day">10</span>
+    <a href="/posts/4db18d9b.html" class="article-date">
+  <time class="post-time" datetime="2019-11-11T10:48:00.000Z" itemprop="datePublished">
+    <span class="post-month">11月</span><br/>
+    <span class="post-day">11</span>
   </time>
 </a>
 
@@ -106,21 +110,21 @@
       
   
     <h1 class="article-title" itemprop="name">
-      Eclipse SVN is out of date
+      Grafana ESDOC一对多变量
     </h1>
   
 
       <div>
         
   <div class="article-category">
-    <a class="article-category-link" href="/categories/开发调试工具/">开发调试工具</a>,<a class="article-category-link" href="/categories/开发调试工具/Eclipse/">Eclipse</a>
+    <a class="article-category-link" href="/categories/中间件/">中间件</a>,<a class="article-category-link" href="/categories/中间件/Grafana/">Grafana</a>
   </div>
 
         
         
   &nbsp; | &nbsp;
   <div class="view-box">
-    <span id="/posts/bb413124.html" class="leancloud_visitors" data-flag-title="Eclipse SVN is out of date">
+    <span id="/posts/4db18d9b.html" class="leancloud_visitors" data-flag-title="Grafana ESDOC一对多变量">
       阅读次数 <span class="leancloud-visitors-count"></span>
     </span>
   </div>
@@ -129,11 +133,11 @@
 
   &nbsp; | &nbsp;
   <div class="view-box">
-    <span>字数 20</span>
+    <span>字数 598</span>
   </div>
   &nbsp; | &nbsp;
   <div class="view-box">
-    <span>时长 ≈ 1 分钟</span>
+    <span>时长 ≈ 2 分钟</span>
   </div>
  
         
@@ -142,16 +146,41 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-      <p>右击项目（<code>team</code> -&gt; <code>update</code> 或者 <code>team</code> -&gt; <code>freash/cleanup</code> ），再操作，提交就可以了。</p>
+      <h3 id="1-需求场景："><a href="#1-需求场景：" class="headerlink" title="1.需求场景："></a>1.需求场景：</h3><p>需要添加一个Grafana变量，让一条ES的Document在Grafana展示时，可以出现在不同的变量筛选结果上。</p>
+<h3 id="2-需求效果："><a href="#2-需求效果：" class="headerlink" title="2.需求效果："></a>2.需求效果：</h3><p>新建的变量名为“功能类”，需求值为（ALL、查询类、办理类、故障类、通用域）<br>我ES索引里面，一条Doc通过变量筛选后，可以对应多个功能类。</p>
+<p>A -&gt; 查询类、故障类<br>B -&gt; 查询类<br>C -&gt; 查询类、故障类、通用域</p>
+<p>这里如果我们使用<code>查询类</code>的变量值进行筛选，应该出来A、B、C三条记录，如果使用<code>故障类</code>进行筛选，那出来的记录应该是A、C</p>
+<h3 id="3-实现思路："><a href="#3-实现思路：" class="headerlink" title="3.实现思路："></a>3.实现思路：</h3><ol>
+<li>在Doc上面加入新的Field，存储doc对应的功能类范围，例如上面的<code>查询类、故障类</code>、<code>查询类、故障类、通用域</code></li>
+<li>在Grafana上新建<code>Custom</code>类型的变量，手动写上四个变量值。这里变量不适合使用<code>Query</code>类型，因为如果使用<code>Query</code>只能查出来<code>查询类、故障类、通用域</code>这种我们保存在文档里面的原始数据，而我们展示是需要每个种类单独展示的。</li>
+<li>修改<code>Grafana Panel</code>，在查询语句上面使用<code>模糊查询</code>，将变量与Field值进行匹配。<a id="more"></a>
+<h3 id="4-需求实现："><a href="#4-需求实现：" class="headerlink" title="4.需求实现："></a>4.需求实现：</h3></li>
+<li>修改logstash配置</li>
+</ol>
+<p>这里我们使用logstash来接收应用端发送的日志文件，所以我们直接修改logstash配置的filter文件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">filter &#123;</span><br><span class="line">    if [message] =~ /^\[elk\]api-monitor / &#123;</span><br><span class="line">        dissect &#123;</span><br><span class="line">            mapping =&gt; &#123; &quot;message&quot; =&gt; &quot;%&#123;&#125; platform=%&#123;platform&#125;, name=%&#123;name&#125;, tget=%&#123;tget&#125;, rt=%&#123;rqt&#125;&quot; &#125;</span><br><span class="line">            add_field =&gt; &#123;</span><br><span class="line">                &quot;es_index&quot; =&gt; &quot;api-monitor&quot;</span><br><span class="line">                &quot;api_type&quot; =&gt; &quot;%&#123;name&#125;&quot;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        mutate &#123;</span><br><span class="line">            gsub =&gt; [</span><br><span class="line">                &quot;api_type&quot;, &quot;^EXTHIRDQRY$&quot;, &quot;查询类、办理类&quot;,</span><br><span class="line">                &quot;api_type&quot;, &quot;^send_shortmessage$&quot;, &quot;故障类&quot;,</span><br><span class="line">                &quot;api_type&quot;, &quot;^searchAccount$&quot;, &quot;故障类、通用类&quot;,</span><br><span class="line">                &quot;api_type&quot;, &quot;^$&quot;, &quot;其他&quot;</span><br><span class="line">            ]</span><br><span class="line">            remove_field =&gt; [ &quot;message&quot;, &quot;time&quot;, &quot;thread&quot;, &quot;class&quot;, &quot;port&quot; ]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如上，<code>gsub</code>配置就是根据字段值标识，分别给每个Doc标识了对应的功能类范围。</p>
+<ol start="2">
+<li>新增Grafana变量</li>
+</ol>
+<p>打开需要修改的<code>仪表盘（Dashboard）</code>，然后点击右上角的齿轮图标，选择<code>Variables</code>，点击<code>New</code>按钮，新建变量。</p>
+<p>具体设置如下图所示：<br><img src="http://img.tidyko.com/blog/grafana_custom_var_1.png" alt="新增Grafana变量"></p>
+<ol start="3">
+<li>修改图表查询条件</li>
+</ol>
+<p>在原查询语句后面新增变量过滤条件 <code>AND api_type.keyword:*$api_type*</code> 这里使用星号进行模糊匹配</p>
+<p><img src="http://img.tidyko.com/blog/grafana_custom_var_2.png" alt="修改图表查询条件"></p>
+<h3 id="5-效果测试："><a href="#5-效果测试：" class="headerlink" title="5.效果测试："></a>5.效果测试：</h3><p>按照上面设置完成后，使用建好的变量进行筛选验证数据。</p>
+<p><img src="http://img.tidyko.com/blog/grafana_custom_var_3.png" alt="效果测试"></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/bb413124.html" data-id="ck34962gz0019yyqp3a006h1r" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/4db18d9b.html" data-id="ck34962hr002kyyqp2d0235wg" class="article-share-link">
         分享</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SVN/">SVN</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ELK/">ELK</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Grafana/">Grafana</a></li></ul>
 
     </footer>
   </div>
@@ -159,19 +188,19 @@
   
 <nav id="article-nav">
   
-    <a href="/posts/865591b1.html" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/posts/9f95e5a1.html" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
-          NGROK 快速实现本地Web服务到外网的映射
+          Dubbo Filter + SLF4J MDC 实现分布式日志追踪
         
       </div>
     </a>
   
   
-    <a href="/posts/2e6dc29d.html" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/posts/82922308.html" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">Tomcat java.lang.OutOfMemoryError</div>
+      <div class="article-nav-title">IDEA 利用Maven依赖图解决包冲突</div>
     </a>
   
 </nav>

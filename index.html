@@ -56,7 +56,7 @@
     <h2 class="author"></h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>154</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>155</strong><br>文章</div></a>
       <a href="/categories"><div><strong>56</strong><br>分类</div></a>
       <a href="/tags"><div><strong>113</strong><br>标签</div></a>
     </div>
@@ -156,11 +156,103 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/9f95e5a1.html" data-id="ck342yfsq000okbqppjznc76w" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/9f95e5a1.html" data-id="ck34962gu0011yyqperbnjnr8" class="article-share-link">
         分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Dubbo/">Dubbo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SLF4J/">SLF4J</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Grafana ESDOC一对多变量" class="article" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/4db18d9b.html" class="article-date">
+  <time class="post-time" datetime="2019-11-11T10:48:00.000Z" itemprop="datePublished">
+    <span class="post-month">11月</span><br/>
+    <span class="post-day">11</span>
+  </time>
+</a>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/4db18d9b.html">Grafana ESDOC一对多变量</a>
+    </h1>
+  
+
+      <div>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/中间件/">中间件</a>,<a class="article-category-link" href="/categories/中间件/Grafana/">Grafana</a>
+  </div>
+
+        
+        
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/4db18d9b.html" class="leancloud_visitors" data-flag-title="Grafana ESDOC一对多变量">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 598</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 2 分钟</span>
+  </div>
+ 
+        
+      </div>
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <h3 id="1-需求场景："><a href="#1-需求场景：" class="headerlink" title="1.需求场景："></a>1.需求场景：</h3><p>需要添加一个Grafana变量，让一条ES的Document在Grafana展示时，可以出现在不同的变量筛选结果上。</p>
+<h3 id="2-需求效果："><a href="#2-需求效果：" class="headerlink" title="2.需求效果："></a>2.需求效果：</h3><p>新建的变量名为“功能类”，需求值为（ALL、查询类、办理类、故障类、通用域）<br>我ES索引里面，一条Doc通过变量筛选后，可以对应多个功能类。</p>
+<p>A -&gt; 查询类、故障类<br>B -&gt; 查询类<br>C -&gt; 查询类、故障类、通用域</p>
+<p>这里如果我们使用<code>查询类</code>的变量值进行筛选，应该出来A、B、C三条记录，如果使用<code>故障类</code>进行筛选，那出来的记录应该是A、C</p>
+<h3 id="3-实现思路："><a href="#3-实现思路：" class="headerlink" title="3.实现思路："></a>3.实现思路：</h3><ol>
+<li>在Doc上面加入新的Field，存储doc对应的功能类范围，例如上面的<code>查询类、故障类</code>、<code>查询类、故障类、通用域</code></li>
+<li>在Grafana上新建<code>Custom</code>类型的变量，手动写上四个变量值。这里变量不适合使用<code>Query</code>类型，因为如果使用<code>Query</code>只能查出来<code>查询类、故障类、通用域</code>这种我们保存在文档里面的原始数据，而我们展示是需要每个种类单独展示的。</li>
+<li>修改<code>Grafana Panel</code>，在查询语句上面使用<code>模糊查询</code>，将变量与Field值进行匹配。
+      
+      <p class="article-more-link">
+        <a href="/posts/4db18d9b.html#more">
+          Read More</a>
+      </p>
+      
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/4db18d9b.html" data-id="ck34962hr002kyyqp2d0235wg" class="article-share-link">
+        分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ELK/">ELK</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Grafana/">Grafana</a></li></ul>
 
     </footer>
   </div>
@@ -241,7 +333,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/82922308.html" data-id="ck342yfuc003okbqpqj6wncpk" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/82922308.html" data-id="ck34962ie003fyyqp24il8tjh" class="article-share-link">
         分享</a>
       
       
@@ -327,7 +419,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/ff68fd05.html" data-id="ck342yfur004lkbqpzh8hh8e4" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/ff68fd05.html" data-id="ck34962j4004yyyqpy90u2hyz" class="article-share-link">
         分享</a>
       
       
@@ -413,7 +505,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/84f800f7.html" data-id="ck342yfwx009kkbqpdzeidw4t" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/84f800f7.html" data-id="ck34962ln009nyyqpba1axdk3" class="article-share-link">
         分享</a>
       
       
@@ -497,7 +589,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/f6c0b73e.html" data-id="ck342yfwk008tkbqpqmtsh8w5" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/f6c0b73e.html" data-id="ck34962l90090yyqpoe0uecpy" class="article-share-link">
         分享</a>
       
       
@@ -586,7 +678,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/67b16286.html" data-id="ck342yfwo0091kbqphwuaxdbg" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/67b16286.html" data-id="ck34962lb0093yyqpmgw62b4h" class="article-share-link">
         分享</a>
       
       
@@ -670,7 +762,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/169364f6.html" data-id="ck342yfy800c0kbqpm5l18dmq" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/169364f6.html" data-id="ck34962n200c4yyqpu3udje3z" class="article-share-link">
         分享</a>
       
       
@@ -756,7 +848,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/9ecafb15.html" data-id="ck342yfz500dskbqp93qnadlz" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/9ecafb15.html" data-id="ck34962o000dryyqp94tzxd2a" class="article-share-link">
         分享</a>
       
       
@@ -845,98 +937,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/5861f454.html" data-id="ck342yfwh008lkbqpp0iw5l19" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/5861f454.html" data-id="ck34962l4008ryyqp2meedsxf" class="article-share-link">
         分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Logback/">Logback</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Java ThreadPoolExcutor" class="article" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/fa8b02cc.html" class="article-date">
-  <time class="post-time" datetime="2019-04-17T03:03:00.000Z" itemprop="datePublished">
-    <span class="post-month">4月</span><br/>
-    <span class="post-day">17</span>
-  </time>
-</a>
-
-  </div>
-  <div class="article-inner">
-    
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/fa8b02cc.html">Java ThreadPoolExcutor</a>
-    </h1>
-  
-
-      <div>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
-  </div>
-
-        
-        
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/fa8b02cc.html" class="leancloud_visitors" data-flag-title="Java ThreadPoolExcutor">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 4,322</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 20 分钟</span>
-  </div>
- 
-        
-      </div>
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      <p>我们先打开<code>java.util.concurrent.ThreadPoolExecutor</code>类，看下它的文档注释，大概了解一下它的作用。<br>我们可以了解到该类主要作用是进行线程池的创建，然后我们继续看到下面这一段描述</p>
-<pre><code>To be useful across a wide range of contexts, this class provides many adjustable parameters and extensibility hooks. However, programmers are urged to use the more convenient Executors factory methods Executors.newCachedThreadPool() (unbounded thread pool, with automatic thread reclamation), Executors.newFixedThreadPool(int) (fixed size thread pool) and Executors.newSingleThreadExecutor() (single background thread), that preconfigure settings for the most common usage scenarios. Otherwise, use the following guide when manually configuring and tuning this class:
-</code></pre><p>大概就是说为了更加方便使用，该类提供了手动配置以及调优的方法，不过一般比较推荐<code>java.util.concurrent.Executors</code>类的工厂方法进行创建线程池，它可以创建  </p>
-      
-      <p class="article-more-link">
-        <a href="/posts/fa8b02cc.html#more">
-          Read More</a>
-      </p>
-      
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/fa8b02cc.html" data-id="ck342yfw6007zkbqp09dy88dr" class="article-share-link">
-        分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/线程池/">线程池</a></li></ul>
 
     </footer>
   </div>
@@ -1004,7 +1009,7 @@
     <div class="count-box">
       <a href="/archives">
         <div><strong>
-            154</strong><br>文章</div>
+            155</strong><br>文章</div>
       </a>
       <a href="/categories">
         <div><strong>
