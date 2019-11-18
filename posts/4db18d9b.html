@@ -22,7 +22,7 @@
 <meta property="og:image" content="http://img.tidyko.com/blog/grafana_custom_var_1.png">
 <meta property="og:image" content="http://img.tidyko.com/blog/grafana_custom_var_2.png">
 <meta property="og:image" content="http://img.tidyko.com/blog/grafana_custom_var_3.png">
-<meta property="og:updated_time" content="2019-11-18T09:54:28.943Z">
+<meta property="og:updated_time" content="2019-11-18T09:57:27.714Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Grafana ESDOC一对多变量">
 <meta name="twitter:description" content="1.需求场景：需要添加一个Grafana变量，让一条ES的Document在Grafana展示时，可以出现在不同的变量筛选结果上。 2.需求效果：新建的变量名为“功能类”，需求值为（ALL、查询类、办理类、故障类、通用域）我ES索引里面，一条Doc通过变量筛选后，可以对应多个功能类。 A -&amp;gt; 查询类、故障类B -&amp;gt; 查询类C -&amp;gt; 查询类、故障类、通用域 这里如果我们使用查询类">
@@ -133,7 +133,7 @@
 
   &nbsp; | &nbsp;
   <div class="view-box">
-    <span>字数 598</span>
+    <span>字数 600</span>
   </div>
   &nbsp; | &nbsp;
   <div class="view-box">
@@ -149,12 +149,14 @@
       <h3 id="1-需求场景："><a href="#1-需求场景：" class="headerlink" title="1.需求场景："></a>1.需求场景：</h3><p>需要添加一个Grafana变量，让一条ES的Document在Grafana展示时，可以出现在不同的变量筛选结果上。</p>
 <h3 id="2-需求效果："><a href="#2-需求效果：" class="headerlink" title="2.需求效果："></a>2.需求效果：</h3><p>新建的变量名为“功能类”，需求值为（ALL、查询类、办理类、故障类、通用域）<br>我ES索引里面，一条Doc通过变量筛选后，可以对应多个功能类。</p>
 <p>A -&gt; 查询类、故障类<br>B -&gt; 查询类<br>C -&gt; 查询类、故障类、通用域</p>
-<p>这里如果我们使用<code>查询类</code>的变量值进行筛选，应该出来A、B、C三条记录，如果使用<code>故障类</code>进行筛选，那出来的记录应该是A、C</p>
+<p>这里如果我们使用<code>查询类</code>的变量值进行筛选，应该出来A、B、C三条记录，如果使用<code>故障类</code>进行筛选，那出来的记录应该是A、C。</p>
 <h3 id="3-实现思路："><a href="#3-实现思路：" class="headerlink" title="3.实现思路："></a>3.实现思路：</h3><ol>
-<li>在Doc上面加入新的Field，存储doc对应的功能类范围，例如上面的<code>查询类、故障类</code>、<code>查询类、故障类、通用域</code></li>
+<li>在Doc上面加入新的Field，存储doc对应的功能类范围，例如上面的<code>查询类、故障类</code> 以及 <code>查询类、故障类、通用域</code>。</li>
 <li>在Grafana上新建<code>Custom</code>类型的变量，手动写上四个变量值。这里变量不适合使用<code>Query</code>类型，因为如果使用<code>Query</code>只能查出来<code>查询类、故障类、通用域</code>这种我们保存在文档里面的原始数据，而我们展示是需要每个种类单独展示的。</li>
 <li>修改<code>Grafana Panel</code>，在查询语句上面使用<code>模糊查询</code>，将变量与Field值进行匹配。<a id="more"></a>
-<h3 id="4-需求实现："><a href="#4-需求实现：" class="headerlink" title="4.需求实现："></a>4.需求实现：</h3></li>
+</li>
+</ol>
+<h3 id="4-需求实现："><a href="#4-需求实现：" class="headerlink" title="4.需求实现："></a>4.需求实现：</h3><ol>
 <li>修改logstash配置</li>
 </ol>
 <p>这里我们使用logstash来接收应用端发送的日志文件，所以我们直接修改logstash配置的filter文件。</p>
@@ -164,7 +166,8 @@
 <li>新增Grafana变量</li>
 </ol>
 <p>打开需要修改的<code>仪表盘（Dashboard）</code>，然后点击右上角的齿轮图标，选择<code>Variables</code>，点击<code>New</code>按钮，新建变量。</p>
-<p>具体设置如下图所示：<br><img src="http://img.tidyko.com/blog/grafana_custom_var_1.png" alt="新增Grafana变量"></p>
+<p>具体设置如下图所示：</p>
+<p><img src="http://img.tidyko.com/blog/grafana_custom_var_1.png" alt="新增Grafana变量"></p>
 <ol start="3">
 <li>修改图表查询条件</li>
 </ol>
@@ -176,7 +179,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/4db18d9b.html" data-id="ck34962hr002kyyqp2d0235wg" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/4db18d9b.html" data-id="ck349a3uw002zpjqpsssrz1xf" class="article-share-link">
         分享</a>
       
       
