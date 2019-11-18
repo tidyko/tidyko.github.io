@@ -56,9 +56,9 @@
     <h2 class="author"></h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>153</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>154</strong><br>文章</div></a>
       <a href="/categories"><div><strong>56</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>112</strong><br>标签</div></a>
+      <a href="/tags"><div><strong>113</strong><br>标签</div></a>
     </div>
     <ul class="blog-link">
      
@@ -83,6 +83,97 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-Java JVM常用工具" class="article" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/76273d12.html" class="article-date">
+  <time class="post-time" datetime="2018-04-25T09:38:00.000Z" itemprop="datePublished">
+    <span class="post-month">4月</span><br/>
+    <span class="post-day">25</span>
+  </time>
+</a>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/76273d12.html">Java JVM常用工具</a>
+    </h1>
+  
+
+      <div>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
+  </div>
+
+        
+        
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/76273d12.html" class="leancloud_visitors" data-flag-title="Java JVM常用工具">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 2,886</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 13 分钟</span>
+  </div>
+ 
+        
+      </div>
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <h1 id="1）JDK内置工具使用"><a href="#1）JDK内置工具使用" class="headerlink" title="1）JDK内置工具使用"></a>1）JDK内置工具使用</h1><h2 id="1-1）jps-Java-Virtual-Machine-Process-Status-Tool"><a href="#1-1）jps-Java-Virtual-Machine-Process-Status-Tool" class="headerlink" title="1.1）jps(Java Virtual Machine Process Status Tool)"></a>1.1）jps(Java Virtual Machine Process Status Tool)</h2><p>查看所有的jvm进程，包括进程ID，进程启动的路径等等。</p>
+<h2 id="1-2）jstack-Java-Stack-Trace"><a href="#1-2）jstack-Java-Stack-Trace" class="headerlink" title="1.2）jstack(Java Stack Trace)"></a>1.2）jstack(Java Stack Trace)</h2><p>① 观察jvm中当前所有线程的运行情况和线程当前状态。<br>② 系统崩溃了？如果java程序崩溃生成core文件，jstack工具可以用来获得core文件的java stack和native stack的信息，从而可以轻松地知道java程序是如何崩溃和在程序何处发生问题。<br>③ 系统hung住了？jstack工具还可以附属到正在运行的java程序中，看到当时运行的java程序的java stack和native stack的信息, 如果现在运行的java程序呈现hung的状态，jstack是非常有用的。</p>
+<h2 id="1-3）jstat-Java-Virtual-Machine-Statistics-Monitoring-Tool"><a href="#1-3）jstat-Java-Virtual-Machine-Statistics-Monitoring-Tool" class="headerlink" title="1.3）jstat(Java Virtual Machine Statistics Monitoring Tool)"></a>1.3）jstat(Java Virtual Machine Statistics Monitoring Tool)</h2><p>① jstat利用JVM内建的指令对Java应用程序的资源和性能进行实时的命令行的监控，包括了对进程的classloader，compiler，gc情况；<br>②监视VM内存内的各种堆和非堆的大小及其内存使用量，以及加载类的数量。</p>
+<h2 id="1-4）jmap-Java-Memory-Map"><a href="#1-4）jmap-Java-Memory-Map" class="headerlink" title="1.4）jmap(Java Memory Map)"></a>1.4）jmap(Java Memory Map)</h2><p>监视进程运行中的jvm物理内存的占用情况，该进程内存内，所有对象的情况，例如产生了哪些对象，对象数量；</p>
+<h2 id="1-5）jinfo-Java-Configuration-Info"><a href="#1-5）jinfo-Java-Configuration-Info" class="headerlink" title="1.5）jinfo(Java Configuration Info)"></a>1.5）jinfo(Java Configuration Info)</h2><p>观察进程运行环境参数，包括Java System属性和JVM命令行参数。</p>
+<h1 id="2）具体命令使用"><a href="#2）具体命令使用" class="headerlink" title="2）具体命令使用"></a>2）具体命令使用</h1><h2 id="2-1）jstat"><a href="#2-1）jstat" class="headerlink" title="2.1）jstat"></a>2.1）jstat</h2><p>generalOption：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-help 显示帮助信息。</span><br><span class="line">-version 显示版本信息</span><br><span class="line">-options 显示统计选项列表。</span><br></pre></td></tr></table></figure></p>
+<p>outputOptions：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">参数：</span></span><br><span class="line">-class：统计类装载器的行为</span><br><span class="line">-compiler：统计HotSpot Just-in-Time编译器的行为</span><br><span class="line">-gc：统计堆各个分区的使用情况</span><br><span class="line">-gccapacity：统计新生区，老年区，permanent区的heap容量情况 </span><br><span class="line">-gccause：统计最后一次gc和当前gc的原因</span><br><span class="line">-gcnew：统计gc时，新生代的情况 </span><br><span class="line">-gcnewcapacity：统计新生代大小和空间</span><br><span class="line">-gcold：统计老年代和永久代的行为</span><br><span class="line">-gcoldcapacity：统计老年代大小 </span><br><span class="line">-gcpermcapacity：统计永久代大小 </span><br><span class="line">-gcutil：统计gc时，heap情况 </span><br><span class="line">-printcompilation：HotSpot编译方法统计</span><br></pre></td></tr></table></figure></p>
+      
+      <p class="article-more-link">
+        <a href="/posts/76273d12.html#more">
+          Read More</a>
+      </p>
+      
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/76273d12.html" data-id="ck33x46ox006ic3qp2zgycfcy" class="article-share-link">
+        分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JVM/">JVM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
   
     <article id="post-分布式 事务解决方案" class="article" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -142,7 +233,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/7042626b.html" data-id="ck1ueforv00cp2iqp810owwt2" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/7042626b.html" data-id="ck33x46wi00nbc3qpxmf0wfyv" class="article-share-link">
         分享</a>
       
       
@@ -307,7 +398,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/c87c55c4.html" data-id="ck1uefoos005n2iqp1nhkak5j" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/c87c55c4.html" data-id="ck33x46o6004yc3qpd0tz1i0m" class="article-share-link">
         分享</a>
       
       
@@ -391,7 +482,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/2f3fa600.html" data-id="ck1uefooe004l2iqpysaejbgr" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/2f3fa600.html" data-id="ck33x46o4004uc3qpm00e2m4f" class="article-share-link">
         分享</a>
       
       
@@ -474,7 +565,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/a6562b5c.html" data-id="ck1uefoqc009e2iqpacrccznx" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/a6562b5c.html" data-id="ck33x46ue00juc3qp190753gf" class="article-share-link">
         分享</a>
       
       
@@ -556,7 +647,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/fd3cd277.html" data-id="ck1uefora00be2iqp6bhmsl8n" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/fd3cd277.html" data-id="ck33x46vs00m4c3qphsbiza5i" class="article-share-link">
         分享</a>
       
       
@@ -638,7 +729,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/b014d2be.html" data-id="ck1uefoob004f2iqpayu3hj4o" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/b014d2be.html" data-id="ck33x46nz004kc3qpr9zgti20" class="article-share-link">
         分享</a>
       
       
@@ -724,7 +815,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/b0fc798c.html" data-id="ck1uefooy00632iqp6spjfiui" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/b0fc798c.html" data-id="ck33x46ot006ac3qppe25hfwu" class="article-share-link">
         分享</a>
       
       
@@ -805,7 +896,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/10937fe4.html" data-id="ck1uefopa006y2iqp0pj3vzpr" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/10937fe4.html" data-id="ck33x46t900i3c3qp2focdcpt" class="article-share-link">
         分享</a>
       
       
@@ -891,97 +982,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/ba8658f2.html" data-id="ck1uefoqh009q2iqpohj8kphq" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/ba8658f2.html" data-id="ck33x46uk00k6c3qpjtynq4lu" class="article-share-link">
         分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mysql/">Mysql</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Navicat-Premium/">Navicat Premium</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Kafka 搭建和测试等问题" class="article" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/95c8a77e.html" class="article-date">
-  <time class="post-time" datetime="2017-03-23T08:11:00.000Z" itemprop="datePublished">
-    <span class="post-month">3月</span><br/>
-    <span class="post-day">23</span>
-  </time>
-</a>
-
-  </div>
-  <div class="article-inner">
-    
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/95c8a77e.html">Kafka 搭建和测试等问题</a>
-    </h1>
-  
-
-      <div>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/中间件/">中间件</a>,<a class="article-category-link" href="/categories/中间件/Kafka/">Kafka</a>
-  </div>
-
-        
-        
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/95c8a77e.html" class="leancloud_visitors" data-flag-title="Kafka 搭建和测试等问题">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 316</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 2 分钟</span>
-  </div>
- 
-        
-      </div>
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      <h3 id="1）安装启动kafka"><a href="#1）安装启动kafka" class="headerlink" title="1）安装启动kafka"></a>1）安装启动kafka</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">跳转到下载目录</span></span><br><span class="line">cd /opt/setup</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 下载安装包</span></span><br><span class="line">wget http://mirror.bit.edu.cn/apache/kafka/0.10.2.0/kafka_2.12-0.10.2.0.tgz</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 解压</span></span><br><span class="line">tar -xzf kafka_2.10-0.8.1.1.tgz</span><br><span class="line">mv kafka_2.12-0.10.2.0 /usr/program</span><br><span class="line"><span class="meta">#</span><span class="bash"> 启动 Zookeeper</span></span><br><span class="line">cd /usr/program/zookeeper-3.4.9</span><br><span class="line">bin/zookeeper-server-start.sh config/zookeeper.properties</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 启动 Kafka</span></span><br><span class="line"></span><br><span class="line">cd /usr/program/kafka_2.12-0.10.2.0 </span><br><span class="line">bin/kafka-server-start.sh config/server.properties</span><br></pre></td></tr></table></figure>
-<h3 id="2）"><a href="#2）" class="headerlink" title="2）"></a>2）</h3><p>启动过程中，发现提示“未知的名称或服务”需要修改host配置，在127.0.0.1后面最佳goukaiHost，，为主机名称。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/hosts</span><br><span class="line"></span><br><span class="line">127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4 goukaiHost</span><br><span class="line">::1         localhost localhost.localdomain localhost6 localhost6.localdomain6</span><br></pre></td></tr></table></figure></p>
-<h3 id="3）"><a href="#3）" class="headerlink" title="3）"></a>3）</h3><p>创建一个叫做“test”的topic，它只有一个分区，一个副本。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test</span><br></pre></td></tr></table></figure></p>
-<p>查看创建的topic<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/kafka-topics.sh --list --zookeeper localhost:2181</span><br></pre></td></tr></table></figure></p>
-<h3 id="4）发送消息"><a href="#4）发送消息" class="headerlink" title="4）发送消息"></a>4）发送消息</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/kafka-console-producer.sh --broker-list localhost:9092 --topic test</span><br></pre></td></tr></table></figure>
-<p>输入命令之后，输入字符串按回车进行发送即可。可另开一个窗口使用消费命令监听消息发送情况。<br>Ctrl+c可以结束当前操作。</p>
-<h3 id="5）启动consumer"><a href="#5）启动consumer" class="headerlink" title="5）启动consumer"></a>5）启动consumer</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic test --from-beginning</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/95c8a77e.html" data-id="ck1uefopf007a2iqp9rfvwghc" class="article-share-link">
-        分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Kafka/">Kafka</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/队列/">队列</a></li></ul>
 
     </footer>
   </div>
@@ -1049,7 +1054,7 @@
     <div class="count-box">
       <a href="/archives">
         <div><strong>
-            153</strong><br>文章</div>
+            154</strong><br>文章</div>
       </a>
       <a href="/categories">
         <div><strong>
@@ -1057,7 +1062,7 @@
       </a>
       <a href="/tags">
         <div><strong>
-            112</strong><br>标签</div>
+            113</strong><br>标签</div>
       </a>
     </div>
 
@@ -1080,12 +1085,16 @@
         forever杨
       </a>
       
-      <a class="hvr-bounce-in" href="https://denglvl.github.io/" target="_blank" title="DengCong">
+      <a class="hvr-bounce-in" href="https://blog.dclog.cn/" target="_blank" title="DengCong">
         DengCong
       </a>
       
       <a class="hvr-bounce-in" href="https://17363959606.github.io/" target="_blank" title="静静同学">
         静静同学
+      </a>
+      
+      <a class="hvr-bounce-in" href="https://copasters.github.io/" target="_blank" title="ChenYuan">
+        ChenYuan
       </a>
       
     </div>

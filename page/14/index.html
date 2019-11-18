@@ -56,9 +56,9 @@
     <h2 class="author"></h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>153</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>154</strong><br>文章</div></a>
       <a href="/categories"><div><strong>56</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>112</strong><br>标签</div></a>
+      <a href="/tags"><div><strong>113</strong><br>标签</div></a>
     </div>
     <ul class="blog-link">
      
@@ -83,6 +83,88 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-Oracle number类型保留小数位" class="article" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/7c9f9e00.html" class="article-date">
+  <time class="post-time" datetime="2014-03-11T02:49:00.000Z" itemprop="datePublished">
+    <span class="post-month">3月</span><br/>
+    <span class="post-day">11</span>
+  </time>
+</a>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/7c9f9e00.html">Oracle number类型保留小数位</a>
+    </h1>
+  
+
+      <div>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/数据库/">数据库</a>,<a class="article-category-link" href="/categories/数据库/Oracle/">Oracle</a>
+  </div>
+
+        
+        
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/7c9f9e00.html" class="leancloud_visitors" data-flag-title="Oracle number类型保留小数位">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 134</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 1 分钟</span>
+  </div>
+ 
+        
+      </div>
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt; SELECT</span><br><span class="line">  2    TO_CHAR(123,  '9990.00') A,</span><br><span class="line">  3    TO_CHAR(5.8,  '9990.00') B,</span><br><span class="line">  4    TO_CHAR(.46,  '9990.00') C</span><br><span class="line">  5  FROM</span><br><span class="line">  6    dual;</span><br><span class="line"></span><br><span class="line">A                B                C</span><br><span class="line"><span class="comment">---------------- ---------------- ----------------</span></span><br><span class="line">  123.00             5.80             0.46</span><br><span class="line"></span><br><span class="line">SQL&gt;</span><br></pre></td></tr></table></figure>
+<p>‘9990.00’表示转换的数字的最大数，可根据自身表里面的number字段大小，进行调整。<br>比如number(19,2)可变成 :<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ltrim(to_char(price,'9999999999999999999.00'))</span><br></pre></td></tr></table></figure></p>
+<p>但是如果price的值为0的话，就会转成.00，所以用下面的方法再decode一下就可以了。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">decode(price,0,'0.00',ltrim(to_char(price,'9999999999999999999.00')))</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/7c9f9e00.html" data-id="ck33x46v800l9c3qp0908o701" class="article-share-link">
+        分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Oracle/">Oracle</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sql/">Sql</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
   
     <article id="post-J2EE HttpServletRequest request 相关方法 得到路径" class="article" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -145,7 +227,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/2cf05a87.html" data-id="ck1uefooa004d2iqpjh1rlvyw" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/2cf05a87.html" data-id="ck33x46nw004dc3qpgrxlralg" class="article-share-link">
         分享</a>
       
       
@@ -228,7 +310,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/6a3fb6fb.html" data-id="ck1uefop7006r2iqphmzkus8g" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/6a3fb6fb.html" data-id="ck33x46p1006qc3qpum9d6fiv" class="article-share-link">
         分享</a>
       
       
@@ -312,7 +394,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/ac53be82.html" data-id="ck1uefon600242iqp3nciqvgh" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/ac53be82.html" data-id="ck33x46mk0023c3qp4b0onl5m" class="article-share-link">
         分享</a>
       
       
@@ -394,7 +476,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/26788ddf.html" data-id="ck1uefooi004w2iqp2b2jlv3x" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/26788ddf.html" data-id="ck33x46od0056c3qpd6b0wevw" class="article-share-link">
         分享</a>
       
       
@@ -475,7 +557,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/93821c9f.html" data-id="ck1uefop8006u2iqp03netpz8" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/93821c9f.html" data-id="ck33x46p5006yc3qp8y6bghbn" class="article-share-link">
         分享</a>
       
       
@@ -560,7 +642,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/bd745825.html" data-id="ck1uefomn00102iqpkyj7r7cb" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/bd745825.html" data-id="ck33x46m40015c3qpuk1ftwsm" class="article-share-link">
         分享</a>
       
       
@@ -641,7 +723,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3e42071e.html" data-id="ck1uefoml000v2iqpt0ttxuao" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/3e42071e.html" data-id="ck33x46m10010c3qp6j6jx49g" class="article-share-link">
         分享</a>
       
       
@@ -725,7 +807,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/fd6e9fc4.html" data-id="ck1uefomq00152iqpx337ug2p" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/fd6e9fc4.html" data-id="ck33x46m6001ac3qp6lhollfk" class="article-share-link">
         分享</a>
       
       
@@ -806,89 +888,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/353a4b3e.html" data-id="ck1uefomr001a2iqplu2m61ey" class="article-share-link">
-        分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tomcat/">Tomcat</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Eclipse 改变Tomcat发布路径" class="article" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/df9c274.html" class="article-date">
-  <time class="post-time" datetime="2014-02-11T09:33:00.000Z" itemprop="datePublished">
-    <span class="post-month">2月</span><br/>
-    <span class="post-day">11</span>
-  </time>
-</a>
-
-  </div>
-  <div class="article-inner">
-    
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/df9c274.html">Eclipse 改变Tomcat发布路径</a>
-    </h1>
-  
-
-      <div>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/开发调试工具/">开发调试工具</a>,<a class="article-category-link" href="/categories/开发调试工具/Eclipse/">Eclipse</a>
-  </div>
-
-        
-        
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/df9c274.html" class="leancloud_visitors" data-flag-title="Eclipse 改变Tomcat发布路径">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 63</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 1 分钟</span>
-  </div>
- 
-        
-      </div>
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      <h3 id="1）"><a href="#1）" class="headerlink" title="1）"></a>1）</h3><p>关闭服务，删除里面的所有项目，clean。</p>
-<h3 id="2）"><a href="#2）" class="headerlink" title="2）"></a>2）</h3><p>然后双击服务，发布路径修改就可以点击了。</p>
-<h3 id="3）"><a href="#3）" class="headerlink" title="3）"></a>3）</h3><p>当重新发布了项目后，发布路径修改的按钮又会恢复不可点击状态。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/df9c274.html" data-id="ck1uefon1001v2iqpvzt069j1" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/353a4b3e.html" data-id="ck33x46m7001cc3qpbl0idjg8" class="article-share-link">
         分享</a>
       
       
@@ -960,7 +960,7 @@
     <div class="count-box">
       <a href="/archives">
         <div><strong>
-            153</strong><br>文章</div>
+            154</strong><br>文章</div>
       </a>
       <a href="/categories">
         <div><strong>
@@ -968,7 +968,7 @@
       </a>
       <a href="/tags">
         <div><strong>
-            112</strong><br>标签</div>
+            113</strong><br>标签</div>
       </a>
     </div>
 
@@ -991,12 +991,16 @@
         forever杨
       </a>
       
-      <a class="hvr-bounce-in" href="https://denglvl.github.io/" target="_blank" title="DengCong">
+      <a class="hvr-bounce-in" href="https://blog.dclog.cn/" target="_blank" title="DengCong">
         DengCong
       </a>
       
       <a class="hvr-bounce-in" href="https://17363959606.github.io/" target="_blank" title="静静同学">
         静静同学
+      </a>
+      
+      <a class="hvr-bounce-in" href="https://copasters.github.io/" target="_blank" title="ChenYuan">
+        ChenYuan
       </a>
       
     </div>

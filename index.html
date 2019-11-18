@@ -56,9 +56,9 @@
     <h2 class="author"></h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>153</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>154</strong><br>文章</div></a>
       <a href="/categories"><div><strong>56</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>112</strong><br>标签</div></a>
+      <a href="/tags"><div><strong>113</strong><br>标签</div></a>
     </div>
     <ul class="blog-link">
      
@@ -83,6 +83,100 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-Dubbo Filter + SLF4J MDC 实现分布式日志追踪" class="article" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/9f95e5a1.html" class="article-date">
+  <time class="post-time" datetime="2019-11-18T02:44:00.000Z" itemprop="datePublished">
+    <span class="post-month">11月</span><br/>
+    <span class="post-day">18</span>
+  </time>
+</a>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/9f95e5a1.html">Dubbo Filter + SLF4J MDC 实现分布式日志追踪</a>
+    </h1>
+  
+
+      <div>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
+  </div>
+
+        
+        
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/9f95e5a1.html" class="leancloud_visitors" data-flag-title="Dubbo Filter + SLF4J MDC 实现分布式日志追踪">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 1,185</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 6 分钟</span>
+  </div>
+ 
+        
+      </div>
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <p>在使用dubbo进行分布式服务开发时，一个大系统会拆分成很多领域以及很多子服务，而且部署时会部署在不同服务器里面，这在我们使用日志排查问题时将会十分麻烦。</p>
+<p>这里我们使用Dubbo的Filter以及SLF4J的MDC功能，来共同完成这个事情。</p>
+<p>主要思路是：</p>
+<ol>
+<li>消费端在调用调用服务端时，生成请求ID，然后将请求ID、服务器IP等参数在调用服务前进行注入，将参数带到服务提供方。</li>
+<li>提供方在执行方法前，获取消费端设置的参数，包括请求ID、主机IP等需要用到的参数，然后设置到MDC里面，供打印日志使用，再将参数往下游服务进行传递。</li>
+</ol>
+<h2 id="代码实现："><a href="#代码实现：" class="headerlink" title="代码实现："></a>代码实现：</h2><p>由于dubbo在2.7.*的版本以及之前的版本包结构有所变更，<br>为了让大家明白这不同版本的配置差异，<br>这里服务端使用2.7.3的版本，消费端使用2.6.5的版本，来演示下不同版本下配置的异同。</p>
+<h3 id="1-定义上下游服务DubboFilter"><a href="#1-定义上下游服务DubboFilter" class="headerlink" title="1.定义上下游服务DubboFilter"></a>1.定义上下游服务DubboFilter</h3><p>服务消费端：ConsumerRpcTraceFilter</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.faq.filter;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.alibaba.dubbo.common.Constants;</span><br><span class="line"><span class="keyword">import</span> com.alibaba.dubbo.common.extension.Activate;</span><br><span class="line"><span class="keyword">import</span> com.alibaba.dubbo.common.utils.NetUtils;</span><br><span class="line"><span class="keyword">import</span> com.alibaba.dubbo.rpc.Filter;</span><br><span class="line"><span class="keyword">import</span> com.alibaba.dubbo.rpc.Invocation;</span><br><span class="line"><span class="keyword">import</span> com.alibaba.dubbo.rpc.Invoker;</span><br><span class="line"><span class="keyword">import</span> com.alibaba.dubbo.rpc.Result;</span><br><span class="line"><span class="keyword">import</span> com.alibaba.dubbo.rpc.RpcContext;</span><br><span class="line"><span class="keyword">import</span> com.alibaba.dubbo.rpc.RpcException;</span><br><span class="line"><span class="keyword">import</span> lombok.extern.slf4j.Slf4j;</span><br><span class="line"><span class="keyword">import</span> org.apache.commons.lang3.StringUtils;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.MDC;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.UUID;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 服务消费端TraceFilter</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> tidy</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2019/11/15 11:23</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Activate</span>(group = &#123;Constants.CONSUMER&#125;)</span><br><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConsumerRpcTraceFilter</span> <span class="keyword">implements</span> <span class="title">Filter</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> invoker</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> invocation</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> RpcException</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Result <span class="title">invoke</span><span class="params">(Invoker&lt;?&gt; invoker, Invocation invocation)</span> <span class="keyword">throws</span> RpcException </span>&#123;</span><br><span class="line">        <span class="comment">// 如果连续调用多个服务，则会使用同个线程里之前设置的traceId</span></span><br><span class="line">        String traceId = MDC.get(<span class="string">"traceId"</span>);</span><br><span class="line">        <span class="keyword">if</span> (StringUtils.isBlank(traceId)) &#123;</span><br><span class="line">            <span class="comment">// 线程内，首次调用远端服务</span></span><br><span class="line">            traceId = UUID.randomUUID().toString();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 设置日志traceId变量</span></span><br><span class="line">        MDC.put(<span class="string">"traceId"</span>, traceId);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 设置传递到提供端的参数</span></span><br><span class="line">        RpcContext.getContext().setAttachment(<span class="string">"host"</span>, NetUtils.getLocalHost());</span><br><span class="line">        RpcContext.getContext().setAttachment(<span class="string">"trace_id"</span>, traceId);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> invoker.invoke(invocation);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+      <p class="article-more-link">
+        <a href="/posts/9f95e5a1.html#more">
+          Read More</a>
+      </p>
+      
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/9f95e5a1.html" data-id="ck33x46lx000qc3qp18wbuap2" class="article-share-link">
+        分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Dubbo/">Dubbo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SLF4J/">SLF4J</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
   
     <article id="post-IDEA 利用Maven依赖图解决包冲突" class="article" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -147,7 +241,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/82922308.html" data-id="ck1uefonw003i2iqp1fqorrey" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/82922308.html" data-id="ck33x46nn003uc3qp5ya0xzwd" class="article-share-link">
         分享</a>
       
       
@@ -233,7 +327,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/ff68fd05.html" data-id="ck1uefoof004o2iqpp76z4iqk" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/ff68fd05.html" data-id="ck33x46o90052c3qpeafnvely" class="article-share-link">
         分享</a>
       
       
@@ -319,7 +413,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/84f800f7.html" data-id="ck1uefoq700932iqp0e1citcl" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/84f800f7.html" data-id="ck33x46um00kac3qppapm9tk3" class="article-share-link">
         分享</a>
       
       
@@ -403,7 +497,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/f6c0b73e.html" data-id="ck1uefoq1008q2iqpkp2ijcdw" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/f6c0b73e.html" data-id="ck33x46u600jic3qp29rj98n1" class="article-share-link">
         分享</a>
       
       
@@ -492,7 +586,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/67b16286.html" data-id="ck1uefoq6008z2iqpuxux66y7" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/67b16286.html" data-id="ck33x46ug00jyc3qpig2d1hye" class="article-share-link">
         分享</a>
       
       
@@ -576,7 +670,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/169364f6.html" data-id="ck1uefori00by2iqp4pk0ulau" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/169364f6.html" data-id="ck33x46w600msc3qpl7mjgp4t" class="article-share-link">
         分享</a>
       
       
@@ -662,7 +756,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/9ecafb15.html" data-id="ck1uefos000d52iqpax4cxvk8" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/9ecafb15.html" data-id="ck33x46x400omc3qp85vnz62s" class="article-share-link">
         分享</a>
       
       
@@ -751,7 +845,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/5861f454.html" data-id="ck1uefoq3008t2iqp7dkgzhaz" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/5861f454.html" data-id="ck33x46tv00j0c3qpg6a6heii" class="article-share-link">
         分享</a>
       
       
@@ -838,99 +932,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/fa8b02cc.html" data-id="ck1uefope00762iqp8kok4g6v" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/fa8b02cc.html" data-id="ck33x46p70071c3qpx2es510p" class="article-share-link">
         分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/线程池/">线程池</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-小程序 语法小程序用户量破千啦！" class="article" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/5e551b83.html" class="article-date">
-  <time class="post-time" datetime="2019-04-12T04:14:00.000Z" itemprop="datePublished">
-    <span class="post-month">4月</span><br/>
-    <span class="post-day">12</span>
-  </time>
-</a>
-
-  </div>
-  <div class="article-inner">
-    
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/5e551b83.html">小程序 语法小程序用户量破千啦！</a>
-    </h1>
-  
-
-      <div>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/运营/">运营</a>,<a class="article-category-link" href="/categories/运营/小程序/">小程序</a>
-  </div>
-
-        
-        
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/5e551b83.html" class="leancloud_visitors" data-flag-title="小程序 语法小程序用户量破千啦！">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 256</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 1 分钟</span>
-  </div>
- 
-        
-      </div>
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      <p>“日语语法库”小程序自2019-03-28上线以来到今天2019-04-12刚好两个星期，刚好用户量破千，可以申请流量主进行营收了，做一下总结。</p>
-<ol>
-<li>总结一下语法小程序两个星期以来的数据。</li>
-<li>总结一下为什么相比之前两个小程序，语法小程序能带来更多的用户量以及流量稳定增长。
-      
-      <p class="article-more-link">
-        <a href="/posts/5e551b83.html#more">
-          Read More</a>
-      </p>
-      
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/5e551b83.html" data-id="ck1uefos200d92iqp6hwtj036" class="article-share-link">
-        分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/小程序/">小程序</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/运营/">运营</a></li></ul>
 
     </footer>
   </div>
@@ -998,7 +1004,7 @@
     <div class="count-box">
       <a href="/archives">
         <div><strong>
-            153</strong><br>文章</div>
+            154</strong><br>文章</div>
       </a>
       <a href="/categories">
         <div><strong>
@@ -1006,7 +1012,7 @@
       </a>
       <a href="/tags">
         <div><strong>
-            112</strong><br>标签</div>
+            113</strong><br>标签</div>
       </a>
     </div>
 
@@ -1029,12 +1035,16 @@
         forever杨
       </a>
       
-      <a class="hvr-bounce-in" href="https://denglvl.github.io/" target="_blank" title="DengCong">
+      <a class="hvr-bounce-in" href="https://blog.dclog.cn/" target="_blank" title="DengCong">
         DengCong
       </a>
       
       <a class="hvr-bounce-in" href="https://17363959606.github.io/" target="_blank" title="静静同学">
         静静同学
+      </a>
+      
+      <a class="hvr-bounce-in" href="https://copasters.github.io/" target="_blank" title="ChenYuan">
+        ChenYuan
       </a>
       
     </div>

@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>
+    
+    Dubbo Filter + SLF4J MDC 实现分布式日志追踪 |
+    
+    Tidy的个人博客
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="在使用dubbo进行分布式服务开发时，一个大系统会拆分成很多领域以及很多子服务，而且部署时会部署在不同服务器里面，这在我们使用日志排查问题时将会十分麻烦。 这里我们使用Dubbo的Filter以及SLF4J的MDC功能，来共同完成这个事情。 主要思路是：  消费端在调用调用服务端时，生成请求ID，然后将请求ID、服务器IP等参数在调用服务前进行注入，将参数带到服务提供方。 提供方在执行方法前，获取">
+<meta name="keywords" content="Java,J2EE,Dubbo,SLF4J">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Dubbo Filter + SLF4J MDC 实现分布式日志追踪">
+<meta property="og:url" content="https://www.tidyko.com/posts/9f95e5a1.html">
+<meta property="og:site_name" content="Tidy的个人博客">
+<meta property="og:description" content="在使用dubbo进行分布式服务开发时，一个大系统会拆分成很多领域以及很多子服务，而且部署时会部署在不同服务器里面，这在我们使用日志排查问题时将会十分麻烦。 这里我们使用Dubbo的Filter以及SLF4J的MDC功能，来共同完成这个事情。 主要思路是：  消费端在调用调用服务端时，生成请求ID，然后将请求ID、服务器IP等参数在调用服务前进行注入，将参数带到服务提供方。 提供方在执行方法前，获取">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-11-18T04:17:20.470Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Dubbo Filter + SLF4J MDC 实现分布式日志追踪">
+<meta name="twitter:description" content="在使用dubbo进行分布式服务开发时，一个大系统会拆分成很多领域以及很多子服务，而且部署时会部署在不同服务器里面，这在我们使用日志排查问题时将会十分麻烦。 这里我们使用Dubbo的Filter以及SLF4J的MDC功能，来共同完成这个事情。 主要思路是：  消费端在调用调用服务端时，生成请求ID，然后将请求ID、服务器IP等参数在调用服务前进行注入，将参数带到服务提供方。 提供方在执行方法前，获取">
+  
+  <link rel="alternate" href="/atom.xml" title="Tidy的个人博客" type="application/atom+xml">
+  
+  
+  <link rel="icon" href="/favicon.ico">
+  
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <!-- <link rel="stylesheet" href="/plugin/bganimation/bg.css"> -->
+  
+
+  
+<!-- Google Adsense -->
+<!-- <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+</script> -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-1522837637326007",
+        enable_page_level_ads: true
+    });
+</script>
+
+<script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
+<!-- End Google Adsense -->
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <div class="widget-wrap mobile-header">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="http://img.tidyko.com/avatar.jpg">
+    <h2 class="author"></h2>
+    <h3 class="description"></h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>154</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>56</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>113</strong><br>标签</div></a>
+    </div>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+        <section id="main"><article id="post-Dubbo Filter + SLF4J MDC 实现分布式日志追踪" class="article" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/9f95e5a1.html" class="article-date">
+  <time class="post-time" datetime="2019-11-18T02:44:00.000Z" itemprop="datePublished">
+    <span class="post-month">11月</span><br/>
+    <span class="post-day">18</span>
+  </time>
+</a>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 class="article-title" itemprop="name">
+      Dubbo Filter + SLF4J MDC 实现分布式日志追踪
+    </h1>
+  
+
+      <div>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
+  </div>
+
+        
+        
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/9f95e5a1.html" class="leancloud_visitors" data-flag-title="Dubbo Filter + SLF4J MDC 实现分布式日志追踪">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 1,185</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 6 分钟</span>
+  </div>
+ 
+        
+      </div>
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <p>在使用dubbo进行分布式服务开发时，一个大系统会拆分成很多领域以及很多子服务，而且部署时会部署在不同服务器里面，这在我们使用日志排查问题时将会十分麻烦。</p>
+<p>这里我们使用Dubbo的Filter以及SLF4J的MDC功能，来共同完成这个事情。</p>
+<p>主要思路是：</p>
+<ol>
+<li>消费端在调用调用服务端时，生成请求ID，然后将请求ID、服务器IP等参数在调用服务前进行注入，将参数带到服务提供方。</li>
+<li>提供方在执行方法前，获取消费端设置的参数，包括请求ID、主机IP等需要用到的参数，然后设置到MDC里面，供打印日志使用，再将参数往下游服务进行传递。</li>
+</ol>
+<h2 id="代码实现："><a href="#代码实现：" class="headerlink" title="代码实现："></a>代码实现：</h2><p>由于dubbo在2.7.*的版本以及之前的版本包结构有所变更，<br>为了让大家明白这不同版本的配置差异，<br>这里服务端使用2.7.3的版本，消费端使用2.6.5的版本，来演示下不同版本下配置的异同。</p>
+<h3 id="1-定义上下游服务DubboFilter"><a href="#1-定义上下游服务DubboFilter" class="headerlink" title="1.定义上下游服务DubboFilter"></a>1.定义上下游服务DubboFilter</h3><p>服务消费端：ConsumerRpcTraceFilter</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.faq.filter;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.alibaba.dubbo.common.Constants;</span><br><span class="line"><span class="keyword">import</span> com.alibaba.dubbo.common.extension.Activate;</span><br><span class="line"><span class="keyword">import</span> com.alibaba.dubbo.common.utils.NetUtils;</span><br><span class="line"><span class="keyword">import</span> com.alibaba.dubbo.rpc.Filter;</span><br><span class="line"><span class="keyword">import</span> com.alibaba.dubbo.rpc.Invocation;</span><br><span class="line"><span class="keyword">import</span> com.alibaba.dubbo.rpc.Invoker;</span><br><span class="line"><span class="keyword">import</span> com.alibaba.dubbo.rpc.Result;</span><br><span class="line"><span class="keyword">import</span> com.alibaba.dubbo.rpc.RpcContext;</span><br><span class="line"><span class="keyword">import</span> com.alibaba.dubbo.rpc.RpcException;</span><br><span class="line"><span class="keyword">import</span> lombok.extern.slf4j.Slf4j;</span><br><span class="line"><span class="keyword">import</span> org.apache.commons.lang3.StringUtils;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.MDC;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.UUID;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 服务消费端TraceFilter</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> tidy</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2019/11/15 11:23</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Activate</span>(group = &#123;Constants.CONSUMER&#125;)</span><br><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConsumerRpcTraceFilter</span> <span class="keyword">implements</span> <span class="title">Filter</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> invoker</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> invocation</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> RpcException</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Result <span class="title">invoke</span><span class="params">(Invoker&lt;?&gt; invoker, Invocation invocation)</span> <span class="keyword">throws</span> RpcException </span>&#123;</span><br><span class="line">        <span class="comment">// 如果连续调用多个服务，则会使用同个线程里之前设置的traceId</span></span><br><span class="line">        String traceId = MDC.get(<span class="string">"traceId"</span>);</span><br><span class="line">        <span class="keyword">if</span> (StringUtils.isBlank(traceId)) &#123;</span><br><span class="line">            <span class="comment">// 线程内，首次调用远端服务</span></span><br><span class="line">            traceId = UUID.randomUUID().toString();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 设置日志traceId变量</span></span><br><span class="line">        MDC.put(<span class="string">"traceId"</span>, traceId);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 设置传递到提供端的参数</span></span><br><span class="line">        RpcContext.getContext().setAttachment(<span class="string">"host"</span>, NetUtils.getLocalHost());</span><br><span class="line">        RpcContext.getContext().setAttachment(<span class="string">"trace_id"</span>, traceId);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> invoker.invoke(invocation);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>服务提供端：ProviderRpcTraceFilter</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.tisson.wechat.template.rpc.filter;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.commons.lang3.StringUtils;</span><br><span class="line"><span class="keyword">import</span> org.apache.dubbo.common.constants.CommonConstants;</span><br><span class="line"><span class="keyword">import</span> org.apache.dubbo.common.extension.Activate;</span><br><span class="line"><span class="keyword">import</span> org.apache.dubbo.common.utils.NetUtils;</span><br><span class="line"><span class="keyword">import</span> org.apache.dubbo.rpc.Filter;</span><br><span class="line"><span class="keyword">import</span> org.apache.dubbo.rpc.Invocation;</span><br><span class="line"><span class="keyword">import</span> org.apache.dubbo.rpc.Invoker;</span><br><span class="line"><span class="keyword">import</span> org.apache.dubbo.rpc.Result;</span><br><span class="line"><span class="keyword">import</span> org.apache.dubbo.rpc.RpcContext;</span><br><span class="line"><span class="keyword">import</span> org.apache.dubbo.rpc.RpcException;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.MDC;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.UUID;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 服务提供端TraceFilter</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> tidy</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2019/11/15 11:21</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Activate</span>(group = &#123;CommonConstants.PROVIDER&#125;)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProviderRpcTraceFilter</span> <span class="keyword">implements</span> <span class="title">Filter</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> invoker</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> invocation</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> RpcException</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Result <span class="title">invoke</span><span class="params">(Invoker&lt;?&gt; invoker, Invocation invocation)</span> <span class="keyword">throws</span> RpcException </span>&#123;</span><br><span class="line">        <span class="comment">// 获取消费端设置的参数</span></span><br><span class="line">        String host = RpcContext.getContext().getAttachment(<span class="string">"host"</span>);</span><br><span class="line">        String traceId = RpcContext.getContext().getAttachment(<span class="string">"trace_id"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (StringUtils.isBlank(traceId)) &#123;</span><br><span class="line">            traceId = UUID.randomUUID().toString();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 设置日志traceId变量</span></span><br><span class="line">        MDC.put(<span class="string">"host"</span>, host);</span><br><span class="line">        MDC.put(<span class="string">"traceId"</span>, traceId);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 继续设置下游参数，供在提供方里面作为消费端时，其他服务提供方使用这些参数</span></span><br><span class="line">        RpcContext.getContext().setAttachment(<span class="string">"host"</span>, NetUtils.getLocalHost());</span><br><span class="line">        RpcContext.getContext().setAttachment(<span class="string">"trace_id"</span>, traceId);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> invoker.invoke(invocation);</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="comment">// 调用完成后移除MDC属性</span></span><br><span class="line">            MDC.remove(<span class="string">"host"</span>);</span><br><span class="line">            MDC.remove(<span class="string">"traceId"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-配置上下游服务DubboFilter"><a href="#2-配置上下游服务DubboFilter" class="headerlink" title="2.配置上下游服务DubboFilter"></a>2.配置上下游服务DubboFilter</h3><p>服务消费端：<br>在该目录下创建DubboSPI描述文件 <code>/src/main/resources/META-INF/dubbo/com.alibaba.dubbo.rpc.Filter</code><br>里面写入以下内容：<br><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">consumerRpcTraceFilter=com.faq.filter.ConsumerRpcTraceFilter</span></span><br></pre></td></tr></table></figure></p>
+<p>服务提供端：<br>在该目录下创建DubboSPI描述文件 <code>/src/main/resources/META-INF/dubbo/internal/org.apache.dubbo.rpc.Filter</code><br>里面写入以下内容：<br><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">providerRpcTraceFilter=cn.tisson.wechat.template.rpc.filter.ProviderRpcTraceFilter</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="3-设置上下游服务logback-xml的日志输出格式"><a href="#3-设置上下游服务logback-xml的日志输出格式" class="headerlink" title="3.设置上下游服务logback.xml的日志输出格式"></a>3.设置上下游服务logback.xml的日志输出格式</h3><p>服务消费端：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"logger.pattern"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">value</span>=<span class="string">"%d&#123;yy-MM-dd HH:mm:ss&#125; %highlight(%p) %yellow(%t) %cyan(%c.%M\\(%L\\)) %X&#123;traceId&#125; | %m%n"</span>/&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>服务提供端：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"logger.pattern"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">value</span>=<span class="string">"%d&#123;yy-MM-dd HH:mm:ss&#125; %highlight(%p) %yellow(%t) %cyan(%c.%M\\(%L\\)) %X&#123;host&#125; %X&#123;traceId&#125; | %m%n"</span>/&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="4-启动应用、测试、验证"><a href="#4-启动应用、测试、验证" class="headerlink" title="4.启动应用、测试、验证"></a>4.启动应用、测试、验证</h3><p>服务消费端：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">19-11-18 11:18:20 INFO XNIO-2 task-1 com.faq.service.impl.SendMessageServiceImpl.getReturnJson(188) f141529f-a650-4100-8ffd-db8baa63c2dc | &#123;&quot;msg&quot;:&quot;成功&quot;,&quot;id&quot;:381040355136503808,&quot;status&quot;:0&#125;</span><br></pre></td></tr></table></figure></p>
+<p>服务提供端：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">19-11-18 11:18:19 INFO DubboServerHandler-192.168.123.164:20881-thread-2 cn.tisson.wechat.template.rpc.component.RedisComponent.sendChannelMsg(28) 192.168.123.164 f141529f-a650-4100-8ffd-db8baa63c2dc | Push data ****** to topic ts-tmpl-svc-msgusrinf-192.168.123.164</span><br><span class="line"></span><br><span class="line">19-11-18 11:18:20 INFO DubboServerHandler-192.168.123.164:20881-thread-2 cn.tisson.wechat.template.rpc.component.RedisComponent.sendChannelMsg(28) 192.168.123.164 f141529f-a650-4100-8ffd-db8baa63c2dc | Push data ****** to topic ts-tmpl-svc-msgusrinf-192.168.123.164</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/9f95e5a1.html" data-id="ck33x46lx000qc3qp18wbuap2" class="article-share-link">
+        分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Dubbo/">Dubbo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SLF4J/">SLF4J</a></li></ul>
+
+    </footer>
+  </div>
+  
+  
+<nav id="article-nav">
+  
+  
+    <a href="/posts/82922308.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">IDEA 利用Maven依赖图解决包冲突</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+<div style="margin:50px 0">
+  <amp-auto-ads type="adsense" data-ad-client="ca-pub-1522837637326007">
+  </amp-auto-ads>
+  <!-- left-ad-2 -->
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1522837637326007" data-ad-slot="1200441426"
+    data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+
+
+
+
+
+
+
+
+<div id="comments" class="comments">
+  <div id="gitment_container"></div>
+</div>
+
+<link rel="stylesheet" href="https://www.wenjunjiang.win/css/gitment.css">
+<script src="https://www.wenjunjiang.win/js/gitment.js"></script>
+<script>
+  var gitment = new Gitment({
+    owner: 'tidyko',
+    repo: 'tidyko.github.io',
+    oauth: {
+      client_id: '62e4f6a4ca86e056da76',
+      client_secret: '912d627549301dd54437313b122a7c543215bc4c',
+    },
+  })
+  gitment.render('gitment_container')
+</script>
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <h1 class="blog-title">Tidy的个人博客</h1>
+    <h2 class="blog-subtitle">人生とは好きな人と一緒に過ごした日々だ!</h2>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="http://img.tidyko.com/avatar.jpg">
+    <h2 class="author">
+      
+    </h2>
+    <h3 class="description">
+      
+    </h3>
+    <div class="count-box">
+      <a href="/archives">
+        <div><strong>
+            154</strong><br>文章</div>
+      </a>
+      <a href="/categories">
+        <div><strong>
+            56</strong><br>分类</div>
+      </a>
+      <a href="/tags">
+        <div><strong>
+            113</strong><br>标签</div>
+      </a>
+    </div>
+
+
+
+    <div class="social-link">
+      
+      <a class="hvr-bounce-in" href="https://github.com/tidyko" target="_blank" title="Github">
+        Github
+      </a>
+      
+    </div>
+
+    <div class="friend-link">
+      <h2>
+        友情链接
+      </h2>
+      
+      <a class="hvr-bounce-in" href="https://blog.yl-online.top" target="_blank" title="forever杨">
+        forever杨
+      </a>
+      
+      <a class="hvr-bounce-in" href="https://blog.dclog.cn/" target="_blank" title="DengCong">
+        DengCong
+      </a>
+      
+      <a class="hvr-bounce-in" href="https://17363959606.github.io/" target="_blank" title="静静同学">
+        静静同学
+      </a>
+      
+      <a class="hvr-bounce-in" href="https://copasters.github.io/" target="_blank" title="ChenYuan">
+        ChenYuan
+      </a>
+      
+    </div>
+  </div>
+</div>
+  
+    <div class="widget-wrap">
+    <h3 class="widget-title">关注我的公众号：</h3>
+    <div class="widget"><img style="width:100%" src="http://img.tidyko.com/japanesehub-qrcode.jpg">
+    </div>
+</div>
+  
+    <div class="widget-wrap">
+    <h3 class="widget-title"></h3>
+    <!-- left-ad-1 -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1522837637326007" data-ad-slot="1201221679"
+        data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy;2018 - 2019 Tidy的个人博客<br>
+      <!-- 由<a href="https://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
+      主题-<a href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a> -->
+      
+        <br>
+        <!-- <script src="https://s19.cnzz.com/z_stat.php?id=1274390271&web_id=1274390271" language="JavaScript" rel="noreferrer"></script>       -->
+        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1274390271'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1274390271%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));</script>
+      
+    </div>
+  </div>
+</footer>
+    </div>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/wow/0.1.6/wow.min.js"></script>
+<script>
+new WOW().init();
+</script>   
+
+
+  <link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+  <script src="/plugin/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+  <!-- <section class="hidden-xs"> 
+  <ul class="cb-slideshow"> 
+    <li><span>苟利</span></li> 
+    <li><span>国家</span></li> 
+    <li><span>生死以</span></li> 
+    <li><span>岂能</span></li> 
+    <li><span>祸福</span></li> 
+    <li><span>趋避之</span></li> 
+  </ul>
+</section> -->
+<script src="/js/script.js"></script>
+
+
+
+
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("DpQHavrF6hdX8C8q7ONib5Qv-gzGzoHsz", "CFNVYUb4rtTjkji3Erv4ROA7");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.article-title').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+
+
+<div id="totop" style="position:fixed;bottom:160px;right:50px;cursor: pointer;z-index: 10;">
+    <a title="返回顶部"><img src="/images/scrollup.png" style="width:50px;height:50px;"/></a>
+</div>
+<script src="/js/totop.js"></script>
+  </div>
+</body>
+</html>
