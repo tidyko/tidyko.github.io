@@ -56,9 +56,9 @@
     <h2 class="author"></h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>155</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>156</strong><br>文章</div></a>
       <a href="/categories"><div><strong>56</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>113</strong><br>标签</div></a>
+      <a href="/tags"><div><strong>114</strong><br>标签</div></a>
     </div>
     <ul class="blog-link">
      
@@ -156,7 +156,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/9f95e5a1.html" data-id="ck349a3ts000vpjqp7tw1t6na" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/9f95e5a1.html" data-id="ck35i8lpa000pbzqp3s2p9whi" class="article-share-link">
         分享</a>
       
       
@@ -248,11 +248,98 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/4db18d9b.html" data-id="ck349a3uw002zpjqpsssrz1xf" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/4db18d9b.html" data-id="ck35i8lqd002wbzqpiw1qxukd" class="article-share-link">
         分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ELK/">ELK</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Grafana/">Grafana</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Dubbo 服务提供者部署在GBK服务器环境的乱码问题" class="article" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/2b4e0834.html" class="article-date">
+  <time class="post-time" datetime="2019-11-07T08:33:00.000Z" itemprop="datePublished">
+    <span class="post-month">11月</span><br/>
+    <span class="post-day">07</span>
+  </time>
+</a>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/2b4e0834.html">Dubbo 服务提供者部署在GBK服务器环境的乱码问题</a>
+    </h1>
+  
+
+      <div>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
+  </div>
+
+        
+        
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/2b4e0834.html" class="leancloud_visitors" data-flag-title="Dubbo 服务提供者部署在GBK服务器环境的乱码问题">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 269</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 1 分钟</span>
+  </div>
+ 
+        
+      </div>
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <h3 id="1-场景"><a href="#1-场景" class="headerlink" title="1.场景"></a>1.场景</h3><p>将服务部署在一台机器上，过后发现消费端在注册中心中获取服务时，<br>如果获取到该服务器上的服务进行请求，处理结果为乱码，而请求另外一台服务器的服务时，结果却是正常。</p>
+<h3 id="2-排查"><a href="#2-排查" class="headerlink" title="2.排查"></a>2.排查</h3><p>经排查这台服务器上的服务器编码为GBK，而其他正常的服务器则为UTF-8</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> locale</span></span><br><span class="line">LANG=zh_CN.GBK</span><br><span class="line">LC_CTYPE="zh_CN.GBK"</span><br><span class="line">LC_NUMERIC="zh_CN.GBK"</span><br><span class="line">LC_TIME="zh_CN.GBK"</span><br><span class="line">LC_COLLATE="zh_CN.GBK"</span><br><span class="line">LC_MONETARY="zh_CN.GBK"</span><br><span class="line">LC_MESSAGES="zh_CN.GBK"</span><br><span class="line">LC_PAPER="zh_CN.GBK"</span><br><span class="line">LC_NAME="zh_CN.GBK"</span><br><span class="line">LC_ADDRESS="zh_CN.GBK"</span><br><span class="line">LC_TELEPHONE="zh_CN.GBK"</span><br><span class="line">LC_MEASUREMENT="zh_CN.GBK"</span><br><span class="line">LC_IDENTIFICATION="zh_CN.GBK"</span><br><span class="line">LC_ALL=zh_CN.GBK</span><br></pre></td></tr></table></figure>
+<h3 id="3-解决"><a href="#3-解决" class="headerlink" title="3.解决"></a>3.解决</h3><p>这时有两种解决方案：</p>
+<ol>
+<li>修改系统的全局服务器编码为UTF-8（不知道为何，在启动脚本使用临时环境变量的方式提前执行了 <code>export LANG=en_US.UTF-8</code> 却无法生效。）</li>
+<li>在启动脚本里，对jvm启动参数进行调整，设置编码格式，添加以下参数重启即可。</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-Dfile.encoding=UTF-8</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/2b4e0834.html" data-id="ck35i8lpc000tbzqplf1t5ilj" class="article-share-link">
+        分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Dubbo/">Dubbo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/乱码/">乱码</a></li></ul>
 
     </footer>
   </div>
@@ -333,7 +420,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/82922308.html" data-id="ck349a3v8003opjqpdi1jj9m7" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/82922308.html" data-id="ck35i8lr50046bzqpk798qshb" class="article-share-link">
         分享</a>
       
       
@@ -419,7 +506,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/ff68fd05.html" data-id="ck349a3w2005epjqpn5kyvwkv" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/ff68fd05.html" data-id="ck35i8lrk0050bzqpukiqvv36" class="article-share-link">
         分享</a>
       
       
@@ -505,7 +592,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/84f800f7.html" data-id="ck349a3xs009bpjqptya23kbo" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/84f800f7.html" data-id="ck35i8luj00a6bzqpf9c1uzs8" class="article-share-link">
         分享</a>
       
       
@@ -589,7 +676,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/f6c0b73e.html" data-id="ck349a3xp0094pjqp80lvmwxq" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/f6c0b73e.html" data-id="ck35i8ltz0097bzqpmjwj09ho" class="article-share-link">
         分享</a>
       
       
@@ -678,7 +765,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/67b16286.html" data-id="ck349a3xt009epjqphrdehvkj" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/67b16286.html" data-id="ck35i8lu8009mbzqpknrk4qnq" class="article-share-link">
         分享</a>
       
       
@@ -762,7 +849,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/169364f6.html" data-id="ck349a3zc00cmpjqprn4g5mts" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/169364f6.html" data-id="ck35i8lw400c9bzqpxo7wq8ci" class="article-share-link">
         分享</a>
       
       
@@ -848,100 +935,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/9ecafb15.html" data-id="ck349a40a00e8pjqpd0z5wmmw" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/9ecafb15.html" data-id="ck35i8m2q00vxbzqpbu3ipw38" class="article-share-link">
         分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/小程序/">小程序</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/广告/">广告</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/运营/">运营</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Logback 问题点总结" class="article" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/5861f454.html" class="article-date">
-  <time class="post-time" datetime="2019-04-18T06:32:00.000Z" itemprop="datePublished">
-    <span class="post-month">4月</span><br/>
-    <span class="post-day">18</span>
-  </time>
-</a>
-
-  </div>
-  <div class="article-inner">
-    
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/5861f454.html">Logback 问题点总结</a>
-    </h1>
-  
-
-      <div>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
-  </div>
-
-        
-        
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/5861f454.html" class="leancloud_visitors" data-flag-title="Logback 问题点总结">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 2,181</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 8 分钟</span>
-  </div>
- 
-        
-      </div>
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      <p><a href="https://github.com/qos-ch/logback" target="_blank" rel="noopener">Logback</a> 与 <a href="https://github.com/apache/log4j" target="_blank" rel="noopener">Log4j</a> 一样都是基于 <a href="https://github.com/qos-ch/slf4j" target="_blank" rel="noopener">slf4j</a> 的日志实现框架，但前者较后者后者更多的性能优势因而被作为Log4j的替代品被广泛进行使用。</p>
-<p>本次我们就来简单总结一下Logback常见的一些问题：</p>
-<h1 id="1-工作原理"><a href="#1-工作原理" class="headerlink" title="1.工作原理"></a>1.工作原理</h1><p>先看一张图：</p>
-<p><img src="http://img.tidyko.com/blog/logback-2.png" alt=""></p>
-<p>当调用logger.trace/debug/info/warn/error()时</p>
-      
-      <p class="article-more-link">
-        <a href="/posts/5861f454.html#more">
-          Read More</a>
-      </p>
-      
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/5861f454.html" data-id="ck349a3xr0099pjqpv0ljhzkb" class="article-share-link">
-        分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Logback/">Logback</a></li></ul>
 
     </footer>
   </div>
@@ -1009,7 +1007,7 @@
     <div class="count-box">
       <a href="/archives">
         <div><strong>
-            155</strong><br>文章</div>
+            156</strong><br>文章</div>
       </a>
       <a href="/categories">
         <div><strong>
@@ -1017,7 +1015,7 @@
       </a>
       <a href="/tags">
         <div><strong>
-            113</strong><br>标签</div>
+            114</strong><br>标签</div>
       </a>
     </div>
 
