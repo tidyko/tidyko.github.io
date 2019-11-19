@@ -155,7 +155,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/8476b89f.html" data-id="ck35icbhz000l1eqp1nphpyz4" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/8476b89f.html" data-id="ck35m0iog000h8hqplq1tcs4c" class="article-share-link">
         分享</a>
       
       
@@ -208,22 +208,21 @@
 
 
 
-<div id="comments" class="comments">
-  <div id="gitment_container"></div>
-</div>
 
-<link rel="stylesheet" href="https://www.wenjunjiang.win/css/gitment.css">
-<script src="https://www.wenjunjiang.win/js/gitment.js"></script>
+
+<div id="vcomments" style="
+background-color: rgba(255,255,255,0.9);
+border-radius: 5px;
+padding: 20px;
+margin-bottom: 20px;"></div>
+
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
 <script>
-  var gitment = new Gitment({
-    owner: 'tidyko',
-    repo: 'tidyko.github.io',
-    oauth: {
-      client_id: '62e4f6a4ca86e056da76',
-      client_secret: '912d627549301dd54437313b122a7c543215bc4c',
-    },
+  new Valine({
+    el: '#vcomments',
+    appId: 'a2Uq3v2udvO68TdhhFJTE11X-MdYXbMMI',
+    appKey: 'a74JDghb1RjHgxK9Fpvk3dPy'
   })
-  gitment.render('gitment_container')
 </script>
 </section>
         

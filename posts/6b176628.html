@@ -12,7 +12,7 @@
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="该文转自 forever杨’s Blog - Oracle Package 包说明和包体12在包中定义的函数，包体中实现的时候，函数名、参数名、类型都要一致，否则报错。在创建基于自定义函数时, 指定 `deterministic` 参数，再创建函数索引，就没有问题了。 定义包说明1234567891011CREATE OR REPLACE PACKAGE WX_CRYPTO IS  -- 定义 D">
-<meta name="keywords" content="Oracle,Package,Sql">
+<meta name="keywords" content="Oracle,Sql,Package">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Oracle Package 包说明和包体">
 <meta property="og:url" content="https://www.tidyko.com/posts/6b176628.html">
@@ -152,7 +152,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/6b176628.html" data-id="ck35icbna00au1eqpyc6jms8l" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/6b176628.html" data-id="ck35m0itd00bb8hqp4zh9m2v0" class="article-share-link">
         分享</a>
       
       
@@ -205,22 +205,21 @@
 
 
 
-<div id="comments" class="comments">
-  <div id="gitment_container"></div>
-</div>
 
-<link rel="stylesheet" href="https://www.wenjunjiang.win/css/gitment.css">
-<script src="https://www.wenjunjiang.win/js/gitment.js"></script>
+
+<div id="vcomments" style="
+background-color: rgba(255,255,255,0.9);
+border-radius: 5px;
+padding: 20px;
+margin-bottom: 20px;"></div>
+
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
 <script>
-  var gitment = new Gitment({
-    owner: 'tidyko',
-    repo: 'tidyko.github.io',
-    oauth: {
-      client_id: '62e4f6a4ca86e056da76',
-      client_secret: '912d627549301dd54437313b122a7c543215bc4c',
-    },
+  new Valine({
+    el: '#vcomments',
+    appId: 'a2Uq3v2udvO68TdhhFJTE11X-MdYXbMMI',
+    appKey: 'a74JDghb1RjHgxK9Fpvk3dPy'
   })
-  gitment.render('gitment_container')
 </script>
 </section>
         

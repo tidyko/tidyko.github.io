@@ -12,7 +12,7 @@
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="1.场景：今天打开EasyConnect提示：未能正确打开SANGFOR SSL Virtual网卡，暂时不能提供SSL CS服务，请联系管理员 2.排查：经排查，最后发现是与其他虚拟网卡冲突了。在昨天安装过网易mumu模拟器，没有安装成功，但是给我遗留了一个虚拟网卡。将其卸载后重启就行了。 3.操作：查看虚拟网卡：1kextstat 卸载指定虚拟网卡：1sudo  kextunload -b c">
-<meta name="keywords" content="Mac,代理,EasyConnect">
+<meta name="keywords" content="Mac,EasyConnect,代理">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Mac EasyConnect 未能正确打开SANGFOR SSL Virtual网卡">
 <meta property="og:url" content="https://www.tidyko.com/posts/f6c0b73e.html">
@@ -151,7 +151,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/f6c0b73e.html" data-id="ck35icbmq009e1eqpx219ur6i" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/f6c0b73e.html" data-id="ck35m0isi009b8hqplc204ss1" class="article-share-link">
         分享</a>
       
       
@@ -204,22 +204,21 @@
 
 
 
-<div id="comments" class="comments">
-  <div id="gitment_container"></div>
-</div>
 
-<link rel="stylesheet" href="https://www.wenjunjiang.win/css/gitment.css">
-<script src="https://www.wenjunjiang.win/js/gitment.js"></script>
+
+<div id="vcomments" style="
+background-color: rgba(255,255,255,0.9);
+border-radius: 5px;
+padding: 20px;
+margin-bottom: 20px;"></div>
+
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
 <script>
-  var gitment = new Gitment({
-    owner: 'tidyko',
-    repo: 'tidyko.github.io',
-    oauth: {
-      client_id: '62e4f6a4ca86e056da76',
-      client_secret: '912d627549301dd54437313b122a7c543215bc4c',
-    },
+  new Valine({
+    el: '#vcomments',
+    appId: 'a2Uq3v2udvO68TdhhFJTE11X-MdYXbMMI',
+    appKey: 'a74JDghb1RjHgxK9Fpvk3dPy'
   })
-  gitment.render('gitment_container')
 </script>
 </section>
         

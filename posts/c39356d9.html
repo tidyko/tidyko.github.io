@@ -12,7 +12,7 @@
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="使用Docker部署Sentinel控制台进入我的 github仓库 ,clone到本地后，进入sentinel目录，具体部署操作请看README.md。启动后进入 http://localhost:8848 ，即可看到控制台首页。 项目接入(web层)以下以springboot程序为例。 1）新增sentinel的starter12345&amp;lt;dependency&amp;gt;    &amp;lt;gro">
-<meta name="keywords" content="Java,Docker,J2EE,Sentinel">
+<meta name="keywords" content="Java,J2EE,Docker,Sentinel">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Sentinel 阿里高可用防护流量管理框架接入">
 <meta property="og:url" content="https://www.tidyko.com/posts/c39356d9.html">
@@ -169,7 +169,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/c39356d9.html" data-id="ck35icbnx00c71eqpvznyj225" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/c39356d9.html" data-id="ck35m0iu400cy8hqpkv07vzuc" class="article-share-link">
         分享</a>
       
       
@@ -222,22 +222,21 @@
 
 
 
-<div id="comments" class="comments">
-  <div id="gitment_container"></div>
-</div>
 
-<link rel="stylesheet" href="https://www.wenjunjiang.win/css/gitment.css">
-<script src="https://www.wenjunjiang.win/js/gitment.js"></script>
+
+<div id="vcomments" style="
+background-color: rgba(255,255,255,0.9);
+border-radius: 5px;
+padding: 20px;
+margin-bottom: 20px;"></div>
+
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
 <script>
-  var gitment = new Gitment({
-    owner: 'tidyko',
-    repo: 'tidyko.github.io',
-    oauth: {
-      client_id: '62e4f6a4ca86e056da76',
-      client_secret: '912d627549301dd54437313b122a7c543215bc4c',
-    },
+  new Valine({
+    el: '#vcomments',
+    appId: 'a2Uq3v2udvO68TdhhFJTE11X-MdYXbMMI',
+    appKey: 'a74JDghb1RjHgxK9Fpvk3dPy'
   })
-  gitment.render('gitment_container')
 </script>
 </section>
         
