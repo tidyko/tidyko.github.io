@@ -56,9 +56,9 @@
     <h2 class="author"></h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>156</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>157</strong><br>文章</div></a>
       <a href="/categories"><div><strong>56</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>114</strong><br>标签</div></a>
+      <a href="/tags"><div><strong>115</strong><br>标签</div></a>
     </div>
     <ul class="blog-link">
      
@@ -83,6 +83,100 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-SpringBoot Integration Redis分布式锁" class="article" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/c682cc65.html" class="article-date">
+  <time class="post-time" datetime="2019-12-23T06:38:00.000Z" itemprop="datePublished">
+    <span class="post-month">12月</span><br/>
+    <span class="post-day">23</span>
+  </time>
+</a>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/c682cc65.html">SpringBoot Integration Redis分布式锁</a>
+    </h1>
+  
+
+      <div>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
+  </div>
+
+        
+        
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/c682cc65.html" class="leancloud_visitors" data-flag-title="SpringBoot Integration Redis分布式锁">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 982</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 5 分钟</span>
+  </div>
+ 
+        
+      </div>
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <p>在使用Redis的发布/订阅功能时，由于多节点同时订阅同个通道后会同时消费，此时需要使用一定的策略来避免重复消费的情况。</p>
+<p>以下有两种方案：</p>
+<ol>
+<li>将发布者与订阅者部署在同一台机器上，然后在启动应用时动态初始化通道名称加上IP，这样由当前机器发布的消息只能由当前机器来消费，使用此方法消费者在同一机器上也最多只能部署一台。</li>
+<li>使用分布式锁，在订阅者收到通道消息后，对当前资源加锁，抢到锁的则有权限执行业务代码。这种相对于前者而言，就显得便捷很多。本次我们使用SpringBoot Integration Redis的分布式锁完成此功能。</li>
+</ol>
+<h2 id="pom依赖"><a href="#pom依赖" class="headerlink" title="pom依赖"></a>pom依赖</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-data-redis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-integration<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.integration<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-integration-redis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="yml配置"><a href="#yml配置" class="headerlink" title="yml配置"></a>yml配置</h2><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line"><span class="attr">  redis:</span></span><br><span class="line"><span class="attr">      database:</span> <span class="number">0</span></span><br><span class="line"><span class="attr">      host:</span> <span class="string">localhost</span></span><br><span class="line"><span class="attr">      port:</span> <span class="number">6379</span></span><br><span class="line"><span class="attr">      timeout:</span> <span class="number">1</span><span class="string">s</span></span><br></pre></td></tr></table></figure>
+<h2 id="java代码"><a href="#java代码" class="headerlink" title="java代码"></a>java代码</h2><p>Redis 配置<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@EnableCaching</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RedisConfig</span> <span class="keyword">extends</span> <span class="title">CachingConfigurerSupport</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> CacheManager <span class="title">cacheManager</span><span class="params">(RedisTemplate&lt;?,?&gt; redisTemplate)</span> </span>&#123;</span><br><span class="line">        CacheManager cacheManager = <span class="keyword">new</span> RedisCacheManager(redisTemplate);</span><br><span class="line">        <span class="keyword">return</span> cacheManager;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> RedisTemplate&lt;String, String&gt; <span class="title">redisTemplate</span><span class="params">(RedisConnectionFactory factory)</span> </span>&#123;</span><br><span class="line">        RedisTemplate&lt;String, String&gt; redisTemplate = <span class="keyword">new</span> RedisTemplate&lt;String, String&gt;();</span><br><span class="line">        redisTemplate.setConnectionFactory(factory);</span><br><span class="line">        <span class="keyword">return</span> redisTemplate;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Redis发布/订阅配置<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 初始化 - redis队列监听配置</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> tidy</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2019/5/23 17:43</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RedisSubListenerConfig</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 初始化监听器</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> connectionFactory</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> listenerAdapter</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> RedisMessageListenerContainer <span class="title">container</span><span class="params">(RedisConnectionFactory connectionFactory,</span></span></span><br><span class="line"><span class="function"><span class="params">                                                   MessageListenerAdapter listenerAdapter)</span> </span>&#123;</span><br><span class="line">        RedisMessageListenerContainer container = <span class="keyword">new</span> RedisMessageListenerContainer();</span><br><span class="line">        container.setConnectionFactory(connectionFactory);</span><br><span class="line">        <span class="comment">// todo 是否需要配置优化线程池</span></span><br><span class="line">        <span class="comment">// todo 可以使用自定义序列化</span></span><br><span class="line">        <span class="comment">// new PatternTopic("这里是监听的通道的名字") 通道要和发布者发布消息的通道一致</span></span><br><span class="line">        <span class="comment">// container 可以添加多个 messageListener,订阅多个通道</span></span><br><span class="line">        container.addMessageListener(listenerAdapter, <span class="string">"ts-tmpl-svc-msgusrinf"</span>);</span><br><span class="line">        <span class="keyword">return</span> container;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 绑定消息监听者和接收监听的方法</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> redisReceiver 消息接收者</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> MessageListenerAdapter <span class="title">listenerAdapter</span><span class="params">(RedisReceiver redisReceiver)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// receiveMessage 消息接收后的方法</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> MessageListenerAdapter(redisReceiver, <span class="string">"receiveMessage"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Redis分布式锁配置<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 初始化 - redis分布式锁配置</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> tidy</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2019/12/23 10:13</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RedisLockConfig</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Bean</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> RedisLockRegistry <span class="title">redisLockRegistry</span><span class="params">(RedisConnectionFactory factory)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// 默认60秒过期</span></span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> RedisLockRegistry(factory, <span class="string">"ts-template"</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>消息发布者<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 自定义微信模板消息 - 推送请求信息接口实现</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> tidy</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2019/5/23 10:26</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MsgUserInfoServiceImpl</span> <span class="keyword">implements</span> <span class="title">MsgUserInfoService</span> </span>&#123;</span><br><span class="line">	<span class="meta">@Autowired</span></span><br><span class="line">	<span class="keyword">private</span> MsgUserInfoRepository msgUserInfoRepository;</span><br><span class="line">	<span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> RedisTemplate&lt;String, Object&gt; redisTemplate;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Long <span class="title">saveAndPushToQueue</span><span class="params">(MsgUserInfo info)</span> <span class="keyword">throws</span> TemplateApiException </span>&#123;</span><br><span class="line">		Long id = <span class="number">0L</span>;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			MsgUserInfo result = msgUserInfoRepository.saveAndFlush(info);</span><br><span class="line">			id = result.getId();</span><br><span class="line">            <span class="comment">// 发布消息到通道</span></span><br><span class="line">			redisTemplate.convertAndSend(<span class="string">"ts-tmpl-svc-msgusrinf"</span>, result);</span><br><span class="line">		&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">			log.error(<span class="string">"数据记录异常:openid=&#123;&#125;,errMsg=&#123;&#125;"</span>, info.getWeixinno(), e.toString(), e);</span><br><span class="line">			<span class="keyword">throw</span> <span class="keyword">new</span> TemplateApiException(<span class="string">"15"</span>, <span class="string">"消息记录到数据库异常"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> id;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>消息订阅者<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * redis队列消费</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> tidy</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2019/5/23 17:59</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RedisReceiver</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> RedisTemplate&lt;String, Object&gt; redisTemplate;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> ModelPushService modelPushService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> RedisLockRegistry redisLockRegistry;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 收到通道的消息之后执行的方法</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> message 消息</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> channel 通道</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">receiveMessage</span><span class="params">(String message, String channel)</span> </span>&#123;</span><br><span class="line">        MsgUserInfo msgUserInfo = (MsgUserInfo) redisTemplate.getDefaultSerializer().deserialize(message.getBytes());</span><br><span class="line">        <span class="comment">// 对当前资源加锁</span></span><br><span class="line">        Lock lock = redisLockRegistry.obtain(String.valueOf(msgUserInfo.getId()));</span><br><span class="line">        <span class="keyword">boolean</span> isLockOwn = <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">// 当多个通道同时收到消息时，只有一个能够加锁成功</span></span><br><span class="line">            isLockOwn = lock.tryLock();</span><br><span class="line">            <span class="keyword">if</span> (isLockOwn) &#123;</span><br><span class="line">                log.info(<span class="string">"Received data &#123;&#125; from topic &#123;&#125;"</span>, message, channel);</span><br><span class="line">                modelPushService.saveAndPushInfo(msgUserInfo, <span class="keyword">false</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            log.error(<span class="string">"队列消费异常:errMsg=&#123;&#125;"</span>, e.toString(), e);</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="comment">// 解锁</span></span><br><span class="line">            <span class="keyword">if</span> (isLockOwn) &#123;</span><br><span class="line">                lock.unlock();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/c682cc65.html" data-id="ck4jawqg800cdx4qpaw34kntb" class="article-share-link">
+        分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Redis/">Redis</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringBoot/">SpringBoot</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/分布式锁/">分布式锁</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+
+
   
     <article id="post-Dubbo Filter + SLF4J MDC 实现分布式日志追踪" class="article" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -156,7 +250,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/9f95e5a1.html" data-id="ck35m0iol000q8hqpc8tj9xfs" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/9f95e5a1.html" data-id="ck4jawqau000qx4qpvbxdguxk" class="article-share-link">
         分享</a>
       
       
@@ -250,7 +344,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/4db18d9b.html" data-id="ck35m0ipq002w8hqpivzlwll5" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/4db18d9b.html" data-id="ck4jawqc3003cx4qpo99zq1oe" class="article-share-link">
         分享</a>
       
       
@@ -339,7 +433,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/2b4e0834.html" data-id="ck35m0ioq00168hqpi6qon0k5" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/2b4e0834.html" data-id="ck4jawqb8001ix4qp0fpuvzzn" class="article-share-link">
         分享</a>
       
       
@@ -426,7 +520,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/82922308.html" data-id="ck35m0iq6003x8hqp4vxje8fr" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/82922308.html" data-id="ck4jawqcp004cx4qph7h45cej" class="article-share-link">
         分享</a>
       
       
@@ -514,7 +608,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/ff68fd05.html" data-id="ck35m0iql004x8hqpgvf6uxfr" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/ff68fd05.html" data-id="ck4jawqd5005dx4qpa86eaaxr" class="article-share-link">
         分享</a>
       
       
@@ -602,7 +696,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/84f800f7.html" data-id="ck35m0isu009x8hqp85wt69i2" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/84f800f7.html" data-id="ck4jawqf800a7x4qpdzinas6o" class="article-share-link">
         分享</a>
       
       
@@ -688,7 +782,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/f6c0b73e.html" data-id="ck35m0isi009b8hqplc204ss1" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/f6c0b73e.html" data-id="ck4jawqev009ex4qpkrp5lb0r" class="article-share-link">
         分享</a>
       
       
@@ -779,7 +873,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/67b16286.html" data-id="ck35m0isk009f8hqpum8t0sbz" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/67b16286.html" data-id="ck4jawqf1009rx4qp0qhhiggf" class="article-share-link">
         分享</a>
       
       
@@ -865,99 +959,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/169364f6.html" data-id="ck35m0itu00ce8hqpc4ha4xq7" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/169364f6.html" data-id="ck4jawqg700cax4qp3sd3dor9" class="article-share-link">
         分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringBoot/">SpringBoot</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-小程序 Banner以及激励式视频广告总结" class="article" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/9ecafb15.html" class="article-date">
-  <time class="post-time" datetime="2019-04-23T02:18:00.000Z" itemprop="datePublished">
-    <span class="post-month">4月</span><br/>
-    <span class="post-day">23</span>
-  </time>
-</a>
-
-  </div>
-  <div class="article-inner">
-    
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/9ecafb15.html">小程序 Banner以及激励式视频广告总结</a>
-    </h1>
-  
-
-      <div>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/运营/">运营</a>,<a class="article-category-link" href="/categories/运营/小程序/">小程序</a>
-  </div>
-
-        
-        
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/9ecafb15.html" class="leancloud_visitors" data-flag-title="小程序 Banner以及激励式视频广告总结">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 394</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 1 分钟</span>
-  </div>
- 
-        
-      </div>
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      <p>当小程序累计用户超过1000之后即可申请开通流量主功能，</p>
-<p><img src="http://img.tidyko.com/blog/mp_llz_1.png" alt=""></p>
-      
-      <p class="article-more-link">
-        <a href="/posts/9ecafb15.html#more">
-          Read More</a>
-      </p>
-      
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/9ecafb15.html" data-id="ck35m0ius00e68hqpxsfg6ph6" class="article-share-link">
-        分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/小程序/">小程序</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/广告/">广告</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/运营/">运营</a></li></ul>
 
     </footer>
   </div>
@@ -1027,7 +1033,7 @@
     <div class="count-box">
       <a href="/archives">
         <div><strong>
-            156</strong><br>文章</div>
+            157</strong><br>文章</div>
       </a>
       <a href="/categories">
         <div><strong>
@@ -1035,7 +1041,7 @@
       </a>
       <a href="/tags">
         <div><strong>
-            114</strong><br>标签</div>
+            115</strong><br>标签</div>
       </a>
     </div>
 

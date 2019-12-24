@@ -56,9 +56,9 @@
     <h2 class="author"></h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>156</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>157</strong><br>文章</div></a>
       <a href="/categories"><div><strong>56</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>114</strong><br>标签</div></a>
+      <a href="/tags"><div><strong>115</strong><br>标签</div></a>
     </div>
     <ul class="blog-link">
      
@@ -83,6 +83,94 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-Vue webpack打包src路径问题" class="article" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/3ad33ff3.html" class="article-date">
+  <time class="post-time" datetime="2018-11-02T07:02:00.000Z" itemprop="datePublished">
+    <span class="post-month">11月</span><br/>
+    <span class="post-day">02</span>
+  </time>
+</a>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/3ad33ff3.html">Vue webpack打包src路径问题</a>
+    </h1>
+  
+
+      <div>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Vue/">Vue</a>
+  </div>
+
+        
+        
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/3ad33ff3.html" class="leancloud_visitors" data-flag-title="Vue webpack打包src路径问题">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 599</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 3 分钟</span>
+  </div>
+ 
+        
+      </div>
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <p>使用vue的时候，因为图片路径为动态数据，下面这样直接将数据传入元素，编译输出后路径将会是原始相对路径的数据</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"cover-container"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">template</span> <span class="attr">v-for</span>=<span class="string">"(cover,index) in coverList"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">:key</span>=<span class="string">"index"</span> @<span class="attr">click</span>=<span class="string">"openPage(cover.url)"</span> <span class="attr">class</span>=<span class="string">"cover"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">template</span> <span class="attr">v-if</span>=<span class="string">"index === 0"</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"cover_title"</span>&gt;</span>&#123;&#123;cover.title&#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">img</span> <span class="attr">v-bind:src</span>=<span class="string">"cover.banner"</span> <span class="attr">class</span>=<span class="string">"cover_img_top"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">template</span> <span class="attr">v-else</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">img</span> <span class="attr">v-bind:src</span>=<span class="string">"cover.banner"</span> <span class="attr">class</span>=<span class="string">"cover_img_other"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"cover_desc"</span> <span class="attr">v-html</span>=<span class="string">"cover.desc"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">span</span> <span class="attr">v-if</span>=<span class="string">"index!=coverList.length-1"</span> <span class="attr">:key</span>=<span class="string">"index"</span> <span class="attr">class</span>=<span class="string">"line"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
+      
+      <p class="article-more-link">
+        <a href="/posts/3ad33ff3.html#more">
+          Read More</a>
+      </p>
+      
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/3ad33ff3.html" data-id="ck4jawqh200dox4qpl5b5grn8" class="article-share-link">
+        分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+
+
   
     <article id="post-Charles Map Remote使用" class="article" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -152,7 +240,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/8476b89f.html" data-id="ck35m0iog000h8hqplq1tcs4c" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/8476b89f.html" data-id="ck4jawqap000hx4qpaiqbtkmb" class="article-share-link">
         分享</a>
       
       
@@ -235,7 +323,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/8b59beec.html" data-id="ck35m0iqd004b8hqp0p54r5vj" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/8b59beec.html" data-id="ck4jawqcu004kx4qpdr6h7dhz" class="article-share-link">
         分享</a>
       
       
@@ -328,7 +416,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/c14d120e.html" data-id="ck35m0isg00978hqpsd7j2gkm" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/c14d120e.html" data-id="ck4jawqeq0092x4qpev9hurlu" class="article-share-link">
         分享</a>
       
       
@@ -416,7 +504,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/9e53d1a6.html" data-id="ck35m0iuw00ef8hqpepvj82j6" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/9e53d1a6.html" data-id="ck4jawqhi00enx4qpk711huyy" class="article-share-link">
         分享</a>
       
       
@@ -504,7 +592,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/7aeb1e46.html" data-id="ck35m0ioe000f8hqpni2r1559" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/7aeb1e46.html" data-id="ck4jawqao000fx4qpdbha342v" class="article-share-link">
         分享</a>
       
       
@@ -592,7 +680,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/bf60621.html" data-id="ck35m0is9008q8hqpdvo5kvpe" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/bf60621.html" data-id="ck4jawqes0096x4qpdwrqnlss" class="article-share-link">
         分享</a>
       
       
@@ -686,7 +774,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/e4163a66.html" data-id="ck35m0ion000v8hqpyioxvl0m" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/e4163a66.html" data-id="ck4jawqax000ux4qprkncxti6" class="article-share-link">
         分享</a>
       
       
@@ -783,7 +871,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/a5557ea7.html" data-id="ck35m0iol000r8hqpg9x35pca" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/a5557ea7.html" data-id="ck4jawqas000nx4qpakxdeitz" class="article-share-link">
         分享</a>
       
       
@@ -876,102 +964,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/4573f792.html" data-id="ck35m0ipj002h8hqpeqtoca9q" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/4573f792.html" data-id="ck4jawqbr002mx4qp023jb4ls" class="article-share-link">
         分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ELK/">ELK</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FileBeat/">FileBeat</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-J2EE Spring redirect导致内存溢出问题" class="article" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/3c49f4b8.html" class="article-date">
-  <time class="post-time" datetime="2018-08-31T01:47:00.000Z" itemprop="datePublished">
-    <span class="post-month">8月</span><br/>
-    <span class="post-day">31</span>
-  </time>
-</a>
-
-  </div>
-  <div class="article-inner">
-    
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/3c49f4b8.html">J2EE Spring redirect导致内存溢出问题</a>
-    </h1>
-  
-
-      <div>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
-  </div>
-
-        
-        
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/3c49f4b8.html" class="leancloud_visitors" data-flag-title="J2EE Spring redirect导致内存溢出问题">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 1,041</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 5 分钟</span>
-  </div>
- 
-        
-      </div>
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      <p>最近发现线上的一个应用跑一段周期之后就会出现内存溢出问题，需要重启，所以以此分析一下原因并修复。</p>
-<h2 id="1-获取内存快照"><a href="#1-获取内存快照" class="headerlink" title="1.获取内存快照"></a>1.获取内存快照</h2><p>使用jdk自带工具jmap获取内存快照文件，如下：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">jmap -dump:format=b,file=快照保存路径 进程id</span><br><span class="line"></span><br><span class="line">如：</span><br><span class="line"></span><br><span class="line">jmap -dump:format=b,file=/opt/27245.hprof 27245</span><br></pre></td></tr></table></figure></p>
-<h2 id="2-使用工具进行分析"><a href="#2-使用工具进行分析" class="headerlink" title="2.使用工具进行分析"></a>2.使用工具进行分析</h2><p>获取到内存快照文件27245.hprof后，我们需要对此进行分析，这里使用的分析工具为<code>Eclipse Memory Analyzer Tool</code>，我们使用工具打开27245.hprof文件。</p>
-<h3 id="2-1-Main-View"><a href="#2-1-Main-View" class="headerlink" title="2.1 Main View"></a>2.1 Main View</h3><p>主界面显示有一大块内存占用高达1.3G，基本可以确定是这一块出现了问题。</p>
-<p><img src="http://img.tidyko.com/blog/Memoryanalysis_27245_1.png" alt="J2EE Spring redirect导致内存溢出问题_图例1"><br>
-      
-      <p class="article-more-link">
-        <a href="/posts/3c49f4b8.html#more">
-          Read More</a>
-      </p>
-      
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3c49f4b8.html" data-id="ck35m0iqt005a8hqp9rp3k2ce" class="article-share-link">
-        分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/">Spring</a></li></ul>
 
     </footer>
   </div>
@@ -1041,7 +1038,7 @@
     <div class="count-box">
       <a href="/archives">
         <div><strong>
-            156</strong><br>文章</div>
+            157</strong><br>文章</div>
       </a>
       <a href="/categories">
         <div><strong>
@@ -1049,7 +1046,7 @@
       </a>
       <a href="/tags">
         <div><strong>
-            114</strong><br>标签</div>
+            115</strong><br>标签</div>
       </a>
     </div>
 
