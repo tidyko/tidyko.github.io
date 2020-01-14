@@ -56,9 +56,9 @@
     <h2 class="author"></h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>157</strong><br>文章</div></a>
-      <a href="/categories"><div><strong>56</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>115</strong><br>标签</div></a>
+      <a href="/archives"><div><strong>158</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>57</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>117</strong><br>标签</div></a>
     </div>
     <ul class="blog-link">
      
@@ -83,6 +83,92 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-SpringBoot 配置测试用例不启用定时器" class="article" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/169364f6.html" class="article-date">
+  <time class="post-time" datetime="2019-05-29T06:52:00.000Z" itemprop="datePublished">
+    <span class="post-month">5月</span><br/>
+    <span class="post-day">29</span>
+  </time>
+</a>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/169364f6.html">SpringBoot 配置测试用例不启用定时器</a>
+    </h1>
+  
+
+      <div>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
+  </div>
+
+        
+        
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/169364f6.html" class="leancloud_visitors" data-flag-title="SpringBoot 配置测试用例不启用定时器">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 267</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 1 分钟</span>
+  </div>
+ 
+        
+      </div>
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <p>我们先看一下代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RunWith</span>(SpringRunner.class)</span><br><span class="line"><span class="meta">@SpringBootTest</span>(classes = App.class)</span><br><span class="line"><span class="meta">@ActiveProfiles</span>(<span class="string">"local"</span>)</span><br><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FooServiceTest</span> </span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@EnableScheduling</span></span><br><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">App</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用以上代码，在测试用例中启动时，会执行App这个类进行初始化，在App中我们使用了<code>@EnableScheduling</code>表示启用定时器，这时候如果我们在运行测试用例时不需要启动定时器配置，我们应该使用<code>@ConditionalOnProperty</code>加一下条件限制，来达到这个功能，具体代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RunWith</span>(SpringRunner.class)</span><br><span class="line"><span class="meta">@SpringBootTest</span>(classes = App.class)</span><br><span class="line"><span class="meta">@ActiveProfiles</span>(<span class="string">"local"</span>)</span><br><span class="line"><span class="meta">@TestPropertySource</span>(properties = <span class="string">"app.scheduling.enable=false"</span>)</span><br><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FooServiceTest</span> </span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">App</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ConditionalOnProperty</span>(</span><br><span class="line">        value = <span class="string">"app.scheduling.enable"</span>, havingValue = <span class="string">"true"</span>, matchIfMissing = <span class="keyword">true</span></span><br><span class="line">    )</span><br><span class="line">    <span class="meta">@Configuration</span></span><br><span class="line">    <span class="meta">@EnableScheduling</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">SchedulingConfiguration</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里使用了一个静态内部类来达到此效果，在类上面加上配置启动限制<code>@ConditionalOnProperty</code>，默认为启用，然后我们在写测试用例时，不需要启动的时候则使用<code>@TestPropertySource</code>设置条件里面的属性<code>app.scheduling.enable</code>为<code>false</code>即可。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/169364f6.html" data-id="ck5dcrw8400cdycqpbwxvoxi4" class="article-share-link">
+        分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringBoot/">SpringBoot</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+
+
   
     <article id="post-小程序 Banner以及激励式视频广告总结" class="article" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -148,7 +234,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/9ecafb15.html" data-id="ck5dcqh5o00e2lmqpzzmzafpe" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/9ecafb15.html" data-id="ck5dcrw8u00dmycqpz6t306ku" class="article-share-link">
         分享</a>
       
       
@@ -239,7 +325,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/5861f454.html" data-id="ck5dcqh3w009clmqpnhn8srh3" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/5861f454.html" data-id="ck5dcrw6l0094ycqpjc6e54b2" class="article-share-link">
         分享</a>
       
       
@@ -328,7 +414,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/fa8b02cc.html" data-id="ck5dcqh37007glmqpe3vr6g67" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/fa8b02cc.html" data-id="ck5dcrw5n007dycqpf1yyoo2w" class="article-share-link">
         分享</a>
       
       
@@ -418,7 +504,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/5e551b83.html" data-id="ck5dcqh5m00dwlmqpwujq8x4q" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/5e551b83.html" data-id="ck5dcrw8w00dqycqp48jjbsve" class="article-share-link">
         分享</a>
       
       
@@ -507,7 +593,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/41a66ecb.html" data-id="ck5dcqh1x003wlmqp7qay87fs" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/41a66ecb.html" data-id="ck5dcrw3w003mycqpg0u4lfpo" class="article-share-link">
         分享</a>
       
       
@@ -602,7 +688,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/589711b0.html" data-id="ck5dcqh3r0091lmqpa7x5a7y2" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/589711b0.html" data-id="ck5dcrw6f008tycqpw5aq3sv3" class="article-share-link">
         分享</a>
       
       
@@ -694,7 +780,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/62bac17f.html" data-id="ck5dcqh4a00adlmqpkfuigzwo" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/62bac17f.html" data-id="ck5dcrw6w009pycqpzz64lxf8" class="article-share-link">
         分享</a>
       
       
@@ -785,7 +871,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/a4e1109a.html" data-id="ck5dcqh1d002nlmqpk6byd042" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/a4e1109a.html" data-id="ck5dcrw3c002nycqpufq9m3de" class="article-share-link">
         分享</a>
       
       
@@ -877,99 +963,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/8ca969bc.html" data-id="ck5dcqh1h002ulmqpsxjliaj1" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/8ca969bc.html" data-id="ck5dcrw3v003jycqp56wf8orv" class="article-share-link">
         分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ELK/">ELK</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Grafana/">Grafana</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Logstash 使用tcpinput" class="article" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/1fedb9b.html" class="article-date">
-  <time class="post-time" datetime="2019-03-06T06:58:00.000Z" itemprop="datePublished">
-    <span class="post-month">3月</span><br/>
-    <span class="post-day">06</span>
-  </time>
-</a>
-
-  </div>
-  <div class="article-inner">
-    
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/1fedb9b.html">Logstash 使用tcpinput</a>
-    </h1>
-  
-
-      <div>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/中间件/">中间件</a>,<a class="article-category-link" href="/categories/中间件/LogStash/">LogStash</a>
-  </div>
-
-        
-        
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/1fedb9b.html" class="leancloud_visitors" data-flag-title="Logstash 使用tcpinput">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 1,034</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 6 分钟</span>
-  </div>
- 
-        
-      </div>
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      <p>之前使用的架构为：<code>项目日志</code> -&gt; <code>Filebeat</code> -&gt; <code>redis</code> -&gt; <code>Logstash</code> -&gt; <code>ElasticSearch</code> -&gt; <code>Kibana</code><br>如果使用TCP input的话就可以简化为这样：<code>项目</code> -&gt; <code>Logstash</code> -&gt; <code>ElasticSearch</code> -&gt; <code>Kibana</code><br>这样可以少去每台服务器上面FileBeat的维护。</p>
-<p>项目日志格式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">19-03-06 12:17:12 INFO http-nio-8080-exec-3 cn.xxx.xxx.xxx.xxx.XXXUtils.call(246) | request(&lt;?xml version=&quot;1.0&quot; encoding=&quot;GB2312&quot;?&gt;&lt;SendData&gt;xxx&lt;/SendData&gt;)</span><br><span class="line">19-03-06 12:17:12 INFO http-nio-8080-exec-3 cn.xxx.xxx.xxx.xxx.XXX.getResultSet2015(34) | api_monitor ---&gt; platform=p1, name=n1, tget=666</span><br></pre></td></tr></table></figure></p>
-      
-      <p class="article-more-link">
-        <a href="/posts/1fedb9b.html#more">
-          Read More</a>
-      </p>
-      
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/1fedb9b.html" data-id="ck5dcqh3s0095lmqpfnrq727q" class="article-share-link">
-        分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ELK/">ELK</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LogStash/">LogStash</a></li></ul>
 
     </footer>
   </div>
@@ -1039,15 +1037,15 @@
     <div class="count-box">
       <a href="/archives">
         <div><strong>
-            157</strong><br>文章</div>
+            158</strong><br>文章</div>
       </a>
       <a href="/categories">
         <div><strong>
-            56</strong><br>分类</div>
+            57</strong><br>分类</div>
       </a>
       <a href="/tags">
         <div><strong>
-            115</strong><br>标签</div>
+            117</strong><br>标签</div>
       </a>
     </div>
 

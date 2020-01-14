@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>
+    
+    Tampermonkey 网站自动登录脚本 |
+    
+    Tidy的个人博客
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="工作中经常会使用到一些内部网站，每次登录都得频繁输入用户名密码，这些动作日积月累显得很浪费时间，现在让我们来使用Chrome浏览器的Tampermonkey插件，编写一段脚本来帮我们实现自动登录功能吧。  先在Chrome浏览器的谷歌应用商店上面安装Tampermonkey。">
+<meta name="keywords" content="Tampermonkey,油猴">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tampermonkey 网站自动登录脚本">
+<meta property="og:url" content="https://www.tidyko.com/posts/ee559db8.html">
+<meta property="og:site_name" content="Tidy的个人博客">
+<meta property="og:description" content="工作中经常会使用到一些内部网站，每次登录都得频繁输入用户名密码，这些动作日积月累显得很浪费时间，现在让我们来使用Chrome浏览器的Tampermonkey插件，编写一段脚本来帮我们实现自动登录功能吧。  先在Chrome浏览器的谷歌应用商店上面安装Tampermonkey。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://img.tidyko.com/blog/Tampermonkey_1.png">
+<meta property="og:image" content="http://img.tidyko.com/blog/Tampermonkey_2.png">
+<meta property="og:image" content="http://img.tidyko.com/blog/Tampermonkey_3.png">
+<meta property="og:image" content="http://img.tidyko.com/blog/Tampermonkey_4.png">
+<meta property="og:image" content="http://img.tidyko.com/blog/Tampermonkey_7.png">
+<meta property="og:image" content="http://img.tidyko.com/blog/Tampermonkey_6.png">
+<meta property="og:updated_time" content="2020-01-14T04:04:59.834Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Tampermonkey 网站自动登录脚本">
+<meta name="twitter:description" content="工作中经常会使用到一些内部网站，每次登录都得频繁输入用户名密码，这些动作日积月累显得很浪费时间，现在让我们来使用Chrome浏览器的Tampermonkey插件，编写一段脚本来帮我们实现自动登录功能吧。  先在Chrome浏览器的谷歌应用商店上面安装Tampermonkey。">
+<meta name="twitter:image" content="http://img.tidyko.com/blog/Tampermonkey_1.png">
+  
+  <link rel="alternate" href="/atom.xml" title="Tidy的个人博客" type="application/atom+xml">
+  
+  
+  <link rel="icon" href="/favicon.ico">
+  
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <!-- <link rel="stylesheet" href="/plugin/bganimation/bg.css"> -->
+  
+
+  
+<!-- Google Adsense -->
+<!-- <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+</script> -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-1522837637326007",
+        enable_page_level_ads: true
+    });
+</script>
+
+<script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
+<!-- End Google Adsense -->
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <div class="widget-wrap mobile-header">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="http://img.tidyko.com/avatar.jpg">
+    <h2 class="author"></h2>
+    <h3 class="description"></h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>158</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>57</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>117</strong><br>标签</div></a>
+    </div>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+        <section id="main"><article id="post-Tampermonkey 网站自动登录脚本" class="article" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/ee559db8.html" class="article-date">
+  <time class="post-time" datetime="2019-12-25T04:00:00.000Z" itemprop="datePublished">
+    <span class="post-month">12月</span><br/>
+    <span class="post-day">25</span>
+  </time>
+</a>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 class="article-title" itemprop="name">
+      Tampermonkey 网站自动登录脚本
+    </h1>
+  
+
+      <div>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/浏览器/">浏览器</a>,<a class="article-category-link" href="/categories/浏览器/Chrome/">Chrome</a>
+  </div>
+
+        
+        
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/ee559db8.html" class="leancloud_visitors" data-flag-title="Tampermonkey 网站自动登录脚本">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 601</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 3 分钟</span>
+  </div>
+ 
+        
+      </div>
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <p>工作中经常会使用到一些内部网站，每次登录都得频繁输入用户名密码，这些动作日积月累显得很浪费时间，现在让我们来使用Chrome浏览器的Tampermonkey插件，编写一段脚本来帮我们实现自动登录功能吧。</p>
+<ol>
+<li>先在Chrome浏览器的谷歌应用商店上面安装Tampermonkey。<br><img src="http://img.tidyko.com/blog/Tampermonkey_1.png" alt=""><a id="more"></a></li>
+<li>安装完之后在插件栏应该能看到Tampermonkey的小图标。<br><img src="http://img.tidyko.com/blog/Tampermonkey_2.png" alt=""></li>
+<li>点击Tampermonkey插件小图标，然后点击管理面板，进入脚本管理界面，点击右边的加号，新建脚本。<br><img src="http://img.tidyko.com/blog/Tampermonkey_3.png" alt=""><br><img src="http://img.tidyko.com/blog/Tampermonkey_4.png" alt=""></li>
+<li>复制以下js脚本代码，黏贴进去文本框，然后按Ctrl+s进行保存。</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ==UserScript==</span></span><br><span class="line"><span class="comment">// @name        autoPasswd</span></span><br><span class="line"><span class="comment">// @namespace   tidy</span></span><br><span class="line"><span class="comment">// @version     1.1</span></span><br><span class="line"><span class="comment">// @include     *://10.121.22.60*</span></span><br><span class="line"><span class="comment">// @grant       none</span></span><br><span class="line"><span class="comment">// ==/UserScript==</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> globalConfig = &#123;</span><br><span class="line">    <span class="string">'stocks'</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// 输入框填充设置</span></span><br><span class="line">            targetUrlRegex: <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">"^http://10.121.22.60:8080/sys..*$"</span>),</span><br><span class="line">            attributeName: <span class="string">'id'</span>,</span><br><span class="line">            usernameKey: <span class="string">'s1'</span>,</span><br><span class="line">            usernameVal: <span class="string">'UserName'</span>,</span><br><span class="line">            passwordKey: <span class="string">'s2'</span>,</span><br><span class="line">            passwordVal: <span class="string">'Password'</span>,</span><br><span class="line">            <span class="comment">// 自动登录设置</span></span><br><span class="line">            isLogin: <span class="literal">true</span>,</span><br><span class="line">            loginButtonTag: <span class="string">"input"</span>,</span><br><span class="line">            buttonAttributeName: <span class="string">"value"</span>,</span><br><span class="line">            buttonAttributeValue: <span class="string">"登录"</span></span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">autoConfig</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">var</span> stocks = globalConfig.stocks;</span><br><span class="line">        <span class="keyword">if</span> (!stocks.length) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> idx <span class="keyword">in</span> stocks) &#123;</span><br><span class="line">            <span class="comment">// 域名判断</span></span><br><span class="line">            <span class="keyword">if</span> (!stocks[idx].targetUrlRegex.test(<span class="built_in">window</span>.location)) &#123;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 填充输入框</span></span><br><span class="line">            <span class="keyword">var</span> inputs = <span class="built_in">document</span>.body.getElementsByTagName(<span class="string">'input'</span>);</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">var</span> i <span class="keyword">in</span> inputs) &#123;</span><br><span class="line">                <span class="keyword">var</span> input = inputs[i];</span><br><span class="line">                <span class="keyword">if</span> (input[stocks[idx].attributeName] == stocks[idx].usernameKey) &#123;</span><br><span class="line">                    input.value = stocks[idx].usernameVal;</span><br><span class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> (input[stocks[idx].attributeName] == stocks[idx].passwordKey) &#123;</span><br><span class="line">                    input.value = stocks[idx].passwordVal;</span><br><span class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> (input[stocks[idx].attributeName] == stocks[idx].captchaKey) &#123;</span><br><span class="line">                    input.value = stocks[idx].captchaVal;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 自动登录</span></span><br><span class="line">            <span class="keyword">if</span>(stocks[idx].isLogin)&#123;</span><br><span class="line">                <span class="keyword">var</span> loginBtnTag = stocks[idx].loginButtonTag;</span><br><span class="line">                <span class="keyword">var</span> tags = <span class="built_in">document</span>.body.getElementsByTagName(loginBtnTag);</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">var</span> ti <span class="keyword">in</span> tags) &#123;</span><br><span class="line">                    <span class="keyword">var</span> tag = tags[ti];</span><br><span class="line">                    <span class="keyword">if</span> (tag[stocks[idx].buttonAttributeName] == stocks[idx].buttonAttributeValue) &#123;</span><br><span class="line">                        tag.click();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">        <span class="built_in">console</span>.error(e.message);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">setTimeout(autoConfig, <span class="number">500</span>);</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li><p>调试自己的网站，获取用户名、密码输入框以及登录按钮的属性，分别填充到‘stocks’数组里面。<br><img src="http://img.tidyko.com/blog/Tampermonkey_7.png" alt=""></p>
+</li>
+<li><p>将需要触发脚本的网站ip或者域名，填写到头部，比如</p>
+</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// @include     *://10.121.22.60*</span></span><br></pre></td></tr></table></figure>
+<ol start="7">
+<li><p>点击界面的“已安装脚本”，就可以看到我们已经保存的名为“autoPasswd”的脚本名了。<br><img src="http://img.tidyko.com/blog/Tampermonkey_6.png" alt=""></p>
+</li>
+<li><p>然后打开我们设置的网站，就可以看到我们的网站一打开就被自动填充了用户名以及密码，然后自动点击了登录按钮进行登录了。</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/ee559db8.html" data-id="ck5dcrw8600chycqpaqkte8lg" class="article-share-link">
+        分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tampermonkey/">Tampermonkey</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/油猴/">油猴</a></li></ul>
+
+    </footer>
+  </div>
+  
+  
+<nav id="article-nav">
+  
+  
+    <a href="/posts/c682cc65.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">SpringBoot integration redis分布式锁</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+<div style="margin:50px 0">
+  <amp-auto-ads type="adsense" data-ad-client="ca-pub-1522837637326007">
+  </amp-auto-ads>
+  <!-- left-ad-2 -->
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1522837637326007" data-ad-slot="1200441426"
+    data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<div id="vcomments" style="
+background-color: rgba(255,255,255,0.9);
+border-radius: 5px;
+padding: 20px;
+margin-bottom: 20px;"></div>
+
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script>
+  new Valine({
+    el: '#vcomments',
+    appId: 'a2Uq3v2udvO68TdhhFJTE11X-MdYXbMMI',
+    appKey: 'a74JDghb1RjHgxK9Fpvk3dPy'
+  })
+</script>
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <h1 class="blog-title">Tidy的个人博客</h1>
+    <h2 class="blog-subtitle">人生とは好きな人と一緒に過ごした日々だ!</h2>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="http://img.tidyko.com/avatar.jpg">
+    <h2 class="author">
+      
+    </h2>
+    <h3 class="description">
+      
+    </h3>
+    <div class="count-box">
+      <a href="/archives">
+        <div><strong>
+            158</strong><br>文章</div>
+      </a>
+      <a href="/categories">
+        <div><strong>
+            57</strong><br>分类</div>
+      </a>
+      <a href="/tags">
+        <div><strong>
+            117</strong><br>标签</div>
+      </a>
+    </div>
+
+
+
+    <div class="social-link">
+      
+      <a class="hvr-bounce-in" href="https://github.com/tidyko" target="_blank" title="Github">
+        Github
+      </a>
+      
+    </div>
+
+    <div class="friend-link">
+      <h2>
+        友情链接
+      </h2>
+      
+      <a class="hvr-bounce-in" href="https://blog.yl-online.top" target="_blank" title="forever杨">
+        forever杨
+      </a>
+      
+      <a class="hvr-bounce-in" href="https://blog.dclog.cn/" target="_blank" title="DengCong">
+        DengCong
+      </a>
+      
+      <a class="hvr-bounce-in" href="https://17363959606.github.io/" target="_blank" title="静静同学">
+        静静同学
+      </a>
+      
+      <a class="hvr-bounce-in" href="https://copasters.github.io/" target="_blank" title="ChenYuan">
+        ChenYuan
+      </a>
+      
+    </div>
+  </div>
+</div>
+  
+    <div class="widget-wrap">
+    <h3 class="widget-title">关注我的公众号：</h3>
+    <div class="widget"><img style="width:100%" src="http://img.tidyko.com/japanesehub-qrcode.jpg">
+    </div>
+</div>
+  
+    <div class="widget-wrap">
+    <h3 class="widget-title"></h3>
+    <!-- left-ad-1 -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1522837637326007" data-ad-slot="1201221679"
+        data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy;2019 - 2020 Tidy的个人博客<br>
+      <!-- 由<a href="https://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
+      主题-<a href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a> -->
+      
+        <br>
+        <!-- <script src="https://s19.cnzz.com/z_stat.php?id=1274390271&web_id=1274390271" language="JavaScript" rel="noreferrer"></script>       -->
+        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1274390271'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1274390271%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));</script>
+      
+    </div>
+  </div>
+</footer>
+    </div>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/wow/0.1.6/wow.min.js"></script>
+<script>
+new WOW().init();
+</script>   
+
+
+  <link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+  <script src="/plugin/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+  <!-- <section class="hidden-xs"> 
+  <ul class="cb-slideshow"> 
+    <li><span>苟利</span></li> 
+    <li><span>国家</span></li> 
+    <li><span>生死以</span></li> 
+    <li><span>岂能</span></li> 
+    <li><span>祸福</span></li> 
+    <li><span>趋避之</span></li> 
+  </ul>
+</section> -->
+<script src="/js/script.js"></script>
+
+
+
+
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("DpQHavrF6hdX8C8q7ONib5Qv-gzGzoHsz", "CFNVYUb4rtTjkji3Erv4ROA7");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.article-title').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+
+
+<div id="totop" style="position:fixed;bottom:160px;right:50px;cursor: pointer;z-index: 10;">
+    <a title="返回顶部"><img src="/images/scrollup.png" style="width:50px;height:50px;"/></a>
+</div>
+<script src="/js/totop.js"></script>
+  </div>
+</body>
+</html>

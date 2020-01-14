@@ -56,9 +56,9 @@
     <h2 class="author"></h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>157</strong><br>文章</div></a>
-      <a href="/categories"><div><strong>56</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>115</strong><br>标签</div></a>
+      <a href="/archives"><div><strong>158</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>57</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>117</strong><br>标签</div></a>
     </div>
     <ul class="blog-link">
      
@@ -83,6 +83,89 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-NGINX 反爬策略" class="article" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/6971a02d.html" class="article-date">
+  <time class="post-time" datetime="2018-11-09T09:38:00.000Z" itemprop="datePublished">
+    <span class="post-month">11月</span><br/>
+    <span class="post-day">09</span>
+  </time>
+</a>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/6971a02d.html">NGINX 反爬策略</a>
+    </h1>
+  
+
+      <div>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/服务器/">服务器</a>,<a class="article-category-link" href="/categories/服务器/Nginx/">Nginx</a>
+  </div>
+
+        
+        
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/6971a02d.html" class="leancloud_visitors" data-flag-title="NGINX 反爬策略">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 221</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 1 分钟</span>
+  </div>
+ 
+        
+      </div>
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <h3 id="1）配置agent-deny-conf"><a href="#1）配置agent-deny-conf" class="headerlink" title="1）配置agent_deny.conf"></a>1）配置agent_deny.conf</h3><p>在nginx的conf目录下新增agent_deny.conf配置文件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="variable">$http_user_agent</span> ~* <span class="string">"qihoobot|Baiduspider|Googlebot|Googlebot-Mobile|Googlebot-Image|Mediapartners-Google|Adsbot-Google|Feedfetcher-Google|Yahoo! Slurp|Yahoo! Slurp China|YoudaoBot|Sosospider|Sogou spider|Sogou web spider|MSNBot|ia_archiver|Tomato Bot|Catall Spider|AcoiRobot|Yisou|bingbot|360Spider"</span>) &#123; </span><br><span class="line">    <span class="built_in">return</span> 403;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="variable">$http_user_agent</span> ~ <span class="string">"WinHttp|WebZIP|FetchURL|node-superagent|FeedDemon|Jullo|JikeSpider|Indy Library|Alexa Toolbar|AskTbFXTV|AhrefsBot|CrawlDaddy|Feedly|UniversalFeedParser|ApacheBench|Microsoft URL Control|Swiftbot|ZmEu|oBot|jaunty|Python-urllib|lightDeckReports Bot|YYSpider|DigExt|MJ12bot|heritrix|EasouSpider|Ezooms|BOT/0.1|YandexBot|FlightDeckReports|Linguee Bot|iaskspider|^$"</span>) &#123;</span><br><span class="line">    <span class="built_in">return</span> 403;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="variable">$request_method</span> !~ ^(GET|POST)$) &#123;</span><br><span class="line">    <span class="built_in">return</span> 403;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="variable">$http_user_agent</span> ~* (Python|Wget|Scrapy|Spider)) &#123;</span><br><span class="line">    <span class="built_in">return</span> 403;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="2）修改反向代理配置文件"><a href="#2）修改反向代理配置文件" class="headerlink" title="2）修改反向代理配置文件"></a>2）修改反向代理配置文件</h3><p>在具体的location下面配置 include agent_deny.conf<br>如：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Server</span></span><br><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    server_name localhost;</span><br><span class="line">    charset utf-8;</span><br><span class="line">    </span><br><span class="line">    location / &#123;</span><br><span class="line">        <span class="comment"># 此设置在 http, server, location 节点都可以设置；设置了 nodelay 将不会等待</span></span><br><span class="line">        limit_req zone=ratelimit burst=20 nodelay;</span><br><span class="line">        include agent_deny.conf;</span><br><span class="line">        proxy_pass http://127.0.0.1:8080/java-web;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/6971a02d.html" data-id="ck5dcrw6y009wycqpnb38nxe7" class="article-share-link">
+        分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nginx/">Nginx</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+
+
   
     <article id="post-Vue webpack打包src路径问题" class="article" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -148,7 +231,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3ad33ff3.html" data-id="ck5dcqh5900d1lmqpk3un36kv" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/3ad33ff3.html" data-id="ck5dcrw8f00cxycqpix23lnfl" class="article-share-link">
         分享</a>
       
       
@@ -240,7 +323,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/8476b89f.html" data-id="ck5dcqh0m000rlmqpbzwvxu0n" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/8476b89f.html" data-id="ck5dcrw2a000kycqpw0nai1wo" class="article-share-link">
         分享</a>
       
       
@@ -323,7 +406,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/8b59beec.html" data-id="ck5dcqh210046lmqpnc6br74x" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/8b59beec.html" data-id="ck5dcrw47004aycqp3ubrc3ka" class="article-share-link">
         分享</a>
       
       
@@ -416,7 +499,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/c14d120e.html" data-id="ck5dcqh3y009glmqp20zgsxvw" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/c14d120e.html" data-id="ck5dcrw6j0090ycqph2cbsssm" class="article-share-link">
         分享</a>
       
       
@@ -504,7 +587,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/9e53d1a6.html" data-id="ck5dcqh5z00ejlmqppwosdhum" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/9e53d1a6.html" data-id="ck5dcrw9i00eeycqpn6w4qvld" class="article-share-link">
         分享</a>
       
       
@@ -592,7 +675,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/7aeb1e46.html" data-id="ck5dcqh0a0008lmqpzcmym4jm" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/7aeb1e46.html" data-id="ck5dcrw1x0008ycqpudr6zb48" class="article-share-link">
         分享</a>
       
       
@@ -680,7 +763,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/bf60621.html" data-id="ck5dcqh3l008klmqph907fpn1" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/bf60621.html" data-id="ck5dcrw65008bycqpohjsszue" class="article-share-link">
         分享</a>
       
       
@@ -774,7 +857,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/e4163a66.html" data-id="ck5dcqh0k000nlmqpmihy15nl" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/e4163a66.html" data-id="ck5dcrw2d000qycqpvvouj5lx" class="article-share-link">
         分享</a>
       
       
@@ -871,104 +954,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/a5557ea7.html" data-id="ck5dcqh0o000xlmqp3ne2c94a" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/a5557ea7.html" data-id="ck5dcrw2e000rycqpf7xotj0t" class="article-share-link">
         分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/">Docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ELK/">ELK</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-FileBeat 基础配置" class="article" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/4573f792.html" class="article-date">
-  <time class="post-time" datetime="2018-08-31T03:18:00.000Z" itemprop="datePublished">
-    <span class="post-month">8月</span><br/>
-    <span class="post-day">31</span>
-  </time>
-</a>
-
-  </div>
-  <div class="article-inner">
-    
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/4573f792.html">FileBeat 基础配置</a>
-    </h1>
-  
-
-      <div>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/中间件/">中间件</a>,<a class="article-category-link" href="/categories/中间件/FileBeat/">FileBeat</a>
-  </div>
-
-        
-        
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/4573f792.html" class="leancloud_visitors" data-flag-title="FileBeat 基础配置">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 1,179</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 6 分钟</span>
-  </div>
- 
-        
-      </div>
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      <p>由FileBeat负责统一读取多机服务的日志到redis，再统一由LogStash解析日志内容，放到ElasticSeach。</p>
-<p>不同类型的日志，需要抓取的重点不一样，可统一建立各类型日志记录规范，然后在FileBeat读取的时候在<code>fields</code>字段做标识，然后在LogStash获取到记录的时候通过fields的字段来编写逻辑，判断该日志为什么类型，然后进行grok表达式匹配。</p>
-<h2 id="Filebeat-如何读取多个日志目录？"><a href="#Filebeat-如何读取多个日志目录？" class="headerlink" title="Filebeat 如何读取多个日志目录？"></a>Filebeat 如何读取多个日志目录？</h2><p>如果 Filebeat 所在 server 上运行有多个 application servers，各自有不同的日志目录，那 Filebeat 如何同时读取多个目录，这是一个非常典型的问题。</p>
-<p>解决方案：通过配置多个 prospector 就能达到要求。在配置文件的 prospectors 下，每个”-“表示一个 prospector，每个 prospector 包含一些配置项，指明这个 prospector 所要读取的日志信息。如下所示：<br><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">prospectors:</span></span><br><span class="line"><span class="bullet">    -</span></span><br><span class="line"><span class="attr">      paths:</span></span><br><span class="line"><span class="bullet">         -</span> <span class="string">/home/BizLog/*.log</span></span><br><span class="line">      <span class="comment"># 其他配置项，具体参考 Elastic 官网</span></span><br><span class="line"><span class="bullet">    -</span></span><br><span class="line"><span class="attr">      paths:</span></span><br><span class="line"><span class="bullet">         -</span> <span class="string">/home/ApacheLog/*.log</span></span><br><span class="line">      <span class="comment"># 其他配置项，具体参考 Elastic 官网</span></span><br></pre></td></tr></table></figure></p>
-<h2 id="Filebeat-如何区分不同日志来源？"><a href="#Filebeat-如何区分不同日志来源？" class="headerlink" title="Filebeat 如何区分不同日志来源？"></a>Filebeat 如何区分不同日志来源？</h2><p>还是上题中提到的场景，Filebeat 虽然能读取不同的日志目录，但是在 Logstash 这边，或者是 Elasticsearch 这边，怎么区分不同 application server 的日志数据呢？</p>
-<p>解决方案：Filebeat 的配置项 fields 可以实现不同日志来源的区分。用法如下：<br><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">prospectors:</span></span><br><span class="line"><span class="bullet">    -</span></span><br><span class="line"><span class="attr">       paths:</span></span><br><span class="line"><span class="bullet">          -</span> <span class="string">/home/BizLog/*.log</span></span><br><span class="line"><span class="attr">       fields:</span></span><br><span class="line"><span class="attr">         log_source:</span> <span class="string">Biz</span></span><br><span class="line"><span class="attr">         log_type:</span> <span class="string">interface</span></span><br><span class="line"><span class="bullet">    -</span></span><br><span class="line"><span class="attr">       paths:</span></span><br><span class="line"><span class="bullet">          -</span> <span class="string">/home/ApacheLog/*.log</span></span><br><span class="line"><span class="attr">       fields:</span></span><br><span class="line"><span class="attr">         log_source:</span> <span class="string">Apache</span></span><br><span class="line"><span class="attr">         log_type:</span> <span class="string">system</span></span><br></pre></td></tr></table></figure></p>
-<p>在 fields 配置项中，用户可以自定义域来标识不同的 log。比如上例中的”log_source”就是笔者自定义的。如此，从 Filebeat 输出的 log 就有一个叫做 log_source 的域表明该 log 的实际来源。log_type来区分日志解析类型，在LogStash 解析的时候通过该字段匹配不同的grok表达式。<br>
-      
-      <p class="article-more-link">
-        <a href="/posts/4573f792.html#more">
-          Read More</a>
-      </p>
-      
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/4573f792.html" data-id="ck5dcqh1b002glmqp7jnn69i3" class="article-share-link">
-        分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ELK/">ELK</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FileBeat/">FileBeat</a></li></ul>
 
     </footer>
   </div>
@@ -1038,15 +1028,15 @@
     <div class="count-box">
       <a href="/archives">
         <div><strong>
-            157</strong><br>文章</div>
+            158</strong><br>文章</div>
       </a>
       <a href="/categories">
         <div><strong>
-            56</strong><br>分类</div>
+            57</strong><br>分类</div>
       </a>
       <a href="/tags">
         <div><strong>
-            115</strong><br>标签</div>
+            117</strong><br>标签</div>
       </a>
     </div>
 
