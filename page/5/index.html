@@ -56,9 +56,9 @@
     <h2 class="author"></h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>157</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>158</strong><br>文章</div></a>
       <a href="/categories"><div><strong>56</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>115</strong><br>标签</div></a>
+      <a href="/tags"><div><strong>117</strong><br>标签</div></a>
     </div>
     <ul class="blog-link">
      
@@ -83,6 +83,99 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-FileBeat 基础配置" class="article" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/4573f792.html" class="article-date">
+  <time class="post-time" datetime="2018-08-31T03:18:00.000Z" itemprop="datePublished">
+    <span class="post-month">8月</span><br/>
+    <span class="post-day">31</span>
+  </time>
+</a>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/4573f792.html">FileBeat 基础配置</a>
+    </h1>
+  
+
+      <div>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/中间件/">中间件</a>,<a class="article-category-link" href="/categories/中间件/FileBeat/">FileBeat</a>
+  </div>
+
+        
+        
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/4573f792.html" class="leancloud_visitors" data-flag-title="FileBeat 基础配置">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 1,179</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 6 分钟</span>
+  </div>
+ 
+        
+      </div>
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <p>由FileBeat负责统一读取多机服务的日志到redis，再统一由LogStash解析日志内容，放到ElasticSeach。</p>
+<p>不同类型的日志，需要抓取的重点不一样，可统一建立各类型日志记录规范，然后在FileBeat读取的时候在<code>fields</code>字段做标识，然后在LogStash获取到记录的时候通过fields的字段来编写逻辑，判断该日志为什么类型，然后进行grok表达式匹配。</p>
+<h2 id="Filebeat-如何读取多个日志目录？"><a href="#Filebeat-如何读取多个日志目录？" class="headerlink" title="Filebeat 如何读取多个日志目录？"></a>Filebeat 如何读取多个日志目录？</h2><p>如果 Filebeat 所在 server 上运行有多个 application servers，各自有不同的日志目录，那 Filebeat 如何同时读取多个目录，这是一个非常典型的问题。</p>
+<p>解决方案：通过配置多个 prospector 就能达到要求。在配置文件的 prospectors 下，每个”-“表示一个 prospector，每个 prospector 包含一些配置项，指明这个 prospector 所要读取的日志信息。如下所示：<br><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">prospectors:</span></span><br><span class="line"><span class="bullet">    -</span></span><br><span class="line"><span class="attr">      paths:</span></span><br><span class="line"><span class="bullet">         -</span> <span class="string">/home/BizLog/*.log</span></span><br><span class="line">      <span class="comment"># 其他配置项，具体参考 Elastic 官网</span></span><br><span class="line"><span class="bullet">    -</span></span><br><span class="line"><span class="attr">      paths:</span></span><br><span class="line"><span class="bullet">         -</span> <span class="string">/home/ApacheLog/*.log</span></span><br><span class="line">      <span class="comment"># 其他配置项，具体参考 Elastic 官网</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="Filebeat-如何区分不同日志来源？"><a href="#Filebeat-如何区分不同日志来源？" class="headerlink" title="Filebeat 如何区分不同日志来源？"></a>Filebeat 如何区分不同日志来源？</h2><p>还是上题中提到的场景，Filebeat 虽然能读取不同的日志目录，但是在 Logstash 这边，或者是 Elasticsearch 这边，怎么区分不同 application server 的日志数据呢？</p>
+<p>解决方案：Filebeat 的配置项 fields 可以实现不同日志来源的区分。用法如下：<br><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">prospectors:</span></span><br><span class="line"><span class="bullet">    -</span></span><br><span class="line"><span class="attr">       paths:</span></span><br><span class="line"><span class="bullet">          -</span> <span class="string">/home/BizLog/*.log</span></span><br><span class="line"><span class="attr">       fields:</span></span><br><span class="line"><span class="attr">         log_source:</span> <span class="string">Biz</span></span><br><span class="line"><span class="attr">         log_type:</span> <span class="string">interface</span></span><br><span class="line"><span class="bullet">    -</span></span><br><span class="line"><span class="attr">       paths:</span></span><br><span class="line"><span class="bullet">          -</span> <span class="string">/home/ApacheLog/*.log</span></span><br><span class="line"><span class="attr">       fields:</span></span><br><span class="line"><span class="attr">         log_source:</span> <span class="string">Apache</span></span><br><span class="line"><span class="attr">         log_type:</span> <span class="string">system</span></span><br></pre></td></tr></table></figure></p>
+<p>在 fields 配置项中，用户可以自定义域来标识不同的 log。比如上例中的”log_source”就是笔者自定义的。如此，从 Filebeat 输出的 log 就有一个叫做 log_source 的域表明该 log 的实际来源。log_type来区分日志解析类型，在LogStash 解析的时候通过该字段匹配不同的grok表达式。<br>
+      
+      <p class="article-more-link">
+        <a href="/posts/4573f792.html#more">
+          Read More</a>
+      </p>
+      
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/4573f792.html" data-id="ck5dcm9y6002hqdqpfro4wvo2" class="article-share-link">
+        分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ELK/">ELK</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FileBeat/">FileBeat</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+
+
   
     <article id="post-J2EE Spring redirect导致内存溢出问题" class="article" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -151,7 +244,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3c49f4b8.html" data-id="ck4jbegjk005s07qp7ydysxvc" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/3c49f4b8.html" data-id="ck5dcm9zm004xqdqps4ga7hun" class="article-share-link">
         分享</a>
       
       
@@ -236,7 +329,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3d5c725a.html" data-id="ck4jbegnj009807qp7ytsdudn" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/3d5c725a.html" data-id="ck5dcma1g008oqdqp1ha0fj9y" class="article-share-link">
         分享</a>
       
       
@@ -329,7 +422,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3e9aef58.html" data-id="ck4jbegfw002t07qp3f47n3st" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/3e9aef58.html" data-id="ck5dcm9y5002fqdqpxg3qqrwh" class="article-share-link">
         分享</a>
       
       
@@ -432,7 +525,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/d0e6a555.html" data-id="ck4jbeghh004607qp5m80wnwq" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/d0e6a555.html" data-id="ck5dcm9z1003rqdqpm81jsji3" class="article-share-link">
         分享</a>
       
       
@@ -520,7 +613,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3f08f656.html" data-id="ck4jbegxh00e807qpgody4qmf" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/3f08f656.html" data-id="ck5dcma4j00e2qdqp301pt1et" class="article-share-link">
         分享</a>
       
       
@@ -607,7 +700,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/47f7c28d.html" data-id="ck4jbegni009607qptqhsggw8" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/47f7c28d.html" data-id="ck5dcma1e008jqdqpfdgdo9da" class="article-share-link">
         分享</a>
       
       
@@ -688,7 +781,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/1136d15d.html" data-id="ck4jbegkx006s07qplt3aysuy" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/1136d15d.html" data-id="ck5dcma08006bqdqp6sj72wl1" class="article-share-link">
         分享</a>
       
       
@@ -785,7 +878,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/64f28a88.html" data-id="ck4jbegen001m07qpjj5zfn4o" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/64f28a88.html" data-id="ck5dcm9xf0017qdqpr3mxr9rl" class="article-share-link">
         分享</a>
       
       
@@ -869,109 +962,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/6308b509.html" data-id="ck4jbeglf007807qp14i4zxef" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/6308b509.html" data-id="ck5dcma0f006oqdqpruzgszi1" class="article-share-link">
         分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mac/">Mac</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-IDEA 热部署插件Jrebel破解安装" class="article" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/3a2e7663.html" class="article-date">
-  <time class="post-time" datetime="2018-06-14T06:03:00.000Z" itemprop="datePublished">
-    <span class="post-month">6月</span><br/>
-    <span class="post-day">14</span>
-  </time>
-</a>
-
-  </div>
-  <div class="article-inner">
-    
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/3a2e7663.html">IDEA 热部署插件Jrebel破解安装</a>
-    </h1>
-  
-
-      <div>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/开发调试工具/">开发调试工具</a>,<a class="article-category-link" href="/categories/开发调试工具/IDEA/">IDEA</a>
-  </div>
-
-        
-        
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/3a2e7663.html" class="leancloud_visitors" data-flag-title="IDEA 热部署插件Jrebel破解安装">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 762</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 3 分钟</span>
-  </div>
- 
-        
-      </div>
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      <h1 id="JRebel-介绍"><a href="#JRebel-介绍" class="headerlink" title="JRebel 介绍　　"></a>JRebel 介绍　　</h1><p>IDEA上原生是不支持热部署的，一般更新了 Java 文件后要手动重启 Tomcat 服务器，才能生效，浪费不少生命啊。</p>
-<p>目前对于idea热部署最好的解决方案就是安装JRebel插件，这样不论是更新 class 类还是更新 Spring 配置文件都能做到立马生效，大大提高开发效率。但是JRebel插件是需要收费使用的，虽然插件提供了14天的试用（获取14天试用资格请点击这里：<a href="https://zeroturnaround.com/software/JRebel/trial/" target="_blank" rel="noopener">https://zeroturnaround.com/software/JRebel/trial/</a> ），并且试用信息的填写也是随便填上虚假信息即可，但是只有一次试用机会，就是说试用期过了就不能再通过试用的方法继续使用插件了，所以对于JRebel插件的破解还是很有必要的。<br>ps.没有使用最新版是因为没有找到完美破解最新版的方法，尝试过网上其他人发布的jrebel7.0及以后版本的破解，都没成功。如果有人成功了，请在评论区留言告诉我！</p>
-<p>准备工作：JRebel6.4.3破解文件的 <a href="https://pan.baidu.com/s/1dOS0Dg" target="_blank" rel="noopener">下载链接</a> 密码：yef7（破解文件不支持6.4.X以上版本的JRebel插件破解）</p>
-<h2 id="JRebel6-4-3安装文件的官方下载链接"><a href="#JRebel6-4-3安装文件的官方下载链接" class="headerlink" title="JRebel6.4.3安装文件的官方下载链接"></a>JRebel6.4.3安装文件的官方<a href="https://plugins.jetbrains.com/plugin/download?updateId=25523" target="_blank" rel="noopener">下载链接</a></h2><h3 id="JRebel插件官网下载地址（多版本）："><a href="#JRebel插件官网下载地址（多版本）：" class="headerlink" title="JRebel插件官网下载地址（多版本）："></a>JRebel插件官网下载地址（多版本）：</h3><p><a href="https://plugins.jetbrains.com/idea/plugin/4441-JRebel-for-intellij" target="_blank" rel="noopener">https://plugins.jetbrains.com/idea/plugin/4441-JRebel-for-intellij</a> </p>
-<p>注意：已安装JRebel插件的需要在settings中将插件更新到最新版后才能将其卸载（已经是最新版的可以直接卸载），在安装完破解版JRebel后就不能再更新插件，否则破解会失效。</p>
-<h2 id="JRebel安装与破解："><a href="#JRebel安装与破解：" class="headerlink" title="JRebel安装与破解："></a>JRebel安装与破解：</h2><h3 id="1）安装"><a href="#1）安装" class="headerlink" title="1）安装"></a>1）安装</h3><p>在idea中点击<code>file</code> -&gt; <code>settings</code>，再点击<code>plugins</code> -&gt; <code>install plugin from disk</code>，选择JRebel插件的离线安装文件，点击确定后重启idea。</p>
-<h3 id="2）破解"><a href="#2）破解" class="headerlink" title="2）破解"></a>2）破解</h3><p>关闭idea，打开压缩包中的破解文件夹，替换一个licence文件与两个jar包 ​：</p>
-<h4 id="Windows"><a href="#Windows" class="headerlink" title="Windows:"></a>Windows:</h4><h5 id="1）"><a href="#1）" class="headerlink" title="1）"></a>1）</h5><p>将本机 <code>C:\Users\你的用户名\.JRebel\JRebel.lic</code>替换为下载的补丁包里的 <code>JRebel.lic</code>； </p>
-<h5 id="2）"><a href="#2）" class="headerlink" title="2）"></a>2）</h5><p>C:\Users\你的用户名.IntelliJIdea2017.1\config\plugins\jr-ide-idea\lib\JRebel6\JRebel.jar </p>
-<h5 id="3）"><a href="#3）" class="headerlink" title="3）"></a>3）</h5><p>C:\Users\你的用户名.IntelliJIdea2017.1\config\plugins\jr-ide-idea\lib\JRebel\JRebel.jar</p>
-<h4 id="Mac"><a href="#Mac" class="headerlink" title="Mac:"></a>Mac:</h4><p>需要注意下，这里的路径为</p>
-<h5 id="1"><a href="#1" class="headerlink" title="1)"></a>1)</h5><p>将本机 ~/.jrebel/JRebel.lic替换为下载的补丁包里的 JRebel.lic； </p>
-<h5 id="2"><a href="#2" class="headerlink" title="2)"></a>2)</h5><p>~/Library/Application Support/IntelliJIdea2018.1/jr-ide-idea/lib/JRebel6/JRebel.jar 替换为下载的补丁包里的JRebel.jar</p>
-<h5 id="3"><a href="#3" class="headerlink" title="3)"></a>3)</h5><p>~/Library/Application Support/IntelliJIdea2018.1/jr-ide-idea/lib/JRebel/JRebel.jar 替换为下载的补丁包里的JRebel.jar</p>
-<p>然后启动idea，在<code>file</code> -&gt; <code>settings-&gt;plugins</code> -&gt; <code>JRebel</code>中查看是否已显示激活，激活后显示valid，图标为绿色（如果没激活的话，就去试试翻qiang注册正版吧）</p>
-<h3 id="3）-1"><a href="#3）-1" class="headerlink" title="3）"></a>3）</h3><p>激活后，设置JRebel，选择<code>settings</code> -&gt; <code>JRebel</code> -&gt; <code>advanced</code> 选择Jrebel 6 Agent，然后重启idea。Jrebel的其他配置按默认就好。</p>
-<p> 不使用插件的话，勾选tomcat编译热加载选项，然后修改完代码之后<code>command+f9</code>也可以热加载。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3a2e7663.html" data-id="ck4jbegho004c07qpsbnun2oc" class="article-share-link">
-        分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IDEA/">IDEA</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jrebel/">Jrebel</a></li></ul>
 
     </footer>
   </div>
@@ -1041,7 +1036,7 @@
     <div class="count-box">
       <a href="/archives">
         <div><strong>
-            157</strong><br>文章</div>
+            158</strong><br>文章</div>
       </a>
       <a href="/categories">
         <div><strong>
@@ -1049,7 +1044,7 @@
       </a>
       <a href="/tags">
         <div><strong>
-            115</strong><br>标签</div>
+            117</strong><br>标签</div>
       </a>
     </div>
 
@@ -1111,7 +1106,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy;2018 - 2019 Tidy的个人博客<br>
+      &copy;2019 - 2020 Tidy的个人博客<br>
       <!-- 由<a href="https://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
       主题-<a href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a> -->
       
