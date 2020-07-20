@@ -145,23 +145,16 @@
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"cloudfunctionRoot"</span>: <span class="string">"/static/cloud/functions/"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>编译<br>运行 npm run dev 编译<br>注意：这可能在编译后不会生效，<br>保险起见，应在后检查dist/project.config.json文件，<br>看看刚刚的字段是否添加成功，如果没有，请在dist/project.config.json中也添加上述字段。</p>
-</li>
-<li><p>使用微信开发者工具<br>使用“微信开发者”工具，打开编译后的目录。<br>如第一次使用云函数，则需要点击右上角的“云开发”按钮，按照步骤开通云开发。<br><img src="https://img.tidyko.com/blog/mpvue-cloudfunction1.png" alt="Mpvue中使用云函数1"></p>
-</li>
-<li><p>编写云函数<br>如果是现有的云函数，则直接把云函数文件夹及文件复制进项目”/static/cloud/function”目录底下<br>如果是新增的云函数，则需要在“微信开发者”工具里，打开“编辑器”窗口，找到function目录，右键选择“新建Node.js云函数”创建一个新的云函数，再将生成的文件夹以及底下的文件复制进去”/static/cloud/function”目录底下，进行编写。<br><img src="https://img.tidyko.com/blog/mpvue-cloudfunction2.png" alt="Mpvue中使用云函数2"></p>
-</li>
-<li><p>上传云函数<br>右键点击函数目录，选择“上传并部署（云端安装依赖）”，对云函数进行上传。<br><img src="https://img.tidyko.com/blog/mpvue-cloudfunction3.png" alt="Mpvue中使用云函数3"></p>
-</li>
-<li><p>使用<br>上传后即可开始在项目里面使用云函数，</p>
-</li>
-</ol>
-<p>在main.js里面加入以下代码<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wx.cloud.init(&#123;</span><br><span class="line">  traceUser: <span class="literal">true</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
-<p>最后在项目里面使用wx.cloud.callFunction即可调用云函数。</p>
-
+      
+      <p class="article-more-link">
+        <a href="/posts/d2036d9e.html#more">
+          Read More</a>
+      </p>
+      
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/d2036d9e.html" data-id="ckctyjxze009rwkykvg44uo6u" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/d2036d9e.html" data-id="ckctyr1nu00a6mvyk7g8dwjdk" class="article-share-link">
         分享</a>
       
       
@@ -252,7 +245,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/ee559db8.html" data-id="ckctyjy1r00cuwkykjq2qjxcb" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/ee559db8.html" data-id="ckctyr1pa00cgmvyki482xqlq" class="article-share-link">
         分享</a>
       
       
@@ -345,7 +338,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/c682cc65.html" data-id="ckctyjy1k00ciwkykonqmj8wm" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/c682cc65.html" data-id="ckctyr1pf00comvykztdwlbzx" class="article-share-link">
         分享</a>
       
       
@@ -441,7 +434,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/9f95e5a1.html" data-id="ckctyjxqr000lwkykdwpadwoj" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/9f95e5a1.html" data-id="ckctyr1id000tmvykgga9f2lr" class="article-share-link">
         分享</a>
       
       
@@ -535,7 +528,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/4db18d9b.html" data-id="ckctyjxt6002nwkykw4x7ry72" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/4db18d9b.html" data-id="ckctyr1jm002zmvykklnhui1r" class="article-share-link">
         分享</a>
       
       
@@ -624,7 +617,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/2b4e0834.html" data-id="ckctyjxs4001owkykea19hlju" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/2b4e0834.html" data-id="ckctyr1ih0014mvyk55vww073" class="article-share-link">
         分享</a>
       
       
@@ -711,7 +704,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/82922308.html" data-id="ckctyjxuo003uwkykus33n9wb" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/82922308.html" data-id="ckctyr1ke0040mvykt1g7whas" class="article-share-link">
         分享</a>
       
       
@@ -799,7 +792,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/ff68fd05.html" data-id="ckctyjxvu005gwkykrhr92tzi" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/ff68fd05.html" data-id="ckctyr1l10056mvykg6nix8sb" class="article-share-link">
         分享</a>
       
       
@@ -887,7 +880,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/84f800f7.html" data-id="ckctyjxz1009bwkykibo0do3s" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/84f800f7.html" data-id="ckctyr1np009ymvyk4bd73q0v" class="article-share-link">
         分享</a>
       
       
@@ -973,7 +966,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/f6c0b73e.html" data-id="ckctyjxyr008uwkyk3c2n6e6r" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/f6c0b73e.html" data-id="ckctyr1nb0097mvykg8366c60" class="article-share-link">
         分享</a>
       
       
