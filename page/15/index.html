@@ -56,9 +56,9 @@
     <h2 class="author"></h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>158</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>159</strong><br>文章</div></a>
       <a href="/categories"><div><strong>57</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>117</strong><br>标签</div></a>
+      <a href="/tags"><div><strong>118</strong><br>标签</div></a>
     </div>
     <ul class="blog-link">
      
@@ -83,6 +83,89 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-Java throw和throws的区别和用法" class="article" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/93821c9f.html" class="article-date">
+  <time class="post-time" datetime="2014-02-19T09:12:00.000Z" itemprop="datePublished">
+    <span class="post-month">2月</span><br/>
+    <span class="post-day">19</span>
+  </time>
+</a>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/93821c9f.html">Java throw和throws的区别和用法</a>
+    </h1>
+  
+
+      <div>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
+  </div>
+
+        
+        
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/93821c9f.html" class="leancloud_visitors" data-flag-title="Java throw和throws的区别和用法">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 519</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 2 分钟</span>
+  </div>
+ 
+        
+      </div>
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <h3 id="1）"><a href="#1）" class="headerlink" title="1）"></a>1）</h3><p>throws关键字通常被应用在声明方法时，用来指定可能抛出的异常。<br>多个异常可以使用逗号隔开。当在主函数中调用该方法时，如果发生异常，就会将异常抛给指定异常对象。<br>如下面例子所示：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Shoot</span> </span>&#123;</span><br><span class="line">　　<span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">pop</span><span class="params">()</span> <span class="keyword">throws</span> NegativeArraySizeException </span>&#123;</span><br><span class="line">　　　　<span class="comment">//定义方法并抛出NegativeArraySizeException异常</span></span><br><span class="line">　　　　<span class="keyword">int</span> [] arr = <span class="keyword">new</span> <span class="keyword">int</span>[-<span class="number">3</span>];<span class="comment">//创建数组</span></span><br><span class="line">　　&#125;</span><br><span class="line">　　<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;<span class="comment">//主方法</span></span><br><span class="line">　　　　<span class="keyword">try</span> &#123; </span><br><span class="line">　　　　　　pop(); <span class="comment">//调用pop()方法</span></span><br><span class="line">　　　　&#125; <span class="keyword">catch</span> (NegativeArraySizeException e) &#123;</span><br><span class="line">　　　　　　System.out.println(<span class="string">"pop()方法抛出的异常"</span>);<span class="comment">//输出异常信息</span></span><br><span class="line">　　　　&#125;</span><br><span class="line">　　&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="2）"><a href="#2）" class="headerlink" title="2）"></a>2）</h3><p>throw关键字通常用在方法体中，并且抛出一个异常对象。<br>程序在执行到throw语句时立即停止，它后面的语句都不执行。<br>通过throw抛出异常后，如果想在上一级代码中来捕获并处理异常，则需要在抛出异常的方法中使用throws关键字在方法声明中指明要跑出的异常；如果要捕捉throw抛出的异常，则必须使用try—catch语句。<br>如下面例子所示：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyException</span> <span class="keyword">extends</span> <span class="title">Exception</span> </span>&#123; <span class="comment">//创建自定义异常类</span></span><br><span class="line">    String message; <span class="comment">//定义String类型变量</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyException</span><span class="params">(String ErrorMessagr)</span> </span>&#123;  <span class="comment">//父类方法</span></span><br><span class="line">        message = ErrorMessagr;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getMessage</span><span class="params">()</span></span>&#123;   <span class="comment">//覆盖getMessage()方法</span></span><br><span class="line">        <span class="keyword">return</span> message;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Captor</span> </span>&#123; <span class="comment">//创建类</span></span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">quotient</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span> <span class="keyword">throws</span> MyException</span>&#123;<span class="comment">//定义方法抛出异常</span></span><br><span class="line">        <span class="keyword">if</span>(y &lt; <span class="number">0</span>)&#123;  <span class="comment">//判断参数是否小于0</span></span><br><span class="line">　　　　　  <span class="keyword">throw</span> <span class="keyword">new</span> MyException(<span class="string">"除数不能是负数"</span>);<span class="comment">//异常信息</span></span><br><span class="line">　      &#125;</span><br><span class="line">        <span class="keyword">return</span> x/y;<span class="comment">//返回值</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span></span>&#123; <span class="comment">//主方法</span></span><br><span class="line">        <span class="keyword">try</span>&#123; <span class="comment">//try语句包含可能发生异常的语句</span></span><br><span class="line">            <span class="keyword">int</span> result = quotient(<span class="number">3</span>,-<span class="number">1</span>);<span class="comment">//调用方法quotient()</span></span><br><span class="line">        &#125;<span class="keyword">catch</span> (MyException e) &#123; <span class="comment">//处理自定义异常</span></span><br><span class="line">            System.out.println(e.getMessage()); <span class="comment">//输出异常信息</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">catch</span> (ArithmeticException e) &#123;</span><br><span class="line">            <span class="comment">//处理ArithmeticException异常</span></span><br><span class="line">        　　System.out.println(<span class="string">"除数不能为0"</span>);<span class="comment">//输出提示信息</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">catch</span> (Exception e) &#123; <span class="comment">//处理其他异常</span></span><br><span class="line">        　　　System.out.println(<span class="string">"程序发生了其他的异常"</span>);</span><br><span class="line">        　　　<span class="comment">//输出提示信息</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/93821c9f.html" data-id="ckctyjxxb0075wkykuzttkm4o" class="article-share-link">
+        分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+
+
   
     <article id="post-Eclipse Failed to load the JNI shared library" class="article" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -147,7 +230,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/bd745825.html" data-id="ck5diu5zg0011q7qpbos7n1qs" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/bd745825.html" data-id="ckctyjxrb0010wkyk8fduv9pa" class="article-share-link">
         分享</a>
       
       
@@ -230,7 +313,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3e42071e.html" data-id="ck5diu5ze000zq7qpc5c12nr7" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/3e42071e.html" data-id="ckctyjxre0012wkykpbg9p7ly" class="article-share-link">
         分享</a>
       
       
@@ -316,7 +399,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/fd6e9fc4.html" data-id="ck5diu5zl001cq7qp3a7cn9la" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/fd6e9fc4.html" data-id="ckctyjxro0017wkyknu20zj6j" class="article-share-link">
         分享</a>
       
       
@@ -399,7 +482,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/353a4b3e.html" data-id="ck5diu5zo001kq7qpewfzu91o" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/353a4b3e.html" data-id="ckctyjxrs001cwkykv5wo6ntl" class="article-share-link">
         分享</a>
       
       
@@ -483,7 +566,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/df9c274.html" data-id="ck5diu5zv001yq7qpumu7m1g6" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/df9c274.html" data-id="ckctyjxsj0023wkykgbdo719n" class="article-share-link">
         分享</a>
       
       
@@ -566,7 +649,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/f362ee4b.html" data-id="ck5diu5zx0023q7qp1fz4hge6" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/f362ee4b.html" data-id="ckctyjxsf0021wkyk4ximquuv" class="article-share-link">
         分享</a>
       
       
@@ -649,7 +732,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/d809e936.html" data-id="ck5diu6010029q7qptzxdks9v" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/d809e936.html" data-id="ckctyjxsq0029wkykb2p1t1px" class="article-share-link">
         分享</a>
       
       
@@ -733,7 +816,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/f59ca5b1.html" data-id="ck5diu64100b8q7qpuhyfu2cx" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/f59ca5b1.html" data-id="ckctyjy0m00bhwkykbkg25l5d" class="article-share-link">
         分享</a>
       
       
@@ -818,124 +901,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/a47d877b.html" data-id="ck5diu63f009tq7qp8oae0o02" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/a47d877b.html" data-id="ckctyjxzg009uwkyksne9d0ur" class="article-share-link">
         分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Maven/">Maven</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-建站 十步教你搭建完整免费的个人网站（花生壳+XAMPP+WordPress" class="article" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/c2b7566e.html" class="article-date">
-  <time class="post-time" datetime="2013-10-31T02:22:00.000Z" itemprop="datePublished">
-    <span class="post-month">10月</span><br/>
-    <span class="post-day">31</span>
-  </time>
-</a>
-
-  </div>
-  <div class="article-inner">
-    
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/c2b7566e.html">建站 十步教你搭建完整免费的个人网站（花生壳+XAMPP+WordPress）</a>
-    </h1>
-  
-
-      <div>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/建站/">建站</a>
-  </div>
-
-        
-        
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/c2b7566e.html" class="leancloud_visitors" data-flag-title="建站 十步教你搭建完整免费的个人网站（花生壳+XAMPP+WordPress）">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 1,002</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 4 分钟</span>
-  </div>
- 
-        
-      </div>
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      <h3 id="1）下载花生壳"><a href="#1）下载花生壳" class="headerlink" title="1）下载花生壳"></a>1）下载花生壳</h3><p>从<a href="http://www.oray.com/peanuthull/download.php" target="_blank" rel="noopener">花生壳官网</a>下载最新版本的客户端。</p>
-<p>下载完成后安装，注册护照（需手机验证码验证），注册完成后获取免费域名并激活。</p>
-<p>最后，在客户端里面设置内网IP地址进行映射，至此，花生壳部分已完成，客户端保持登录即可。</p>
-<h3 id="2）下载XAMPP"><a href="#2）下载XAMPP" class="headerlink" title="2）下载XAMPP"></a>2）下载XAMPP</h3><p>下载完成后安装，完成后点击桌面快捷打开软件。</p>
-<p>最后，在软件界面点击Apache和MySql后面的Start按钮进行启动，提示SUCCESS，即启动完成。</p>
-<p>注意：启动Apache时如有其它应用软件（如：IIS服务）占用了80端口，需将其停止或者修改端口，启动Apache就正常了。</p>
-<p>启动MySql，如果之前有单独安装过MySql，需将其删除，再在XAMPP里启动，启动MySql就正常了。</p>
-<p>验证：打开浏览器，输入localhost，如果界面显示XAMPP欢迎页面，即服务启动成功。<br>至此，XAMPP部分已全部完成，客户端保持打开即可。</p>
-<h3 id="3）下载WordPress"><a href="#3）下载WordPress" class="headerlink" title="3）下载WordPress"></a>3）下载WordPress</h3><p>从<a href="http://cn.wordpress.org/" target="_blank" rel="noopener">WordPress中文官网</a>下载最新版本的客户端。<br>下载zip包后，解压即可。</p>
-<h3 id="4）XAMPP整合WordPress"><a href="#4）XAMPP整合WordPress" class="headerlink" title="4）XAMPP整合WordPress"></a>4）XAMPP整合WordPress</h3><p>打开XAMPP安装目录下面的htdocs文件夹，例如F:\xampp\htdocs，然后再这里新建一个文件夹（例如：wp），路径为：F:\xampp\htdocs\wp</p>
-<p>然后，将解压的wordpress文件夹里面的文件全部复制粘贴到F:\xampp\htdocs\wp路径里面即完成XAMPP+WordPress的整合。</p>
-<p>最后，打开localhost/wp，看到WordPress的创建提示，即为成功。</p>
-<h3 id="5）新建MySql数据库（安装WordPress需提前创建好一个MySql数据库提供使用）"><a href="#5）新建MySql数据库（安装WordPress需提前创建好一个MySql数据库提供使用）" class="headerlink" title="5）新建MySql数据库（安装WordPress需提前创建好一个MySql数据库提供使用）"></a>5）新建MySql数据库（安装WordPress需提前创建好一个MySql数据库提供使用）</h3><p>打开浏览器，输入localhost/phpmyadmin，进入MySql管理页面，</p>
-<p>点击选项卡的数据库选项，可以看到“新建数据库”字样下面有一个输入框，在里面输入数据库名称（这里演示的数据库为wp），</p>
-<p>最后，直接点击创建，即完成了MySql数据库的创建。</p>
-<h3 id="6）安装WordPress"><a href="#6）安装WordPress" class="headerlink" title="6）安装WordPress"></a>6）安装WordPress</h3><p>打开浏览器，输入localhost/wp，进入WordPress安装界面。</p>
-<p>按照提示进行安装。</p>
-<p>需要注意的是数据库那一部分，数据库名称输入刚刚创建的“wp”，然后数据库用户输入“root”，数据库密码为空（不用填），其他的不用管。</p>
-<p>点击下一步，直到安装完毕，最后进入管理界面，即WordPress已安装完成。</p>
-<h3 id="7）验证"><a href="#7）验证" class="headerlink" title="7）验证"></a>7）验证</h3><p>输入localhost/wp，已经可以成功跳到WordPress站点界面了。</p>
-<h3 id="8）修改WordPress外网访问设置"><a href="#8）修改WordPress外网访问设置" class="headerlink" title="8）修改WordPress外网访问设置"></a>8）修改WordPress外网访问设置</h3><p>在WordPress后台，左侧选项卡，点击“设置–常规”，进入常规设置界面。</p>
-<p>将“WordPress地址（URL）”和“站点地址（URL）”从“<a href="http://localhost/wp”修改成“http://域名/wp”。" target="_blank" rel="noopener">http://localhost/wp”修改成“http://域名/wp”。</a></p>
-<p>上面的“域名”就是第一步里面在花生壳得到的免费域名，直接输入即可。</p>
-<p>至此，外网已经可以通过“域名/wp”访问你的WordPress了。</p>
-<h3 id="9）修改WordPress外网访问路径"><a href="#9）修改WordPress外网访问路径" class="headerlink" title="9）修改WordPress外网访问路径"></a>9）修改WordPress外网访问路径</h3><p>在上面，外网需要访问你的WordPress，还需要在域名后面加上/wp这样的路径名才能访问到你的WordPress。</p>
-<p>但如果想要直接通过域名就访问到你的WordPress站点的话，还需要做下面的修改。</p>
-<p>首先，在WordPress后台，左侧选项卡，点击“设置–常规”，进入常规设置界面。</p>
-<p>将“WordPress地址（URL）”和“站点地址（URL）”从“http://域名/wp”修改成“http://域名”。</p>
-<p>然后，进入F:\xampp\htdocs目录，将wp文件夹下面的全部文件复制到一个临时目录（自己建，暂时进行保存），</p>
-<p>然后，将htdocs目录下的文件和文件夹全部删除，进行清空。</p>
-<p>最后，将暂时存放在临时文件夹里面的全部文件复制粘贴到F:\xampp\htdocs目录下面，即完成外网直接通过域名进行WordPress的访问设置。</p>
-<h3 id="10）完成"><a href="#10）完成" class="headerlink" title="10）完成"></a>10）完成</h3><p>至此，网站已全部搭建完毕，外网直接通过域名的方式进入，直接访问项目。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/c2b7566e.html" data-id="ck5diu65600dsq7qp8dpeskf3" class="article-share-link">
-        分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WordPress/">WordPress</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/XAMPP/">XAMPP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/花生壳/">花生壳</a></li></ul>
 
     </footer>
   </div>
@@ -1005,7 +975,7 @@
     <div class="count-box">
       <a href="/archives">
         <div><strong>
-            158</strong><br>文章</div>
+            159</strong><br>文章</div>
       </a>
       <a href="/categories">
         <div><strong>
@@ -1013,7 +983,7 @@
       </a>
       <a href="/tags">
         <div><strong>
-            117</strong><br>标签</div>
+            118</strong><br>标签</div>
       </a>
     </div>
 
