@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="Tidy的个人博客">
 <meta property="og:description" content="1）下载instantclient_11_2.zipPL/SQL 2）解压instantclient_11_2.zip到相应文件夹，比如：E:\oracleclient\instantclient_11_2 在该文件夹下面编写sqlnet.ora文件 内容：12NAMES.DIRECTORY_PATH= (TNSNAMES)SQLNET.AUTHENTICATION_SERVICES= (NTS)">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-13T15:09:44.541Z">
+<meta property="og:updated_time" content="2020-09-16T02:58:08.545Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Oracle 不安装Oracle客户端直接用PLSQL连接数据库">
 <meta name="twitter:description" content="1）下载instantclient_11_2.zipPL/SQL 2）解压instantclient_11_2.zip到相应文件夹，比如：E:\oracleclient\instantclient_11_2 在该文件夹下面编写sqlnet.ora文件 内容：12NAMES.DIRECTORY_PATH= (TNSNAMES)SQLNET.AUTHENTICATION_SERVICES= (NTS)">
@@ -129,11 +129,11 @@
 
   &nbsp; | &nbsp;
   <div class="view-box">
-    <span>字数 325</span>
+    <span>字数 432</span>
   </div>
   &nbsp; | &nbsp;
   <div class="view-box">
-    <span>时长 ≈ 1 分钟</span>
+    <span>时长 ≈ 2 分钟</span>
   </div>
  
         
@@ -152,11 +152,13 @@
 <p>重新启动PLSQL，输入用户名、密码、选择pl/sql实例名，即可进入数据库</p>
 <h2 id="5）"><a href="#5）" class="headerlink" title="5）"></a>5）</h2><p>初次登陆可能存在中文乱码的问题，解决方法如下：<br>到我的电脑、属性、高级、环境变量中添加一个环境变量：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">变量名：NLS_LANG </span><br><span class="line">变量值：AMERICAN_AMERICA.ZHS16GBK</span><br></pre></td></tr></table></figure></p>
 <p>重新连接，即可正常显示中文。<br>如果想转换为UTF8字符集，可以赋予“NLS_LANG”为 “AMERICAN_AMERICA.UTF8，其他编码同上</p>
+<h2 id="6）"><a href="#6）" class="headerlink" title="6）"></a>6）</h2><p>如果设置了TNS之后，登录没出现TNS数据库名称，则有可能是未安装Visual C ++ Redistributable Package<br>进入client的sqlplus目录使用sqlplus命令测试，提示<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tidy@TIDYCDD4 MINGW64 /c/Program Files/Oracle/instantclient_12_2_x64/sqlplus</span><br><span class="line"><span class="meta">$</span><span class="bash"> sqlplus</span></span><br><span class="line">C:/Program Files/Oracle/instantclient_12_2_x64/sqlplus/sqlplus.exe: error while loading shared libraries: MSVCR120.dll: cannot open shared object file: No such file or directory</span><br></pre></td></tr></table></figure></p>
+<p>下载链接：<a href="https://www.microsoft.com/en-us/download/details.aspx?id=40784" target="_blank" rel="noopener">https://www.microsoft.com/en-us/download/details.aspx?id=40784</a><br>安装后重启PLSQL即可。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/dcc50721.html" data-id="ckdoai96i00b3ojykhyuqj4wz" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/dcc50721.html" data-id="ckf4sr3a900akofykvbjj4cy3" class="article-share-link">
         分享</a>
       
       
