@@ -56,8 +56,8 @@
     <h2 class="author"></h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>159</strong><br>文章</div></a>
-      <a href="/categories"><div><strong>57</strong><br>分类</div></a>
+      <a href="/archives"><div><strong>161</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>58</strong><br>分类</div></a>
       <a href="/tags"><div><strong>118</strong><br>标签</div></a>
     </div>
     <ul class="blog-link">
@@ -83,6 +83,184 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-Java ApacheHttpClient设置http1.0短链接" class="article" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/1136d15d.html" class="article-date">
+  <time class="post-time" datetime="2018-07-25T02:10:00.000Z" itemprop="datePublished">
+    <span class="post-month">7月</span><br/>
+    <span class="post-day">25</span>
+  </time>
+</a>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/1136d15d.html">Java ApacheHttpClient设置http1.0短链接</a>
+    </h1>
+  
+
+      <div>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
+  </div>
+
+        
+        
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/1136d15d.html" class="leancloud_visitors" data-flag-title="Java ApacheHttpClient设置http1.0短链接">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 30</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 1 分钟</span>
+  </div>
+ 
+        
+      </div>
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">HttpPost httpPost = <span class="keyword">new</span> HttpPost(url);</span><br><span class="line">httpPost.setEntity(<span class="keyword">new</span> StringEntity(text, ContentType.create(<span class="string">"application/json"</span>, <span class="keyword">this</span>.getCharset())));</span><br><span class="line">httpPost.setProtocolVersion(HttpVersion.HTTP_1_0);</span><br><span class="line">httpPost.addHeader(HTTP.CONN_DIRECTIVE, HTTP.CONN_CLOSE);</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/1136d15d.html" data-id="ckfdbk6mm00625fykanwi63dx" class="article-share-link">
+        分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Apache-HttpClient/">Apache HttpClient</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Dubbo 内核SPI源码学习" class="article" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/64f28a88.html" class="article-date">
+  <time class="post-time" datetime="2018-07-12T02:42:00.000Z" itemprop="datePublished">
+    <span class="post-month">7月</span><br/>
+    <span class="post-day">12</span>
+  </time>
+</a>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/64f28a88.html">Dubbo 内核SPI源码学习</a>
+    </h1>
+  
+
+      <div>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
+  </div>
+
+        
+        
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/64f28a88.html" class="leancloud_visitors" data-flag-title="Dubbo 内核SPI源码学习">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 8,673</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 39 分钟</span>
+  </div>
+ 
+        
+      </div>
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <p>先从配置文件开始，dubbo基于Spring的可扩展Schema提供了一套简明的自定义配置标签，用于简化配置流程。</p>
+<p>具体原理可参考以下链接:<br><a href="https://blog.csdn.net/cutesource/article/details/5864562" target="_blank" rel="noopener">基于Spring可扩展Schema提供自定义配置支持</a></p>
+<p>于是，当我们配置了以下一段代码的时候其实最后通过解析之后就相当于变成了一个个的<code>&lt;bean/&gt;</code>配置，生成了实例。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- service implementation, as same as regular local bean --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"demoService"</span> <span class="attr">class</span>=<span class="string">"org.apache.dubbo.demo.provider.DemoServiceImpl"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- declare the service interface to be exported --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dubbo:service</span> <span class="attr">interface</span>=<span class="string">"org.apache.dubbo.demo.DemoService"</span> <span class="attr">ref</span>=<span class="string">"demoService"</span>/&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>当加载以上配置 <code>&lt;dubbo:service/&gt;</code> 的时候，基于 <code>dubbo.jar</code> 内的 <code>META-INF/spring.handlers</code> 配置，Spring在遇到dubbo命名空间时，会回调 DubboNamespaceHandler。</p>
+<p>所有dubbo的标签，都统一用 <code>DubboBeanDefinitionParser</code> 进行解析，基于一对一属性映射，将XML标签解析为一个 <code>ServiceConfig Bean</code> 对象。</p>
+<p>在 ServiceConfig.export() 或者 ReferenceConfig.get() 初始化时，将会将bean对象转化为URL格式，所有的Bean属性转化为URL的参数，然后将URL传给协议扩展点，基于扩展点的扩展点自适应机制，根据前面转化的URL的协议头，进行不同协议的服务暴露或者引用。</p>
+<p>所有扩展点参数都包含 URL 参数，URL 作为上下文信息贯穿整个扩展点设计体系。<br>URL 采用标准格式：<code>protocol://username:password@host:port/path?key=value&amp;key=value</code></p>
+<h1 id="1）SPI内核实现"><a href="#1）SPI内核实现" class="headerlink" title="1）SPI内核实现"></a>1）SPI内核实现</h1><p>前言：</p>
+<p>SPI机制主要用于系统集成，dubbo提供了许多扩展点，允许开发者基于内置的扩展点对框架功能作特性定制，<br>dubbo的SPI机制就是将不同的实现方案进行集成装配，这样可以消除模块集成的代码，平等看待第三方扩展，以增强框架的扩展性。<br>dubbo的SPI机制参考了JDK中标准的SPI机制思想，加入一些增强功能，以适应dubbo特殊化的应用场景。</p>
+<p>上面说到，所有Bean都将转化为URL对象，传给扩展点，基于自适应机制进行不同协议的暴露或引用。</p>
+<p>这句话可才分为以下步骤：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1.转化为URL</span></span><br><span class="line">这里是上面的步骤</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2.传给扩展点，（所以这里需要生成一个扩展点，代码如下）</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Protocol protocol = ExtensionLoader.getExtensionLoader(Protocol.class).getAdaptiveExtension();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 3.基于自适应机制进行不同协议的暴露或引用（上面已经获取到一个扩展点的代理类，他将通过代理类方法里面的URL自适应不同协议，然后执行具体逻辑）</span></span><br><span class="line">protocol.export(wrapperInvoker);</span><br></pre></td></tr></table></figure></p>
+      
+      <p class="article-more-link">
+        <a href="/posts/64f28a88.html#more">
+          Read More</a>
+      </p>
+      
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/64f28a88.html" data-id="ckfdbk6z600yx5fyk78bwqykz" class="article-share-link">
+        分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Dubbo/">Dubbo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/源码/">源码</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+
+
   
     <article id="post-Java Mac配置java环境变量" class="article" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -144,7 +322,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/6308b509.html" data-id="ckf4sr37w0068ofykafqd5536" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/6308b509.html" data-id="ckfdbk6mp006a5fykoq9iof2i" class="article-share-link">
         分享</a>
       
       
@@ -242,7 +420,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3a2e7663.html" data-id="ckf4sr366003eofykw7xfeiez" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/3a2e7663.html" data-id="ckfdbk6kq003g5fykpbp0p0cq" class="article-share-link">
         分享</a>
       
       
@@ -326,7 +504,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/920d2c96.html" data-id="ckf4sr36z004kofykxxkd3o4o" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/920d2c96.html" data-id="ckfdbk6lb00495fyk9swyb2yi" class="article-share-link">
         分享</a>
       
       
@@ -417,7 +595,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/d2f1cf8f.html" data-id="ckf4sr38g0073ofykao2jr640" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/d2f1cf8f.html" data-id="ckfdbk6ni00765fykww69vbe2" class="article-share-link">
         分享</a>
       
       
@@ -499,7 +677,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/4ad6e4a7.html" data-id="ckf4sr3b800cjofykvo46m7xp" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/4ad6e4a7.html" data-id="ckfdbk6q400cm5fykc4ec2kb7" class="article-share-link">
         分享</a>
       
       
@@ -592,7 +770,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/76273d12.html" data-id="ckf4sr3hu00wnofykiylaw0z4" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/76273d12.html" data-id="ckfdbk6y200xq5fyk6mfd4hj4" class="article-share-link">
         分享</a>
       
       
@@ -674,7 +852,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/7042626b.html" data-id="ckf4sr3b600cgofykbxtyusuf" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/7042626b.html" data-id="ckfdbk6q200cj5fykn3dnkpr3" class="article-share-link">
         分享</a>
       
       
@@ -841,7 +1019,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/c87c55c4.html" data-id="ckf4sr3hr00wlofykd01g9r50" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/c87c55c4.html" data-id="ckfdbk6xz00xo5fyky3qy3b64" class="article-share-link">
         分享</a>
       
       
@@ -865,181 +1043,10 @@
 
 
   
-    <article id="post-J2EE Druid数据库连接池被占满的排查思路" class="article" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/2f3fa600.html" class="article-date">
-  <time class="post-time" datetime="2018-03-17T07:22:00.000Z" itemprop="datePublished">
-    <span class="post-month">3月</span><br/>
-    <span class="post-day">17</span>
-  </time>
-</a>
-
-  </div>
-  <div class="article-inner">
-    
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/2f3fa600.html">J2EE Druid数据库连接池被占满的排查思路</a>
-    </h1>
-  
-
-      <div>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
-  </div>
-
-        
-        
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/2f3fa600.html" class="leancloud_visitors" data-flag-title="J2EE Druid数据库连接池被占满的排查思路">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 352</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 1 分钟</span>
-  </div>
- 
-        
-      </div>
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      <p>在使用Druid作为应用数据库连接池的时候，会经常出现连接池被占满的情况，报错信息如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">org.springframework.jdbc.CannotGetJdbcConnectionException: Could not get JDBC Connection; </span><br><span class="line">nested exception is com.alibaba.druid.pool.GetConnectionTimeoutException: </span><br><span class="line">wait millis 60000, active 10, maxActive 10, creating 0</span><br></pre></td></tr></table></figure>
-<p>在此报错信息中，我们可以看到，我们的应用不能够再创建新的连接池，因为当前应用里活跃中的连接池数量已达到可允许被创建使用的最大值10个了，<br>所以新的线程创建不了连接池导致报错。</p>
-<p>一般连接池不够用的情况可大致分两种：<br>1.连接池数量过少，这种手动调整连接池可创建的最大数即可。<br>2.sql语句执行过慢，导致连接池一直被占用。</p>
-<p>针对第二种情况，在这里提供此情况的一点排查思路：<br>1.使用Druid的sql监控，获取较为耗时的sql语句。<br>2.获取语句后，通过SQLDeveloper工具，运行查看其执行计划（SQL执行栏第三个按钮：F10）。<br>3.分析其执行计划，每个条件执行的时间以及查询字段有没有走索引。<br>4.通过分析，优化查询语句以及让其语句走索引查询达到sql优化的效果。<br>5.这时候再观察应用侧有没有恢复正常。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/2f3fa600.html" data-id="ckf4sr371004oofyk9ocdrhgi" class="article-share-link">
-        分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Druid/">Druid</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/连接池/">连接池</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Maven 请使用 -source 8 或更高版本以启用 lambda 表达式" class="article" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/a6562b5c.html" class="article-date">
-  <time class="post-time" datetime="2018-01-12T09:59:00.000Z" itemprop="datePublished">
-    <span class="post-month">1月</span><br/>
-    <span class="post-day">12</span>
-  </time>
-</a>
-
-  </div>
-  <div class="article-inner">
-    
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/a6562b5c.html">Maven 请使用 -source 8 或更高版本以启用 lambda 表达式</a>
-    </h1>
-  
-
-      <div>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/包管理器/">包管理器</a>,<a class="article-category-link" href="/categories/包管理器/Maven/">Maven</a>
-  </div>
-
-        
-        
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/a6562b5c.html" class="leancloud_visitors" data-flag-title="Maven 请使用 -source 8 或更高版本以启用 lambda 表达式">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 213</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 1 分钟</span>
-  </div>
- 
-        
-      </div>
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      <p>在使用mvn install编译maven项目时，报了<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">“ (请使用 -source 8 或更高版本以启用 lambda 表达式)”错误，是因为设置的maven默认jdk编译版本太低的问题。</span><br></pre></td></tr></table></figure></p>
-<h2 id="可使用两种方法解决"><a href="#可使用两种方法解决" class="headerlink" title="可使用两种方法解决"></a>可使用两种方法解决</h2><h3 id="1"><a href="#1" class="headerlink" title="1)"></a>1)</h3><p>在具体项目的pom.xml里面手动指定jdk编译版本。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">"..."</span>&gt;</span></span><br><span class="line">    ...</span><br><span class="line">    <span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-compiler-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">source</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">source</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">target</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">target</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br><span class="line">    ...</span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="2）"><a href="#2）" class="headerlink" title="2）"></a>2）</h3><p>在maven的settings.xml里面指定全局jdk编译版本。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">profiles</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">profile</span>&gt;</span>  </span><br><span class="line">      <span class="tag">&lt;<span class="name">id</span>&gt;</span>jdk-1.8<span class="tag">&lt;/<span class="name">id</span>&gt;</span>  </span><br><span class="line">      <span class="tag">&lt;<span class="name">activation</span>&gt;</span>  </span><br><span class="line">          <span class="tag">&lt;<span class="name">activeByDefault</span>&gt;</span>true<span class="tag">&lt;/<span class="name">activeByDefault</span>&gt;</span>  </span><br><span class="line">          <span class="tag">&lt;<span class="name">jdk</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">jdk</span>&gt;</span>  </span><br><span class="line">      <span class="tag">&lt;/<span class="name">activation</span>&gt;</span>  </span><br><span class="line">      <span class="tag">&lt;<span class="name">properties</span>&gt;</span>  </span><br><span class="line">          <span class="tag">&lt;<span class="name">maven.compiler.source</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">maven.compiler.source</span>&gt;</span>  </span><br><span class="line">          <span class="tag">&lt;<span class="name">maven.compiler.target</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">maven.compiler.target</span>&gt;</span>  </span><br><span class="line">          <span class="tag">&lt;<span class="name">maven.compiler.compilerVersion</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">maven.compiler.compilerVersion</span>&gt;</span>  </span><br><span class="line">      <span class="tag">&lt;/<span class="name">properties</span>&gt;</span>   </span><br><span class="line">  　<span class="tag">&lt;/<span class="name">profile</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">profiles</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>然后，运行mvn命令就可以了。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/a6562b5c.html" data-id="ckf4sr39f008yofykvk8tldm7" class="article-share-link">
-        分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Maven/">Maven</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
 
 
   <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/page/5/">&laquo; pre</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/7/">next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/5/">&laquo; pre</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/7/">next &raquo;</a>
   </nav>
 </section>
         
@@ -1086,11 +1093,11 @@
     <div class="count-box">
       <a href="/archives">
         <div><strong>
-            159</strong><br>文章</div>
+            161</strong><br>文章</div>
       </a>
       <a href="/categories">
         <div><strong>
-            57</strong><br>分类</div>
+            58</strong><br>分类</div>
       </a>
       <a href="/tags">
         <div><strong>

@@ -56,8 +56,8 @@
     <h2 class="author"></h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>159</strong><br>文章</div></a>
-      <a href="/categories"><div><strong>57</strong><br>分类</div></a>
+      <a href="/archives"><div><strong>161</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>58</strong><br>分类</div></a>
       <a href="/tags"><div><strong>118</strong><br>标签</div></a>
     </div>
     <ul class="blog-link">
@@ -83,6 +83,184 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-Oracle 不安装Oracle客户端直接用PLSQL连接数据库" class="article" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/dcc50721.html" class="article-date">
+  <time class="post-time" datetime="2014-08-15T05:49:00.000Z" itemprop="datePublished">
+    <span class="post-month">8月</span><br/>
+    <span class="post-day">15</span>
+  </time>
+</a>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/dcc50721.html">Oracle 不安装Oracle客户端直接用PLSQL连接数据库</a>
+    </h1>
+  
+
+      <div>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/数据库/">数据库</a>,<a class="article-category-link" href="/categories/数据库/Oracle/">Oracle</a>
+  </div>
+
+        
+        
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/dcc50721.html" class="leancloud_visitors" data-flag-title="Oracle 不安装Oracle客户端直接用PLSQL连接数据库">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 432</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 2 分钟</span>
+  </div>
+ 
+        
+      </div>
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <h2 id="1）下载"><a href="#1）下载" class="headerlink" title="1）下载"></a>1）下载</h2><p>instantclient_11_2.zip<br>PL/SQL</p>
+<h2 id="2）"><a href="#2）" class="headerlink" title="2）"></a>2）</h2><p>解压instantclient_11_2.zip到相应文件夹，<br>比如：<code>E:\oracleclient\instantclient_11_2</code></p>
+<p>在该文件夹下面编写sqlnet.ora文件</p>
+<p>内容：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NAMES.DIRECTORY_PATH= (TNSNAMES)</span><br><span class="line">SQLNET.AUTHENTICATION_SERVICES= (NTS)</span><br></pre></td></tr></table></figure></p>
+<p>然后在该目录下面建立network/admin层级文件夹，<br>比如：<code>E:\oracleclient\instantclient_11_2\network\admin</code><br>在该文件夹下面编写tnsnames.ora文件<br>内容格式如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">168=*pl/sql实例名称            </span><br><span class="line">  (DESCRIPTION =</span><br><span class="line">    (ADDRESS_LIST =</span><br><span class="line">      (ADDRESS = (PROTOCOL = TCP)(HOST = 192.168.89.168)(PORT = 1522))*数据库连接+端口</span><br><span class="line">    )</span><br><span class="line">    (CONNECT_DATA =</span><br><span class="line">      (SERVICE_NAME = orcl)*数据库实例名称</span><br><span class="line">    )</span><br><span class="line">  )</span><br></pre></td></tr></table></figure></p>
+<h2 id="3）"><a href="#3）" class="headerlink" title="3）"></a>3）</h2><p>到我的电脑、属性、高级、环境变量中添加一个环境变量，<br>变量名为TNS_ADMIN，值为tnsnames.ora文件所在路径， 例如：<code>E:\oracleclient\instantclient_11_2</code></p>
+<h2 id="4）"><a href="#4）" class="headerlink" title="4）"></a>4）</h2><p>安装完毕PLSQL后，启动，cancel，依次点击:<br><code>Tools</code> -&gt; <code>Preferences</code> -&gt; <code>Connection</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Oracle Home=E:\oracleclient\instantclient_11_2</span><br><span class="line">OCI library=E:\oracleclient\instantclient_11_2\oci.dll</span><br></pre></td></tr></table></figure></p>
+<p>重新启动PLSQL，输入用户名、密码、选择pl/sql实例名，即可进入数据库</p>
+<h2 id="5）"><a href="#5）" class="headerlink" title="5）"></a>5）</h2><p>初次登陆可能存在中文乱码的问题，解决方法如下：<br>到我的电脑、属性、高级、环境变量中添加一个环境变量：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">变量名：NLS_LANG </span><br><span class="line">变量值：AMERICAN_AMERICA.ZHS16GBK</span><br></pre></td></tr></table></figure></p>
+<p>重新连接，即可正常显示中文。<br>如果想转换为UTF8字符集，可以赋予“NLS_LANG”为 “AMERICAN_AMERICA.UTF8，其他编码同上</p>
+<h2 id="6）"><a href="#6）" class="headerlink" title="6）"></a>6）</h2><p>如果设置了TNS之后，登录没出现TNS数据库名称，则有可能是未安装Visual C ++ Redistributable Package<br>进入client的sqlplus目录使用sqlplus命令测试，提示<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tidy@TIDYCDD4 MINGW64 /c/Program Files/Oracle/instantclient_12_2_x64/sqlplus</span><br><span class="line"><span class="meta">$</span><span class="bash"> sqlplus</span></span><br><span class="line">C:/Program Files/Oracle/instantclient_12_2_x64/sqlplus/sqlplus.exe: error while loading shared libraries: MSVCR120.dll: cannot open shared object file: No such file or directory</span><br></pre></td></tr></table></figure></p>
+<p>下载链接：<a href="https://www.microsoft.com/en-us/download/details.aspx?id=40784" target="_blank" rel="noopener">https://www.microsoft.com/en-us/download/details.aspx?id=40784</a><br>安装后重启PLSQL即可。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/dcc50721.html" data-id="ckfdbk6p100ah5fykel9o35qz" class="article-share-link">
+        分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Oracle/">Oracle</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PLSQL/">PLSQL</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-日语 古いプロジェクトの再開" class="article" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/3a649dc9.html" class="article-date">
+  <time class="post-time" datetime="2014-07-17T16:02:00.000Z" itemprop="datePublished">
+    <span class="post-month">7月</span><br/>
+    <span class="post-day">18</span>
+  </time>
+</a>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/3a649dc9.html">日语 古いプロジェクトの再開</a>
+    </h1>
+  
+
+      <div>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/外语/">外语</a>,<a class="article-category-link" href="/categories/外语/日语/">日语</a>
+  </div>
+
+        
+        
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/3a649dc9.html" class="leancloud_visitors" data-flag-title="日语 古いプロジェクトの再開">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 81</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 1 分钟</span>
+  </div>
+ 
+        
+      </div>
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <p>昨日は部長にお知らせをもらいました。<br>一年ぐらい前の古いプロジェクトを再開したい”と言いました。<br>会社の方針ですから、このプロジェクトに協力すべきです。</p>
+<p>ですから、<br>私はSVNサーバからプログラムをエクスポートしました。<br>自分のパソコンで作業しました。<br>でも、うまくできませんでした。</p>
+<p>少し見て、多分何が原因か分かりました。<br>このプロジェクトは長く凍結されていたので、<br>以前、他のプロジェクトに調達したインタ—フェ—スが全て使えなくなっていました。</p>
+<p>だから、他のプロジェクトの協力が必要です。<br>彼らが全てのインタ—フェ—スを直したら、このプロジェクトをスタートします。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/3a649dc9.html" data-id="ckfdbk6qw00dk5fykkusbp9vl" class="article-share-link">
+        分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/外语/">外语</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/日语/">日语</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+
+
   
     <article id="post-日语 日本語の勉強" class="article" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -145,7 +323,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3194542f.html" data-id="ckf4sr3bw00dpofykwoowbx3t" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/3194542f.html" data-id="ckfdbk6r100dr5fykndogtjro" class="article-share-link">
         分享</a>
       
       
@@ -227,7 +405,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/8cfd6ae4.html" data-id="ckf4sr354001sofyk1xctqa99" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/8cfd6ae4.html" data-id="ckfdbk6jy00255fykjk9nos9x" class="article-share-link">
         分享</a>
       
       
@@ -309,7 +487,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/c21e42c5.html" data-id="ckf4sr356001wofyklj94syqc" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/c21e42c5.html" data-id="ckfdbk6jr001u5fykepqqzuvq" class="article-share-link">
         分享</a>
       
       
@@ -394,7 +572,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3975e50a.html" data-id="ckf4sr3bn00ddofyko73z10dh" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/3975e50a.html" data-id="ckfdbk6qz00dn5fykymgdf2vl" class="article-share-link">
         分享</a>
       
       
@@ -481,7 +659,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/a0a2137e.html" data-id="ckf4sr3ba00cmofykmq2y3yxh" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/a0a2137e.html" data-id="ckfdbk6q700cr5fykcgza1c56" class="article-share-link">
         分享</a>
       
       
@@ -589,7 +767,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/7a967e21.html" data-id="ckf4sr35a0023ofykmmgigcjo" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/7a967e21.html" data-id="ckfdbk6k2002a5fykppdvfobb" class="article-share-link">
         分享</a>
       
       
@@ -674,7 +852,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/41464bc7.html" data-id="ckf4sr37l005gofyks1u0js7r" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/41464bc7.html" data-id="ckfdbk6me005o5fyk9yptp2vg" class="article-share-link">
         分享</a>
       
       
@@ -757,7 +935,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/9a290665.html" data-id="ckf4sr37r005vofykzqegbggi" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/9a290665.html" data-id="ckfdbk6mi005v5fykiew1lmei" class="article-share-link">
         分享</a>
       
       
@@ -781,180 +959,10 @@
 
 
   
-    <article id="post-JS ajax请求firefox返回NS_BINDING_ABORTED" class="article" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/43cb033f.html" class="article-date">
-  <time class="post-time" datetime="2014-06-19T03:24:00.000Z" itemprop="datePublished">
-    <span class="post-month">6月</span><br/>
-    <span class="post-day">19</span>
-  </time>
-</a>
-
-  </div>
-  <div class="article-inner">
-    
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/43cb033f.html">JS ajax请求firefox返回NS_BINDING_ABORTED</a>
-    </h1>
-  
-
-      <div>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/JavaScript/">JavaScript</a>
-  </div>
-
-        
-        
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/43cb033f.html" class="leancloud_visitors" data-flag-title="JS ajax请求firefox返回NS_BINDING_ABORTED">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 85</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 1 分钟</span>
-  </div>
- 
-        
-      </div>
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      <p>在ligergrid中请求链接，post提交，返回NS_BINDING_ABORTED。</p>
-<p>是因为ligergrid中默认是异步提交方式，如果没有设置同步的话，</p>
-<p>在请求该链接的时候第一次请求还没有执行完毕，如果又发生了第二次请求的话，</p>
-<p>第一个请求就会中断，从而返回NS_BINDING_ABORTED。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/43cb033f.html" data-id="ckf4sr37j005cofyk7glflyhq" class="article-share-link">
-        分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LigerUI/">LigerUI</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Maven Missing artifact com.oracle:ojdbc14:jar:10.2.0.4.0" class="article" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/f995fc27.html" class="article-date">
-  <time class="post-time" datetime="2014-06-10T08:18:00.000Z" itemprop="datePublished">
-    <span class="post-month">6月</span><br/>
-    <span class="post-day">10</span>
-  </time>
-</a>
-
-  </div>
-  <div class="article-inner">
-    
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/f995fc27.html">Maven Missing artifact com.oracle:ojdbc14:jar:10.2.0.4.0</a>
-    </h1>
-  
-
-      <div>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/包管理器/">包管理器</a>,<a class="article-category-link" href="/categories/包管理器/Maven/">Maven</a>
-  </div>
-
-        
-        
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/f995fc27.html" class="leancloud_visitors" data-flag-title="Maven Missing artifact com.oracle:ojdbc14:jar:10.2.0.4.0">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 111</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 1 分钟</span>
-  </div>
- 
-        
-      </div>
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      <h3 id="1）"><a href="#1）" class="headerlink" title="1）"></a>1）</h3><p>到<a href="http://www.oracle.com/technetwork/database/features/jdbc/index-091264.html" target="_blank" rel="noopener">这里</a>下载你所需要的oraclejar包。</p>
-<h2 id="2）"><a href="#2）" class="headerlink" title="2）"></a>2）</h2><p>在c盘新建oracle文件夹，将下载好的oracle14.jar放到oracle文件夹中</p>
-<h2 id="3）"><a href="#3）" class="headerlink" title="3）"></a>3）</h2><p>在cmd中运行一下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn install:install-file -DgroupId=com.oracle -DartifactId=ojdbc14 -Dversion=10.2.0.1.0 -Dpackaging=jar -Dfile=E:\Maven\bak\ojdbc14-10.2.0.4.0.jar</span><br></pre></td></tr></table></figure></p>
-<h2 id="4）"><a href="#4）" class="headerlink" title="4）"></a>4）</h2><p>在pom.xml中添加以下代码：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- oracle数据库驱动 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.oracle<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>ojdbc14<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>10.2.0.4.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/f995fc27.html" data-id="ckf4sr396008jofykixdb6lrf" class="article-share-link">
-        分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Maven/">Maven</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
 
 
   <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/page/11/">&laquo; pre</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><a class="page-number" href="/page/14/">14</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/13/">next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/11/">&laquo; pre</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><a class="page-number" href="/page/14/">14</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/13/">next &raquo;</a>
   </nav>
 </section>
         
@@ -1001,11 +1009,11 @@
     <div class="count-box">
       <a href="/archives">
         <div><strong>
-            159</strong><br>文章</div>
+            161</strong><br>文章</div>
       </a>
       <a href="/categories">
         <div><strong>
-            57</strong><br>分类</div>
+            58</strong><br>分类</div>
       </a>
       <a href="/tags">
         <div><strong>

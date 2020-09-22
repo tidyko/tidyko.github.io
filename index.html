@@ -56,8 +56,8 @@
     <h2 class="author"></h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>159</strong><br>文章</div></a>
-      <a href="/categories"><div><strong>57</strong><br>分类</div></a>
+      <a href="/archives"><div><strong>161</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>58</strong><br>分类</div></a>
       <a href="/tags"><div><strong>118</strong><br>标签</div></a>
     </div>
     <ul class="blog-link">
@@ -83,6 +83,214 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-Docker 搭建Jenkins Agent" class="article" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/87e86852.html" class="article-date">
+  <time class="post-time" datetime="2020-09-17T04:00:00.000Z" itemprop="datePublished">
+    <span class="post-month">9月</span><br/>
+    <span class="post-day">17</span>
+  </time>
+</a>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/87e86852.html">Docker 搭建Jenkins Agent</a>
+    </h1>
+  
+
+      <div>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/DevOps/">DevOps</a>,<a class="article-category-link" href="/categories/DevOps/Docker/">Docker</a>,<a class="article-category-link" href="/categories/DevOps/Docker/Jenkins/">Jenkins</a>
+  </div>
+
+        
+        
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/87e86852.html" class="leancloud_visitors" data-flag-title="Docker 搭建Jenkins Agent">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 478</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 2 分钟</span>
+  </div>
+ 
+        
+      </div>
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <p>使用Docker搭建Jenkins服务后，因单节点不允许设置太大的执行数，所以可以创建Jenkins集群，使用Agent分担Jenkins构建的压力。</p>
+<h2 id="进入管理Jenkins"><a href="#进入管理Jenkins" class="headerlink" title="进入管理Jenkins"></a>进入管理Jenkins</h2><p>点击左侧菜单“Manage Jenkins（管理Jenkins）” –&gt; “Manage Nods and Clous（管理节点）”进入节点配置界面。<br><img src="http://img.tidyko.com/blog/jenkins_agent_1.png" alt="Docker 搭建Jenkins Agent-1"></p>
+<h2 id="新建节点"><a href="#新建节点" class="headerlink" title="新建节点"></a>新建节点</h2><p>在“Manage Nods and Clous（管理节点）界面”左侧点击“New Node(新建节点)”菜单，进入新节点新建界面。<br><img src="http://img.tidyko.com/blog/jenkins_agent_2.png" alt="Docker 搭建Jenkins Agent-1"></p>
+<h2 id="新建节点信息"><a href="#新建节点信息" class="headerlink" title="新建节点信息"></a>新建节点信息</h2><p>在新建界面，输入“Node name”和选择“Permanent Agent”，点击OK按钮。<br><img src="http://img.tidyko.com/blog/jenkins_agent_3.png" alt="Docker 搭建Jenkins Agent-1"></p>
+<h2 id="配置节点信息"><a href="#配置节点信息" class="headerlink" title="配置节点信息"></a>配置节点信息</h2><p>在配置节点信息界面，修改“# of executeors（执行数量）”，比如修改为5，修改后其他信息不用修改，直接点击“Save（保存）”按钮。<br><img src="http://img.tidyko.com/blog/jenkins_agent_4.png" alt="Docker 搭建Jenkins Agent-1"></p>
+<h2 id="获取代理节点配置信息"><a href="#获取代理节点配置信息" class="headerlink" title="获取代理节点配置信息"></a>获取代理节点配置信息</h2><p>点击保存后，系统界面会刷新显示当前所有节点的列表，点击刚刚配置的新节点“Build_Agent_02”进去,可以看到提示显示你执行命令，我们将“URL”、“节点名称”、“秘钥”这三个信息记录下来，在编写docker-compose.yml文件的时候使用<br><img src="http://img.tidyko.com/blog/jenkins_agent_5.png" alt="Docker 搭建Jenkins Agent-1"></p>
+<p><img src="http://img.tidyko.com/blog/jenkins_agent_6.png" alt="Docker 搭建Jenkins Agent-1"></p>
+<h2 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h2><p>Build_Agent_01</p>
+<ul>
+<li>jenkins_home<ul>
+<li>jenkins_py_script</li>
+<li>.ssh</li>
+</ul>
+</li>
+<li>dockerfile<ul>
+<li>Dockerfile</li>
+<li>build.sh</li>
+</ul>
+</li>
+<li>docker-compose.yml</li>
+</ul>
+<h2 id="编写Dockerfile"><a href="#编写Dockerfile" class="headerlink" title="编写Dockerfile"></a>编写Dockerfile</h2><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> jenkins/jnlp-slave:latest</span><br><span class="line"></span><br><span class="line"><span class="keyword">USER</span> root</span><br><span class="line"></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> mkdir -p /var/jenkins_home \</span></span><br><span class="line"><span class="bash">    &amp;&amp;  apt-get update \</span></span><br><span class="line"><span class="bash">    &amp;&amp;  apt-get install -y python-pip \</span></span><br><span class="line"><span class="bash">    &amp;&amp;  pip install -i https://pypi.tuna.tsinghua.edu.cn/simple cffi \</span></span><br><span class="line"><span class="bash">    &amp;&amp;  pip install -i https://pypi.tuna.tsinghua.edu.cn/simple paramiko</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash">VOLUME /var/jenkins_home</span></span><br></pre></td></tr></table></figure>
+<h2 id="编写build-sh"><a href="#编写build-sh" class="headerlink" title="编写build.sh"></a>编写build.sh</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker build -t tisson/jenkins-slave:latest .</span><br></pre></td></tr></table></figure>
+<p>保存完，执行构建镜像。</p>
+<h2 id="编写docker-compose-yml"><a href="#编写docker-compose-yml" class="headerlink" title="编写docker-compose.yml"></a>编写docker-compose.yml</h2><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">"3.8"</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line"><span class="attr">  jenkins_agent:</span></span><br><span class="line"><span class="attr">    container_name:</span> <span class="string">ts_jenkins_agent_01</span></span><br><span class="line"><span class="attr">    image:</span> <span class="string">tisson/jenkins-slave:latest</span></span><br><span class="line"><span class="attr">    environment:</span></span><br><span class="line"><span class="attr">      JENKINS_URL:</span> <span class="string">"http://xxx.xxx.xxx.xxx:8080"</span></span><br><span class="line"><span class="attr">      JENKINS_SECRET:</span> <span class="string">"14990778b3f66a48772f69a430b2357af7271c71c870875c3a4c7da947b5e50c"</span></span><br><span class="line"><span class="attr">      JENKINS_AGENT_NAME:</span> <span class="string">"Build_Agent_01"</span></span><br><span class="line"><span class="attr">    volumes:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">"./jenkins_home:/var/jenkins_home"</span></span><br><span class="line"><span class="attr">    restart:</span> <span class="string">always</span></span><br></pre></td></tr></table></figure>
+<p>保存完，执行<code>docker-compose up -d</code>，进行容器构建、启动。</p>
+<h2 id="查看日志"><a href="#查看日志" class="headerlink" title="查看日志"></a>查看日志</h2><p>输入<code>docker-compose logs -f</code>，查看运行日志。<br><img src="http://img.tidyko.com/blog/jenkins_agent_7.png" alt="Docker 搭建Jenkins Agent-1"></p>
+<h2 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h2><p>启动完成刷新Jenkins页面，如果现实节点正常即为启动成功。<br><img src="http://img.tidyko.com/blog/jenkins_agent_8.png" alt="Docker 搭建Jenkins Agent-1"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/87e86852.html" data-id="ckfdbk6iy000l5fyklkdrha37" class="article-share-link">
+        分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/">Docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jenkins/">Jenkins</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Docker 搭建Jenkins" class="article" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/b4c2554f.html" class="article-date">
+  <time class="post-time" datetime="2020-09-16T04:00:00.000Z" itemprop="datePublished">
+    <span class="post-month">9月</span><br/>
+    <span class="post-day">16</span>
+  </time>
+</a>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/b4c2554f.html">Docker 搭建Jenkins</a>
+    </h1>
+  
+
+      <div>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/DevOps/">DevOps</a>,<a class="article-category-link" href="/categories/DevOps/Docker/">Docker</a>,<a class="article-category-link" href="/categories/DevOps/Docker/Jenkins/">Jenkins</a>
+  </div>
+
+        
+        
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/b4c2554f.html" class="leancloud_visitors" data-flag-title="Docker 搭建Jenkins">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 304</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 2 分钟</span>
+  </div>
+ 
+        
+      </div>
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <p>使用Docker搭建Jenkins服务，因为Jenkins Job需要执行Python脚本，需要安装Paramiko模块，所以需要编写下Dockerfile进行构建。</p>
+<h2 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h2><p>jenkins</p>
+<ul>
+<li>jenkins_home</li>
+<li>dockerfile_2.257<ul>
+<li>build.sh</li>
+<li>Dockerfile</li>
+</ul>
+</li>
+<li>docker-compose.yml</li>
+</ul>
+<h2 id="编写dockerfile-2-257-Dockerfile"><a href="#编写dockerfile-2-257-Dockerfile" class="headerlink" title="编写dockerfile_2.257/Dockerfile:"></a>编写dockerfile_2.257/Dockerfile:</h2><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> jenkins/jenkins:<span class="number">2.257</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">USER</span> root</span><br><span class="line"></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> sed -i <span class="string">'s/deb.debian.org/mirrors.aliyun.com/g'</span> /etc/apt/sources.list \</span></span><br><span class="line"><span class="bash">    &amp;&amp; sed -i <span class="string">'s/security.debian.org/mirrors.aliyun.com/g'</span> /etc/apt/sources.list \</span></span><br><span class="line"><span class="bash">    &amp;&amp; apt-get clean \</span></span><br><span class="line"><span class="bash">    &amp;&amp; apt-get update \</span></span><br><span class="line"><span class="bash">    &amp;&amp; apt-get install -y python-pip \</span></span><br><span class="line"><span class="bash">    &amp;&amp; rm -rf /var/lib/apt/lists/* \</span></span><br><span class="line"><span class="bash">    &amp;&amp; pip install -i https://pypi.tuna.tsinghua.edu.cn/simple cffi \</span></span><br><span class="line"><span class="bash">    &amp;&amp; pip install -i https://pypi.tuna.tsinghua.edu.cn/simple paramiko</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash">USER jenkins</span></span><br></pre></td></tr></table></figure>
+<h2 id="编写dockerfile-2-257-build-sh："><a href="#编写dockerfile-2-257-build-sh：" class="headerlink" title="编写dockerfile_2.257/build.sh："></a>编写dockerfile_2.257/build.sh：</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -t tisson/jenkins:2.257 .</span><br></pre></td></tr></table></figure>
+<h2 id="编写docker-compose-yml"><a href="#编写docker-compose-yml" class="headerlink" title="编写docker-compose.yml:"></a>编写docker-compose.yml:</h2><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">"3.8"</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line"><span class="attr">  jenkins:</span></span><br><span class="line"><span class="attr">    container_name:</span> <span class="string">ts_jenkins</span></span><br><span class="line"><span class="attr">    image:</span> <span class="string">tisson/jenkins:2.257</span></span><br><span class="line"><span class="attr">    environment:</span></span><br><span class="line"><span class="attr">      TZ:</span> <span class="string">"Asia/Shanghai"</span></span><br><span class="line"><span class="attr">      JAVA_OPTS:</span> <span class="string">"-Djava.awt.headless=true"</span></span><br><span class="line"><span class="attr">    ports:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">"8080:8080"</span></span><br><span class="line"><span class="attr">    volumes:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">"./jenkins_home:/var/jenkins_home"</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">"/var/run/docker.sock:/var/run/docker.sock"</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">"/etc/localtime:/etc/localtime"</span></span><br><span class="line"><span class="attr">    restart:</span> <span class="string">always</span></span><br></pre></td></tr></table></figure>
+<h2 id="新建Jenkins家目录，以便映射"><a href="#新建Jenkins家目录，以便映射" class="headerlink" title="新建Jenkins家目录，以便映射"></a>新建Jenkins家目录，以便映射</h2><p>在同级目录新建jenkins_home文件夹</p>
+<h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><p>创建容器并后台启动：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure></p>
+<h2 id="查看日志"><a href="#查看日志" class="headerlink" title="查看日志"></a>查看日志</h2><p>查看运行日志：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose logs -f</span><br></pre></td></tr></table></figure></p>
+<h2 id="校验"><a href="#校验" class="headerlink" title="校验"></a>校验</h2><p>在浏览器输入<code>http://localhost:8080</code>进行校验，输入日志显示的秘钥初始化Jenkins</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/b4c2554f.html" data-id="ckfdbk6j2000q5fykatbp0rrs" class="article-share-link">
+        分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/">Docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jenkins/">Jenkins</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+
+
   
     <article id="post-Mpvue中使用云函数" class="article" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -154,7 +362,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/d2036d9e.html" data-id="ckf4sr39i0096ofykmnw3vv4x" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/d2036d9e.html" data-id="ckfdbk6om009j5fyk0no96tob" class="article-share-link">
         分享</a>
       
       
@@ -245,7 +453,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/ee559db8.html" data-id="ckf4sr3b300c9ofyk0wdwtg7z" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/ee559db8.html" data-id="ckfdbk6pv00c45fyk80ivvkil" class="article-share-link">
         分享</a>
       
       
@@ -338,7 +546,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/c682cc65.html" data-id="ckf4sr3ax00buofykmaxg5sb0" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/c682cc65.html" data-id="ckfdbk6pn00br5fyk9hdrv0it" class="article-share-link">
         分享</a>
       
       
@@ -434,7 +642,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/9f95e5a1.html" data-id="ckf4sr34i000vofyk5rho5u2v" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/9f95e5a1.html" data-id="ckfdbk6jd00175fykmpu03vay" class="article-share-link">
         分享</a>
       
       
@@ -528,7 +736,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/4db18d9b.html" data-id="ckf4sr35y0030ofyk5enkdyaf" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/4db18d9b.html" data-id="ckfdbk6kb002p5fykcy0a0mg7" class="article-share-link">
         分享</a>
       
       
@@ -617,7 +825,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/2b4e0834.html" data-id="ckf4sr34z001nofyk43pnclho" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/2b4e0834.html" data-id="ckfdbk6jm001o5fykusch3wuh" class="article-share-link">
         分享</a>
       
       
@@ -704,7 +912,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/82922308.html" data-id="ckf4sr36f003sofykt6g4weoj" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/82922308.html" data-id="ckfdbk6l1003u5fyksq115h8v" class="article-share-link">
         分享</a>
       
       
@@ -792,7 +1000,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/ff68fd05.html" data-id="ckf4sr37s0060ofyk7jk3r7l1" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/ff68fd05.html" data-id="ckfdbk6md005l5fykk9lsmmk0" class="article-share-link">
         分享</a>
       
       
@@ -816,184 +1024,10 @@
 
 
   
-    <article id="post-Mac 解决16版MBP键盘B+N键重复点击的问题" class="article" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/84f800f7.html" class="article-date">
-  <time class="post-time" datetime="2019-09-23T01:31:00.000Z" itemprop="datePublished">
-    <span class="post-month">9月</span><br/>
-    <span class="post-day">23</span>
-  </time>
-</a>
-
-  </div>
-  <div class="article-inner">
-    
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/84f800f7.html">Mac 解决16版MBP键盘B+N键重复点击的问题</a>
-    </h1>
-  
-
-      <div>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Mac/">Mac</a>,<a class="article-category-link" href="/categories/Mac/键盘/">键盘</a>
-  </div>
-
-        
-        
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/84f800f7.html" class="leancloud_visitors" data-flag-title="Mac 解决16版MBP键盘B+N键重复点击的问题">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 849</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 4 分钟</span>
-  </div>
- 
-        
-      </div>
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      <p>在16版MBP中的蝶式键盘有可能出现某个按钮重复点击的问题，就是按一次响应两次，重灾区是<code>B</code>和<code>N</code>键，<br>偶然发现网上除了返修之外，还有一个折中方法，就是通过编写程序，在开机后自启动，在程序里面判断相应按钮的两次点击的间隔时间，<br>如果太短则忽略，从而达到避免重复点击的问题。</p>
-<h2 id="1-源码（本文章使用以下代码来自网络）："><a href="#1-源码（本文章使用以下代码来自网络）：" class="headerlink" title="1.源码（本文章使用以下代码来自网络）："></a>1.源码（本文章使用以下代码来自网络）：</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// alterkeys.c</span></span><br><span class="line"><span class="comment">// http://osxbook.com</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">// You need superuser privileges to create the event tap, unless accessibility</span></span><br><span class="line"><span class="comment">// is enabled. To do so, select the "Enable access for assistive devices"</span></span><br><span class="line"><span class="comment">// checkbox in the Universal Access system preference pane.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// modified by SF-Zhou</span></span><br><span class="line"><span class="comment">// To: Kill Double Typing on MacBook</span></span><br><span class="line"><span class="comment">// Complile: g++ -O2 -Wall -o kill_double_typing kill_double_typing.cpp -framework ApplicationServices</span></span><br><span class="line"><span class="comment">// Run: ./kill_double_typing</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;ApplicationServices/ApplicationServices.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;chrono&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unordered_map&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> chrono::time_point&lt;<span class="built_in">std</span>::chrono::high_resolution_clock&gt; Time;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"></span><br><span class="line"><span class="built_in">unordered_map</span>&lt;CGKeyCode, Time&gt; last_time;</span><br><span class="line"></span><br><span class="line"><span class="function">Time <span class="title">time_now</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> chrono::high_resolution_clock::now();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// This callback will be invoked every time there is a keystroke.</span></span><br><span class="line"><span class="function">CGEventRef <span class="title">myCGEventCallback</span><span class="params">(CGEventTapProxy proxy, CGEventType type, CGEventRef event, <span class="keyword">void</span> *refcon)</span> </span>&#123;</span><br><span class="line">  <span class="comment">// Paranoid sanity check.</span></span><br><span class="line">  <span class="keyword">if</span> ((type != kCGEventKeyDown) &amp;&amp; (type != kCGEventKeyUp)) &#123;</span><br><span class="line">    <span class="keyword">return</span> event;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// The incoming keycode.</span></span><br><span class="line">  CGKeyCode keycode = (CGKeyCode)CGEventGetIntegerValueField(event, kCGKeyboardEventKeycode);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (keycode == <span class="number">11</span> <span class="comment">/* b */</span> || keycode == <span class="number">45</span> <span class="comment">/* n */</span>) &#123;</span><br><span class="line">  <span class="comment">//if (keycode == 11 /* b */) &#123;</span></span><br><span class="line">    <span class="keyword">if</span> (type == kCGEventKeyUp) &#123;</span><br><span class="line">      last_time[keycode] = time_now();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (last_time.count(keycode)) &#123;</span><br><span class="line">        ll microseconds = chrono::duration_cast&lt;chrono::microseconds&gt;(</span><br><span class="line">          time_now() - last_time[keycode]</span><br><span class="line">        ).count();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// ignore if time less than 30ms</span></span><br><span class="line">        <span class="keyword">if</span> (microseconds &lt; <span class="number">30000</span>) &#123;</span><br><span class="line">          <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Set the modified keycode field in the event.</span></span><br><span class="line">  CGEventSetIntegerValueField(event, kCGKeyboardEventKeycode, (<span class="keyword">int64_t</span>)keycode);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// We must return the event for it to be useful.</span></span><br><span class="line">  <span class="keyword">return</span> event;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span> </span>&#123;</span><br><span class="line">  CFMachPortRef      eventTap;</span><br><span class="line">  CGEventMask        eventMask;</span><br><span class="line">  CFRunLoopSourceRef runLoopSource;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Create an event tap. We are interested in key presses.</span></span><br><span class="line">  eventMask = ((<span class="number">1</span> &lt;&lt; kCGEventKeyDown) | (<span class="number">1</span> &lt;&lt; kCGEventKeyUp));</span><br><span class="line">  eventTap = CGEventTapCreate(kCGSessionEventTap, kCGHeadInsertEventTap, <span class="number">0</span>, eventMask, myCGEventCallback, <span class="literal">NULL</span>);</span><br><span class="line">  <span class="keyword">if</span> (!eventTap) &#123;</span><br><span class="line">      <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"failed to create event tap\n"</span>);</span><br><span class="line">      <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Create a run loop source.</span></span><br><span class="line">  runLoopSource = CFMachPortCreateRunLoopSource(kCFAllocatorDefault, eventTap, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Add to the current run loop.</span></span><br><span class="line">  CFRunLoopAddSource(CFRunLoopGetCurrent(), runLoopSource, kCFRunLoopCommonModes);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Enable the event tap.</span></span><br><span class="line">  CGEventTapEnable(eventTap, <span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Set it all running.</span></span><br><span class="line">  CFRunLoopRun();</span><br><span class="line"></span><br><span class="line">  <span class="comment">// In a real program, one would have arranged for cleaning up.</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-      <p class="article-more-link">
-        <a href="/posts/84f800f7.html#more">
-          Read More</a>
-      </p>
-      
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/84f800f7.html" data-id="ckf4sr39c008qofyk8tfc13rx" class="article-share-link">
-        分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mac/">Mac</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/重复点击/">重复点击</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/键盘/">键盘</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Mac EasyConnect 未能正确打开SANGFOR SSL Virtual网卡" class="article" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/f6c0b73e.html" class="article-date">
-  <time class="post-time" datetime="2019-06-27T01:31:00.000Z" itemprop="datePublished">
-    <span class="post-month">6月</span><br/>
-    <span class="post-day">27</span>
-  </time>
-</a>
-
-  </div>
-  <div class="article-inner">
-    
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/f6c0b73e.html">Mac EasyConnect 未能正确打开SANGFOR SSL Virtual网卡</a>
-    </h1>
-  
-
-      <div>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Mac/">Mac</a>,<a class="article-category-link" href="/categories/Mac/代理/">代理</a>
-  </div>
-
-        
-        
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/f6c0b73e.html" class="leancloud_visitors" data-flag-title="Mac EasyConnect 未能正确打开SANGFOR SSL Virtual网卡">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 144</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 1 分钟</span>
-  </div>
- 
-        
-      </div>
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      <h2 id="1-场景："><a href="#1-场景：" class="headerlink" title="1.场景："></a>1.场景：</h2><p>今天打开<code>EasyConnect</code>提示：未能正确打开SANGFOR SSL Virtual网卡，暂时不能提供SSL CS服务，请联系管理员</p>
-<h2 id="2-排查："><a href="#2-排查：" class="headerlink" title="2.排查："></a>2.排查：</h2><p>经排查，最后发现是与其他虚拟网卡冲突了。<br>在昨天安装过网易mumu模拟器，没有安装成功，但是给我遗留了一个虚拟网卡。<br>将其卸载后重启就行了。</p>
-<h2 id="3-操作："><a href="#3-操作：" class="headerlink" title="3.操作："></a>3.操作：</h2><p>查看虚拟网卡：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kextstat</span><br></pre></td></tr></table></figure></p>
-<p>卸载指定虚拟网卡：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo  kextunload -b com.netease.nemu.kext.NemuDrv</span><br></pre></td></tr></table></figure></p>
-<p>删除虚拟网卡目录（Nemu）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo rm -rf /Library/Application\ Support/Nemu</span><br></pre></td></tr></table></figure></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/f6c0b73e.html" data-id="ckf4sr38z0085ofykpkhogj1i" class="article-share-link">
-        分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/EasyConnect/">EasyConnect</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mac/">Mac</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/代理/">代理</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
 
 
   <nav id="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/2/">next &raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/2/">next &raquo;</a>
   </nav>
 </section>
         
@@ -1040,11 +1074,11 @@
     <div class="count-box">
       <a href="/archives">
         <div><strong>
-            159</strong><br>文章</div>
+            161</strong><br>文章</div>
       </a>
       <a href="/categories">
         <div><strong>
-            57</strong><br>分类</div>
+            58</strong><br>分类</div>
       </a>
       <a href="/tags">
         <div><strong>

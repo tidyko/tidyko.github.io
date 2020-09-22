@@ -56,8 +56,8 @@
     <h2 class="author"></h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>159</strong><br>文章</div></a>
-      <a href="/categories"><div><strong>57</strong><br>分类</div></a>
+      <a href="/archives"><div><strong>161</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>58</strong><br>分类</div></a>
       <a href="/tags"><div><strong>118</strong><br>标签</div></a>
     </div>
     <ul class="blog-link">
@@ -83,6 +83,176 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-Eclipse 配置pom.xml错误" class="article" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/ac53be82.html" class="article-date">
+  <time class="post-time" datetime="2014-02-25T04:31:00.000Z" itemprop="datePublished">
+    <span class="post-month">2月</span><br/>
+    <span class="post-day">25</span>
+  </time>
+</a>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/ac53be82.html">Eclipse 配置pom.xml错误</a>
+    </h1>
+  
+
+      <div>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/开发调试工具/">开发调试工具</a>,<a class="article-category-link" href="/categories/开发调试工具/Eclipse/">Eclipse</a>
+  </div>
+
+        
+        
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/ac53be82.html" class="leancloud_visitors" data-flag-title="Eclipse 配置pom.xml错误">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 147</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 1 分钟</span>
+  </div>
+ 
+        
+      </div>
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <p>如下所示，依赖中已经加上了<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">scope</span>&gt;</span>provided<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- servlet --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">　　<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>javax.servlet<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">　　<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>servlet-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">　　<span class="tag">&lt;<span class="name">version</span>&gt;</span>2.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">　　<span class="tag">&lt;<span class="name">scope</span>&gt;</span>provided<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- jsp --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">　　<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>javax.servlet.jsp<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">　　<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jsp-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">　　<span class="tag">&lt;<span class="name">version</span>&gt;</span>2.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">　　<span class="tag">&lt;<span class="name">scope</span>&gt;</span>provided<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>本来在项目发布后是不会把这两个包发布到项目发布路径下面的，但在Eclipse下面却仍然发布了。</p>
+<h2 id="解决方法："><a href="#解决方法：" class="headerlink" title="解决方法："></a>解决方法：</h2><h3 id="1"><a href="#1" class="headerlink" title="1)"></a>1)</h3><p>手动删掉两个包。</p>
+<h3 id="2"><a href="#2" class="headerlink" title="2)"></a>2)</h3><p><code>右击项目</code> -&gt; <code>Build Path</code> -&gt; <code>Configure Build Path</code> -&gt; <code>Libraries</code>  -&gt; <code>Add Library</code> -&gt; <code>Server Runtime</code> -&gt; <code>最后选择一个已配置的Tomcat</code> -&gt; <code>完成</code></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/ac53be82.html" data-id="ckfdbk6jx00245fykuy2706lv" class="article-share-link">
+        分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Maven/">Maven</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-J2EE 异常处理" class="article" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/26788ddf.html" class="article-date">
+  <time class="post-time" datetime="2014-02-24T03:50:00.000Z" itemprop="datePublished">
+    <span class="post-month">2月</span><br/>
+    <span class="post-day">24</span>
+  </time>
+</a>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/26788ddf.html">J2EE 异常处理</a>
+    </h1>
+  
+
+      <div>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Java/">Java</a>
+  </div>
+
+        
+        
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/26788ddf.html" class="leancloud_visitors" data-flag-title="J2EE 异常处理">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 163</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 1 分钟</span>
+  </div>
+ 
+        
+      </div>
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <p>J2EE中一般对异常状况的处理都可以用两种情况对其进行相应处理。</p>
+<h3 id="1）"><a href="#1）" class="headerlink" title="1）"></a>1）</h3><p>通常情况下，一般异常处理可以选择用throw、throws从底层一直往上面抛，直到抛到Action，让其将异常显示在页面上面进行显示即可。</p>
+<h3 id="2）"><a href="#2）" class="headerlink" title="2）"></a>2）</h3><p>特殊情况下，如果需要在具体底层对该异常进行捕捉的话，则需要在对其捕捉之后，在catch里面对其做出相应处理，做出默认值返回，或者在catch里面继续throw这个异常，然后，上一层继续对这个异常进行相应处理。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/26788ddf.html" data-id="ckfdbk6m300555fyk9649btz9" class="article-share-link">
+        分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+
+
   
     <article id="post-Java throw和throws的区别和用法" class="article" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -143,7 +313,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/93821c9f.html" data-id="ckf4sr386006rofykxal5dwzp" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/93821c9f.html" data-id="ckfdbk6n2006q5fyk5hldfasy" class="article-share-link">
         分享</a>
       
       
@@ -230,7 +400,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/bd745825.html" data-id="ckf4sr34m0012ofykhffwsw70" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/bd745825.html" data-id="ckfdbk6j900125fyk3essw52o" class="article-share-link">
         分享</a>
       
       
@@ -313,7 +483,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3e42071e.html" data-id="ckf4sr34k000yofykjds9vn21" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/3e42071e.html" data-id="ckfdbk6j700105fykomjaqsjm" class="article-share-link">
         分享</a>
       
       
@@ -399,7 +569,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/fd6e9fc4.html" data-id="ckf4sr34o0015ofyk5txx2hx0" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/fd6e9fc4.html" data-id="ckfdbk6je001a5fyka028x7z5" class="article-share-link">
         分享</a>
       
       
@@ -482,7 +652,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/353a4b3e.html" data-id="ckf4sr34r001aofykub8rj122" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/353a4b3e.html" data-id="ckfdbk6jg001c5fykbrj4d2ji" class="article-share-link">
         分享</a>
       
       
@@ -566,7 +736,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/df9c274.html" data-id="ckf4sr3590021ofykr7mqeu56" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/df9c274.html" data-id="ckfdbk6jt001z5fyk2wp5b0dg" class="article-share-link">
         分享</a>
       
       
@@ -649,7 +819,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/f362ee4b.html" data-id="ckf4sr357001xofyk2ikxfiy7" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/f362ee4b.html" data-id="ckfdbk6jv00215fyk8paniex1" class="article-share-link">
         分享</a>
       
       
@@ -732,176 +902,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/d809e936.html" data-id="ckf4sr35e0028ofykghxf0vk1" class="article-share-link">
-        分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Maven/">Maven</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Oracle wmsys.wm_concat函数字段值为空" class="article" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/f59ca5b1.html" class="article-date">
-  <time class="post-time" datetime="2013-11-20T07:11:00.000Z" itemprop="datePublished">
-    <span class="post-month">11月</span><br/>
-    <span class="post-day">20</span>
-  </time>
-</a>
-
-  </div>
-  <div class="article-inner">
-    
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/f59ca5b1.html">Oracle wmsys.wm_concat函数字段值为空</a>
-    </h1>
-  
-
-      <div>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/数据库/">数据库</a>,<a class="article-category-link" href="/categories/数据库/Oracle/">Oracle</a>
-  </div>
-
-        
-        
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/f59ca5b1.html" class="leancloud_visitors" data-flag-title="Oracle wmsys.wm_concat函数字段值为空">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 173</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 1 分钟</span>
-  </div>
- 
-        
-      </div>
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      <h3 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h3><p>这个是因为字符集的问题，和空值是没关系的。<br>其实已经取到了数据，可以验证一下<br>返回的不是0，但是由于这个里面有个chr(0)字符，而且可能第一个字符就是chr(0)，所以就显示得怪异的空现象。<br>至于为何会出现chr(0),这就是因为WM_CONCAT函数的问题了，可能它对于多种字符集的处理不是很好吧，所以如果里面的参数不用to_char处理一下，就有可能出现乱码甚至为空的现象。</p>
-<h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wmsys.wm_concat(to_char(tab.SYSTEM_SYMBOL)) AS SYSTEM_SYMBOL</span><br></pre></td></tr></table></figure>
-<p>像这样使用to_char函数即可。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/f59ca5b1.html" data-id="ckf4sr3ac00arofykwtloojk6" class="article-share-link">
-        分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Oracle/">Oracle</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sql/">Sql</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Maven 运行项目，报ClassNotFound错误" class="article" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/a47d877b.html" class="article-date">
-  <time class="post-time" datetime="2013-11-14T08:33:00.000Z" itemprop="datePublished">
-    <span class="post-month">11月</span><br/>
-    <span class="post-day">14</span>
-  </time>
-</a>
-
-  </div>
-  <div class="article-inner">
-    
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/a47d877b.html">Maven 运行项目，报ClassNotFound错误</a>
-    </h1>
-  
-
-      <div>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/包管理器/">包管理器</a>,<a class="article-category-link" href="/categories/包管理器/Maven/">Maven</a>
-  </div>
-
-        
-        
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/a47d877b.html" class="leancloud_visitors" data-flag-title="Maven 运行项目，报ClassNotFound错误">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 133</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 1 分钟</span>
-  </div>
- 
-        
-      </div>
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      <p>我们在pom.xml中添加了那些依赖的jar后，一旦在代码中应用。当我们本地调试时，会报ClassNotFound错误，这是为什么？？</p>
-<h3 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h3><p>是因为Tomcat不懂这些配置，你必须把Maven Dependencies中的jar与发布目录配置好</p>
-<h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><p><code>项目</code> —&gt; <code>属性</code> -&gt; <code>Deployment Assembly</code> -&gt; <code>Add</code> -&gt; <code>Java Build Path Entries</code> -&gt; <code>选择Maven Dependencies</code> -&gt; <code>Finish</code> -&gt; <code>OK</code></p>
-<p>这一步就是配置Maven依赖包发布目录，这样调试时会自动把那些jar发布到指定目录下，tomcat也能找到那些jar了。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/a47d877b.html" data-id="ckf4sr39e008vofykq64xxigf" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/d809e936.html" data-id="ckfdbk6jz00275fykrp8i0aim" class="article-share-link">
         分享</a>
       
       
@@ -928,7 +929,7 @@
 
 
   <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/page/14/">&laquo; pre</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="page-number" href="/page/14/">14</a><span class="page-number current">15</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/16/">next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/14/">&laquo; pre</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="page-number" href="/page/14/">14</a><span class="page-number current">15</span><a class="page-number" href="/page/16/">16</a><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/16/">next &raquo;</a>
   </nav>
 </section>
         
@@ -975,11 +976,11 @@
     <div class="count-box">
       <a href="/archives">
         <div><strong>
-            159</strong><br>文章</div>
+            161</strong><br>文章</div>
       </a>
       <a href="/categories">
         <div><strong>
-            57</strong><br>分类</div>
+            58</strong><br>分类</div>
       </a>
       <a href="/tags">
         <div><strong>

@@ -56,8 +56,8 @@
     <h2 class="author"></h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>159</strong><br>文章</div></a>
-      <a href="/categories"><div><strong>57</strong><br>分类</div></a>
+      <a href="/archives"><div><strong>161</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>58</strong><br>分类</div></a>
       <a href="/tags"><div><strong>118</strong><br>标签</div></a>
     </div>
     <ul class="blog-link">
@@ -83,6 +83,180 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-Mac 解决16版MBP键盘B+N键重复点击的问题" class="article" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/84f800f7.html" class="article-date">
+  <time class="post-time" datetime="2019-09-23T01:31:00.000Z" itemprop="datePublished">
+    <span class="post-month">9月</span><br/>
+    <span class="post-day">23</span>
+  </time>
+</a>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/84f800f7.html">Mac 解决16版MBP键盘B+N键重复点击的问题</a>
+    </h1>
+  
+
+      <div>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Mac/">Mac</a>,<a class="article-category-link" href="/categories/Mac/键盘/">键盘</a>
+  </div>
+
+        
+        
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/84f800f7.html" class="leancloud_visitors" data-flag-title="Mac 解决16版MBP键盘B+N键重复点击的问题">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 849</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 4 分钟</span>
+  </div>
+ 
+        
+      </div>
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <p>在16版MBP中的蝶式键盘有可能出现某个按钮重复点击的问题，就是按一次响应两次，重灾区是<code>B</code>和<code>N</code>键，<br>偶然发现网上除了返修之外，还有一个折中方法，就是通过编写程序，在开机后自启动，在程序里面判断相应按钮的两次点击的间隔时间，<br>如果太短则忽略，从而达到避免重复点击的问题。</p>
+<h2 id="1-源码（本文章使用以下代码来自网络）："><a href="#1-源码（本文章使用以下代码来自网络）：" class="headerlink" title="1.源码（本文章使用以下代码来自网络）："></a>1.源码（本文章使用以下代码来自网络）：</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// alterkeys.c</span></span><br><span class="line"><span class="comment">// http://osxbook.com</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">// You need superuser privileges to create the event tap, unless accessibility</span></span><br><span class="line"><span class="comment">// is enabled. To do so, select the "Enable access for assistive devices"</span></span><br><span class="line"><span class="comment">// checkbox in the Universal Access system preference pane.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// modified by SF-Zhou</span></span><br><span class="line"><span class="comment">// To: Kill Double Typing on MacBook</span></span><br><span class="line"><span class="comment">// Complile: g++ -O2 -Wall -o kill_double_typing kill_double_typing.cpp -framework ApplicationServices</span></span><br><span class="line"><span class="comment">// Run: ./kill_double_typing</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;ApplicationServices/ApplicationServices.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;chrono&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unordered_map&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> chrono::time_point&lt;<span class="built_in">std</span>::chrono::high_resolution_clock&gt; Time;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"></span><br><span class="line"><span class="built_in">unordered_map</span>&lt;CGKeyCode, Time&gt; last_time;</span><br><span class="line"></span><br><span class="line"><span class="function">Time <span class="title">time_now</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> chrono::high_resolution_clock::now();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// This callback will be invoked every time there is a keystroke.</span></span><br><span class="line"><span class="function">CGEventRef <span class="title">myCGEventCallback</span><span class="params">(CGEventTapProxy proxy, CGEventType type, CGEventRef event, <span class="keyword">void</span> *refcon)</span> </span>&#123;</span><br><span class="line">  <span class="comment">// Paranoid sanity check.</span></span><br><span class="line">  <span class="keyword">if</span> ((type != kCGEventKeyDown) &amp;&amp; (type != kCGEventKeyUp)) &#123;</span><br><span class="line">    <span class="keyword">return</span> event;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// The incoming keycode.</span></span><br><span class="line">  CGKeyCode keycode = (CGKeyCode)CGEventGetIntegerValueField(event, kCGKeyboardEventKeycode);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (keycode == <span class="number">11</span> <span class="comment">/* b */</span> || keycode == <span class="number">45</span> <span class="comment">/* n */</span>) &#123;</span><br><span class="line">  <span class="comment">//if (keycode == 11 /* b */) &#123;</span></span><br><span class="line">    <span class="keyword">if</span> (type == kCGEventKeyUp) &#123;</span><br><span class="line">      last_time[keycode] = time_now();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (last_time.count(keycode)) &#123;</span><br><span class="line">        ll microseconds = chrono::duration_cast&lt;chrono::microseconds&gt;(</span><br><span class="line">          time_now() - last_time[keycode]</span><br><span class="line">        ).count();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// ignore if time less than 30ms</span></span><br><span class="line">        <span class="keyword">if</span> (microseconds &lt; <span class="number">30000</span>) &#123;</span><br><span class="line">          <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Set the modified keycode field in the event.</span></span><br><span class="line">  CGEventSetIntegerValueField(event, kCGKeyboardEventKeycode, (<span class="keyword">int64_t</span>)keycode);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// We must return the event for it to be useful.</span></span><br><span class="line">  <span class="keyword">return</span> event;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span> </span>&#123;</span><br><span class="line">  CFMachPortRef      eventTap;</span><br><span class="line">  CGEventMask        eventMask;</span><br><span class="line">  CFRunLoopSourceRef runLoopSource;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Create an event tap. We are interested in key presses.</span></span><br><span class="line">  eventMask = ((<span class="number">1</span> &lt;&lt; kCGEventKeyDown) | (<span class="number">1</span> &lt;&lt; kCGEventKeyUp));</span><br><span class="line">  eventTap = CGEventTapCreate(kCGSessionEventTap, kCGHeadInsertEventTap, <span class="number">0</span>, eventMask, myCGEventCallback, <span class="literal">NULL</span>);</span><br><span class="line">  <span class="keyword">if</span> (!eventTap) &#123;</span><br><span class="line">      <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"failed to create event tap\n"</span>);</span><br><span class="line">      <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Create a run loop source.</span></span><br><span class="line">  runLoopSource = CFMachPortCreateRunLoopSource(kCFAllocatorDefault, eventTap, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Add to the current run loop.</span></span><br><span class="line">  CFRunLoopAddSource(CFRunLoopGetCurrent(), runLoopSource, kCFRunLoopCommonModes);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Enable the event tap.</span></span><br><span class="line">  CGEventTapEnable(eventTap, <span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Set it all running.</span></span><br><span class="line">  CFRunLoopRun();</span><br><span class="line"></span><br><span class="line">  <span class="comment">// In a real program, one would have arranged for cleaning up.</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+      <p class="article-more-link">
+        <a href="/posts/84f800f7.html#more">
+          Read More</a>
+      </p>
+      
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/84f800f7.html" data-id="ckfdbk6oa008q5fyk0gwj4xb1" class="article-share-link">
+        分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mac/">Mac</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/重复点击/">重复点击</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/键盘/">键盘</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Mac EasyConnect 未能正确打开SANGFOR SSL Virtual网卡" class="article" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/posts/f6c0b73e.html" class="article-date">
+  <time class="post-time" datetime="2019-06-27T01:31:00.000Z" itemprop="datePublished">
+    <span class="post-month">6月</span><br/>
+    <span class="post-day">27</span>
+  </time>
+</a>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/f6c0b73e.html">Mac EasyConnect 未能正确打开SANGFOR SSL Virtual网卡</a>
+    </h1>
+  
+
+      <div>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Mac/">Mac</a>,<a class="article-category-link" href="/categories/Mac/代理/">代理</a>
+  </div>
+
+        
+        
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span id="/posts/f6c0b73e.html" class="leancloud_visitors" data-flag-title="Mac EasyConnect 未能正确打开SANGFOR SSL Virtual网卡">
+      阅读次数 <span class="leancloud-visitors-count"></span>
+    </span>
+  </div>
+
+
+
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>字数 144</span>
+  </div>
+  &nbsp; | &nbsp;
+  <div class="view-box">
+    <span>时长 ≈ 1 分钟</span>
+  </div>
+ 
+        
+      </div>
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <h2 id="1-场景："><a href="#1-场景：" class="headerlink" title="1.场景："></a>1.场景：</h2><p>今天打开<code>EasyConnect</code>提示：未能正确打开SANGFOR SSL Virtual网卡，暂时不能提供SSL CS服务，请联系管理员</p>
+<h2 id="2-排查："><a href="#2-排查：" class="headerlink" title="2.排查："></a>2.排查：</h2><p>经排查，最后发现是与其他虚拟网卡冲突了。<br>在昨天安装过网易mumu模拟器，没有安装成功，但是给我遗留了一个虚拟网卡。<br>将其卸载后重启就行了。</p>
+<h2 id="3-操作："><a href="#3-操作：" class="headerlink" title="3.操作："></a>3.操作：</h2><p>查看虚拟网卡：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kextstat</span><br></pre></td></tr></table></figure></p>
+<p>卸载指定虚拟网卡：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo  kextunload -b com.netease.nemu.kext.NemuDrv</span><br></pre></td></tr></table></figure></p>
+<p>删除虚拟网卡目录（Nemu）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo rm -rf /Library/Application\ Support/Nemu</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.tidyko.com/posts/f6c0b73e.html" data-id="ckfdbk6o100895fykuq0vy8ik" class="article-share-link">
+        分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/EasyConnect/">EasyConnect</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mac/">Mac</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/代理/">代理</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+
+
   
     <article id="post-Mac 使用Shuttle优雅切换http(s)代理" class="article" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -151,7 +325,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/67b16286.html" data-id="ckf4sr39a008nofykfwpsy5f9" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/67b16286.html" data-id="ckfdbk6o6008i5fyk6ybge4ya" class="article-share-link">
         分享</a>
       
       
@@ -237,7 +411,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/169364f6.html" data-id="ckf4sr3ar00bfofykngwfs0op" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/169364f6.html" data-id="ckfdbk6pj00bh5fykyd8u9s4i" class="article-share-link">
         分享</a>
       
       
@@ -325,7 +499,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/9ecafb15.html" data-id="ckf4sr3br00dhofyklqyatjdt" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/9ecafb15.html" data-id="ckfdbk6qf00d35fykfy7pm3hh" class="article-share-link">
         分享</a>
       
       
@@ -416,7 +590,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/5861f454.html" data-id="ckf4sr3hw00wqofykxvb6tsue" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/5861f454.html" data-id="ckfdbk6y700xv5fykgc7ccah7" class="article-share-link">
         分享</a>
       
       
@@ -505,7 +679,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/fa8b02cc.html" data-id="ckf4sr3iy00xjofyk1ft2bshr" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/fa8b02cc.html" data-id="ckfdbk6yv00ym5fyk0h5vp6gy" class="article-share-link">
         分享</a>
       
       
@@ -595,7 +769,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/5e551b83.html" data-id="ckf4sr3bf00cxofyk0covcj1t" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/5e551b83.html" data-id="ckfdbk6qp00de5fykxb5t3h3h" class="article-share-link">
         分享</a>
       
       
@@ -684,7 +858,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/41a66ecb.html" data-id="ckf4sr36c003nofyk7z5pu2vs" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/41a66ecb.html" data-id="ckfdbk6kr003i5fyk31nqzv34" class="article-share-link">
         分享</a>
       
       
@@ -779,7 +953,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/589711b0.html" data-id="ckf4sr393008dofyk5z5buow5" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/589711b0.html" data-id="ckfdbk6o3008c5fykiu4sh322" class="article-share-link">
         分享</a>
       
       
@@ -803,193 +977,10 @@
 
 
   
-    <article id="post-Mpvue中使用vant-weapp组件库" class="article" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/62bac17f.html" class="article-date">
-  <time class="post-time" datetime="2019-03-27T02:38:00.000Z" itemprop="datePublished">
-    <span class="post-month">3月</span><br/>
-    <span class="post-day">27</span>
-  </time>
-</a>
-
-  </div>
-  <div class="article-inner">
-    
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/62bac17f.html">mpvue中使用vant-weapp组件库</a>
-    </h1>
-  
-
-      <div>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>,<a class="article-category-link" href="/categories/编程语言/Vue/">Vue</a>
-  </div>
-
-        
-        
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/62bac17f.html" class="leancloud_visitors" data-flag-title="mpvue中使用vant-weapp组件库">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 549</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 2 分钟</span>
-  </div>
- 
-        
-      </div>
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      <h1 id="一、介绍"><a href="#一、介绍" class="headerlink" title="一、介绍"></a>一、介绍</h1><p>使用mpvue构建编译小程序，vant-weapp组件库作为页面组件，做一些记录。</p>
-<p><a href="https://github.com/Meituan-Dianping/mpvue" target="_blank" rel="noopener">mpvue</a><br><a href="https://github.com/youzan/vant-weapp" target="_blank" rel="noopener">vant-weapp</a></p>
-<h1 id="二、使用"><a href="#二、使用" class="headerlink" title="二、使用"></a>二、使用</h1><h2 id="复制编译文件"><a href="#复制编译文件" class="headerlink" title="复制编译文件"></a>复制编译文件</h2><p>按照mpvue官方（<a href="http://mpvue.com/mpvue/quickstart/" target="_blank" rel="noopener">五分钟上手教程 </a>）初始化mpvue项目,进入到项目根目录安装vant-weapp依赖<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i vant-weapp -S --production</span><br></pre></td></tr></table></figure></p>
-<p>安装完毕之后，在<code>node_modules</code>目录下找到<code>vant-weapp</code>将<code>dist</code>下面的所有文件复制到你项目的<code>/static/vant/</code>目录下。</p>
-<h2 id="引入组件"><a href="#引入组件" class="headerlink" title="引入组件"></a>引入组件</h2><p>在<code>app.json</code>下加入<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">"usingComponents": &#123;</span><br><span class="line">    "van-search": "/static/vant/button/index"</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="使用组件"><a href="#使用组件" class="headerlink" title="使用组件"></a>使用组件</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">van-button</span>&gt;</span>测试<span class="tag">&lt;/<span class="name">van-button</span>&gt;</span></span><br></pre></td></tr></table></figure>
-      
-      <p class="article-more-link">
-        <a href="/posts/62bac17f.html#more">
-          Read More</a>
-      </p>
-      
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/62bac17f.html" data-id="ckf4sr39o009mofykudlys7i0" class="article-share-link">
-        分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mpvue/">mpvue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vant-weapp/">vant-weapp</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/小程序/">小程序</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-GitHubPage 搭建项目主页的一些问题" class="article" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/posts/a4e1109a.html" class="article-date">
-  <time class="post-time" datetime="2019-03-13T07:04:00.000Z" itemprop="datePublished">
-    <span class="post-month">3月</span><br/>
-    <span class="post-day">13</span>
-  </time>
-</a>
-
-  </div>
-  <div class="article-inner">
-    
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/a4e1109a.html">GitHubPage 搭建项目主页的一些问题</a>
-    </h1>
-  
-
-      <div>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/网站/">网站</a>,<a class="article-category-link" href="/categories/网站/GitHub/">GitHub</a>
-  </div>
-
-        
-        
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span id="/posts/a4e1109a.html" class="leancloud_visitors" data-flag-title="GitHubPage 搭建项目主页的一些问题">
-      阅读次数 <span class="leancloud-visitors-count"></span>
-    </span>
-  </div>
-
-
-
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>字数 343</span>
-  </div>
-  &nbsp; | &nbsp;
-  <div class="view-box">
-    <span>时长 ≈ 1 分钟</span>
-  </div>
- 
-        
-      </div>
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      <p>在将Vue的编译静态文件上传至GitHub仓库，作为项目主页进行访问的过程中遇到了一些问题，记录一下。</p>
-<h2 id="1-Vue的基础路径问题"><a href="#1-Vue的基础路径问题" class="headerlink" title="1.Vue的基础路径问题"></a>1.Vue的基础路径问题</h2><p>生成静态页后，想放到GitHub作为项目主页，路径需要设置为”./“</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  baseUrl: <span class="string">"./"</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h2 id="2-将Vue项目编译完成后的dist上传至GitHub仓库"><a href="#2-将Vue项目编译完成后的dist上传至GitHub仓库" class="headerlink" title="2.将Vue项目编译完成后的dist上传至GitHub仓库"></a>2.将Vue项目编译完成后的dist上传至GitHub仓库</h2><p>将Vue项目进行<code>npm run build</code>之后，将dist的文件全部上传至新建的项目主页仓库。</p>
-<h2 id="3-在已有个人主页后，创建项目主页"><a href="#3-在已有个人主页后，创建项目主页" class="headerlink" title="3.在已有个人主页后，创建项目主页"></a>3.在已有个人主页后，创建项目主页</h2><p>如果之前创建过GitHub个人主页，并设置过个性域名，则项目主页不需要上传CNAME文件，直接将静态文件上传至仓库即可。<br>
-      
-      <p class="article-more-link">
-        <a href="/posts/a4e1109a.html#more">
-          Read More</a>
-      </p>
-      
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/a4e1109a.html" data-id="ckf4sr35j002gofykzcm7fnbh" class="article-share-link">
-        分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GitHub/">GitHub</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GitHubPage/">GitHubPage</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
 
 
   <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/">&laquo; pre</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/3/">next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/">&laquo; pre</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/3/">next &raquo;</a>
   </nav>
 </section>
         
@@ -1036,11 +1027,11 @@
     <div class="count-box">
       <a href="/archives">
         <div><strong>
-            159</strong><br>文章</div>
+            161</strong><br>文章</div>
       </a>
       <a href="/categories">
         <div><strong>
-            57</strong><br>分类</div>
+            58</strong><br>分类</div>
       </a>
       <a href="/tags">
         <div><strong>
