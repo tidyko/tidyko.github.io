@@ -138,38 +138,17 @@
     <div class="article-entry" itemprop="articleBody">
       
       <p>使用Docker搭建Jenkins服务后，因单节点不允许设置太大的执行数，所以可以创建Jenkins集群，使用Agent分担Jenkins构建的压力。</p>
-<h2 id="进入管理Jenkins"><a href="#进入管理Jenkins" class="headerlink" title="进入管理Jenkins"></a>进入管理Jenkins</h2><p>点击左侧菜单“Manage Jenkins（管理Jenkins）” –&gt; “Manage Nods and Clous（管理节点）”进入节点配置界面。<br><img src="http://img.tidyko.com/blog/jenkins_agent_1.png" alt="Docker 搭建Jenkins Agent-1"></p>
-<h2 id="新建节点"><a href="#新建节点" class="headerlink" title="新建节点"></a>新建节点</h2><p>在“Manage Nods and Clous（管理节点）界面”左侧点击“New Node(新建节点)”菜单，进入新节点新建界面。<br><img src="http://img.tidyko.com/blog/jenkins_agent_2.png" alt="Docker 搭建Jenkins Agent-1"></p>
-<h2 id="新建节点信息"><a href="#新建节点信息" class="headerlink" title="新建节点信息"></a>新建节点信息</h2><p>在新建界面，输入“Node name”和选择“Permanent Agent”，点击OK按钮。<br><img src="http://img.tidyko.com/blog/jenkins_agent_3.png" alt="Docker 搭建Jenkins Agent-1"></p>
-<h2 id="配置节点信息"><a href="#配置节点信息" class="headerlink" title="配置节点信息"></a>配置节点信息</h2><p>在配置节点信息界面，修改“# of executeors（执行数量）”，比如修改为5，修改后其他信息不用修改，直接点击“Save（保存）”按钮。<br><img src="http://img.tidyko.com/blog/jenkins_agent_4.png" alt="Docker 搭建Jenkins Agent-1"></p>
-<h2 id="获取代理节点配置信息"><a href="#获取代理节点配置信息" class="headerlink" title="获取代理节点配置信息"></a>获取代理节点配置信息</h2><p>点击保存后，系统界面会刷新显示当前所有节点的列表，点击刚刚配置的新节点“Build_Agent_02”进去,可以看到提示显示你执行命令，我们将“URL”、“节点名称”、“秘钥”这三个信息记录下来，在编写docker-compose.yml文件的时候使用<br><img src="http://img.tidyko.com/blog/jenkins_agent_5.png" alt="Docker 搭建Jenkins Agent-1"></p>
-<p><img src="http://img.tidyko.com/blog/jenkins_agent_6.png" alt="Docker 搭建Jenkins Agent-1"></p>
-<h2 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h2><p>Build_Agent_01</p>
-<ul>
-<li>jenkins_home<ul>
-<li>jenkins_py_script</li>
-<li>.ssh</li>
-</ul>
-</li>
-<li>dockerfile<ul>
-<li>Dockerfile</li>
-<li>build.sh</li>
-</ul>
-</li>
-<li>docker-compose.yml</li>
-</ul>
-<h2 id="编写Dockerfile"><a href="#编写Dockerfile" class="headerlink" title="编写Dockerfile"></a>编写Dockerfile</h2><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> jenkins/jnlp-slave:latest</span><br><span class="line"></span><br><span class="line"><span class="keyword">USER</span> root</span><br><span class="line"></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> mkdir -p /var/jenkins_home \</span></span><br><span class="line"><span class="bash">    &amp;&amp;  apt-get update \</span></span><br><span class="line"><span class="bash">    &amp;&amp;  apt-get install -y python-pip \</span></span><br><span class="line"><span class="bash">    &amp;&amp;  pip install -i https://pypi.tuna.tsinghua.edu.cn/simple cffi \</span></span><br><span class="line"><span class="bash">    &amp;&amp;  pip install -i https://pypi.tuna.tsinghua.edu.cn/simple paramiko</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash">VOLUME /var/jenkins_home</span></span><br></pre></td></tr></table></figure>
-<h2 id="编写build-sh"><a href="#编写build-sh" class="headerlink" title="编写build.sh"></a>编写build.sh</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker build -t tisson/jenkins-slave:latest .</span><br></pre></td></tr></table></figure>
-<p>保存完，执行构建镜像。</p>
-<h2 id="编写docker-compose-yml"><a href="#编写docker-compose-yml" class="headerlink" title="编写docker-compose.yml"></a>编写docker-compose.yml</h2><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">"3.8"</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line"><span class="attr">  jenkins_agent:</span></span><br><span class="line"><span class="attr">    container_name:</span> <span class="string">ts_jenkins_agent_01</span></span><br><span class="line"><span class="attr">    image:</span> <span class="string">tisson/jenkins-slave:latest</span></span><br><span class="line"><span class="attr">    environment:</span></span><br><span class="line"><span class="attr">      JENKINS_URL:</span> <span class="string">"http://xxx.xxx.xxx.xxx:8080"</span></span><br><span class="line"><span class="attr">      JENKINS_SECRET:</span> <span class="string">"14990778b3f66a48772f69a430b2357af7271c71c870875c3a4c7da947b5e50c"</span></span><br><span class="line"><span class="attr">      JENKINS_AGENT_NAME:</span> <span class="string">"Build_Agent_01"</span></span><br><span class="line"><span class="attr">    volumes:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">"./jenkins_home:/var/jenkins_home"</span></span><br><span class="line"><span class="attr">    restart:</span> <span class="string">always</span></span><br></pre></td></tr></table></figure>
-<p>保存完，执行<code>docker-compose up -d</code>，进行容器构建、启动。</p>
-<h2 id="查看日志"><a href="#查看日志" class="headerlink" title="查看日志"></a>查看日志</h2><p>输入<code>docker-compose logs -f</code>，查看运行日志。<br><img src="http://img.tidyko.com/blog/jenkins_agent_7.png" alt="Docker 搭建Jenkins Agent-1"></p>
-<h2 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h2><p>启动完成刷新Jenkins页面，如果现实节点正常即为启动成功。<br><img src="http://img.tidyko.com/blog/jenkins_agent_8.png" alt="Docker 搭建Jenkins Agent-1"></p>
-
+<h2 id="进入管理Jenkins"><a href="#进入管理Jenkins" class="headerlink" title="进入管理Jenkins"></a>进入管理Jenkins</h2><p>点击左侧菜单“Manage Jenkins（管理Jenkins）” –&gt; “Manage Nods and Clous（管理节点）”进入节点配置界面。<br><img src="http://img.tidyko.com/blog/jenkins_agent_1.png" alt="Docker 搭建Jenkins Agent-1"><br>
+      
+      <p class="article-more-link">
+        <a href="/posts/87e86852.html#more">
+          Read More</a>
+      </p>
+      
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/87e86852.html" data-id="ckfdbk6iy000l5fyklkdrha37" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/87e86852.html" data-id="ckfdbnsvs000stpykuscrk7gy" class="article-share-link">
         分享</a>
       
       
@@ -258,17 +237,16 @@
 <li>docker-compose.yml</li>
 </ul>
 <h2 id="编写dockerfile-2-257-Dockerfile"><a href="#编写dockerfile-2-257-Dockerfile" class="headerlink" title="编写dockerfile_2.257/Dockerfile:"></a>编写dockerfile_2.257/Dockerfile:</h2><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> jenkins/jenkins:<span class="number">2.257</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">USER</span> root</span><br><span class="line"></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> sed -i <span class="string">'s/deb.debian.org/mirrors.aliyun.com/g'</span> /etc/apt/sources.list \</span></span><br><span class="line"><span class="bash">    &amp;&amp; sed -i <span class="string">'s/security.debian.org/mirrors.aliyun.com/g'</span> /etc/apt/sources.list \</span></span><br><span class="line"><span class="bash">    &amp;&amp; apt-get clean \</span></span><br><span class="line"><span class="bash">    &amp;&amp; apt-get update \</span></span><br><span class="line"><span class="bash">    &amp;&amp; apt-get install -y python-pip \</span></span><br><span class="line"><span class="bash">    &amp;&amp; rm -rf /var/lib/apt/lists/* \</span></span><br><span class="line"><span class="bash">    &amp;&amp; pip install -i https://pypi.tuna.tsinghua.edu.cn/simple cffi \</span></span><br><span class="line"><span class="bash">    &amp;&amp; pip install -i https://pypi.tuna.tsinghua.edu.cn/simple paramiko</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash">USER jenkins</span></span><br></pre></td></tr></table></figure>
-<h2 id="编写dockerfile-2-257-build-sh："><a href="#编写dockerfile-2-257-build-sh：" class="headerlink" title="编写dockerfile_2.257/build.sh："></a>编写dockerfile_2.257/build.sh：</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -t tisson/jenkins:2.257 .</span><br></pre></td></tr></table></figure>
-<h2 id="编写docker-compose-yml"><a href="#编写docker-compose-yml" class="headerlink" title="编写docker-compose.yml:"></a>编写docker-compose.yml:</h2><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">"3.8"</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line"><span class="attr">  jenkins:</span></span><br><span class="line"><span class="attr">    container_name:</span> <span class="string">ts_jenkins</span></span><br><span class="line"><span class="attr">    image:</span> <span class="string">tisson/jenkins:2.257</span></span><br><span class="line"><span class="attr">    environment:</span></span><br><span class="line"><span class="attr">      TZ:</span> <span class="string">"Asia/Shanghai"</span></span><br><span class="line"><span class="attr">      JAVA_OPTS:</span> <span class="string">"-Djava.awt.headless=true"</span></span><br><span class="line"><span class="attr">    ports:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">"8080:8080"</span></span><br><span class="line"><span class="attr">    volumes:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">"./jenkins_home:/var/jenkins_home"</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">"/var/run/docker.sock:/var/run/docker.sock"</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">"/etc/localtime:/etc/localtime"</span></span><br><span class="line"><span class="attr">    restart:</span> <span class="string">always</span></span><br></pre></td></tr></table></figure>
-<h2 id="新建Jenkins家目录，以便映射"><a href="#新建Jenkins家目录，以便映射" class="headerlink" title="新建Jenkins家目录，以便映射"></a>新建Jenkins家目录，以便映射</h2><p>在同级目录新建jenkins_home文件夹</p>
-<h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><p>创建容器并后台启动：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure></p>
-<h2 id="查看日志"><a href="#查看日志" class="headerlink" title="查看日志"></a>查看日志</h2><p>查看运行日志：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose logs -f</span><br></pre></td></tr></table></figure></p>
-<h2 id="校验"><a href="#校验" class="headerlink" title="校验"></a>校验</h2><p>在浏览器输入<code>http://localhost:8080</code>进行校验，输入日志显示的秘钥初始化Jenkins</p>
-
+      
+      <p class="article-more-link">
+        <a href="/posts/b4c2554f.html#more">
+          Read More</a>
+      </p>
+      
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/b4c2554f.html" data-id="ckfdbk6j2000q5fykatbp0rrs" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/b4c2554f.html" data-id="ckfdbnsvv000wtpykknzgpgj4" class="article-share-link">
         分享</a>
       
       
@@ -362,7 +340,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/d2036d9e.html" data-id="ckfdbk6om009j5fyk0no96tob" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/d2036d9e.html" data-id="ckfdbnt1m009ltpykfgxvi3gi" class="article-share-link">
         分享</a>
       
       
@@ -453,7 +431,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/ee559db8.html" data-id="ckfdbk6pv00c45fyk80ivvkil" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/ee559db8.html" data-id="ckfdbnt3100c1tpykfhkkazmm" class="article-share-link">
         分享</a>
       
       
@@ -546,7 +524,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/c682cc65.html" data-id="ckfdbk6pn00br5fyk9hdrv0it" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/c682cc65.html" data-id="ckfdbnt2w00butpyk6o2g0k2y" class="article-share-link">
         分享</a>
       
       
@@ -642,7 +620,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/9f95e5a1.html" data-id="ckfdbk6jd00175fykmpu03vay" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/9f95e5a1.html" data-id="ckfdbnsvz0013tpyk2xbu9333" class="article-share-link">
         分享</a>
       
       
@@ -736,7 +714,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/4db18d9b.html" data-id="ckfdbk6kb002p5fykcy0a0mg7" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/4db18d9b.html" data-id="ckfdbnsx9002utpykef5z74ql" class="article-share-link">
         分享</a>
       
       
@@ -825,7 +803,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/2b4e0834.html" data-id="ckfdbk6jm001o5fykusch3wuh" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/2b4e0834.html" data-id="ckfdbnsw00015tpyk48v9dcq9" class="article-share-link">
         分享</a>
       
       
@@ -912,7 +890,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/82922308.html" data-id="ckfdbk6l1003u5fyksq115h8v" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/82922308.html" data-id="ckfdbnsy0003rtpykuxg6uifk" class="article-share-link">
         分享</a>
       
       
@@ -1000,7 +978,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/ff68fd05.html" data-id="ckfdbk6md005l5fykk9lsmmk0" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/ff68fd05.html" data-id="ckfdbnsz40053tpyk1xjq0giw" class="article-share-link">
         分享</a>
       
       

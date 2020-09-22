@@ -11,13 +11,13 @@
     Tidy的个人博客
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="使用Docker搭建Jenkins服务后，因单节点不允许设置太大的执行数，所以可以创建Jenkins集群，使用Agent分担Jenkins构建的压力。 进入管理Jenkins点击左侧菜单“Manage Jenkins（管理Jenkins）” –&amp;gt; “Manage Nods and Clous（管理节点）”进入节点配置界面。 新建节点在“Manage Nods and Clous（管理节点）界">
+  <meta name="description" content="使用Docker搭建Jenkins服务后，因单节点不允许设置太大的执行数，所以可以创建Jenkins集群，使用Agent分担Jenkins构建的压力。 进入管理Jenkins点击左侧菜单“Manage Jenkins（管理Jenkins）” –&amp;gt; “Manage Nods and Clous（管理节点）”进入节点配置界面。">
 <meta name="keywords" content="Docker,DevOps,Jenkins">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Docker 搭建Jenkins Agent">
 <meta property="og:url" content="https://www.tidyko.com/posts/87e86852.html">
 <meta property="og:site_name" content="Tidy的个人博客">
-<meta property="og:description" content="使用Docker搭建Jenkins服务后，因单节点不允许设置太大的执行数，所以可以创建Jenkins集群，使用Agent分担Jenkins构建的压力。 进入管理Jenkins点击左侧菜单“Manage Jenkins（管理Jenkins）” –&amp;gt; “Manage Nods and Clous（管理节点）”进入节点配置界面。 新建节点在“Manage Nods and Clous（管理节点）界">
+<meta property="og:description" content="使用Docker搭建Jenkins服务后，因单节点不允许设置太大的执行数，所以可以创建Jenkins集群，使用Agent分担Jenkins构建的压力。 进入管理Jenkins点击左侧菜单“Manage Jenkins（管理Jenkins）” –&amp;gt; “Manage Nods and Clous（管理节点）”进入节点配置界面。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://img.tidyko.com/blog/jenkins_agent_1.png">
 <meta property="og:image" content="http://img.tidyko.com/blog/jenkins_agent_2.png">
@@ -27,10 +27,10 @@
 <meta property="og:image" content="http://img.tidyko.com/blog/jenkins_agent_6.png">
 <meta property="og:image" content="http://img.tidyko.com/blog/jenkins_agent_7.png">
 <meta property="og:image" content="http://img.tidyko.com/blog/jenkins_agent_8.png">
-<meta property="og:updated_time" content="2020-09-22T02:07:57.538Z">
+<meta property="og:updated_time" content="2020-09-22T02:10:37.264Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker 搭建Jenkins Agent">
-<meta name="twitter:description" content="使用Docker搭建Jenkins服务后，因单节点不允许设置太大的执行数，所以可以创建Jenkins集群，使用Agent分担Jenkins构建的压力。 进入管理Jenkins点击左侧菜单“Manage Jenkins（管理Jenkins）” –&amp;gt; “Manage Nods and Clous（管理节点）”进入节点配置界面。 新建节点在“Manage Nods and Clous（管理节点）界">
+<meta name="twitter:description" content="使用Docker搭建Jenkins服务后，因单节点不允许设置太大的执行数，所以可以创建Jenkins集群，使用Agent分担Jenkins构建的压力。 进入管理Jenkins点击左侧菜单“Manage Jenkins（管理Jenkins）” –&amp;gt; “Manage Nods and Clous（管理节点）”进入节点配置界面。">
 <meta name="twitter:image" content="http://img.tidyko.com/blog/jenkins_agent_1.png">
   
   <link rel="alternate" href="/atom.xml" title="Tidy的个人博客" type="application/atom+xml">
@@ -152,7 +152,7 @@
     <div class="article-entry" itemprop="articleBody">
       
       <p>使用Docker搭建Jenkins服务后，因单节点不允许设置太大的执行数，所以可以创建Jenkins集群，使用Agent分担Jenkins构建的压力。</p>
-<h2 id="进入管理Jenkins"><a href="#进入管理Jenkins" class="headerlink" title="进入管理Jenkins"></a>进入管理Jenkins</h2><p>点击左侧菜单“Manage Jenkins（管理Jenkins）” –&gt; “Manage Nods and Clous（管理节点）”进入节点配置界面。<br><img src="http://img.tidyko.com/blog/jenkins_agent_1.png" alt="Docker 搭建Jenkins Agent-1"></p>
+<h2 id="进入管理Jenkins"><a href="#进入管理Jenkins" class="headerlink" title="进入管理Jenkins"></a>进入管理Jenkins</h2><p>点击左侧菜单“Manage Jenkins（管理Jenkins）” –&gt; “Manage Nods and Clous（管理节点）”进入节点配置界面。<br><img src="http://img.tidyko.com/blog/jenkins_agent_1.png" alt="Docker 搭建Jenkins Agent-1"><br><a id="more"></a></p>
 <h2 id="新建节点"><a href="#新建节点" class="headerlink" title="新建节点"></a>新建节点</h2><p>在“Manage Nods and Clous（管理节点）界面”左侧点击“New Node(新建节点)”菜单，进入新节点新建界面。<br><img src="http://img.tidyko.com/blog/jenkins_agent_2.png" alt="Docker 搭建Jenkins Agent-1"></p>
 <h2 id="新建节点信息"><a href="#新建节点信息" class="headerlink" title="新建节点信息"></a>新建节点信息</h2><p>在新建界面，输入“Node name”和选择“Permanent Agent”，点击OK按钮。<br><img src="http://img.tidyko.com/blog/jenkins_agent_3.png" alt="Docker 搭建Jenkins Agent-1"></p>
 <h2 id="配置节点信息"><a href="#配置节点信息" class="headerlink" title="配置节点信息"></a>配置节点信息</h2><p>在配置节点信息界面，修改“# of executeors（执行数量）”，比如修改为5，修改后其他信息不用修改，直接点击“Save（保存）”按钮。<br><img src="http://img.tidyko.com/blog/jenkins_agent_4.png" alt="Docker 搭建Jenkins Agent-1"></p>
@@ -183,7 +183,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/87e86852.html" data-id="ckfdbk6iy000l5fyklkdrha37" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/87e86852.html" data-id="ckfdbnsvs000stpykuscrk7gy" class="article-share-link">
         分享</a>
       
       
