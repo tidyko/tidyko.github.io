@@ -52,7 +52,7 @@
         <div class="widget-wrap mobile-header">
   <h3 class="widget-title"></h3>
   <div class="widget">
-    <img class="avatar" src="http://img.tidyko.com/avatar.jpg">
+    <img class="avatar" src="http://tidyko.oss-cn-hongkong.aliyuncs.com/avatar.jpg">
     <h2 class="author"></h2>
     <h3 class="description"></h3>
     <div class="count-box">
@@ -148,7 +148,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/bf60621.html" data-id="ckfdbntb600xltpyk7psdpdq0" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/bf60621.html" data-id="ckmn56w4d00xph9qptiymxc1v" class="article-share-link">
         分享</a>
       
       
@@ -242,7 +242,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/e4163a66.html" data-id="ckfdbnsvt000ttpykvmbhbf8n" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/e4163a66.html" data-id="ckmn56vrg000ph9qpxhr697es" class="article-share-link">
         分享</a>
       
       
@@ -322,7 +322,7 @@
       <p>Mac使用Docker搭建便捷的ELK环境。</p>
 <p>ELK + redis 使用docker搭建，FileBeat由具体应用机进行搭建。</p>
 <p>架构如下：</p>
-<p><img src="http://img.tidyko.com/blog/DockerDesktop_13.png" alt="Docker 搭建ELK环境-图例1"></p>
+<p><img src="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/DockerDesktop_13.png" alt="Docker 搭建ELK环境-图例1"></p>
 <h2 id="1-获取ELK镜像"><a href="#1-获取ELK镜像" class="headerlink" title="1.获取ELK镜像."></a>1.获取ELK镜像.</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> tidy @ TidydeMBP <span class="keyword">in</span> ~ [10:02:28]</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> sudo docker pull sebp/elk</span></span><br><span class="line">Password:</span><br><span class="line">Using default tag: latest</span><br><span class="line">latest: Pulling from sebp/elk</span><br><span class="line">281a73dee007: Pulling fs layer</span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line">Digest: sha256:94c4aa7f9bfe0fe7047f20e1c747ac19538605f8ea0bbe401c7bed923614905e</span><br><span class="line">Status: Downloaded newer image for sebp/elk:latest</span><br></pre></td></tr></table></figure>
 <h2 id="2-创建并运行ELK容器"><a href="#2-创建并运行ELK容器" class="headerlink" title="2.创建并运行ELK容器"></a>2.创建并运行ELK容器</h2><h3 id="2-1-使用命令行"><a href="#2-1-使用命令行" class="headerlink" title="2.1.使用命令行"></a>2.1.使用命令行</h3><h4 id="2-1-1-使用命令行参数"><a href="#2-1-1-使用命令行参数" class="headerlink" title="2.1.1.使用命令行参数"></a>2.1.1.使用命令行参数</h4><p>使用下面命令创建并启动一个elk容器，并映射宿主机端口。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo docker run -d -p 5601:5601 -p 9200:9200 -p 5044:5044 -v ~/Documents/docker_env/elasticsearch:/var/lib/elasticsearch -v ~/Documents/docker_env/logstash/config:/opt/logstash/config -v  ~/Documents/docker_env/logstash/conf.d:/etc/logstash/conf.d -it --name elk sebp/elk:651</span></span><br></pre></td></tr></table></figure></p>
 <h4 id="2-1-2-使用Docker-Compose"><a href="#2-1-2-使用Docker-Compose" class="headerlink" title="2.1.2.使用Docker Compose"></a>2.1.2.使用Docker Compose</h4><p>编写docker-compose.yml文件<br><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">elk:</span></span><br><span class="line"><span class="attr">  image:</span> <span class="string">sebp/elk:651</span></span><br><span class="line"><span class="attr">  ports:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">"5601:5601"</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">"9200:9200"</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">"5044:5044"</span></span><br><span class="line"><span class="attr">  volumes:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">~/Documents/docker_env/elasticsearch:/var/lib/elasticsearch</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">~/Documents/docker_env/logstash/config:/opt/logstash/config</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">~/Documents/docker_env/logstash/conf.d:/etc/logstash/conf.d</span></span><br></pre></td></tr></table></figure></p>
@@ -339,7 +339,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/a5557ea7.html" data-id="ckfdbntby00ydtpyk89py2l5t" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/a5557ea7.html" data-id="ckmn56w5500yoh9qpcszrzj3f" class="article-share-link">
         分享</a>
       
       
@@ -432,7 +432,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/4573f792.html" data-id="ckfdbnsx4002ntpykzkem71hv" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/4573f792.html" data-id="ckmn56vst002fh9qprduuycik" class="article-share-link">
         分享</a>
       
       
@@ -513,7 +513,7 @@
 <h2 id="1-获取内存快照"><a href="#1-获取内存快照" class="headerlink" title="1.获取内存快照"></a>1.获取内存快照</h2><p>使用jdk自带工具jmap获取内存快照文件，如下：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">jmap -dump:format=b,file=快照保存路径 进程id</span><br><span class="line"></span><br><span class="line">如：</span><br><span class="line"></span><br><span class="line">jmap -dump:format=b,file=/opt/27245.hprof 27245</span><br></pre></td></tr></table></figure></p>
 <h2 id="2-使用工具进行分析"><a href="#2-使用工具进行分析" class="headerlink" title="2.使用工具进行分析"></a>2.使用工具进行分析</h2><p>获取到内存快照文件27245.hprof后，我们需要对此进行分析，这里使用的分析工具为<code>Eclipse Memory Analyzer Tool</code>，我们使用工具打开27245.hprof文件。</p>
 <h3 id="2-1-Main-View"><a href="#2-1-Main-View" class="headerlink" title="2.1 Main View"></a>2.1 Main View</h3><p>主界面显示有一大块内存占用高达1.3G，基本可以确定是这一块出现了问题。</p>
-<p><img src="http://img.tidyko.com/blog/Memoryanalysis_27245_1.png" alt="J2EE Spring redirect导致内存溢出问题_图例1"><br>
+<p><img src="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/Memoryanalysis_27245_1.png" alt="J2EE Spring redirect导致内存溢出问题_图例1"><br>
       
       <p class="article-more-link">
         <a href="/posts/3c49f4b8.html#more">
@@ -523,7 +523,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3c49f4b8.html" data-id="ckfdbnsz9005btpyklsr69vf9" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/3c49f4b8.html" data-id="ckmn56vuj004yh9qpv18fxx37" class="article-share-link">
         分享</a>
       
       
@@ -608,7 +608,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3d5c725a.html" data-id="ckfdbnt11008etpyk68wn1riz" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/3d5c725a.html" data-id="ckmn56vw10086h9qpzu1s4hmq" class="article-share-link">
         分享</a>
       
       
@@ -701,7 +701,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3e9aef58.html" data-id="ckfdbntb000xftpykqe95h6gq" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/3e9aef58.html" data-id="ckmn56w4300xch9qp59yg7if7" class="article-share-link">
         分享</a>
       
       
@@ -804,7 +804,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/d0e6a555.html" data-id="ckfdbnsy7003xtpykwrduqj2t" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/d0e6a555.html" data-id="ckmn56vti003ph9qp27glqko0" class="article-share-link">
         分享</a>
       
       
@@ -892,7 +892,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3f08f656.html" data-id="ckfdbnt4000dgtpykui15kg7m" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/3f08f656.html" data-id="ckmn56vye00cyh9qpbzxgd4tg" class="article-share-link">
         分享</a>
       
       
@@ -979,7 +979,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/47f7c28d.html" data-id="ckfdbnt0z008atpykckvxbpwt" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/47f7c28d.html" data-id="ckmn56vvx007zh9qpa6sgbrb9" class="article-share-link">
         分享</a>
       
       
@@ -1043,7 +1043,7 @@
     <div class="widget-wrap">
   <h3 class="widget-title"></h3>
   <div class="widget">
-    <img class="avatar" src="http://img.tidyko.com/avatar.jpg">
+    <img class="avatar" src="http://tidyko.oss-cn-hongkong.aliyuncs.com/avatar.jpg">
     <h2 class="author">
       
     </h2>
@@ -1102,7 +1102,7 @@
   
     <div class="widget-wrap">
     <h3 class="widget-title">关注我的公众号：</h3>
-    <div class="widget"><img style="width:100%" src="http://img.tidyko.com/japanesehub-qrcode.jpg">
+    <div class="widget"><img style="width:100%" src="http://tidyko.oss-cn-hongkong.aliyuncs.com/japanesehub-qrcode.jpg">
     </div>
 </div>
   
@@ -1123,7 +1123,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy;2019 - 2020 Tidy的个人博客<br>
+      &copy;2020 - 2021 Tidy的个人博客<br>
       <!-- 由<a href="https://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
       主题-<a href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a> -->
       

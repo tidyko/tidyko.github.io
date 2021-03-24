@@ -19,12 +19,12 @@
 <meta property="og:site_name" content="Tidy的个人博客">
 <meta property="og:description" content="之前使用的架构为：项目日志 -&amp;gt; Filebeat -&amp;gt; redis -&amp;gt; Logstash -&amp;gt; ElasticSearch -&amp;gt; Kibana如果使用TCP input的话就可以简化为这样：项目 -&amp;gt; Logstash -&amp;gt; ElasticSearch -&amp;gt; Kibana这样可以少去每台服务器上面FileBeat的维护。 项目日志格式：1219-">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://img.tidyko.com/blog/Logstash-tcp-1.png">
-<meta property="og:updated_time" content="2019-03-08T09:25:34.787Z">
+<meta property="og:image" content="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/Logstash-tcp-1.png">
+<meta property="og:updated_time" content="2021-03-24T07:44:15.295Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Logstash 使用tcpinput">
 <meta name="twitter:description" content="之前使用的架构为：项目日志 -&amp;gt; Filebeat -&amp;gt; redis -&amp;gt; Logstash -&amp;gt; ElasticSearch -&amp;gt; Kibana如果使用TCP input的话就可以简化为这样：项目 -&amp;gt; Logstash -&amp;gt; ElasticSearch -&amp;gt; Kibana这样可以少去每台服务器上面FileBeat的维护。 项目日志格式：1219-">
-<meta name="twitter:image" content="http://img.tidyko.com/blog/Logstash-tcp-1.png">
+<meta name="twitter:image" content="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/Logstash-tcp-1.png">
   
   <link rel="alternate" href="/atom.xml" title="Tidy的个人博客" type="application/atom+xml">
   
@@ -61,7 +61,7 @@
         <div class="widget-wrap mobile-header">
   <h3 class="widget-title"></h3>
   <div class="widget">
-    <img class="avatar" src="http://img.tidyko.com/avatar.jpg">
+    <img class="avatar" src="http://tidyko.oss-cn-hongkong.aliyuncs.com/avatar.jpg">
     <h2 class="author"></h2>
     <h3 class="description"></h3>
     <div class="count-box">
@@ -152,12 +152,12 @@
 <h2 id="2-修改Logstash配置文件"><a href="#2-修改Logstash配置文件" class="headerlink" title="2.修改Logstash配置文件"></a>2.修改Logstash配置文件</h2><h3 id="2-1新增01-tcp-input-conf"><a href="#2-1新增01-tcp-input-conf" class="headerlink" title="2.1新增01-tcp-input.conf"></a>2.1新增01-tcp-input.conf</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">input &#123;</span><br><span class="line">     tcp &#123;</span><br><span class="line">     	port =&gt; 5044</span><br><span class="line">     	codec =&gt; json_lines</span><br><span class="line">		type =&gt; &quot;tcp-input&quot;</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="2-2新增10-filter-api-monitor-conf"><a href="#2-2新增10-filter-api-monitor-conf" class="headerlink" title="2.2新增10-filter-api-monitor.conf"></a>2.2新增10-filter-api-monitor.conf</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">filter &#123;</span><br><span class="line">    if [type] == &quot;tcp-input&quot; &#123;</span><br><span class="line">        if [message] =~ /api_monitor/ &#123;</span><br><span class="line">            dissect &#123;</span><br><span class="line">                mapping =&gt; &#123; &quot;message&quot; =&gt; &quot;api_monitor%&#123;&#125;platform=%&#123;platform&#125;, name=%&#123;name&#125;, tget=%&#123;tget&#125;&quot; &#125;</span><br><span class="line">                add_field =&gt; &#123; &quot;index_prefix&quot; =&gt; &quot;api-monitor&quot; &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            mutate &#123;</span><br><span class="line">                gsub =&gt; [</span><br><span class="line">                    &quot;tget&quot;, &quot;755&quot;, &quot;深圳&quot;,</span><br><span class="line">                    &quot;tget&quot;, &quot;200&quot;, &quot;广州&quot;,</span><br><span class="line">                    &quot;tget&quot;, &quot;760&quot;, &quot;中山&quot;,</span><br><span class="line">                    &quot;tget&quot;, &quot;660&quot;, &quot;汕尾&quot;,</span><br><span class="line">                    &quot;tget&quot;, &quot;668&quot;, &quot;茂名&quot;,</span><br><span class="line">                    &quot;tget&quot;, &quot;754&quot;, &quot;汕头&quot;,</span><br><span class="line">                    &quot;tget&quot;, &quot;756&quot;, &quot;珠海&quot;,</span><br><span class="line">                    &quot;tget&quot;, &quot;757&quot;, &quot;佛山&quot;,</span><br><span class="line">                    &quot;tget&quot;, &quot;759&quot;, &quot;湛江&quot;,</span><br><span class="line">                    &quot;tget&quot;, &quot;758&quot;, &quot;肇庆&quot;,</span><br><span class="line">                    &quot;tget&quot;, &quot;769&quot;, &quot;东莞&quot;,</span><br><span class="line">                    &quot;tget&quot;, &quot;750&quot;, &quot;江门&quot;,</span><br><span class="line">                    &quot;tget&quot;, &quot;751&quot;, &quot;韶关&quot;,</span><br><span class="line">                    &quot;tget&quot;, &quot;662&quot;, &quot;阳江&quot;,</span><br><span class="line">                    &quot;tget&quot;, &quot;768&quot;, &quot;潮州&quot;,</span><br><span class="line">                    &quot;tget&quot;, &quot;752&quot;, &quot;惠州&quot;,</span><br><span class="line">                    &quot;tget&quot;, &quot;762&quot;, &quot;河源&quot;,</span><br><span class="line">                    &quot;tget&quot;, &quot;763&quot;, &quot;清远&quot;,</span><br><span class="line">                    &quot;tget&quot;, &quot;753&quot;, &quot;梅州&quot;,</span><br><span class="line">                    &quot;tget&quot;, &quot;766&quot;, &quot;云浮&quot;,</span><br><span class="line">                    &quot;tget&quot;, &quot;663&quot;, &quot;揭阳&quot;</span><br><span class="line">                ]</span><br><span class="line">                remove_field =&gt; [ &quot;time&quot; ]</span><br><span class="line">                remove_field =&gt; [ &quot;message&quot; ]</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="2-3新增99-output-conf"><a href="#2-3新增99-output-conf" class="headerlink" title="2.3新增99-output.conf"></a>2.3新增99-output.conf</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">output &#123;</span><br><span class="line">    if [type] and [type] == &quot;tcp-input&quot; &#123;</span><br><span class="line">        if [index_prefix] &#123;</span><br><span class="line">            elasticsearch &#123;</span><br><span class="line">                hosts =&gt; [ &quot;localhost&quot; ]</span><br><span class="line">                index =&gt; &quot;%&#123;index_prefix&#125;-%&#123;+YYYY.MM.dd&#125;&quot;</span><br><span class="line">	    &#125;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            elasticsearch &#123;</span><br><span class="line">                hosts =&gt; [ &quot;localhost&quot; ]</span><br><span class="line">                index =&gt; &quot;%&#123;type&#125;-%&#123;+YYYY.MM.dd&#125;&quot;</span><br><span class="line">	    &#125;</span><br><span class="line">	&#125;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        elasticsearch &#123;</span><br><span class="line">            hosts =&gt; [&quot;localhost&quot;]</span><br><span class="line">            manage_template =&gt; false</span><br><span class="line">            index =&gt; &quot;%&#123;[@metadata][beat]&#125;-%&#123;+YYYY.MM.dd&#125;&quot;</span><br><span class="line">            document_type =&gt; &quot;%&#123;[@metadata][type]&#125;&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="3-检验结果"><a href="#3-检验结果" class="headerlink" title="3.检验结果"></a>3.检验结果</h3><p>经过这样配置，当启动项目，有日志生成之后，推送到Logstash，Logstash监听到有消息发送过来之后会经过10-filter-api-monitor.conf的配置进行数据清洗，如果日志有包含api_monitor的字眼，将会被打上index_prefix字段标识，然后在99-output.conf的时候使用该字段进行判断，根据情况，最后如果是tcpinput进来的数据，将会生成两种格式的索引。<br>使用kibana查看索引将会看到一种为以tcp-input开头的索引以及api_monitor开头的索引。<br><img src="http://img.tidyko.com/blog/Logstash-tcp-1.png" alt=""></p>
+<h3 id="3-检验结果"><a href="#3-检验结果" class="headerlink" title="3.检验结果"></a>3.检验结果</h3><p>经过这样配置，当启动项目，有日志生成之后，推送到Logstash，Logstash监听到有消息发送过来之后会经过10-filter-api-monitor.conf的配置进行数据清洗，如果日志有包含api_monitor的字眼，将会被打上index_prefix字段标识，然后在99-output.conf的时候使用该字段进行判断，根据情况，最后如果是tcpinput进来的数据，将会生成两种格式的索引。<br>使用kibana查看索引将会看到一种为以tcp-input开头的索引以及api_monitor开头的索引。<br><img src="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/Logstash-tcp-1.png" alt=""></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/1fedb9b.html" data-id="ckfdbntbb00xrtpyk4h0dyltx" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/1fedb9b.html" data-id="ckmn56w4b00xlh9qpbnmxwco8" class="article-share-link">
         分享</a>
       
       
@@ -261,7 +261,7 @@ margin-bottom: 20px;"></div>
     <div class="widget-wrap">
   <h3 class="widget-title"></h3>
   <div class="widget">
-    <img class="avatar" src="http://img.tidyko.com/avatar.jpg">
+    <img class="avatar" src="http://tidyko.oss-cn-hongkong.aliyuncs.com/avatar.jpg">
     <h2 class="author">
       
     </h2>
@@ -320,7 +320,7 @@ margin-bottom: 20px;"></div>
   
     <div class="widget-wrap">
     <h3 class="widget-title">关注我的公众号：</h3>
-    <div class="widget"><img style="width:100%" src="http://img.tidyko.com/japanesehub-qrcode.jpg">
+    <div class="widget"><img style="width:100%" src="http://tidyko.oss-cn-hongkong.aliyuncs.com/japanesehub-qrcode.jpg">
     </div>
 </div>
   
@@ -341,7 +341,7 @@ margin-bottom: 20px;"></div>
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy;2019 - 2020 Tidy的个人博客<br>
+      &copy;2020 - 2021 Tidy的个人博客<br>
       <!-- 由<a href="https://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
       主题-<a href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a> -->
       

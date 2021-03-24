@@ -19,14 +19,14 @@
 <meta property="og:site_name" content="Tidy的个人博客">
 <meta property="og:description" content="我们先打开java.util.concurrent.ThreadPoolExecutor类，看下它的文档注释，大概了解一下它的作用。我们可以了解到该类主要作用是进行线程池的创建，然后我们继续看到下面这一段描述 To be useful across a wide range of contexts, this class provides many adjustable parameters an">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://img.tidyko.com/blog/thread_pool_exector-2.jpeg">
-<meta property="og:image" content="http://img.tidyko.com/blog/thread_pool_exector-1.jpeg">
-<meta property="og:image" content="http://img.tidyko.com/blog/thread_pool_exector-3.jpeg">
-<meta property="og:updated_time" content="2019-04-17T11:02:12.278Z">
+<meta property="og:image" content="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/thread_pool_exector-2.jpeg">
+<meta property="og:image" content="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/thread_pool_exector-1.jpeg">
+<meta property="og:image" content="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/thread_pool_exector-3.jpeg">
+<meta property="og:updated_time" content="2021-03-24T07:44:15.694Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java ThreadPoolExcutor">
 <meta name="twitter:description" content="我们先打开java.util.concurrent.ThreadPoolExecutor类，看下它的文档注释，大概了解一下它的作用。我们可以了解到该类主要作用是进行线程池的创建，然后我们继续看到下面这一段描述 To be useful across a wide range of contexts, this class provides many adjustable parameters an">
-<meta name="twitter:image" content="http://img.tidyko.com/blog/thread_pool_exector-2.jpeg">
+<meta name="twitter:image" content="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/thread_pool_exector-2.jpeg">
   
   <link rel="alternate" href="/atom.xml" title="Tidy的个人博客" type="application/atom+xml">
   
@@ -63,7 +63,7 @@
         <div class="widget-wrap mobile-header">
   <h3 class="widget-title"></h3>
   <div class="widget">
-    <img class="avatar" src="http://img.tidyko.com/avatar.jpg">
+    <img class="avatar" src="http://tidyko.oss-cn-hongkong.aliyuncs.com/avatar.jpg">
     <h2 class="author"></h2>
     <h3 class="description"></h3>
     <div class="count-box">
@@ -153,17 +153,17 @@
 <ol>
 <li><code>Executors.newCachedThreadPool()</code> 无限线程池</li>
 </ol>
-<p><img src="http://img.tidyko.com/blog/thread_pool_exector-2.jpeg" alt=""></p>
+<p><img src="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/thread_pool_exector-2.jpeg" alt=""></p>
 <p>它是一个可以无限扩大的线程池；<br>它比较适合处理执行时间比较小的任务；<br>corePoolSize为0，maximumPoolSize为无限大，意味着线程数量可以无限大；<br>keepAliveTime为60S，意味着线程空闲时间超过60S就会被杀死；<br>采用SynchronousQueue装等待的任务，这个阻塞队列没有存储空间，这意味着只要有请求到来，就必须要找到一条工作线程处理他，如果当前没有空闲的线程，那么就会再创建一条新的线程。</p>
 <ol start="2">
 <li><code>Executors.newFixedThreadPool(int)</code> 固定大小的线程池</li>
 </ol>
-<p><img src="http://img.tidyko.com/blog/thread_pool_exector-1.jpeg" alt=""></p>
+<p><img src="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/thread_pool_exector-1.jpeg" alt=""></p>
 <p>它是一种固定大小的线程池；<br>corePoolSize和maximunPoolSize都为用户设定的线程数量nThreads；<br>keepAliveTime为0，意味着一旦有多余的空闲线程，就会被立即停止掉,但这里keepAliveTime无效；<br>阻塞队列采用了LinkedBlockingQueue，它是一个无界队列；<br>由于阻塞队列是一个无界队列，因此永远不可能拒绝任务；由于采用了无界队列，实际线程数量将永远维持在nThreads，因此maximumPoolSize和keepAliveTime将无效。</p>
 <ol start="3">
 <li><code>Executors.newSingleThreadExecutor()</code> 单线程的线程池</li>
 </ol>
-<p><img src="http://img.tidyko.com/blog/thread_pool_exector-3.jpeg" alt=""></p>
+<p><img src="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/thread_pool_exector-3.jpeg" alt=""></p>
 <p>它只会创建一条工作线程处理任务；<br>采用的阻塞队列为LinkedBlockingQueue；</p>
 <p>我们可以看一下他们具体的创建代码：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** 无限制大小线程池，这里没有入参，只不过corePoolSize初始化的时候为0，maximumPoolSize为int的最大值。 **/</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ExecutorService <span class="title">newCachedThreadPool</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> ThreadPoolExecutor(<span class="number">0</span>, Integer.MAX_VALUE,</span><br><span class="line">                                    <span class="number">60L</span>, TimeUnit.SECONDS,</span><br><span class="line">                                    <span class="keyword">new</span> SynchronousQueue&lt;Runnable&gt;());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/** 固定大小线程池，这里传入的参数是一个线程数，然后设置corePoolSize以及maximumPoolSize相同。 **/</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ExecutorService <span class="title">newFixedThreadPool</span><span class="params">(<span class="keyword">int</span> nThreads)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> ThreadPoolExecutor(nThreads, nThreads,</span><br><span class="line">                                    <span class="number">0L</span>, TimeUnit.MILLISECONDS,</span><br><span class="line">                                    <span class="keyword">new</span> LinkedBlockingQueue&lt;Runnable&gt;());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/** 单线程线程池，这里没有入参，默认设置了corePoolSize以及maximumPoolSize都为1。 **/</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ExecutorService <span class="title">newSingleThreadExecutor</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> FinalizableDelegatedExecutorService</span><br><span class="line">        (<span class="keyword">new</span> ThreadPoolExecutor(<span class="number">1</span>, <span class="number">1</span>,</span><br><span class="line">                                <span class="number">0L</span>, TimeUnit.MILLISECONDS,</span><br><span class="line">                                <span class="keyword">new</span> LinkedBlockingQueue&lt;Runnable&gt;()));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -224,7 +224,7 @@ RejectedExecutionHandler handler : 如果线程池已满（线程池满表示：
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/fa8b02cc.html" data-id="ckfdbntc000yetpykze1gnaar" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/fa8b02cc.html" data-id="ckmn56w5600yph9qpl3c6eq1c" class="article-share-link">
         分享</a>
       
       
@@ -328,7 +328,7 @@ margin-bottom: 20px;"></div>
     <div class="widget-wrap">
   <h3 class="widget-title"></h3>
   <div class="widget">
-    <img class="avatar" src="http://img.tidyko.com/avatar.jpg">
+    <img class="avatar" src="http://tidyko.oss-cn-hongkong.aliyuncs.com/avatar.jpg">
     <h2 class="author">
       
     </h2>
@@ -387,7 +387,7 @@ margin-bottom: 20px;"></div>
   
     <div class="widget-wrap">
     <h3 class="widget-title">关注我的公众号：</h3>
-    <div class="widget"><img style="width:100%" src="http://img.tidyko.com/japanesehub-qrcode.jpg">
+    <div class="widget"><img style="width:100%" src="http://tidyko.oss-cn-hongkong.aliyuncs.com/japanesehub-qrcode.jpg">
     </div>
 </div>
   
@@ -408,7 +408,7 @@ margin-bottom: 20px;"></div>
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy;2019 - 2020 Tidy的个人博客<br>
+      &copy;2020 - 2021 Tidy的个人博客<br>
       <!-- 由<a href="https://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
       主题-<a href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a> -->
       

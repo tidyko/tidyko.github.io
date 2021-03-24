@@ -52,7 +52,7 @@
         <div class="widget-wrap mobile-header">
   <h3 class="widget-title"></h3>
   <div class="widget">
-    <img class="avatar" src="http://img.tidyko.com/avatar.jpg">
+    <img class="avatar" src="http://tidyko.oss-cn-hongkong.aliyuncs.com/avatar.jpg">
     <h2 class="author"></h2>
     <h3 class="description"></h3>
     <div class="count-box">
@@ -146,7 +146,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/2f3fa600.html" data-id="ckfdbnsys004qtpykyx58pjzi" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/2f3fa600.html" data-id="ckmn56vu8004qh9qpa2kcytqq" class="article-share-link">
         分享</a>
       
       
@@ -231,7 +231,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/a6562b5c.html" data-id="ckfdbnt1b0091tpykmriuqdah" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/a6562b5c.html" data-id="ckmn56vwd008zh9qpubmmqysb" class="article-share-link">
         分享</a>
       
       
@@ -315,7 +315,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/fd3cd277.html" data-id="ckfdbnt2o00bgtpykroft20kw" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/fd3cd277.html" data-id="ckmn56vxb00b5h9qpmz2dx7rk" class="article-share-link">
         分享</a>
       
       
@@ -399,7 +399,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/b014d2be.html" data-id="ckfdbnsyx004wtpykg8teq0ei" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/b014d2be.html" data-id="ckmn56vu6004mh9qp5vtd2egw" class="article-share-link">
         分享</a>
       
       
@@ -487,7 +487,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/b0fc798c.html" data-id="ckfdbnszq006ftpykgcsmsgs4" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/b0fc798c.html" data-id="ckmn56vv50062h9qpew8guka6" class="article-share-link">
         分享</a>
       
       
@@ -570,7 +570,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/10937fe4.html" data-id="ckfdbnt0e0076tpykcpemyokq" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/10937fe4.html" data-id="ckmn56vvi006yh9qpeno7d86u" class="article-share-link">
         分享</a>
       
       
@@ -648,8 +648,8 @@
     <div class="article-entry" itemprop="articleBody">
       
       <p>最重要的两点：使用navicat premium创建mysql连接和在mysql连接里面创建数据库时，需要注意。</p>
-<h3 id="1）"><a href="#1）" class="headerlink" title="1）"></a>1）</h3><p>创建连接时，Encoding不需要手动选择，保持Auto就可以了。<br><img src="http://img.tidyko.com/blog/mac-np-mysql_1.png" alt="Mysql MAC环境下使用Navicat Premium连接mysql乱码问题-图例1"></p>
-<h3 id="2）"><a href="#2）" class="headerlink" title="2）"></a>2）</h3><p>使用该连接创建新的数据库时，也保持默认编码。<br>创建连接时，Encoding不需要手动选择，保持Auto就可以了。<br><img src="http://img.tidyko.com/blog/mac-np-mysql_2.png" alt="Mysql MAC环境下使用Navicat Premium连接mysql乱码问题-图例2"><br>这两点注意了，如果还出现乱码的话，就有可能是mysql本身编码引起的。<br>可以通过以下操作进行设置。</p>
+<h3 id="1）"><a href="#1）" class="headerlink" title="1）"></a>1）</h3><p>创建连接时，Encoding不需要手动选择，保持Auto就可以了。<br><img src="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/mac-np-mysql_1.png" alt="Mysql MAC环境下使用Navicat Premium连接mysql乱码问题-图例1"></p>
+<h3 id="2）"><a href="#2）" class="headerlink" title="2）"></a>2）</h3><p>使用该连接创建新的数据库时，也保持默认编码。<br>创建连接时，Encoding不需要手动选择，保持Auto就可以了。<br><img src="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/mac-np-mysql_2.png" alt="Mysql MAC环境下使用Navicat Premium连接mysql乱码问题-图例2"><br>这两点注意了，如果还出现乱码的话，就有可能是mysql本身编码引起的。<br>可以通过以下操作进行设置。</p>
 <h4 id="2-1）"><a href="#2-1）" class="headerlink" title="2.1）"></a>2.1）</h4><p>在mac环境下，安装了mysql之后，/etc路径下是没有my.cnf文件的，需要我们手动添加。</p>
 <p>找到mysql安装目录，在底下找到support-files文件夹，复制里面的my-default.cnf，到桌面，并修改其名称为my.cnf。<br>（注：在mysql-5.7.17之后的版本好像没有了my-default.cnf）</p>
 <p>并将里面的内容修改为以下内容：<br><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Example MySQL config file for medium systems. </span></span><br><span class="line"><span class="comment">#  </span></span><br><span class="line"><span class="comment"># This is for a system with little memory (32M - 64M) where MySQL plays  </span></span><br><span class="line"><span class="comment"># an important part, or systems up to 128M where MySQL is used together with  </span></span><br><span class="line"><span class="comment"># other programs (such as a web server)  </span></span><br><span class="line"><span class="comment">#  </span></span><br><span class="line"><span class="comment"># MySQL programs look for option files in a set of  </span></span><br><span class="line"><span class="comment"># locations which depend on the deployment platform.  </span></span><br><span class="line"><span class="comment"># You can copy this option file to one of those  </span></span><br><span class="line"><span class="comment"># locations. For information about these locations, see:  </span></span><br><span class="line"><span class="comment"># http://dev.mysql.com/doc/mysql/en/option-files.html  </span></span><br><span class="line"><span class="comment">#  </span></span><br><span class="line"><span class="comment"># In this file, you can use all long options that a program supports.  </span></span><br><span class="line"><span class="comment"># If you want to know which options a program supports, run the program  </span></span><br><span class="line"><span class="comment"># with the "--help" option.  </span></span><br><span class="line">  </span><br><span class="line"><span class="comment"># The following options will be passed to all MySQL clients  </span></span><br><span class="line"><span class="string">[client]</span>  </span><br><span class="line"><span class="comment">#password   = your_password  </span></span><br><span class="line"><span class="string">port</span>        <span class="string">=</span> <span class="number">3306</span>  </span><br><span class="line"><span class="string">socket</span>      <span class="string">=</span> <span class="string">/tmp/mysql.sock</span>  </span><br><span class="line">  </span><br><span class="line"><span class="comment"># Here follows entries for some specific programs  </span></span><br><span class="line">  </span><br><span class="line"><span class="comment"># The MySQL server  </span></span><br><span class="line"><span class="string">[mysqld]</span>  </span><br><span class="line"><span class="string">port</span>        <span class="string">=</span> <span class="number">3306</span>  </span><br><span class="line"><span class="string">socket</span>      <span class="string">=</span> <span class="string">/tmp/mysql.sock</span>  </span><br><span class="line"><span class="string">skip-external-locking</span>  </span><br><span class="line"><span class="string">key_buffer_size</span> <span class="string">=</span> <span class="number">16</span><span class="string">M</span>  </span><br><span class="line"><span class="string">max_allowed_packet</span> <span class="string">=</span> <span class="number">1</span><span class="string">M</span>  </span><br><span class="line"><span class="string">table_open_cache</span> <span class="string">=</span> <span class="number">64</span>  </span><br><span class="line"><span class="string">sort_buffer_size</span> <span class="string">=</span> <span class="number">512</span><span class="string">K</span>  </span><br><span class="line"><span class="string">net_buffer_length</span> <span class="string">=</span> <span class="number">8</span><span class="string">K</span>  </span><br><span class="line"><span class="string">read_buffer_size</span> <span class="string">=</span> <span class="number">256</span><span class="string">K</span>  </span><br><span class="line"><span class="string">read_rnd_buffer_size</span> <span class="string">=</span> <span class="number">512</span><span class="string">K</span>  </span><br><span class="line"><span class="string">myisam_sort_buffer_size</span> <span class="string">=</span> <span class="number">8</span><span class="string">M</span>  </span><br><span class="line"><span class="string">character-set-server=utf8</span>  </span><br><span class="line"><span class="string">init_connect='SET</span> <span class="string">NAMES</span> <span class="string">utf8'</span>  </span><br><span class="line">  </span><br><span class="line"><span class="comment"># Don't listen on a TCP/IP port at all. This can be a security enhancement,  </span></span><br><span class="line"><span class="comment"># if all processes that need to connect to mysqld run on the same host.  </span></span><br><span class="line"><span class="comment"># All interaction with mysqld must be made via Unix sockets or named pipes.  </span></span><br><span class="line"><span class="comment"># Note that using this option without enabling named pipes on Windows  </span></span><br><span class="line"><span class="comment"># (via the "enable-named-pipe" option) will render mysqld useless!  </span></span><br><span class="line"><span class="comment">#   </span></span><br><span class="line"><span class="comment">#skip-networking  </span></span><br><span class="line">  </span><br><span class="line"><span class="comment"># Replication Master Server (default)  </span></span><br><span class="line"><span class="comment"># binary logging is required for replication  </span></span><br><span class="line"><span class="string">log-bin=mysql-bin</span>  </span><br><span class="line">  </span><br><span class="line"><span class="comment"># binary logging format - mixed recommended  </span></span><br><span class="line"><span class="string">binlog_format=mixed</span>  </span><br><span class="line">  </span><br><span class="line"><span class="comment"># required unique id between 1 and 2^32 - 1  </span></span><br><span class="line"><span class="comment"># defaults to 1 if master-host is not set  </span></span><br><span class="line"><span class="comment"># but will not function as a master if omitted  </span></span><br><span class="line"><span class="string">server-id</span>   <span class="string">=</span> <span class="number">1</span>  </span><br><span class="line">  </span><br><span class="line"><span class="comment"># Replication Slave (comment out master section to use this)  </span></span><br><span class="line"><span class="comment">#  </span></span><br><span class="line"><span class="comment"># To configure this host as a replication slave, you can choose between  </span></span><br><span class="line"><span class="comment"># two methods :  </span></span><br><span class="line"><span class="comment">#  </span></span><br><span class="line"><span class="comment"># 1) Use the CHANGE MASTER TO command (fully described in our manual) -  </span></span><br><span class="line"><span class="comment">#    the syntax is:  </span></span><br><span class="line"><span class="comment">#  </span></span><br><span class="line"><span class="comment">#    CHANGE MASTER TO MASTER_HOST=&lt;host&gt;, MASTER_PORT=&lt;port&gt;,  </span></span><br><span class="line"><span class="comment">#    MASTER_USER=&lt;user&gt;, MASTER_PASSWORD=&lt;password&gt; ;  </span></span><br><span class="line"><span class="comment">#  </span></span><br><span class="line"><span class="comment">#    where you replace &lt;host&gt;, &lt;user&gt;, &lt;password&gt; by quoted strings and  </span></span><br><span class="line"><span class="comment">#    &lt;port&gt; by the master's port number (3306 by default).  </span></span><br><span class="line"><span class="comment">#  </span></span><br><span class="line"><span class="comment">#    Example:  </span></span><br><span class="line"><span class="comment">#  </span></span><br><span class="line"><span class="comment">#    CHANGE MASTER TO MASTER_HOST='125.564.12.1', MASTER_PORT=3306,  </span></span><br><span class="line"><span class="comment">#    MASTER_USER='joe', MASTER_PASSWORD='secret';  </span></span><br><span class="line"><span class="comment">#  </span></span><br><span class="line"><span class="comment"># OR  </span></span><br><span class="line"><span class="comment">#  </span></span><br><span class="line"><span class="comment"># 2) Set the variables below. However, in case you choose this method, then  </span></span><br><span class="line"><span class="comment">#    start replication for the first time (even unsuccessfully, for example  </span></span><br><span class="line"><span class="comment">#    if you mistyped the password in master-password and the slave fails to  </span></span><br><span class="line"><span class="comment">#    connect), the slave will create a master.info file, and any later  </span></span><br><span class="line"><span class="comment">#    change in this file to the variables' values below will be ignored and  </span></span><br><span class="line"><span class="comment">#    overridden by the content of the master.info file, unless you shutdown  </span></span><br><span class="line"><span class="comment">#    the slave server, delete master.info and restart the slaver server.  </span></span><br><span class="line"><span class="comment">#    For that reason, you may want to leave the lines below untouched  </span></span><br><span class="line"><span class="comment">#    (commented) and instead use CHANGE MASTER TO (see above)  </span></span><br><span class="line"><span class="comment">#  </span></span><br><span class="line"><span class="comment"># required unique id between 2 and 2^32 - 1  </span></span><br><span class="line"><span class="comment"># (and different from the master)  </span></span><br><span class="line"><span class="comment"># defaults to 2 if master-host is set  </span></span><br><span class="line"><span class="comment"># but will not function as a slave if omitted  </span></span><br><span class="line"><span class="comment">#server-id       = 2  </span></span><br><span class="line"><span class="comment">#  </span></span><br><span class="line"><span class="comment"># The replication master for this slave - required  </span></span><br><span class="line"><span class="comment">#master-host     =   &lt;hostname&gt;  </span></span><br><span class="line"><span class="comment">#  </span></span><br><span class="line"><span class="comment"># The username the slave will use for authentication when connecting  </span></span><br><span class="line"><span class="comment"># to the master - required  </span></span><br><span class="line"><span class="comment">#master-user     =   &lt;username&gt;  </span></span><br><span class="line"><span class="comment">#  </span></span><br><span class="line"><span class="comment"># The password the slave will authenticate with when connecting to  </span></span><br><span class="line"><span class="comment"># the master - required  </span></span><br><span class="line"><span class="comment">#master-password =   &lt;password&gt;  </span></span><br><span class="line"><span class="comment">#  </span></span><br><span class="line"><span class="comment"># The port the master is listening on.  </span></span><br><span class="line"><span class="comment"># optional - defaults to 3306  </span></span><br><span class="line"><span class="comment">#master-port     =  &lt;port&gt;  </span></span><br><span class="line"><span class="comment">#  </span></span><br><span class="line"><span class="comment"># binary logging - not required for slaves, but recommended  </span></span><br><span class="line"><span class="comment">#log-bin=mysql-bin  </span></span><br><span class="line">  </span><br><span class="line"><span class="comment"># Uncomment the following if you are using InnoDB tables  </span></span><br><span class="line"><span class="comment">#innodb_data_home_dir = /usr/local/mysql/data  </span></span><br><span class="line"><span class="comment">#innodb_data_file_path = ibdata1:10M:autoextend  </span></span><br><span class="line"><span class="comment">#innodb_log_group_home_dir = /usr/local/mysql/data  </span></span><br><span class="line"><span class="comment"># You can set .._buffer_pool_size up to 50 - 80 %  </span></span><br><span class="line"><span class="comment"># of RAM but beware of setting memory usage too high  </span></span><br><span class="line"><span class="comment">#innodb_buffer_pool_size = 16M  </span></span><br><span class="line"><span class="comment">#innodb_additional_mem_pool_size = 2M  </span></span><br><span class="line"><span class="comment"># Set .._log_file_size to 25 % of buffer pool size  </span></span><br><span class="line"><span class="comment">#innodb_log_file_size = 5M  </span></span><br><span class="line"><span class="comment">#innodb_log_buffer_size = 8M  </span></span><br><span class="line"><span class="comment">#innodb_flush_log_at_trx_commit = 1  </span></span><br><span class="line"><span class="comment">#innodb_lock_wait_timeout = 50  </span></span><br><span class="line">  </span><br><span class="line"><span class="string">[mysqldump]</span>  </span><br><span class="line"><span class="string">quick</span>  </span><br><span class="line"><span class="string">max_allowed_packet</span> <span class="string">=</span> <span class="number">16</span><span class="string">M</span>  </span><br><span class="line">  </span><br><span class="line"><span class="string">[mysql]</span>  </span><br><span class="line"><span class="literal">no</span><span class="bullet">-auto-rehash</span>  </span><br><span class="line"><span class="comment"># Remove the next comment character if you are not familiar with SQL  </span></span><br><span class="line"><span class="comment">#safe-updates  </span></span><br><span class="line"><span class="string">default-character-set=utf8</span>   </span><br><span class="line">  </span><br><span class="line"><span class="string">[myisamchk]</span>  </span><br><span class="line"><span class="string">key_buffer_size</span> <span class="string">=</span> <span class="number">20</span><span class="string">M</span>  </span><br><span class="line"><span class="string">sort_buffer_size</span> <span class="string">=</span> <span class="number">20</span><span class="string">M</span>  </span><br><span class="line"><span class="string">read_buffer</span> <span class="string">=</span> <span class="number">2</span><span class="string">M</span>  </span><br><span class="line"><span class="string">write_buffer</span> <span class="string">=</span> <span class="number">2</span><span class="string">M</span>  </span><br><span class="line">  </span><br><span class="line"><span class="string">[mysqlhotcopy]</span>  </span><br><span class="line"><span class="string">interactive-timeout</span></span><br></pre></td></tr></table></figure></p>
@@ -658,7 +658,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/ba8658f2.html" data-id="ckfdbnt1o009ptpykfuqm2ug4" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/ba8658f2.html" data-id="ckmn56vwi009ch9qp4mfmjivb" class="article-share-link">
         分享</a>
       
       
@@ -746,7 +746,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/95c8a77e.html" data-id="ckfdbnt0h007atpyk98fskti7" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/95c8a77e.html" data-id="ckmn56vvl0073h9qpl5c4ugya" class="article-share-link">
         分享</a>
       
       
@@ -831,17 +831,17 @@
 <p>修改后的整体为下面所示:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> Generated by iptables-save v1.4.7 on Wed Mar 22 17:51:24 2017</span></span><br><span class="line">*filter</span><br><span class="line">:INPUT ACCEPT [0:0]</span><br><span class="line">:FORWARD ACCEPT [0:0]</span><br><span class="line">:OUTPUT ACCEPT [0:0] </span><br><span class="line">-A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT </span><br><span class="line">-A INPUT -p icmp -j ACCEPT </span><br><span class="line">-A INPUT -i lo -j ACCEPT </span><br><span class="line">-A INPUT -m state --state NEW -m tcp -p tcp --dport 22 -j ACCEPT  </span><br><span class="line">-A INPUT -m state --state NEW -m tcp -p tcp --dport 8080 -j ACCEPT  </span><br><span class="line">-A INPUT -j REJECT --reject-with icmp-host-prohibited </span><br><span class="line"></span><br><span class="line">-A FORWARD -j REJECT --reject-with icmp-host-prohibited</span><br><span class="line"></span><br><span class="line">COMMIT</span><br><span class="line"><span class="meta">#</span><span class="bash"> Completed on Wed Mar 22 17:51:24 2017</span></span><br></pre></td></tr></table></figure></p>
 <h3 id="2）"><a href="#2）" class="headerlink" title="2）"></a>2）</h3><p>修改完保存退出，重启网卡服务<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service iptables restart</span><br></pre></td></tr></table></figure></p>
 <h3 id="3）"><a href="#3）" class="headerlink" title="3）"></a>3）</h3><p>查看端口开放信息<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service iptables status</span><br></pre></td></tr></table></figure></p>
-<p><img src="http://img.tidyko.com/blog/linux-open-port_1.png" alt="Linux 开放指定端口设置-图例1"><br>一般服务器能看到开放信息就算成功开放了。</p>
+<p><img src="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/linux-open-port_1.png" alt="Linux 开放指定端口设置-图例1"><br>一般服务器能看到开放信息就算成功开放了。</p>
 <h3 id="4）"><a href="#4）" class="headerlink" title="4）"></a>4）</h3><p>如果是虚拟机系统，想要主机对其进行访问，需要设置端口转发，以VirtualBox为例：</p>
 <p>点击 <code>设置</code> -&gt; <code>网络</code> -&gt; <code>高级</code> -&gt; <code>端口转发</code> -&gt; <code>新增转发规则</code> </p>
-<p>具体如下图:<br><img src="http://img.tidyko.com/blog/linux-open-port_2.png" alt="Linux 开放指定端口设置-图例2"><br>点击ok对设置进行保存。</p>
+<p>具体如下图:<br><img src="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/linux-open-port_2.png" alt="Linux 开放指定端口设置-图例2"><br>点击ok对设置进行保存。</p>
 <h3 id="5）"><a href="#5）" class="headerlink" title="5）"></a>5）</h3><p>使用ip:port方式对服务进行检测，出现了tomcat主页，证明已经开放成功。</p>
-<p><img src="http://img.tidyko.com/blog/linux-open-port_3.png" alt="Linux 开放指定端口设置-图例3"></p>
+<p><img src="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/linux-open-port_3.png" alt="Linux 开放指定端口设置-图例3"></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/a4bec044.html" data-id="ckfdbnt0x0086tpykm6bzpflx" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/a4bec044.html" data-id="ckmn56vw00082h9qp1f94qokz" class="article-share-link">
         分享</a>
       
       
@@ -925,7 +925,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/6966e243.html" data-id="ckfdbnt0t007ytpyktc09ksok" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/6966e243.html" data-id="ckmn56vvs007mh9qpt6rt6mua" class="article-share-link">
         分享</a>
       
       
@@ -989,7 +989,7 @@
     <div class="widget-wrap">
   <h3 class="widget-title"></h3>
   <div class="widget">
-    <img class="avatar" src="http://img.tidyko.com/avatar.jpg">
+    <img class="avatar" src="http://tidyko.oss-cn-hongkong.aliyuncs.com/avatar.jpg">
     <h2 class="author">
       
     </h2>
@@ -1048,7 +1048,7 @@
   
     <div class="widget-wrap">
     <h3 class="widget-title">关注我的公众号：</h3>
-    <div class="widget"><img style="width:100%" src="http://img.tidyko.com/japanesehub-qrcode.jpg">
+    <div class="widget"><img style="width:100%" src="http://tidyko.oss-cn-hongkong.aliyuncs.com/japanesehub-qrcode.jpg">
     </div>
 </div>
   
@@ -1069,7 +1069,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy;2019 - 2020 Tidy的个人博客<br>
+      &copy;2020 - 2021 Tidy的个人博客<br>
       <!-- 由<a href="https://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
       主题-<a href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a> -->
       

@@ -19,14 +19,14 @@
 <meta property="og:site_name" content="Tidy的个人博客">
 <meta property="og:description" content="最近发现线上的一个应用跑一段周期之后就会出现内存溢出问题，需要重启，所以以此分析一下原因并修复。 1.获取内存快照使用jdk自带工具jmap获取内存快照文件，如下：12345jmap -dump:format=b,file=快照保存路径 进程id如：jmap -dump:format=b,file=/opt/27245.hprof 27245 2.使用工具进行分析获取到内存快照文件27245.h">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://img.tidyko.com/blog/Memoryanalysis_27245_1.png">
-<meta property="og:image" content="http://img.tidyko.com/blog/Memoryanalysis_27245_2.png">
-<meta property="og:image" content="http://img.tidyko.com/blog/Memoryanalysis_27245_3.png">
-<meta property="og:updated_time" content="2018-08-31T02:34:59.062Z">
+<meta property="og:image" content="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/Memoryanalysis_27245_1.png">
+<meta property="og:image" content="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/Memoryanalysis_27245_2.png">
+<meta property="og:image" content="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/Memoryanalysis_27245_3.png">
+<meta property="og:updated_time" content="2021-03-24T07:44:15.295Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="J2EE Spring redirect导致内存溢出问题">
 <meta name="twitter:description" content="最近发现线上的一个应用跑一段周期之后就会出现内存溢出问题，需要重启，所以以此分析一下原因并修复。 1.获取内存快照使用jdk自带工具jmap获取内存快照文件，如下：12345jmap -dump:format=b,file=快照保存路径 进程id如：jmap -dump:format=b,file=/opt/27245.hprof 27245 2.使用工具进行分析获取到内存快照文件27245.h">
-<meta name="twitter:image" content="http://img.tidyko.com/blog/Memoryanalysis_27245_1.png">
+<meta name="twitter:image" content="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/Memoryanalysis_27245_1.png">
   
   <link rel="alternate" href="/atom.xml" title="Tidy的个人博客" type="application/atom+xml">
   
@@ -63,7 +63,7 @@
         <div class="widget-wrap mobile-header">
   <h3 class="widget-title"></h3>
   <div class="widget">
-    <img class="avatar" src="http://img.tidyko.com/avatar.jpg">
+    <img class="avatar" src="http://tidyko.oss-cn-hongkong.aliyuncs.com/avatar.jpg">
     <h2 class="author"></h2>
     <h3 class="description"></h3>
     <div class="count-box">
@@ -150,13 +150,13 @@
 <h2 id="1-获取内存快照"><a href="#1-获取内存快照" class="headerlink" title="1.获取内存快照"></a>1.获取内存快照</h2><p>使用jdk自带工具jmap获取内存快照文件，如下：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">jmap -dump:format=b,file=快照保存路径 进程id</span><br><span class="line"></span><br><span class="line">如：</span><br><span class="line"></span><br><span class="line">jmap -dump:format=b,file=/opt/27245.hprof 27245</span><br></pre></td></tr></table></figure></p>
 <h2 id="2-使用工具进行分析"><a href="#2-使用工具进行分析" class="headerlink" title="2.使用工具进行分析"></a>2.使用工具进行分析</h2><p>获取到内存快照文件27245.hprof后，我们需要对此进行分析，这里使用的分析工具为<code>Eclipse Memory Analyzer Tool</code>，我们使用工具打开27245.hprof文件。</p>
 <h3 id="2-1-Main-View"><a href="#2-1-Main-View" class="headerlink" title="2.1 Main View"></a>2.1 Main View</h3><p>主界面显示有一大块内存占用高达1.3G，基本可以确定是这一块出现了问题。</p>
-<p><img src="http://img.tidyko.com/blog/Memoryanalysis_27245_1.png" alt="J2EE Spring redirect导致内存溢出问题_图例1"><br><a id="more"></a></p>
+<p><img src="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/Memoryanalysis_27245_1.png" alt="J2EE Spring redirect导致内存溢出问题_图例1"><br><a id="more"></a></p>
 <h3 id="2-2-Dominator-Tree"><a href="#2-2-Dominator-Tree" class="headerlink" title="2.2 Dominator Tree"></a>2.2 Dominator Tree</h3><p>继续点击主界面下面的<code>Action</code> -&gt; <code>Dominator Tree</code></p>
 <p>Dominator Tree(支配树)是一个对象图, 它将对象的引用关系转换成一种树形的对象图结构. 通过它可以很轻松地看出对象的引用关系以及哪些最大的内存使用块.</p>
 <p>点击打开之后，如下图：</p>
-<p><img src="http://img.tidyko.com/blog/Memoryanalysis_27245_2.png" alt="J2EE Spring redirect导致内存溢出问题_图例2"></p>
+<p><img src="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/Memoryanalysis_27245_2.png" alt="J2EE Spring redirect导致内存溢出问题_图例2"></p>
 <p>我们可以看到第一行这个对象占用了最多的资源，高达97%，我们继续点击第一行的<code>AnnotationAwareAspectJAutoProxyCreator</code>,看到如下图：</p>
-<p><img src="http://img.tidyko.com/blog/Memoryanalysis_27245_3.png" alt="J2EE Spring redirect导致内存溢出问题_图例3"></p>
+<p><img src="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/Memoryanalysis_27245_3.png" alt="J2EE Spring redirect导致内存溢出问题_图例3"></p>
 <p>可以看到这里有个Map存储了大量的String值，观察内容，发现String都带有<code>redirect:http</code>字样，从这就可以看出，我们的应用应该是在重定向这一块出现了问题。</p>
 <h2 id="3-应用代码分析"><a href="#3-应用代码分析" class="headerlink" title="3.应用代码分析"></a>3.应用代码分析</h2><p>在应用内全局搜索<code>redirect:http</code>字符串，可以发现应用里面使用了类似以下方法进行重定向。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> <span class="string">"redirect:"</span> + sb.toString();</span><br></pre></td></tr></table></figure>
@@ -175,7 +175,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3c49f4b8.html" data-id="ckfdbnsz9005btpyklsr69vf9" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/3c49f4b8.html" data-id="ckmn56vuj004yh9qpv18fxx37" class="article-share-link">
         分享</a>
       
       
@@ -279,7 +279,7 @@ margin-bottom: 20px;"></div>
     <div class="widget-wrap">
   <h3 class="widget-title"></h3>
   <div class="widget">
-    <img class="avatar" src="http://img.tidyko.com/avatar.jpg">
+    <img class="avatar" src="http://tidyko.oss-cn-hongkong.aliyuncs.com/avatar.jpg">
     <h2 class="author">
       
     </h2>
@@ -338,7 +338,7 @@ margin-bottom: 20px;"></div>
   
     <div class="widget-wrap">
     <h3 class="widget-title">关注我的公众号：</h3>
-    <div class="widget"><img style="width:100%" src="http://img.tidyko.com/japanesehub-qrcode.jpg">
+    <div class="widget"><img style="width:100%" src="http://tidyko.oss-cn-hongkong.aliyuncs.com/japanesehub-qrcode.jpg">
     </div>
 </div>
   
@@ -359,7 +359,7 @@ margin-bottom: 20px;"></div>
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy;2019 - 2020 Tidy的个人博客<br>
+      &copy;2020 - 2021 Tidy的个人博客<br>
       <!-- 由<a href="https://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
       主题-<a href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a> -->
       

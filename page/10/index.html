@@ -52,7 +52,7 @@
         <div class="widget-wrap mobile-header">
   <h3 class="widget-title"></h3>
   <div class="widget">
-    <img class="avatar" src="http://img.tidyko.com/avatar.jpg">
+    <img class="avatar" src="http://tidyko.oss-cn-hongkong.aliyuncs.com/avatar.jpg">
     <h2 class="author"></h2>
     <h3 class="description"></h3>
     <div class="count-box">
@@ -145,7 +145,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3ddda97c.html" data-id="ckfdbnsyz004ztpykoq8d18yj" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/3ddda97c.html" data-id="ckmn56vut0054h9qpgncfgah3" class="article-share-link">
         分享</a>
       
       
@@ -226,12 +226,12 @@
 <h2 id="2）下载"><a href="#2）下载" class="headerlink" title="2）下载"></a>2）下载</h2><p><a href="http://files.cnblogs.com/files/zengweiming/PSI-probe-2.3.3%E4%B8%AD%E6%96%87%E7%89%88%E5%8F%8A%E5%AE%89%E8%A3%85%E8%AF%A6%E8%A7%A3.rar" target="_blank" rel="noopener">点击下载</a></p>
 <h2 id="3）安装运行"><a href="#3）安装运行" class="headerlink" title="3）安装运行"></a>3）安装运行</h2><h3 id="3-1）解压"><a href="#3-1）解压" class="headerlink" title="3.1）解压"></a>3.1）解压</h3><p>将probe文件夹复制放进tomcat里面的webapp目录</p>
 <h3 id="3-2）修改tomcat的管理用户配置"><a href="#3-2）修改tomcat的管理用户配置" class="headerlink" title="3.2）修改tomcat的管理用户配置"></a>3.2）修改tomcat的管理用户配置</h3><p>打开 <code>CATALINA_HOME/conf/tomcat-users.xml</code> ，在里面添加以下代码<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">tomcat-users</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">role</span> <span class="attr">rolename</span>=<span class="string">"probeuser"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">role</span> <span class="attr">rolename</span>=<span class="string">"poweruser"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">role</span> <span class="attr">rolename</span>=<span class="string">"poweruserplus"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">role</span> <span class="attr">rolename</span>=<span class="string">"manager"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">user</span> <span class="attr">username</span>=<span class="string">"admin"</span> <span class="attr">password</span>=<span class="string">"admin"</span> <span class="attr">roles</span>=<span class="string">"manager"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">tomcat-users</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<h2 id="4）启动tomcat"><a href="#4）启动tomcat" class="headerlink" title="4）启动tomcat"></a>4）启动tomcat</h2><p>输入 localhost:8080/probe ，输入用户密码 <code>admin</code> <code>admin</code>，进行访问,首页如下就说明已经运行监控成功啦。<br><img src="http://img.tidyko.com/blog/probe_1.png" alt="Tomcat 使用probe对tomcat服务进行监控-图例1"></p>
+<h2 id="4）启动tomcat"><a href="#4）启动tomcat" class="headerlink" title="4）启动tomcat"></a>4）启动tomcat</h2><p>输入 localhost:8080/probe ，输入用户密码 <code>admin</code> <code>admin</code>，进行访问,首页如下就说明已经运行监控成功啦。<br><img src="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/probe_1.png" alt="Tomcat 使用probe对tomcat服务进行监控-图例1"></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3f45f33f.html" data-id="ckfdbnt3a00cftpyks28el1ug" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/3f45f33f.html" data-id="ckmn56vxz00c6h9qppklkh9ya" class="article-share-link">
         分享</a>
       
       
@@ -309,15 +309,15 @@
     <div class="article-entry" itemprop="articleBody">
       
       <p>官方网站：<a href="http://people.apache.org/~pmuellr/weinre-docs/latest/" target="_blank" rel="noopener">http://people.apache.org/~pmuellr/weinre-docs/latest/</a></p>
-<h2 id="windows下安装以及使用："><a href="#windows下安装以及使用：" class="headerlink" title="windows下安装以及使用："></a>windows下安装以及使用：</h2><h3 id="1）安装nodejs"><a href="#1）安装nodejs" class="headerlink" title="1）安装nodejs"></a>1）安装nodejs</h3><p>1.下载nodejs引擎，32bit version或者64bit version<br>2.下载最新版的npm  zip格式压缩包：<a href="http://nodejs.org/dist/npm/" target="_blank" rel="noopener">http://nodejs.org/dist/npm/</a><br>3.在硬盘某个位置，如D盘下建立一个文件nodejs，把上面两个下载的东西都放在这里，npm要解压。<br>4.配置两个环境变量：<br>一个是PATH上增加node.exe的目录D:\nodejs<br>一个是增加环境变量NODE_PATH,值为D:\nodejs\node_modules<br>5.安装express：打开cmd命令行，键入指令npm install express[安装express至相对路径]或npm install express -g[安装express至绝对路径]<br>6.最后cmd分别执行node -v和npm -v如果看到nodejs和npm的版本号就算安装成功了。如下图：<br><img src="http://img.tidyko.com/blog/weinre_1.jpg" alt="weinre 使用weinre对手机、微信浏览器页面调试-图例1"></p>
-<h3 id="2）使用npm安装weinre并启动"><a href="#2）使用npm安装weinre并启动" class="headerlink" title="2）使用npm安装weinre并启动"></a>2）使用npm安装weinre并启动</h3><p>1.cmd执行 <code>npm install weinre</code> 安装 weinre<br>2.cmd执行 <code>weinre --boundHost -all-  --httpPort 8081</code> 看到提示启动成功即可。如下图：<br><img src="http://img.tidyko.com/blog/weinre_2.jpg" alt="weinre 使用weinre对手机、微信浏览器页面调试-图例2"></p>
-<h3 id="3）使用weinre对远程端页面进行调试"><a href="#3）使用weinre对远程端页面进行调试" class="headerlink" title="3）使用weinre对远程端页面进行调试"></a>3）使用weinre对远程端页面进行调试</h3><p>1.在浏览器输入 <a href="http://localhost:8081" target="_blank" rel="noopener">http://localhost:8081</a> ，进入weinre的主页。如下图：<br><img src="http://img.tidyko.com/blog/weinre_3.jpg" alt="weinre 使用weinre对手机、微信浏览器页面调试-图例3"><br>2.将上图中 <code>Target Script</code> 部分的js地址加入到你要调试的目标页面内。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=<span class="string">"http://localhost:8081/target/target-script-min.js#anonymous"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure></p>
-<p>3.最后，在移动设备打开添加过这个脚本的网页，这时候你在本地浏览器打开    <a href="http://localhost:8081/client/#anonymous" target="_blank" rel="noopener">http://localhost:8081/client/#anonymous</a> 就能看到对应网页与对其进行调试了，如下图：<br><img src="http://img.tidyko.com/blog/weinre_4.jpg" alt="weinre 使用weinre对手机、微信浏览器页面调试-图例4"></p>
+<h2 id="windows下安装以及使用："><a href="#windows下安装以及使用：" class="headerlink" title="windows下安装以及使用："></a>windows下安装以及使用：</h2><h3 id="1）安装nodejs"><a href="#1）安装nodejs" class="headerlink" title="1）安装nodejs"></a>1）安装nodejs</h3><p>1.下载nodejs引擎，32bit version或者64bit version<br>2.下载最新版的npm  zip格式压缩包：<a href="http://nodejs.org/dist/npm/" target="_blank" rel="noopener">http://nodejs.org/dist/npm/</a><br>3.在硬盘某个位置，如D盘下建立一个文件nodejs，把上面两个下载的东西都放在这里，npm要解压。<br>4.配置两个环境变量：<br>一个是PATH上增加node.exe的目录D:\nodejs<br>一个是增加环境变量NODE_PATH,值为D:\nodejs\node_modules<br>5.安装express：打开cmd命令行，键入指令npm install express[安装express至相对路径]或npm install express -g[安装express至绝对路径]<br>6.最后cmd分别执行node -v和npm -v如果看到nodejs和npm的版本号就算安装成功了。如下图：<br><img src="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/weinre_1.jpg" alt="weinre 使用weinre对手机、微信浏览器页面调试-图例1"></p>
+<h3 id="2）使用npm安装weinre并启动"><a href="#2）使用npm安装weinre并启动" class="headerlink" title="2）使用npm安装weinre并启动"></a>2）使用npm安装weinre并启动</h3><p>1.cmd执行 <code>npm install weinre</code> 安装 weinre<br>2.cmd执行 <code>weinre --boundHost -all-  --httpPort 8081</code> 看到提示启动成功即可。如下图：<br><img src="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/weinre_2.jpg" alt="weinre 使用weinre对手机、微信浏览器页面调试-图例2"></p>
+<h3 id="3）使用weinre对远程端页面进行调试"><a href="#3）使用weinre对远程端页面进行调试" class="headerlink" title="3）使用weinre对远程端页面进行调试"></a>3）使用weinre对远程端页面进行调试</h3><p>1.在浏览器输入 <a href="http://localhost:8081" target="_blank" rel="noopener">http://localhost:8081</a> ，进入weinre的主页。如下图：<br><img src="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/weinre_3.jpg" alt="weinre 使用weinre对手机、微信浏览器页面调试-图例3"><br>2.将上图中 <code>Target Script</code> 部分的js地址加入到你要调试的目标页面内。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=<span class="string">"http://localhost:8081/target/target-script-min.js#anonymous"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure></p>
+<p>3.最后，在移动设备打开添加过这个脚本的网页，这时候你在本地浏览器打开    <a href="http://localhost:8081/client/#anonymous" target="_blank" rel="noopener">http://localhost:8081/client/#anonymous</a> 就能看到对应网页与对其进行调试了，如下图：<br><img src="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/weinre_4.jpg" alt="weinre 使用weinre对手机、微信浏览器页面调试-图例4"></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/1eb6656b.html" data-id="ckfdbnt3i00cstpyku64coqvc" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/1eb6656b.html" data-id="ckmn56vy500clh9qpac4b2eot" class="article-share-link">
         分享</a>
       
       
@@ -411,7 +411,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/58db64d.html" data-id="ckfdbnt3o00d2tpykn2vh4g0y" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/58db64d.html" data-id="ckmn56vy300cih9qpoyfhekc8" class="article-share-link">
         分享</a>
       
       
@@ -495,7 +495,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/2d2c81b8.html" data-id="ckfdbnsvi000gtpykdkpg80qa" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/2d2c81b8.html" data-id="ckmn56vr9000fh9qprxsiyfyu" class="article-share-link">
         分享</a>
       
       
@@ -722,7 +722,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/a8ddc8ae.html" data-id="ckfdbnt2m00betpyklyqkhxgk" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/a8ddc8ae.html" data-id="ckmn56vx900ayh9qpp67ezln7" class="article-share-link">
         分享</a>
       
       
@@ -807,7 +807,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/67537090.html" data-id="ckfdbnswk001xtpykn4pv9psl" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/67537090.html" data-id="ckmn56vs5001ph9qpedon63y7" class="article-share-link">
         分享</a>
       
       
@@ -891,7 +891,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/6d066745.html" data-id="ckfdbnsxo003btpyk869fg8di" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/6d066745.html" data-id="ckmn56vt60032h9qpwj87gnib" class="article-share-link">
         分享</a>
       
       
@@ -977,7 +977,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/d1cb6203.html" data-id="ckfdbnsxr003etpykqqcwbcng" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/d1cb6203.html" data-id="ckmn56vtb003ch9qpwrun7v39" class="article-share-link">
         分享</a>
       
       
@@ -1064,7 +1064,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/4a47fe35.html" data-id="ckfdbnsxi0034tpykiggk0ky9" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/4a47fe35.html" data-id="ckmn56vt70035h9qpnddzjz0x" class="article-share-link">
         分享</a>
       
       
@@ -1128,7 +1128,7 @@
     <div class="widget-wrap">
   <h3 class="widget-title"></h3>
   <div class="widget">
-    <img class="avatar" src="http://img.tidyko.com/avatar.jpg">
+    <img class="avatar" src="http://tidyko.oss-cn-hongkong.aliyuncs.com/avatar.jpg">
     <h2 class="author">
       
     </h2>
@@ -1187,7 +1187,7 @@
   
     <div class="widget-wrap">
     <h3 class="widget-title">关注我的公众号：</h3>
-    <div class="widget"><img style="width:100%" src="http://img.tidyko.com/japanesehub-qrcode.jpg">
+    <div class="widget"><img style="width:100%" src="http://tidyko.oss-cn-hongkong.aliyuncs.com/japanesehub-qrcode.jpg">
     </div>
 </div>
   
@@ -1208,7 +1208,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy;2019 - 2020 Tidy的个人博客<br>
+      &copy;2020 - 2021 Tidy的个人博客<br>
       <!-- 由<a href="https://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
       主题-<a href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a> -->
       

@@ -19,19 +19,19 @@
 <meta property="og:site_name" content="Tidy的个人博客">
 <meta property="og:description" content="使用Docker搭建Jenkins服务后，因单节点不允许设置太大的执行数，所以可以创建Jenkins集群，使用Agent分担Jenkins构建的压力。 进入管理Jenkins点击左侧菜单“Manage Jenkins（管理Jenkins）” –&amp;gt; “Manage Nods and Clous（管理节点）”进入节点配置界面。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://img.tidyko.com/blog/jenkins_agent_1.png">
-<meta property="og:image" content="http://img.tidyko.com/blog/jenkins_agent_2.png">
-<meta property="og:image" content="http://img.tidyko.com/blog/jenkins_agent_3.png">
-<meta property="og:image" content="http://img.tidyko.com/blog/jenkins_agent_4.png">
-<meta property="og:image" content="http://img.tidyko.com/blog/jenkins_agent_5.png">
-<meta property="og:image" content="http://img.tidyko.com/blog/jenkins_agent_6.png">
-<meta property="og:image" content="http://img.tidyko.com/blog/jenkins_agent_7.png">
-<meta property="og:image" content="http://img.tidyko.com/blog/jenkins_agent_8.png">
-<meta property="og:updated_time" content="2020-09-22T02:10:37.264Z">
+<meta property="og:image" content="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/jenkins_agent_1.png">
+<meta property="og:image" content="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/jenkins_agent_2.png">
+<meta property="og:image" content="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/jenkins_agent_3.png">
+<meta property="og:image" content="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/jenkins_agent_4.png">
+<meta property="og:image" content="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/jenkins_agent_5.png">
+<meta property="og:image" content="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/jenkins_agent_6.png">
+<meta property="og:image" content="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/jenkins_agent_7.png">
+<meta property="og:image" content="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/jenkins_agent_8.png">
+<meta property="og:updated_time" content="2021-03-24T07:44:17.117Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker 搭建Jenkins Agent">
 <meta name="twitter:description" content="使用Docker搭建Jenkins服务后，因单节点不允许设置太大的执行数，所以可以创建Jenkins集群，使用Agent分担Jenkins构建的压力。 进入管理Jenkins点击左侧菜单“Manage Jenkins（管理Jenkins）” –&amp;gt; “Manage Nods and Clous（管理节点）”进入节点配置界面。">
-<meta name="twitter:image" content="http://img.tidyko.com/blog/jenkins_agent_1.png">
+<meta name="twitter:image" content="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/jenkins_agent_1.png">
   
   <link rel="alternate" href="/atom.xml" title="Tidy的个人博客" type="application/atom+xml">
   
@@ -68,7 +68,7 @@
         <div class="widget-wrap mobile-header">
   <h3 class="widget-title"></h3>
   <div class="widget">
-    <img class="avatar" src="http://img.tidyko.com/avatar.jpg">
+    <img class="avatar" src="http://tidyko.oss-cn-hongkong.aliyuncs.com/avatar.jpg">
     <h2 class="author"></h2>
     <h3 class="description"></h3>
     <div class="count-box">
@@ -152,12 +152,12 @@
     <div class="article-entry" itemprop="articleBody">
       
       <p>使用Docker搭建Jenkins服务后，因单节点不允许设置太大的执行数，所以可以创建Jenkins集群，使用Agent分担Jenkins构建的压力。</p>
-<h2 id="进入管理Jenkins"><a href="#进入管理Jenkins" class="headerlink" title="进入管理Jenkins"></a>进入管理Jenkins</h2><p>点击左侧菜单“Manage Jenkins（管理Jenkins）” –&gt; “Manage Nods and Clous（管理节点）”进入节点配置界面。<br><img src="http://img.tidyko.com/blog/jenkins_agent_1.png" alt="Docker 搭建Jenkins Agent-1"><br><a id="more"></a></p>
-<h2 id="新建节点"><a href="#新建节点" class="headerlink" title="新建节点"></a>新建节点</h2><p>在“Manage Nods and Clous（管理节点）界面”左侧点击“New Node(新建节点)”菜单，进入新节点新建界面。<br><img src="http://img.tidyko.com/blog/jenkins_agent_2.png" alt="Docker 搭建Jenkins Agent-1"></p>
-<h2 id="新建节点信息"><a href="#新建节点信息" class="headerlink" title="新建节点信息"></a>新建节点信息</h2><p>在新建界面，输入“Node name”和选择“Permanent Agent”，点击OK按钮。<br><img src="http://img.tidyko.com/blog/jenkins_agent_3.png" alt="Docker 搭建Jenkins Agent-1"></p>
-<h2 id="配置节点信息"><a href="#配置节点信息" class="headerlink" title="配置节点信息"></a>配置节点信息</h2><p>在配置节点信息界面，修改“# of executeors（执行数量）”，比如修改为5，修改后其他信息不用修改，直接点击“Save（保存）”按钮。<br><img src="http://img.tidyko.com/blog/jenkins_agent_4.png" alt="Docker 搭建Jenkins Agent-1"></p>
-<h2 id="获取代理节点配置信息"><a href="#获取代理节点配置信息" class="headerlink" title="获取代理节点配置信息"></a>获取代理节点配置信息</h2><p>点击保存后，系统界面会刷新显示当前所有节点的列表，点击刚刚配置的新节点“Build_Agent_02”进去,可以看到提示显示你执行命令，我们将“URL”、“节点名称”、“秘钥”这三个信息记录下来，在编写docker-compose.yml文件的时候使用<br><img src="http://img.tidyko.com/blog/jenkins_agent_5.png" alt="Docker 搭建Jenkins Agent-1"></p>
-<p><img src="http://img.tidyko.com/blog/jenkins_agent_6.png" alt="Docker 搭建Jenkins Agent-1"></p>
+<h2 id="进入管理Jenkins"><a href="#进入管理Jenkins" class="headerlink" title="进入管理Jenkins"></a>进入管理Jenkins</h2><p>点击左侧菜单“Manage Jenkins（管理Jenkins）” –&gt; “Manage Nods and Clous（管理节点）”进入节点配置界面。<br><img src="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/jenkins_agent_1.png" alt="Docker 搭建Jenkins Agent-1"><br><a id="more"></a></p>
+<h2 id="新建节点"><a href="#新建节点" class="headerlink" title="新建节点"></a>新建节点</h2><p>在“Manage Nods and Clous（管理节点）界面”左侧点击“New Node(新建节点)”菜单，进入新节点新建界面。<br><img src="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/jenkins_agent_2.png" alt="Docker 搭建Jenkins Agent-1"></p>
+<h2 id="新建节点信息"><a href="#新建节点信息" class="headerlink" title="新建节点信息"></a>新建节点信息</h2><p>在新建界面，输入“Node name”和选择“Permanent Agent”，点击OK按钮。<br><img src="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/jenkins_agent_3.png" alt="Docker 搭建Jenkins Agent-1"></p>
+<h2 id="配置节点信息"><a href="#配置节点信息" class="headerlink" title="配置节点信息"></a>配置节点信息</h2><p>在配置节点信息界面，修改“# of executeors（执行数量）”，比如修改为5，修改后其他信息不用修改，直接点击“Save（保存）”按钮。<br><img src="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/jenkins_agent_4.png" alt="Docker 搭建Jenkins Agent-1"></p>
+<h2 id="获取代理节点配置信息"><a href="#获取代理节点配置信息" class="headerlink" title="获取代理节点配置信息"></a>获取代理节点配置信息</h2><p>点击保存后，系统界面会刷新显示当前所有节点的列表，点击刚刚配置的新节点“Build_Agent_02”进去,可以看到提示显示你执行命令，我们将“URL”、“节点名称”、“秘钥”这三个信息记录下来，在编写docker-compose.yml文件的时候使用<br><img src="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/jenkins_agent_5.png" alt="Docker 搭建Jenkins Agent-1"></p>
+<p><img src="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/jenkins_agent_6.png" alt="Docker 搭建Jenkins Agent-1"></p>
 <h2 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h2><p>Build_Agent_01</p>
 <ul>
 <li>jenkins_home<ul>
@@ -177,13 +177,13 @@
 <p>保存完，执行构建镜像。</p>
 <h2 id="编写docker-compose-yml"><a href="#编写docker-compose-yml" class="headerlink" title="编写docker-compose.yml"></a>编写docker-compose.yml</h2><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">"3.8"</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line"><span class="attr">  jenkins_agent:</span></span><br><span class="line"><span class="attr">    container_name:</span> <span class="string">ts_jenkins_agent_01</span></span><br><span class="line"><span class="attr">    image:</span> <span class="string">tisson/jenkins-slave:latest</span></span><br><span class="line"><span class="attr">    environment:</span></span><br><span class="line"><span class="attr">      JENKINS_URL:</span> <span class="string">"http://xxx.xxx.xxx.xxx:8080"</span></span><br><span class="line"><span class="attr">      JENKINS_SECRET:</span> <span class="string">"14990778b3f66a48772f69a430b2357af7271c71c870875c3a4c7da947b5e50c"</span></span><br><span class="line"><span class="attr">      JENKINS_AGENT_NAME:</span> <span class="string">"Build_Agent_01"</span></span><br><span class="line"><span class="attr">    volumes:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">"./jenkins_home:/var/jenkins_home"</span></span><br><span class="line"><span class="attr">    restart:</span> <span class="string">always</span></span><br></pre></td></tr></table></figure>
 <p>保存完，执行<code>docker-compose up -d</code>，进行容器构建、启动。</p>
-<h2 id="查看日志"><a href="#查看日志" class="headerlink" title="查看日志"></a>查看日志</h2><p>输入<code>docker-compose logs -f</code>，查看运行日志。<br><img src="http://img.tidyko.com/blog/jenkins_agent_7.png" alt="Docker 搭建Jenkins Agent-1"></p>
-<h2 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h2><p>启动完成刷新Jenkins页面，如果现实节点正常即为启动成功。<br><img src="http://img.tidyko.com/blog/jenkins_agent_8.png" alt="Docker 搭建Jenkins Agent-1"></p>
+<h2 id="查看日志"><a href="#查看日志" class="headerlink" title="查看日志"></a>查看日志</h2><p>输入<code>docker-compose logs -f</code>，查看运行日志。<br><img src="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/jenkins_agent_7.png" alt="Docker 搭建Jenkins Agent-1"></p>
+<h2 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h2><p>启动完成刷新Jenkins页面，如果现实节点正常即为启动成功。<br><img src="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/jenkins_agent_8.png" alt="Docker 搭建Jenkins Agent-1"></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/87e86852.html" data-id="ckfdbnsvs000stpykuscrk7gy" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/87e86852.html" data-id="ckmn56vrh000qh9qpjn91lcb7" class="article-share-link">
         分享</a>
       
       
@@ -278,7 +278,7 @@ margin-bottom: 20px;"></div>
     <div class="widget-wrap">
   <h3 class="widget-title"></h3>
   <div class="widget">
-    <img class="avatar" src="http://img.tidyko.com/avatar.jpg">
+    <img class="avatar" src="http://tidyko.oss-cn-hongkong.aliyuncs.com/avatar.jpg">
     <h2 class="author">
       
     </h2>
@@ -337,7 +337,7 @@ margin-bottom: 20px;"></div>
   
     <div class="widget-wrap">
     <h3 class="widget-title">关注我的公众号：</h3>
-    <div class="widget"><img style="width:100%" src="http://img.tidyko.com/japanesehub-qrcode.jpg">
+    <div class="widget"><img style="width:100%" src="http://tidyko.oss-cn-hongkong.aliyuncs.com/japanesehub-qrcode.jpg">
     </div>
 </div>
   
@@ -358,7 +358,7 @@ margin-bottom: 20px;"></div>
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy;2019 - 2020 Tidy的个人博客<br>
+      &copy;2020 - 2021 Tidy的个人博客<br>
       <!-- 由<a href="https://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
       主题-<a href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a> -->
       

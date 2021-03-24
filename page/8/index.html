@@ -52,7 +52,7 @@
         <div class="widget-wrap mobile-header">
   <h3 class="widget-title"></h3>
   <div class="widget">
-    <img class="avatar" src="http://img.tidyko.com/avatar.jpg">
+    <img class="avatar" src="http://tidyko.oss-cn-hongkong.aliyuncs.com/avatar.jpg">
     <h2 class="author"></h2>
     <h3 class="description"></h3>
     <div class="count-box">
@@ -142,13 +142,13 @@
 <h3 id="2）查看inet-addr（NAT端口转发时的子系统IP）"><a href="#2）查看inet-addr（NAT端口转发时的子系统IP）" class="headerlink" title="2）查看inet addr（NAT端口转发时的子系统IP）"></a>2）查看inet addr（NAT端口转发时的子系统IP）</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@goukaiHost opt]# ifconfig eth0</span><br><span class="line">eth0      Link encap:Ethernet  HWaddr 08:00:27:74:E9:14  </span><br><span class="line">          inet addr:10.0.2.15  Bcast:10.0.2.255  Mask:255.255.255.0</span><br><span class="line">          inet6 addr: fe80::a00:27ff:fe74:e914/64 Scope:Link</span><br><span class="line">          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1</span><br><span class="line">          RX packets:357 errors:0 dropped:0 overruns:0 frame:0</span><br><span class="line">          TX packets:273 errors:0 dropped:0 overruns:0 carrier:0</span><br><span class="line">          collisions:0 txqueuelen:1000 </span><br><span class="line">          RX bytes:34617 (33.8 KiB)  TX bytes:31373 (30.6 KiB)</span><br></pre></td></tr></table></figure>
 <h3 id="3）在VirtualBox中设置NAT端口转发"><a href="#3）在VirtualBox中设置NAT端口转发" class="headerlink" title="3）在VirtualBox中设置NAT端口转发"></a>3）在VirtualBox中设置NAT端口转发</h3><h4 id="3-1）"><a href="#3-1）" class="headerlink" title="3.1）"></a>3.1）</h4><p><code>管理</code> -&gt; <code>全局设定</code> -&gt; <code>网络</code> -&gt; <code>VirtualBox Host-Only Ethernet Adapter</code> -&gt; <code>编辑</code><br>查看主机虚拟网络界面 IPv4地址192.168.56.1 这就是NAT端口转发时的主机IP。</p>
 <h4 id="3-2）"><a href="#3-2）" class="headerlink" title="3.2）"></a>3.2）</h4><p><code>设备</code> -&gt; <code>更改网络连接</code> -&gt; <code>网卡1</code> -&gt; <code>连接方式（NAT）</code> -&gt; <code>端口转发</code></p>
-<p>端口转发规则，填写名称，协议TCP,主机IP就是a中主机虚拟网络界面里 IPv4地址192.168.56.1，主机端口22 子系统IP是CentOS中的inet addr:10.0.2.15,子系统端口：22<br><img src="http://img.tidyko.com/blog/virtualbox-linux-net_1.png" alt="VirtualBox Linux虚拟网络配置-图例1"></p>
-<h3 id="4）然后就可以用xshell客户端进行登录了"><a href="#4）然后就可以用xshell客户端进行登录了" class="headerlink" title="4）然后就可以用xshell客户端进行登录了"></a>4）然后就可以用xshell客户端进行登录了</h3><p><img src="http://img.tidyko.com/blog/virtualbox-linux-net_2.png" alt="VirtualBox Linux虚拟网络配置-图例2"></p>
+<p>端口转发规则，填写名称，协议TCP,主机IP就是a中主机虚拟网络界面里 IPv4地址192.168.56.1，主机端口22 子系统IP是CentOS中的inet addr:10.0.2.15,子系统端口：22<br><img src="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/virtualbox-linux-net_1.png" alt="VirtualBox Linux虚拟网络配置-图例1"></p>
+<h3 id="4）然后就可以用xshell客户端进行登录了"><a href="#4）然后就可以用xshell客户端进行登录了" class="headerlink" title="4）然后就可以用xshell客户端进行登录了"></a>4）然后就可以用xshell客户端进行登录了</h3><p><img src="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/virtualbox-linux-net_2.png" alt="VirtualBox Linux虚拟网络配置-图例2"></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/b3c1b12f.html" data-id="ckfdbnt3d00cktpyk3isygcue" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/b3c1b12f.html" data-id="ckmn56vy100cah9qp4kfzhhr4" class="article-share-link">
         分享</a>
       
       
@@ -237,7 +237,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/20e9a4b.html" data-id="ckfdbnt0q007utpyk7nkuh0x7" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/20e9a4b.html" data-id="ckmn56vvu007rh9qp9biscd0m" class="article-share-link">
         分享</a>
       
       
@@ -321,7 +321,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/58d69454.html" data-id="ckfdbnt0v0082tpykiqlblx4o" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/58d69454.html" data-id="ckmn56vvv007uh9qpyg6z8wwv" class="article-share-link">
         分享</a>
       
       
@@ -404,7 +404,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/9f6836b6.html" data-id="ckfdbnsvx000ytpykrufq3m8b" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/9f6836b6.html" data-id="ckmn56vro0010h9qpy7kpl3eh" class="article-share-link">
         分享</a>
       
       
@@ -486,7 +486,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/968fb276.html" data-id="ckfdbnsvk000itpykvlmo6ba8" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/968fb276.html" data-id="ckmn56vra000gh9qpib106sm2" class="article-share-link">
         分享</a>
       
       
@@ -572,7 +572,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/f8433bbb.html" data-id="ckfdbnsx5002ptpykasm5f92h" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/f8433bbb.html" data-id="ckmn56vsx002mh9qpzc00ztxd" class="article-share-link">
         分享</a>
       
       
@@ -658,7 +658,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/7b8cc3e2.html" data-id="ckfdbnt0j007etpyklcw3bzh2" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/7b8cc3e2.html" data-id="ckmn56vvp007bh9qpmvmnkud6" class="article-share-link">
         分享</a>
       
       
@@ -741,7 +741,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/7e7d7a18.html" data-id="ckfdbnswe001qtpyk2dh1lflp" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/7e7d7a18.html" data-id="ckmn56vs2001lh9qpbqjd2c1n" class="article-share-link">
         分享</a>
       
       
@@ -823,7 +823,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/e388ac5d.html" data-id="ckfdbnt2s00bmtpyknrea9f3j" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/e388ac5d.html" data-id="ckmn56vxb00b3h9qpygp3ttju" class="article-share-link">
         分享</a>
       
       
@@ -906,7 +906,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/c70f76d0.html" data-id="ckfdbnszv006ntpykyoobpd77" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/c70f76d0.html" data-id="ckmn56vv8006ah9qpy304vmpi" class="article-share-link">
         分享</a>
       
       
@@ -970,7 +970,7 @@
     <div class="widget-wrap">
   <h3 class="widget-title"></h3>
   <div class="widget">
-    <img class="avatar" src="http://img.tidyko.com/avatar.jpg">
+    <img class="avatar" src="http://tidyko.oss-cn-hongkong.aliyuncs.com/avatar.jpg">
     <h2 class="author">
       
     </h2>
@@ -1029,7 +1029,7 @@
   
     <div class="widget-wrap">
     <h3 class="widget-title">关注我的公众号：</h3>
-    <div class="widget"><img style="width:100%" src="http://img.tidyko.com/japanesehub-qrcode.jpg">
+    <div class="widget"><img style="width:100%" src="http://tidyko.oss-cn-hongkong.aliyuncs.com/japanesehub-qrcode.jpg">
     </div>
 </div>
   
@@ -1050,7 +1050,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy;2019 - 2020 Tidy的个人博客<br>
+      &copy;2020 - 2021 Tidy的个人博客<br>
       <!-- 由<a href="https://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
       主题-<a href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a> -->
       

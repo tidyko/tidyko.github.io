@@ -19,16 +19,16 @@
 <meta property="og:site_name" content="Tidy的个人博客">
 <meta property="og:description" content="安装brew先确保已经安装了brew，我们将使用brew来安装我们需要的命令和软件。1brew --version 12Homebrew 1.5.10Homebrew/homebrew-core (git revision c3f55; last commit 2018-03-14) 安装iterm2命令行工具。1brew cask install iterm2 安装expectexpect的作用">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://img.tidyko.com/blog/iterm2login_1.png">
-<meta property="og:image" content="http://img.tidyko.com/blog/iterm2login_2.png">
-<meta property="og:image" content="http://img.tidyko.com/blog/iterm2login_3.png">
-<meta property="og:image" content="http://img.tidyko.com/blog/iterm2login_4.png">
-<meta property="og:image" content="http://img.tidyko.com/blog/iterm2login_5.png">
-<meta property="og:updated_time" content="2018-10-09T07:20:34.800Z">
+<meta property="og:image" content="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/iterm2login_1.png">
+<meta property="og:image" content="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/iterm2login_2.png">
+<meta property="og:image" content="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/iterm2login_3.png">
+<meta property="og:image" content="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/iterm2login_4.png">
+<meta property="og:image" content="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/iterm2login_5.png">
+<meta property="og:updated_time" content="2021-03-24T07:44:15.295Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mac iterm2使用expect实现SSH自动登陆">
 <meta name="twitter:description" content="安装brew先确保已经安装了brew，我们将使用brew来安装我们需要的命令和软件。1brew --version 12Homebrew 1.5.10Homebrew/homebrew-core (git revision c3f55; last commit 2018-03-14) 安装iterm2命令行工具。1brew cask install iterm2 安装expectexpect的作用">
-<meta name="twitter:image" content="http://img.tidyko.com/blog/iterm2login_1.png">
+<meta name="twitter:image" content="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/iterm2login_1.png">
   
   <link rel="alternate" href="/atom.xml" title="Tidy的个人博客" type="application/atom+xml">
   
@@ -65,7 +65,7 @@
         <div class="widget-wrap mobile-header">
   <h3 class="widget-title"></h3>
   <div class="widget">
-    <img class="avatar" src="http://img.tidyko.com/avatar.jpg">
+    <img class="avatar" src="http://tidyko.oss-cn-hongkong.aliyuncs.com/avatar.jpg">
     <h2 class="author"></h2>
     <h3 class="description"></h3>
     <div class="count-box">
@@ -157,19 +157,19 @@
 <p>## 编写自动登录脚本<br>在<code>/usr/local/bin/</code>目录下，新建<code>iterm2login.sh</code>文件，内容如下：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/usr/bin/expect</span></span><br><span class="line"></span><br><span class="line">set timeout 30</span><br><span class="line">spawn ssh -p [lindex $argv 0] [lindex $argv 1]@[lindex $argv 2]</span><br><span class="line">expect &#123;</span><br><span class="line">        "(yes/no)?"</span><br><span class="line">        &#123;send "yes\n";exp_continue&#125;</span><br><span class="line">        "password:"</span><br><span class="line">        &#123;send "[lindex $argv 3]\n"&#125;</span><br><span class="line">        "Password:"</span><br><span class="line">        &#123;send "[lindex $argv 3]\n"&#125;</span><br><span class="line">&#125;</span><br><span class="line">interact</span><br></pre></td></tr></table></figure></p>
 <a id="more"></a>
 <h2 id="配置iterm2"><a href="#配置iterm2" class="headerlink" title="配置iterm2"></a>配置iterm2</h2><p>添加profile，配置如下：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">iterm2login.sh 端口号 用户 IP地址 密码</span><br><span class="line"></span><br><span class="line">iterm2login.sh 22 finder 10.121.22.211 ImLog4Dev</span><br></pre></td></tr></table></figure></p>
-<p><img src="http://img.tidyko.com/blog/iterm2login_1.png" alt="iterm2login_1"></p>
+<p><img src="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/iterm2login_1.png" alt="iterm2login_1"></p>
 <h2 id="更改TAB页的title"><a href="#更改TAB页的title" class="headerlink" title="更改TAB页的title"></a>更改TAB页的title</h2><p>先勾选 <code>Preference</code> -&gt; <code>Appearance</code> -&gt; <code>Show profile name</code> 选项。</p>
-<p><img src="http://img.tidyko.com/blog/iterm2login_2.png" alt="iterm2login_2"></p>
+<p><img src="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/iterm2login_2.png" alt="iterm2login_2"></p>
 <p>再打开 <code>Preference</code> -&gt; <code>Profiles</code>，选中你要设置的 profile，点击右边的 <code>Terminal</code> 标签，把默认勾选上的 <code>Terminal may set tab/window title</code>选项取消勾选，如下：</p>
-<p><img src="http://img.tidyko.com/blog/iterm2login_3.png" alt="iterm2login_3"></p>
+<p><img src="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/iterm2login_3.png" alt="iterm2login_3"></p>
 <h2 id="保存iterm2的个性化配置"><a href="#保存iterm2的个性化配置" class="headerlink" title="保存iterm2的个性化配置"></a>保存iterm2的个性化配置</h2><p>为了防止配置丢失，或者重装系统能够恢复当前配置，可以把当前配置保存在iCloud或者其他云盘中，我这里使用Dropbox。</p>
-<p>现在Dropbox下创建好保存配置的文件夹。<br><img src="http://img.tidyko.com/blog/iterm2login_4.png" alt="iterm2login_4"></p>
-<p>iterm2中选择 Preferences，general页签下部勾选如下两个复选框，然后点击右边的<code>Browse</code>浏览文件夹，选择刚才创建的目录，之后确认配置已经保存完毕。<br><img src="http://img.tidyko.com/blog/iterm2login_5.png" alt="iterm2login_5"></p>
+<p>现在Dropbox下创建好保存配置的文件夹。<br><img src="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/iterm2login_4.png" alt="iterm2login_4"></p>
+<p>iterm2中选择 Preferences，general页签下部勾选如下两个复选框，然后点击右边的<code>Browse</code>浏览文件夹，选择刚才创建的目录，之后确认配置已经保存完毕。<br><img src="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/iterm2login_5.png" alt="iterm2login_5"></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/c14d120e.html" data-id="ckfdbnt18008ttpykqlpztn2b" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/c14d120e.html" data-id="ckmn56vw6008ih9qpby36su11" class="article-share-link">
         分享</a>
       
       
@@ -273,7 +273,7 @@ margin-bottom: 20px;"></div>
     <div class="widget-wrap">
   <h3 class="widget-title"></h3>
   <div class="widget">
-    <img class="avatar" src="http://img.tidyko.com/avatar.jpg">
+    <img class="avatar" src="http://tidyko.oss-cn-hongkong.aliyuncs.com/avatar.jpg">
     <h2 class="author">
       
     </h2>
@@ -332,7 +332,7 @@ margin-bottom: 20px;"></div>
   
     <div class="widget-wrap">
     <h3 class="widget-title">关注我的公众号：</h3>
-    <div class="widget"><img style="width:100%" src="http://img.tidyko.com/japanesehub-qrcode.jpg">
+    <div class="widget"><img style="width:100%" src="http://tidyko.oss-cn-hongkong.aliyuncs.com/japanesehub-qrcode.jpg">
     </div>
 </div>
   
@@ -353,7 +353,7 @@ margin-bottom: 20px;"></div>
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy;2019 - 2020 Tidy的个人博客<br>
+      &copy;2020 - 2021 Tidy的个人博客<br>
       <!-- 由<a href="https://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
       主题-<a href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a> -->
       

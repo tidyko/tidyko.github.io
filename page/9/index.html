@@ -52,7 +52,7 @@
         <div class="widget-wrap mobile-header">
   <h3 class="widget-title"></h3>
   <div class="widget">
-    <img class="avatar" src="http://img.tidyko.com/avatar.jpg">
+    <img class="avatar" src="http://tidyko.oss-cn-hongkong.aliyuncs.com/avatar.jpg">
     <h2 class="author"></h2>
     <h3 class="description"></h3>
     <div class="count-box">
@@ -150,7 +150,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/13b74a79.html" data-id="ckfdbnsxg0031tpyke3ymonje" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/13b74a79.html" data-id="ckmn56vt3002wh9qp3e53vzc6" class="article-share-link">
         分享</a>
       
       
@@ -248,7 +248,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/f6190ed2.html" data-id="ckfdbnt3600c7tpyk8kzc6hwj" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/f6190ed2.html" data-id="ckmn56vxt00bvh9qpv8fdcwi3" class="article-share-link">
         分享</a>
       
       
@@ -332,7 +332,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/1e7ee8d0.html" data-id="ckfdbnt4900dqtpyknpy88ehd" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/1e7ee8d0.html" data-id="ckmn56vyu00dxh9qpq43ahklc" class="article-share-link">
         分享</a>
       
       
@@ -414,7 +414,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/1b8b5be2.html" data-id="ckfdbnt4600dntpykfqvxdq34" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/1b8b5be2.html" data-id="ckmn56vyh00d6h9qpr6ldzx61" class="article-share-link">
         分享</a>
       
       
@@ -499,7 +499,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/69238558.html" data-id="ckfdbnt02006ytpykblmpi3sw" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/69238558.html" data-id="ckmn56vvh006vh9qpd2gguatq" class="article-share-link">
         分享</a>
       
       
@@ -581,7 +581,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/6a2a165c.html" data-id="ckfdbnswh001utpykp3cytgws" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/6a2a165c.html" data-id="ckmn56vs7001sh9qp7rultzl6" class="article-share-link">
         分享</a>
       
       
@@ -659,16 +659,16 @@
     <div class="article-entry" itemprop="articleBody">
       
       <p>使用Eclipse依赖生成jar包时，如果做配置，生成的jar包文件会全部生成在外面，这并不是我们需要的，下面我们一起来修改下配置，使生成的jar包符合我们的需求吧。</p>
-<h2 id="1）"><a href="#1）" class="headerlink" title="1）"></a>1）</h2><p>如果不做任何配置生成的jar包如下：<br><img src="http://img.tidyko.com/blog/eclipse-jar_1.png" alt="Eclipse 依赖生成jar包时，避免最外层同时生成资源文件的配置-图例1"><br>这样最原始的生成方式并不是我们想要的，我们想要的是test.properties和ums.properties文件同时放到message文件夹里面，下面修改一下Eclipse配置。</p>
+<h2 id="1）"><a href="#1）" class="headerlink" title="1）"></a>1）</h2><p>如果不做任何配置生成的jar包如下：<br><img src="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/eclipse-jar_1.png" alt="Eclipse 依赖生成jar包时，避免最外层同时生成资源文件的配置-图例1"><br>这样最原始的生成方式并不是我们想要的，我们想要的是test.properties和ums.properties文件同时放到message文件夹里面，下面修改一下Eclipse配置。</p>
 <h2 id="2）"><a href="#2）" class="headerlink" title="2）"></a>2）</h2><p>修改Eclipse配置，使test.properties和ums.properties文件同时放到message文件夹里面。</p>
-<p>最原始为下图所示：<br><img src="http://img.tidyko.com/blog/eclipse-jar_2.png" alt="Eclipse 依赖生成jar包时，避免最外层同时生成资源文件的配置-图例2"><br>修改Source为/message的Deploy Path为message，为下图所示：<br><img src="http://img.tidyko.com/blog/eclipse-jar_3.png" alt="Eclipse 依赖生成jar包时，避免最外层同时生成资源文件的配置-图例3"><br>修改完成之后点击ok按钮，发布，生成的jar包内容为以下所示：<br><img src="http://img.tidyko.com/blog/eclipse-jar_4.png" alt="Eclipse 依赖生成jar包时，避免最外层同时生成资源文件的配置-图例4"><br>这时候我们可以看到jar包里面已经有了message文件夹了，但是这时候我们会发现，message文件夹里面存在test.properties和ums.properties文件，同时最外层也存在了这两个文件。这时我们需要继续做配置。</p>
+<p>最原始为下图所示：<br><img src="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/eclipse-jar_2.png" alt="Eclipse 依赖生成jar包时，避免最外层同时生成资源文件的配置-图例2"><br>修改Source为/message的Deploy Path为message，为下图所示：<br><img src="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/eclipse-jar_3.png" alt="Eclipse 依赖生成jar包时，避免最外层同时生成资源文件的配置-图例3"><br>修改完成之后点击ok按钮，发布，生成的jar包内容为以下所示：<br><img src="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/eclipse-jar_4.png" alt="Eclipse 依赖生成jar包时，避免最外层同时生成资源文件的配置-图例4"><br>这时候我们可以看到jar包里面已经有了message文件夹了，但是这时候我们会发现，message文件夹里面存在test.properties和ums.properties文件，同时最外层也存在了这两个文件。这时我们需要继续做配置。</p>
 <h2 id="3）"><a href="#3）" class="headerlink" title="3）"></a>3）</h2><p>修改配置，使message资源文件夹的指定内容不出现在jar包最外层。</p>
-<p>没修改之前为下图所示：<br><img src="http://img.tidyko.com/blog/eclipse-jar_5.png" alt="Eclipse 依赖生成jar包时，避免最外层同时生成资源文件的配置-图例5"><br>点击message下面的Excluded,然后点击右边的Edit，进入编辑，在下方的Exclude里面输入*.properties，完成即可，如下图所示：<br><img src="http://img.tidyko.com/blog/eclipse-jar_6.png" alt="Eclipse 依赖生成jar包时，避免最外层同时生成资源文件的配置-图例6"><br>最后，生成jar包时你就会看到里面只有一个message文件夹，并且最外面没有同时生成其他文件了，效果如下图所示：<br><img src="http://img.tidyko.com/blog/eclipse-jar_7.png" alt="Eclipse 依赖生成jar包时，避免最外层同时生成资源文件的配置-图例7"></p>
+<p>没修改之前为下图所示：<br><img src="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/eclipse-jar_5.png" alt="Eclipse 依赖生成jar包时，避免最外层同时生成资源文件的配置-图例5"><br>点击message下面的Excluded,然后点击右边的Edit，进入编辑，在下方的Exclude里面输入*.properties，完成即可，如下图所示：<br><img src="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/eclipse-jar_6.png" alt="Eclipse 依赖生成jar包时，避免最外层同时生成资源文件的配置-图例6"><br>最后，生成jar包时你就会看到里面只有一个message文件夹，并且最外面没有同时生成其他文件了，效果如下图所示：<br><img src="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/eclipse-jar_7.png" alt="Eclipse 依赖生成jar包时，避免最外层同时生成资源文件的配置-图例7"></p>
 <h2 id="4）完成"><a href="#4）完成" class="headerlink" title="4）完成"></a>4）完成</h2>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/75c14ffd.html" data-id="ckfdbnswg001ttpyk186dw2n2" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/75c14ffd.html" data-id="ckmn56vs4001oh9qpl0rnskgz" class="article-share-link">
         分享</a>
       
       
@@ -750,7 +750,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/3530a775.html" data-id="ckfdbnsva000btpyk74hy46rn" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/3530a775.html" data-id="ckmn56vqx0005h9qp7lx8eb7y" class="article-share-link">
         分享</a>
       
       
@@ -832,7 +832,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/15ae09a5.html" data-id="ckfdbnsur0001tpyko8s33t0z" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/15ae09a5.html" data-id="ckmn56vqs0002h9qpeipw4bbo" class="article-share-link">
         分享</a>
       
       
@@ -924,7 +924,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/632d0b70.html" data-id="ckfdbnsv30006tpykbg7bfjsv" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/632d0b70.html" data-id="ckmn56vqy0006h9qpvqw1t5js" class="article-share-link">
         分享</a>
       
       
@@ -988,7 +988,7 @@
     <div class="widget-wrap">
   <h3 class="widget-title"></h3>
   <div class="widget">
-    <img class="avatar" src="http://img.tidyko.com/avatar.jpg">
+    <img class="avatar" src="http://tidyko.oss-cn-hongkong.aliyuncs.com/avatar.jpg">
     <h2 class="author">
       
     </h2>
@@ -1047,7 +1047,7 @@
   
     <div class="widget-wrap">
     <h3 class="widget-title">关注我的公众号：</h3>
-    <div class="widget"><img style="width:100%" src="http://img.tidyko.com/japanesehub-qrcode.jpg">
+    <div class="widget"><img style="width:100%" src="http://tidyko.oss-cn-hongkong.aliyuncs.com/japanesehub-qrcode.jpg">
     </div>
 </div>
   
@@ -1068,7 +1068,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy;2019 - 2020 Tidy的个人博客<br>
+      &copy;2020 - 2021 Tidy的个人博客<br>
       <!-- 由<a href="https://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
       主题-<a href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a> -->
       
