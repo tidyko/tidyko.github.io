@@ -12,21 +12,21 @@
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="一、介绍在Mpvue中编辑、上传并使用小程序云函数 二、配置、使用 配置小程序云函数根目录，在/static目录下创建cloud/function目录，在该目录底下随便创建一个文件，比如“test.js”，主要目的是使发布时dist目录下面新增刚刚添加的目录。  配置project.config.json文件在project.config.json文件下面新增以下字段 123&amp;#123;  &quot;cl">
-<meta name="keywords" content="Vue,mpvue,小程序,云函数">
+<meta name="keywords" content="Vue,mpvue,云函数,小程序">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Mpvue中使用云函数">
 <meta property="og:url" content="https://www.tidyko.com/posts/d2036d9e.html">
 <meta property="og:site_name" content="Tidy的个人博客">
 <meta property="og:description" content="一、介绍在Mpvue中编辑、上传并使用小程序云函数 二、配置、使用 配置小程序云函数根目录，在/static目录下创建cloud/function目录，在该目录底下随便创建一个文件，比如“test.js”，主要目的是使发布时dist目录下面新增刚刚添加的目录。  配置project.config.json文件在project.config.json文件下面新增以下字段 123&amp;#123;  &quot;cl">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://img.tidyko.com/blog/mpvue-cloudfunction1.png">
-<meta property="og:image" content="https://img.tidyko.com/blog/mpvue-cloudfunction2.png">
-<meta property="og:image" content="https://img.tidyko.com/blog/mpvue-cloudfunction3.png">
-<meta property="og:updated_time" content="2020-07-20T03:41:56.797Z">
+<meta property="og:image" content="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/mpvue-cloudfunction1.png">
+<meta property="og:image" content="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/mpvue-cloudfunction2.png">
+<meta property="og:image" content="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/mpvue-cloudfunction3.png">
+<meta property="og:updated_time" content="2021-03-24T07:47:38.049Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mpvue中使用云函数">
 <meta name="twitter:description" content="一、介绍在Mpvue中编辑、上传并使用小程序云函数 二、配置、使用 配置小程序云函数根目录，在/static目录下创建cloud/function目录，在该目录底下随便创建一个文件，比如“test.js”，主要目的是使发布时dist目录下面新增刚刚添加的目录。  配置project.config.json文件在project.config.json文件下面新增以下字段 123&amp;#123;  &quot;cl">
-<meta name="twitter:image" content="https://img.tidyko.com/blog/mpvue-cloudfunction1.png">
+<meta name="twitter:image" content="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/mpvue-cloudfunction1.png">
   
   <link rel="alternate" href="/atom.xml" title="Tidy的个人博客" type="application/atom+xml">
   
@@ -155,11 +155,11 @@
 </li>
 <li><p>编译<br>运行 npm run dev 编译<br>注意：这可能在编译后不会生效，<br>保险起见，应在后检查dist/project.config.json文件，<br>看看刚刚的字段是否添加成功，如果没有，请在dist/project.config.json中也添加上述字段。</p>
 <a id="more"></a></li>
-<li><p>使用微信开发者工具<br>使用“微信开发者”工具，打开编译后的目录。<br>如第一次使用云函数，则需要点击右上角的“云开发”按钮，按照步骤开通云开发。<br><img src="https://img.tidyko.com/blog/mpvue-cloudfunction1.png" alt="Mpvue中使用云函数1"></p>
+<li><p>使用微信开发者工具<br>使用“微信开发者”工具，打开编译后的目录。<br>如第一次使用云函数，则需要点击右上角的“云开发”按钮，按照步骤开通云开发。<br><img src="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/mpvue-cloudfunction1.png" alt="Mpvue中使用云函数1"></p>
 </li>
-<li><p>编写云函数<br>如果是现有的云函数，则直接把云函数文件夹及文件复制进项目”/static/cloud/function”目录底下<br>如果是新增的云函数，则需要在“微信开发者”工具里，打开“编辑器”窗口，找到function目录，右键选择“新建Node.js云函数”创建一个新的云函数，再将生成的文件夹以及底下的文件复制进去”/static/cloud/function”目录底下，进行编写。<br><img src="https://img.tidyko.com/blog/mpvue-cloudfunction2.png" alt="Mpvue中使用云函数2"></p>
+<li><p>编写云函数<br>如果是现有的云函数，则直接把云函数文件夹及文件复制进项目”/static/cloud/function”目录底下<br>如果是新增的云函数，则需要在“微信开发者”工具里，打开“编辑器”窗口，找到function目录，右键选择“新建Node.js云函数”创建一个新的云函数，再将生成的文件夹以及底下的文件复制进去”/static/cloud/function”目录底下，进行编写。<br><img src="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/mpvue-cloudfunction2.png" alt="Mpvue中使用云函数2"></p>
 </li>
-<li><p>上传云函数<br>右键点击函数目录，选择“上传并部署（云端安装依赖）”，对云函数进行上传。<br><img src="https://img.tidyko.com/blog/mpvue-cloudfunction3.png" alt="Mpvue中使用云函数3"></p>
+<li><p>上传云函数<br>右键点击函数目录，选择“上传并部署（云端安装依赖）”，对云函数进行上传。<br><img src="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/mpvue-cloudfunction3.png" alt="Mpvue中使用云函数3"></p>
 </li>
 <li><p>使用<br>上传后即可开始在项目里面使用云函数，</p>
 </li>
@@ -170,7 +170,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/d2036d9e.html" data-id="ckmn56vwg0097h9qp3df22l98" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/d2036d9e.html" data-id="ckmn59ski00926nqph5iv1gtw" class="article-share-link">
         分享</a>
       
       

@@ -19,16 +19,16 @@
 <meta property="og:site_name" content="Tidy的个人博客">
 <meta property="og:description" content="MacOS中设置代理在MacOS中配置http(s)代理时，通常的做法是在系统偏好设置 - 网络中进行操作，选择一个网络，点击高级按钮，点击代理选项卡，分别勾选网页代理（HTTP）和安全网页代理（HTTPS）然后填写上代理信息。   这种配置方式虽然可以实现需求，但缺点在于操作比较繁琐，特别是在需要频繁切换的情况下，效率极其低下。 基于该痛点，我们希望能避免重复操作，实现快速切换配置。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://img.tidyko.com/blog/shuttle-1.png">
-<meta property="og:image" content="https://img.tidyko.com/blog/shuttle-2.png">
-<meta property="og:image" content="https://img.tidyko.com/blog/shuttle-3.png">
-<meta property="og:image" content="https://img.tidyko.com/blog/shuttle-4.png">
-<meta property="og:image" content="https://img.tidyko.com/blog/shuttle-5.png">
-<meta property="og:updated_time" content="2019-06-04T03:23:23.687Z">
+<meta property="og:image" content="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/shuttle-1.png">
+<meta property="og:image" content="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/shuttle-2.png">
+<meta property="og:image" content="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/shuttle-3.png">
+<meta property="og:image" content="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/shuttle-4.png">
+<meta property="og:image" content="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/shuttle-5.png">
+<meta property="og:updated_time" content="2021-03-24T07:47:38.026Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mac 使用Shuttle优雅切换http(s)代理">
 <meta name="twitter:description" content="MacOS中设置代理在MacOS中配置http(s)代理时，通常的做法是在系统偏好设置 - 网络中进行操作，选择一个网络，点击高级按钮，点击代理选项卡，分别勾选网页代理（HTTP）和安全网页代理（HTTPS）然后填写上代理信息。   这种配置方式虽然可以实现需求，但缺点在于操作比较繁琐，特别是在需要频繁切换的情况下，效率极其低下。 基于该痛点，我们希望能避免重复操作，实现快速切换配置。">
-<meta name="twitter:image" content="https://img.tidyko.com/blog/shuttle-1.png">
+<meta name="twitter:image" content="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/shuttle-1.png">
   
   <link rel="alternate" href="/atom.xml" title="Tidy的个人博客" type="application/atom+xml">
   
@@ -149,8 +149,8 @@
     <div class="article-entry" itemprop="articleBody">
       
       <h2 id="MacOS中设置代理"><a href="#MacOS中设置代理" class="headerlink" title="MacOS中设置代理"></a>MacOS中设置代理</h2><p>在<code>MacOS</code>中配置http(s)代理时，通常的做法是在<code>系统偏好设置</code> - <code>网络</code>中进行操作，选择一个网络，点击<code>高级</code>按钮，点击<code>代理</code>选项卡，分别勾选<code>网页代理（HTTP）</code>和<code>安全网页代理（HTTPS）</code>然后填写上代理信息。</p>
-<p><img src="https://img.tidyko.com/blog/shuttle-1.png" alt=""></p>
-<p><img src="https://img.tidyko.com/blog/shuttle-2.png" alt=""></p>
+<p><img src="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/shuttle-1.png" alt=""></p>
+<p><img src="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/shuttle-2.png" alt=""></p>
 <p>这种配置方式虽然可以实现需求，但缺点在于操作比较繁琐，特别是在需要频繁切换的情况下，效率极其低下。</p>
 <p>基于该痛点，我们希望能避免重复操作，实现快速切换配置。<br><a id="more"></a></p>
 <h2 id="Terminal中设置代理"><a href="#Terminal中设置代理" class="headerlink" title="Terminal中设置代理"></a>Terminal中设置代理</h2><p>要避免在<code>GUI</code>进行重复的配置操作，比较好的简化方式是在<code>Terminal</code>中通过命令实现同样的功能。</p>
@@ -167,23 +167,23 @@
 <h3 id="关闭http-s-代理"><a href="#关闭http-s-代理" class="headerlink" title="关闭http(s)代理"></a>关闭http(s)代理</h3><p>相应地，关闭HTTP和HTTPS代理的命令为：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo networksetup -setwebproxystate &lt;networkservice&gt; &lt;on off&gt;</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> e.g. sudo networksetup -setwebproxystate <span class="string">"Wi-Fi"</span> off</span></span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> networksetup -setsecurewebproxystate &lt;networkservice&gt; &lt;on off&gt;</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> e.g. sudo networksetup -setsecurewebproxystate <span class="string">"Wi-Fi"</span> off</span></span><br></pre></td></tr></table></figure>
 <h2 id="使用Shuttle一键设置代理"><a href="#使用Shuttle一键设置代理" class="headerlink" title="使用Shuttle一键设置代理"></a>使用Shuttle一键设置代理</h2><p>现在我们已经知道如何通过<code>networksetup</code>命令在Terminal中进行http(s)代理切换了，但如果每次都要重新输入命令和密码，还是会很麻烦，并没有真正地解决我们的痛点。</p>
-<p><img src="https://img.tidyko.com/blog/shuttle-3.png" alt=""></p>
+<p><img src="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/shuttle-3.png" alt=""></p>
 <p>而且在实际场景中，我们通常需要同时开启或关闭代理，这类操作如此高频，要是还能通过点击一个按钮就实现切换，那就优雅多了。</p>
 <p>幸运的是，这种优雅的方式还真能实现，只需要结合使用<code>Shuttle</code>这么一款小工具。</p>
 <p><a href="http://fitztrev.github.io/shuttle/" target="_blank" rel="noopener">Shuttle</a>，简而言之，它可以将一串命令映射到<code>MacOS</code>顶部菜单栏的快捷方式。我们要做的很简单，只需要将要实现的任务拼接成一条串行的命令即可，然后就可以在系统菜单栏中点击按钮运行整条命令。</p>
 <p>例如，在<code>Terminal</code>中，要想在不手动输入sudo密码的情况下实现同时关闭代理，就可以通过如下串行命令实现。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">echo</span> &lt;password&gt; | sudo -S networksetup -setwebproxystate <span class="string">'Wi-Fi'</span> off &amp;&amp; sudo networksetup -setsecurewebproxystate <span class="string">'Wi-Fi'</span> off</span></span><br></pre></td></tr></table></figure>
 <h3 id="配置Shuttle"><a href="#配置Shuttle" class="headerlink" title="配置Shuttle"></a>配置Shuttle</h3><p>打开<code>Shuttle</code>配置文件，</p>
-<p><img src="https://img.tidyko.com/blog/shuttle-4.png" alt=""></p>
+<p><img src="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/shuttle-4.png" alt=""></p>
 <p>编辑内容，修改<code>hosts</code>字段内容为以下配置：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">"hosts": [</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">"HTTP(S) Proxy - Wi-Fi"</span>: [</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">"name"</span>: <span class="string">"Turn on HTTP(S) Proxy"</span>,</span><br><span class="line">                <span class="attr">"cmd"</span>: <span class="string">"echo &lt;password&gt; | sudo -S networksetup -setwebproxy 'Wi-Fi' 127.0.0.1 8080 &amp;&amp; sudo networksetup -setsecurewebproxy 'Wi-Fi' 127.0.0.1 8080"</span></span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">"name"</span>: <span class="string">"Turn off HTTP(S) Proxy"</span>,</span><br><span class="line">                <span class="attr">"cmd"</span>: <span class="string">"echo &lt;password&gt; | sudo -S networksetup -setwebproxystate 'Wi-Fi' off &amp;&amp; sudo networksetup -setsecurewebproxystate 'Wi-Fi' off"</span></span><br><span class="line">            &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
 <p>配置十分简洁清晰，不用解释也能看懂。完成配置后，点击MacOS顶部菜单栏的Shuttle图标就会出现如下效果的快捷方式。</p>
-<p><img src="https://img.tidyko.com/blog/shuttle-5.png" alt=""></p>
+<p><img src="http://tidyko.oss-cn-hongkong.aliyuncs.com/blog/shuttle-5.png" alt=""></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.tidyko.com/posts/67b16286.html" data-id="ckmn56vw8008lh9qplrb4cb69" class="article-share-link">
+      <a data-url="https://www.tidyko.com/posts/67b16286.html" data-id="ckmn59sk5008f6nqp8zx8d0b9" class="article-share-link">
         分享</a>
       
       
